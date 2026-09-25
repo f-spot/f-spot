@@ -38,8 +38,15 @@ public partial class ImportViewModel : ObservableObject
 	readonly Action<bool> close;
 	readonly PhotoList importList = new PhotoList ();
 	CancellationTokenSource? scan;
+	Task? scanTask;
 	CancellationTokenSource? import;
 	IReadOnlyList<string>? droppedPaths;
+	bool closed;
+
+	internal Func<IImportController>? Importer { get; set; }
+
+	// Tests hold the scan open. Production scans go through the file source.
+	internal Func<CancellationToken, IEnumerable<IPhoto>>? ScanOverride { get; set; }
 
 	[ObservableProperty]
 	string sourceLabel = Strings.ChooseFolder;
@@ -111,11 +118,26 @@ public partial class ImportViewModel : ObservableObject
 	public ObservableCollection<ImportSourceOption> SourceOptions { get; } = [];
 	public bool CanImport => Photos.Count > 0 && !IsBusy;
 	public bool RemoveOriginalsEnabled => CopyFiles;
+	public bool CanEditRemoveOriginals => RemoveOriginalsEnabled && !IsBusy;
 	public bool IsProgressVisible => IsBusy || IsScanning;
 	public bool HasDetectedSources { get; private set; }
 
+	static bool TryResolve<T> (out T? service) where T : class
+	{
+		try {
+			service = TinyIoCContainer.Current.Resolve<T> ();
+			return service is not null;
+		} catch (TinyIoCResolutionException) {
+			service = null;
+			return false;
+		}
+	}
+
 	partial void OnIsBusyChanged (bool value)
-		=> OnPropertyChanged (nameof (IsProgressVisible));
+	{
+		OnPropertyChanged (nameof (IsProgressVisible));
+		OnPropertyChanged (nameof (CanEditRemoveOriginals));
+	}
 
 	partial void OnIsScanningChanged (bool value)
 		=> OnPropertyChanged (nameof (IsProgressVisible));
@@ -126,12 +148,13 @@ public partial class ImportViewModel : ObservableObject
 		if (!value)
 			RemoveOriginals = false;
 		OnPropertyChanged (nameof (RemoveOriginalsEnabled));
+		OnPropertyChanged (nameof (CanEditRemoveOriginals));
 	}
 
 	partial void OnRecurseSubdirectoriesChanged (bool value)
 	{
 		Preferences.RecurseSubdirectories = value;
-		if (SourcePath is not null)
+		if (!IsBusy && SourcePath is not null)
 			_ = ScanAsync ();
 	}
 
@@ -141,7 +164,7 @@ public partial class ImportViewModel : ObservableObject
 	partial void OnMergeRawAndJpegChanged (bool value)
 	{
 		Preferences.MergeRawAndJpeg = value;
-		if (SourcePath is not null)
+		if (!IsBusy && SourcePath is not null)
 			_ = ScanAsync ();
 	}
 
@@ -187,8 +210,9 @@ public partial class ImportViewModel : ObservableObject
 			var chooseFolder = ImportSourceOption.ChooseFolder (Strings.ChooseFolder);
 			SourceOptions.Add (chooseFolder);
 
-			var fileSystem = TinyIoCContainer.Current.Resolve<IFileSystem> ();
-			var detected = DeviceImport.Sources (fileSystem);
+			var detected = TryResolve (out IFileSystem? fileSystem) && fileSystem is not null
+				? DeviceImport.Sources (fileSystem)
+				: [];
 			HasDetectedSources = detected.Count > 0;
 			foreach (var source in detected)
 				SourceOptions.Add (ImportSourceOption.ForSource (source.Name, source.Root.LocalPath));
@@ -205,7 +229,7 @@ public partial class ImportViewModel : ObservableObject
 
 	partial void OnSelectedSourceOptionChanged (ImportSourceOption? value)
 	{
-		if (suppressSourceSelection || value is null)
+		if (suppressSourceSelection || value is null || IsBusy)
 			return;
 
 		if (value.Kind == ImportSourceKind.ChooseFolder) {
@@ -222,6 +246,9 @@ public partial class ImportViewModel : ObservableObject
 	[RelayCommand]
 	async Task ChooseFolderAsync ()
 	{
+		if (IsBusy)
+			return;
+
 		string? path = await shell.PickFolderAsync (Strings.ChooseFolder);
 		if (path is null) {
 			// Nothing was picked; fall back to whatever source was active
@@ -241,37 +268,77 @@ public partial class ImportViewModel : ObservableObject
 	[RelayCommand (CanExecute = nameof (CanImport))]
 	async Task ImportAsync ()
 	{
-		if (Photos.Count == 0)
+		// Finish the scan first. A click while photos are still arriving used
+		// to import only the files found so far.
+		while (scanTask is Task pending && !pending.IsCompleted) {
+			try {
+				await pending;
+			} catch (OperationCanceledException) {
+			}
+		}
+
+		if (closed || Photos.Count == 0)
+			return;
+
+		// The scan keeps appending to importList on the UI thread. DoImport
+		// enumerates on a pool thread, so it must see a copy.
+		var snapshot = new PhotoList (importList.Items.ToArray ());
+		if (snapshot.Count == 0)
 			return;
 
 		IsBusy = true;
 		ImportCommand.NotifyCanExecuteChanged ();
 		StatusText = Strings.ImportingPhotos;
-		import = new CancellationTokenSource ();
+		var importCts = new CancellationTokenSource ();
+		import = importCts;
+		var token = importCts.Token;
+		int total = snapshot.Count;
 		var tags = ResolveAttachTags ();
 		var progress = new Progress<int> (current => {
 			Dispatcher.UIThread.Post (() => {
-				StatusText = string.Format (Strings.ImportPhotosXOfY, current, Photos.Count);
-				Progress = Photos.Count == 0 ? 0 : (double)current / Photos.Count;
+				StatusText = string.Format (Strings.ImportPhotosXOfY, current, total);
+				Progress = total == 0 ? 0 : (double)current / total;
 			});
 		});
 
 		try {
-			var importer = TinyIoCContainer.Current.Resolve<IImportController> ();
+			var importer = Importer?.Invoke () ?? TinyIoCContainer.Current.Resolve<IImportController> ();
 			await Task.Run (() => importer.DoImport (
-				database, importList, tags, Preferences, progress, import.Token), import.Token);
+				database, snapshot, tags, Preferences, progress, token), token);
 			var failed = importer.FailedImports.ToList ();
 			int imported = importer.PhotosImported;
 			await ImportCompletion.ReportFailuresAsync (shell, failed);
-			close (ImportCompletion.ShouldReloadCatalog (imported));
+			Finish (ImportCompletion.ShouldReloadCatalog (imported));
 		} catch (OperationCanceledException) {
-			close (false);
+			Finish (false);
 		} catch (Exception ex) {
 			Logger.Log.Error (ex, "Import failed");
 			StatusText = ex.Message;
 			IsBusy = false;
 			ImportCommand.NotifyCanExecuteChanged ();
+		} finally {
+			if (ReferenceEquals (import, importCts))
+				import = null;
+			importCts.Dispose ();
 		}
+	}
+
+	// The window is already closing. Cancel the scan and the import, drop
+	// thumbnails, and do not ask the window to close a second time.
+	internal void CancelInFlight ()
+	{
+		closed = true;
+		scan?.Cancel ();
+		import?.Cancel ();
+		ReleaseListedThumbnails ();
+	}
+
+	void Finish (bool reload)
+	{
+		if (closed)
+			return;
+		closed = true;
+		close (reload);
 	}
 
 	[RelayCommand]
@@ -279,62 +346,101 @@ public partial class ImportViewModel : ObservableObject
 	{
 		scan?.Cancel ();
 		import?.Cancel ();
-		close (false);
+		ReleaseListedThumbnails ();
+		Finish (false);
 	}
 
 	[RelayCommand]
 	Task WarnRemoveOriginalsAsync ()
 		=> shell.ShowWarningAsync (Strings.Warning, Strings.CheckBoxToRemoveImportedPhotosFromCameraAndWarning);
 
-	async Task ScanAsync ()
+	internal async Task ScanAsync ()
 	{
-		if (SourcePath is null && droppedPaths is not { Count: > 0 })
+		if (IsBusy)
+			return;
+		if (ScanOverride is null && SourcePath is null && droppedPaths is not { Count: > 0 })
 			return;
 
-		if (scan is not null)
-			await scan.CancelAsync ();
-		scan = new CancellationTokenSource ();
-		var token = scan.Token;
-		ResetListedPhotos ();
-		IsScanning = true;
-		StatusText = Strings.SearchingForPhotosYouCanAlreadyClickImportToContinue;
-		Progress = 0;
-		ImportCommand.NotifyCanExecuteChanged ();
-
-		var container = TinyIoCContainer.Current;
-		var imageFactory = container.Resolve<IImageFileFactory> ();
-		var files = container.Resolve<IFileSystem> ();
-		IImportSource source = droppedPaths is { Count: > 0 }
-			? new MultiFileImportSource (droppedPaths.Select (path => new SafeUri (path)), imageFactory, files)
-			: new FileImportSource (new SafeUri (SourcePath!), imageFactory, files);
+		// The task is stored before the first await so Import can see a scan
+		// that has already started.
+		var previous = scan;
+		var local = new CancellationTokenSource ();
+		scan = local;
+		var running = ScanCoreAsync (local, previous);
+		scanTask = running;
 		try {
-			await Task.Run (async () => {
-				foreach (var info in source.ScanPhotos (Preferences)) {
-					if (token.IsCancellationRequested)
-						break;
-					await Dispatcher.UIThread.InvokeAsync (() => {
-						if (token.IsCancellationRequested)
-							return;
-						try {
-							importList.Add (info);
-							AddPendingPhoto (new PhotoItemViewModel (info));
-						} catch (Exception ex) {
-							Logger.Log.Debug (ex, "Skipping unreadable file {Uri}", info.DefaultVersion.Uri);
-						}
-					});
-				}
-			}, token);
-		} catch (OperationCanceledException) {
-		} catch (Exception ex) {
-			Logger.Log.Error (ex, "Import scan failed");
-			StatusText = ex.Message;
+			await running;
 		} finally {
+			if (ReferenceEquals (scanTask, running))
+				scanTask = null;
+		}
+	}
+
+	async Task ScanCoreAsync (CancellationTokenSource local, CancellationTokenSource? previous)
+	{
+		if (previous is not null)
+			await previous.CancelAsync ();
+
+		var token = local.Token;
+		try {
+			ResetListedPhotos ();
+			IsScanning = true;
+			StatusText = Strings.SearchingForPhotosYouCanAlreadyClickImportToContinue;
+			Progress = 0;
+			ImportCommand.NotifyCanExecuteChanged ();
+
+			IEnumerable<IPhoto>? photos = null;
+			if (ScanOverride is not null) {
+				photos = ScanOverride (token);
+			} else if (TryResolve (out IImageFileFactory? imageFactory) && imageFactory is not null
+				&& TryResolve (out IFileSystem? files) && files is not null) {
+				IImportSource source = droppedPaths is { Count: > 0 }
+					? new MultiFileImportSource (droppedPaths.Select (path => new SafeUri (path)), imageFactory, files)
+					: new FileImportSource (new SafeUri (SourcePath!), imageFactory, files);
+				photos = source.ScanPhotos (Preferences);
+			} else {
+				IsScanning = false;
+				return;
+			}
+
+			try {
+				await Task.Run (async () => {
+					foreach (var info in photos) {
+						if (token.IsCancellationRequested)
+							break;
+						await Dispatcher.UIThread.InvokeAsync (() => {
+							if (token.IsCancellationRequested)
+								return;
+							try {
+								AddScanned (info);
+							} catch (Exception ex) {
+								Logger.Log.Debug (ex, "Skipping unreadable file {Uri}", info.DefaultVersion.Uri);
+							}
+						});
+					}
+				}, token);
+			} catch (OperationCanceledException) {
+			} catch (Exception ex) {
+				Logger.Log.Error (ex, "Import scan failed");
+				StatusText = ex.Message;
+			}
+
 			if (!token.IsCancellationRequested) {
 				IsScanning = false;
 				StatusText = string.Format (Photos.Count <= 1 ? Strings.XPhoto : Strings.XPhotos, Photos.Count);
 				ImportCommand.NotifyCanExecuteChanged ();
 			}
+		} finally {
+			if (ReferenceEquals (scan, local))
+				scan = null;
+			local.Dispose ();
 		}
+	}
+
+	internal void AddScanned (IPhoto photo)
+	{
+		importList.Add (photo);
+		AddPendingPhoto (new PhotoItemViewModel (photo));
 	}
 
 	internal void AddPendingPhoto (PhotoItemViewModel item)
@@ -347,14 +453,19 @@ public partial class ImportViewModel : ObservableObject
 
 	void ResetListedPhotos ()
 	{
+		ReleaseListedThumbnails ();
+		Photos.Clear ();
+		importList.Clear ();
+	}
+
+	void ReleaseListedThumbnails ()
+	{
 		var listed = Photos.ToArray ();
 		shownThumbnails.Clear ();
 		thumbnailGeneration.Clear ();
 		foreach (var item in listed)
 			ReplaceThumbnail (item, null);
 		SetPreview (null);
-		Photos.Clear ();
-		importList.Clear ();
 	}
 
 	internal Task RealizeThumbnailAsync (object container, PhotoItemViewModel item)

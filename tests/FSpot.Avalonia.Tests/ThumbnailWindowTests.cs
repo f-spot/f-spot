@@ -14,7 +14,7 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class ThumbnailWindowTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void Range_ForTenThousandPhotos_IsTheViewportPlusOneOverscanRow ()
 	{
 		var slice = ThumbnailWindow.Range (
@@ -29,7 +29,7 @@ public sealed class ThumbnailWindowTests
 		Assert.AreEqual (30, slice.Count);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Range_AtTheTop_DoesNotStartBeforeZero ()
 	{
 		var slice = ThumbnailWindow.Range (10_000, 5, scrollOffset: 0, viewport: 400, itemExtent: 100, overscanRows: 1);
@@ -38,7 +38,7 @@ public sealed class ThumbnailWindowTests
 		Assert.AreEqual (25, slice.Count);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Range_ClampsToTheLastPartialRow ()
 	{
 		var slice = ThumbnailWindow.Range (10, 4, scrollOffset: 0, viewport: 1000, itemExtent: 100, overscanRows: 1);
@@ -47,7 +47,7 @@ public sealed class ThumbnailWindowTests
 		Assert.AreEqual (10, slice.Count);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Range_EmptyViewportOrCatalog_DecodesNothing ()
 	{
 		Assert.AreEqual (0, ThumbnailWindow.Range (10_000, 5, 0, viewport: 0, 100, 1).Count);
@@ -55,7 +55,7 @@ public sealed class ThumbnailWindowTests
 		Assert.AreEqual (0, ThumbnailWindow.Range (10_000, 5, 0, double.PositiveInfinity, 100, 1).Count);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Range_TreatsAMissingColumnCountAsOne ()
 	{
 		var slice = ThumbnailWindow.Range (10, columns: 0, scrollOffset: 0, viewport: 100, itemExtent: 100, overscanRows: 0);
@@ -64,7 +64,7 @@ public sealed class ThumbnailWindowTests
 		Assert.AreEqual (1, slice.Count);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void EditorPreview_CapsTheDecodeWidth ()
 	{
 		Assert.AreEqual (1600, EditorPreview.DecodeWidth (1));
@@ -73,7 +73,7 @@ public sealed class ThumbnailWindowTests
 		Assert.AreEqual (1600, EditorPreview.DecodeWidth (0));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Lease_KeepsAPhotoWhileEitherSurfaceShowsIt ()
 	{
 		var lease = new ThumbnailLease ();
@@ -92,7 +92,7 @@ public sealed class ThumbnailWindowTests
 		Assert.IsFalse (lease.IsHeld (photo));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Lease_ReusingAContainer_ReleasesThePhotoThatScrolledAway ()
 	{
 		var lease = new ThumbnailLease ();
@@ -108,7 +108,7 @@ public sealed class ThumbnailWindowTests
 		Assert.AreEqual (1, lease.HeldCount);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void DisposePrevious_ReleasesTheBitmapThatWasReplaced ()
 	{

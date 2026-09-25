@@ -19,7 +19,7 @@ namespace FSpot.Avalonia.Tests;
 [DoNotParallelize]
 public sealed class TagDropTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void AttachDroppedTag_OnAnUnselectedPhoto_TagsOnlyThatPhoto ()
 	{
 		using var catalog = Catalog.Open ();
@@ -34,7 +34,7 @@ public sealed class TagDropTests
 		Assert.IsFalse (catalog.HasStoredTag (catalog.ViewModel.Photos.Single (photo => photo.Caption == "a.jpg")));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void AttachDroppedTag_OnASelectedPhoto_TagsTheWholeSelection ()
 	{
 		using var catalog = Catalog.Open ();
@@ -47,7 +47,7 @@ public sealed class TagDropTests
 		Assert.IsTrue (catalog.ViewModel.Photos.All (catalog.HasStoredTag));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void AttachDroppedTag_RejectsAMissingOrUnknownTag ()
 	{
 		using var catalog = Catalog.Open ();
@@ -61,7 +61,7 @@ public sealed class TagDropTests
 		Assert.IsFalse (catalog.HasStoredTag (photo));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void AttachDroppedTag_WithNoTargetAndNoSelection_DoesNothing ()
 	{
 		using var catalog = Catalog.Open ();
@@ -71,7 +71,7 @@ public sealed class TagDropTests
 		Assert.IsTrue (catalog.ViewModel.Photos.All (photo => !catalog.HasStoredTag (photo)));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void AttachDroppedTagToSelection_TagsOnlyTheSelectedPhotos ()
 	{
 		using var catalog = Catalog.Open ();
@@ -85,7 +85,7 @@ public sealed class TagDropTests
 		Assert.IsFalse (catalog.HasStoredTag (b));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void AttachDroppedTagToSelection_RejectsAnUnknownTag ()
 	{
 		using var catalog = Catalog.Open ();
@@ -96,7 +96,7 @@ public sealed class TagDropTests
 		Assert.IsFalse (catalog.HasStoredTag (catalog.ViewModel.Photos[0]));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task MergeDroppedPhotos_Confirmed_MakesTheSelectionVersionsOfTheTarget ()
 	{
 		using var catalog = Catalog.Open (confirm: true);
@@ -114,7 +114,7 @@ public sealed class TagDropTests
 		Assert.IsTrue (File.Exists (Path.Combine (catalog.Root, "a.jpg")));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task MergeDroppedPhotos_Declined_LeavesTheCatalogAlone ()
 	{
 		using var catalog = Catalog.Open ();
@@ -126,7 +126,7 @@ public sealed class TagDropTests
 		Assert.HasCount (2, catalog.ViewModel.Photos);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task MergeDroppedPhotos_OntoASelectedPhoto_DoesNotAsk ()
 	{
 		using var catalog = Catalog.Open (confirm: true);
@@ -139,7 +139,7 @@ public sealed class TagDropTests
 		Assert.HasCount (2, catalog.ViewModel.Photos);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DragOutPaths_ListsTheSelectedPhotoFiles ()
 	{
 		using var catalog = Catalog.Open ();

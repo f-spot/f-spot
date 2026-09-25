@@ -13,7 +13,7 @@ public sealed class AvaloniaMainThreadTests
 
 	public AvaloniaMainThreadTests (TestContext testContext) => TestContext = testContext;
 
-	[TestMethod]
+	[UiTestMethod]
 	public void BackgroundProxy_UsesTheHandlerInsteadOfThrowing ()
 	{
 		var posted = new List<InvokeHandler> ();

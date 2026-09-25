@@ -12,7 +12,7 @@ namespace FSpot.Avalonia.Tests;
 [DoNotParallelize]
 public sealed class PreviewInterpolationTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void Apply_SetsHighQualityWhenInterpolationIsOn ()
 	{
 		AvaloniaApp.Ensure ();

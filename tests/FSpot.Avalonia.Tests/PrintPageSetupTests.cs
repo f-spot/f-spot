@@ -9,7 +9,7 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class PrintPageSetupTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void FromPrompt_CancelKeepsThePreviousSetup ()
 	{
 		Assert.IsNull (PrintPageSetup.FromPrompt (null, "Landscape"));
@@ -18,7 +18,7 @@ public sealed class PrintPageSetupTests
 		Assert.IsNull (PrintPageSetup.FromPrompt ("Letter", "  "));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FromPrompt_PortraitIsNotLandscapeAndA4UsesA4 ()
 	{
 		var portrait = PrintPageSetup.FromPrompt ("Letter", "Portrait");

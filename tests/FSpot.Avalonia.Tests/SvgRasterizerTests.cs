@@ -1,6 +1,8 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System.IO.Compression;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 
 using FSpot.Avalonia.Imaging;
@@ -20,7 +22,7 @@ public sealed class SvgRasterizerTests
 		</svg>
 		""";
 
-	[TestMethod]
+	[UiTestMethod]
 	public void IsSvg_TrueForSvgAndSvgzExtensions ()
 	{
 		using var stream = new MemoryStream (Encoding.UTF8.GetBytes (RedRectSvg));
@@ -29,7 +31,7 @@ public sealed class SvgRasterizerTests
 		Assert.IsTrue (SvgRasterizer.IsSvg ("icon.SVGZ", stream));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void IsSvg_FalseForJpegExtension ()
 	{
 		using var stream = new MemoryStream (Encoding.UTF8.GetBytes (RedRectSvg));
@@ -38,7 +40,7 @@ public sealed class SvgRasterizerTests
 		Assert.IsFalse (SvgRasterizer.IsSvg ("photo.jpg", stream: null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void IsSvg_SniffsSvgMarkupWhenThereIsNoPath ()
 	{
 		using var stream = new MemoryStream (Encoding.UTF8.GetBytes (RedRectSvg));
@@ -47,7 +49,7 @@ public sealed class SvgRasterizerTests
 		Assert.AreEqual (0, stream.Position);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void IsSvg_FalseForJpegBytes ()
 	{
 		using var stream = new MemoryStream (new byte[] { 0xFF, 0xD8, 0xFF, 0xE0, 0x00, 0x10 });
@@ -56,7 +58,7 @@ public sealed class SvgRasterizerTests
 		Assert.AreEqual (0, stream.Position);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RasterizePng_ScalesTheLongerEdgeToMaxEdgeAndKeepsAspect ()
 	{
 		using var stream = new MemoryStream (Encoding.UTF8.GetBytes (RedRectSvg));
@@ -72,7 +74,7 @@ public sealed class SvgRasterizerTests
 		Assert.AreEqual (0, pixel.Blue);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RasterizePng_ReadsSvgz ()
 	{
 		using var stream = new MemoryStream (Gzip (Encoding.UTF8.GetBytes (RedRectSvg)));
@@ -84,7 +86,7 @@ public sealed class SvgRasterizerTests
 		Assert.AreEqual (32, bitmap.Height);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RasterizePng_CompositesOnTheRequestedBackground ()
 	{
 		const string diamond = """
@@ -102,6 +104,45 @@ public sealed class SvgRasterizerTests
 		Assert.AreEqual (255, pixel.Green);
 		Assert.AreEqual (255, pixel.Blue);
 		Assert.AreEqual (255, pixel.Alpha);
+	}
+
+	[UiTestMethod]
+	public void Rasterize_RefusesRemoteImagesAndElements ()
+	{
+		var listener = new TcpListener (IPAddress.Loopback, 0);
+		listener.Start ();
+		try {
+			int port = ((IPEndPoint)listener.LocalEndpoint).Port;
+			string svg = $"""
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32">
+				  <image xlink:href="http://127.0.0.1:{port}/secret.png" href="http://127.0.0.1:{port}/also.png" width="32" height="32"/>
+				</svg>
+				""";
+			using var stream = new MemoryStream (Encoding.UTF8.GetBytes (svg));
+			byte[] png = SvgRasterizer.RasterizePng (stream, 32);
+			Assert.IsGreaterThan (8, png.Length);
+			Thread.Sleep (200);
+			Assert.IsFalse (listener.Pending (), "rasterizing an SVG connected to an external image");
+		} finally {
+			listener.Stop ();
+		}
+
+		Assert.AreEqual (Svg.ExternalType.None, Svg.SvgDocument.ResolveExternalImages);
+		Assert.AreEqual (Svg.ExternalType.None, Svg.SvgDocument.ResolveExternalElements);
+	}
+
+	[UiTestMethod]
+	public void Rasterize_RejectsAnSvgThatInflatesPastTheByteCap ()
+	{
+		int previous = SvgRasterizer.SvgByteLimit;
+		try {
+			SvgRasterizer.SvgByteLimit = 64;
+			string bulky = "<svg xmlns=\"http://www.w3.org/2000/svg\">" + new string (' ', 128) + "</svg>";
+			using var stream = new MemoryStream (Gzip (Encoding.UTF8.GetBytes (bulky)));
+			Assert.ThrowsExactly<InvalidOperationException> (() => SvgRasterizer.RasterizePng (stream, 16));
+		} finally {
+			SvgRasterizer.SvgByteLimit = previous;
+		}
 	}
 
 	static byte[] Gzip (byte[] data)

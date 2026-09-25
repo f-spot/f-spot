@@ -17,7 +17,7 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class ViewerSettingsTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	[DataRow ("NONE", ViewerTransparency.Background)]
 	[DataRow ("CHECK_PATTERN", ViewerTransparency.CheckPattern)]
 	[DataRow ("COLOR", ViewerTransparency.CustomColor)]
@@ -26,7 +26,7 @@ public sealed class ViewerSettingsTests
 	public void ParseTransparency_FollowsTheGtkValues (string? value, ViewerTransparency expected)
 		=> Assert.AreEqual (expected, ViewerSettings.ParseTransparency (value));
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FormatTransparency_RoundTrips ()
 	{
 		foreach (var mode in Enum.GetValues<ViewerTransparency> ())
@@ -34,7 +34,7 @@ public sealed class ViewerSettingsTests
 		Assert.AreEqual ("NONE", ViewerSettings.FormatTransparency (ViewerTransparency.Background));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Color_ParsesAndFormatsGtkHex ()
 	{
 		Assert.IsTrue (ViewerSettings.TryParseColor ("#ff8001", out byte r, out byte g, out byte b));
@@ -44,7 +44,7 @@ public sealed class ViewerSettingsTests
 		Assert.AreEqual ("#ff8001", ViewerSettings.FormatColor (r, g, b));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DataRow ("")]
 	[DataRow ("ff8001")]
 	[DataRow ("#ff80")]
@@ -57,7 +57,7 @@ public sealed class ViewerSettingsTests
 [TestClass]
 public sealed class ViewerZoomTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void MinFor_FitsWithoutUpscaling ()
 	{
 		Assert.AreEqual (0.5, ViewerZoom.MinFor (2000, 1000, 1000, 1000), 1e-9);
@@ -65,7 +65,7 @@ public sealed class ViewerZoomTests
 		Assert.AreEqual (ViewerZoom.FallbackMin, ViewerZoom.MinFor (0, 100, 1000, 1000), 1e-9);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Normalized_IsLinearBetweenMinAndMax ()
 	{
 		Assert.AreEqual (0, ViewerZoom.Normalize (0.5, 0.5), 1e-9);
@@ -75,7 +75,7 @@ public sealed class ViewerZoomTests
 		Assert.AreEqual (0.5, ViewerZoom.Normalize (half, 0.5), 1e-9);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Clamp_KeepsZoomInRange ()
 	{
 		Assert.AreEqual (0.2, ViewerZoom.Clamp (0.01, 0.2), 1e-9);
@@ -112,7 +112,7 @@ public sealed class ViewerViewModelTests
 
 	string P (string name) => Path.Combine (folder, name);
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ExpandPaths_ListsLoadableFilesOfAFolderInNameOrder ()
 	{
 		var paths = ViewerViewModel.ExpandPaths (new[] { folder }, IsJpeg);
@@ -120,7 +120,7 @@ public sealed class ViewerViewModelTests
 		Assert.AreSequenceEqual (new[] { P ("a.jpg"), P ("b.jpg"), P ("c.JPG") }, paths.ToArray ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ExpandPaths_SkipsMissingAndUnloadableFiles ()
 	{
 		var uri = new Uri (P ("b.jpg")).AbsoluteUri;
@@ -129,7 +129,7 @@ public sealed class ViewerViewModelTests
 		Assert.AreSequenceEqual (new[] { P ("b.jpg") }, paths.ToArray ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Initialize_OneFileKeepsTheSidePaneClosed ()
 	{
 		var viewModel = new ViewerViewModel (new RecordingViewerShell (), IsJpeg);
@@ -140,7 +140,7 @@ public sealed class ViewerViewModelTests
 		Assert.AreEqual (P ("a.jpg"), viewModel.CurrentItem?.Path);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Initialize_AFolderOpensTheSidePane ()
 	{
 		var viewModel = new ViewerViewModel (new RecordingViewerShell (), IsJpeg);
@@ -151,7 +151,7 @@ public sealed class ViewerViewModelTests
 		Assert.IsTrue (viewModel.SidebarVisible);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void LoadPaths_OpensTheSidePaneOnceThereIsMoreThanOnePhoto ()
 	{
 		var viewModel = new ViewerViewModel (new RecordingViewerShell (), IsJpeg);
@@ -162,7 +162,7 @@ public sealed class ViewerViewModelTests
 		Assert.AreEqual (0, viewModel.SelectedIndex);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void StatusText_MatchesTheGtkStatusLabel ()
 	{
 		var viewModel = new ViewerViewModel (new RecordingViewerShell (), IsJpeg);
@@ -178,7 +178,7 @@ public sealed class ViewerViewModelTests
 		Assert.AreEqual (string.Format (Strings.XPhotos, 3), viewModel.StatusText);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FormatStatus_UsesTheSingularForOneOrNone ()
 	{
 		Assert.AreEqual (string.Format (Strings.XPhoto, 0), ViewerViewModel.FormatStatus (null, 0));
@@ -186,7 +186,7 @@ public sealed class ViewerViewModelTests
 		Assert.AreEqual (string.Format (Strings.XPhotos, 2), ViewerViewModel.FormatStatus (null, 2));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task OpenFolder_ReplacesThePhotos ()
 	{
 		var shell = new RecordingViewerShell { Folder = folder };
@@ -201,7 +201,7 @@ public sealed class ViewerViewModelTests
 		Assert.AreEqual (0, viewModel.SelectedIndex);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task Open_ReplacesThePhotosWithTheChosenFile ()
 	{
 		var shell = new RecordingViewerShell ();
@@ -216,7 +216,7 @@ public sealed class ViewerViewModelTests
 		Assert.AreEqual (P ("c.JPG"), viewModel.CurrentItem?.Path);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void NewWindow_OpensTheFirstUri ()
 	{
 		var shell = new RecordingViewerShell ();
@@ -229,7 +229,7 @@ public sealed class ViewerViewModelTests
 		Assert.AreSequenceEqual (new[] { P ("b.jpg") }, shell.NewWindow.ToArray ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Slideshow_StartsAtTheSelectedPhoto ()
 	{
 		var shell = new RecordingViewerShell ();
@@ -243,7 +243,7 @@ public sealed class ViewerViewModelTests
 		Assert.HasCount (3, shell.SlideshowPaths!);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PhotoCommands_NeedAPhoto ()
 	{
 		var viewModel = new ViewerViewModel (new RecordingViewerShell (), IsJpeg);
@@ -259,7 +259,7 @@ public sealed class ViewerViewModelTests
 		Assert.IsTrue (viewModel.RotateRightCommand.CanExecute (null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task SetAsBackground_UsesTheCurrentPhoto ()
 	{
 		var shell = new RecordingViewerShell ();
@@ -272,7 +272,7 @@ public sealed class ViewerViewModelTests
 		Assert.AreEqual (P ("b.jpg"), shell.Background);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Toggles_FlipToolbarAndSidePane ()
 	{
 		var viewModel = new ViewerViewModel (new RecordingViewerShell (), IsJpeg);
@@ -294,7 +294,7 @@ public sealed class ViewerViewModelTests
 		Assert.IsFalse (viewModel.ShowSidebar);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Zoom_StepsByTheGtkFactorWithinRange ()
 	{
 		var viewModel = new ViewerViewModel (new RecordingViewerShell (), IsJpeg);
@@ -313,7 +313,7 @@ public sealed class ViewerViewModelTests
 		Assert.AreEqual (ViewerZoom.Max, viewModel.Zoom, 1e-9);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void UpdateMinZoom_KeepsAFittedPhotoFitted ()
 	{
 		var viewModel = new ViewerViewModel (new RecordingViewerShell (), IsJpeg);
@@ -326,7 +326,7 @@ public sealed class ViewerViewModelTests
 		Assert.AreEqual (2, viewModel.Zoom, 1e-9);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SavePreferences_KeepsTheSizeOnlyWhenNotMaximized ()
 	{
 		var size = ViewerSettings.Size;
@@ -358,7 +358,7 @@ public sealed class ViewerViewModelTests
 [TestClass]
 public sealed class ViewerLaunchTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void Paths_ReturnsTheFilesAfterView ()
 	{
 		var paths = ViewerLaunch.Paths (new[] { "--view", "/tmp/a.jpg", "/tmp/b.jpg" });
@@ -367,7 +367,7 @@ public sealed class ViewerLaunchTests
 		Assert.AreSequenceEqual (new[] { "/tmp/a.jpg", "/tmp/b.jpg" }, paths.ToArray ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Paths_IsNullWithoutViewOrWithoutFiles ()
 	{
 		Assert.IsNull (ViewerLaunch.Paths (Array.Empty<string> ()));
@@ -380,7 +380,7 @@ public sealed class ViewerLaunchTests
 [DoNotParallelize]
 public sealed class ViewerChromeTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void ViewerStrings_AllResolveFromTheResources ()
 	{
 		var properties = typeof (ViewerStrings).GetProperties (BindingFlags.Public | BindingFlags.Static);
@@ -393,7 +393,7 @@ public sealed class ViewerChromeTests
 		Assert.AreEqual ("F-Spot View", ViewerStrings.FSpotView);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PlainText_StripsPangoMarkup ()
 	{
 		Assert.AreEqual ("Image Interpolation", ViewerPreferencesWindow.PlainText (ViewerStrings.BImageInterpolationB));
@@ -401,7 +401,7 @@ public sealed class ViewerChromeTests
 		Assert.AreEqual (string.Empty, ViewerPreferencesWindow.PlainText (null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void AutomationIds_AreUniqueAndDistinctFromTheMainCatalog ()
 	{
 		static IEnumerable<string> Values (Type type)
@@ -414,7 +414,7 @@ public sealed class ViewerChromeTests
 		Assert.IsEmpty (viewer.Intersect (Values (typeof (AutomationIds)), StringComparer.Ordinal));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void TransparencyBrush_FollowsTheMode ()
 	{
 		AvaloniaApp.Ensure ();
@@ -430,7 +430,7 @@ public sealed class ViewerChromeTests
 [DoNotParallelize]
 public sealed class ViewerWindowTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void Window_ShowsTheMenuToolbarAndPhoto ()
 	{
 		AvaloniaApp.Ensure ();
@@ -448,7 +448,7 @@ public sealed class ViewerWindowTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PreferencesWindow_WritesTheViewerSettings ()
 	{
 		AvaloniaApp.Ensure ();

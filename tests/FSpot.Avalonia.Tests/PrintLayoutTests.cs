@@ -10,7 +10,7 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class PrintLayoutTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	[DataRow (1, 1, 1)]
 	[DataRow (2, 1, 2)]
 	[DataRow (4, 2, 2)]
@@ -20,11 +20,11 @@ public sealed class PrintLayoutTests
 	public void Grid_MatchesTheGtkPhotosPerPageChoices (int perPage, int columns, int rows)
 		=> Assert.AreEqual ((columns, rows), PrintLayout.Grid (perPage));
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PhotosPerPageChoices_AreTheSixGtkRadioButtons ()
 		=> Assert.AreSequenceEqual (new[] { 1, 2, 4, 9, 20, 30 }, PrintOptions.PhotosPerPageChoices.ToArray ());
 
-	[TestMethod]
+	[UiTestMethod]
 	public void GridCaption_MatchesTheGtkLabels ()
 	{
 		Assert.AreEqual ("1", PrintLayout.GridCaption (1));
@@ -33,7 +33,7 @@ public sealed class PrintLayoutTests
 		Assert.AreEqual ("5 x 6", PrintLayout.GridCaption (30));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PageCount_RepeatPrintsOnePagePerPhoto ()
 	{
 		Assert.AreEqual (3, PrintLayout.PageCount (5, new PrintOptions { PhotosPerPage = 2 }));
@@ -41,7 +41,7 @@ public sealed class PrintLayoutTests
 		Assert.AreEqual (0, PrintLayout.PageCount (0, new PrintOptions ()));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PhotoIndex_FillsRowsThenPagesOrRepeatsOnePhoto ()
 	{
 		var grid = new PrintOptions { PhotosPerPage = 4 };
@@ -55,7 +55,7 @@ public sealed class PrintLayoutTests
 		Assert.AreEqual (3, PrintLayout.PhotoIndex (3, 1, 1, 6, repeat));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void LabelFormat_OrdersFieldsLikeCustomPrintWidget ()
 	{
 		Assert.AreEqual ("{0}", new PrintOptions ().LabelFormat);
@@ -63,7 +63,7 @@ public sealed class PrintLayoutTests
 		Assert.AreEqual ("{0}\t{4}\t{1}\t{2} {3}\t{5}", all.LabelFormat);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Label_FillsTheChosenFields ()
 	{
 		var photo = new PrintPhoto ("/a.jpg", "a.jpg", "1/2/2020", "10:00", "Beach, Sun", "Nice");
@@ -71,7 +71,7 @@ public sealed class PrintLayoutTests
 		Assert.AreEqual ("Hi\ta.jpg\tNice", PrintLayout.Label (options, photo));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Scale_ZoomCoversScaledFitsFillStretches ()
 	{
 		Assert.AreEqual ((4.0, 4.0), PrintLayout.Scale (PrintFitMode.Zoom, 100, 50, 200, 200));
@@ -79,21 +79,21 @@ public sealed class PrintLayoutTests
 		Assert.AreEqual ((2.0, 4.0), PrintLayout.Scale (PrintFitMode.Fill, 100, 50, 200, 200));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ImageRect_CentresTheScaledImage ()
 	{
 		var rect = PrintLayout.ImageRect (PrintFitMode.Scaled, 100, 50, new PrintRect (0, 0, 200, 200));
 		Assert.AreEqual (new PrintRect (0, 50, 200, 100), rect);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ShouldRotate_WhenOrientationsDisagree ()
 	{
 		Assert.IsTrue (PrintLayout.ShouldRotate (300, 200, 100, 200));
 		Assert.IsFalse (PrintLayout.ShouldRotate (200, 300, 100, 200));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ImageArea_WhiteBordersInsetFivePercent ()
 	{
 		var area = PrintLayout.ImageArea (new PrintRect (0, 0, 100, 200), whiteBorders: true);
@@ -104,7 +104,7 @@ public sealed class PrintLayoutTests
 		Assert.AreEqual (new PrintRect (0, 0, 100, 200), PrintLayout.ImageArea (new PrintRect (0, 0, 100, 200), false));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Printable_FullPageDropsTheMargin ()
 	{
 		Assert.AreEqual (new PrintRect (0, 0, 600, 800), PrintLayout.Printable (600, 800, fullPage: true));
@@ -113,7 +113,7 @@ public sealed class PrintLayoutTests
 		Assert.AreEqual (600 - 2 * PrintLayout.MarginPoints, margins.Width);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PageSetup_LandscapeTurnsThePageAndFindsThePaper ()
 	{
 		var a4 = PrintPageSetup.FromPaper (PrintPageSetup.Papers.First (p => p.Name == "A4"), landscape: true);

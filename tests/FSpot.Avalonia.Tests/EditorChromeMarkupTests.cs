@@ -9,7 +9,7 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class EditorChromeMarkupTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void GridAndFilmstrip_BindTileSizeToZoom ()
 	{
 		string markup = File.ReadAllText (Path.Combine (ClientRoot (), "MainWindow.axaml"));
@@ -17,7 +17,7 @@ public sealed class EditorChromeMarkupTests
 		Assert.DoesNotContain ("Height=\"120\"", markup);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PhotoGrid_IsExtendedSelectWithTabOrderAndFocusStyle ()
 	{
 		string main = File.ReadAllText (Path.Combine (ClientRoot (), "MainWindow.axaml"));
@@ -28,7 +28,7 @@ public sealed class EditorChromeMarkupTests
 		Assert.Contains ("timeline-month:focus", app);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void StatusBar_IsASingleTextLineUnderTheToolbar ()
 	{
 		string main = File.ReadAllText (Path.Combine (ClientRoot (), "MainWindow.axaml"));
@@ -41,7 +41,7 @@ public sealed class EditorChromeMarkupTests
 		Assert.Contains ("SliderHorizontalHeight\">16", app);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Splitters_AreHairlinesRatherThanFilledBars ()
 	{
 		string app = File.ReadAllText (Path.Combine (ClientRoot (), "App.axaml"));
@@ -55,7 +55,7 @@ public sealed class EditorChromeMarkupTests
 		Assert.DoesNotContain ("Width=\"8\"", import);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void CopyPageSetupBackgroundAndTools_AreEnabledCommands ()
 	{
 		string markup = File.ReadAllText (Path.Combine (ClientRoot (), "MainWindow.axaml"));
@@ -69,7 +69,7 @@ public sealed class EditorChromeMarkupTests
 		Assert.DoesNotContain ("Strings.Tools}\" IsEnabled=\"False\"", markup);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SelectionOverlay_BindsPreviewSoMapRectHasImageSize ()
 	{
 		var overlay = Descendants (MainWindow (), "ImageSelectionOverlay").Single ();
@@ -80,7 +80,7 @@ public sealed class EditorChromeMarkupTests
 		Assert.Contains ("Preview", preview, StringComparison.Ordinal);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PhotoPreview_UsesLoupeOverlayForOffsetLensAndHandle ()
 	{
 		var window = MainWindow ();
@@ -92,7 +92,7 @@ public sealed class EditorChromeMarkupTests
 			.ToList ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Loupe_IsBoundToUnadornedV ()
 	{
 		var window = MainWindow ();
@@ -108,7 +108,7 @@ public sealed class EditorChromeMarkupTests
 			"Avalonia KeyBindings run before KeyDown; unadorned V is handled in OnKeyDown so it does not steal from text inputs.");
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FindByRatingDateAndImportRoll_AreEnabledCommands ()
 	{
 		var find = Descendants (MainWindow (), "NativeMenuItem")
@@ -124,14 +124,14 @@ public sealed class EditorChromeMarkupTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FindBar_DeclaresDragOverForFolderDrops ()
 	{
 		string markup = MainWindow ().ToString ();
 		Assert.Contains ("CatalogDrop.Kind=\"FindBar\"", markup);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void MessageDialog_HasHeadingBodyAndButtons ()
 	{
 		var dialog = XDocument.Load (Path.Combine (ClientRoot (), "MessageDialog.axaml"));
@@ -142,7 +142,7 @@ public sealed class EditorChromeMarkupTests
 		Assert.Contains ("SizeToContent", dialog.ToString ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void TagTree_BindsPerTagIconsAndInPlaceRename ()
 	{
 		var window = MainWindow ();
@@ -154,7 +154,7 @@ public sealed class EditorChromeMarkupTests
 		Assert.Contains ("Binding", delete.Attribute ("CommandParameter")?.Value ?? string.Empty);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PhotoPreview_BindsInterpolationModeFromPreferences ()
 	{
 		string code = File.ReadAllText (Path.Combine (ClientRoot (), "MainWindow.axaml.cs"));
@@ -162,7 +162,7 @@ public sealed class EditorChromeMarkupTests
 		Assert.Contains ("ViewerInterpolation", code);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SelectionOverlay_BindsPanAndZoom ()
 	{
 		var overlay = Descendants (MainWindow (), "ImageSelectionOverlay").Single ();
@@ -170,7 +170,7 @@ public sealed class EditorChromeMarkupTests
 		Assert.Contains ("PreviewPanX", overlay.Attribute ("PanX")?.Value ?? string.Empty);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void HighGtkSurfaces_AreNotNotYet ()
 	{
 		var window = MainWindow ();
@@ -190,7 +190,7 @@ public sealed class EditorChromeMarkupTests
 			Assert.Contains (item => item.Command.Contains (name), commands, name);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SlideshowPrintMailExport_AreNotNotYet ()
 	{
 		var window = MainWindow ();
@@ -220,7 +220,7 @@ public sealed class EditorChromeMarkupTests
 		Assert.Contains ("Slideshow", toolbarCommand);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void LoupeOverlayMarkup_HasChromePathAndLens ()
 	{
 		var overlay = XDocument.Load (Path.Combine (ClientRoot (), "Controls", "LoupeOverlay.axaml"));

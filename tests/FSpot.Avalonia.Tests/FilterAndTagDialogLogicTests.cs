@@ -14,14 +14,14 @@ public sealed class FilterAndTagDialogLogicTests
 {
 	static readonly TimeSpan EndOfDay = new (23, 59, 59);
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RatingFilter_DefaultsToFourToFiveStars ()
 	{
 		Assert.AreEqual ((4u, 5u), RatingFilterLogic.Initial (null, null));
 		Assert.AreEqual ((2u, 3u), RatingFilterLogic.Initial (2, 3));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RatingFilter_RaisingMinDragsMaxAndLoweringMaxDragsMin ()
 	{
 		Assert.AreEqual ((5u, 5u), RatingFilterLogic.WithMin (5, 3));
@@ -30,7 +30,7 @@ public sealed class FilterAndTagDialogLogicTests
 		Assert.AreEqual ((5u, 5u), RatingFilterLogic.WithMax (5, 9));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DateRange_Last7DaysEndsAtTheEndOfToday ()
 	{
 		var today = new DateTime (2026, 9, 23);
@@ -41,7 +41,7 @@ public sealed class FilterAndTagDialogLogicTests
 		Assert.AreEqual (today + EndOfDay, range.Value.End);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DateRange_WeeksStartOnMondayEvenOnASunday ()
 	{
 		var wednesday = new DateTime (2026, 9, 23);
@@ -55,7 +55,7 @@ public sealed class FilterAndTagDialogLogicTests
 		Assert.AreEqual (new DateTime (2026, 9, 20) + EndOfDay, previous.End);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DateRange_PreviousMonthAndYearCrossTheYearBoundary ()
 	{
 		var today = new DateTime (2026, 1, 10);
@@ -69,7 +69,7 @@ public sealed class FilterAndTagDialogLogicTests
 		Assert.AreEqual (new DateTime (2025, 12, 31) + EndOfDay, year.End);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DateRange_AllDatesClearsAndCustomUsesThePickedDaysInOrder ()
 	{
 		var today = new DateTime (2026, 9, 23);
@@ -81,7 +81,7 @@ public sealed class FilterAndTagDialogLogicTests
 		Assert.AreEqual (new DateTime (2026, 3, 9) + EndOfDay, custom.End);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DateRange_LabelsReuseTheGtkStrings ()
 	{
 		var today = new DateTime (2026, 9, 23);
@@ -98,7 +98,7 @@ public sealed class FilterAndTagDialogLogicTests
 			new ImportRollOption (10, new DateTime (2026, 9, 1, 10, 0, 0, DateTimeKind.Utc), 5)
 		];
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ImportRolls_AtAfterAndBetween ()
 	{
 		var rolls = Rolls ();
@@ -111,7 +111,7 @@ public sealed class FilterAndTagDialogLogicTests
 		Assert.IsEmpty (ImportRollFilter.Select (rolls, ImportRollMode.Between, 0, 7));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ImportRolls_HeaderShowsLocalTimeAndPhotoCount ()
 	{
 		var utc = new DateTime (2026, 9, 3, 10, 5, 0, DateTimeKind.Utc);
@@ -121,7 +121,7 @@ public sealed class FilterAndTagDialogLogicTests
 		Assert.Contains (utc.ToLocalTime ().ToString ("HH:mm", System.Globalization.CultureInfo.CurrentCulture), header);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DialogText_StripsPangoMarkup ()
 	{
 		Assert.AreEqual ("Min Rating", DialogText.Plain (DialogStrings.BMinRatingB));
@@ -129,7 +129,7 @@ public sealed class FilterAndTagDialogLogicTests
 		Assert.AreEqual (string.Empty, DialogText.Plain (null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DialogStrings_ReadTheSharedResources ()
 	{
 		Assert.AreEqual ("Set Rating Filter", DialogStrings.SetRatingFilter);
@@ -137,7 +137,7 @@ public sealed class FilterAndTagDialogLogicTests
 		Assert.AreEqual ("P_arent Tag:", DialogStrings.ParentTag);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void VersionName_CreateRejectsAnExistingNameAndRenameMayKeepItsOwn ()
 	{
 		string[] names = ["Original", "Modified"];
@@ -173,7 +173,7 @@ public sealed class FilterAndTagDialogLogicTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void TagParents_CreateIndentsAndEditSkipsTheTagAndItsDescendants ()
 	{
 		var tree = new Tree ();
@@ -187,7 +187,7 @@ public sealed class FilterAndTagDialogLogicTests
 		Assert.AreEqual (0, TagDialogRules.IndexOf (edit, tree.Family));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void TagNames_AreUniqueAcrossTheTreeIgnoringCase ()
 	{
 		var tree = new Tree ();
@@ -201,7 +201,7 @@ public sealed class FilterAndTagDialogLogicTests
 		Assert.AreSame (tree.Root, TagDialogRules.DefaultParent (tree.Root, null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void MergePlan_BringsDescendantsAndKeepsAShallowSurvivor ()
 	{
 		var tree = new Tree ();
@@ -218,7 +218,7 @@ public sealed class FilterAndTagDialogLogicTests
 		Assert.IsNull (TagMergePlan.For ([tree.Mom]));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void TagIcon_SquaresTheSelectionAndScalesToTheLargeIconSize ()
 	{
 		var square = TagIconImage.Square (new PixelRect (10, 10, 40, 20));
@@ -238,7 +238,7 @@ public sealed class FilterAndTagDialogLogicTests
 		Assert.AreEqual (48, icon.Height);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PredefinedIcons_AreTheDistinctPackedEmblems ()
 	{
 		var names = PredefinedTagIcons.Names (["emblem-event-16.svg", "emblem-event.svg", "camera-photo.svg", "emblem-people.svg", "emblem-favorite-22.png"]);
@@ -246,7 +246,7 @@ public sealed class FilterAndTagDialogLogicTests
 		Assert.AreSequenceEqual (new[] { "emblem-event", "emblem-favorite", "emblem-people" }, names.ToArray ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void TagIconChoice_ThemeIconReplacesAnImageAndNoImageClears ()
 	{
 		var tag = new Tag (null, 9, "Dog") {

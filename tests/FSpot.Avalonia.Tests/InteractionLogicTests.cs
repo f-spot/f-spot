@@ -20,7 +20,7 @@ public sealed class GridNavigationTests
 	static GridKeyResult Press (Key key, int focus, KeyModifiers modifiers = KeyModifiers.None, IReadOnlySet<int>? selection = null, int count = 20)
 		=> GridNavigation.Apply (key, modifiers, focus, columns: 4, rows: 2, count, selection ?? None);
 
-	[TestMethod]
+	[UiTestMethod]
 	public void VimKeysMoveLikeTheArrows ()
 	{
 		Assert.AreEqual (Press (Key.Down, 5).Focus, Press (Key.J, 5).Focus);
@@ -30,7 +30,7 @@ public sealed class GridNavigationTests
 		Assert.AreEqual (6, Press (Key.L, 5).Focus);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void MovesClampToTheCollection ()
 	{
 		Assert.AreEqual (0, Press (Key.Up, 2).Focus);
@@ -40,11 +40,11 @@ public sealed class GridNavigationTests
 		Assert.AreEqual (19, Press (Key.End, 2).Focus);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PageKeysMoveAScreenOfRows ()
 		=> Assert.AreEqual (13, Press (Key.PageDown, 5).Focus);
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ControlShiftArrowsGoToTheRowEnds ()
 	{
 		var mods = KeyModifiers.Control | KeyModifiers.Shift;
@@ -52,7 +52,7 @@ public sealed class GridNavigationTests
 		Assert.AreEqual (7, Press (Key.Right, 5, mods).Focus);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PlainMoveSelectsOnlyTheNewFocus ()
 	{
 		var result = Press (Key.Right, 2, selection: new HashSet<int> { 0, 1, 2 });
@@ -60,7 +60,7 @@ public sealed class GridNavigationTests
 		Assert.AreSequenceEqual (new[] { 3 }, result.Selection.Order ().ToArray ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ShiftExtendsThenShrinksTheRange ()
 	{
 		var grown = Press (Key.Right, 2, KeyModifiers.Shift, new HashSet<int> { 2 });
@@ -71,7 +71,7 @@ public sealed class GridNavigationTests
 		Assert.AreSequenceEqual (new[] { 2 }, shrunk.Selection.Order ().ToArray ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ControlMovesWithoutSelecting ()
 	{
 		var result = Press (Key.Right, 2, KeyModifiers.Control, new HashSet<int> { 2 });
@@ -79,7 +79,7 @@ public sealed class GridNavigationTests
 		Assert.AreSequenceEqual (new[] { 2 }, result.Selection.Order ().ToArray ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ControlSpaceTogglesAndSpaceSelects ()
 	{
 		var toggled = Press (Key.Space, 4, KeyModifiers.Control, new HashSet<int> { 1, 4 });
@@ -90,7 +90,7 @@ public sealed class GridNavigationTests
 		Assert.AreSequenceEqual (new[] { 4 }, plain.Selection.Order ().ToArray ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void EnterOpensTheFocusCell ()
 	{
 		var result = Press (Key.Enter, 7);
@@ -98,7 +98,7 @@ public sealed class GridNavigationTests
 		Assert.AreEqual (7, result.Focus);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RandomPicksBelowTheLastCellLikeGtk ()
 	{
 		int? max = null;
@@ -110,7 +110,7 @@ public sealed class GridNavigationTests
 		Assert.AreEqual (12, result.Focus);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void OtherKeysAndEmptyGridsDoNothing ()
 	{
 		Assert.AreEqual (GridKeyAction.None, Press (Key.A, 3).Action);
@@ -122,25 +122,25 @@ public sealed class GridNavigationTests
 [TestClass]
 public sealed class GridGeometryTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void CellsInRect_FindsEveryTouchedCell ()
 	{
 		var cells = GridGeometry.CellsInRect (new Rect (50, 50, 120, 100), 100, 100, 4, 10);
 		Assert.AreSequenceEqual (new[] { 0, 1, 4, 5 }, cells.ToArray ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void CellsInRect_SkipsCellsPastTheEnd ()
 	{
 		var cells = GridGeometry.CellsInRect (new Rect (0, 150, 400, 10), 100, 100, 4, 6);
 		Assert.AreSequenceEqual (new[] { 4, 5 }, cells.ToArray ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Bounded_OrdersTheCorners ()
 		=> Assert.AreEqual (new Rect (10, 5, 20, 15), GridGeometry.Bounded (new Point (30, 5), new Point (10, 20)));
 
-	[TestMethod]
+	[UiTestMethod]
 	public void BandSelection_AddsOrToggles ()
 	{
 		var initial = new HashSet<int> { 1, 2 };
@@ -152,7 +152,7 @@ public sealed class GridGeometryTests
 [TestClass]
 public sealed class ViewerKeyMapTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void NavigationKeysMatchGtk ()
 	{
 		foreach (var key in new[] { Key.PageUp, Key.Back, Key.B })
@@ -163,7 +163,7 @@ public sealed class ViewerKeyMapTests
 		Assert.AreEqual (ViewerAction.Last, ViewerKeyMap.Map (Key.End, KeyModifiers.None, false));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ArrowsNavigateAtFitAndPanWhenZoomed ()
 	{
 		Assert.AreEqual (ViewerAction.Next, ViewerKeyMap.Map (Key.Right, KeyModifiers.None, zoomed: false));
@@ -172,7 +172,7 @@ public sealed class ViewerKeyMapTests
 		Assert.AreEqual (ViewerAction.PanUp, ViewerKeyMap.Map (Key.K, KeyModifiers.None, zoomed: true));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ZoomKeys ()
 	{
 		Assert.AreEqual (ViewerAction.ZoomFit, ViewerKeyMap.Map (Key.D0, KeyModifiers.None, false));
@@ -183,7 +183,7 @@ public sealed class ViewerKeyMapTests
 		Assert.AreEqual (ViewerAction.ZoomOut, ViewerKeyMap.Map (Key.OemMinus, KeyModifiers.None, false));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ControlAndAltPassThrough ()
 	{
 		Assert.AreEqual (ViewerAction.None, ViewerKeyMap.Map (Key.D1, KeyModifiers.Alt, false));
@@ -194,7 +194,7 @@ public sealed class ViewerKeyMapTests
 [TestClass]
 public sealed class PhotoViewZoomTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void ForScale_ShowsOneOriginalPixelPerDevicePixel ()
 	{
 		// A 4000 px original decoded at 1000 px and fitted into 500 DIP: fit is 0.5 DIP per preview pixel,
@@ -204,15 +204,15 @@ public sealed class PhotoViewZoomTests
 		Assert.AreEqual (4, ViewerZoom.ForScale (1, 500, 500, 1000, 500, 4000, 2), 1e-9);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ForScale_UsesThePreviewWhenTheOriginalIsUnknown ()
 		=> Assert.AreEqual (2, ViewerZoom.ForScale (1, 500, 500, 1000, 500, 0, 1), 1e-9);
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ForScale_ClampsToTheViewerRange ()
 		=> Assert.AreEqual (ViewerZoom.Max, ViewerZoom.ForScale (2, 100, 100, 1000, 1000, 10000, 1));
 
-	[TestMethod]
+	[UiTestMethod]
 	public void AnchorPan_KeepsThePointUnderTheAnchorStill ()
 	{
 		const double width = 400, height = 300, anchorX = 300, anchorY = 100;
@@ -230,11 +230,11 @@ public sealed class PhotoViewZoomTests
 [TestClass]
 public sealed class LoupeDragTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void Move_FollowsThePointerFromTheStartHotspot ()
 		=> Assert.AreEqual ((110.0, 70.0), LoupeDrag.Move (100, 80, 10, 10, 20, 0));
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Rotate_TurnsByTheAngleAroundTheHotspot ()
 	{
 		double angle = LoupeDrag.Rotate (0.5, 0, 0, 10, 0, 0, 10);
@@ -242,7 +242,7 @@ public sealed class LoupeDragTests
 		Assert.AreEqual (0.5 - Math.PI / 2, LoupeDrag.Rotate (0.5, 0, 0, 10, 0, 0, -10), 1e-9);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Rotate_KeepsTheAngleWhenThePointerIsOnTheHotspot ()
 		=> Assert.AreEqual (1.0, LoupeDrag.Rotate (1, 5, 5, 5, 5, 9, 9));
 }
@@ -250,7 +250,7 @@ public sealed class LoupeDragTests
 [TestClass]
 public sealed class RatingStepTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void KeysStepUpAndDown ()
 	{
 		foreach (var key in new[] { Key.Up, Key.Right, Key.OemPlus, Key.Add })
@@ -260,7 +260,7 @@ public sealed class RatingStepTests
 		Assert.AreEqual (0, RatingStep.KeyDelta (Key.A));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void WheelStepsByDirection ()
 	{
 		Assert.AreEqual (1, RatingStep.WheelDelta (0, 1));
@@ -269,7 +269,7 @@ public sealed class RatingStepTests
 		Assert.AreEqual (0, RatingStep.WheelDelta (0, 0));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ApplyStaysInRange ()
 	{
 		Assert.AreEqual (5u, RatingStep.Apply (5, 1));
@@ -284,7 +284,7 @@ public sealed class TagCompletionTests
 	static TagCompletion New (params string[] names)
 		=> new (prefix => names.Where (name => name.StartsWith (prefix, StringComparison.OrdinalIgnoreCase)).ToList ());
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Tab_CompletesTheLastNameAndSelectsTheCompletion ()
 	{
 		var completion = New ("Vacation", "Valencia");
@@ -295,7 +295,7 @@ public sealed class TagCompletionTests
 		Assert.AreEqual (16, edit.Value.SelectionEnd);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void TabCyclesAndShiftTabGoesBack ()
 	{
 		var completion = New ("Vacation", "Valencia", "Van");
@@ -307,7 +307,7 @@ public sealed class TagCompletionTests
 		Assert.AreEqual ("van", backwards.Complete ("va", 2, false)!.Value.Text);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void NothingTypedOrNoMatchCompletesNothing ()
 	{
 		var completion = New ("Vacation");
@@ -316,11 +316,11 @@ public sealed class TagCompletionTests
 		Assert.IsFalse (completion.IsActive);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void CaretBeforeTheEndCompletesNothing ()
 		=> Assert.IsNull (New ("Vacation").Complete ("va, x", 1, true));
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Finish_AddsACommaAfterTheCompletion ()
 	{
 		var completion = New ("Vacation");
@@ -336,7 +336,7 @@ public sealed class TagCompletionTests
 [TestClass]
 public sealed class TimelineLimitsTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void HitTest_FindsTheHandleOnItsEdge ()
 	{
 		Assert.AreEqual (TimelineLimit.Min, TimelineLimits.HitTest (21, 1, 3, 20));
@@ -344,7 +344,7 @@ public sealed class TimelineLimitsTests
 		Assert.AreEqual (TimelineLimit.None, TimelineLimits.HitTest (50, 1, 3, 20));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void HitTest_SplitsASingleMonthBetweenTheHandles ()
 	{
 		// One 8 px month: min sits at x = 16 and max at x = 24, both within reach of 19 to 21.
@@ -352,7 +352,7 @@ public sealed class TimelineLimitsTests
 		Assert.AreEqual (TimelineLimit.Max, TimelineLimits.HitTest (23, 2, 2, 8));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Drop_LandsOnTheMonthUnderTheHandleAndKeepsOrder ()
 	{
 		Assert.AreEqual ((2, 5), TimelineLimits.Drop (TimelineLimit.Min, 45, 0, 5, 20, 8));
@@ -361,7 +361,7 @@ public sealed class TimelineLimitsTests
 		Assert.AreEqual ((0, 7), TimelineLimits.Drop (TimelineLimit.Max, 900, 0, 5, 20, 8));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void IsFull_CoversTheWholeStrip ()
 	{
 		Assert.IsTrue (TimelineLimits.IsFull (0, 7, 8));
@@ -372,11 +372,11 @@ public sealed class TimelineLimitsTests
 [TestClass]
 public sealed class TagNamesTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void ACaseChangeIsNotTaken ()
 		=> Assert.IsFalse (TagNames.IsTakenByAnother ("Beach", "beach", _ => true));
 
-	[TestMethod]
+	[UiTestMethod]
 	public void AnotherTagsNameIsTaken ()
 	{
 		Assert.IsTrue (TagNames.IsTakenByAnother ("Beach", "Sea", name => name == "Sea"));

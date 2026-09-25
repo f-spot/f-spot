@@ -7,7 +7,7 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class HoverPreviewTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void Edge_IsOneThirdOfTheAverageScreenEdge ()
 	{
 		Assert.AreEqual (500, HoverPreview.Edge (1920, 1080));
@@ -15,7 +15,7 @@ public sealed class HoverPreviewTests
 		Assert.AreEqual (100, HoverPreview.Edge (600, 0));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Caption_IncludesTheDescriptionTimeAndName ()
 	{
 		var time = new DateTime (2026, 6, 1, 15, 0, 0);
@@ -24,7 +24,7 @@ public sealed class HoverPreviewTests
 		Assert.AreEqual ("Picnic" + Environment.NewLine + $"{time}   beach.jpg", caption);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Caption_OmitsABlankDescription ()
 	{
 		var time = new DateTime (2026, 6, 1);

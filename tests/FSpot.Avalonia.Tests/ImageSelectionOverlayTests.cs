@@ -18,7 +18,7 @@ namespace FSpot.Avalonia.Tests;
 [DoNotParallelize]
 public sealed class ImageSelectionOverlayTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void CompleteSelection_CommitsTheMappedRect ()
 	{
 		AvaloniaApp.Ensure ();
@@ -40,7 +40,7 @@ public sealed class ImageSelectionOverlayTests
 		Assert.AreEqual (30, command.Last.Value.Height);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void CompleteSelection_UsesPreviewPixelSizeWhenImageWidthIsZero ()
 	{
 		AvaloniaApp.Ensure ();
@@ -66,7 +66,7 @@ public sealed class ImageSelectionOverlayTests
 		Assert.AreEqual (50, command.Last.Value.Height);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void CompleteSelection_AppliesPanAndZoomBeforeMapping ()
 	{
 		AvaloniaApp.Ensure ();
@@ -87,7 +87,7 @@ public sealed class ImageSelectionOverlayTests
 		Assert.AreEqual (50, command.Last.Value.Height);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void CompleteSelection_DoesNotExecuteWhenImageSizeIsMissing ()
 	{
 		AvaloniaApp.Ensure ();
@@ -100,10 +100,31 @@ public sealed class ImageSelectionOverlayTests
 
 		overlay.CompleteSelection (new Point (10, 10), new Point (50, 40));
 
-		Assert.IsNull (command.Last);
+		Assert.IsTrue (command.Last is { IsEmpty: true });
 	}
 
-	[TestMethod]
+	[UiTestMethod]
+	public void CompleteSelection_ClickClearsThePreviousRegion ()
+	{
+		AvaloniaApp.Ensure ();
+		var command = new RecordingCommand ();
+		var overlay = ShowOverlay (new ImageSelectionOverlay {
+			Width = 200,
+			Height = 100,
+			ImageWidth = 200,
+			ImageHeight = 100,
+			SelectionCommand = command
+		});
+
+		overlay.CompleteSelection (new Point (10, 10), new Point (80, 60));
+		Assert.IsTrue (command.Last is { IsEmpty: false });
+
+		overlay.CompleteSelection (new Point (20, 20), new Point (20, 20));
+
+		Assert.IsTrue (command.Last is { IsEmpty: true });
+	}
+
+	[UiTestMethod]
 	public void CompleteSelection_ClampsToTheSelectionRatio ()
 	{
 		AvaloniaApp.Ensure ();
@@ -124,7 +145,7 @@ public sealed class ImageSelectionOverlayTests
 		Assert.AreEqual (40, command.Last.Value.Width);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ChangingTheRatio_ReconstrainsTheCurrentSelection ()
 	{
 		AvaloniaApp.Ensure ();

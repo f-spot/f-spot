@@ -30,7 +30,7 @@ public sealed partial class MainWindowViewModelTests
 		return viewModel;
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SetTimelineLimits_KeepsOnlyTheMonthsBetweenTheHandles ()
 	{
 		var viewModel = NewViewModel ();
@@ -52,7 +52,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsFalse (viewModel.HasTimelineLimits);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SetTimelineLimits_CombinesWithAMonthSelection ()
 	{
 		var viewModel = NewViewModel ();
@@ -67,7 +67,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsTrue (viewModel.ShowNoMatches);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ApplyGridSelection_SetsTheFlagsAndTheCurrentPhoto ()
 	{
 		var viewModel = SeededViewModel (5);
@@ -79,7 +79,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreSequenceEqual (new[] { 1, 3 }, viewModel.SelectedIndices ().Order ().ToArray ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RunViewerAction_WalksThePhotos ()
 	{
 		var viewModel = SeededViewModel (4);
@@ -98,7 +98,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreNotSame (viewModel.Photos[3], viewModel.SelectedPhoto);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RunViewerAction_ZoomsPansAndFits ()
 	{
 		var viewModel = SeededViewModel (1);
@@ -119,7 +119,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (0, viewModel.PreviewPanY);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void StepRating_StepsWithinRange ()
 	{
 		var viewModel = SeededViewModel (1);
@@ -134,7 +134,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (0u, viewModel.Info.RatingValue);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void CommitRenameTag_WarnsWhenTheNameBelongsToAnotherTag ()
 	{
 		var shell = new RecordingShell ();
@@ -155,7 +155,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (Strings.ThisNameIsAlreadyInUse, shell.WarningMessage);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void CommitRenameTag_AllowsACaseChange ()
 	{
 		var shell = new RecordingShell ();
@@ -170,7 +170,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsNull (shell.WarningTitle);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void TagNamesStartingWith_MatchesThePrefixIgnoringCase ()
 	{
 		var viewModel = NewViewModel ();
@@ -181,7 +181,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsNull (viewModel.TagNamesStartingWith ("zz"));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void IncludeTagsInQuery_AddsEachTagToTheFind ()
 	{
 		var viewModel = NewViewModel ();
@@ -193,7 +193,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreSequenceEqual (new[] { a, b }, viewModel.FindTags.ToArray ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DisplayFilenames_IsSavedToThePreferences ()
 	{
 		bool previous = Preferences.Get<bool> (Preferences.ViewerShawFilenames);
@@ -206,7 +206,7 @@ public sealed partial class MainWindowViewModelTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public async Task PreviewPopup_ShowsTheHistogramOnlyForShiftV ()
 	{
@@ -230,7 +230,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsNull (viewModel.PreviewPopupItem);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void PhotoGrid_KeepsAMultipleSelectionFromTheKeyboard ()
 	{
@@ -266,7 +266,7 @@ public sealed partial class MainWindowViewModelTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void PhotoView_KeysWalkThePhotosFromTheWindow ()
 	{

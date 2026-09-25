@@ -22,7 +22,7 @@ namespace FSpot.Avalonia.Tests;
 [DoNotParallelize]
 public sealed class FilterAndTagDialogViewModelTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void LastImportRoll_FiltersToTheNewestRollAndClearRollFilterUndoesIt ()
 	{
 		using var catalog = Catalog.Open ();
@@ -42,7 +42,7 @@ public sealed class FilterAndTagDialogViewModelTests
 		Assert.HasCount (2, viewModel.Photos);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task SelectImportRolls_OffersEveryRollWithItsPhotoCount ()
 	{
 		using var catalog = Catalog.Open ();
@@ -57,7 +57,7 @@ public sealed class FilterAndTagDialogViewModelTests
 		Assert.AreEqual ("a.jpg", catalog.ViewModel.Photos[0].Caption);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task RatingAndDateDialogs_SetAndClearTheirFilters ()
 	{
 		using var catalog = Catalog.Open ();
@@ -81,7 +81,7 @@ public sealed class FilterAndTagDialogViewModelTests
 		Assert.IsFalse (viewModel.ClearDateRangeCommand.CanExecute (null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task CreateTag_UsesTheDialogsParentAndRemembersAutoIcon ()
 	{
 		using var catalog = Catalog.Open ();
@@ -100,7 +100,7 @@ public sealed class FilterAndTagDialogViewModelTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task EditTag_RenamesReparentsAndSetsTheIcon ()
 	{
 		using var catalog = Catalog.Open ();
@@ -117,7 +117,7 @@ public sealed class FilterAndTagDialogViewModelTests
 		Assert.HasCount (1, catalog.Shell.EditedSource.PhotoPaths);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task MergeTags_FoldsTheHighlightedTagsIntoOne ()
 	{
 		using var catalog = Catalog.Open ();
@@ -140,7 +140,7 @@ public sealed class FilterAndTagDialogViewModelTests
 		Assert.AreSame (survivor, catalog.Shell.EditedSource?.Tag);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task MergeTags_WithOneHighlightedTagAsksTheTagSelectionDialog ()
 	{
 		using var catalog = Catalog.Open ();
@@ -152,7 +152,7 @@ public sealed class FilterAndTagDialogViewModelTests
 		Assert.IsNotNull (catalog.Database.Tags.GetTagByName ("Tagged"));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task RenameVersion_OffersTheCurrentAndExistingNames ()
 	{
 		using var catalog = Catalog.Open ();

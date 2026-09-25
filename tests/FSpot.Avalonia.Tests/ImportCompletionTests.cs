@@ -11,20 +11,20 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class ImportCompletionTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void ShouldReloadCatalog_OnlyWhenSomethingImported ()
 	{
 		Assert.IsFalse (ImportCompletion.ShouldReloadCatalog (0));
 		Assert.IsTrue (ImportCompletion.ShouldReloadCatalog (1));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FormatFailures_Empty_IsEmpty ()
 	{
 		Assert.AreEqual (string.Empty, ImportCompletion.FormatFailures (Array.Empty<SafeUri> ()));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FormatFailures_ListsFilenamesUnderTheImportFailuresHeader ()
 	{
 		string message = ImportCompletion.FormatFailures (new[] {

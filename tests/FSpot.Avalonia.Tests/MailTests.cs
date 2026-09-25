@@ -13,11 +13,11 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class MailSizingTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void Sizes_AreOriginalThenTinyToExtraLarge ()
 		=> Assert.AreSequenceEqual (new[] { 0, 320, 480, 640, 800, 1024 }, MailSizing.Sizes.ToArray ());
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Estimate_OriginalIsTheTotalAndSmallerSizesUseTheScale ()
 	{
 		var scales = MailSizing.ReferenceScales;
@@ -25,7 +25,7 @@ public sealed class MailSizingTests
 		Assert.AreEqual (53_200, MailSizing.Estimate (1_000_000, 3, scales));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Calibrate_ScalesTheTableByTheMediumResult ()
 	{
 		// The first photo shrank to twice the reference ratio, so every size doubles.
@@ -35,7 +35,7 @@ public sealed class MailSizingTests
 		Assert.AreSequenceEqual (MailSizing.ReferenceScales.ToArray (), MailSizing.Calibrate (0, 5));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void IsJpeg_ByExtension ()
 	{
 		Assert.IsTrue (MailSizing.IsJpeg ("/x/a.JPG"));
@@ -44,7 +44,7 @@ public sealed class MailSizingTests
 		Assert.IsFalse (MailSizing.IsJpeg ("/x/a.nef"));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ClampIndex_FallsBackToMedium ()
 	{
 		Assert.AreEqual (5, MailSizing.ClampIndex (5));
@@ -52,7 +52,7 @@ public sealed class MailSizingTests
 		Assert.AreEqual (3, MailSizing.ClampIndex (-1));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FormatSize_UsesSiUnits ()
 	{
 		Assert.AreEqual ($"999 {Strings.Bytes}", MailSizing.FormatSize (999));
@@ -66,7 +66,7 @@ public sealed class MailLauncherTests
 {
 	static readonly string[] Files = ["/tmp/m/a.jpg", "/tmp/m/b.jpg"];
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Thunderbird_ComposesWithCommaSeparatedAttachments ()
 	{
 		var launch = MailLauncher.Build ("thunderbird %s", "My Photos", Files, isMac: false, isWindows: false);
@@ -74,7 +74,7 @@ public sealed class MailLauncherTests
 		Assert.AreSequenceEqual (new[] { "-compose", "subject=My Photos,attachment='/tmp/m/a.jpg,/tmp/m/b.jpg'" }, launch.Arguments.ToArray ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Kmail_AttachesEachFile ()
 	{
 		var launch = MailLauncher.Build ("kmail %s", "S", Files, isMac: false, isWindows: false);
@@ -82,7 +82,7 @@ public sealed class MailLauncherTests
 		Assert.AreSequenceEqual (new[] { "--composer", "--subject", "S", "--attach", "/tmp/m/a.jpg", "--attach", "/tmp/m/b.jpg" }, launch.Arguments.ToArray ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Default_UsesMailtoWithAttach ()
 	{
 		var launch = MailLauncher.Build ("", "My Photos", Files, isMac: false, isWindows: false);
@@ -90,14 +90,14 @@ public sealed class MailLauncherTests
 		Assert.AreEqual ("mailto:?subject=My%20Photos&attach=file:///tmp/m/a.jpg&attach=file:///tmp/m/b.jpg", launch.Uri);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Evolution_KeepsTheSubjectUnencoded ()
 	{
 		var launch = MailLauncher.Build ("evolution %s", "My Photos", Files, isMac: false, isWindows: false);
 		Assert.StartsWith ("mailto:?subject=My Photos&attach=", launch.Uri);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void MacDefault_HandsTheFilesToMail ()
 	{
 		var launch = MailLauncher.Build (null, "S", Files, isMac: true, isWindows: false);
@@ -105,7 +105,7 @@ public sealed class MailLauncherTests
 		Assert.AreSequenceEqual (new[] { "-a", "Mail", "/tmp/m/a.jpg", "/tmp/m/b.jpg" }, launch.Arguments.ToArray ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void WindowsDefault_OpensTheMessageAndShowsTheFolder ()
 	{
 		var launch = MailLauncher.Build (null, "S", Files, "/tmp/m", isMac: false, isWindows: true);
@@ -130,7 +130,7 @@ public sealed class MailAttachmentsTests
 	public void TearDown ()
 		=> Directory.Delete (directory, recursive: true);
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Prepare_ResizesIntoTheMailFolderUnderAUniqueName ()
 	{
 		string source = PrintRendererTests.WriteJpeg (directory, "shot.jpg", 1600, 800, SKColors.Green);
@@ -147,7 +147,7 @@ public sealed class MailAttachmentsTests
 		Assert.AreEqual (320, codec.Info.Height);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Prepare_KeepsTheOriginalForSizeZeroOrASmallPhoto ()
 	{
 		string source = PrintRendererTests.WriteJpeg (directory, "small.jpg", 200, 100, SKColors.Green);
@@ -166,7 +166,7 @@ public sealed class MailAttachmentsTests
 [DoNotParallelize]
 public sealed class PrintAndMailWindowTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void MailWindow_NonJpegForcesOriginal ()
 	{
 		AvaloniaApp.Ensure ();
@@ -177,7 +177,7 @@ public sealed class PrintAndMailWindowTests
 		Assert.AreEqual ("2", window.NumberOfPictures.Text);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void MailWindow_RemembersTheLastSize ()
 	{
 		AvaloniaApp.Ensure ();
@@ -192,7 +192,7 @@ public sealed class PrintAndMailWindowTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PageSetupWindow_ReflectsPaperAndOrientation ()
 	{
 		AvaloniaApp.Ensure ();
@@ -206,7 +206,7 @@ public sealed class PrintAndMailWindowTests
 		Assert.IsFalse (window.Current.Landscape);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PrintWindow_DefaultsMatchCustomPrintWidget ()
 	{
 		AvaloniaApp.Ensure ();

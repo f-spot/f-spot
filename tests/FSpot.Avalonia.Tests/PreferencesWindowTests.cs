@@ -7,12 +7,14 @@ using FSpot.Resources.Lang;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using Sentry;
+
 namespace FSpot.Avalonia.Tests;
 
 [TestClass]
 public sealed class GtkMarkupTextTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void Split_SeparatesTheGtkSmallCaption ()
 	{
 		var (title, detail) = GtkMarkupText.Split (Strings.InsideTheImageFilesWhenPossibleSmallMakesThemAccessibleToOtherImageEditingProgramsSmall);
@@ -21,7 +23,7 @@ public sealed class GtkMarkupTextTests
 		Assert.AreEqual ("Makes them accessible to other image-editing programs.", detail);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Split_KeepsAPlainSentenceWhole ()
 	{
 		var (title, detail) = GtkMarkupText.Split (Strings.SeparatelyFromTheImageFiles);
@@ -35,7 +37,7 @@ public sealed class GtkMarkupTextTests
 [DoNotParallelize]
 public sealed class PreferencesWindowTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void MetadataRows_FollowTheGtkEmbedAndSidecarRules ()
 	{
 		AvaloniaApp.Ensure ();
@@ -78,7 +80,7 @@ public sealed class PreferencesWindowTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DisplayProfileCombo_OffersSystemProfileOnlyForDisplayWhenAvailable ()
 	{
 		AvaloniaApp.Ensure ();
@@ -103,7 +105,7 @@ public sealed class PreferencesWindowTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DisplayProfileCombo_RoundTripsTheSystemProfileSentinel ()
 	{
 		if (!SystemColorProfile.IsAvailable)
@@ -127,7 +129,7 @@ public sealed class PreferencesWindowTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void TransparencyRows_FollowTheGtkRulesAndPersist ()
 	{
 		AvaloniaApp.Ensure ();
@@ -157,7 +159,7 @@ public sealed class PreferencesWindowTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void MailEnabledRow_FollowsAndPersistsThePreference ()
 	{
 		AvaloniaApp.Ensure ();
@@ -178,12 +180,39 @@ public sealed class PreferencesWindowTests
 			LibraryPreferences.MailToEnabled = mailEnabled;
 		}
 	}
+
+	[UiTestMethod]
+	public void SendCrashReportsRow_FollowsAndPersistsThePreference ()
+	{
+		AvaloniaApp.Ensure ();
+		bool previous = LibraryPreferences.SendCrashReports;
+		string? killSwitch = Environment.GetEnvironmentVariable (FSpotSentry.KillSwitchVariable);
+		try {
+			Environment.SetEnvironmentVariable (FSpotSentry.KillSwitchVariable, "0");
+			LibraryPreferences.SendCrashReports = false;
+			var window = new PreferencesWindow ();
+			window.Show ();
+			try {
+				Assert.IsFalse (window.SendCrashReports.IsChecked);
+				Assert.AreEqual (Strings.SendCrashReportsToSentry, window.SendCrashReports.Content);
+				window.SendCrashReports.IsChecked = true;
+			} finally {
+				window.Close ();
+			}
+
+			Assert.IsTrue (LibraryPreferences.SendCrashReports);
+			Assert.IsFalse (SentrySdk.IsEnabled);
+		} finally {
+			LibraryPreferences.SendCrashReports = previous;
+			Environment.SetEnvironmentVariable (FSpotSentry.KillSwitchVariable, killSwitch);
+		}
+	}
 }
 
 [TestClass]
 public sealed class SystemColorProfileTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void Current_NeverThrowsAndDegradesWhenUnavailable ()
 	{
 		var profile = SystemColorProfile.Current;

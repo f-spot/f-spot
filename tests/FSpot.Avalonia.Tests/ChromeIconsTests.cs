@@ -21,7 +21,7 @@ public sealed class ChromeIconsTests
 		"emblem-people", "emblem-places", "emblem-event"
 	];
 
-	[TestMethod]
+	[UiTestMethod]
 	public void AppLogo_IsThePackedFSpotSvg ()
 	{
 		Assert.EndsWith (".svg", ChromeIcons.AppLogo);
@@ -30,7 +30,7 @@ public sealed class ChromeIconsTests
 		Assert.IsTrue (File.Exists (Path.Combine (IconsSrc (), "f-spot.svg")));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void WindowIcon_IsPngBecauseWindowIconIsABitmap ()
 	{
 		Assert.EndsWith (".png", ChromeIcons.WindowIcon);
@@ -40,7 +40,7 @@ public sealed class ChromeIconsTests
 			"In-app logo stays SVG even though the OS window slot is PNG.");
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PreferredFile_UsesSvgWhenBothSvgAndPngExist ()
 	{
 		var packed = new HashSet<string> (StringComparer.OrdinalIgnoreCase) {
@@ -49,7 +49,7 @@ public sealed class ChromeIconsTests
 		Assert.AreEqual ("adjust-colors-22.svg", ChromeIcons.PreferredFile ("adjust-colors", packed));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PreferredFile_PrefersUnsizedSvg ()
 	{
 		var packed = new HashSet<string> (StringComparer.OrdinalIgnoreCase) {
@@ -58,7 +58,7 @@ public sealed class ChromeIconsTests
 		Assert.AreEqual ("emblem-people.svg", ChromeIcons.PreferredFile ("emblem-people", packed));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PreferredFile_FallsBackToPngWhenNoSvgExists ()
 	{
 		var packed = new HashSet<string> (StringComparer.OrdinalIgnoreCase) { "crop-22.png" };
@@ -66,7 +66,7 @@ public sealed class ChromeIconsTests
 		Assert.IsNull (ChromeIcons.PreferredFile ("missing", packed));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void EditorIcons_UseSvgWhenIconsSrcHasTheArtwork ()
 	{
@@ -80,7 +80,7 @@ public sealed class ChromeIconsTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void TagIcons_UseSvgWhenIconsSrcHasTheArtwork ()
 	{
@@ -93,7 +93,7 @@ public sealed class ChromeIconsTests
 		Assert.EndsWith (".svg", TagIcons.UriFor (null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void PngOnlyChrome_StaysPngWhenNoSvgExists ()
 	{
@@ -108,7 +108,7 @@ public sealed class ChromeIconsTests
 		Assert.EndsWith (".png", EditorIcons.UriFor ("filter-soft-focus"));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void AxamlChrome_DoesNotPointAtPngWhenAnSvgExists ()
 	{
 		foreach (string file in Directory.EnumerateFiles (ClientRoot (), "*.axaml", SearchOption.AllDirectories)) {
@@ -127,7 +127,7 @@ public sealed class ChromeIconsTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Axaml_UsesShippedAppLogoAndWindowIcon ()
 	{
 		string main = File.ReadAllText (Path.Combine (ClientRoot (), "MainWindow.axaml"));
@@ -138,7 +138,7 @@ public sealed class ChromeIconsTests
 		Assert.DoesNotContain ("f-spot.svg", about);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Axaml_DoesNotBindPngCapableUrisToSvgPath ()
 	{
 		string main = File.ReadAllText (Path.Combine (ClientRoot (), "MainWindow.axaml"));
@@ -148,7 +148,7 @@ public sealed class ChromeIconsTests
 		Assert.Contains ("ChromeIcon", ExtractEditorIcon (main));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void ChromeIcon_RendersPngUrisWithImageNotSvg ()
 	{
@@ -161,7 +161,7 @@ public sealed class ChromeIconsTests
 		Assert.IsGreaterThanOrEqualTo (1, icon.GetVisualDescendants ().OfType<global::Avalonia.Controls.Image> ().Count ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void ChromeIcon_UsesAVectorSourceForSvg ()
 	{
@@ -176,7 +176,7 @@ public sealed class ChromeIconsTests
 		Assert.IsNotInstanceOfType<global::Avalonia.Media.Imaging.Bitmap> (image.Source);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void ChromeIcon_RendersSvgUrisAsAnImage ()
 	{
@@ -189,7 +189,7 @@ public sealed class ChromeIconsTests
 		Assert.IsTrue (svg is null || svg.Path is null || svg.Path.EndsWith (".svg", StringComparison.OrdinalIgnoreCase));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void PackedAppLogoSvg_CanBeOpened ()
 	{

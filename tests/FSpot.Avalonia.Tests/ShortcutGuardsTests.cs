@@ -13,7 +13,7 @@ namespace FSpot.Avalonia.Tests;
 [DoNotParallelize]
 public sealed class ShortcutGuardsTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void UnadornedV_TogglesLoupeWhenFocusIsNotATextInput ()
 	{
 		AvaloniaApp.Ensure ();
@@ -21,14 +21,50 @@ public sealed class ShortcutGuardsTests
 		Assert.IsTrue (ShortcutGuards.AllowsUnadornedKey (null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void UnadornedV_DoesNotStealFromATextBox ()
 	{
 		AvaloniaApp.Ensure ();
 		Assert.IsFalse (ShortcutGuards.AllowsUnadornedKey (new TextBox ()));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
+	public void TagTree_StopsBeforeItsOwnTreeView_AndATextBoxStillOwnsItsKeys ()
+	{
+		AvaloniaApp.Ensure ();
+		var box = new TextBox ();
+		var item = new TreeViewItem { Header = box };
+		var tree = new TreeView ();
+		tree.Items.Add (item);
+		var window = new Window { Width = 200, Height = 120, Content = tree };
+		window.Show ();
+		window.UpdateLayout ();
+
+		Assert.IsFalse (ShortcutGuards.AllowsUnadornedKey (item, Key.Delete));
+		Assert.IsTrue (ShortcutGuards.AllowsUnadornedKey (item, Key.Delete, tree));
+		Assert.IsTrue (box.Focus ());
+		Assert.IsFalse (ShortcutGuards.AllowsUnadornedKey (box, Key.Space, tree));
+		Assert.IsFalse (ShortcutGuards.AllowsUnadornedKey (box, Key.Enter, tree));
+		window.Close ();
+	}
+
+	[UiTestMethod]
+	public void PlainKeys_LeaveComboSliderAndModifiedTAlone ()
+	{
+		AvaloniaApp.Ensure ();
+		var combo = new ComboBox ();
+		var slider = new Slider ();
+		Assert.IsFalse (ShortcutGuards.AllowsUnadornedKey (combo, Key.D4));
+		Assert.IsFalse (ShortcutGuards.AllowsUnadornedKey (slider, Key.S));
+		Assert.IsFalse (ShortcutGuards.IsTagTypingKey (Key.T, KeyModifiers.Control, null));
+		Assert.IsTrue (ShortcutGuards.IsTagTypingKey (Key.T, KeyModifiers.None, new Button ()));
+		Assert.IsNull (PlainKeyCommand.From (Key.S, KeyModifiers.None, combo));
+		Assert.IsNull (RatingKey.From (Key.D4, KeyModifiers.None, slider));
+		Assert.IsFalse (ShortcutGuards.AllowsUnadornedKey (new Button (), Key.Space));
+		Assert.IsTrue (ShortcutGuards.AllowsUnadornedKey (new Button (), Key.Delete));
+	}
+
+	[UiTestMethod]
 	public void UnadornedV_RequiresTheVKeyWithNoModifiers ()
 	{
 		Assert.IsTrue (ShortcutGuards.IsUnadornedLoupeKey (Key.V, KeyModifiers.None));
@@ -36,7 +72,7 @@ public sealed class ShortcutGuardsTests
 		Assert.IsFalse (ShortcutGuards.IsUnadornedLoupeKey (Key.L, KeyModifiers.None));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ContinueToWindowKeyBindings_IsFalseForVWhenATextBoxHasFocus ()
 	{
 		AvaloniaApp.Ensure ();

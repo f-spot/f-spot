@@ -12,7 +12,7 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class PhotoDropTargetsTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void ForTagDrop_UsesTheWholeSelectionWhenTheTargetIsSelected ()
 	{
 		var a = Photo ("/a.jpg");
@@ -25,7 +25,7 @@ public sealed class PhotoDropTargetsTests
 		Assert.AreSequenceEqual (new[] { a, b }, targets);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ForTagDrop_UsesOnlyTheTargetWhenItIsNotSelected ()
 	{
 		var a = Photo ("/a.jpg");
@@ -37,7 +37,7 @@ public sealed class PhotoDropTargetsTests
 		Assert.AreSequenceEqual (new[] { b }, targets);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ForTagDrop_EmptySelectionWithoutATarget_IsEmpty ()
 	{
 		var a = Photo ("/a.jpg");

@@ -27,7 +27,7 @@ public sealed class I18nChromeTests
 		"AutomationProperties.Name"
 	];
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RemainingChrome_BindsUserVisibleCopyToStrings ()
 	{
 		foreach (var (file, document) in ChromeDocuments ()) {
@@ -43,7 +43,7 @@ public sealed class I18nChromeTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void QueryBar_SurfacesNoMatchingPhotosFromStrings ()
 	{
 		var queryBar = Descendants (MainWindow (), "Border")
@@ -55,7 +55,7 @@ public sealed class I18nChromeTests
 		Assert.Contains ("lang:Strings.", markup);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ChipLabels_DoNotConcatenateFragmentsInXaml ()
 	{
 		string markup = MainWindow ().ToString ();
@@ -64,7 +64,7 @@ public sealed class I18nChromeTests
 		Assert.Contains ("FindDateLabel", markup);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void InfoDate_WrapsInsteadOfEllipsizing ()
 	{
 		var date = Descendants (MainWindow (), "TextBlock")
@@ -75,7 +75,7 @@ public sealed class I18nChromeTests
 		Assert.AreNotEqual ("NoWrap", Attribute (date, "TextWrapping"));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ImportAttachTags_UsesALabelTarget ()
 	{
 		var import = XDocument.Load (Path.Combine (ClientRoot (), "ImportWindow.axaml"));
@@ -84,7 +84,7 @@ public sealed class I18nChromeTests
 		Assert.IsFalse (string.IsNullOrWhiteSpace (Attribute (label, "Target")));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void SidebarAndFilmstrip_FollowWindowFlowDirection ()
 	{
@@ -114,7 +114,7 @@ public sealed class I18nChromeTests
 		Assert.AreEqual (TextWrapping.Wrap, date.TextWrapping);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void AboutAndImport_UseLocalizedWindowTitles ()
 	{
 		var about = XDocument.Load (Path.Combine (ClientRoot (), "AboutWindow.axaml"));
@@ -125,7 +125,7 @@ public sealed class I18nChromeTests
 		Assert.IsFalse (string.IsNullOrEmpty (Strings.Import));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void AboutViewModel_ServesVersionFromStrings ()
 	{
 		var about = new AboutViewModel ();
@@ -134,7 +134,7 @@ public sealed class I18nChromeTests
 		Assert.DoesNotContain ("{0}", about.Version);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DateAndRollPromptCopy_ComesFromStrings ()
 	{
 		Assert.AreEqual (Strings.DateRangePrompt, PromptCopy.DateRange);
@@ -144,7 +144,7 @@ public sealed class I18nChromeTests
 		Assert.DoesNotContain ("{0}", PromptCopy.DateRange);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void TagDeleteCopy_ComesFromStrings ()
 	{
 		var root = new Category (null, 1, "Root");
@@ -155,7 +155,7 @@ public sealed class I18nChromeTests
 		Assert.AreEqual (Strings.ThisRemovesTheTagFromTheCatalogAndFromAnyPhotosThatUseIt, TagDelete.ConfirmBody (0));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ApplicationName_ComesFromStrings ()
 	{
 		var app = XDocument.Load (Path.Combine (ClientRoot (), "App.axaml"));

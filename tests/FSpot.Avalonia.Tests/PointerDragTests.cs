@@ -17,7 +17,7 @@ namespace FSpot.Avalonia.Tests;
 [DoNotParallelize]
 public sealed class PointerDragTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void For_UsesTheTagIdFolderUriOrPhotoPayload ()
 	{
 		AvaloniaApp.Ensure ();
@@ -40,7 +40,7 @@ public sealed class PointerDragTests
 		Assert.IsNull (PointerDrag.For ("text"));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Effects_AcceptTagsOnTheGridAndOnlyFilesOnTheEmptyLibrary ()
 	{
 		AvaloniaApp.Ensure ();
@@ -53,7 +53,7 @@ public sealed class PointerDragTests
 		Assert.AreEqual (DragDropEffects.None, CatalogDrop.Effects (CatalogDropKind.FindBar, tag));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Effects_AcceptPhotosOnTheGridButNeverImportTheirFiles ()
 	{
 		AvaloniaApp.Ensure ();
@@ -66,7 +66,7 @@ public sealed class PointerDragTests
 		Assert.IsFalse (CatalogDrop.IsExternalFileDrop (photos));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Effects_AcceptOnlyTagsOnThePhotoView ()
 	{
 		AvaloniaApp.Ensure ();
@@ -79,7 +79,7 @@ public sealed class PointerDragTests
 		Assert.AreEqual (DragDropEffects.None, CatalogDrop.Effects (CatalogDropKind.PhotoView, folder));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Transfer_CarriesThePayloadAndNoFilesWhenNoneResolve ()
 	{
 		AvaloniaApp.Ensure ();
@@ -89,7 +89,7 @@ public sealed class PointerDragTests
 		Assert.IsFalse (((IDataTransfer)data).Contains (DataFormat.File));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ReparentQuestion_NamesTheMergedPhotoAndTheNewParent ()
 	{
 		var single = ViewModels.MainWindowViewModel.ReparentQuestion (new Stub ("parent.jpg"), [new Stub ("child.jpg")]);

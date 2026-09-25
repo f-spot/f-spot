@@ -22,7 +22,7 @@ public sealed class AvaloniaPhotoDecoderTests
 	static void EnsureAvalonia ()
 		=> AvaloniaApp.Ensure ();
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ReadOrientation_ReturnsTheExifTagRotateWrites ()
 	{
 		string path = CopySample ();
@@ -37,7 +37,7 @@ public sealed class AvaloniaPhotoDecoderTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ApplyOrientation_RightTop_SwapsWidthAndHeight ()
 	{
 		EnsureAvalonia ();
@@ -48,7 +48,7 @@ public sealed class AvaloniaPhotoDecoderTests
 		Assert.AreEqual (8, rotated.PixelSize.Height);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DecodeFile_AppliesTheExifOrientationTag ()
 	{
 		EnsureAvalonia ();

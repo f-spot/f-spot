@@ -14,7 +14,7 @@ namespace FSpot.Avalonia.Tests;
 [DoNotParallelize]
 public sealed class SlideshowWindowTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void FullScreenView_OpensPaused_AndKeysDriveTheHost ()
 	{
 		AvaloniaApp.Ensure ();
@@ -41,7 +41,50 @@ public sealed class SlideshowWindowTests
 		Assert.AreEqual ("/missing/b.jpg", host.Focused);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
+	public void Delete_RemovesThePhotoThatWasCurrentWhenAsked ()
+	{
+		AvaloniaApp.Ensure ();
+		var host = new RecordingHost ();
+		var window = new SlideshowWindow (new[] { "/missing/a.jpg", "/missing/b.jpg", "/missing/c.jpg" }, 0, host, play: true);
+		window.Show ();
+		host.OnRemove = _ => {
+			Press (window, Key.Right);
+			window.PlayPause ();
+			return Task.FromResult (true);
+		};
+
+		Press (window, Key.Delete);
+
+		Assert.AreEqual ("/missing/a.jpg", host.RemovedPath);
+		Assert.AreEqual ("/missing/b.jpg", window.CurrentPath);
+		Assert.IsTrue (window.IsPlaying);
+		Press (window, Key.Right);
+		Assert.AreEqual ("/missing/c.jpg", window.CurrentPath);
+		Press (window, Key.Right);
+		Assert.AreEqual ("/missing/b.jpg", window.CurrentPath);
+		window.Close ();
+	}
+
+	[UiTestMethod]
+	public void Delete_ClosedDuringConfirm_DoesNotDecodeAnotherSlide ()
+	{
+		AvaloniaApp.Ensure ();
+		var host = new RecordingHost ();
+		var window = new SlideshowWindow (new[] { "/missing/a.jpg", "/missing/b.jpg" }, 0, host, play: false);
+		window.Show ();
+		host.OnRemove = _ => {
+			window.Close ();
+			return Task.FromResult (true);
+		};
+
+		Press (window, Key.Delete);
+
+		Assert.IsFalse (window.IsVisible);
+		Assert.AreEqual ("/missing/a.jpg", host.RemovedPath);
+	}
+
+	[UiTestMethod]
 	public void Slideshow_OpensPlaying_AndPlayPauseToggles ()
 	{
 		AvaloniaApp.Ensure ();
@@ -67,11 +110,17 @@ public sealed class SlideshowWindowTests
 		public (string, uint)? Rated { get; private set; }
 		public (string, bool)? Rotated { get; private set; }
 		public string? Focused { get; private set; }
+		public string? RemovedPath { get; private set; }
+		public Func<string, Task<bool>>? OnRemove { get; set; }
 
 		public IPhoto? PhotoAt (string path) => null;
 		public void FocusPhoto (string path) => Focused = path;
 		public void RatePhoto (string path, uint rating) => Rated = (path, rating);
 		public void RotatePhoto (string path, bool clockwise) => Rotated = (path, clockwise);
-		public Task<bool> RemovePhotoAsync (string path, bool deleteFromDrive) => Task.FromResult (false);
+		public Task<bool> RemovePhotoAsync (string path, bool deleteFromDrive)
+		{
+			RemovedPath = path;
+			return OnRemove is null ? Task.FromResult (false) : OnRemove (path);
+		}
 	}
 }

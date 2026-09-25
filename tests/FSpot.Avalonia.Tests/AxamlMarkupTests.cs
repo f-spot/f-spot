@@ -14,7 +14,7 @@ public sealed class AxamlMarkupTests
 		@"[\w.]+\s*=\s*[""']",
 		RegexOptions.CultureInvariant);
 
-	[TestMethod]
+	[UiTestMethod]
 	public void StartTags_DoNotCloseBeforeTheirAttributes ()
 	{
 		var leaks = AxamlDocuments ()

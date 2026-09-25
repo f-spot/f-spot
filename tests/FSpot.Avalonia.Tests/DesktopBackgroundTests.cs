@@ -7,7 +7,7 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class DesktopBackgroundTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void LinuxCommand_UriEncodesAndQuotesAPathWithSpaces ()
 	{
 		var command = DesktopBackground.LinuxCommand ("/photos/My Wallpaper/wall.jpg");
@@ -19,7 +19,7 @@ public sealed class DesktopBackgroundTests
 		Assert.DoesNotContain ("My Wallpaper", command.Arguments);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void LinuxCommand_PercentEncodesHashAndQuestionMark ()
 	{
 		var command = DesktopBackground.LinuxCommand ("/photos/a#b?.jpg");

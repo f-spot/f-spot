@@ -13,7 +13,7 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class AdjustTimeWindowTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void TryParseHours_AcceptsASignedNumber ()
 	{
 		Assert.IsTrue (AdjustTimeWindow.TryParseHours ("1.5", out double hours));
@@ -22,7 +22,7 @@ public sealed class AdjustTimeWindowTests
 		Assert.AreEqual (-3, hours);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void TryParseHours_RejectsBlankAndWords ()
 	{
 		Assert.IsFalse (AdjustTimeWindow.TryParseHours ("  ", out _));
@@ -30,7 +30,7 @@ public sealed class AdjustTimeWindowTests
 		Assert.IsFalse (AdjustTimeWindow.TryParseHours (null, out _));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void TryParseOffset_AcceptsATimeSpan ()
 	{
 		Assert.IsTrue (AdjustTimeWindow.TryParseOffset ("01:30:00", out TimeSpan offset));
@@ -39,7 +39,7 @@ public sealed class AdjustTimeWindowTests
 		Assert.AreEqual (TimeSpan.FromMinutes (-15), offset);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void TryParseOffset_RejectsBlankAndWords ()
 	{
 		Assert.IsFalse (AdjustTimeWindow.TryParseOffset ("  ", out _));
@@ -47,7 +47,7 @@ public sealed class AdjustTimeWindowTests
 		Assert.IsFalse (AdjustTimeWindow.TryParseOffset (null, out _));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FormatOffset_RoundTripsThroughTryParseOffset ()
 	{
 		var offset = new TimeSpan (1, 2, 3);
@@ -56,7 +56,7 @@ public sealed class AdjustTimeWindowTests
 		Assert.AreEqual (offset, parsed);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void Constructor_ShowsTheSelectedRowAsTheReferencePhoto ()
 	{
@@ -81,7 +81,7 @@ public sealed class AdjustTimeWindowTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void Constructor_HidesTheSpinnerTrayAndActionForASinglePhoto ()
 	{
@@ -98,7 +98,7 @@ public sealed class AdjustTimeWindowTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void DifferenceBox_UpdatesTheAdjustedDateAndTheShiftLabel ()
 	{
@@ -117,7 +117,7 @@ public sealed class AdjustTimeWindowTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void SelectingATrayRow_MovesTheSpinnerToMatch ()
 	{
@@ -138,7 +138,7 @@ public sealed class AdjustTimeWindowTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void Ok_WhenSpacing_AnchorsOnTheSelectedRowNotRowZero ()
 	{
@@ -170,7 +170,7 @@ public sealed class AdjustTimeWindowTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ReferencePhotoLabel_StripsTheGtkBoldMarkup ()
 	{
 		Assert.AreEqual ("Reference Photo", AdjustTimeLabels.ReferencePhoto);

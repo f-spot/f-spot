@@ -4,6 +4,7 @@ using System.Globalization;
 
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Threading;
 
 using FSpot;
 using FSpot.Avalonia.Services;
@@ -36,6 +37,10 @@ public partial class AdjustTimeWindow : Window
 		this.photos = photos is { Count: > 0 } ? photos : new[] { ("", DateTime.Now, "") };
 		this.thumbnails = thumbnails ?? new AvaloniaThumbnailLoader ();
 		InitializeComponent ();
+		DifferenceBox.PropertyChanged += (_, change) => {
+			if (change.Property == TextBox.TextProperty)
+				ApplyDifference ();
+		};
 
 		trayItems = this.photos.Select (photo => new AdjustTimePhotoItem (photo.Name, photo.Time, photo.Path)).ToList ();
 		PhotoList.ItemsSource = trayItems;
@@ -152,6 +157,9 @@ public partial class AdjustTimeWindow : Window
 	}
 
 	void OnDifferenceChanged (object? sender, TextChangedEventArgs e)
+		=> ApplyDifference ();
+
+	void ApplyDifference ()
 	{
 		if (updatingFromCode)
 			return;
@@ -159,14 +167,17 @@ public partial class AdjustTimeWindow : Window
 			return;
 
 		DateTime adjusted = photos[ReferenceIndex].Time + offset;
-		updatingFromCode = true;
-		try {
-			AdjustedDatePart.SelectedDate = new DateTimeOffset (adjusted.Date, TimeSpan.Zero);
-			AdjustedTimePart.SelectedTime = adjusted.TimeOfDay;
-		} finally {
-			updatingFromCode = false;
-		}
+		// The pickers raise their change after the property set, and that change still
+		// sees the previous time. Ignore it, or it writes 00:00:00 back over the offset.
+		AdjustedDatePart.SelectedDateChanged -= OnAdjustedDateChanged;
+		AdjustedTimePart.SelectedTimeChanged -= OnAdjustedTimeChanged;
+		AdjustedDatePart.SelectedDate = new DateTimeOffset (adjusted.Date, TimeSpan.Zero);
+		AdjustedTimePart.SelectedTime = adjusted.TimeOfDay;
 		RefreshShiftLabel (offset);
+		Dispatcher.UIThread.Post (() => {
+			AdjustedDatePart.SelectedDateChanged += OnAdjustedDateChanged;
+			AdjustedTimePart.SelectedTimeChanged += OnAdjustedTimeChanged;
+		}, DispatcherPriority.Background);
 	}
 
 	void OnModeChanged (object? sender, RoutedEventArgs e)

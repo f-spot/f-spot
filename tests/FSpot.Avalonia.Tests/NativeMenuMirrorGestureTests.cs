@@ -18,7 +18,16 @@ namespace FSpot.Avalonia.Tests;
 [DoNotParallelize]
 public sealed class NativeMenuMirrorGestureTests
 {
-	[TestMethod]
+	[UiTestMethod]
+	public void Retarget_UsesThePlatformCommandModifier ()
+	{
+		AvaloniaApp.Ensure ();
+		var gesture = PlatformGestures.Retarget (new KeyGesture (Key.C, KeyModifiers.Control | KeyModifiers.Shift));
+		Assert.AreEqual (Key.C, gesture.Key);
+		Assert.AreEqual (PlatformGestures.CommandModifiers | KeyModifiers.Shift, gesture.KeyModifiers);
+	}
+
+	[UiTestMethod]
 	public void CopiesGesturesIncludingNestedSubmenus ()
 	{
 		AvaloniaApp.Ensure ();
@@ -38,7 +47,7 @@ public sealed class NativeMenuMirrorGestureTests
 		Assert.IsTrue (window.KeyBindings.Any (b => Equals (b.Gesture, new KeyGesture (Key.Q, KeyModifiers.Control)) && ReferenceEquals (b.Command, quitCommand)));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DoesNotDuplicateAGestureAlreadyOnTheWindow ()
 	{
 		AvaloniaApp.Ensure ();
@@ -54,7 +63,7 @@ public sealed class NativeMenuMirrorGestureTests
 		Assert.AreSame (existing, window.KeyBindings[0].Command);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SkipsItemsWithNoCommand ()
 	{
 		AvaloniaApp.Ensure ();
@@ -67,7 +76,7 @@ public sealed class NativeMenuMirrorGestureTests
 		Assert.IsEmpty (window.KeyBindings);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DoesNothingForANullMenu ()
 	{
 		AvaloniaApp.Ensure ();

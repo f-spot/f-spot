@@ -15,7 +15,7 @@ namespace FSpot.Avalonia.Tests;
 
 public sealed partial class MainWindowViewModelTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void ApplyEditor_Crop_ListsTheGtkConstraintsWithNoConstraintSelected ()
 	{
 		var viewModel = ViewModelWithFocusedPhoto ();
@@ -30,7 +30,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (0, viewModel.CropSelectionRatio);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SelectCropConstraint_SetsTheSelectionRatio ()
 	{
 		var viewModel = ViewModelWithFocusedPhoto ();
@@ -41,7 +41,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (1.0, viewModel.CropSelectionRatio);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ApplyEditor_Tilt_HidesCropSettings ()
 	{
 		var viewModel = ViewModelWithFocusedPhoto ();
@@ -51,7 +51,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsFalse (viewModel.ShowCropSettings);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ApplyEditor_RedEye_ReadsTheThresholdPreference ()
 	{
 		int previous = Prefs.Get<int> (Prefs.EditRedeyeThreshold);
@@ -68,7 +68,7 @@ public sealed partial class MainWindowViewModelTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task TiltSlider_RendersALivePreviewAndCancelRestoresTheOriginal ()
 	{
 		AvaloniaApp.Ensure ();
@@ -91,7 +91,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreSame (original, viewModel.DisplayedPreview);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task CropSession_DoesNotRenderALivePreview ()
 	{
 		AvaloniaApp.Ensure ();

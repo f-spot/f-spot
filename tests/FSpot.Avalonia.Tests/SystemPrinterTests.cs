@@ -9,14 +9,14 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class SystemPrinterTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void ParsePrinters_ReadsOneDestinationPerLine ()
 	{
 		var printers = SystemPrinter.ParsePrinters ("Office_Laser\nPhoto_Inkjet\n\nOffice_Laser\n");
 		Assert.AreSequenceEqual (new[] { "Office_Laser", "Photo_Inkjet" }, printers.ToArray ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ParseDefault_ReadsTheSystemDefault ()
 	{
 		Assert.AreEqual ("Office_Laser", SystemPrinter.ParseDefault ("system default destination: Office_Laser\n"));
@@ -24,7 +24,7 @@ public sealed class SystemPrinterTests
 		Assert.IsNull (SystemPrinter.ParseDefault (string.Empty));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void LpArguments_CarryPrinterCopiesAndMedia ()
 	{
 		var args = SystemPrinter.LpArguments ("/tmp/a.pdf", "Laser", 2, "A4", "My Photos");

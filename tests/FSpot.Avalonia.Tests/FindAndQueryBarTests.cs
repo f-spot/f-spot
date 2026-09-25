@@ -33,7 +33,7 @@ public sealed class FindAndQueryBarTests
 	static IPhoto[] Visible (MainWindowViewModel viewModel)
 		=> [.. viewModel.Photos.Select (item => item.Photo)];
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FindText_Or_ShowsEitherTag ()
 	{
 		var viewModel = NewViewModel (out var beach, out var both, out var work);
@@ -43,7 +43,7 @@ public sealed class FindAndQueryBarTests
 		Assert.AreSequenceEqual (new IPhoto[] { both, work }, Visible (viewModel));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FindText_AndNot_ExcludesTheNegatedTag ()
 	{
 		var viewModel = NewViewModel (out var beach, out _, out _);
@@ -53,7 +53,7 @@ public sealed class FindAndQueryBarTests
 		Assert.AreSequenceEqual (new IPhoto[] { beach }, Visible (viewModel));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FindText_Invalid_KeepsThePreviousQuery ()
 	{
 		var viewModel = NewViewModel (out _, out _, out var work);
@@ -64,7 +64,7 @@ public sealed class FindAndQueryBarTests
 		Assert.AreSequenceEqual (new IPhoto[] { work }, Visible (viewModel));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void HideFind_ClearsTheQuery ()
 	{
 		var viewModel = NewViewModel (out _, out _, out _);
@@ -76,7 +76,7 @@ public sealed class FindAndQueryBarTests
 		Assert.IsFalse (viewModel.IsFindBarVisible);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DropTagOnQuery_ShowsTheBarAndFilters ()
 	{
 		var viewModel = NewViewModel (out _, out _, out var work);
@@ -88,7 +88,7 @@ public sealed class FindAndQueryBarTests
 		Assert.AreSequenceEqual (new IPhoto[] { work }, Visible (viewModel));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void QueryGroups_SecondGroupShowsOr ()
 	{
 		var viewModel = NewViewModel (out _, out _, out _);
@@ -101,7 +101,7 @@ public sealed class FindAndQueryBarTests
 		Assert.HasCount (3, viewModel.Photos);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DropTagOnLiteral_AndsWithIt ()
 	{
 		var viewModel = NewViewModel (out _, out var both, out _);
@@ -112,7 +112,7 @@ public sealed class FindAndQueryBarTests
 		Assert.AreSequenceEqual (new IPhoto[] { both }, Visible (viewModel));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ToggleNegated_UpdatesTooltipAndFilter ()
 	{
 		var viewModel = NewViewModel (out _, out _, out var work);
@@ -126,7 +126,7 @@ public sealed class FindAndQueryBarTests
 		Assert.AreSequenceEqual (new IPhoto[] { work }, Visible (viewModel));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RemoveLiteral_EmptiesTheQuery ()
 	{
 		var viewModel = NewViewModel (out _, out _, out _);
@@ -139,7 +139,7 @@ public sealed class FindAndQueryBarTests
 		Assert.HasCount (3, viewModel.Photos);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void MoveLiteral_BetweenGroups ()
 	{
 		var viewModel = NewViewModel (out _, out var both, out _);
@@ -152,7 +152,7 @@ public sealed class FindAndQueryBarTests
 		Assert.AreSequenceEqual (new IPhoto[] { both }, Visible (viewModel));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ClearLibraryFilters_ClearsTheTagQuery ()
 	{
 		var viewModel = NewViewModel (out _, out _, out _);
@@ -164,7 +164,7 @@ public sealed class FindAndQueryBarTests
 		Assert.IsEmpty (viewModel.QueryGroups);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RefreshSearch_KeepsTheFilter ()
 	{
 		var viewModel = NewViewModel (out _, out _, out var work);
@@ -175,7 +175,7 @@ public sealed class FindAndQueryBarTests
 		Assert.AreSequenceEqual (new IPhoto[] { work }, Visible (viewModel));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void TagNames_ListsNestedTags ()
 	{
 		var viewModel = NewViewModel (out _, out _, out _);
@@ -183,7 +183,7 @@ public sealed class FindAndQueryBarTests
 		Assert.AreSequenceEqual (new[] { "Beach", "Family", "Work" }, viewModel.TagNames.ToArray ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FindCompletion_CompletesTheWordUnderTheCaret ()
 	{
 		var logic = new CompletionLogic ();
@@ -197,7 +197,7 @@ public sealed class FindAndQueryBarTests
 		Assert.AreEqual (16, pos);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FindCompletion_AfterOpenParen_OffersNothing ()
 	{
 		string text = "beach and (";

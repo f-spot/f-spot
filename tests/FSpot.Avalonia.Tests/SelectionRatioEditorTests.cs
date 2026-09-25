@@ -14,7 +14,7 @@ public sealed class SelectionRatioEditorTests
 	static SelectionRatioEditor TwoRows ()
 		=> new (new[] { new CropConstraint ("A", 2), new CropConstraint ("B", 3) });
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Add_AppendsANewSelectionAtOneToOne ()
 	{
 		var editor = TwoRows ();
@@ -27,7 +27,7 @@ public sealed class SelectionRatioEditorTests
 		Assert.AreSame (editor.Rows[2], editor.Selected);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DeleteAndMove_NeedASelection ()
 	{
 		var editor = TwoRows ();
@@ -38,7 +38,7 @@ public sealed class SelectionRatioEditorTests
 		Assert.IsTrue (editor.DeleteCommand.CanExecute (null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Delete_RemovesTheSelectedRow ()
 	{
 		var editor = TwoRows ();
@@ -50,7 +50,7 @@ public sealed class SelectionRatioEditorTests
 		Assert.AreEqual ("B", editor.Rows[0].Label);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void MoveUpAndDown_SwapNeighboursAndKeepSelection ()
 	{
 		var editor = TwoRows ();
@@ -68,7 +68,7 @@ public sealed class SelectionRatioEditorTests
 		Assert.AreEqual ("B", editor.Rows[1].Label);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RatioText_ParsesFractionsAndRejectsGarbage ()
 	{
 		var editor = TwoRows ();
@@ -83,7 +83,7 @@ public sealed class SelectionRatioEditorTests
 		Assert.AreEqual ((4.0 / 3.0).ToString (System.Globalization.CultureInfo.CurrentCulture), row.RatioText);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ToConstraints_KeepsRowOrderLabelsAndRatios ()
 	{
 		var editor = TwoRows ();

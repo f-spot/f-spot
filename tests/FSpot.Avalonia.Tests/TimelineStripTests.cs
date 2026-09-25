@@ -22,7 +22,7 @@ public sealed class TimelineStripTests
 {
 	readonly List<Window> windows = [];
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ShiftDrag_FromFirstMonthToThird_ExecutesInclusiveRange ()
 	{
 		AvaloniaApp.Ensure ();
@@ -41,7 +41,7 @@ public sealed class TimelineStripTests
 		Assert.AreEqual ((0, 2), range);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Months_StretchAndStayAddressable ()
 	{
 		AvaloniaApp.Ensure ();
@@ -54,7 +54,7 @@ public sealed class TimelineStripTests
 		Assert.IsFalse (Arrow (strip, "▶").IsEnabled);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void CrowdedMonths_ScrollByAStepAndKeepTheMinimumColumn ()
 	{
 		AvaloniaApp.Ensure ();
@@ -72,7 +72,7 @@ public sealed class TimelineStripTests
 		Assert.IsTrue (Arrow (strip, "◀").IsEnabled);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void EmptyMonth_KeepsAColumnAndSnapsToTheNearestPhotos ()
 	{
 		AvaloniaApp.Ensure ();
@@ -91,7 +91,7 @@ public sealed class TimelineStripTests
 		Assert.AreSame (filled, selected.Last);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Click_SelectsTheMonthOnce ()
 	{
 		AvaloniaApp.Ensure ();
@@ -105,7 +105,7 @@ public sealed class TimelineStripTests
 		Assert.AreSame (buckets[1], selected.Last);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DraggingTheGlass_MovesOnceToTheMonthUnderThePointer ()
 	{
 		AvaloniaApp.Ensure ();
@@ -123,7 +123,7 @@ public sealed class TimelineStripTests
 		Assert.AreSame (buckets[2], selected.Last);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DraggingInsideTheSelectedMonth_DoesNotClearIt ()
 	{
 		AvaloniaApp.Ensure ();
@@ -140,7 +140,7 @@ public sealed class TimelineStripTests
 		Assert.AreEqual (0, selected.Calls);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RightArrowKey_MovesToTheNextMonthAndScrollsItIntoView ()
 	{
 		AvaloniaApp.Ensure ();

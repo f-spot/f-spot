@@ -19,7 +19,7 @@ namespace FSpot.Avalonia.Tests;
 [DoNotParallelize]
 public sealed class WindowChromeAccessTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void GtkMnemonic_ReadsTheUnderscoredCharacter ()
 	{
 		Assert.AreEqual (Key.I, GtkMnemonic.Key ("_Import..."));
@@ -32,7 +32,7 @@ public sealed class WindowChromeAccessTests
 		Assert.IsNull (GtkMnemonic.Key ("A__B"));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ImportChrome_ExposesTheImportAccessKey ()
 	{
 		AvaloniaApp.Ensure ();
@@ -76,7 +76,7 @@ public sealed class WindowChromeAccessTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void AboutWindow_ClosesOnEscapeWithoutACloseButtonOrCatalogSentence ()
 	{
 		AvaloniaApp.Ensure ();
@@ -107,7 +107,7 @@ public sealed class WindowChromeAccessTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PhotoGrid_KeepsATagDropTheEmptyLibraryPanelWouldReject ()
 	{
 		AvaloniaApp.Ensure ();
@@ -141,7 +141,7 @@ public sealed class WindowChromeAccessTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void StatusBar_IsShorterThanTheToolbar ()
 	{
 		AvaloniaApp.Ensure ();
@@ -163,14 +163,14 @@ public sealed class WindowChromeAccessTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RatingKey_DoesNotRateWhileATextBoxIsFocused ()
 	{
 		AvaloniaApp.Ensure ();
 		Assert.IsNull (RatingKey.From (Key.D2, KeyModifiers.None, new TextBox ()));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void MnemonicCheckBox_RegistersItsAccessKey ()
 	{
 		AvaloniaApp.Ensure ();
@@ -186,7 +186,7 @@ public sealed class WindowChromeAccessTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task FolderPicker_IsInTheAutomationTreeAndReturnsTheTypedPath ()
 	{
 		AvaloniaApp.Ensure ();

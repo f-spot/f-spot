@@ -9,7 +9,7 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class TimelineLayoutTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void Split_KeepsTheHandleUnderAShortChart ()
 	{
 		var chrome = TimelineLayout.Split (TimelineLayout.StripHeight);
@@ -20,7 +20,7 @@ public sealed class TimelineLayoutTests
 		Assert.IsGreaterThan (chrome.Handle, chrome.Bars);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Measure_StretchesMonthsToFillTheStrip ()
 	{
 		var layout = TimelineLayout.Measure (4, 200, 24);
@@ -30,7 +30,7 @@ public sealed class TimelineLayoutTests
 		Assert.IsFalse (layout.Scrolls);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Measure_KeepsTheMinimumWidthAndScrollsWhenCrowded ()
 	{
 		var layout = TimelineLayout.Measure (20, 200, 24);
@@ -40,7 +40,7 @@ public sealed class TimelineLayoutTests
 		Assert.IsTrue (layout.Scrolls);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void IndexAt_ReturnsTheColumnUnderThePointer ()
 	{
 		Assert.AreEqual (0, TimelineLayout.IndexAt (0, 50, 4));
@@ -49,7 +49,7 @@ public sealed class TimelineLayoutTests
 		Assert.AreEqual (-1, TimelineLayout.IndexAt (-1, 50, 4));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Span_CoversTheInclusiveGlass ()
 	{
 		var (x, width) = TimelineLayout.Span (2, 0, 40);
@@ -58,7 +58,7 @@ public sealed class TimelineLayoutTests
 		Assert.AreEqual (120, width);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void NearestFilled_SnapsAnEmptyMonthToTheCloserMonthWithPhotos ()
 	{
 		var filled = new[] { true, false, false, true };

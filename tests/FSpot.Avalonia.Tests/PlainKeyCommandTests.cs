@@ -12,7 +12,7 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class PlainKeyCommandTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void RecognizesGtksRotateSharpenAndFindKeys ()
 	{
 		AvaloniaApp.Ensure ();
@@ -22,7 +22,7 @@ public sealed class PlainKeyCommandTests
 		Assert.AreEqual (PlainKeyCommandKind.ShowFind, PlainKeyCommand.From (Key.OemQuestion, KeyModifiers.None, null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void IgnoresKeysWithModifiersAndUnmappedKeys ()
 	{
 		AvaloniaApp.Ensure ();
@@ -31,7 +31,7 @@ public sealed class PlainKeyCommandTests
 		Assert.IsNull (PlainKeyCommand.From (Key.A, KeyModifiers.None, null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DoesNotStealFromATextBox ()
 	{
 		AvaloniaApp.Ensure ();

@@ -16,7 +16,7 @@ namespace FSpot.Avalonia.Tests;
 [DoNotParallelize]
 public sealed class UniformVirtualizingWrapPanelTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void FiveThousandPhotos_RealizeAWindowNotTheCatalog ()
 	{
 		AvaloniaApp.Ensure ();

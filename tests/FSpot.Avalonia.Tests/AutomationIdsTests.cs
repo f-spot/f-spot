@@ -11,7 +11,7 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class AutomationIdsTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void Catalog_ValuesAreUniqueAndNonEmpty ()
 	{
 		var values = typeof (AutomationIds)
@@ -32,7 +32,7 @@ public sealed class AutomationIdsTests
 		Assert.IsEmpty (duplicates);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SidebarEditConstants_CoverEveryCatalogEditor ()
 	{
 		var constants = typeof (AutomationIds)

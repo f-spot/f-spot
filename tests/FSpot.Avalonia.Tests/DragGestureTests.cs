@@ -11,7 +11,7 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class DragGestureTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void MovedFarEnough_IgnoresAClickAndAcceptsADrag ()
 	{
 		var start = new Point (10, 10);

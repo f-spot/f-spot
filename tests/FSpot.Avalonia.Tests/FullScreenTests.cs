@@ -19,7 +19,7 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class FullScreenTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	[DataRow (Key.F)]
 	[DataRow (Key.Q)]
 	[DataRow (Key.F11)]
@@ -27,7 +27,7 @@ public sealed class FullScreenTests
 	public void ExitKeys_MatchGtkFullScreenView (Key key)
 		=> Assert.AreEqual (FullScreenCommand.Exit, FullScreenKeys.Map (key, KeyModifiers.None).Command);
 
-	[TestMethod]
+	[UiTestMethod]
 	public void I_TogglesInfo_AndBracketsRotate ()
 	{
 		Assert.AreEqual (FullScreenCommand.ToggleInfo, FullScreenKeys.Map (Key.I, KeyModifiers.None).Command);
@@ -36,7 +36,7 @@ public sealed class FullScreenTests
 		Assert.AreEqual (FullScreenCommand.RotateRight, FullScreenKeys.Map (Key.OemCloseBrackets, KeyModifiers.None).Command);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void AltDigits_RateZeroToFive ()
 	{
 		Key[] digits = [Key.D0, Key.D1, Key.D2, Key.D3, Key.D4, Key.D5];
@@ -50,14 +50,14 @@ public sealed class FullScreenTests
 		Assert.AreEqual (FullScreenCommand.None, FullScreenKeys.Map (Key.D6, KeyModifiers.Alt).Command);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Delete_RemovesAndShiftDeleteDeletes ()
 	{
 		Assert.AreEqual (FullScreenCommand.RemoveFromCatalog, FullScreenKeys.Map (Key.Delete, KeyModifiers.None).Command);
 		Assert.AreEqual (FullScreenCommand.DeleteFromDrive, FullScreenKeys.Map (Key.Delete, KeyModifiers.Shift).Command);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ArrowsNavigate_AndModifiedLettersPassThrough ()
 	{
 		Assert.AreEqual (FullScreenCommand.Next, FullScreenKeys.Map (Key.Right, KeyModifiers.None).Command);
@@ -67,7 +67,7 @@ public sealed class FullScreenTests
 		Assert.AreEqual (FullScreenCommand.None, FullScreenKeys.Map (Key.F, KeyModifiers.Control).Command);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void OverlayTimings_MatchGtk ()
 	{
 		Assert.AreEqual (TimeSpan.FromSeconds (2), ControlOverlayPolicy.AutoHide);
@@ -77,7 +77,7 @@ public sealed class FullScreenTests
 		Assert.AreEqual (0.8, ControlOverlayPolicy.TargetOpacity (ControlOverlayVisibility.Full));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Controls_RevealOnlyInTheBottomQuarter ()
 	{
 		Assert.IsFalse (ControlOverlayPolicy.RevealsControls (700, 1000));
@@ -85,7 +85,7 @@ public sealed class FullScreenTests
 		Assert.IsFalse (ControlOverlayPolicy.RevealsControls (10, 0));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Fade_StepsTowardTheTargetAndSettles ()
 	{
 		Assert.AreEqual (0.04, ControlOverlayPolicy.StepToward (0, 0.4), 1e-9);
@@ -98,7 +98,7 @@ public sealed class FullScreenTests
 		Assert.AreEqual (0.8, opacity);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ToggleFullscreen_OpensTheFullScreenViewAtTheFocusedPhoto ()
 	{
 		var shell = new Shell ();
@@ -114,7 +114,7 @@ public sealed class FullScreenTests
 		Assert.IsNull (shell.Slideshow);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Slideshow_StartsAtTheFocusedPhoto ()
 	{
 		var shell = new Shell ();
@@ -129,7 +129,7 @@ public sealed class FullScreenTests
 		Assert.Contains ("c.jpg", shell.Slideshow.Value.Paths[2]);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void EmptyCollection_WarnsInsteadOfOpening ()
 	{
 		var shell = new Shell ();
@@ -141,7 +141,7 @@ public sealed class FullScreenTests
 		Assert.IsTrue (shell.Warned);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Host_FocusPhoto_SelectsThePhotoTheViewWasOn ()
 	{
 		var shell = new Shell ();

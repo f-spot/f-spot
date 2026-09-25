@@ -16,7 +16,7 @@ namespace FSpot.Avalonia.Tests;
 [DoNotParallelize]
 public sealed class LoupeKeyBindingTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void UnadornedV_TogglesWhenFocusIsNotATextInput ()
 	{
 		AvaloniaApp.Ensure ();
@@ -33,7 +33,7 @@ public sealed class LoupeKeyBindingTests
 		Assert.AreEqual (1, command.Count);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void UnadornedV_DoesNotToggleWhenATextBoxIsFocused ()
 	{
 		AvaloniaApp.Ensure ();

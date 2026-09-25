@@ -15,7 +15,7 @@ public sealed class FilterAndTagDialogWindowTests
 	public void Start ()
 		=> AvaloniaApp.Ensure ();
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RatingFilter_KeepsMinAtOrBelowMax ()
 	{
 		var window = new RatingFilterWindow (1, 3);
@@ -30,7 +30,7 @@ public sealed class FilterAndTagDialogWindowTests
 		Assert.AreEqual ((2u, 2u), window.Result);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DateRange_PresetFillsTheDatesAndEditingADateMakesItCustom ()
 	{
 		var today = new DateTime (2026, 9, 23);
@@ -46,7 +46,7 @@ public sealed class FilterAndTagDialogWindowTests
 		Assert.AreEqual (new DateTime (2026, 1, 1), window.Result.Range.Value.Start);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DateRange_AllImagesDisablesTheDatesAndClearsTheFilter ()
 	{
 		var window = new DateRangeWindow (new DateTime (2026, 9, 23), null, null);
@@ -59,7 +59,7 @@ public sealed class FilterAndTagDialogWindowTests
 		Assert.IsNull (window.Result.Range);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ImportRolls_CountFollowsTheModeAndBetweenShowsTheSecondRoll ()
 	{
 		var window = new ImportRollsWindow ([
@@ -92,7 +92,7 @@ public sealed class FilterAndTagDialogWindowTests
 		return (root, people, mom);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void CreateTag_WarnsAboutANameInUseAndCreatesUnderTheParent ()
 	{
 		var (root, people, _) = Tree ();
@@ -114,7 +114,7 @@ public sealed class FilterAndTagDialogWindowTests
 		Assert.IsTrue (window.CreateResult.AutoIcon);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void EditTag_KeepsItsOwnNameAndReturnsTheNewParentAndIcon ()
 	{
 		var (root, people, mom) = Tree ();
@@ -138,7 +138,7 @@ public sealed class FilterAndTagDialogWindowTests
 		Assert.AreEqual ("emblem-people", window.EditResult.Icon?.ThemeIconName);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void EditTagIcon_NoImageAndPredefinedIcons ()
 	{
 		var (_, _, mom) = Tree ();
@@ -151,7 +151,7 @@ public sealed class FilterAndTagDialogWindowTests
 		Assert.IsNull (cancelled.Result);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void EditTagIcon_PhotoSelectionBecomesTheIcon ()
 	{
 		var (_, _, mom) = Tree ();
@@ -168,7 +168,7 @@ public sealed class FilterAndTagDialogWindowTests
 		Assert.AreEqual (TagIconImage.Size, window.Result.Icon.Height);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void VersionName_RenameStartsWithTheCurrentNameAndRejectsAnother ()
 	{
 		var window = new VersionNameWindow (VersionNameRequest.Rename, "Modified", ["Original", "Modified"]);
@@ -185,7 +185,7 @@ public sealed class FilterAndTagDialogWindowTests
 		Assert.AreEqual ("Cropped", window.Result);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void TagSelection_ReturnsTheHighlightedTags ()
 	{
 		var (root, _, _) = Tree ();

@@ -14,7 +14,7 @@ namespace FSpot.Avalonia.Tests;
 [DoNotParallelize]
 public sealed class HistogramRendererTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void FromBitmap_DecodedJpeg_IsNotNull ()
 	{
 		AvaloniaApp.Ensure ();
@@ -25,7 +25,7 @@ public sealed class HistogramRendererTests
 		histogram!.Dispose ();
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FromBitmap_DecodedSvg_IsNotNull ()
 	{
 		AvaloniaApp.Ensure ();

@@ -14,7 +14,7 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class HiDpiTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void Histogram_AtScale2_IsAtLeastTwiceThe1xBitmap ()
 	{
@@ -29,7 +29,7 @@ public sealed class HiDpiTests
 		Assert.IsGreaterThanOrEqualTo (one.PixelSize.Height * 2, two.PixelSize.Height);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PixelSize_IsDipTimesScale ()
 	{
 		Assert.AreEqual (22, HiDpi.PixelSize (22, 1));

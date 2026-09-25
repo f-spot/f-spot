@@ -14,7 +14,7 @@ namespace FSpot.Avalonia.Tests;
 [DoNotParallelize]
 public sealed class LoupeOverlayTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void Layout_OffsetsTheLensFromThePointerHotspot ()
 	{
 		AvaloniaApp.Ensure ();

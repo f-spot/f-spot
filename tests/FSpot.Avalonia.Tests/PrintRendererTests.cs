@@ -42,7 +42,7 @@ public sealed class PrintRendererTests
 	static PrintPhoto Photo (string path)
 		=> new (path, Path.GetFileName (path), "1/1/2020", "12:00", "Tag", "Comment");
 
-	[TestMethod]
+	[UiTestMethod]
 	public void WritePdf_WritesOnePagePerSheet ()
 	{
 		var photos = Enumerable.Range (0, 5)
@@ -59,7 +59,7 @@ public sealed class PrintRendererTests
 		Assert.Contains ("/Count 3", pdf);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RenderPreview_DrawsThePhotoOnAWhiteSheet ()
 	{
 		var photo = Photo (WriteJpeg (directory, "red.jpg", 300, 400, SKColors.Red));
@@ -75,7 +75,7 @@ public sealed class PrintRendererTests
 		Assert.AreEqual (SKColors.White, corner);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RenderPreview_MissingFileStillRenders ()
 	{
 		var renderer = new PrintRenderer ([Photo (Path.Combine (directory, "gone.jpg"))], new PrintOptions (), PrintPageSetup.Letter);
@@ -83,7 +83,7 @@ public sealed class PrintRendererTests
 		Assert.AreEqual (200, preview.Height);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Load_ShrinksToTheLongerEdge ()
 	{
 		string path = WriteJpeg (directory, "big.jpg", 1600, 800, SKColors.Blue);
@@ -93,7 +93,7 @@ public sealed class PrintRendererTests
 		Assert.AreEqual (200, bitmap.Height);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void Orient_RightTopTurnsClockwise ()
 	{
 		var bitmap = new SKBitmap (4, 2);
@@ -107,7 +107,7 @@ public sealed class PrintRendererTests
 		Assert.AreEqual (SKColors.Red, upright.GetPixel (1, 0));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RotateCounterclockwise_MovesTopLeftToBottomLeft ()
 	{
 		using var bitmap = new SKBitmap (4, 2);

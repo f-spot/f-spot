@@ -9,7 +9,7 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class AppearanceThemeTests
 {
-	[TestMethod]
+	[UiTestMethod]
 	public void Normalize_KeepsLightDarkAndSystem ()
 	{
 		Assert.AreEqual (AppearanceTheme.Light, AppearanceTheme.Normalize ("Light"));
@@ -19,7 +19,7 @@ public sealed class AppearanceThemeTests
 		Assert.AreEqual (AppearanceTheme.System, AppearanceTheme.Normalize ("sepia"));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ToVariant_MapsTheThreeChoices ()
 	{
 		Assert.AreEqual (ThemeVariant.Light, AppearanceTheme.ToVariant (AppearanceTheme.Light));

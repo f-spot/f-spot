@@ -34,7 +34,7 @@ public sealed partial class MainWindowViewModelTests
 {
 	public TestContext TestContext { get; set; } = null!;
 
-	[TestMethod]
+	[UiTestMethod]
 	public void TileSize_FollowsZoom ()
 	{
 		var viewModel = NewViewModel ();
@@ -45,7 +45,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (160, viewModel.TileSize);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task CopyCommand_CopiesSelectedPhotoPaths ()
 	{
 		var shell = new RecordingShell ();
@@ -61,7 +61,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.Contains ("a.jpg", shell.Copied[0]);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task SetAsBackgroundCommand_UsesTheSelectedPhoto ()
 	{
 		var shell = new RecordingShell ();
@@ -77,7 +77,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.Contains ("wall.jpg", background);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task PageSetupCommand_StoresSetupThatPrintUses ()
 	{
 		var shell = new RecordingShell {
@@ -95,7 +95,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsTrue (shell.PrintedWithSetup);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ShowToolsCommand_OpensExtensions ()
 	{
 		var shell = new RecordingShell ();
@@ -106,7 +106,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsGreaterThan (0, shell.ShownAddins.Count);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task LoadThumbnails_DecodesAtDipTimesUiScale ()
 	{
 		var thumbs = new RecordingThumbnails ();
@@ -119,7 +119,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (HiDpi.PixelSize (100, 2), thumbs.LastSize);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task VisibleWindow_DecodesThatWindowNotTheCatalog ()
 	{
 		var thumbs = new CountingThumbnails ();
@@ -136,7 +136,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (40, thumbs.Calls - already);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public async Task ScrollingPastAPhoto_DisposesItsThumbnail ()
 	{
@@ -155,7 +155,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.ThrowsExactly<ObjectDisposedException> (() => _ = thumbnail.PixelSize);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public async Task Editing_DecodesOneCappedPreviewAndDisposesThePrevious ()
 	{
@@ -181,7 +181,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsNull (viewModel.Preview);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task ImportList_DoesNotDecodeEveryFile ()
 	{
 		var thumbs = new CountingThumbnails ();
@@ -196,7 +196,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (31, thumbs.Calls);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void PhotoGrid_SizesCellsFromZoom ()
 	{
@@ -221,7 +221,7 @@ public sealed partial class MainWindowViewModelTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task HoverPreview_StaysClosedWhenThePreferenceIsOff ()
 	{
 		bool previous = LibraryPreferences.ShowHoverPreview;
@@ -236,7 +236,7 @@ public sealed partial class MainWindowViewModelTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public async Task ReplacingTheHoveredThumbnail_KeepsThePreviewOpen ()
 	{
@@ -262,7 +262,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.Contains (viewModel.Photos[0].Photo.Name, viewModel.HoverDetail);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task OpeningALargeCatalog_DoesNotDecodeEveryPhoto ()
 	{
 		var thumbs = new CountingThumbnails ();
@@ -278,7 +278,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsLessThanOrEqualTo (1, thumbs.Calls);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SelectTag_HighlightsWithoutTogglingOff ()
 	{
 		var viewModel = NewViewModel ();
@@ -290,7 +290,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreSame (tag, viewModel.SelectedTag);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SelectTag_NullClearsTheHighlight ()
 	{
 		var viewModel = NewViewModel ();
@@ -302,7 +302,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsNull (viewModel.SelectedTag);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void DeleteTagCommand_CanExecute_ForARightClickedTagWithoutAPriorSelection ()
 	{
 		var viewModel = NewViewModel ();
@@ -313,7 +313,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsTrue (viewModel.DeleteTagCommand.CanExecute (tag));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task DeleteTag_WarnsInsteadOfConfirmingWhenTheTagHasChildren ()
 	{
 		var shell = new RecordingShell ();
@@ -331,7 +331,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsFalse (shell.ConfirmCalled);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void BeginRenameTag_SelectsTheTagSoDeleteCanRun ()
 	{
 		var viewModel = NewViewModel ();
@@ -344,7 +344,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsTrue (viewModel.DeleteTagCommand.CanExecute (null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ActivateTag_OnACategory_ShowsPhotosTaggedWithChildren ()
 	{
 		var viewModel = NewViewModel ();
@@ -360,7 +360,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual ("beach.jpg", viewModel.Photos[0].Caption);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ActivateTag_SetsTheFindChipWithoutClearingTheHighlight ()
 	{
 		var viewModel = NewViewModel ();
@@ -374,7 +374,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsTrue (viewModel.HasLibraryFilter);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ClearTagFilter_RemovesTheFindChipAndKeepsTheHighlight ()
 	{
 		var viewModel = NewViewModel ();
@@ -389,7 +389,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsFalse (viewModel.HasLibraryFilter);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SelectFolder_HighlightsWithoutTogglingOff ()
 	{
 		var viewModel = NewViewModel ();
@@ -402,7 +402,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsNull (viewModel.ActiveFolderFilter);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ActivateFolder_SetsTheFindChip ()
 	{
 		var viewModel = NewViewModel ();
@@ -414,7 +414,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsTrue (viewModel.HasLibraryFilter);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void EnteringPhotoView_SwitchesTheSidebarToEdit ()
 	{
 		var viewModel = NewViewModel ();
@@ -427,7 +427,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (Strings.Edit, viewModel.SidebarPageTitle);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SelectPhoto_WithoutAdditive_IsSingleSelection ()
 	{
 		var viewModel = NewViewModel ();
@@ -444,7 +444,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreSame (second, viewModel.SelectedPhoto);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SelectPhoto_Additive_KeepsThePreviousSelection ()
 	{
 		var viewModel = NewViewModel ();
@@ -461,7 +461,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreSame (second, viewModel.SelectedPhoto);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void EmptyStates_AreHiddenWhenThereIsNoDatabase ()
 	{
 		var viewModel = NewViewModel ();
@@ -470,7 +470,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsFalse (viewModel.ShowNoMatches);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void LeavingPhotoView_RestoresTheBrowseSidebarTab ()
 	{
 		var viewModel = NewViewModel ();
@@ -484,7 +484,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (Strings.Folders, viewModel.SidebarPageTitle);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void HideSidebar_ThenToggleSidebar_ShowsItAgain ()
 	{
 		var viewModel = NewViewModel ();
@@ -497,7 +497,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsTrue (viewModel.DisplaySidebar);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RotateCommands_CanExecute_WhenTheFocusedPhotoIsNotFlaggedSelected ()
 	{
 		var viewModel = NewViewModel ();
@@ -510,7 +510,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsTrue (viewModel.RotateRightCommand.CanExecute (null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RotateCommands_CannotExecute_WithoutAFocusedOrSelectedPhoto ()
 	{
 		var viewModel = NewViewModel ();
@@ -520,7 +520,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsFalse (viewModel.RotateRightCommand.CanExecute (null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ToggleLoupe_ShowsThenHides ()
 	{
 		var viewModel = NewViewModel ();
@@ -533,7 +533,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsFalse (viewModel.IsLoupeVisible);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ShowLoupe_RequiresEditModeAndAPreview ()
 	{
 		var viewModel = ViewModelWithFocusedPhoto ();
@@ -544,7 +544,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsFalse (viewModel.ShowLoupe);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ToggleSidebar_HidesWhenVisible ()
 	{
 		var viewModel = NewViewModel ();
@@ -552,7 +552,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsFalse (viewModel.DisplaySidebar);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void VisibleEditors_InBrowse_AreTheMultiPhotoTools ()
 	{
 		var viewModel = NewViewModel ();
@@ -564,7 +564,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.DoesNotContain (PhotoEditorCatalog.RedEye.Id, ids);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void VisibleEditors_InPhotoView_IncludeSelectionTools ()
 	{
 		var viewModel = NewViewModel ();
@@ -576,7 +576,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.HasCount (PhotoEditorCatalog.All.Count, ids);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ApplyEditor_Tilt_StartsASettingsSessionThatCanCommit ()
 	{
 		var viewModel = ViewModelWithFocusedPhoto ();
@@ -588,7 +588,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsTrue (viewModel.CommitEditorCommand.CanExecute (null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ApplyEditor_Sharpen_StartsASettingsSession ()
 	{
 		var viewModel = ViewModelWithFocusedPhoto ();
@@ -600,7 +600,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (0.5, viewModel.EditorSession?.Context.SharpenAmount);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ApplyEditor_SoftFocus_StartsASettingsSession ()
 	{
 		var viewModel = ViewModelWithFocusedPhoto ();
@@ -612,7 +612,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (0.5, viewModel.EditorSession?.Context.SoftFocusRadius);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ApplyEditor_Crop_StartsASelectionSession ()
 	{
 		var viewModel = ViewModelWithFocusedPhoto ();
@@ -624,7 +624,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsFalse (viewModel.CommitEditorCommand.CanExecute (null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ApplyEditor_Color_StartsASettingsSessionThatCanCommit ()
 	{
 		var viewModel = ViewModelWithFocusedPhoto ();
@@ -636,7 +636,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsTrue (viewModel.CommitEditorCommand.CanExecute (null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SetEditorSelection_EnablesCropCommit ()
 	{
 		var viewModel = ViewModelWithFocusedPhoto ();
@@ -648,7 +648,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (16, viewModel.EditorSession?.Selection.Width);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SelectEditorRegionCommand_CommitsTheMappedRect ()
 	{
 		var viewModel = ViewModelWithFocusedPhoto ();
@@ -662,7 +662,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsTrue (viewModel.CommitEditorCommand.CanExecute (null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SelectEditorRegionCommand_EnablesCommitForEverySelectionEditor ()
 	{
 		var rect = new FSpot.Imaging.PixelRect (4, 8, 16, 16);
@@ -675,7 +675,7 @@ public sealed partial class MainWindowViewModelTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void CancelEditor_ClearsTheSession ()
 	{
 		var viewModel = ViewModelWithFocusedPhoto ();
@@ -687,7 +687,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsFalse (viewModel.ShowEditorSettings);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ApplyEditor_Crop_WithoutAPhoto_Warns ()
 	{
 		var shell = new RecordingShell ();
@@ -699,7 +699,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (Strings.NoSelectionAvailable, shell.WarningMessage);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FindByRating_FiltersTheLibraryAndDismissingTheChipRestoresIt ()
 	{
 		var viewModel = NewViewModel ();
@@ -720,7 +720,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.HasCount (2, viewModel.Photos);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FindByDate_AndImportRoll_SetDismissibleChips ()
 	{
 		var viewModel = NewViewModel ();
@@ -740,7 +740,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsFalse (viewModel.HasFindRoll);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FindMatchAllTags_ChangesWhichPhotosMatch ()
 	{
 		var vacation = new Tag (null, 1, "Vacation");
@@ -761,7 +761,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual ("both.jpg", viewModel.Photos[0].Caption);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FindThatMatchesNothing_ShowsNoMatchingPhotos ()
 	{
 		var viewModel = NewViewModel ();
@@ -775,7 +775,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (QueryChipFormat.Rating (viewModel.FindMinRating, viewModel.FindMaxRating), viewModel.FindRatingLabel);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FindTextThatMatchesNothing_ShowsFindBarNoMatches ()
 	{
 		var viewModel = NewViewModel ();
@@ -789,7 +789,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsEmpty (viewModel.Photos);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void CatalogPhotoItem_UsesTheCatalogIdAsAutomationId ()
 	{
 		var photo = new Photo (null, null, 42, DateTimeUtil.FromDateTime (new DateTime (2026, 6, 1, 12, 0, 0, DateTimeKind.Utc)));
@@ -800,7 +800,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (PhotoDateCaption.Format (photo, wide: false), item.DateCaption);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PhotoItem_SkipsNullTagsWhenFormattingCaptions ()
 	{
 		var tag = new Tag (null, 1, "Vacation");
@@ -808,7 +808,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual ("Vacation", item.TagsCaption);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FilePhotoItem_FallsBackToAStablePathAutomationId ()
 	{
 		var item = new PhotoItemViewModel (new StubPhoto ("/library/trip/img.jpg"));
@@ -817,7 +817,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.Contains ("img.jpg", item.AutomationId);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FindByDate_UsesThePlaceholderChipFormat ()
 	{
 		var viewModel = NewViewModel ();
@@ -827,7 +827,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (QueryChipFormat.Date (viewModel.FindStart, viewModel.FindEnd), viewModel.FindDateLabel);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void TimelineBucketToolTip_UsesTheMonthCountFormat ()
 	{
 		var viewModel = NewViewModel ();
@@ -836,7 +836,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (QueryChipFormat.TimelineMonth (bucket.Start, bucket.Count), bucket.ToolTip);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SetTimelineRange_IncludesEveryMonthInTheSpan ()
 	{
 		var viewModel = NewViewModel ();
@@ -851,7 +851,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.DoesNotContain ("jun.jpg", viewModel.Photos.Select (item => item.Caption).ToList ());
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PreviewInterpolation_FollowsViewerInterpolation ()
 	{
 		var viewModel = NewViewModel ();
@@ -861,7 +861,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (global::Avalonia.Media.Imaging.BitmapInterpolationMode.None, viewModel.PreviewInterpolation);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void HelpContentsCommand_OpensTheGtkHelpUri ()
 	{
 		var shell = new RecordingShell ();
@@ -870,7 +870,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (HelpContents.Current, shell.OpenedUri);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ImportFromCameraCommand_WarnsWhenNoCamerasAreDetected ()
 	{
 		var shell = new RecordingShell ();
@@ -879,7 +879,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (Strings.NoCamerasDetected, shell.WarningMessage);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SlideshowCommand_ShowsTheVisibleCollectionInOrder ()
 	{
 		var shell = new RecordingShell ();
@@ -896,7 +896,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.Contains ("b.jpg", shell.Slideshow[1]);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void IsMailEnabled_FollowsMailToEnabledPreferenceAtConstruction ()
 	{
@@ -912,7 +912,7 @@ public sealed partial class MainWindowViewModelTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public async Task ShowPreferencesCommand_RefreshesIsMailEnabledFromPreferences ()
 	{
@@ -930,7 +930,7 @@ public sealed partial class MainWindowViewModelTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void PrintAndMail_UseTheSelectedPhotos ()
 	{
 		var shell = new RecordingShell ();
@@ -951,7 +951,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.HasCount (1, shell.Mailed);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ExportCommand_CopiesTheSelectedFilesToTheFolder ()
 	{
 		string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-vm-src-" + Guid.NewGuid ().ToString ("N"));
@@ -976,7 +976,7 @@ public sealed partial class MainWindowViewModelTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void FolderShare_UsesCatalogCountAfterSeed ()
 	{
 		var viewModel = NewViewModel ();
@@ -990,7 +990,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (0.5, node.Share, 0.0001);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void CreateRenameDeleteVersionCommands_MutateTheFocusedPhoto ()
 	{
 		var shell = new RecordingShell { PromptResult = "Edited" };
@@ -1013,7 +1013,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.HasCount (1, photo.Versions);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void AdjustTimeCommand_ShiftsTheFocusedPhoto ()
 	{
 		var shell = new RecordingShell { Hours = 3 };
@@ -1029,7 +1029,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (original + TimeSpan.FromHours (3), photo.Time);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void AdjustTimeCommand_WhenSpacing_AnchorsOnTheChosenTimeNotTheOriginalOne ()
 	{
 		var first = CatalogPhoto ();
@@ -1055,7 +1055,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (anchorTime + TimeSpan.FromMinutes (15), second.Time);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RefreshThumbnailCommand_ClearsThePreviewCache ()
 	{
 		var viewModel = ViewModelWithFocusedPhoto ();
@@ -1063,7 +1063,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsNull (viewModel.Photos[0].Thumbnail);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ReparentTagCommand_MovesTheChildUnderTheParent ()
 	{
 		var people = new Category (null, 1, "People");
@@ -1078,7 +1078,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreSame (places, friends.Category);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void BeginAndCommitRenameTag_EditsTheNameInPlace ()
 	{
 		var tag = new Tag (null, 1, "Old");
@@ -1092,7 +1092,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual ("New", tag.Name);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RateFocused_SetsAndClearsTheFocusedPhoto ()
 	{
 		var viewModel = NewViewModel ();
@@ -1110,7 +1110,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (0u, viewModel.Info.RatingValue);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RatingKey_ReadsDigitsAndSkipsATextBox ()
 	{
 		Assert.AreEqual (0u, RatingKey.From (Key.D0, KeyModifiers.None, null));
@@ -1119,7 +1119,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsNull (RatingKey.From (Key.A, KeyModifiers.None, null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void RatingKey_AlsoAcceptsAltPlusDigitLikeGtk ()
 	{
 		AvaloniaApp.Ensure ();
@@ -1129,7 +1129,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsNull (RatingKey.From (Key.D3, KeyModifiers.Control | KeyModifiers.Alt, null));
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void CloseWindowCommand_ClosesWithoutQuittingTheApp ()
 	{
 		var shell = new RecordingShell ();
@@ -1141,7 +1141,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsFalse (shell.QuitCalled);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void QuitCommand_QuitsRatherThanOnlyClosing ()
 	{
 		var shell = new RecordingShell ();
@@ -1153,7 +1153,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsFalse (shell.ClosedCalled);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SaveWindowState_RoundTripsTogglesZoomSidebarWidthAndPage ()
 	{
 		int originalSidebarPage = LibraryPreferences.SidebarPageLibrary;
@@ -1205,7 +1205,7 @@ public sealed partial class MainWindowViewModelTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task ImportDropped_ReportsRejectedFilesAndImportsTheRest ()
 	{
 		string root = Path.Combine (Path.GetTempPath (), "fspot-drop-" + Path.GetRandomFileName ());
@@ -1230,7 +1230,7 @@ public sealed partial class MainWindowViewModelTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void SetStarCommand_WritesTheRatingThroughRatingChosen ()
 	{
 		uint? chosen = null;
@@ -1248,7 +1248,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual ("☆☆☆☆☆", info.StarCaption);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void EditBarDescription_IsWrittenOntoThePhoto ()
 	{
 		var viewModel = NewViewModel ();
@@ -1261,7 +1261,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual ("Picnic", photo.Description);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task CopyCommand_UsesThePhotoTheFilmstripFocused ()
 	{
 		var shell = new RecordingShell ();
@@ -1283,7 +1283,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.Contains ("second.jpg", shell.Copied[0]);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	[DoNotParallelize]
 	public void Histogram_IgnoresALoadThatFinishesAfterSelectionMoves ()
 	{
@@ -1315,10 +1315,10 @@ public sealed partial class MainWindowViewModelTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void InfoVisibility_LoadsTheSavedDateFlag ()
 	{
-		var saved = InfoFieldVisibility.Load ();
+		var saved = InfoFieldVisibility.Load (InfoFieldVisibility.LibraryContext);
 		saved.Date = false;
 		saved.Size = false;
 		saved.Save ();
@@ -1328,16 +1328,16 @@ public sealed partial class MainWindowViewModelTests
 			Assert.IsFalse (viewModel.InfoVisibility.Size);
 			viewModel.ToggleInfoFieldCommand.Execute ("Size");
 			Assert.IsTrue (viewModel.InfoVisibility.Size);
-			Assert.IsTrue (InfoFieldVisibility.Load ().Size);
+			Assert.IsTrue (InfoFieldVisibility.Load (InfoFieldVisibility.LibraryContext).Size);
 		} finally {
-			var restore = InfoFieldVisibility.Load ();
+			var restore = InfoFieldVisibility.Load (InfoFieldVisibility.LibraryContext);
 			restore.Date = true;
 			restore.Size = true;
 			restore.Save ();
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public async Task ShowToolsCommand_HidesADisabledEditor ()
 	{
 		string key = FSpot.Settings.Preferences.ExtensionKey + PhotoEditorCatalog.Desaturate.Id;
@@ -1358,7 +1358,7 @@ public sealed partial class MainWindowViewModelTests
 		}
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void ActivateFolderCommand_IsTheFindDropTarget ()
 	{
 		var viewModel = NewViewModel ();
@@ -1367,7 +1367,7 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreSame (folder, viewModel.ActiveFolderFilter);
 	}
 
-	[TestMethod]
+	[UiTestMethod]
 	public void NotYet_ShowsTheUnavailableWarning ()
 	{
 		var shell = new RecordingShell ();
