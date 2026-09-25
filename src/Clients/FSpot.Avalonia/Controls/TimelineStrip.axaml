@@ -24,7 +24,8 @@
 				<controls:TimelineScale x:Name="Scale" VerticalAlignment="Stretch"
 				                        Items="{Binding #Root.Items}"
 				                        SelectCommand="{Binding #Root.SelectCommand}"
-				                        RangeCommand="{Binding #Root.RangeCommand}" />
+				                        RangeCommand="{Binding #Root.RangeCommand}"
+				                        LimitsCommand="{Binding #Root.LimitsCommand}" />
 			</ScrollViewer>
 			<RepeatButton x:Name="ScrollRight" Grid.Column="2" Classes="timeline-scroll" Content="▶"
 			              VerticalAlignment="Stretch" HorizontalAlignment="Stretch"

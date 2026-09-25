@@ -4871,6 +4871,12 @@ namespace FSpot.Resources.Lang {
             }
         }
 
+        public static string DisplayFileNames {
+            get {
+                return ResourceManager.GetString("DisplayFileNames", resourceCulture);
+            }
+        }
+
         public static string Ratings {
             get {
                 return ResourceManager.GetString("Ratings", resourceCulture);

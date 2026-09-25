@@ -25,6 +25,9 @@ public partial class PhotoInfoViewModel : ObservableObject
 	[ObservableProperty]
 	string size = string.Empty;
 
+	/// <summary>The original's width in pixels from its metadata, or 0 when unknown.</summary>
+	public int PixelWidth { get; private set; }
+
 	[ObservableProperty]
 	string exposure = string.Empty;
 
@@ -78,6 +81,7 @@ public partial class PhotoInfoViewModel : ObservableObject
 		try {
 			Name = Date = Size = Exposure = FocalLength = Camera = Creator = Rating = Tags = Description = string.Empty;
 			RatingValue = 0;
+			PixelWidth = 0;
 			Versions = [];
 			SelectedVersion = null;
 		} finally {
@@ -99,6 +103,7 @@ public partial class PhotoInfoViewModel : ObservableObject
 			Name = PhotoInfoFormatter.Name (photo);
 			Date = PhotoInfoFormatter.Date (photo);
 			Size = PhotoInfoFormatter.Size (metadata);
+			PixelWidth = metadata?.Properties?.PhotoWidth ?? 0;
 			Exposure = PhotoInfoFormatter.Exposure (metadata);
 			FocalLength = PhotoInfoFormatter.FocalLength (metadata);
 			Camera = PhotoInfoFormatter.Camera (metadata);

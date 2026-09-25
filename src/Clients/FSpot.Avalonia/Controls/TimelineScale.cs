@@ -31,6 +31,9 @@ public class TimelineScale : Control
 	public static readonly StyledProperty<ICommand?> RangeCommandProperty =
 		AvaloniaProperty.Register<TimelineScale, ICommand?> (nameof (RangeCommand));
 
+	public static readonly StyledProperty<ICommand?> LimitsCommandProperty =
+		AvaloniaProperty.Register<TimelineScale, ICommand?> (nameof (LimitsCommand));
+
 	readonly List<TimelineBucket> buckets = [];
 	ScrollViewer? scroller;
 	INotifyCollectionChanged? itemsChanged;
@@ -45,6 +48,10 @@ public class TimelineScale : Control
 	bool shiftRange;
 	bool finishingGesture;
 	Point pressPoint;
+	int minLimit;
+	int maxLimit = -1;
+	TimelineLimit dragLimit;
+	double dragLimitX;
 
 	public TimelineScale ()
 		=> ClipToBounds = true;
@@ -64,7 +71,14 @@ public class TimelineScale : Control
 		set => SetValue (RangeCommandProperty, value);
 	}
 
+	public ICommand? LimitsCommand {
+		get => GetValue (LimitsCommandProperty);
+		set => SetValue (LimitsCommandProperty, value);
+	}
+
 	public double ColumnWidth => columnWidth;
+
+	public (int Min, int Max) Limits => (minLimit, maxLimit);
 
 	static TimelineScale ()
 	{
@@ -167,8 +181,9 @@ public class TimelineScale : Control
 			if (bar <= 0)
 				continue;
 			bool inside = glass is (int start, int end) && i >= start && i <= end;
+			bool limited = i < minLimit || i > maxLimit;
 			var (x, width) = Column (i, 1);
-			context.FillRectangle (inside || glass is null ? accent : muted, new Rect (x, baseline - bar, width, bar), 0);
+			context.FillRectangle ((inside || glass is null) && !limited ? accent : muted, new Rect (x, baseline - bar, width, bar), 0);
 		}
 
 		if (glass is (int glassStart, int glassEnd)) {
@@ -189,6 +204,9 @@ public class TimelineScale : Control
 			}
 		}
 
+		DrawLimit (context, TimelineLimit.Min, baseline + chrome.Handle, label, plot);
+		DrawLimit (context, TimelineLimit.Max, baseline + chrome.Handle, label, plot);
+
 		for (int i = 0; i < buckets.Count; i++) {
 			double tick = string.IsNullOrEmpty (buckets[i].YearLabel) ? 3 : 5;
 			double tickX = Math.Floor (i * columnWidth);
@@ -201,6 +219,21 @@ public class TimelineScale : Control
 		}
 	}
 
+	// GTK Limit.Draw: a small box at the top and bottom of the strip on the limit's edge.
+	void DrawLimit (DrawingContext context, TimelineLimit limit, double height, IBrush stroke, IBrush fill)
+	{
+		double x = dragLimit == limit
+			? dragLimitX
+			: TimelineLimits.EdgeX (limit, limit == TimelineLimit.Min ? minLimit : maxLimit, columnWidth);
+		double half = TimelineLimits.HandleWidth / 2;
+		double box = Math.Min (TimelineLimits.HandleHeight, height / 3);
+		var pen = new Pen (stroke, 1);
+		x = Math.Floor (x) + 0.5;
+		context.DrawLine (pen, new Point (x, box), new Point (x, height - box));
+		context.DrawRectangle (fill, pen, new Rect (x - half, 0.5, TimelineLimits.HandleWidth, box - 1), 1, 1);
+		context.DrawRectangle (fill, pen, new Rect (x - half, height - box + 0.5, TimelineLimits.HandleWidth, box - 1), 1, 1);
+	}
+
 	(double X, double Width) Column (int index, double inset)
 	{
 		double x = Math.Floor (index * columnWidth) + inset;
@@ -211,10 +244,20 @@ public class TimelineScale : Control
 	protected override void OnPointerPressed (PointerPressedEventArgs e)
 	{
 		base.OnPointerPressed (e);
-		int index = IndexAt (e.GetPosition (this));
+		var position = e.GetPosition (this);
+		var limit = buckets.Count == 0 ? TimelineLimit.None : TimelineLimits.HitTest (position.X, minLimit, maxLimit, columnWidth);
+		if (limit != TimelineLimit.None && e.GetCurrentPoint (this).Properties.IsLeftButtonPressed) {
+			dragLimit = limit;
+			dragLimitX = position.X;
+			e.Pointer.Capture (this);
+			InvalidateVisual ();
+			e.Handled = true;
+			return;
+		}
+		int index = IndexAt (position);
 		if (index < 0)
 			return;
-		pressPoint = e.GetPosition (this);
+		pressPoint = position;
 		shiftRange = e.KeyModifiers.HasFlag (KeyModifiers.Shift);
 		var glass = GlassSpan ();
 		glassDrag = !shiftRange && glass is (int start, int end) && index >= start && index <= end;
@@ -230,7 +273,16 @@ public class TimelineScale : Control
 	protected override void OnPointerMoved (PointerEventArgs e)
 	{
 		base.OnPointerMoved (e);
-		int index = IndexAt (e.GetPosition (this));
+		var position = e.GetPosition (this);
+		if (dragLimit != TimelineLimit.None) {
+			dragLimitX = Math.Clamp (position.X, 0, buckets.Count * columnWidth);
+			InvalidateVisual ();
+			return;
+		}
+		bool overLimit = buckets.Count > 0
+			&& TimelineLimits.HitTest (position.X, minLimit, maxLimit, columnWidth) != TimelineLimit.None;
+		Cursor = overLimit ? new Cursor (StandardCursorType.SizeWestEast) : null;
+		int index = IndexAt (position);
 		if (index >= 0)
 			ToolTip.SetTip (this, buckets[index].ToolTip);
 		if (pressIndex is null || index < 0 || !MovedFarEnough (e))
@@ -250,6 +302,12 @@ public class TimelineScale : Control
 	protected override void OnPointerReleased (PointerReleasedEventArgs e)
 	{
 		base.OnPointerReleased (e);
+		if (dragLimit != TimelineLimit.None) {
+			DropLimit (e.GetPosition (this).X);
+			e.Pointer.Capture (null);
+			e.Handled = true;
+			return;
+		}
 		if (pressIndex is not int start)
 			return;
 		int end = IndexAt (e.GetPosition (this));
@@ -274,6 +332,20 @@ public class TimelineScale : Control
 		base.OnPointerCaptureLost (e);
 		if (!finishingGesture)
 			EndGesture ();
+	}
+
+	void DropLimit (double x)
+	{
+		var limit = dragLimit;
+		dragLimit = TimelineLimit.None;
+		var (min, max) = TimelineLimits.Drop (limit, x, minLimit, maxLimit, columnWidth, buckets.Count);
+		InvalidateVisual ();
+		if (min == minLimit && max == maxLimit)
+			return;
+		minLimit = min;
+		maxLimit = max;
+		if (LimitsCommand?.CanExecute ((min, max)) == true)
+			LimitsCommand.Execute ((min, max));
 	}
 
 	void SnapDrag (int index)
@@ -332,6 +404,7 @@ public class TimelineScale : Control
 		followIndex = null;
 		previewFrom = null;
 		previewTo = null;
+		dragLimit = TimelineLimit.None;
 		InvalidateVisual ();
 	}
 
@@ -350,9 +423,15 @@ public class TimelineScale : Control
 
 	void ReloadBuckets ()
 	{
+		int previous = buckets.Count;
 		UnhookBuckets ();
 		if (Items is not null)
 			buckets.AddRange (Items.OfType<TimelineBucket> ());
+		// GTK GroupSelector.Adaptor: a new month count resets the limits to the whole strip.
+		if (buckets.Count != previous || maxLimit >= buckets.Count || maxLimit < 0) {
+			minLimit = 0;
+			maxLimit = buckets.Count - 1;
+		}
 		foreach (var bucket in buckets)
 			bucket.PropertyChanged += OnBucketChanged;
 		InvalidateMeasure ();

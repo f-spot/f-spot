@@ -112,6 +112,7 @@ public static class AutomationIds
 	public const string PhotoPreview = "Main.PhotoPreview";
 	public const string PhotoPreviewOverlay = "Main.PhotoPreview.Overlay";
 	public const string PhotoLoupe = "Main.PhotoLoupe";
+	public const string PreviewPopup = "Main.PreviewPopup";
 	public const string EditorApply = "Main.Editor.Apply";
 	public const string EditorCancel = "Main.Editor.Cancel";
 	public const string EditorHint = "Main.Editor.Hint";

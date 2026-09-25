@@ -20,6 +20,7 @@
         Height="720"
         WindowStartupLocation="CenterScreen"
         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.MainWindow}"
+        input:ViewerInput.Enable="True"
         AutomationProperties.Name="{x:Static lang:Strings.FSpot}">
 	<Window.KeyBindings>
 		<KeyBinding Gesture="Escape" Command="{Binding HideFindCommand}" />
@@ -94,6 +95,7 @@
 									<NativeMenuItem Header="{x:Static lang:Strings.Dates}" ToggleType="CheckBox" IsChecked="{Binding DisplayDates}" />
 									<NativeMenuItem Header="{x:Static lang:Strings.Tags2}" ToggleType="CheckBox" IsChecked="{Binding DisplayTags}" />
 									<NativeMenuItem Header="{x:Static lang:Strings.Ratings}" ToggleType="CheckBox" IsChecked="{Binding DisplayRatings}" />
+									<NativeMenuItem Header="{x:Static lang:Strings.DisplayFileNames}" ToggleType="CheckBox" IsChecked="{Binding DisplayFilenames}" />
 								</NativeMenu>
 							</NativeMenuItem.Menu>
 						</NativeMenuItem>
@@ -403,6 +405,8 @@
 						<ItemsControl Grid.Row="8" Grid.Column="1" ItemsSource="{Binding Info.StarButtons}"
 						              IsVisible="{Binding InfoVisibility.Rating}"
 						              AutomationProperties.AutomationId="{x:Static auto:AutomationIds.InfoStars}"
+						              Focusable="True"
+						              input:RatingInput.Enable="True"
 						              AutomationProperties.Name="{x:Static lang:Strings.Rating}">
 							<ItemsControl.ItemsPanel>
 								<ItemsPanelTemplate>
@@ -432,6 +436,7 @@
 				          ItemsSource="{Binding Tags}"
 				          SelectedItem="{Binding SelectedTag, Mode=OneWay}"
 				          input:TreeBackground.Clears="Tag"
+				          input:TagTreeInput.Enable="True"
 				          DragDrop.AllowDrop="True"
 				          input:CatalogDrop.Kind="TagTree"
 				          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarTagsTree}"
@@ -653,6 +658,7 @@
 					<TextBlock Text="{x:Static lang:Strings.TagsColon}" VerticalAlignment="Center" Margin="0,0,8,0" />
 					<TextBox x:Name="TagTypingBox" Grid.Column="1" Text="{Binding TagTypingText}"
 					         input:EnterCommand.Command="{Binding ApplyTypedTagsCommand}"
+					         input:TagCompletionInput.Enable="True"
 					         AutomationProperties.Name="{x:Static lang:Strings.Tags}" />
 					<Button Grid.Column="2" Content="×" Margin="8,0,0,0" Command="{Binding HideTagTypingCommand}"
 					        AutomationProperties.Name="{x:Static lang:Strings.Close}" />
@@ -663,6 +669,7 @@
 				                        Items="{Binding TimelineBuckets}"
 				                        SelectCommand="{Binding SelectTimelineCommand}"
 				                        RangeCommand="{Binding SetTimelineRangeCommand}"
+				                        LimitsCommand="{Binding SetTimelineLimitsCommand}"
 				                        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.Timeline}"
 				                        AutomationProperties.Name="{x:Static lang:Strings.Timeline}" />
 				<Grid DockPanel.Dock="Top" IsVisible="{Binding IsFindBarVisible}" Margin="8,2,8,4" ColumnDefinitions="Auto,*,Auto"
@@ -863,6 +870,8 @@
 						</Grid>
 						<ItemsControl Grid.Column="2" ItemsSource="{Binding Info.StarButtons}" VerticalAlignment="Center"
 						              AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PhotoRating}"
+						              Focusable="True"
+						              input:RatingInput.Enable="True"
 						              AutomationProperties.Name="{x:Static lang:Strings.Rating}">
 							<ItemsControl.ItemsPanel>
 								<ItemsPanelTemplate>
@@ -907,6 +916,7 @@
 					         BorderThickness="0"
 					         DragDrop.AllowDrop="True"
 					         input:CatalogDrop.Kind="PhotoGrid"
+					         input:GridInput.Enable="True"
 					         input:ThumbnailItems.Enable="True"
 					         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PhotoGrid}"
 					         AutomationProperties.Name="{x:Static lang:Strings.Photos}">
@@ -953,7 +963,8 @@
 									<StackPanel>
 										<Image Height="{Binding $parent[ListBox].((vm:MainWindowViewModel)DataContext).TileSize}"
 										       Stretch="Uniform" Source="{Binding Thumbnail}" />
-										<TextBlock Text="{Binding Caption}" TextAlignment="Center" TextTrimming="CharacterEllipsis" Margin="0,4,0,0" />
+										<TextBlock Text="{Binding Caption}" TextAlignment="Center" TextTrimming="CharacterEllipsis" Margin="0,4,0,0"
+										           IsVisible="{Binding $parent[ListBox].((vm:MainWindowViewModel)DataContext).DisplayFilenames}" />
 										<TextBlock Text="{Binding DateCaption}" TextAlignment="Center" FontSize="11" Opacity="0.7"
 										           IsVisible="{Binding $parent[ListBox].((vm:MainWindowViewModel)DataContext).DisplayDates}" />
 										<TextBlock Text="{Binding TagsCaption}" TextAlignment="Center" FontSize="11" Opacity="0.7" TextTrimming="CharacterEllipsis"
@@ -966,9 +977,11 @@
 						</ListBox.ItemTemplate>
 					</ListBox>
 					<Panel IsVisible="{Binding IsEditing}"
+					       Focusable="True"
 					       Background="Transparent"
 					       DragDrop.AllowDrop="True"
-					       input:CatalogDrop.Kind="PhotoView">
+					       input:CatalogDrop.Kind="PhotoView"
+					       input:ViewerInput.Surface="True">
 						<Image Name="PreviewImage" Source="{Binding DisplayedPreview}"
 						       Stretch="Uniform"
 						       Margin="8"
@@ -997,10 +1010,11 @@
 						                                SelectionCommand="{Binding SelectEditorRegionCommand}"
 						                                AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PhotoPreviewOverlay}"
 						                                AutomationProperties.Name="{Binding EditorSession.Hint}" />
-						<Canvas IsHitTestVisible="False" IsVisible="{Binding ShowLoupe}" Margin="8">
+						<Canvas IsVisible="{Binding ShowLoupe}" Margin="8">
 							<controls:LoupeOverlay Sample="{Binding LoupeSample}"
 							                       HotspotX="{Binding LoupeX}"
 							                       HotspotY="{Binding LoupeY}"
+							                       Angle="{Binding LoupeAngle}"
 							                       AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PhotoLoupe}"
 							                       AutomationProperties.Name="{x:Static lang:Strings.Loupe}" />
 						</Canvas>
@@ -1018,6 +1032,25 @@
 					       Source="{Binding HoverThumbnail}" />
 					<TextBlock Text="{Binding HoverDetail}" TextWrapping="Wrap" FontSize="12"
 					           MaxWidth="{Binding HoverEdge}" />
+				</StackPanel>
+			</Border>
+		</Popup>
+		<!-- GTK PreviewPopup: held v shows the photo under the pointer; V adds the histogram in the corner. -->
+		<Popup x:Name="PreviewPopup" IsOpen="{Binding ShowPreviewPopup}" Placement="Center"
+		       IsHitTestVisible="False" IsLightDismissEnabled="False">
+			<Border Padding="6" Background="Black" IsHitTestVisible="False"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PreviewPopup}"
+			        AutomationProperties.Name="{Binding PreviewPopupDetail}">
+				<StackPanel Spacing="6">
+					<Panel>
+						<Image MaxWidth="{Binding PreviewPopupEdge}" MaxHeight="{Binding PreviewPopupEdge}" Stretch="Uniform"
+						       Source="{Binding PreviewPopupImage}" />
+						<Image Source="{Binding PreviewPopupHistogram}" Stretch="None" Opacity="0.78"
+						       HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10"
+						       IsVisible="{Binding PreviewPopupHistogram, Converter={x:Static ObjectConverters.IsNotNull}}" />
+					</Panel>
+					<TextBlock Text="{Binding PreviewPopupDetail}" TextWrapping="Wrap" FontSize="12" Foreground="#7F7F7F"
+					           MaxWidth="{Binding PreviewPopupEdge}" />
 				</StackPanel>
 			</Border>
 		</Popup>

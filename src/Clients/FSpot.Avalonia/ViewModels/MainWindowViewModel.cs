@@ -293,11 +293,11 @@ public partial class MainWindowViewModel : ObservableObject
 	public bool ShowEmptyLibrary =>
 		database is not null && IsBrowsing && catalogPhotos.Count == 0
 		&& !HasLibraryFilter && string.IsNullOrWhiteSpace (FindText) && SelectedTimeline is null
-		&& timelineRangeStart is null;
+		&& timelineRangeStart is null && timelineLimitStart is null;
 	public bool ShowNoMatches =>
 		IsBrowsing && Photos.Count == 0 && !ShowEmptyLibrary
 		&& (catalogPhotos.Count > 0 || HasLibraryFilter || !string.IsNullOrWhiteSpace (FindText)
-			|| SelectedTimeline is not null || timelineRangeStart is not null);
+			|| SelectedTimeline is not null || timelineRangeStart is not null || timelineLimitStart is not null);
 	public bool ShowPhotoGrid => IsBrowsing && Photos.Count > 0;
 	public bool IsTagsPage => SidebarTab == 0;
 	public bool IsFoldersPage => SidebarTab == 1;
@@ -457,6 +457,8 @@ public partial class MainWindowViewModel : ObservableObject
 		var months = TimelineMonths.Span (catalogPhotos.Select (photo => photo.Photo));
 		int maxCount = Math.Max (1, months.Count == 0 ? 1 : months.Max (month => month.Count));
 
+		// The strip rebuilds its months here, and its limit handles go back to the whole range with them.
+		ClearTimelineLimits ();
 		TimelineBuckets.Clear ();
 		foreach (var month in months) {
 			TimelineBuckets.Add (new TimelineBucket {
@@ -485,6 +487,7 @@ public partial class MainWindowViewModel : ObservableObject
 			start = rangeStart > findStart ? rangeStart : findStart;
 		if (timelineRangeEnd is DateTime rangeEnd && FindEnd is DateTime findEnd)
 			end = rangeEnd < findEnd ? rangeEnd : findEnd;
+		(start, end) = ApplyTimelineLimits (start, end);
 
 		var tags = new List<Tag> ();
 		if (ActiveTagFilter is not null)
@@ -2120,7 +2123,7 @@ public partial class MainWindowViewModel : ObservableObject
 	async Task RenameTagAsync (TagNode node)
 	{
 		string? name = await shell.PromptAsync (Strings.EditTag, Strings.NameOfNewTagColon, node.Name);
-		if (string.IsNullOrWhiteSpace (name) || database is null)
+		if (string.IsNullOrWhiteSpace (name) || database is null || WarnIfTagNameTaken (node.Tag, name))
 			return;
 		node.Tag.Name = name;
 		database.Tags.Commit (node.Tag);
@@ -2156,6 +2159,11 @@ public partial class MainWindowViewModel : ObservableObject
 	{
 		if (node is null || string.IsNullOrWhiteSpace (node.Name))
 			return;
+		if (WarnIfTagNameTaken (node.Tag, node.Name)) {
+			node.Name = node.Tag.Name;
+			node.IsRenaming = false;
+			return;
+		}
 		node.Tag.Name = node.Name;
 		node.IsRenaming = false;
 		database?.Tags.Commit (node.Tag);

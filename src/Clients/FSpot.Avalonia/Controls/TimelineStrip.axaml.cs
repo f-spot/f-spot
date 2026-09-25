@@ -19,6 +19,9 @@ public partial class TimelineStrip : UserControl
 	public static readonly StyledProperty<ICommand?> RangeCommandProperty =
 		AvaloniaProperty.Register<TimelineStrip, ICommand?> (nameof (RangeCommand));
 
+	public static readonly StyledProperty<ICommand?> LimitsCommandProperty =
+		AvaloniaProperty.Register<TimelineStrip, ICommand?> (nameof (LimitsCommand));
+
 	public TimelineStrip ()
 	{
 		InitializeComponent ();
@@ -38,6 +41,11 @@ public partial class TimelineStrip : UserControl
 	public ICommand? RangeCommand {
 		get => GetValue (RangeCommandProperty);
 		set => SetValue (RangeCommandProperty, value);
+	}
+
+	public ICommand? LimitsCommand {
+		get => GetValue (LimitsCommandProperty);
+		set => SetValue (LimitsCommandProperty, value);
 	}
 
 	public double ColumnWidth => Scale.ColumnWidth;

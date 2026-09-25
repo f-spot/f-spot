@@ -1,13 +1,14 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="FSpot.Avalonia.Controls.LoupeOverlay"
-             IsHitTestVisible="False">
+             Cursor="Hand">
 	<Canvas Name="Surface">
 		<Path Name="Chrome" Fill="#99222222" />
 		<Border Name="Lens"
 		        ClipToBounds="True"
 		        BorderBrush="#CC222222"
-		        BorderThickness="6">
+		        BorderThickness="6"
+		        Background="Transparent">
 			<Image Name="LensImage" Stretch="UniformToFill" />
 		</Border>
 	</Canvas>

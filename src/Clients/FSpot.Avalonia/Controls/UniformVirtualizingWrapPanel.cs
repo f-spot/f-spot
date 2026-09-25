@@ -262,9 +262,15 @@ public class UniformVirtualizingWrapPanel : VirtualizingPanel, ILogicalScrollabl
 			Unrealize (index);
 	}
 
-	double CellWidth => ItemWidth > 1 ? ItemWidth : 1;
+	public double CellWidth => ItemWidth > 1 ? ItemWidth : 1;
 
-	double CellHeight => ItemHeight > 1 ? ItemHeight : 1;
+	public double CellHeight => ItemHeight > 1 ? ItemHeight : 1;
+
+	/// <summary>Cells per row at the current width (GTK <c>VisibleColums</c>).</summary>
+	public int Columns => Math.Max (1, anchorColumnCount);
+
+	/// <summary>Whole rows in the viewport (GTK <c>VisibleRows</c>).</summary>
+	public int VisibleRows => Math.Max (1, (int)Math.Floor (viewport.Height / CellHeight));
 
 	double ExtentHeight (double width)
 	{

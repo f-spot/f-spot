@@ -1,7 +1,10 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Media;
+using Avalonia.VisualTree;
 
+using FSpot.Avalonia.ViewModels;
 using FSpot.Utils;
 
 namespace FSpot.Avalonia.Controls;
@@ -32,6 +35,76 @@ public partial class LoupeOverlay : UserControl
 	{
 		InitializeComponent ();
 		ApplyLayout ();
+	}
+
+	Point? dragStart;
+	Point dragHotspot;
+	double dragAngle;
+	bool rotating;
+
+	Visual View => this.GetVisualParent () ?? this;
+
+	// GTK Loupe.HandleButtonPressEvent: button 1 drags (Shift turns), another button turns by
+	// an eighth of a half turn, and a double click puts the loupe away.
+	protected override void OnPointerPressed (PointerPressedEventArgs e)
+	{
+		base.OnPointerPressed (e);
+		if (Input.WindowCommand.Model (this) is not MainWindowViewModel viewModel)
+			return;
+		var point = e.GetCurrentPoint (View);
+		if (e.ClickCount >= 2) {
+			dragStart = null;
+			viewModel.HideLoupeCommand.Execute (null);
+		} else if (point.Properties.IsLeftButtonPressed) {
+			dragStart = point.Position;
+			dragHotspot = new Point (HotspotX, HotspotY);
+			dragAngle = Angle;
+			rotating = e.KeyModifiers.HasFlag (KeyModifiers.Shift);
+			Cursor = new Cursor (StandardCursorType.SizeAll);
+			e.Pointer.Capture (this);
+		} else {
+			viewModel.TurnLoupe (Angle + Input.LoupeDrag.ClickTurn);
+		}
+		e.Handled = true;
+	}
+
+	protected override void OnPointerMoved (PointerEventArgs e)
+	{
+		base.OnPointerMoved (e);
+		if (dragStart is not Point start || Input.WindowCommand.Model (this) is not MainWindowViewModel viewModel)
+			return;
+		var now = e.GetPosition (View);
+		if (rotating) {
+			viewModel.TurnLoupe (Input.LoupeDrag.Rotate (dragAngle, dragHotspot.X, dragHotspot.Y, start.X, start.Y, now.X, now.Y));
+		} else {
+			var (x, y) = Input.LoupeDrag.Move (dragHotspot.X, dragHotspot.Y, start.X, start.Y, now.X, now.Y);
+			var bounds = View is Control view ? view.Bounds : Bounds;
+			viewModel.DragLoupe (x, y, bounds.Width, bounds.Height);
+		}
+		e.Handled = true;
+	}
+
+	protected override void OnPointerReleased (PointerReleasedEventArgs e)
+	{
+		base.OnPointerReleased (e);
+		if (dragStart is null)
+			return;
+		EndDrag ();
+		e.Pointer.Capture (null);
+		e.Handled = true;
+	}
+
+	protected override void OnPointerCaptureLost (PointerCaptureLostEventArgs e)
+	{
+		base.OnPointerCaptureLost (e);
+		EndDrag ();
+	}
+
+	void EndDrag ()
+	{
+		dragStart = null;
+		rotating = false;
+		Cursor = new Cursor (StandardCursorType.Hand);
 	}
 
 	public IImage? Sample {

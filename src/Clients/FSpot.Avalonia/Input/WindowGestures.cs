@@ -173,26 +173,39 @@ public static class PreviewPointer
 
 	public static void SetEnable (Control element, bool value) => element.SetValue (EnableProperty, value);
 
+	// Pan and the loupe work in the untransformed view around the image, so a zoomed image pans at pointer speed.
+	static Visual ViewOf (Control image)
+		=> image.GetVisualParent () ?? image;
+
 	static void OnMoved (object? sender, PointerEventArgs e)
 	{
 		if (sender is not Control image || WindowCommand.Model (image) is not MainWindowViewModel viewModel)
 			return;
-		var point = e.GetPosition (image);
+		var point = e.GetPosition (ViewOf (image));
 		if (image.GetValue (OriginProperty) is Point origin) {
 			viewModel.PanPreviewBy (point.X - origin.X, point.Y - origin.Y);
 			image.SetValue (OriginProperty, point);
 		}
-		if (viewModel.IsLoupeVisible)
-			viewModel.MoveLoupe (point.X, point.Y, image.Bounds.Width, image.Bounds.Height);
+		if (viewModel.IsLoupeVisible && ViewOf (image) is Control view) {
+			var margin = image.Margin;
+			viewModel.EnsureLoupeSample (point.X - margin.Left, point.Y - margin.Top,
+				view.Bounds.Width - margin.Left - margin.Right, view.Bounds.Height - margin.Top - margin.Bottom);
+		}
 	}
 
+	// Ctrl+left drag, and like GTK ImageView_Panning the middle button, pan the zoomed image.
 	static void OnPressed (object? sender, PointerPressedEventArgs e)
 	{
 		if (sender is not Control image)
 			return;
-		if (!e.KeyModifiers.HasFlag (KeyModifiers.Control) || !e.GetCurrentPoint (image).Properties.IsLeftButtonPressed)
+		var properties = e.GetCurrentPoint (image).Properties;
+		bool middle = properties.IsMiddleButtonPressed;
+		bool controlLeft = e.KeyModifiers.HasFlag (KeyModifiers.Control) && properties.IsLeftButtonPressed;
+		if (!middle && !controlLeft)
 			return;
-		image.SetValue (OriginProperty, e.GetPosition (image));
+		image.SetValue (OriginProperty, e.GetPosition (ViewOf (image)));
+		if (middle)
+			image.Cursor = new Cursor (StandardCursorType.SizeAll);
 		e.Pointer.Capture (image);
 		e.Handled = true;
 	}
@@ -202,6 +215,7 @@ public static class PreviewPointer
 		if (sender is not Control image || image.GetValue (OriginProperty) is null)
 			return;
 		image.SetValue (OriginProperty, null);
+		image.Cursor = null;
 		e.Pointer.Capture (null);
 	}
 
