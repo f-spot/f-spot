@@ -95,7 +95,7 @@ sealed class AvaloniaImagingBackend : IImagingBackend
 			return ToBgraBitmap (ImageBuffers.TransformOrientation (ToRgbBuffer (bitmap), orientation));
 	}
 
-	static ImageBuffer ToRgbBuffer (Bitmap bitmap)
+	internal static ImageBuffer ToRgbBuffer (Bitmap bitmap)
 	{
 		int width = bitmap.PixelSize.Width;
 		int height = bitmap.PixelSize.Height;
@@ -123,7 +123,7 @@ sealed class AvaloniaImagingBackend : IImagingBackend
 		return new ImageBuffer (width, height, false, dstStride, rgb);
 	}
 
-	static WriteableBitmap ToBgraBitmap (ImageBuffer buffer)
+	internal static WriteableBitmap ToBgraBitmap (ImageBuffer buffer)
 	{
 		var bitmap = new WriteableBitmap (
 			new PixelSize (buffer.Width, buffer.Height),

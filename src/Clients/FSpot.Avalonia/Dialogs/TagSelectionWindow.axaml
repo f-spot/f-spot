@@ -1,0 +1,40 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:auto="using:FSpot.Avalonia"
+        xmlns:dialogs="using:FSpot.Avalonia.Dialogs"
+        xmlns:models="using:FSpot.Avalonia.Models"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        xmlns:svg="using:Avalonia.Svg.Skia"
+        x:Class="FSpot.Avalonia.Dialogs.TagSelectionWindow"
+        Title="{x:Static dialogs:DialogStrings.SelectATag}"
+        Width="320"
+        Height="420"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.TagSelectionWindow}"
+        AutomationProperties.Name="{x:Static dialogs:DialogStrings.SelectATag}">
+	<DockPanel Margin="16">
+		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,12,0,0">
+			<Button Classes="dialog" MinWidth="88" Content="{x:Static lang:Strings.Cancel}" IsCancel="True" Click="OnCancel"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogCancel}" />
+			<Button Classes="dialog accent" MinWidth="88" Content="{x:Static lang:Strings.Ok}" IsDefault="True" Click="OnOk"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogOk}" />
+		</StackPanel>
+		<Border BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1">
+			<TreeView Name="TagTree" SelectionMode="Multiple"
+			          AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.TagSelectionTree}"
+			          AutomationProperties.Name="{x:Static lang:Strings.Tags}">
+				<TreeView.ItemTemplate>
+					<TreeDataTemplate DataType="models:TagNode" ItemsSource="{Binding Children}">
+						<StackPanel Orientation="Horizontal" Spacing="6"
+						            AutomationProperties.AutomationId="{Binding AutomationId}"
+						            AutomationProperties.Name="{Binding Name}">
+							<svg:Svg Width="16" Height="16" Path="{Binding IconPath}" />
+							<TextBlock Text="{Binding Name}" VerticalAlignment="Center" />
+						</StackPanel>
+					</TreeDataTemplate>
+				</TreeView.ItemTemplate>
+			</TreeView>
+		</Border>
+	</DockPanel>
+</Window>

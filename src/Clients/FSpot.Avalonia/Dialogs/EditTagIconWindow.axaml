@@ -1,0 +1,82 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:auto="using:FSpot.Avalonia"
+        xmlns:dialogs="using:FSpot.Avalonia.Dialogs"
+        xmlns:controls="using:FSpot.Avalonia.Controls"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        xmlns:svg="using:Avalonia.Svg.Skia"
+        x:Class="FSpot.Avalonia.Dialogs.EditTagIconWindow"
+        Title="{x:Static dialogs:DialogStrings.EditTagIcon}"
+        Width="640"
+        Height="520"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.EditTagIconWindow}"
+        AutomationProperties.Name="{x:Static dialogs:DialogStrings.EditTagIcon}">
+	<DockPanel Margin="16">
+		<Grid DockPanel.Dock="Bottom" ColumnDefinitions="Auto,*,Auto" Margin="0,12,0,0">
+			<Button Name="NoImageButton" Classes="dialog" MinWidth="88" Click="OnNoImage"
+			        AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.EditTagIconNoImage}" />
+			<StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8">
+				<Button Classes="dialog" MinWidth="88" Content="{x:Static lang:Strings.Cancel}" IsCancel="True" Click="OnCancel"
+				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogCancel}" />
+				<Button Name="OkButton" Classes="dialog accent" MinWidth="88" Content="{x:Static lang:Strings.Ok}" IsDefault="True" Click="OnOk"
+				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogOk}" />
+			</StackPanel>
+		</Grid>
+		<StackPanel DockPanel.Dock="Left" Width="120" Spacing="8" Margin="0,0,16,0">
+			<TextBlock Name="PreviewHeading" FontWeight="SemiBold" />
+			<Border Width="56" Height="56" HorizontalAlignment="Left"
+			        BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
+			        AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.EditTagIconPreview}">
+				<Panel Margin="3">
+					<Image Name="PreviewImage" Width="48" Height="48" />
+					<svg:Svg Name="PreviewSvg" Width="48" Height="48" />
+				</Panel>
+			</Border>
+		</StackPanel>
+		<DockPanel>
+			<TextBlock DockPanel.Dock="Top" Text="{x:Static dialogs:DialogStrings.DesignIconFrom}" Margin="0,0,0,6" />
+			<TabControl Name="Sources">
+				<TabItem Name="PhotoTab">
+					<DockPanel>
+						<StackPanel Name="PhotoControls" DockPanel.Dock="Bottom" Orientation="Horizontal" Spacing="8" Margin="0,8,0,0">
+							<TextBlock Name="PhotoLabel" VerticalAlignment="Center" />
+							<NumericUpDown Name="PhotoIndex" Minimum="1" Increment="1" FormatString="0" MinWidth="120"
+							               AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.EditTagIconPhotoIndex}" />
+						</StackPanel>
+						<TextBlock Name="NoPhotosText" TextWrapping="Wrap" IsVisible="False" />
+						<Grid Name="PhotoArea" Background="Black"
+						      AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.EditTagIconPhoto}">
+							<Image Name="PhotoImage" Stretch="Uniform" />
+							<controls:ImageSelectionOverlay Name="PhotoSelection" />
+						</Grid>
+					</DockPanel>
+				</TabItem>
+				<TabItem Name="FileTab">
+					<StackPanel Spacing="8" Margin="0,8,0,0">
+						<Button Name="FromFileButton" Content="{x:Static lang:Strings.SelectPhotoFromFile}" Click="OnFromFile"
+						        AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.EditTagIconFromFile}" />
+						<TextBlock Name="FileName" TextWrapping="Wrap" Opacity="0.8" />
+					</StackPanel>
+				</TabItem>
+				<TabItem Name="PredefinedTab">
+					<ListBox Name="PredefinedList" SelectionMode="Single"
+					         AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.EditTagIconPredefined}">
+						<ListBox.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel />
+							</ItemsPanelTemplate>
+						</ListBox.ItemsPanel>
+						<ListBox.ItemTemplate>
+							<DataTemplate x:DataType="x:String">
+								<svg:Svg Width="32" Height="32" Path="{Binding Converter={x:Static dialogs:TagIconPathConverter.Instance}}"
+								         ToolTip.Tip="{Binding}" AutomationProperties.Name="{Binding}" />
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</TabItem>
+			</TabControl>
+		</DockPanel>
+	</DockPanel>
+</Window>

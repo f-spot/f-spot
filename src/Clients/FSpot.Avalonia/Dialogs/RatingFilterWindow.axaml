@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:auto="using:FSpot.Avalonia"
+        xmlns:dialogs="using:FSpot.Avalonia.Dialogs"
+        xmlns:controls="using:FSpot.Avalonia.Controls"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        x:Class="FSpot.Avalonia.Dialogs.RatingFilterWindow"
+        Title="{x:Static dialogs:DialogStrings.SetRatingFilter}"
+        SizeToContent="WidthAndHeight"
+        MinWidth="300"
+        CanResize="False"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.RatingFilterWindow}"
+        AutomationProperties.Name="{x:Static dialogs:DialogStrings.SetRatingFilter}">
+	<DockPanel Margin="20,16">
+		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,16,0,0">
+			<Button Classes="dialog" MinWidth="88" Content="{x:Static lang:Strings.Cancel}" IsCancel="True" Click="OnCancel"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogCancel}" />
+			<Button Name="OkButton" Classes="dialog accent" MinWidth="88" Content="{x:Static lang:Strings.Ok}" IsDefault="True" Click="OnOk"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogOk}" />
+		</StackPanel>
+		<StackPanel Spacing="12">
+			<StackPanel Spacing="4">
+				<TextBlock Name="MinHeading" FontWeight="SemiBold" />
+				<controls:RatingPicker Name="MinPicker" Margin="12,0,0,0"
+				                       AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.RatingFilterMin}" />
+			</StackPanel>
+			<StackPanel Spacing="4">
+				<TextBlock Name="MaxHeading" FontWeight="SemiBold" />
+				<controls:RatingPicker Name="MaxPicker" Margin="12,0,0,0"
+				                       AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.RatingFilterMax}" />
+			</StackPanel>
+		</StackPanel>
+	</DockPanel>
+</Window>

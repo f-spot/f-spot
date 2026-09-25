@@ -4,7 +4,9 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using FSpot;
+using FSpot.Avalonia.Dialogs;
 using FSpot.Core;
+using FSpot.Resources.Lang;
 
 namespace FSpot.Avalonia.Services;
 
@@ -20,9 +22,37 @@ public interface IAvaloniaShell
 	Task<string?> PickFolderAsync (string title);
 	Task<string?> PromptAsync (string title, string prompt, string defaultValue);
 	Task<bool> ConfirmAsync (string title, string message, string okCaption);
-	Task<(uint Min, uint Max)?> PromptRatingRangeAsync ();
-	Task<(DateTime Start, DateTime End)?> PromptDateRangeAsync ();
-	Task<uint?> PickImportRollAsync (IReadOnlyList<(uint Id, string Label)> rolls);
+
+	// The GTK filter and tag dialogs. The tag and version defaults fall back to the plain
+	// name prompt so a shell without dialogs of its own still works.
+	Task<(uint Min, uint Max)?> PromptRatingFilterAsync (uint min, uint max)
+		=> Task.FromResult<(uint, uint)?> (null);
+
+	Task<DateRangeChoice?> PromptDateRangeFilterAsync (DateTime? start, DateTime? end)
+		=> Task.FromResult<DateRangeChoice?> (null);
+
+	Task<IReadOnlyList<uint>?> PickImportRollsAsync (IReadOnlyList<ImportRollOption> rolls)
+		=> Task.FromResult<IReadOnlyList<uint>?> (null);
+
+	async Task<CreateTagChoice?> PromptCreateTagAsync (Category root, Category parent, bool autoIcon)
+	{
+		string? name = await PromptAsync (Strings.CreateNewTag, Strings.NameOfNewTagColon, string.Empty);
+		return string.IsNullOrWhiteSpace (name) ? null : new CreateTagChoice (name.Trim (), parent, autoIcon);
+	}
+
+	async Task<EditTagChoice?> PromptEditTagAsync (Category root, TagIconSource tag)
+	{
+		string? name = await PromptAsync (Strings.EditTag, Strings.NameColon, tag.Tag.Name);
+		return string.IsNullOrWhiteSpace (name) ? null : new EditTagChoice (name.Trim (), tag.Tag.Category, null);
+	}
+
+	async Task<string?> PromptVersionNameAsync (VersionNameRequest request, string currentName, IReadOnlyCollection<string> existingNames)
+		=> await PromptAsync (VersionNameRules.Title (request), VersionNameRules.Prompt (request),
+			request == VersionNameRequest.Rename ? currentName : string.Empty);
+
+	Task<IReadOnlyList<Tag>?> PickTagsAsync (Category root)
+		=> Task.FromResult<IReadOnlyList<Tag>?> (null);
+
 	Task PrintPhotosAsync (IReadOnlyList<string> paths, PrintPageSetup? setup = null);
 	Task MailPhotosAsync (IReadOnlyList<string> paths);
 	// The print dialog; returns the page setup it ended with, or null when unchanged.

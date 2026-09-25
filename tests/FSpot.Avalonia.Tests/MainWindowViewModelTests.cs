@@ -10,6 +10,7 @@ using Avalonia.Platform;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
 
+using FSpot.Avalonia.Dialogs;
 using FSpot.Avalonia.Input;
 
 using FSpot;
@@ -1338,11 +1339,11 @@ public sealed class MainWindowViewModelTests
 		public virtual Task<string?> PickFolderAsync (string title) => Task.FromResult<string?> (null);
 		public virtual Task<string?> PromptAsync (string title, string prompt, string defaultValue) => Task.FromResult<string?> (null);
 		public virtual Task<bool> ConfirmAsync (string title, string message, string okCaption) => Task.FromResult (false);
-		public virtual Task<(uint Min, uint Max)?> PromptRatingRangeAsync () => Task.FromResult<(uint, uint)?> ((3, 5));
-		public virtual Task<(DateTime Start, DateTime End)?> PromptDateRangeAsync ()
-			=> Task.FromResult<(DateTime, DateTime)?> ((new DateTime (2026, 6, 1), new DateTime (2026, 7, 1)));
-		public virtual Task<uint?> PickImportRollAsync (IReadOnlyList<(uint Id, string Label)> rolls)
-			=> Task.FromResult<uint?> (1);
+		public virtual Task<(uint Min, uint Max)?> PromptRatingFilterAsync (uint min, uint max) => Task.FromResult<(uint, uint)?> ((3, 5));
+		public virtual Task<DateRangeChoice?> PromptDateRangeFilterAsync (DateTime? start, DateTime? end)
+			=> Task.FromResult<DateRangeChoice?> (new DateRangeChoice ((new DateTime (2026, 6, 1), new DateTime (2026, 7, 1))));
+		public virtual Task<IReadOnlyList<uint>?> PickImportRollsAsync (IReadOnlyList<ImportRollOption> rolls)
+			=> Task.FromResult<IReadOnlyList<uint>?> ([1]);
 		public virtual Task PrintPhotosAsync (IReadOnlyList<string> paths, PrintPageSetup? setup = null) => Task.CompletedTask;
 		public virtual Task CopyPhotosAsync (IReadOnlyList<string> paths) => Task.CompletedTask;
 		public virtual Task SetDesktopBackgroundAsync (string path) => Task.CompletedTask;

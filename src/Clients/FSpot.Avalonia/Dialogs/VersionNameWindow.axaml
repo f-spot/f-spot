@@ -1,0 +1,30 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:auto="using:FSpot.Avalonia"
+        xmlns:dialogs="using:FSpot.Avalonia.Dialogs"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        x:Class="FSpot.Avalonia.Dialogs.VersionNameWindow"
+        SizeToContent="WidthAndHeight"
+        MinWidth="360"
+        CanResize="False"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.VersionNameWindow}">
+	<DockPanel Margin="20,16">
+		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,16,0,0">
+			<Button Classes="dialog" MinWidth="88" Content="{x:Static lang:Strings.Cancel}" IsCancel="True" Click="OnCancel"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogCancel}" />
+			<Button Name="OkButton" Classes="dialog accent" MinWidth="88" Content="{x:Static lang:Strings.Ok}" IsDefault="True" Click="OnOk"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogOk}" />
+		</StackPanel>
+		<Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="6">
+			<Label Name="PromptLabel" Target="{Binding #NameBox}" VerticalAlignment="Center"
+			       AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogPrompt}" />
+			<TextBox Name="NameBox" Grid.Column="1" MinWidth="220"
+			         AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.VersionName}" />
+			<TextBlock Name="InUseLabel" Grid.Row="1" Grid.Column="1" FontSize="11" Opacity="0.8"
+			           Text="{x:Static lang:Strings.ThisNameIsAlreadyInUse}" IsVisible="False"
+			           AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.VersionNameInUse}" />
+		</Grid>
+	</DockPanel>
+</Window>

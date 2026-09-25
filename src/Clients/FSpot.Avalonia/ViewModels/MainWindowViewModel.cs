@@ -14,6 +14,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 using FSpot;
+using FSpot.Avalonia.Dialogs;
 using FSpot.Avalonia.Imaging;
 using FSpot.Avalonia.Models;
 using FSpot.Avalonia.Services;
@@ -532,6 +533,7 @@ public partial class MainWindowViewModel : ObservableObject
 		OnPropertyChanged (nameof (FindRatingLabel));
 		OnPropertyChanged (nameof (FindDateLabel));
 		OnPropertyChanged (nameof (FindRollLabel));
+		NotifyFilterDialogCommands ();
 		OnPropertyChanged (nameof (ShowEmptyLibrary));
 		OnPropertyChanged (nameof (ShowNoMatches));
 		OnPropertyChanged (nameof (ShowQueryBarNoMatches));
@@ -1364,7 +1366,11 @@ public partial class MainWindowViewModel : ObservableObject
 
 	[RelayCommand]
 	void SelectTag (TagNode? node)
-		=> SelectedTag = node;
+	{
+		if (KeepsTagHighlight (node))
+			return;
+		SelectedTag = node;
+	}
 
 	[RelayCommand]
 	void ActivateTag (TagNode? node)
@@ -1465,7 +1471,8 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand]
 	async Task FindByRatingAsync ()
 	{
-		var range = await shell.PromptRatingRangeAsync ();
+		var initial = RatingFilterLogic.Initial (FindMinRating, FindMaxRating);
+		var range = await shell.PromptRatingFilterAsync (initial.Min, initial.Max);
 		if (range is null)
 			return;
 		FindMinRating = range.Value.Min;
@@ -1486,11 +1493,11 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand]
 	async Task FindByDateAsync ()
 	{
-		var range = await shell.PromptDateRangeAsync ();
-		if (range is null)
+		var choice = await shell.PromptDateRangeFilterAsync (FindStart, FindEnd);
+		if (choice is null)
 			return;
-		FindStart = range.Value.Start;
-		FindEnd = range.Value.End;
+		FindStart = choice.Range?.Start;
+		FindEnd = choice.Range?.End;
 		NotifyFindTerms ();
 		ReloadPhotos ();
 	}
@@ -1507,16 +1514,11 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand]
 	async Task FindByImportRollAsync ()
 	{
-		var rolls = new List<(uint Id, string Label)> ();
-		if (database?.Rolls is not null) {
-			foreach (var roll in database.Rolls.GetRolls ())
-				rolls.Add ((roll.Id, roll.Time.ToShortDateString ()));
-		}
-		var id = await shell.PickImportRollAsync (rolls);
-		if (id is null)
+		var ids = await shell.PickImportRollsAsync (ImportRollOptions ());
+		if (ids is null || ids.Count == 0)
 			return;
-		if (!findRollIds.Contains (id.Value))
-			findRollIds.Add (id.Value);
+		findRollIds.Clear ();
+		findRollIds.AddRange (ids.Distinct ());
 		NotifyFindTerms ();
 		ReloadPhotos ();
 	}
@@ -1664,15 +1666,7 @@ public partial class MainWindowViewModel : ObservableObject
 		if (database is null)
 			return;
 
-		string? name = await shell.PromptAsync (Strings.CreateNewTag, Strings.NameOfNewTagColon, string.Empty);
-		if (string.IsNullOrWhiteSpace (name))
-			return;
-
-		var parent = SelectedTag?.Tag as Category
-			?? SelectedTag?.Tag.Category
-			?? database.Tags.RootCategory;
-		database.Tags.CreateCategory (parent, name.Trim (), true);
-		ReloadTags ();
+		await CreateTagWithDialogAsync (database);
 	}
 
 	[RelayCommand (CanExecute = nameof (CanTargetTag))]
@@ -1682,13 +1676,7 @@ public partial class MainWindowViewModel : ObservableObject
 		if (database is null || target is null)
 			return;
 
-		string? name = await shell.PromptAsync (Strings.EditTag, Strings.NameColon, target.Tag.Name);
-		if (string.IsNullOrWhiteSpace (name) || name == target.Tag.Name)
-			return;
-
-		target.Tag.Name = name.Trim ();
-		database.Tags.Commit (target.Tag, true);
-		ReloadTags ();
+		await EditTagWithDialogAsync (database, target.Tag);
 	}
 
 	bool CanTargetTag (TagNode? node)
@@ -1938,7 +1926,7 @@ public partial class MainWindowViewModel : ObservableObject
 	{
 		if (SelectedCatalogPhotos ().FirstOrDefault () is not Photo photo)
 			return;
-		string? name = await shell.PromptAsync (Strings.CreateNewVersion, Strings.NameOfNewTagColon, string.Empty);
+		string? name = await PromptVersionNameAsync (VersionNameRequest.Create, photo);
 		if (string.IsNullOrWhiteSpace (name))
 			return;
 		try {
@@ -1970,7 +1958,7 @@ public partial class MainWindowViewModel : ObservableObject
 	{
 		if (SelectedCatalogPhotos ().FirstOrDefault () is not Photo photo)
 			return;
-		string? name = await shell.PromptAsync (Strings.RenameVersion, Strings.NameOfNewTagColon, photo.DefaultVersion.Name);
+		string? name = await PromptVersionNameAsync (VersionNameRequest.Rename, photo);
 		if (string.IsNullOrWhiteSpace (name))
 			return;
 		try {

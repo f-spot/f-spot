@@ -11,6 +11,7 @@
         xmlns:av="using:Avalonia.Controls"
         xmlns:primitives="using:Avalonia.Controls.Primitives"
         xmlns:input="using:FSpot.Avalonia.Input"
+        xmlns:dialogs="using:FSpot.Avalonia.Dialogs"
         x:Class="FSpot.Avalonia.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="{x:Static auto:ChromeIcons.WindowIcon}"
@@ -132,9 +133,31 @@
 					<NativeMenu>
 						<NativeMenuItem Header="{x:Static lang:Strings.Find}" Gesture="Ctrl+F" Command="{Binding ShowFindCommand}" />
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="{x:Static lang:Strings.ByRating}" Command="{Binding FindByRatingCommand}" />
-						<NativeMenuItem Header="{x:Static lang:Strings.ByDate}" Command="{Binding FindByDateCommand}" />
-						<NativeMenuItem Header="{x:Static lang:Strings.ByImportRoll}" Command="{Binding FindByImportRollCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.ByRating}">
+							<NativeMenuItem.Menu>
+								<NativeMenu>
+									<NativeMenuItem Header="{x:Static dialogs:DialogStrings.SetRatingFilter2}" Command="{Binding FindByRatingCommand}" />
+									<NativeMenuItem Header="{x:Static dialogs:DialogStrings.ClearRatingFilter}" Command="{Binding ClearRatingFilterCommand}" />
+								</NativeMenu>
+							</NativeMenuItem.Menu>
+						</NativeMenuItem>
+						<NativeMenuItem Header="{x:Static lang:Strings.ByDate}">
+							<NativeMenuItem.Menu>
+								<NativeMenu>
+									<NativeMenuItem Header="{x:Static dialogs:DialogStrings.SetDateRange2}" Command="{Binding FindByDateCommand}" />
+									<NativeMenuItem Header="{x:Static lang:Strings.ClearDateRangeMnemonic}" Command="{Binding ClearDateRangeCommand}" />
+								</NativeMenu>
+							</NativeMenuItem.Menu>
+						</NativeMenuItem>
+						<NativeMenuItem Header="{x:Static lang:Strings.ByImportRoll}">
+							<NativeMenuItem.Menu>
+								<NativeMenu>
+									<NativeMenuItem Header="{x:Static dialogs:DialogStrings.LastImportRoll}" Command="{Binding FindLastImportRollCommand}" />
+									<NativeMenuItem Header="{x:Static dialogs:DialogStrings.SelectImportRolls}" Command="{Binding FindByImportRollCommand}" />
+									<NativeMenuItem Header="{x:Static dialogs:DialogStrings.ClearRollFilter}" Command="{Binding ClearRollFilterCommand}" />
+								</NativeMenu>
+							</NativeMenuItem.Menu>
+						</NativeMenuItem>
 						<NativeMenuItem Header="{x:Static lang:Strings.MatchAllTags}" ToggleType="CheckBox"
 						                IsChecked="{Binding FindMatchAllTags, Mode=OneWay}"
 						                Command="{Binding ToggleFindMatchAllTagsCommand}" />
@@ -400,7 +423,8 @@
 				              VerticalScrollBarVisibility="Auto"
 				              HorizontalAlignment="Stretch">
 				<Panel>
-				<TreeView Classes="sidebar"
+				<TreeView x:Name="SidebarTagTree"
+				          Classes="sidebar"
 				          ScrollViewer.VerticalScrollBarVisibility="Disabled"
 				          SelectionMode="Multiple"
 				          IsVisible="{Binding IsTagsPage}"
@@ -429,6 +453,7 @@
 										<Separator />
 										<MenuItem Header="{x:Static lang:Strings.EditTag}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).BeginRenameTagCommand}" CommandParameter="{Binding}" />
 										<MenuItem Header="{x:Static lang:Strings.DeleteTag}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).DeleteTagCommand}" CommandParameter="{Binding}" />
+										<MenuItem Header="{x:Static dialogs:DialogStrings.MergeTags2}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).MergeTagsCommand}" />
 									</ContextMenu>
 								</StackPanel.ContextMenu>
 								<controls:ChromeIcon Width="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).TagIconEdge}"

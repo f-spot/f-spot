@@ -1,0 +1,37 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:auto="using:FSpot.Avalonia"
+        xmlns:dialogs="using:FSpot.Avalonia.Dialogs"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        x:Class="FSpot.Avalonia.Dialogs.DateRangeWindow"
+        Title="{x:Static dialogs:DialogStrings.SetDateRange}"
+        SizeToContent="WidthAndHeight"
+        MinWidth="360"
+        CanResize="False"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.DateRangeWindow}"
+        AutomationProperties.Name="{x:Static dialogs:DialogStrings.SetDateRange}">
+	<DockPanel Margin="20,16">
+		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,16,0,0">
+			<Button Classes="dialog" MinWidth="88" Content="{x:Static lang:Strings.Cancel}" IsCancel="True" Click="OnCancel"
+			        ToolTip.Tip="{x:Static dialogs:DialogStrings.CancelDoNotChangeTheCurrentTimeline}"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogCancel}" />
+			<Button Classes="dialog accent" MinWidth="88" Content="{x:Static lang:Strings.Ok}" IsDefault="True" Click="OnOk"
+			        ToolTip.Tip="{x:Static dialogs:DialogStrings.OnlyPhotosTakenWithinTheseDatesWillBeDisplayed}"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogOk}" />
+		</StackPanel>
+		<StackPanel Spacing="8">
+			<TextBlock Name="PeriodHeading" FontWeight="SemiBold" />
+			<ComboBox Name="PeriodBox" HorizontalAlignment="Stretch" Margin="12,0,0,0"
+			          AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.DateRangePeriod}" />
+			<TextBlock Text="{x:Static lang:Strings.Or}" HorizontalAlignment="Center" Margin="0,4" />
+			<TextBlock Name="StartHeading" FontWeight="SemiBold" />
+			<CalendarDatePicker Name="StartPicker" Margin="12,0,0,0" HorizontalAlignment="Stretch"
+			                    AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.DateRangeStart}" />
+			<TextBlock Name="EndHeading" FontWeight="SemiBold" />
+			<CalendarDatePicker Name="EndPicker" Margin="12,0,0,0" HorizontalAlignment="Stretch"
+			                    AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.DateRangeEnd}" />
+		</StackPanel>
+	</DockPanel>
+</Window>

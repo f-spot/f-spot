@@ -47,6 +47,7 @@ public partial class MainWindow : Window, IAvaloniaShell
 			GtkMnemonic.ApplyHotKey (EmptyImportButton, FSpot.Resources.Lang.Strings.Import2);
 		};
 		ScalingChanged += (_, _) => ApplyUiScale ();
+		WireTagHighlight (viewModel);
 		viewModel.LoadCatalog ();
 	}
 
@@ -81,41 +82,6 @@ public partial class MainWindow : Window, IAvaloniaShell
 			return;
 		}
 		base.OnKeyDown (e);
-	}
-
-	public async Task<(uint Min, uint Max)?> PromptRatingRangeAsync ()
-	{
-		string? text = await PromptAsync (Strings.Find, Strings.RatingRangePrompt, "0-5");
-		if (string.IsNullOrWhiteSpace (text))
-			return null;
-		var parts = text.Split ('-', '–', ',');
-		if (parts.Length >= 2
-				&& uint.TryParse (parts[0].Trim (), out uint min)
-				&& uint.TryParse (parts[1].Trim (), out uint max))
-			return (min, max);
-		if (uint.TryParse (text.Trim (), out uint only))
-			return (only, 5);
-		return null;
-	}
-
-	public async Task<(DateTime Start, DateTime End)?> PromptDateRangeAsync ()
-	{
-		string? text = await PromptAsync (Strings.Find, PromptCopy.DateRange, string.Empty);
-		if (string.IsNullOrWhiteSpace (text))
-			return null;
-		var parts = text.Split (':', '–');
-		if (parts.Length >= 2
-				&& DateTime.TryParse (parts[0].Trim (), out var start)
-				&& DateTime.TryParse (parts[1].Trim (), out var end))
-			return (start, end);
-		return null;
-	}
-
-	public async Task<uint?> PickImportRollAsync (IReadOnlyList<(uint Id, string Label)> rolls)
-	{
-		string hint = PromptCopy.RollHint (rolls);
-		string? text = await PromptAsync (Strings.ImportRoll, hint, rolls.Count > 0 ? rolls[0].Id.ToString () : "1");
-		return uint.TryParse (text, out uint id) ? id : null;
 	}
 
 	public Task PrintPhotosAsync (IReadOnlyList<string> paths, PrintPageSetup? setup = null)

@@ -1,0 +1,43 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:auto="using:FSpot.Avalonia"
+        xmlns:dialogs="using:FSpot.Avalonia.Dialogs"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        x:Class="FSpot.Avalonia.Dialogs.ImportRollsWindow"
+        Title="{x:Static dialogs:DialogStrings.FilterOnSelectedRolls}"
+        SizeToContent="WidthAndHeight"
+        MinWidth="420"
+        CanResize="False"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.ImportRollsWindow}"
+        AutomationProperties.Name="{x:Static dialogs:DialogStrings.FilterOnSelectedRolls}">
+	<DockPanel Margin="20,16">
+		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,16,0,0">
+			<Button Classes="dialog" MinWidth="88" Content="{x:Static lang:Strings.Cancel}" IsCancel="True" Click="OnCancel"
+			        ToolTip.Tip="{x:Static dialogs:DialogStrings.ShowAllPhotos}"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogCancel}" />
+			<Button Classes="dialog accent" MinWidth="88" Content="{x:Static lang:Strings.Ok}" IsDefault="True" Click="OnOk"
+			        ToolTip.Tip="{x:Static dialogs:DialogStrings.DisplayOnlyThosePhotosThatWereImportedInSpecifiedRolls}"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogOk}" />
+		</StackPanel>
+		<StackPanel Spacing="10">
+			<TextBlock Name="Heading" FontWeight="SemiBold" />
+			<StackPanel Orientation="Horizontal" Spacing="8" Margin="12,0,0,0">
+				<ComboBox Name="ModeBox" MinWidth="90"
+				          AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.ImportRollsMode}" />
+				<ComboBox Name="FirstRollBox" MinWidth="160"
+				          AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.ImportRollsFirst}" />
+				<TextBlock Name="AndLabel" Text="{x:Static lang:Strings.And}" VerticalAlignment="Center" />
+				<ComboBox Name="SecondRollBox" MinWidth="160"
+				          AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.ImportRollsSecond}" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" Spacing="6" Margin="12,0,0,0">
+				<TextBlock Text="{x:Static dialogs:DialogStrings.NumberOfPhotosInSelectedRolls}" />
+				<TextBlock Name="CountLabel"
+				           AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.ImportRollsCount}"
+				           AutomationProperties.Name="{x:Static dialogs:DialogStrings.NumberOfPhotosInSelectedRolls}" />
+			</StackPanel>
+		</StackPanel>
+	</DockPanel>
+</Window>

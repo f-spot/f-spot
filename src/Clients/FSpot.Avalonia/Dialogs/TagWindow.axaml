@@ -1,0 +1,46 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:auto="using:FSpot.Avalonia"
+        xmlns:dialogs="using:FSpot.Avalonia.Dialogs"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        xmlns:svg="using:Avalonia.Svg.Skia"
+        x:Class="FSpot.Avalonia.Dialogs.TagWindow"
+        SizeToContent="WidthAndHeight"
+        MinWidth="380"
+        CanResize="False"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner">
+	<DockPanel Margin="20,16">
+		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,16,0,0">
+			<Button Classes="dialog" MinWidth="88" Content="{x:Static lang:Strings.Cancel}" IsCancel="True" Click="OnCancel"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogCancel}" />
+			<Button Name="OkButton" Classes="dialog accent" MinWidth="88" IsDefault="True" Click="OnOk"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogOk}" />
+		</StackPanel>
+		<Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="8">
+			<Label Name="NameLabel" Grid.Row="0" Content="{x:Static dialogs:DialogStrings.TagName2}" Target="{Binding #NameBox}" VerticalAlignment="Center" />
+			<TextBox Name="NameBox" Grid.Row="0" Grid.Column="1" MinWidth="220"
+			         AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.TagName}"
+			         AutomationProperties.Name="{x:Static dialogs:DialogStrings.TagName}" />
+			<TextBlock Name="InUseLabel" Grid.Row="1" Grid.Column="1" FontSize="11" Opacity="0.8"
+			           Text="{x:Static lang:Strings.ThisNameIsAlreadyInUse}" IsVisible="False"
+			           AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.TagNameInUse}" />
+			<Label Grid.Row="2" Content="{x:Static dialogs:DialogStrings.ParentTag}" Target="{Binding #ParentBox}" VerticalAlignment="Center" />
+			<ComboBox Name="ParentBox" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch"
+			          AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.TagParent}" />
+			<Label Name="IconLabel" Grid.Row="3" Content="{x:Static dialogs:DialogStrings.Icon}" Target="{Binding #IconButton}" VerticalAlignment="Center" IsVisible="False" />
+			<Button Name="IconButton" Grid.Row="3" Grid.Column="1" Width="60" Height="60" Padding="4" IsVisible="False"
+			        ToolTip.Tip="{x:Static dialogs:DialogStrings.EditIcon}" Click="OnEditIcon"
+			        AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.TagIconButton}"
+			        AutomationProperties.Name="{x:Static dialogs:DialogStrings.EditIcon}">
+				<Panel>
+					<Image Name="IconImage" Width="48" Height="48" />
+					<svg:Svg Name="IconSvg" Width="48" Height="48" />
+				</Panel>
+			</Button>
+			<CheckBox Name="AutoIconBox" Grid.Row="4" Grid.ColumnSpan="2" IsVisible="False"
+			          Content="{x:Static dialogs:DialogStrings.CreateIconForThisTagWhenFirstUsed}"
+			          AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.TagAutoIcon}" />
+		</Grid>
+	</DockPanel>
+</Window>
