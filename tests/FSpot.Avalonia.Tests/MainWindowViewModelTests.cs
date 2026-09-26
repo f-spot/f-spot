@@ -873,10 +873,25 @@ public sealed partial class MainWindowViewModelTests
 	[UiTestMethod]
 	public void ImportFromCameraCommand_WarnsWhenNoCamerasAreDetected ()
 	{
-		var shell = new RecordingShell ();
-		var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
-		viewModel.ImportFromCameraCommand.Execute (null);
-		Assert.AreEqual (Strings.NoCamerasDetected, shell.WarningMessage);
+		// Other tests register the real file system on the process container.
+		// With that in place this Mac's root volume counts as an import source
+		// and the command skips the empty-camera warning.
+		var container = TinyIoC.TinyIoCContainer.Current;
+		bool restoreFileSystem = container.Unregister<FSpot.FileSystem.IFileSystem> ();
+		try {
+			var shell = new RecordingShell ();
+			var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+			viewModel.ImportFromCameraCommand.Execute (null);
+			Assert.AreEqual (Strings.NoCamerasDetected, shell.WarningMessage);
+		} finally {
+			if (restoreFileSystem) {
+				try {
+					FSpot.FileSystem.ModuleController.RegisterTypes (container);
+				} catch (ArgumentException) {
+					// IEnvironment is still registered; IFileSystem was put back first.
+				}
+			}
+		}
 	}
 
 	[UiTestMethod]

@@ -37,6 +37,12 @@ public partial class PrintWindow : Window
 		this.photos = photos;
 		PageSetup = setup;
 		InitializeComponent ();
+		Closing += (_, _) => {
+			if (Preview?.Source is Bitmap preview) {
+				Preview.Source = null;
+				preview.Dispose ();
+			}
+		};
 		foreach (var (button, count) in new[] { (Ppp1, 1), (Ppp2, 2), (Ppp4, 4), (Ppp9, 9), (Ppp20, 20), (Ppp30, 30) })
 			button.Content = PrintLayout.GridCaption (count);
 		SavePdf.Content = GtkMnemonic.Display (Strings.PrintSaveAsPdf);

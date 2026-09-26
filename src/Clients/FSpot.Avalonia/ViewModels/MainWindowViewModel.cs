@@ -733,10 +733,25 @@ public partial class MainWindowViewModel : ObservableObject
 	{
 		int generation = ++histogramGeneration;
 		if (item is null) {
-			Histogram = null;
+			SetHistogram (null);
 			return;
 		}
 		_ = UpdateHistogramAsync (item, generation);
+	}
+
+	internal void ReleaseDecodedImages ()
+	{
+		DropAllThumbnails ();
+		HidePreviewPopup ();
+		SetPreview (null);
+		SetHistogram (null);
+	}
+
+	void SetHistogram (Bitmap? next)
+	{
+		var previous = Histogram;
+		Histogram = next;
+		ReleasedBitmap.DisposePrevious (previous, next);
 	}
 
 	async Task UpdateHistogramAsync (PhotoItemViewModel item, int generation)
@@ -756,12 +771,12 @@ public partial class MainWindowViewModel : ObservableObject
 				if (!HistogramStillCurrent (generation, item))
 					return;
 				try {
-					Histogram = HistogramRenderer.FromBitmap (source, UiScale);
+					SetHistogram (HistogramRenderer.FromBitmap (source, UiScale));
 				} catch (Exception ex) {
 					if (!HistogramStillCurrent (generation, item))
 						return;
 					Logger.Log.Debug (ex, "Failed to build histogram for {Path}", item.Path);
-					Histogram = null;
+					SetHistogram (null);
 				}
 			}
 			if (context is null || SynchronizationContext.Current == context)
@@ -772,7 +787,7 @@ public partial class MainWindowViewModel : ObservableObject
 			if (!HistogramStillCurrent (generation, item))
 				return;
 			Logger.Log.Debug (ex, "Failed to build histogram for {Path}", item.Path);
-			Histogram = null;
+			SetHistogram (null);
 		} finally {
 			if (context is null || SynchronizationContext.Current == context)
 				loaded?.Dispose ();

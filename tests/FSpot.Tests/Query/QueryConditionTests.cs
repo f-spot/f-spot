@@ -70,8 +70,21 @@ namespace FSpot.Query.Tests
 			};
 
 			string sql = folders.SqlClause ();
-			Assert.Contains ("file:///photos/O''Brien", sql);
+			Assert.Contains ("base_uri = 'file:///photos/O''Brien'", sql);
+			Assert.Contains ("base_uri LIKE 'file:///photos/O''Brien/%'", sql);
 			Assert.DoesNotContain ("O'Brien%", sql);
+		}
+
+		[TestMethod]
+		public void FolderSet_TrailingSlash_MatchesTheFolderItselfAndItsChildren ()
+		{
+			var folders = new FolderSet {
+				Folders = new[] { new SafeUri ("file:///photos/trip/", true) }
+			};
+
+			string sql = folders.SqlClause ();
+			Assert.Contains ("base_uri = 'file:///photos/trip'", sql);
+			Assert.Contains ("base_uri LIKE 'file:///photos/trip/%'", sql);
 		}
 
 		[TestMethod]

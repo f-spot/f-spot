@@ -68,6 +68,40 @@ public sealed partial class MainWindowViewModelTests
 		}
 	}
 
+	// Headless Lock() hands out a fresh buffer and frees it, so pixel bytes
+	// cannot be read back here. Channel weights are covered by
+	// ConvertToBw_UsesChannelWeightsAndTheToneCurve. Color needs liblcms2,
+	// which the app registers at startup and this host does not.
+	[UiTestMethod]
+	public async Task LivePreviewEditors_RenderOnOpenAndWhenThePhotoChanges ()
+	{
+		AvaloniaApp.Ensure ();
+		FSpot.Cms.LcmsNativeLibrary.Register ();
+		PhotoEditorDescriptor[] editors = [
+			PhotoEditorCatalog.BW,
+			PhotoEditorCatalog.Tilt,
+			PhotoEditorCatalog.SoftFocus,
+			PhotoEditorCatalog.Color
+		];
+
+		foreach (var editor in editors) {
+			var viewModel = ViewModelWithFocusedPhoto ();
+			viewModel.Preview = new WriteableBitmap (new PixelSize (8, 8), new Vector (96, 96), PixelFormat.Bgra8888, AlphaFormat.Premul);
+			viewModel.ApplyEditorCommand.Execute (editor);
+			await viewModel.LivePreviewTask;
+
+			var opened = viewModel.EditedPreview;
+			Assert.IsNotNull (opened, editor.Id);
+			Assert.AreNotSame (viewModel.Preview, opened, editor.Id);
+
+			viewModel.Preview = new WriteableBitmap (new PixelSize (8, 8), new Vector (96, 96), PixelFormat.Bgra8888, AlphaFormat.Premul);
+			await viewModel.LivePreviewTask;
+
+			Assert.IsNotNull (viewModel.EditedPreview, editor.Id);
+			Assert.AreNotSame (opened, viewModel.EditedPreview, editor.Id);
+		}
+	}
+
 	[UiTestMethod]
 	public async Task TiltSlider_RendersALivePreviewAndCancelRestoresTheOriginal ()
 	{

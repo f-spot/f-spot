@@ -46,9 +46,12 @@ namespace FSpot.Query
 
 			int i = 0;
 			foreach (var uri in uri_list) {
-				items[i] =
-					string.Format ("id IN (SELECT id FROM photos WHERE base_uri LIKE '{0}%')",
-								   EscapeQuotes (uri.ToString ()));
+				// Folder nodes carry a trailing slash. Photos store the directory
+				// without one, and a bare prefix would also match a sibling folder.
+				string folder = EscapeQuotes (uri.ToString ().TrimEnd ('/'));
+				items[i] = string.Format (
+					"id IN (SELECT id FROM photos WHERE base_uri = '{0}' OR base_uri LIKE '{0}/%')",
+					folder);
 				i++;
 			}
 

@@ -285,13 +285,15 @@ namespace FSpot
 
 		void DeleteEmptyDirectory (DirectoryInfo directory)
 		{
-			// if the directory we're dealing with is not in the
-			// F-Spot photos directory, don't delete anything,
-			// even if it is empty
-			string photo_uri = SafeUri.UriToFilename (FSpotConfiguration.PhotoUri.ToString ());
-			bool path_matched = directory.FullName.IndexOf (photo_uri) > -1;
+			// Versions stored outside the library (and a host that has not
+			// chosen a photos directory) must not walk parent folders.
+			if (directory == null || FSpotConfiguration.PhotoUri == null)
+				return;
 
-			if (directory.Name.Equals (photo_uri) || !path_matched)
+			// Stop at the library itself. A name that merely starts with the
+			// library path (Photos vs Photos-old) is not inside it.
+			string library = SafeUri.UriToFilename (FSpotConfiguration.PhotoUri.ToString ());
+			if (!IsStrictLibraryChild (directory.FullName, library))
 				return;
 
 			if (DirectoryIsEmpty (directory)) {
@@ -308,8 +310,42 @@ namespace FSpot
 			}
 		}
 
+		internal static bool IsStrictLibraryChild (string directoryFullName, string libraryRoot)
+		{
+			string root = CanonicalDirectory (libraryRoot);
+			string current = CanonicalDirectory (directoryFullName);
+			if (string.IsNullOrEmpty (root) || string.IsNullOrEmpty (current))
+				return false;
+			return current.StartsWith (root + Path.DirectorySeparatorChar, StringComparison.Ordinal);
+		}
+
+		static string CanonicalDirectory (string path)
+		{
+			if (string.IsNullOrWhiteSpace (path))
+				return string.Empty;
+			try {
+				return new DirectoryInfo (path).FullName.TrimEnd (Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+			} catch (Exception) {
+				return string.Empty;
+			}
+		}
+
 		bool DirectoryIsEmpty (DirectoryInfo directory)
-			=> !directory.EnumerateFileSystemInfos ().Any ();
+		{
+			try {
+				return !directory.EnumerateFileSystemInfos ().Any ();
+			} catch (DirectoryNotFoundException) {
+				// The folder is already gone, so the parent walk can continue.
+				return true;
+			} catch (UnauthorizedAccessException) {
+				// Not empty: an access error must not delete the directory.
+				return false;
+			} catch (IOException) {
+				// A file standing where a folder should be, or any other IO
+				// error, is not an empty directory.
+				return false;
+			}
+		}
 
 		public uint CreateVersion (string name, uint baseVersionId, bool create)
 		{

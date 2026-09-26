@@ -4,7 +4,6 @@ using Avalonia.Automation;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 
-using FSpot.Avalonia.Services;
 using FSpot.Resources.Lang;
 
 namespace FSpot.Avalonia;
@@ -17,18 +16,28 @@ public partial class ProgressWindow : Window
 	readonly CancellationTokenSource stop = new ();
 	int total;
 	int current;
-	RetrySkipGate? retrySkipGate;
+	TaskCompletionSource<bool>? retrySkip;
 
 	public ProgressWindow ()
 	{
 		InitializeComponent ();
-		Closing += (_, _) => stop.Cancel ();
+		WireClose ();
 	}
 
 	public ProgressWindow (string title, int total)
 	{
 		InitializeComponent ();
+		WireClose ();
 		Configure (title, total, Strings.ProgressStop);
+	}
+
+	void WireClose ()
+	{
+		Closing += (_, _) => {
+			stop.Cancel ();
+			retrySkip?.TrySetResult (false);
+			retrySkip = null;
+		};
 	}
 
 	public static ProgressWindow Create (string title, int total, string? cancelCaption)
@@ -54,14 +63,17 @@ public partial class ProgressWindow : Window
 
 	public Task<bool> PerformRetrySkipAsync ()
 	{
-		retrySkipGate = new RetrySkipGate ();
+		// Same contract as ThreadProgressDialog.PerformRetrySkip: the caller waits,
+		// and the first of Retry or Skip completes the wait. Later clicks are ignored.
+		var completion = new TaskCompletionSource<bool> (TaskCreationOptions.RunContinuationsAsynchronously);
+		retrySkip = completion;
 		RetryButton.Content = Strings.Retry;
 		SkipButton.Content = Strings.Skip;
 		AutomationProperties.SetName (RetryButton, Strings.Retry);
 		AutomationProperties.SetName (SkipButton, Strings.Skip);
 		RetryButton.IsVisible = true;
 		SkipButton.IsVisible = true;
-		return retrySkipGate.Task;
+		return completion.Task;
 	}
 
 	void Configure (string title, int total, string? cancelCaption)
@@ -91,7 +103,7 @@ public partial class ProgressWindow : Window
 	{
 		RetryButton.IsVisible = false;
 		SkipButton.IsVisible = false;
-		retrySkipGate?.Resolve (retry);
-		retrySkipGate = null;
+		retrySkip?.TrySetResult (retry);
+		retrySkip = null;
 	}
 }

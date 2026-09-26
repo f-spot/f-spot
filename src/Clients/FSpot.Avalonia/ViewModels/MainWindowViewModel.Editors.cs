@@ -18,8 +18,8 @@ using FSpot.Settings;
 namespace FSpot.Avalonia.ViewModels;
 
 // Editor-page parity with GTK: crop ratio constraints, the live preview the
-// Tilt/SoftFocus/Color/BW editors render on every slider change, and the
-// red-eye threshold preference.
+// Tilt/SoftFocus/Color/BW editors render when they open, when the photo
+// changes, and on every slider change, and the red-eye threshold preference.
 public partial class MainWindowViewModel
 {
 	// GTK Editor.UpdatePreview renders into a copy scaled to the view.
@@ -58,8 +58,10 @@ public partial class MainWindowViewModel
 		if (newValue is not null) {
 			// GTK Editor.CreateContext reads Preferences.EditRedeyeThreshold.
 			newValue.Context.RedEyeThreshold = Preferences.Get<int> (Preferences.EditRedeyeThreshold);
-			if (PhotoEditorSession.HasLivePreview (newValue.Editor))
+			if (PhotoEditorSession.HasLivePreview (newValue.Editor)) {
 				newValue.Context.PropertyChanged += OnEditorContextChanged;
+				RequestLivePreview ();
+			}
 			if (newValue.Editor.Id == PhotoEditorCatalog.Crop.Id)
 				ReloadCropConstraints ();
 		}
@@ -71,6 +73,8 @@ public partial class MainWindowViewModel
 	{
 		OnPropertyChanged (nameof (DisplayedPreview));
 		ClearLivePreview ();
+		if (EditorSession is not null && PhotoEditorSession.HasLivePreview (EditorSession.Editor))
+			RequestLivePreview ();
 		// CropEditor.UpdateSelectionCombo: a new photo drops "Same as photo".
 		if (SelectedCropConstraint?.Kind == CropConstraintKind.SameAsPhoto && CropConstraintOptions.Count > 0)
 			SelectedCropConstraint = CropConstraintOptions[0];

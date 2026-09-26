@@ -24,14 +24,20 @@ public partial class MainWindow : Window, IAvaloniaShell
 	}
 
 	public MainWindow (Db? database)
+		: this (database, new AvaloniaThumbnailLoader ())
 	{
-		var viewModel = new MainWindowViewModel (database, this, new AvaloniaThumbnailLoader ());
+	}
+
+	internal MainWindow (Db? database, IPhotoThumbnailLoader thumbnails)
+	{
+		var viewModel = new MainWindowViewModel (database, this, thumbnails);
 		DataContext = viewModel;
 		InitializeComponent ();
 		MainWindowStateStore.Restore (this);
 		Closing += (_, _) => {
 			MainWindowStateStore.Save (this);
 			viewModel.SaveWindowState ();
+			viewModel.ReleaseDecodedImages ();
 		};
 		var sidebarColumn = BodyGrid.ColumnDefinitions[0];
 		sidebarColumn.Width = viewModel.SidebarLength;
@@ -50,6 +56,8 @@ public partial class MainWindow : Window, IAvaloniaShell
 		PreviewInterpolation.Apply (PreviewImage, viewModel.ViewerInterpolation);
 		Opened += (_, _) => {
 			ApplyUiScale ();
+			PlatformGestures.Apply (NativeMenu.GetMenu (this));
+			PlatformGestures.Apply (this);
 			EnsureMenuInAutomationTree ();
 			NativeMenuMirror.ApplyAsKeyBindings (this, NativeMenu.GetMenu (this));
 			GtkMnemonic.ApplyHotKey (ToolbarImportButton, FSpot.Resources.Lang.Strings.Import2);
@@ -75,7 +83,7 @@ public partial class MainWindow : Window, IAvaloniaShell
 			e.Handled = true;
 			return;
 		}
-		if (e.Key == Key.T && Input.ShortcutGuards.AllowsUnadornedKey (focused)
+		if (Input.ShortcutGuards.IsTagTypingKey (e.Key, e.KeyModifiers, focused)
 				&& DataContext is MainWindowViewModel typing) {
 			typing.OpenTagTypingCommand.Execute (null);
 			Dispatcher.UIThread.Post (() => TagTypingBox?.Focus ());
@@ -109,6 +117,9 @@ public partial class MainWindow : Window, IAvaloniaShell
 			e.Handled = true;
 			return;
 		}
+		if (e.Key is Key.Delete or Key.Left or Key.Right or Key.Up or Key.Down
+				&& !Input.ShortcutGuards.AllowsUnadornedKey (focused, e.Key))
+			return;
 		base.OnKeyDown (e);
 	}
 
@@ -137,10 +148,14 @@ public partial class MainWindow : Window, IAvaloniaShell
 		await Clipboard.SetDataAsync (data);
 	}
 
-	public Task SetDesktopBackgroundAsync (string path)
+	public async Task SetDesktopBackgroundAsync (string path)
 	{
-		DesktopBackground.Set (path);
-		return Task.CompletedTask;
+		try {
+			await Task.Run (() => DesktopBackground.Set (path));
+		} catch (Exception ex) {
+			Logger.Log.Error (ex, "Set as background failed");
+			await ShowWarningAsync (Strings.SetAsBackground, ex.Message);
+		}
 	}
 
 	public async Task<PrintPageSetup?> PromptPageSetupAsync (PrintPageSetup current)
@@ -244,9 +259,9 @@ public partial class MainWindow : Window, IAvaloniaShell
 	void EnsureMenuInAutomationTree ()
 	{
 		NativeMenuMirror.Fill (InWindowMenu, NativeMenu.GetMenu (this));
-		if (InWindowMenu.Items.Count == 0)
-			return;
-		InWindowMenu.IsVisible = true;
+		// The system menu bar already shows this menu when the platform exports it.
+		bool exported = NativeMenu.GetIsNativeMenuExported (this);
+		InWindowMenu.IsVisible = !exported && InWindowMenu.Items.Count > 0;
 		NativeMenuBar.IsVisible = false;
 	}
 

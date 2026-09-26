@@ -14,6 +14,8 @@ using FSpot.Utils;
 
 using Hyena;
 
+using SkiaSharp;
+
 using TagLib.Image;
 
 namespace FSpot.Avalonia.Imaging;
@@ -58,21 +60,27 @@ sealed class AvaloniaImagingBackend : IImagingBackend
 	}
 
 	public void SaveDerivedVersion (ImageBuffer buffer, SafeUri source, SafeUri dest, uint jpegQuality)
-		=> SavePng (buffer, dest.AbsolutePath, Array.Empty<string> (), Array.Empty<string> ());
+	{
+		string extension = dest.GetExtension ().ToLowerInvariant ();
+		int quality = jpegQuality > 100 ? 100 : (int)jpegQuality;
+		DerivedVersionFile.Publish (source, dest, temp => {
+			if (extension == ".png")
+				Encode (buffer, temp, SKEncodedImageFormat.Png, 100);
+			else
+				Encode (buffer, temp, SKEncodedImageFormat.Jpeg, quality);
+		});
+	}
 
 	public ImageBuffer? LoadThemeIcon (string name, int size)
 		=> null;
 
 	public byte[] SerializeIcon (ImageBuffer icon)
-	{
-		using var stream = new MemoryStream ();
-		using (var bitmap = ToBgraBitmap (icon))
-			bitmap.Save (stream, PngBitmapEncoderOptions.Default);
-		return stream.ToArray ();
-	}
+		=> GdkPixdata.Write (icon);
 
 	public ImageBuffer DeserializeIcon (byte[] data)
 	{
+		if (GdkPixdata.TryRead (data, out ImageBuffer icon))
+			return icon;
 		using var stream = new MemoryStream (data);
 		return Decode (stream, ImageOrientation.TopLeft);
 	}
@@ -81,9 +89,33 @@ sealed class AvaloniaImagingBackend : IImagingBackend
 		=> new ThumbnailPng { Image = Decode (stream, ImageOrientation.TopLeft) };
 
 	public void SavePng (ImageBuffer image, string path, string[] optionKeys, string[] optionValues)
+		=> Encode (image, path, SKEncodedImageFormat.Png, 100);
+
+	// Avalonia's headless bitmap Save writes no bytes. Skia is already the
+	// production encoder for mail and print, so file output uses it directly.
+	static void Encode (ImageBuffer buffer, string path, SKEncodedImageFormat format, int quality)
 	{
-		using var bitmap = ToBgraBitmap (image);
-		bitmap.Save (path, PngBitmapEncoderOptions.Default);
+		using var stream = System.IO.File.Create (path);
+		Encode (buffer, stream, format, quality);
+	}
+
+	static void Encode (ImageBuffer buffer, Stream stream, SKEncodedImageFormat format, int quality)
+	{
+		var info = new SKImageInfo (buffer.Width, buffer.Height, SKColorType.Rgba8888, SKAlphaType.Unpremul);
+		using var bitmap = new SKBitmap (info);
+		int channels = buffer.HasAlpha ? 4 : 3;
+		for (int y = 0; y < buffer.Height; y++) {
+			int srcRow = y * buffer.Rowstride;
+			for (int x = 0; x < buffer.Width; x++) {
+				int src = srcRow + x * channels;
+				byte alpha = buffer.HasAlpha ? buffer.Pixels[src + 3] : (byte)255;
+				bitmap.SetPixel (x, y, new SKColor (buffer.Pixels[src], buffer.Pixels[src + 1], buffer.Pixels[src + 2], alpha));
+			}
+		}
+
+		using var image = SKImage.FromBitmap (bitmap);
+		using var data = image.Encode (format, quality) ?? throw new InvalidOperationException ("The image encoder produced no data.");
+		data.SaveTo (stream);
 	}
 
 	internal static Bitmap ApplyOrientation (Bitmap bitmap, ImageOrientation orientation)

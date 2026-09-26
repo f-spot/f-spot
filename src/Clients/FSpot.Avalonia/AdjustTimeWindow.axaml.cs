@@ -4,6 +4,7 @@ using System.Globalization;
 
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Media.Imaging;
 using Avalonia.Threading;
 
 using FSpot;
@@ -24,6 +25,7 @@ public partial class AdjustTimeWindow : Window
 	// Guards against the DateEdit <-> difference-field round trip re-entering itself, and
 	// against the tray selection and the N-of-M spinner fighting over who moved the reference.
 	bool updatingFromCode;
+	bool released;
 	double uiScale = 1;
 	int previewGeneration;
 
@@ -44,6 +46,7 @@ public partial class AdjustTimeWindow : Window
 
 		trayItems = this.photos.Select (photo => new AdjustTimePhotoItem (photo.Name, photo.Time, photo.Path)).ToList ();
 		PhotoList.ItemsSource = trayItems;
+		Closing += (_, _) => ReleaseDecodedImages ();
 		PhotoList.SelectionChanged += (_, _) => OnReferenceChanged ();
 
 		bool multiple = this.photos.Count > 1;
@@ -102,6 +105,10 @@ public partial class AdjustTimeWindow : Window
 	public static string FormatOffset (TimeSpan offset)
 		=> offset.ToString ("c", CultureInfo.InvariantCulture);
 
+	// DatePicker stores a DateTimeOffset. A Local DateTime rejects offset zero.
+	static DateTimeOffset CalendarDate (DateTime time)
+		=> new (DateTime.SpecifyKind (time.Date, DateTimeKind.Unspecified), TimeSpan.Zero);
+
 	void OnReferenceChanged ()
 	{
 		int index = ReferenceIndex;
@@ -114,7 +121,7 @@ public partial class AdjustTimeWindow : Window
 		updatingFromCode = true;
 		try {
 			PhotoSpin.Value = index + 1;
-			AdjustedDatePart.SelectedDate = new DateTimeOffset (photo.Time.Date, TimeSpan.Zero);
+			AdjustedDatePart.SelectedDate = CalendarDate (photo.Time);
 			AdjustedTimePart.SelectedTime = photo.Time.TimeOfDay;
 			DifferenceBox.Text = FormatOffset (TimeSpan.Zero);
 		} finally {
@@ -171,7 +178,7 @@ public partial class AdjustTimeWindow : Window
 		// sees the previous time. Ignore it, or it writes 00:00:00 back over the offset.
 		AdjustedDatePart.SelectedDateChanged -= OnAdjustedDateChanged;
 		AdjustedTimePart.SelectedTimeChanged -= OnAdjustedTimeChanged;
-		AdjustedDatePart.SelectedDate = new DateTimeOffset (adjusted.Date, TimeSpan.Zero);
+		AdjustedDatePart.SelectedDate = CalendarDate (adjusted);
 		AdjustedTimePart.SelectedTime = adjusted.TimeOfDay;
 		RefreshShiftLabel (offset);
 		Dispatcher.UIThread.Post (() => {
@@ -192,6 +199,20 @@ public partial class AdjustTimeWindow : Window
 	void UpdateOkEnabled ()
 		=> OkButton.IsEnabled = SpaceAll.IsChecked != true || TryParseHours (SpacingBox.Text, out _);
 
+	void ReleaseDecodedImages ()
+	{
+		released = true;
+		previewGeneration++;
+		if (PreviewImage.Source is Bitmap preview) {
+			PreviewImage.Source = null;
+			preview.Dispose ();
+		}
+		foreach (var item in trayItems) {
+			item.Thumbnail?.Dispose ();
+			item.Thumbnail = null;
+		}
+	}
+
 	async Task LoadPreviewAsync ()
 	{
 		int generation = ++previewGeneration;
@@ -203,10 +224,13 @@ public partial class AdjustTimeWindow : Window
 		}
 		try {
 			var bitmap = await thumbnails.LoadAsync (path, HiDpi.PixelSize (HiDpi.AdjustTimePreviewDip, uiScale), CancellationToken.None);
-			if (generation != previewGeneration)
+			if (released || generation != previewGeneration)
 				bitmap?.Dispose ();
-			else
+			else {
+				if (PreviewImage.Source is Bitmap previous)
+					previous.Dispose ();
 				PreviewImage.Source = bitmap;
+			}
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Failed to preview the Adjust Time reference photo {Path}", path);
 		}
@@ -219,7 +243,13 @@ public partial class AdjustTimeWindow : Window
 			if (string.IsNullOrEmpty (item.Path))
 				continue;
 			try {
-				item.Thumbnail = await thumbnails.LoadAsync (item.Path, size, CancellationToken.None);
+				var bitmap = await thumbnails.LoadAsync (item.Path, size, CancellationToken.None);
+				if (released) {
+					bitmap?.Dispose ();
+					continue;
+				}
+				item.Thumbnail?.Dispose ();
+				item.Thumbnail = bitmap;
 			} catch (Exception ex) {
 				Logger.Log.Debug (ex, "Failed to thumbnail the Adjust Time tray photo {Path}", item.Path);
 			}
