@@ -85,6 +85,39 @@ public sealed class SlideshowWindowTests
 	}
 
 	[UiTestMethod]
+	public void ClosedCombo_KeepsTypingKeys_AndStillExits ()
+	{
+		AvaloniaApp.Ensure ();
+		var host = new RecordingHost ();
+		var window = new SlideshowWindow (new[] { "/missing/a.jpg", "/missing/b.jpg" }, 0, host, play: false);
+		window.Show ();
+		var combo = window.FindControl<ComboBox> ("TransitionCombo")!;
+		var info = window.FindControl<Border> ("InfoOverlay")!;
+		var bar = window.FindControl<Border> ("ControlBar")!;
+		bar.IsVisible = true;
+		bar.Opacity = 1;
+		window.UpdateLayout ();
+		Assert.IsTrue (combo.Focus ());
+		Assert.IsTrue (combo.IsFocused);
+		Assert.IsFalse (combo.IsDropDownOpen);
+
+		Press (window, Key.I);
+		Assert.IsFalse (info.IsVisible);
+		Press (window, Key.Delete);
+		Assert.IsNull (host.RemovedPath);
+		Press (window, Key.OemOpenBrackets);
+		Assert.IsNull (host.Rotated);
+
+		combo.IsDropDownOpen = true;
+		Press (window, Key.Escape);
+		Assert.IsTrue (window.IsVisible);
+
+		combo.IsDropDownOpen = false;
+		Press (window, Key.F);
+		Assert.IsFalse (window.IsVisible);
+	}
+
+	[UiTestMethod]
 	public void Slideshow_OpensPlaying_AndPlayPauseToggles ()
 	{
 		AvaloniaApp.Ensure ();

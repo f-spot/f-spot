@@ -54,6 +54,9 @@ public partial class SlideshowWindow : Window
 		InitializeComponent ();
 
 		InfoOverlay.DataContext = info;
+		// PhotoPopup reads the main window model from this window when the menu opens.
+		if (host is MainWindowViewModel viewModel)
+			DataContext = viewModel;
 		TransitionCombo.ItemsSource = SlideshowTransition.All.Select (TransitionName).ToList ();
 		TransitionCombo.SelectedIndex = 0;
 
@@ -110,6 +113,8 @@ public partial class SlideshowWindow : Window
 
 	public void PlayPause ()
 	{
+		if (busy)
+			return;
 		playing = !playing;
 		PlayPauseGlyph.Text = playing ? "❚❚" : "▶";
 		if (playing)
@@ -122,6 +127,8 @@ public partial class SlideshowWindow : Window
 
 	void Go (int delta)
 	{
+		if (busy)
+			return;
 		bool moved = delta > 0 ? sequence.Advance () : sequence.Retreat ();
 		if (!moved)
 			return;
@@ -234,18 +241,25 @@ public partial class SlideshowWindow : Window
 	{
 		if (host is null || busy || sequence.Count == 0)
 			return;
+		string path = sequence.Current;
 		busy = true;
+		bool resume = playing;
+		flipTimer.Stop ();
 		try {
-			bool removed = await host.RemovePhotoAsync (sequence.Current, deleteFromDrive);
+			bool removed = await host.RemovePhotoAsync (path, deleteFromDrive);
+			if (!IsVisible)
+				return;
 			if (!removed)
 				return;
-			if (!sequence.RemoveCurrent ()) {
+			if (!sequence.Remove (path)) {
 				Close ();
 				return;
 			}
 			ShowCurrent (animate: false);
 		} finally {
 			busy = false;
+			if (resume && playing && IsVisible)
+				flipTimer.Start ();
 			// GTK presents the fullscreen view again so the confirmation dialog does not leave it buried.
 			if (IsVisible)
 				Activate ();
@@ -291,6 +305,11 @@ public partial class SlideshowWindow : Window
 			return;
 		var action = FullScreenKeys.Map (e.Key, e.KeyModifiers);
 		if (action.Command == FullScreenCommand.None)
+			return;
+		// F, Q, F11 and Escape leave the show even when a combo or text box is focused.
+		var focused = FocusManager?.GetFocusedElement ();
+		if (action.Command != FullScreenCommand.Exit
+			&& !Input.ShortcutGuards.AllowsUnadornedKey (focused, e.Key))
 			return;
 		e.Handled = true;
 		Execute (action);

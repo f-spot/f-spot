@@ -4,6 +4,7 @@
         xmlns:lang="using:FSpot.Resources.Lang"
         xmlns:svg="using:Avalonia.Svg.Skia"
         xmlns:vm="using:FSpot.Avalonia.ViewModels"
+        xmlns:controls="using:FSpot.Avalonia.Controls"
         x:Class="FSpot.Avalonia.SlideshowWindow"
         Title="{x:Static lang:Strings.Slideshow}"
         WindowState="FullScreen"
@@ -38,6 +39,9 @@
 		</Style>
 	</Window.Styles>
 	<Panel Name="Stage" ClipToBounds="True" Background="Black">
+		<Panel.ContextMenu>
+			<controls:PhotoPopup />
+		</Panel.ContextMenu>
 		<Panel Name="PreviousLayer" Background="Black">
 			<Panel.RenderTransform>
 				<TranslateTransform />

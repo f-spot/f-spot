@@ -13,8 +13,8 @@ using FSpot.Avalonia.ViewModels;
 namespace FSpot.Avalonia.Controls;
 
 /// <summary>
-/// GTK's /FSpot/Menus/PhotoPopup: the context menu of a photo in the browser, the filmstrip
-/// and the photo view (including fullscreen), with the rows extensions contribute after it.
+/// GTK's /FSpot/Menus/PhotoPopup on the photo view and on FullScreenView, plus extension rows.
+/// The browse grid keeps its shorter menu. The filmstrip menu is orientation only.
 /// </summary>
 public partial class PhotoPopup : ContextMenu
 {

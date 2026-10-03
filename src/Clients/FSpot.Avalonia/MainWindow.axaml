@@ -982,6 +982,9 @@
 					       DragDrop.AllowDrop="True"
 					       input:CatalogDrop.Kind="PhotoView"
 					       input:ViewerInput.Surface="True">
+						<Panel.ContextMenu>
+							<controls:PhotoPopup />
+						</Panel.ContextMenu>
 						<Image Name="PreviewImage" Source="{Binding DisplayedPreview}"
 						       Stretch="Uniform"
 						       Margin="8"
