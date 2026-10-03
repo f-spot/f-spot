@@ -598,6 +598,11 @@
 						<Slider Minimum="0" Maximum="100" Value="{Binding EditorSession.Context.BwBlue}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorBwBlue}"
 						        AutomationProperties.Name="{x:Static lang:Strings.Blue}" />
+						<controls:SplineCurveEditor Height="140"
+						                            Session="{Binding EditorSession}"
+						                            Curve="{Binding EditorSession.Context.BwCurve, Mode=OneWayToSource}"
+						                            AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorBwCurve}"
+						                            AutomationProperties.Name="{x:Static lang:Strings.ConvertToBW}" />
 					</StackPanel>
 					<NumericUpDown IsVisible="{Binding ShowResizeSettings}"
 					               Minimum="128"

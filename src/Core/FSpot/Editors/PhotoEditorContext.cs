@@ -24,6 +24,7 @@ namespace FSpot.Editors
 		float bwRed = 80;
 		float bwGreen = 10;
 		float bwBlue = 10;
+		byte[] bwCurve;
 		double tiltDegrees;
 		double softFocusRadius = 0.5;
 
@@ -84,7 +85,10 @@ namespace FSpot.Editors
 			set => Set (ref bwBlue, value);
 		}
 
-		public byte[] BwCurve { get; set; }
+		public byte[] BwCurve {
+			get => bwCurve;
+			set => Set (ref bwCurve, value);
+		}
 
 		public double TiltDegrees {
 			get => tiltDegrees;

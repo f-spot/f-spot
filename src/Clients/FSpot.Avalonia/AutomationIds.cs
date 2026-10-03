@@ -126,6 +126,7 @@ public static class AutomationIds
 	public const string EditorBwRed = "Main.Editor.BW.Red";
 	public const string EditorBwGreen = "Main.Editor.BW.Green";
 	public const string EditorBwBlue = "Main.Editor.BW.Blue";
+	public const string EditorBwCurve = "Main.Editor.BW.Curve";
 	public const string EditorResizeMaxEdge = "Main.Editor.Resize.MaxEdge";
 	public const string EditorTiltAngle = "Main.Editor.Tilt.Angle";
 	public const string EditorSoftFocusRadius = "Main.Editor.SoftFocus.Radius";
@@ -162,6 +163,7 @@ public static class AutomationIds
 
 	public const string AboutLogo = "About.Logo";
 	public const string AboutVersion = "About.Version";
+	public const string AboutTelemetry = "About.Telemetry";
 	public const string AboutDescription = "About.Description";
 	public const string AboutClose = "About.Close";
 
@@ -184,6 +186,7 @@ public static class AutomationIds
 	public const string PreferencesTransparencyCustomColor = "Preferences.Transparency.CustomColor";
 	public const string PreferencesTransparencyColorHex = "Preferences.Transparency.ColorHex";
 	public const string PreferencesMailEnabled = "Preferences.MailEnabled";
+	public const string PreferencesSendCrashReports = "Preferences.SendCrashReports";
 	public const string ExtensionsWindow = "Extensions.Window";
 	public const string ExtensionsList = "Extensions.List";
 	public const string InfoShowDate = "Main.Sidebar.Info.ShowDate";
