@@ -18,12 +18,15 @@ public partial class ExtensionsWindow : Window
 		this.addins = addins;
 		InitializeComponent ();
 		Addins.ItemsSource = addins;
+		Closing += (_, _) => SaveEnabled ();
 	}
 
 	void OnClose (object? sender, RoutedEventArgs e)
+		=> Close ();
+
+	void SaveEnabled ()
 	{
 		foreach (var addin in addins)
 			AddinCatalog.SetEnabled (addins, addin.Id, addin.Enabled);
-		Close ();
 	}
 }

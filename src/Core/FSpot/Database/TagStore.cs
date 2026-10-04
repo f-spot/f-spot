@@ -87,6 +87,18 @@ namespace FSpot.Database
 			}
 		}
 
+		public string[] Names ()
+		{
+			var names = new List<string> ();
+			foreach (object cached in itemCache.Values) {
+				var tag = cached as Tag;
+				if (tag != null && !string.IsNullOrWhiteSpace (tag.Name))
+					names.Add (tag.Name);
+			}
+
+			return names.ToArray ();
+		}
+
 		public Tag GetTagByName (string name)
 		{
 			var nameToLower = name.ToLower ();

@@ -124,6 +124,8 @@ namespace FSpot
 							new FSpot.UI.Dialog.RepairDbDialog (e, db.Repair (), null);
 							db.Init (Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName), true);
 						}
+
+						FSpotSentry.UseTagCatalog (db.Tags);
 					}
 				}
 				return db;

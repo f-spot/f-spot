@@ -4571,6 +4571,24 @@ namespace FSpot.Resources.Lang {
             }
         }
 
+        public static string SendCrashReportsToSentry {
+            get {
+                return ResourceManager.GetString("SendCrashReportsToSentry", resourceCulture);
+            }
+        }
+
+        public static string CrashReportsAreOff {
+            get {
+                return ResourceManager.GetString("CrashReportsAreOff", resourceCulture);
+            }
+        }
+
+        public static string CrashReportsStayOffUntilEnabled {
+            get {
+                return ResourceManager.GetString("CrashReportsStayOffUntilEnabled", resourceCulture);
+            }
+        }
+
         public static string DetectDuplicates {
             get {
                 return ResourceManager.GetString("DetectDuplicates", resourceCulture);
@@ -5237,6 +5255,102 @@ namespace FSpot.Resources.Lang {
         public static string OpenWith {
             get {
                 return ResourceManager.GetString("OpenWith", resourceCulture);
+            }
+        }
+
+        public static string ExportTo2 {
+            get {
+                return ResourceManager.GetString("ExportTo2", resourceCulture);
+            }
+        }
+
+        public static string Folder3 {
+            get {
+                return ResourceManager.GetString("Folder3", resourceCulture);
+            }
+        }
+
+        public static string TagIcons {
+            get {
+                return ResourceManager.GetString("TagIcons", resourceCulture);
+            }
+        }
+
+        public static string Hidden2 {
+            get {
+                return ResourceManager.GetString("Hidden2", resourceCulture);
+            }
+        }
+
+        public static string Small2 {
+            get {
+                return ResourceManager.GetString("Small2", resourceCulture);
+            }
+        }
+
+        public static string Medium2 {
+            get {
+                return ResourceManager.GetString("Medium2", resourceCulture);
+            }
+        }
+
+        public static string Large2 {
+            get {
+                return ResourceManager.GetString("Large2", resourceCulture);
+            }
+        }
+
+        public static string ExtensionManager {
+            get {
+                return ResourceManager.GetString("ExtensionManager", resourceCulture);
+            }
+        }
+
+        public static string Installed {
+            get {
+                return ResourceManager.GetString("Installed", resourceCulture);
+            }
+        }
+
+        public static string Updates {
+            get {
+                return ResourceManager.GetString("Updates", resourceCulture);
+            }
+        }
+
+        public static string NoUpdatesFound {
+            get {
+                return ResourceManager.GetString("NoUpdatesFound", resourceCulture);
+            }
+        }
+
+        public static string Refresh {
+            get {
+                return ResourceManager.GetString("Refresh", resourceCulture);
+            }
+        }
+
+        public static string UpdateAll {
+            get {
+                return ResourceManager.GetString("UpdateAll", resourceCulture);
+            }
+        }
+
+        public static string InstallFromFile {
+            get {
+                return ResourceManager.GetString("InstallFromFile", resourceCulture);
+            }
+        }
+
+        public static string Repository {
+            get {
+                return ResourceManager.GetString("Repository", resourceCulture);
+            }
+        }
+
+        public static string TheFollowingExtensionsAreCurrentlyInstalled {
+            get {
+                return ResourceManager.GetString("TheFollowingExtensionsAreCurrentlyInstalled", resourceCulture);
             }
         }
     }

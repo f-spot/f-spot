@@ -105,7 +105,9 @@ namespace FSpot.UI.Dialog
 					"In memory Of",
 					"\tEttore Perazzoli",
 			};
-			Comments = Strings.PhotoManagementForGNOME;
+			Comments = Strings.PhotoManagementForGNOME
+				+ Environment.NewLine + Environment.NewLine
+				+ FSpotSentry.ReportingDescription ();
 			Copyright = Strings.CopyrightNovell;
 			Documenters = new string[] {
 					"Aaron Bockover",

@@ -3935,6 +3935,15 @@ Viewport</value>
   <data name="SendByMail" xml:space="preserve">
     <value>Send by _Mail...</value>
   </data>
+  <data name="SendCrashReportsToSentry" xml:space="preserve">
+    <value>Send crash reports to Sentry</value>
+  </data>
+  <data name="CrashReportsAreOff" xml:space="preserve">
+    <value>Crash reports are off. Turn them on in Preferences.</value>
+  </data>
+  <data name="CrashReportsStayOffUntilEnabled" xml:space="preserve">
+    <value>Crash reports are sent to Sentry. Turn them off in Preferences, or set FSPOT_SENTRY=0 to force them off.</value>
+  </data>
   <data name="SendMail" xml:space="preserve">
     <value>Send _Mail...</value>
   </data>
@@ -4963,5 +4972,23 @@ Facebook said: {0}</value>
   </data>
   <data name="StockGoDown" xml:space="preserve">
     <value>_Down</value>
+  </data>
+  <data name="Installed" xml:space="preserve">
+    <value>Installed</value>
+  </data>
+  <data name="Updates" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="NoUpdatesFound" xml:space="preserve">
+    <value>No updates found</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="UpdateAll" xml:space="preserve">
+    <value>Update All</value>
+  </data>
+  <data name="InstallFromFile" xml:space="preserve">
+    <value>Install from file...</value>
   </data>
 </root>

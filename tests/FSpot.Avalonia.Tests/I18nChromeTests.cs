@@ -8,6 +8,7 @@ using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.VisualTree;
 
+using FSpot;
 using FSpot.Avalonia.ViewModels;
 using FSpot.Core;
 using FSpot.Resources.Lang;
@@ -132,6 +133,14 @@ public sealed class I18nChromeTests
 		Assert.AreEqual (string.Format (Strings.VersionX, FSpotConfiguration.Version), about.Version);
 		Assert.Contains (FSpotConfiguration.Version, about.Version);
 		Assert.DoesNotContain ("{0}", about.Version);
+	}
+
+	[TestMethod]
+	public void AboutViewModel_SaysWhenCrashReportsAreOff ()
+	{
+		var about = new AboutViewModel ();
+		Assert.AreEqual (FSpotSentry.ReportingDescription (), about.Telemetry);
+		Assert.AreEqual (Strings.CrashReportsAreOff, about.Telemetry);
 	}
 
 	[UiTestMethod]

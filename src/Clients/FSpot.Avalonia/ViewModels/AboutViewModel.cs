@@ -14,5 +14,5 @@ public sealed class AboutViewModel : ObservableObject
 {
 	public string Version { get; } = string.Format (Strings.VersionX, FSpotConfiguration.Version);
 
-	public string Telemetry { get; } = Strings.CrashReportsStayOffUntilEnabled;
+	public string Telemetry => FSpotSentry.ReportingDescription ();
 }

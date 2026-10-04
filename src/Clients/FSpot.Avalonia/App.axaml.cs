@@ -81,6 +81,8 @@ public partial class App : Application
 			Logger.Log.Error (ex, "Failed to open the F-Spot catalog at {Path}", path);
 			RepairDatabase (Database, ex);
 		}
+
+		FSpotSentry.UseTagCatalog (Database?.Tags);
 	}
 
 	// Matches FSpot.Gtk's App.Database: when the catalog fails to load,
