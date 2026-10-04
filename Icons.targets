@@ -1,10 +1,17 @@
 <Project>
-  <!-- Rasterize icons/src/*.svg into committed icons/*.png when missing or the SVG is newer. -->
+  <!-- Opt-in. Client projects leave RasterizeIcons false so a build does not rewrite committed PNGs. -->
   <Target Name="RasterizeIconsFromSvg"
           BeforeTargets="BeforeBuild"
           Condition="'$(RasterizeIcons)' == 'true' AND '$(DesignTimeBuild)' != 'true'">
-    <Exec Command="dotnet run --project &quot;$(RepoRoot)tools/RasterizeIcons/RasterizeIcons.csproj&quot; -c $(Configuration) --no-launch-profile -- &quot;$(RepoRoot)icons&quot;"
-          WorkingDirectory="$(RepoRoot)"
-          StandardOutputImportance="low" />
+    <!-- The solution builds this tool as well. A nested dotnet run that shares
+         its obj or output directory collides with that build and with the other client. -->
+    <PropertyGroup>
+      <_IconToolRoot>$([System.IO.Path]::TrimEndingDirectorySeparator('$(RepoRoot)'))</_IconToolRoot>
+      <_IconToolDir>$(_IconToolRoot)/artifacts/rasterize-icons-$(MSBuildProjectName)/</_IconToolDir>
+    </PropertyGroup>
+    <Exec
+      Command="dotnet run --project &quot;$(_IconToolRoot)/tools/RasterizeIcons/RasterizeIcons.csproj&quot; -c $(Configuration) --no-launch-profile -p:BaseIntermediateOutputPath=&quot;$(_IconToolDir)obj/&quot; -p:OutputPath=&quot;$(_IconToolDir)&quot; -p:AppendTargetFrameworkToOutputPath=false -- &quot;$(_IconToolRoot)/icons&quot;"
+      WorkingDirectory="$(RepoRoot)"
+      StandardOutputImportance="low" />
   </Target>
 </Project>

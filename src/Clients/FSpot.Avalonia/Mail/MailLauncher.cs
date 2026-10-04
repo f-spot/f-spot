@@ -55,7 +55,7 @@ public static class MailLauncher
 	{
 		var query = new StringBuilder ();
 		foreach (string file in attachments)
-			query.Append ("&attach=").Append (new Uri (file).AbsoluteUri);
+			query.Append ("&attach=").Append (FileUri.FromPath (file));
 		return query.ToString ();
 	}
 

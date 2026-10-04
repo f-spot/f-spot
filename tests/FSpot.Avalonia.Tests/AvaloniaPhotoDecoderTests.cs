@@ -5,11 +5,14 @@ using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 
 using FSpot.Avalonia.Imaging;
+using FSpot.Imaging;
 using FSpot.Utils;
 
 using Hyena;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using SkiaSharp;
 
 using TagLib.Image;
 
@@ -49,6 +52,52 @@ public sealed class AvaloniaPhotoDecoderTests
 	}
 
 	[UiTestMethod]
+	public void DecodeFile_FitsATallImageInsideTheBox ()
+	{
+		EnsureAvalonia ();
+		string path = Path.Combine (Path.GetTempPath (), Guid.NewGuid ().ToString ("N") + ".png");
+		try {
+			WriteSolidPng (path, 2, 2000);
+			using var bitmap = AvaloniaPhotoDecoder.DecodeFile (path, decodeToWidth: 256);
+			Assert.IsLessThanOrEqualTo (256, bitmap.PixelSize.Width);
+			Assert.IsLessThanOrEqualTo (256, bitmap.PixelSize.Height);
+			Assert.IsGreaterThan (0, bitmap.PixelSize.Width);
+			Assert.IsGreaterThan (0, bitmap.PixelSize.Height);
+		} finally {
+			System.IO.File.Delete (path);
+		}
+	}
+
+	[UiTestMethod]
+	public void DecodeFile_RefusesAnImageOverThePixelCap ()
+	{
+		EnsureAvalonia ();
+		string path = Path.Combine (Path.GetTempPath (), Guid.NewGuid ().ToString ("N") + ".png");
+		try {
+			WritePngHeader (path, 20000, 20000);
+			var missed = Assert.ThrowsExactly<InvalidDataException> (() => AvaloniaPhotoDecoder.DecodeFile (path));
+			Assert.AreEqual (DecodeBudget.TooLargeMessage, missed.Message);
+		} finally {
+			System.IO.File.Delete (path);
+		}
+	}
+
+	[UiTestMethod]
+	public void DecodeFile_RefusesASmallImageWhenTheSharedBudgetSaysSo ()
+	{
+		EnsureAvalonia ();
+		string path = Path.Combine (Path.GetTempPath (), Guid.NewGuid ().ToString ("N") + ".png");
+		try {
+			WriteSolidPng (path, 4, 4);
+			using var limit = DecodeBudget.LimitForTest (1);
+			var missed = Assert.ThrowsExactly<InvalidDataException> (() => AvaloniaPhotoDecoder.DecodeFile (path));
+			Assert.AreEqual (DecodeBudget.TooLargeMessage, missed.Message);
+		} finally {
+			System.IO.File.Delete (path);
+		}
+	}
+
+	[UiTestMethod]
 	public void DecodeFile_AppliesTheExifOrientationTag ()
 	{
 		EnsureAvalonia ();
@@ -56,15 +105,12 @@ public sealed class AvaloniaPhotoDecoderTests
 		try {
 			WriteOrientation (path, ImageOrientation.TopLeft);
 			using var original = AvaloniaPhotoDecoder.DecodeFile (path, decodeToWidth: 200);
-			byte[] topLeft = Pixel (original, 0, 0);
 
-			WriteOrientation (path, ImageOrientation.BottomRight);
+			WriteOrientation (path, ImageOrientation.RightTop);
 			using var rotated = AvaloniaPhotoDecoder.DecodeFile (path, decodeToWidth: 200);
-			byte[] rotatedTopLeft = Pixel (rotated, 0, 0);
 
-			Assert.AreEqual (original.PixelSize.Width, rotated.PixelSize.Width);
-			Assert.AreEqual (original.PixelSize.Height, rotated.PixelSize.Height);
-			Assert.AreNotSequenceEqual (topLeft, rotatedTopLeft);
+			Assert.AreEqual (original.PixelSize.Height, rotated.PixelSize.Width);
+			Assert.AreEqual (original.PixelSize.Width, rotated.PixelSize.Height);
 		} finally {
 			System.IO.File.Delete (path);
 		}
@@ -101,15 +147,65 @@ public sealed class AvaloniaPhotoDecoderTests
 		pixel[3] = 255;
 	}
 
-	static byte[] Pixel (Bitmap bitmap, int x, int y)
+	static void WriteSolidPng (string path, int width, int height)
 	{
-		var data = new byte[4];
-		unsafe {
-			fixed (byte* pointer = data)
-				bitmap.CopyPixels (new global::Avalonia.PixelRect (x, y, 1, 1), (nint)pointer, data.Length, 4);
+		var info = new SKImageInfo (width, height, SKColorType.Rgba8888, SKAlphaType.Opaque);
+		using var bitmap = new SKBitmap (info);
+		bitmap.Erase (SKColors.Red);
+		using var image = SKImage.FromBitmap (bitmap);
+		using var data = image.Encode (SKEncodedImageFormat.Png, 100);
+		using var stream = System.IO.File.Create (path);
+		data.SaveTo (stream);
+	}
+
+	static void WritePngHeader (string path, int width, int height)
+	{
+		using var stream = System.IO.File.Create (path);
+		stream.Write (new byte[] { 137, 80, 78, 71, 13, 10, 26, 10 });
+		var ihdr = new byte[13];
+		WriteInt (ihdr, 0, width);
+		WriteInt (ihdr, 4, height);
+		ihdr[8] = 8;
+		ihdr[9] = 2;
+		WriteChunk (stream, "IHDR"u8, ihdr);
+		// Skia will not open a PNG that has no IDAT, so the header never reaches the cap.
+		WriteChunk (stream, "IDAT"u8, Array.Empty<byte> ());
+		WriteChunk (stream, "IEND"u8, Array.Empty<byte> ());
+	}
+
+	static void WriteChunk (Stream stream, ReadOnlySpan<byte> type, byte[] data)
+	{
+		Span<byte> length = stackalloc byte[4];
+		WriteInt (length, 0, data.Length);
+		stream.Write (length);
+		stream.Write (type);
+		stream.Write (data);
+		var crcInput = new byte[type.Length + data.Length];
+		type.CopyTo (crcInput);
+		data.CopyTo (crcInput.AsSpan (type.Length));
+		Span<byte> crc = stackalloc byte[4];
+		WriteInt (crc, 0, (int)Crc32 (crcInput));
+		stream.Write (crc);
+	}
+
+	static void WriteInt (Span<byte> buffer, int offset, int value)
+	{
+		buffer[offset] = (byte)(value >> 24);
+		buffer[offset + 1] = (byte)(value >> 16);
+		buffer[offset + 2] = (byte)(value >> 8);
+		buffer[offset + 3] = (byte)value;
+	}
+
+	static uint Crc32 (byte[] data)
+	{
+		uint crc = 0xFFFFFFFF;
+		foreach (byte value in data) {
+			crc ^= value;
+			for (int bit = 0; bit < 8; bit++)
+				crc = (crc & 1) != 0 ? (crc >> 1) ^ 0xEDB88320 : crc >> 1;
 		}
 
-		return data;
+		return ~crc;
 	}
 
 	static string CopySample ()

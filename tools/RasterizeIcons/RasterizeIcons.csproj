@@ -10,9 +10,17 @@
     <RasterizeIcons>false</RasterizeIcons>
   </PropertyGroup>
 
+  <!-- A client build invokes this project with another intermediate directory.
+       The default obj folder is then no longer excluded, and its generated
+       sources would be compiled again. -->
+  <ItemGroup Condition="'$(BaseIntermediateOutputPath)' != '' and !$(BaseIntermediateOutputPath.StartsWith('obj'))">
+    <Compile Remove="obj/**/*.cs" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Svg.Skia" />
     <PackageReference Include="SkiaSharp" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" />
   </ItemGroup>
 
 </Project>

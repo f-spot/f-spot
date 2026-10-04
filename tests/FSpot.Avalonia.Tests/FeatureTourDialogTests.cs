@@ -187,11 +187,13 @@ public sealed class FeatureTourDialogTests
 			await Drain ();
 			Assert.IsFalse (before.AsSpan ().SequenceEqual (File.ReadAllBytes (paths[0])));
 
-			int versions = ((Photo)viewModel.Photos[0].Photo).Versions.Count ();
-			Press (window, "Main.Sidebar.Edit.Desaturate");
-			await Drain ();
-			Assert.IsGreaterThan (versions, ((Photo)viewModel.Photos[0].Photo).Versions.Count ());
-			Assert.IsGreaterThan (1, Directory.GetFiles (root, "*.jpg").Length);
+			if (LcmsProbe.TryUse (PhotoEditorCatalog.Desaturate.Id)) {
+				int versions = ((Photo)viewModel.Photos[0].Photo).Versions.Count ();
+				Press (window, "Main.Sidebar.Edit.Desaturate");
+				await Drain ();
+				Assert.IsGreaterThan (versions, ((Photo)viewModel.Photos[0].Photo).Versions.Count ());
+				Assert.IsGreaterThan (1, Directory.GetFiles (root, "*.jpg").Length);
+			}
 
 			window.Close ();
 			Assert.AreEqual (0, loader.Live);
@@ -270,6 +272,58 @@ public sealed class FeatureTourDialogTests
 
 		window.Close ();
 		Assert.AreEqual (0, catalog.Loader.Live);
+	}
+
+	[UiTestMethod]
+	public async Task TitledProgressWindow_CancelOnClose ()
+	{
+		AvaloniaApp.Ensure ();
+		var window = new ProgressWindow (Strings.PreparingEmail, 2);
+		Task<bool> retry = window.PerformRetrySkipAsync ();
+		window.Show ();
+		window.Close ();
+		Assert.IsTrue (window.StopRequested.IsCancellationRequested);
+		Assert.IsFalse (await retry);
+	}
+
+	[UiTestMethod]
+	public async Task DeleteFromDrive_KeepsThePhotoWhenTheFileCannotBeDeleted ()
+	{
+		using var catalog = CopyCatalog.Open (1);
+		string path = catalog.Paths[0];
+		string? directory = Path.GetDirectoryName (path);
+		Assert.IsNotNull (directory);
+		var viewModel = catalog.ViewModel;
+		viewModel.SelectPhoto (catalog.ItemFor (path));
+		var dirInfo = new DirectoryInfo (directory);
+		bool windows = OperatingSystem.IsWindows ();
+		FileAttributes previousAttributes = default;
+		UnixFileMode previousMode = default;
+		if (windows) {
+			previousAttributes = File.GetAttributes (path);
+			File.SetAttributes (path, previousAttributes | FileAttributes.ReadOnly);
+		} else {
+			previousMode = dirInfo.UnixFileMode;
+			dirInfo.UnixFileMode = UnixFileMode.UserRead | UnixFileMode.UserExecute;
+		}
+
+		try {
+			viewModel.DeleteFromDriveCommand.Execute (null);
+			await Confirm (catalog.Window);
+			await Drain ();
+			var warning = catalog.Window.OwnedWindows.OfType<MessageDialog> ().Single ();
+			Assert.AreEqual (Strings.ErrorDeletingPicture, warning.HeadingBlock.Text);
+			Assert.Contains (path, warning.BodyBlock.Text ?? string.Empty);
+			Click (warning, AutomationIds.DialogOk);
+			await Drain ();
+			Assert.AreEqual (1, viewModel.Photos.Count);
+			Assert.IsTrue (File.Exists (path));
+		} finally {
+			if (windows)
+				File.SetAttributes (path, previousAttributes);
+			else
+				dirInfo.UnixFileMode = previousMode;
+		}
 	}
 
 	[UiTestMethod]
@@ -505,6 +559,9 @@ public sealed class FeatureTourDialogTests
 
 	static async Task Commit (Window window, MainWindowViewModel viewModel, string editorId, Action<PhotoEditorContext>? adjust = null)
 	{
+		if (!LcmsProbe.TryUse (editorId))
+			return;
+
 		int versions = ((Photo)viewModel.SelectedPhoto!.Photo).Versions.Count ();
 		window.UpdateLayout ();
 		// Headless saves an empty derived JPEG, so each tool starts from the original file.

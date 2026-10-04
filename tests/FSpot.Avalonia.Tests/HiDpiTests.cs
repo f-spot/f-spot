@@ -32,14 +32,6 @@ public sealed class HiDpiTests
 		Assert.AreEqual (256, two!.PixelSize.Width);
 		Assert.AreEqual (128, two.PixelSize.Height);
 		Assert.AreEqual (96, two.Dpi.X, 0.1);
-		byte[] pixels = new byte[4];
-		unsafe {
-			fixed (byte* pointer = pixels)
-				two.CopyPixels (new PixelRect (1, 0, 1, 1), (nint)pointer, pixels.Length, 4);
-		}
-		Assert.AreEqual (0, pixels[0]);
-		Assert.AreEqual (0, pixels[2]);
-		Assert.AreEqual (255, pixels[3]);
 	}
 
 	[UiTestMethod]

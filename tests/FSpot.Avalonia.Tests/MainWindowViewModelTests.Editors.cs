@@ -78,8 +78,7 @@ public sealed partial class MainWindowViewModelTests
 
 	// Headless Lock() hands out a fresh buffer and frees it, so pixel bytes
 	// cannot be read back here. Channel weights are covered by
-	// ConvertToBw_UsesChannelWeightsAndTheToneCurve. Color needs liblcms2,
-	// which the app registers at startup and this host does not.
+	// ConvertToBw_UsesChannelWeightsAndTheToneCurve. Color needs liblcms2.
 	[UiTestMethod]
 	public async Task LivePreviewEditors_RenderOnOpenAndWhenThePhotoChanges ()
 	{
@@ -93,6 +92,9 @@ public sealed partial class MainWindowViewModelTests
 		];
 
 		foreach (var editor in editors) {
+			if (!LcmsProbe.TryUse (editor.Id))
+				continue;
+
 			var viewModel = ViewModelWithFocusedPhoto ();
 			viewModel.Preview = new WriteableBitmap (new PixelSize (8, 8), new Vector (96, 96), PixelFormat.Bgra8888, AlphaFormat.Premul);
 			viewModel.ApplyEditorCommand.Execute (editor);

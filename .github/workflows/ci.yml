@@ -57,6 +57,26 @@ jobs:
           brew install little-cms2
           echo "FSPOT_REQUIRE_LCMS2=1" >> "$GITHUB_ENV"
 
+      # Windows has no distro package. Build the shared library the resolver already
+      # loads through FSPOT_LCMS2_LIBRARY, and require it so a missing DLL fails the job.
+      - name: Install Little-CMS (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $src = Join-Path $env:RUNNER_TEMP "Little-CMS"
+          git clone --depth 1 --branch lcms2.19.1 https://github.com/mm2/Little-CMS.git $src
+          if ($LASTEXITCODE -ne 0) { throw "git clone of Little-CMS failed" }
+          $build = Join-Path $src "build"
+          cmake -S $src -B $build -DLCMS2_BUILD_SHARED=ON -DLCMS2_BUILD_STATIC=OFF -DLCMS2_BUILD_TOOLS=OFF -DLCMS2_BUILD_TESTS=OFF -DLCMS2_WITH_JPEG=OFF -DLCMS2_WITH_TIFF=OFF
+          if ($LASTEXITCODE -ne 0) { throw "cmake configure of Little-CMS failed" }
+          cmake --build $build --config Release
+          if ($LASTEXITCODE -ne 0) { throw "cmake build of Little-CMS failed" }
+          $dll = Get-ChildItem -Path $build -Recurse -Filter "lcms2.dll" | Select-Object -First 1
+          if (-not $dll) { throw "lcms2.dll was not produced" }
+          Add-Content -Path $env:GITHUB_PATH -Value $dll.DirectoryName
+          Add-Content -Path $env:GITHUB_ENV -Value "FSPOT_LCMS2_LIBRARY=$($dll.FullName)"
+          Add-Content -Path $env:GITHUB_ENV -Value "FSPOT_REQUIRE_LCMS2=1"
+
       - name: Restore tests
         run: dotnet restore F-Spot.Tests.slnf
 
