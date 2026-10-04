@@ -5,6 +5,8 @@
 
 using System.Collections;
 using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 using Avalonia;
 using Avalonia.Controls;
@@ -13,6 +15,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 
 using FSpot.Avalonia.Imaging;
+using FSpot.Avalonia.ViewModels;
 
 namespace FSpot.Avalonia.Controls;
 
@@ -31,6 +34,7 @@ public class UniformVirtualizingWrapPanel : VirtualizingPanel, ILogicalScrollabl
 		AvaloniaProperty.Register<UniformVirtualizingWrapPanel, double> (nameof (ItemHeight), 224);
 
 	readonly Dictionary<int, Control> realized = new ();
+	static readonly ConditionalWeakTable<Control, SelectionSync> selectionSync = new ();
 
 	Vector offset;
 	Size extent;
@@ -245,13 +249,77 @@ public class UniformVirtualizingWrapPanel : VirtualizingPanel, ILogicalScrollabl
 		generator.PrepareItemContainer (container, item, index);
 		AddInternalChild (container);
 		generator.ItemContainerPrepared (container, item, index);
+		// IsSelected set before prepare is applied as a toggle on a multiple-selection list and clears
+		// the current photo. Later changes sync both ways, and the values already on the row are left
+		// alone, so opening the grid keeps the current photo without inventing a multi-select flag.
+		BindGridSelection (container, item);
 		realized[index] = container;
+	}
+
+	static void BindGridSelection (Control container, object? item)
+	{
+		UnbindGridSelection (container);
+		if (container is not ListBoxItem row || item is not PhotoItemViewModel photo)
+			return;
+		selectionSync.Add (container, new SelectionSync (row, photo));
+	}
+
+	static void UnbindGridSelection (Control container)
+	{
+		if (!selectionSync.TryGetValue (container, out var sync))
+			return;
+		sync.Dispose ();
+		selectionSync.Remove (container);
+	}
+
+	sealed class SelectionSync : IDisposable
+	{
+		readonly ListBoxItem row;
+		readonly PhotoItemViewModel photo;
+		bool live;
+		bool pushing;
+
+		public SelectionSync (ListBoxItem row, PhotoItemViewModel photo)
+		{
+			this.row = row;
+			this.photo = photo;
+			row.PropertyChanged += OnRowPropertyChanged;
+			photo.PropertyChanged += OnPhotoChanged;
+			live = true;
+		}
+
+		public void Dispose ()
+		{
+			live = false;
+			row.PropertyChanged -= OnRowPropertyChanged;
+			photo.PropertyChanged -= OnPhotoChanged;
+		}
+
+		void OnRowPropertyChanged (object? sender, AvaloniaPropertyChangedEventArgs e)
+		{
+			if (!live || pushing || e.Property != ListBoxItem.IsSelectedProperty)
+				return;
+			photo.Selected = row.IsSelected;
+		}
+
+		void OnPhotoChanged (object? sender, PropertyChangedEventArgs e)
+		{
+			if (!live || pushing || e.PropertyName != nameof (PhotoItemViewModel.Selected))
+				return;
+			pushing = true;
+			try {
+				row.IsSelected = photo.Selected;
+			} finally {
+				pushing = false;
+			}
+		}
 	}
 
 	void Unrealize (int index)
 	{
 		if (!realized.Remove (index, out var container))
 			return;
+		UnbindGridSelection (container);
 		ItemContainerGenerator?.ClearItemContainer (container);
 		RemoveInternalChild (container);
 	}
