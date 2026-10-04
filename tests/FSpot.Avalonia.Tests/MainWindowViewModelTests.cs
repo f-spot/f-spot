@@ -3,12 +3,16 @@
 using System.IO;
 
 using Avalonia;
+using Avalonia.Automation;
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
+
+using FSpot.Avalonia.Imaging;
 
 using FSpot.Avalonia.Dialogs;
 using FSpot.Avalonia.Input;
@@ -18,7 +22,9 @@ using FSpot.Avalonia.Models;
 using FSpot.Avalonia.Services;
 using FSpot.Avalonia.ViewModels;
 using FSpot.Core;
+using FSpot.Database;
 using FSpot.Editors;
+using FSpot.Import;
 using FSpot.Query;
 using FSpot.Resources.Lang;
 using FSpot.Utils;
@@ -194,6 +200,77 @@ public sealed partial class MainWindowViewModelTests
 			await viewModel.RealizeThumbnailAsync (new object (), viewModel.Photos[i]);
 
 		Assert.AreEqual (31, thumbs.Calls);
+	}
+
+	[UiTestMethod]
+	public async Task Import_UsesASnapshotSoAScanCannotChangeTheSetBeingImported ()
+	{
+		bool reloaded = false;
+		var viewModel = new ImportViewModel (null!, new RecordingShell (), new CountingThumbnails (), _ => reloaded = true);
+		viewModel.SourcePath = Path.Combine (Path.GetTempPath (), "fspot-import-source");
+		using var release = new ManualResetEventSlim (false);
+		viewModel.ScanOverride = _ => ScanTwoThenBlock (release);
+		var importer = new FrozenImport (() => {
+			viewModel.RecurseSubdirectories = !viewModel.RecurseSubdirectories;
+			viewModel.MergeRawAndJpeg = !viewModel.MergeRawAndJpeg;
+			viewModel.AddScanned (new StubPhoto ("/import/late.jpg"));
+		});
+		viewModel.Importer = () => importer;
+
+		var scanning = viewModel.ScanAsync ();
+		await PumpUntil (() => viewModel.Photos.Count == 1);
+		var importing = viewModel.ImportCommand.ExecuteAsync (null);
+		await Pump ();
+		Assert.IsFalse (importing.IsCompleted);
+
+		release.Set ();
+		await PumpUntil (() => viewModel.Photos.Count >= 2);
+		await importing;
+		await scanning;
+
+		Assert.AreEqual (2, importer.Seen);
+		Assert.AreEqual (2, importer.Enumerated);
+		Assert.AreEqual (3, viewModel.Photos.Count);
+		Assert.IsTrue (reloaded);
+	}
+
+	static IEnumerable<IPhoto> ScanTwoThenBlock (ManualResetEventSlim release)
+	{
+		yield return new StubPhoto ("/import/a.jpg");
+		if (!release.Wait (TimeSpan.FromSeconds (5)))
+			yield break;
+		yield return new StubPhoto ("/import/b.jpg");
+	}
+
+	static async Task Pump ()
+	{
+		await Dispatcher.UIThread.InvokeAsync (() => { }, DispatcherPriority.Background);
+		await Dispatcher.UIThread.InvokeAsync (() => { }, DispatcherPriority.Background);
+	}
+
+	static async Task PumpUntil (Func<bool> done)
+	{
+		for (int i = 0; i < 50 && !done (); i++)
+			await Pump ();
+		Assert.IsTrue (done ());
+	}
+
+	[UiTestMethod]
+	public void ClosingTheImportWindow_CancelsInFlightWorkWithoutClosingTwice ()
+	{
+		AvaloniaApp.Ensure ();
+		int closes = 0;
+		var viewModel = new ImportViewModel (null!, new RecordingShell (), new CountingThumbnails (), _ => closes++);
+		var window = new ImportWindow (viewModel);
+		window.Show ();
+		try {
+			window.Close ();
+		} finally {
+			if (window.IsVisible)
+				window.Close ();
+		}
+
+		Assert.AreEqual (0, closes);
 	}
 
 	[UiTestMethod]
@@ -523,7 +600,8 @@ public sealed partial class MainWindowViewModelTests
 	[UiTestMethod]
 	public void ToggleLoupe_ShowsThenHides ()
 	{
-		var viewModel = NewViewModel ();
+		var viewModel = ViewModelWithFocusedPhoto ();
+		viewModel.EditCommand.Execute (null);
 		Assert.IsFalse (viewModel.IsLoupeVisible);
 
 		viewModel.ToggleLoupeCommand.Execute (null);
@@ -946,6 +1024,35 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
+	[DoNotParallelize]
+	public async Task ShowPreferencesCommand_KeepsWindowTogglesThatPreferencesDoesNotWrite ()
+	{
+		bool sidebar = LibraryPreferences.ShowSidebar;
+		bool timeline = LibraryPreferences.ShowTimeline;
+		bool filmstrip = LibraryPreferences.ShowFilmstrip;
+		try {
+			LibraryPreferences.ShowSidebar = true;
+			LibraryPreferences.ShowTimeline = true;
+			LibraryPreferences.ShowFilmstrip = true;
+			var viewModel = new MainWindowViewModel (null, new RecordingShell (), new NullThumbnails ()) {
+				DisplaySidebar = false,
+				DisplayTimeline = false,
+				DisplayFilmstrip = false
+			};
+
+			await viewModel.ShowPreferencesCommand.ExecuteAsync (null);
+
+			Assert.IsFalse (viewModel.DisplaySidebar);
+			Assert.IsFalse (viewModel.DisplayTimeline);
+			Assert.IsFalse (viewModel.DisplayFilmstrip);
+		} finally {
+			LibraryPreferences.ShowSidebar = sidebar;
+			LibraryPreferences.ShowTimeline = timeline;
+			LibraryPreferences.ShowFilmstrip = filmstrip;
+		}
+	}
+
+	[UiTestMethod]
 	public void PrintAndMail_UseTheSelectedPhotos ()
 	{
 		var shell = new RecordingShell ();
@@ -1303,7 +1410,6 @@ public sealed partial class MainWindowViewModelTests
 	public void Histogram_IgnoresALoadThatFinishesAfterSelectionMoves ()
 	{
 		AvaloniaApp.Ensure ();
-		using var thumb = new WriteableBitmap (new PixelSize (4, 4), new global::Avalonia.Vector (96, 96), PixelFormat.Bgra8888, AlphaFormat.Premul);
 		var late = new WriteableBitmap (new PixelSize (2, 2), new global::Avalonia.Vector (96, 96), PixelFormat.Bgra8888, AlphaFormat.Premul);
 		var previous = SynchronizationContext.Current;
 		SynchronizationContext.SetSynchronizationContext (null);
@@ -1312,22 +1418,127 @@ public sealed partial class MainWindowViewModelTests
 			var viewModel = new MainWindowViewModel (null, new RecordingShell (), gate);
 			var first = new PhotoItemViewModel (new StubPhoto ("/photos/first.jpg"));
 			var second = new PhotoItemViewModel (new StubPhoto ("/photos/second.jpg"));
-			second.Thumbnail = thumb;
 			viewModel.Photos.Add (first);
 			viewModel.Photos.Add (second);
 
 			viewModel.SelectedPhoto = first;
 			Assert.IsTrue (gate.Started.Task.IsCompleted);
+			Assert.AreEqual (HistogramRenderer.SourceEdge, gate.Sizes[0]);
 			viewModel.SelectedPhoto = second;
 			var current = viewModel.Histogram;
 			Assert.IsNotNull (current);
+			Assert.AreEqual (256, current.PixelSize.Width);
+			Assert.AreEqual (128, current.PixelSize.Height);
 
 			gate.Release.SetResult (late);
 
 			Assert.AreSame (current, viewModel.Histogram);
 		} finally {
 			SynchronizationContext.SetSynchronizationContext (previous);
+			late.Dispose ();
 		}
+	}
+
+	[UiTestMethod]
+	[DoNotParallelize]
+	public void Histogram_UsesA256FitNotTheGridThumbnail ()
+	{
+		AvaloniaApp.Ensure ();
+		var thumbs = new BitmapThumbnails ();
+		var viewModel = new MainWindowViewModel (null, new RecordingShell (), thumbs);
+		var item = new PhotoItemViewModel (new StubPhoto ("/photos/one.jpg"));
+		item.Thumbnail = new WriteableBitmap (new PixelSize (4, 4), new global::Avalonia.Vector (96, 96), PixelFormat.Bgra8888, AlphaFormat.Premul);
+		viewModel.Photos.Add (item);
+
+		viewModel.SelectedPhoto = item;
+		Dispatcher.UIThread.RunJobs ();
+
+		Assert.Contains (HistogramRenderer.SourceEdge, thumbs.Sizes);
+		Assert.IsNotNull (viewModel.Histogram);
+		Assert.AreEqual (256, viewModel.Histogram.PixelSize.Width);
+		Assert.AreEqual (128, viewModel.Histogram.PixelSize.Height);
+
+		viewModel.UiScale = 2;
+		Dispatcher.UIThread.RunJobs ();
+		Assert.AreEqual (256, viewModel.Histogram.PixelSize.Width);
+		Assert.AreEqual (128, viewModel.Histogram.PixelSize.Height);
+	}
+
+	[UiTestMethod]
+	[DoNotParallelize]
+	public void Histogram_FollowsTheEditorPreviewAndClearsItWhenThePhotoChanges ()
+	{
+		AvaloniaApp.Ensure ();
+		var thumbs = new BitmapThumbnails ();
+		var viewModel = new MainWindowViewModel (null, new RecordingShell (), thumbs);
+		var first = new PhotoItemViewModel (new StubPhoto ("/photos/first.jpg"));
+		var second = new PhotoItemViewModel (new StubPhoto ("/photos/second.jpg"));
+		viewModel.Photos.Add (first);
+		viewModel.Photos.Add (second);
+		viewModel.SelectedPhoto = first;
+		Dispatcher.UIThread.RunJobs ();
+		int loads = thumbs.Sizes.Count;
+
+		// Headless Lock() frees its buffer, so a filled WriteableBitmap reads back empty.
+		// CountBgra walks CopyPixels, which this bitmap supplies.
+		var preview = new FilledBitmap (8, 8, 255);
+		viewModel.EditedPreview = preview;
+		Dispatcher.UIThread.RunJobs ();
+
+		Assert.HasCount (loads, thumbs.Sizes);
+		Assert.IsNotNull (viewModel.Histogram);
+		Assert.AreEqual (256, viewModel.Histogram.PixelSize.Width);
+		Assert.AreEqual (128, viewModel.Histogram.PixelSize.Height);
+		Assert.AreEqual (255, Bottom (viewModel.Histogram, 255)[2]);
+
+		viewModel.SelectedPhoto = second;
+		Dispatcher.UIThread.RunJobs ();
+
+		Assert.IsNull (viewModel.EditedPreview);
+		Assert.IsNotNull (viewModel.Histogram);
+		byte[] plate = Bottom (viewModel.Histogram, 255);
+		Assert.AreEqual (0, plate[2]);
+		Assert.AreEqual (255, plate[3]);
+	}
+
+	[UiTestMethod]
+	[DoNotParallelize]
+	public void SidebarHistogram_ScalesUniformlyWithin128 ()
+	{
+		AvaloniaApp.Ensure ();
+		var window = new MainWindow (null) { Width = 900, Height = 600 };
+		window.Show ();
+		try {
+			window.UpdateLayout ();
+			var expander = window.GetVisualDescendants ().OfType<Expander> ()
+				.Single (control => AutomationProperties.GetAutomationId (control) == AutomationIds.SidebarHistogram);
+			var image = expander.Content as Image ?? expander.GetVisualDescendants ().OfType<Image> ().Single ();
+			Assert.AreEqual (128, image.MaxHeight);
+			Assert.AreEqual (256, image.MaxWidth);
+			Assert.AreEqual (Stretch.Uniform, image.Stretch);
+			Assert.IsTrue (double.IsNaN (image.Height));
+			Assert.AreEqual (BitmapInterpolationMode.None, RenderOptions.GetBitmapInterpolationMode (image));
+		} finally {
+			window.Close ();
+		}
+	}
+
+	static byte[] Bottom (Bitmap bitmap, int x)
+	{
+		int width = bitmap.PixelSize.Width;
+		int y = bitmap.PixelSize.Height - 1;
+		var pixel = new byte[4];
+		unsafe {
+			var row = new byte[width * 4];
+			fixed (byte* pointer = row)
+				bitmap.CopyPixels (new PixelRect (0, y, width, 1), (nint)pointer, row.Length, width * 4);
+			pixel[0] = row[x * 4];
+			pixel[1] = row[x * 4 + 1];
+			pixel[2] = row[x * 4 + 2];
+			pixel[3] = row[x * 4 + 3];
+		}
+
+		return pixel;
 	}
 
 	[UiTestMethod]
@@ -1589,6 +1800,31 @@ public sealed partial class MainWindowViewModelTests
 		}
 	}
 
+	// Headless WriteableBitmap.Lock discards pixels. Histogram counting calls CopyPixels.
+	sealed class FilledBitmap : WriteableBitmap
+	{
+		readonly byte value;
+
+		public FilledBitmap (int width, int height, byte value)
+			: base (new PixelSize (width, height), new global::Avalonia.Vector (96, 96), PixelFormat.Bgra8888, global::Avalonia.Platform.AlphaFormat.Premul)
+		{
+			this.value = value;
+		}
+
+		public override void CopyPixels (PixelRect sourceRect, nint buffer, int bufferSize, int stride)
+		{
+			int rowBytes = sourceRect.Width * 4;
+			unsafe {
+				var start = (byte*)buffer;
+				for (int y = 0; y < sourceRect.Height; y++) {
+					var row = start + y * stride;
+					for (int i = 0; i < rowBytes; i++)
+						row[i] = value;
+				}
+			}
+		}
+	}
+
 	sealed class BitmapThumbnails : IPhotoThumbnailLoader
 	{
 		public List<int> Sizes { get; } = [];
@@ -1605,14 +1841,22 @@ public sealed partial class MainWindowViewModelTests
 	{
 		public TaskCompletionSource Started { get; } = new (TaskCreationOptions.RunContinuationsAsynchronously);
 		public TaskCompletionSource<Bitmap?> Release { get; } = new ();
+		public List<int> Sizes { get; } = [];
+		int calls;
 
 		public Task<Bitmap?> LoadAsync (string path, int size, CancellationToken cancellationToken)
 		{
-			Started.TrySetResult ();
-			// The test completes Release. This method only waits on that gate.
+			Sizes.Add (size);
+			if (calls++ == 0) {
+				Started.TrySetResult ();
+				// The test completes Release. This method only waits on that gate.
 #pragma warning disable VSTHRD003
-			return Release.Task;
+				return Release.Task;
 #pragma warning restore VSTHRD003
+			}
+
+			var bitmap = new WriteableBitmap (new PixelSize (8, 8), new global::Avalonia.Vector (96, 96), PixelFormat.Bgra8888, AlphaFormat.Premul);
+			return Task.FromResult<Bitmap?> (bitmap);
 		}
 	}
 
@@ -1633,6 +1877,27 @@ public sealed partial class MainWindowViewModelTests
 		public string Filename { get; }
 		public string ImportMD5 => string.Empty;
 		public SafeUri Uri { get; set; }
+	}
+
+	sealed class FrozenImport : IImportController
+	{
+		readonly Action mutateDuringImport;
+
+		public FrozenImport (Action mutateDuringImport)
+			=> this.mutateDuringImport = mutateDuringImport;
+
+		public int Seen { get; private set; }
+		public int Enumerated { get; private set; }
+		public int PhotosImported => Enumerated;
+		public IEnumerable<SafeUri> FailedImports => Array.Empty<SafeUri> ();
+
+		public void DoImport (IDb db, IBrowsableCollection photos, IList<Tag> tagsToAttach, ImportPreferences preferences, IProgress<int> progress, CancellationToken token)
+		{
+			Seen = photos.Count;
+			mutateDuringImport ();
+			foreach (var _ in photos.Items)
+				Enumerated++;
+		}
 	}
 
 	sealed class StubPhoto : IPhoto

@@ -211,6 +211,7 @@ public partial class MainWindowViewModel : ObservableObject
 		Info.VersionChosen += ApplyVersion;
 		Info.RatingChosen += ApplyRating;
 		Info.DescriptionChosen += ApplyDescription;
+		WatchMenuExtensions ();
 	}
 
 	// Mirrors GTK's MainWindow.Close(), which snapshots the same toggles,
@@ -254,6 +255,8 @@ public partial class MainWindowViewModel : ObservableObject
 
 	public bool IsBrowsing => ViewMode == LibraryViewMode.IconView;
 	public bool IsEditing => ViewMode == LibraryViewMode.PhotoView;
+	public bool CanUseTimeline => IsBrowsing;
+	public bool CanUseFilmstrip => IsEditing;
 	public IReadOnlyList<PhotoEditorDescriptor> VisibleEditors =>
 		PhotoEditorCatalog.VisibleIn (ViewMode).Where (editor => EditorEnabled (editor.Id)).ToList ();
 	public bool HasEditorSession => EditorSession is not null;
@@ -741,6 +744,8 @@ public partial class MainWindowViewModel : ObservableObject
 
 	internal void ReleaseDecodedImages ()
 	{
+		menuWatcher?.Dispose ();
+		menuWatcher = null;
 		DropAllThumbnails ();
 		HidePreviewPopup ();
 		SetPreview (null);
@@ -757,26 +762,30 @@ public partial class MainWindowViewModel : ObservableObject
 	async Task UpdateHistogramAsync (PhotoItemViewModel item, int generation)
 	{
 		var context = SynchronizationContext.Current;
+		if (EditedPreview is Bitmap edited && ReferenceEquals (item, SelectedPhoto)) {
+			ApplyChart (edited, generation, item);
+			return;
+		}
+
 		Bitmap? loaded = null;
 		try {
-			var source = item.Thumbnail;
-			if (source is null) {
-				loaded = await thumbnails.LoadAsync (item.Path, 256, CancellationToken.None).ConfigureAwait (false);
-				source = loaded;
-			}
+			loaded = await thumbnails.LoadAsync (item.Path, HistogramRenderer.SourceEdge, CancellationToken.None);
 			if (!HistogramStillCurrent (generation, item))
 				return;
+			if (loaded is null) {
+				SetHistogram (null);
+				return;
+			}
 			void Apply ()
 			{
-				if (!HistogramStillCurrent (generation, item))
+				if (!HistogramStillCurrent (generation, item) || loaded is null)
 					return;
+				Bitmap fitted = HistogramRenderer.FitInside (loaded, HistogramRenderer.SourceEdge);
 				try {
-					SetHistogram (HistogramRenderer.FromBitmap (source, UiScale));
-				} catch (Exception ex) {
-					if (!HistogramStillCurrent (generation, item))
-						return;
-					Logger.Log.Debug (ex, "Failed to build histogram for {Path}", item.Path);
-					SetHistogram (null);
+					ApplyChart (fitted, generation, item);
+				} finally {
+					if (!ReferenceEquals (fitted, loaded))
+						fitted.Dispose ();
 				}
 			}
 			if (context is null || SynchronizationContext.Current == context)
@@ -795,6 +804,20 @@ public partial class MainWindowViewModel : ObservableObject
 				var bitmap = loaded;
 				PostTo (context, () => bitmap?.Dispose ());
 			}
+		}
+	}
+
+	void ApplyChart (Bitmap source, int generation, PhotoItemViewModel item)
+	{
+		if (!HistogramStillCurrent (generation, item))
+			return;
+		try {
+			SetHistogram (HistogramRenderer.FromBitmap (source));
+		} catch (Exception ex) {
+			if (!HistogramStillCurrent (generation, item))
+				return;
+			Logger.Log.Debug (ex, "Failed to build histogram for {Path}", item.Path);
+			SetHistogram (null);
 		}
 	}
 
@@ -849,6 +872,18 @@ public partial class MainWindowViewModel : ObservableObject
 		RefreshThumbnailCommand.NotifyCanExecuteChanged ();
 		CopyCommand.NotifyCanExecuteChanged ();
 		SetAsBackgroundCommand.NotifyCanExecuteChanged ();
+		PrintCommand.NotifyCanExecuteChanged ();
+		MailCommand.NotifyCanExecuteChanged ();
+		ExportCommand.NotifyCanExecuteChanged ();
+		SelectNoneCommand.NotifyCanExecuteChanged ();
+		SharpenCommand.NotifyCanExecuteChanged ();
+		ToggleLoupeCommand.NotifyCanExecuteChanged ();
+		OnPropertyChanged (nameof (HasPhotoSelection));
+		OnPropertyChanged (nameof (HasSinglePhoto));
+		OnPropertyChanged (nameof (CanOpenVersionMenu));
+		OnPropertyChanged (nameof (CanExport));
+		OnPropertyChanged (nameof (CanModifyCurrentVersion));
+		OnPropertyChanged (nameof (CanSharpenOrLoupe));
 	}
 
 	void NotifyViewLayout ()
@@ -865,14 +900,21 @@ public partial class MainWindowViewModel : ObservableObject
 		OnPropertyChanged (nameof (ShowPhotoGrid));
 		OnPropertyChanged (nameof (VisibleEditors));
 		OnPropertyChanged (nameof (ShowLoupe));
+		OnPropertyChanged (nameof (CanUseTimeline));
+		OnPropertyChanged (nameof (CanUseFilmstrip));
+		OnPropertyChanged (nameof (CanSharpenOrLoupe));
 		PreviousCommand.NotifyCanExecuteChanged ();
 		NextCommand.NotifyCanExecuteChanged ();
+		SharpenCommand.NotifyCanExecuteChanged ();
+		ToggleLoupeCommand.NotifyCanExecuteChanged ();
 	}
 
 	partial void OnViewModeChanged (LibraryViewMode value)
 	{
-		if (value != LibraryViewMode.PhotoView)
+		if (value != LibraryViewMode.PhotoView) {
 			CancelEditor ();
+			IsLoupeVisible = false;
+		}
 		NotifyViewLayout ();
 		RequestPreview ();
 		if (value == LibraryViewMode.PhotoView) {
@@ -897,6 +939,8 @@ public partial class MainWindowViewModel : ObservableObject
 
 	partial void OnSelectedPhotoChanged (PhotoItemViewModel? value)
 	{
+		// The edited preview belongs to the previous photo. GTK drops it and histograms the file.
+		ClearLivePreview ();
 		if (value is null) {
 			Info.Clear ();
 			RequestHistogram (null);
@@ -981,6 +1025,10 @@ public partial class MainWindowViewModel : ObservableObject
 		OnPropertyChanged (nameof (GridCellWidth));
 		OnPropertyChanged (nameof (GridCellHeight));
 		OnPropertyChanged (nameof (FilmstripPaneHeight));
+		OnPropertyChanged (nameof (CanZoomIn));
+		OnPropertyChanged (nameof (CanZoomOut));
+		ZoomInCommand.NotifyCanExecuteChanged ();
+		ZoomOutCommand.NotifyCanExecuteChanged ();
 		_ = LoadThumbnailsAsync ();
 	}
 
@@ -1076,7 +1124,7 @@ public partial class MainWindowViewModel : ObservableObject
 		}
 	}
 
-	[RelayCommand]
+	[RelayCommand (CanExecute = nameof (HasPhotoSelection))]
 	void SelectNone ()
 	{
 		foreach (var item in Photos)
@@ -1100,11 +1148,14 @@ public partial class MainWindowViewModel : ObservableObject
 		NotifySelectionCommands ();
 	}
 
-	[RelayCommand]
+	public bool CanZoomIn => Zoom < 256;
+	public bool CanZoomOut => Zoom > 64;
+
+	[RelayCommand (CanExecute = nameof (CanZoomIn))]
 	void ZoomIn ()
 		=> Zoom = Math.Min (256, Zoom + 16);
 
-	[RelayCommand]
+	[RelayCommand (CanExecute = nameof (CanZoomOut))]
 	void ZoomOut ()
 		=> Zoom = Math.Max (64, Zoom - 16);
 
@@ -1130,7 +1181,16 @@ public partial class MainWindowViewModel : ObservableObject
 		Preferences.Set (Preferences.TagIconSize, pixels);
 		OnPropertyChanged (nameof (TagIconEdge));
 		OnPropertyChanged (nameof (TagIconsVisible));
+		OnPropertyChanged (nameof (TagIconHidden));
+		OnPropertyChanged (nameof (TagIconSmall));
+		OnPropertyChanged (nameof (TagIconMedium));
+		OnPropertyChanged (nameof (TagIconLarge));
 	}
+
+	public bool TagIconHidden => Tag.TagIconSize == IconSize.Hidden;
+	public bool TagIconSmall => Tag.TagIconSize == IconSize.Small;
+	public bool TagIconMedium => Tag.TagIconSize == IconSize.Medium;
+	public bool TagIconLarge => Tag.TagIconSize == IconSize.Large;
 
 	[RelayCommand]
 	void OpenTagTyping ()
@@ -1248,7 +1308,7 @@ public partial class MainWindowViewModel : ObservableObject
 	Task NotYetAsync ()
 		=> shell.ShowWarningAsync (WindowTitle, Strings.ThisFeatureIsNotYetAvailable);
 
-	[RelayCommand]
+	[RelayCommand (CanExecute = nameof (CanSharpenOrLoupe))]
 	void ToggleLoupe ()
 		=> IsLoupeVisible = !IsLoupeVisible;
 
@@ -1275,7 +1335,7 @@ public partial class MainWindowViewModel : ObservableObject
 	partial void OnIsLoupeVisibleChanged (bool value)
 		=> OnPropertyChanged (nameof (ShowLoupe));
 
-	[RelayCommand]
+	[RelayCommand (CanExecute = nameof (CanSharpenOrLoupe))]
 	Task SharpenAsync ()
 		=> ApplyEditorAsync (PhotoEditorCatalog.Sharpen);
 
@@ -1613,7 +1673,7 @@ public partial class MainWindowViewModel : ObservableObject
 	void Slideshow ()
 		=> ShowFullScreen (playSlideshow: true);
 
-	[RelayCommand]
+	[RelayCommand (CanExecute = nameof (HasPhotoSelection))]
 	async Task ExportAsync ()
 	{
 		var paths = PhotoFileActions.SelectedPaths (MutationItems ().Select (item => item.Photo));
@@ -1647,7 +1707,7 @@ public partial class MainWindowViewModel : ObservableObject
 		PageSetup = setup;
 	}
 
-	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
+	[RelayCommand (CanExecute = nameof (HasSinglePhoto))]
 	async Task SetAsBackgroundAsync ()
 	{
 		var paths = PhotoFileActions.SelectedPaths (MutationItems ().Select (item => item.Photo));
@@ -1662,7 +1722,7 @@ public partial class MainWindowViewModel : ObservableObject
 	Task ShowToolsAsync ()
 		=> ShowExtensionsAsync ();
 
-	[RelayCommand]
+	[RelayCommand (CanExecute = nameof (HasPhotoSelection))]
 	async Task PrintAsync ()
 	{
 		var photos = MutationItems ().Select (item => item.Photo).ToList ();
@@ -1674,7 +1734,7 @@ public partial class MainWindowViewModel : ObservableObject
 			PageSetup = setup;
 	}
 
-	[RelayCommand]
+	[RelayCommand (CanExecute = nameof (HasPhotoSelection))]
 	async Task MailAsync ()
 	{
 		var paths = PhotoFileActions.SelectedPaths (MutationItems ().Select (item => item.Photo));
@@ -1884,22 +1944,59 @@ public partial class MainWindowViewModel : ObservableObject
 		if (!await shell.ConfirmAsync (header, body, Strings.Delete))
 			return;
 
+		var removed = new List<Photo> ();
+		var failures = new List<string> ();
 		foreach (var photo in photos) {
-			foreach (uint id in photo.VersionIds.ToArray ()) {
+			bool failed = false;
+			foreach (uint id in photo.VersionIds) {
+				string path = photo.VersionUri (id)?.ToString () ?? photo.Name;
 				try {
 					photo.DeleteVersion (id, true);
 				} catch (Exception ex) {
-					Logger.Log.Debug (ex, "Failed to delete version {Version} of {Name}", id, photo.Name);
+					failed = true;
+					Logger.Log.Error (ex, "Failed to delete version {Version} of {Name}", id, photo.Name);
+					failures.Add (FormatDeleteFailure (ex, path));
 				}
 			}
+
+			// A photo stays in the catalog when any version file is still on disk.
+			if (failed)
+				database.Photos.Commit (photo);
+			else
+				removed.Add (photo);
 		}
 
-		database.Photos.Remove (photos);
-		ReloadPhotos ();
+		if (removed.Count > 0)
+			database.Photos.Remove (removed.ToArray ());
+		if (removed.Count > 0 || failures.Count > 0)
+			ReloadPhotos ();
+		if (failures.Count > 0)
+			await shell.ShowWarningAsync (Strings.ErrorDeletingPicture, string.Join (Environment.NewLine + Environment.NewLine, failures));
+	}
+
+	static string FormatDeleteFailure (Exception ex, string path)
+	{
+		if (ex is UnauthorizedAccessException)
+			return string.Format (Strings.NoPermissionToDeleteTheFile, path, Environment.NewLine);
+		return string.Format (Strings.AnErrorOfTypeXOccurredWhileDeletingTheFile, ex.GetType (), path, Environment.NewLine);
+	}
+
+	public bool HasPhotoSelection => MutationItems ().Any ();
+	public bool HasSinglePhoto => MutationItems ().Count == 1;
+	public bool CanOpenVersionMenu => HasSinglePhoto;
+	public bool CanExport => HasPhotoSelection;
+	public bool CanSharpenOrLoupe => HasSinglePhoto && IsEditing;
+
+	public bool CanModifyCurrentVersion
+	{
+		get {
+			var items = MutationItems ();
+			return items.Count == 1 && items[0].Photo is Photo photo && photo.DefaultVersionId != Photo.OriginalVersionId;
+		}
 	}
 
 	bool CanMutateSelection ()
-		=> MutationItems ().Any ();
+		=> HasPhotoSelection;
 
 	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
 	void RotateLeft ()
@@ -1946,6 +2043,7 @@ public partial class MainWindowViewModel : ObservableObject
 		}
 
 		_ = LoadThumbnailsAsync ();
+		NotifySelectionCommands ();
 	}
 
 	void RefreshSelectedCaptions (IEnumerable<Photo> photos)
@@ -1974,9 +2072,10 @@ public partial class MainWindowViewModel : ObservableObject
 		RequestPreview ();
 		RequestHistogram (SelectedPhoto);
 		_ = LoadThumbnailsAsync ();
+		NotifySelectionCommands ();
 	}
 
-	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
+	[RelayCommand (CanExecute = nameof (HasSinglePhoto))]
 	async Task CreateVersionAsync ()
 	{
 		if (SelectedCatalogPhotos ().FirstOrDefault () is not Photo photo)
@@ -1992,7 +2091,7 @@ public partial class MainWindowViewModel : ObservableObject
 		}
 	}
 
-	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
+	[RelayCommand (CanExecute = nameof (CanModifyCurrentVersion))]
 	async Task DeleteVersionAsync ()
 	{
 		if (SelectedCatalogPhotos ().FirstOrDefault () is not Photo photo)
@@ -2008,7 +2107,7 @@ public partial class MainWindowViewModel : ObservableObject
 		}
 	}
 
-	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
+	[RelayCommand (CanExecute = nameof (CanModifyCurrentVersion))]
 	async Task RenameVersionAsync ()
 	{
 		if (SelectedCatalogPhotos ().FirstOrDefault () is not Photo photo)
@@ -2024,7 +2123,7 @@ public partial class MainWindowViewModel : ObservableObject
 		}
 	}
 
-	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
+	[RelayCommand (CanExecute = nameof (CanModifyCurrentVersion))]
 	async Task DetachVersionAsync ()
 	{
 		if (SelectedCatalogPhotos ().FirstOrDefault () is not Photo photo || database is null)
@@ -2079,9 +2178,8 @@ public partial class MainWindowViewModel : ObservableObject
 	async Task ShowPreferencesAsync ()
 	{
 		await shell.ShowPreferencesAsync ();
-		DisplaySidebar = LibraryPreferences.ShowSidebar;
-		DisplayTimeline = LibraryPreferences.ShowTimeline;
-		DisplayFilmstrip = LibraryPreferences.ShowFilmstrip;
+		// Sidebar, timeline and filmstrip are window toggles. Preferences does
+		// not write them, so closing the dialog must not snap them back.
 		ViewerInterpolation = LibraryPreferences.ViewerInterpolation;
 		ShowHoverPreviewEnabled = LibraryPreferences.ShowHoverPreview;
 		if (!ShowHoverPreviewEnabled)

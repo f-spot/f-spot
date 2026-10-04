@@ -30,8 +30,35 @@ namespace FSpot.Imaging.Tests
 
 			RgbHistogram.GetHighLow (values, RgbHistogram.Red, out int high, out int low);
 
-			Assert.IsTrue (low >= 0 && low <= 255, $"low={low}");
-			Assert.IsTrue (high >= 0 && high <= 255, $"high={high}");
+			Assert.AreEqual (10, low);
+			Assert.AreEqual (200, high);
+		}
+
+		[TestMethod]
+		public void GetHighLow_FlatHistogramClipsEachEndIndependently ()
+		{
+			var values = new int[256, 3];
+			for (int i = 0; i < 256; i++)
+				values[i, RgbHistogram.Red] = 100;
+
+			RgbHistogram.GetHighLow (values, RgbHistogram.Red, out int high, out int low);
+
+			Assert.AreEqual (2, low);
+			Assert.AreEqual (253, high);
+		}
+
+		[TestMethod]
+		public void GetHighLow_EmptyGapDoesNotPullTheCutIntoTheBody ()
+		{
+			var values = new int[256, 3];
+			values[0, RgbHistogram.Red] = 60;
+			values[128, RgbHistogram.Red] = 9900;
+			values[255, RgbHistogram.Red] = 40;
+
+			RgbHistogram.GetHighLow (values, RgbHistogram.Red, out int high, out int low);
+
+			Assert.AreEqual (1, low);
+			Assert.AreEqual (254, high);
 		}
 	}
 }

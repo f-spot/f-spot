@@ -16,7 +16,7 @@ public sealed class HiDpiTests
 {
 	[UiTestMethod]
 	[DoNotParallelize]
-	public void Histogram_AtScale2_IsAtLeastTwiceThe1xBitmap ()
+	public void Histogram_AtScale2_StaysThe256By128Chart ()
 	{
 		AvaloniaApp.Ensure ();
 		using var source = new WriteableBitmap (new PixelSize (8, 8), new Vector (96, 96),
@@ -25,8 +25,21 @@ public sealed class HiDpiTests
 		var two = HistogramRenderer.FromBitmap (source, scale: 2);
 		Assert.IsNotNull (one);
 		Assert.IsNotNull (two);
-		Assert.IsGreaterThanOrEqualTo (one!.PixelSize.Width * 2, two!.PixelSize.Width);
-		Assert.IsGreaterThanOrEqualTo (one.PixelSize.Height * 2, two.PixelSize.Height);
+		Assert.AreEqual (256, one!.PixelSize.Width);
+		Assert.AreEqual (128, one.PixelSize.Height);
+		// Enlarging 256 columns to 512 blends every code with its neighbor.
+		// The view scales the 256×128 chart once.
+		Assert.AreEqual (256, two!.PixelSize.Width);
+		Assert.AreEqual (128, two.PixelSize.Height);
+		Assert.AreEqual (96, two.Dpi.X, 0.1);
+		byte[] pixels = new byte[4];
+		unsafe {
+			fixed (byte* pointer = pixels)
+				two.CopyPixels (new PixelRect (1, 0, 1, 1), (nint)pointer, pixels.Length, 4);
+		}
+		Assert.AreEqual (0, pixels[0]);
+		Assert.AreEqual (0, pixels[2]);
+		Assert.AreEqual (255, pixels[3]);
 	}
 
 	[UiTestMethod]

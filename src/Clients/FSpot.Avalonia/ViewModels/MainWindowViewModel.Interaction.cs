@@ -266,7 +266,9 @@ public partial class MainWindowViewModel
 				return;
 			}
 			if (histogram)
-				chart = HistogramRenderer.FromBitmap (bitmap, UiScale, 128, 36);
+				chart = HistogramRenderer.FromBitmap (bitmap, UiScale,
+					HistogramRenderer.ChartWidth / 2, HistogramRenderer.ChartHeight / 2,
+					backgroundRed: 127, backgroundGreen: 127, backgroundBlue: 127, backgroundAlpha: 255);
 			PreviewPopupEdge = edge;
 			PreviewPopupDetail = HoverPreview.Caption (item.Photo.Description, item.Photo.Time, item.Photo.Name);
 			SetPreviewPopupBitmaps (bitmap, chart);

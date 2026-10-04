@@ -12,15 +12,16 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Runtime.InteropServices;
 
+using FSpot.Imaging;
 using FSpot.Utils;
 
 namespace FSpot
 {
 	public class Histogram
 	{
-		#region Color hints
-		byte[] colors = { 0x00, 0x00, 0x00, 0xff };
+		readonly byte[] colors = { 0x00, 0x00, 0x00, 0xff };
 
 		public byte RedColorHint {
 			set { colors[0] = value; }
@@ -39,7 +40,6 @@ namespace FSpot
 		}
 
 		int[,] values = new int[256, 3];
-		#endregion
 
 		public Histogram (Gdk.Pixbuf src)
 		{
@@ -50,125 +50,14 @@ namespace FSpot
 
 		void FillValues (Gdk.Pixbuf src)
 		{
-			values = new int[256, 3];
-
 			if (src.BitsPerSample != 8)
 				throw new Exception ("Invalid bits per sample");
 
-			unsafe {
-				byte* srcb = (byte*)src.Pixels;
-				byte* pixels = srcb;
-				bool alpha = src.HasAlpha;
-				int rowstride = src.Rowstride;
-				int width = src.Width;
-				int height = src.Height;
-
-				// FIXME array bounds checks slow this down a lot
-				// so we use a pointer.  It is sad but I want fastness
-				fixed (int* v = &values[0, 0]) {
-					for (int j = 0; j < height; j++) {
-						for (int i = 0; i < width; i++) {
-							v[*(srcb++) * 3 + 0]++;
-							v[*(srcb++) * 3 + 1]++;
-							v[*(srcb++) * 3 + 2]++;
-
-							if (alpha)
-								srcb++;
-
-						}
-						srcb = pixels + j * rowstride;
-					}
-				}
-			}
-		}
-
-		int ChannelSum (int channel)
-		{
-			int sum = 0;
-			for (int i = 0; i < values.GetLength (0); i++) {
-				sum += values[i, channel];
-			}
-
-			return sum;
+			values = RgbHistogram.CountRgb (src.ToImageBuffer ());
 		}
 
 		public void GetHighLow (int channel, out int high, out int low)
-		{
-			double total = ChannelSum (channel);
-			double current = 0.0;
-			double percentage;
-			double next_percentage;
-
-			low = 0;
-			high = 0;
-
-			for (int i = 0; i < values.GetLength (0) - 1; i++) {
-				current += values[i, channel];
-				percentage = current / total;
-				next_percentage = (current + values[i + 1, channel]) / total;
-				if (Math.Abs (percentage - 0.006) < Math.Abs (next_percentage - 0.006)) {
-					low = i + 1;
-					break;
-				}
-			}
-
-			for (int i = values.GetLength (0) - 1; i > 0; i--) {
-				current += values[i, channel];
-				percentage = current / total;
-				next_percentage = (current + values[i - 1, channel]) / total;
-				if (Math.Abs (percentage - 0.006) < Math.Abs (next_percentage - 0.006)) {
-					high = i - 1;
-					break;
-				}
-			}
-		}
-
-		void Draw (Gdk.Pixbuf image)
-		{
-			int max = 0;
-			for (int i = 0; i < values.GetLength (0); i++) {
-				for (int j = 0; j < values.GetLength (1); j++) {
-					max = Math.Max (max, values[i, j]);
-				}
-			}
-			unsafe {
-				int height = image.Height;
-				int rowstride = image.Rowstride;
-				int r = 0;
-				int b = 0;
-				int g = 0;
-
-				for (int i = 0; i < image.Width; i++) {
-					byte* pixels = (byte*)image.Pixels + i * 4;
-
-					if (max > 0) {
-						r = values[i, 0] * height / max;
-						g = values[i, 1] * height / max;
-						b = values[i, 2] * height / max;
-					} else
-						r = g = b = 0;
-
-					int top = Math.Max (r, Math.Max (g, b));
-
-					int j = 0;
-					for (; j < height - top; j++) {
-						pixels[0] = colors[0];
-						pixels[1] = colors[1];
-						pixels[2] = colors[2];
-						pixels[3] = colors[3];
-						pixels += rowstride;
-					}
-					for (; j < height; j++) {
-						pixels[0] = (byte)((j >= height - r) ? 0xff : 0x00);
-						pixels[1] = (byte)((j >= height - g) ? 0xff : 0x00);
-						pixels[2] = (byte)((j >= height - b) ? 0xff : 0x00);
-						pixels[3] = 0xff;
-						pixels += rowstride;
-					}
-
-				}
-			}
-		}
+			=> RgbHistogram.GetHighLow (values, channel, out high, out low);
 
 		public Gdk.Pixbuf Generate (Gdk.Pixbuf input, int max_width)
 		{
@@ -181,9 +70,31 @@ namespace FSpot
 		public Gdk.Pixbuf Generate (Gdk.Pixbuf input)
 		{
 			FillValues (input);
-			int height = 128;
-			var pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, values.GetLength (0), height);
-			Draw (pixbuf);
+			const int height = 128;
+			int width = values.GetLength (0);
+			byte[] bgra = RgbHistogram.RenderBgra (values, width, height, colors[0], colors[1], colors[2], colors[3]);
+			return ToPixbuf (bgra, width, height);
+		}
+
+		static Gdk.Pixbuf ToPixbuf (byte[] bgra, int width, int height)
+		{
+			var pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, width, height);
+			int stride = pixbuf.Rowstride;
+			var row = new byte[width * 4];
+			for (int y = 0; y < height; y++) {
+				int src = y * width * 4;
+				for (int x = 0; x < width; x++) {
+					int s = src + x * 4;
+					int d = x * 4;
+					row[d] = bgra[s + 2];
+					row[d + 1] = bgra[s + 1];
+					row[d + 2] = bgra[s];
+					row[d + 3] = bgra[s + 3];
+				}
+
+				Marshal.Copy (row, 0, new IntPtr (pixbuf.Pixels.ToInt64 () + (long)y * stride), row.Length);
+			}
+
 			return pixbuf;
 		}
 

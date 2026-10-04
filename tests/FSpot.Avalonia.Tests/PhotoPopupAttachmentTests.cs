@@ -1,5 +1,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System.Xml.Linq;
+
 using Avalonia.Automation;
 using Avalonia.Controls;
 using Avalonia.VisualTree;
@@ -15,9 +17,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FSpot.Avalonia.Tests;
 
 /// <summary>
-/// GTK opens PhotoPopup on the photo view and on FullScreenView. The browse grid keeps its
-/// shorter menu, the filmstrip menu is orientation only, and the standalone viewer keeps
-/// rotate plus set-as-background. Version commands stay on the Photo menu.
+/// GTK opens PhotoPopup on the browse grid, the photo view, and FullScreenView. The filmstrip
+/// menu is horizontal or vertical. The standalone viewer keeps rotate plus set-as-background.
+/// Version commands stay on the Photo menu.
 /// </summary>
 [TestClass]
 [DoNotParallelize]
@@ -58,6 +60,78 @@ public sealed class PhotoPopupAttachmentTests
 			fullscreen?.Close ();
 			main.Close ();
 		}
+	}
+
+	[UiTestMethod]
+	public void BrowseGrid_OpensGtkPhotoPopup ()
+	{
+		var template = PhotoGridMarkup ().Elements ().Single (element => element.Name.LocalName == "ListBox.ItemTemplate");
+		Assert.IsEmpty (template.Descendants ().Where (element => element.Name.LocalName.Contains ("ContextMenu")).ToList ());
+
+		var main = new MainWindow (null, new MainWindowViewModelTests.NullThumbnails ()) {
+			Width = 800,
+			Height = 500
+		};
+		main.Show ();
+		try {
+			var grid = main.GetVisualDescendants ().OfType<ListBox> ()
+				.Single (list => AutomationProperties.GetAutomationId (list) == AutomationIds.PhotoGrid);
+			AssertPopup (grid, (MainWindowViewModel)main.DataContext!);
+		} finally {
+			main.Close ();
+		}
+	}
+
+	[UiTestMethod]
+	public void Filmstrip_OpensTheGtkOrientationMenu ()
+	{
+		var main = new MainWindow (null, new MainWindowViewModelTests.NullThumbnails ()) {
+			Width = 800,
+			Height = 500
+		};
+		main.Show ();
+		try {
+			var viewModel = (MainWindowViewModel)main.DataContext!;
+			var strip = main.GetVisualDescendants ().OfType<Border> ()
+				.Single (border => AutomationProperties.GetAutomationId (border) == AutomationIds.Filmstrip);
+			var menu = strip.ContextMenu;
+			Assert.IsNotNull (menu);
+			Assert.IsTrue (new[] { Strings.HorizontalMnemonic, Strings.VerticalMnemonic }.SequenceEqual (Labels (menu)),
+				string.Join (" | ", Labels (menu)));
+
+			int saved = FSpot.Settings.Preferences.Get<int> (FSpot.Settings.Preferences.FilmstripOrientation);
+			menu.Open (strip);
+			try {
+				var horizontal = menu.Items.OfType<MenuItem> ().Single (item => Equals (item.Header, Strings.HorizontalMnemonic));
+				var vertical = menu.Items.OfType<MenuItem> ().Single (item => Equals (item.Header, Strings.VerticalMnemonic));
+				horizontal.Command!.Execute (horizontal.CommandParameter);
+				Assert.IsFalse (viewModel.FilmstripOnSide);
+				Assert.IsTrue (horizontal.IsChecked);
+				vertical.Command!.Execute (vertical.CommandParameter);
+				Assert.IsTrue (viewModel.FilmstripOnSide);
+				Assert.IsTrue (vertical.IsChecked);
+				Assert.IsFalse (horizontal.IsChecked);
+			} finally {
+				menu.Close ();
+				FSpot.Settings.Preferences.Set (FSpot.Settings.Preferences.FilmstripOrientation, saved);
+			}
+		} finally {
+			main.Close ();
+		}
+	}
+
+	static XElement PhotoGridMarkup ()
+	{
+		for (var dir = new DirectoryInfo (AppContext.BaseDirectory); dir != null; dir = dir.Parent) {
+			var root = Path.Combine (dir.FullName, "F-Spot.slnx");
+			if (!File.Exists (root))
+				continue;
+			return XDocument.Load (Path.Combine (dir.FullName, "src", "Clients", "FSpot.Avalonia", "MainWindow.axaml"))
+				.Descendants ()
+				.Single (element => element.Name.LocalName == "ListBox"
+					&& (element.Attribute ("AutomationProperties.AutomationId")?.Value ?? string.Empty).Contains ("PhotoGrid"));
+		}
+		throw new InvalidOperationException ("F-Spot.slnx was not found above the test output.");
 	}
 
 	static void AssertPopup (Control owner, MainWindowViewModel viewModel)

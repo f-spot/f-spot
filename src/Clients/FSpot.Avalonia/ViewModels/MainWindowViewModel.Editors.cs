@@ -46,6 +46,12 @@ public partial class MainWindowViewModel
 
 	public Bitmap? DisplayedPreview => EditedPreview ?? Preview;
 
+	partial void OnEditedPreviewChanged (Bitmap? value)
+	{
+		if (SelectedPhoto is not null)
+			RequestHistogram (SelectedPhoto);
+	}
+
 	internal Task LivePreviewTask => livePreviewTask;
 
 	partial void OnEditorSessionChanged (PhotoEditorSession? oldValue, PhotoEditorSession? newValue)

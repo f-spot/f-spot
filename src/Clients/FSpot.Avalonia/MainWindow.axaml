@@ -40,18 +40,28 @@
 						<NativeMenuItem Header="{x:Static lang:Strings.Import2}" Gesture="Ctrl+N" Command="{Binding ImportCommand}" />
 						<NativeMenuItem Header="{x:Static lang:Strings.ImportFromCamera}" Command="{Binding ImportFromCameraCommand}" />
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="{x:Static lang:Strings.Version}" IsEnabled="False" />
+						<NativeMenuItem Header="{x:Static lang:Strings.Version}"
+						                IsEnabled="{Binding CanOpenVersionMenu}"
+						                input:DynamicMenu.Source="{Binding VersionMenu}" />
 						<NativeMenuItem Header="{x:Static lang:Strings.CreateNewVersion}" Command="{Binding CreateVersionCommand}" />
 						<NativeMenuItem Header="{x:Static lang:Strings.DeleteVersion}" Command="{Binding DeleteVersionCommand}" />
 						<NativeMenuItem Header="{x:Static lang:Strings.RenameVersion}" Command="{Binding RenameVersionCommand}" />
 						<NativeMenuItem Header="{x:Static lang:Strings.DetachVersion}" Command="{Binding DetachVersionCommand}" />
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="{x:Static lang:Strings.ExportToFolder}" Command="{Binding ExportCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.ExportTo2}"
+						                IsEnabled="{Binding CanExport}"
+						                input:DynamicMenu.Source="{Binding ExportMenu}">
+							<NativeMenuItem.Menu>
+								<NativeMenu>
+									<NativeMenuItem Header="{x:Static lang:Strings.Folder3}" Command="{Binding ExportCommand}" />
+								</NativeMenu>
+							</NativeMenuItem.Menu>
+						</NativeMenuItem>
 						<NativeMenuItem Header="{x:Static lang:Strings.Print2}" Gesture="Ctrl+P" Command="{Binding PrintCommand}" />
 						<NativeMenuItem Header="{x:Static lang:Strings.PageSetup2}" Command="{Binding PageSetupCommand}" />
 						<NativeMenuItem Header="{x:Static lang:Strings.SendByMail}" Command="{Binding MailCommand}" IsVisible="{Binding IsMailEnabled}" />
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="{x:Static lang:Strings.Close}" Gesture="Ctrl+W" Command="{Binding CloseWindowCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.Close}" Gesture="Ctrl+W" Command="{Binding CloseWindowCommand}" IsVisible="{Binding ShowCloseInMenu}" />
 						<NativeMenuItem Header="{x:Static lang:Strings.Quit}" Gesture="Ctrl+Q" Command="{Binding QuitCommand}" />
 					</NativeMenu>
 				</NativeMenuItem.Menu>
@@ -75,8 +85,12 @@
 						<NativeMenuItem Header="{x:Static lang:Strings.RemoveFromCatalog}" Command="{Binding RemoveFromCatalogCommand}" />
 						<NativeMenuItem Header="{x:Static lang:Strings.SetAsBackground}" Command="{Binding SetAsBackgroundCommand}" />
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="{x:Static lang:Strings.AttachTag}" Command="{Binding AttachTagCommand}" />
-						<NativeMenuItem Header="{x:Static lang:Strings.RemoveTag}" Command="{Binding RemoveTagCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.AttachTag}"
+						                IsEnabled="{Binding HasPhotoSelection}"
+						                input:DynamicMenu.Source="{Binding AttachTagMenu}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.RemoveTag}"
+						                IsEnabled="{Binding HasPhotoSelection}"
+						                input:DynamicMenu.Source="{Binding RemoveTagMenu}" />
 						<NativeMenuItemSeparator />
 						<NativeMenuItem Header="{x:Static lang:Strings.Preferences}" Command="{Binding ShowPreferencesCommand}" />
 						<NativeMenuItem Header="{x:Static lang:Strings.ManageExtensions}" Command="{Binding ShowExtensionsCommand}" />
@@ -95,7 +109,6 @@
 									<NativeMenuItem Header="{x:Static lang:Strings.Dates}" ToggleType="CheckBox" IsChecked="{Binding DisplayDates}" />
 									<NativeMenuItem Header="{x:Static lang:Strings.Tags2}" ToggleType="CheckBox" IsChecked="{Binding DisplayTags}" />
 									<NativeMenuItem Header="{x:Static lang:Strings.Ratings}" ToggleType="CheckBox" IsChecked="{Binding DisplayRatings}" />
-									<NativeMenuItem Header="{x:Static lang:Strings.DisplayFileNames}" ToggleType="CheckBox" IsChecked="{Binding DisplayFilenames}" />
 								</NativeMenu>
 							</NativeMenuItem.Menu>
 						</NativeMenuItem>
@@ -106,11 +119,12 @@
 									                IsChecked="{Binding DisplaySidebar, Mode=OneWay}"
 									                Command="{Binding ToggleSidebarCommand}"
 									                Gesture="F9" />
-									<NativeMenuItem Header="{x:Static lang:Strings.Timeline}" ToggleType="CheckBox" IsChecked="{Binding DisplayTimeline}" />
-									<NativeMenuItem Header="{x:Static lang:Strings.Filmstrip}" ToggleType="CheckBox" IsChecked="{Binding DisplayFilmstrip}" />
-									<NativeMenuItem Header="{x:Static lang:Strings.VerticalMnemonic}" ToggleType="CheckBox"
-									                IsChecked="{Binding FilmstripOnSide, Mode=OneWay}"
-									                Command="{Binding ToggleFilmstripSideCommand}" />
+									<NativeMenuItem Header="{x:Static lang:Strings.Timeline}" ToggleType="CheckBox"
+									                IsChecked="{Binding DisplayTimeline}"
+									                IsEnabled="{Binding CanUseTimeline}" />
+									<NativeMenuItem Header="{x:Static lang:Strings.Filmstrip}" ToggleType="CheckBox"
+									                IsChecked="{Binding DisplayFilmstrip}"
+									                IsEnabled="{Binding CanUseFilmstrip}" />
 									<NativeMenuItem Header="{x:Static lang:Strings.Toolbar2}" ToggleType="CheckBox" IsChecked="{Binding DisplayToolbar}" />
 								</NativeMenu>
 							</NativeMenuItem.Menu>
@@ -118,14 +132,29 @@
 						<NativeMenuItemSeparator />
 						<NativeMenuItem Header="{x:Static lang:Strings.ZoomIn}" Gesture="Ctrl+OemPlus" Command="{Binding ZoomInCommand}" />
 						<NativeMenuItem Header="{x:Static lang:Strings.ZoomOut}" Gesture="Ctrl+OemMinus" Command="{Binding ZoomOutCommand}" />
-						<NativeMenuItem Header="{x:Static lang:Strings.Hidden}" Command="{Binding SetTagIconSizeCommand}" CommandParameter="0" />
-						<NativeMenuItem Header="16" Command="{Binding SetTagIconSizeCommand}" CommandParameter="16" />
-						<NativeMenuItem Header="24" Command="{Binding SetTagIconSizeCommand}" CommandParameter="24" />
-						<NativeMenuItem Header="48" Command="{Binding SetTagIconSizeCommand}" CommandParameter="48" />
 						<NativeMenuItem Header="{x:Static lang:Strings.Loupe}" ToggleType="CheckBox"
 						                IsChecked="{Binding IsLoupeVisible, Mode=OneWay}"
 						                Command="{Binding ToggleLoupeCommand}"
 						                Gesture="V" />
+						<NativeMenuItemSeparator />
+						<NativeMenuItem Header="{x:Static lang:Strings.TagIcons}">
+							<NativeMenuItem.Menu>
+								<NativeMenu>
+									<NativeMenuItem Header="{x:Static lang:Strings.Hidden2}" ToggleType="Radio"
+									                IsChecked="{Binding TagIconHidden, Mode=OneWay}"
+									                Command="{Binding SetTagIconSizeCommand}" CommandParameter="0" />
+									<NativeMenuItem Header="{x:Static lang:Strings.Small2}" ToggleType="Radio"
+									                IsChecked="{Binding TagIconSmall, Mode=OneWay}"
+									                Command="{Binding SetTagIconSizeCommand}" CommandParameter="16" />
+									<NativeMenuItem Header="{x:Static lang:Strings.Medium2}" ToggleType="Radio"
+									                IsChecked="{Binding TagIconMedium, Mode=OneWay}"
+									                Command="{Binding SetTagIconSizeCommand}" CommandParameter="24" />
+									<NativeMenuItem Header="{x:Static lang:Strings.Large2}" ToggleType="Radio"
+									                IsChecked="{Binding TagIconLarge, Mode=OneWay}"
+									                Command="{Binding SetTagIconSizeCommand}" CommandParameter="48" />
+								</NativeMenu>
+							</NativeMenuItem.Menu>
+						</NativeMenuItem>
 						<NativeMenuItemSeparator />
 						<NativeMenuItem Header="{x:Static lang:Strings.ReverseOrder}" ToggleType="CheckBox" IsChecked="{Binding ReverseOrder}" />
 					</NativeMenu>
@@ -135,6 +164,10 @@
 				<NativeMenuItem.Menu>
 					<NativeMenu>
 						<NativeMenuItem Header="{x:Static lang:Strings.Find}" Gesture="Ctrl+F" Command="{Binding ShowFindCommand}" />
+						<NativeMenuItem Header="{Binding FindSelectedTagsHeader}" Command="{Binding IncludeHighlightedTagsCommand}" />
+						<NativeMenuItem Header="{Binding FindSelectedTagsWithHeader}"
+						                IsEnabled="{Binding CanFindWith}"
+						                input:DynamicMenu.Source="{Binding FindWithMenu}" />
 						<NativeMenuItemSeparator />
 						<NativeMenuItem Header="{x:Static lang:Strings.ByRating}">
 							<NativeMenuItem.Menu>
@@ -161,9 +194,6 @@
 								</NativeMenu>
 							</NativeMenuItem.Menu>
 						</NativeMenuItem>
-						<NativeMenuItem Header="{x:Static lang:Strings.MatchAllTags}" ToggleType="CheckBox"
-						                IsChecked="{Binding FindMatchAllTags, Mode=OneWay}"
-						                Command="{Binding ToggleFindMatchAllTagsCommand}" />
 						<NativeMenuItemSeparator />
 						<NativeMenuItem Header="{x:Static lang:Strings.UntaggedPhotos}" ToggleType="CheckBox" IsChecked="{Binding FindUntagged}" />
 					</NativeMenu>
@@ -182,13 +212,9 @@
 					</NativeMenu>
 				</NativeMenuItem.Menu>
 			</NativeMenuItem>
-			<NativeMenuItem Header="{x:Static lang:Strings.Tools}">
-				<NativeMenuItem.Menu>
-					<NativeMenu>
-						<NativeMenuItem Header="{x:Static lang:Strings.ManageExtensions}" Command="{Binding ShowToolsCommand}" />
-					</NativeMenu>
-				</NativeMenuItem.Menu>
-			</NativeMenuItem>
+			<NativeMenuItem Header="{x:Static lang:Strings.Tools}"
+			                IsVisible="{Binding ShowToolsMenu}"
+			                input:DynamicMenu.Source="{Binding ToolsMenu}" />
 			<NativeMenuItem Header="{x:Static lang:Strings.Help}">
 				<NativeMenuItem.Menu>
 					<NativeMenu>
@@ -352,7 +378,9 @@
 				          IsExpanded="True"
 				          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarHistogram}"
 				          AutomationProperties.Name="{x:Static lang:Strings.Histogram}">
-					<Image Height="72" Stretch="Fill" Source="{Binding Histogram}" Margin="2,4" />
+					<Image MaxHeight="128" MaxWidth="256" Stretch="Uniform" HorizontalAlignment="Left"
+					       RenderOptions.BitmapInterpolationMode="None"
+					       Source="{Binding Histogram}" Margin="2,4" />
 				</Expander>
 				<Expander Classes="sidebar"
 				          Header="{x:Static lang:Strings.ImageInformation}"
@@ -835,6 +863,21 @@
 				        FlowDirection="{Binding $parent[Window].FlowDirection}"
 				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.Filmstrip}"
 				        AutomationProperties.Name="{x:Static lang:Strings.Filmstrip}">
+					<Border.ContextMenu>
+						<ContextMenu AutomationProperties.AutomationId="{x:Static auto:AutomationIds.FilmstripPopup}"
+						             AutomationProperties.Name="{x:Static lang:Strings.Filmstrip}">
+							<MenuItem Header="{x:Static lang:Strings.HorizontalMnemonic}"
+							          ToggleType="CheckBox"
+							          IsChecked="{Binding FilmstripHorizontal, Mode=OneWay}"
+							          Command="{Binding SetFilmstripOrientationCommand}"
+							          CommandParameter="Horizontal" />
+							<MenuItem Header="{x:Static lang:Strings.VerticalMnemonic}"
+							          ToggleType="CheckBox"
+							          IsChecked="{Binding FilmstripOnSide, Mode=OneWay}"
+							          Command="{Binding SetFilmstripOrientationCommand}"
+							          CommandParameter="Vertical" />
+						</ContextMenu>
+					</Border.ContextMenu>
 					<ListBox ItemsSource="{Binding Photos}"
 					         SelectedItem="{Binding SelectedPhoto}"
 					         KeyboardNavigation.TabIndex="3"
@@ -925,6 +968,9 @@
 					         input:ThumbnailItems.Enable="True"
 					         AutomationProperties.AutomationId="{x:Static auto:AutomationIds.PhotoGrid}"
 					         AutomationProperties.Name="{x:Static lang:Strings.Photos}">
+						<ListBox.ContextMenu>
+							<controls:PhotoPopup />
+						</ListBox.ContextMenu>
 						<ListBox.ItemsPanel>
 							<ItemsPanelTemplate>
 								<controls:UniformVirtualizingWrapPanel
@@ -936,7 +982,6 @@
 							<ControlTheme TargetType="ListBoxItem" x:DataType="vm:PhotoItemViewModel"
 							              BasedOn="{StaticResource {x:Type ListBoxItem}}">
 								<Setter Property="Padding" Value="0" />
-								<Setter Property="IsSelected" Value="{Binding Selected, Mode=TwoWay}" />
 							</ControlTheme>
 						</ListBox.ItemContainerTheme>
 						<ListBox.ItemTemplate>
@@ -949,17 +994,6 @@
 								        input:ItemCommands.DoubleTap="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).OpenPhotoCommand}"
 								        AutomationProperties.AutomationId="{Binding AutomationId}"
 								        AutomationProperties.Name="{Binding Caption}">
-									<Border.ContextMenu>
-										<ContextMenu>
-											<MenuItem Header="{x:Static lang:Strings.Open}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).OpenPhotoCommand}" CommandParameter="{Binding}" />
-											<Separator />
-											<MenuItem Header="{x:Static lang:Strings.AttachTagToSelection}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).AttachTagCommand}" />
-											<MenuItem Header="{x:Static lang:Strings.RemoveTagFromSelection}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).RemoveTagCommand}" />
-											<Separator />
-											<MenuItem Header="{x:Static lang:Strings.RemoveFromCatalogMnemonic}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).RemoveFromCatalogCommand}" />
-											<MenuItem Header="{x:Static lang:Strings.DeletePhotoMnemonic}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).DeleteFromDriveCommand}" />
-										</ContextMenu>
-									</Border.ContextMenu>
 									<Border.Styles>
 										<Style Selector="Border.selected">
 											<Setter Property="Background" Value="{DynamicResource SystemAccentColorLight2}" />
@@ -1053,7 +1087,9 @@
 					<Panel>
 						<Image MaxWidth="{Binding PreviewPopupEdge}" MaxHeight="{Binding PreviewPopupEdge}" Stretch="Uniform"
 						       Source="{Binding PreviewPopupImage}" />
-						<Image Source="{Binding PreviewPopupHistogram}" Stretch="None" Opacity="0.78"
+						<Image Source="{Binding PreviewPopupHistogram}" Stretch="Uniform"
+						       Width="128" Height="64" Opacity="0.784"
+						       RenderOptions.BitmapInterpolationMode="HighQuality"
 						       HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10"
 						       IsVisible="{Binding PreviewPopupHistogram, Converter={x:Static ObjectConverters.IsNotNull}}" />
 					</Panel>

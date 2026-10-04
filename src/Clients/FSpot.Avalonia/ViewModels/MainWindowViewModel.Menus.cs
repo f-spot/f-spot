@@ -33,6 +33,7 @@ public partial class MainWindowViewModel
 	MenuSource? openWithMenu;
 	MenuSource? exportMenu;
 	MenuSource? toolsMenu;
+	MenuExtensionWatcher? menuWatcher;
 
 	public TagTermQuery TermQuery { get; } = new ();
 	public ObservableCollection<QueryLiteralChip> QueryLiterals { get; } = [];
@@ -46,6 +47,16 @@ public partial class MainWindowViewModel
 	public MenuSource OpenWithMenu => openWithMenu ??= new MenuSource (BuildOpenWithMenu);
 	public MenuSource ExportMenu => exportMenu ??= new MenuSource (BuildExportMenu);
 	public MenuSource ToolsMenu => toolsMenu ??= new MenuSource (BuildToolsMenu);
+	public bool ShowToolsMenu => MenuExtensions.For (MenuExtensionPoint.Tools).Count > 0;
+
+	// This client has one window, so Close and Quit leave the same way. macOS shows Quit only.
+	public bool ShowCloseInMenu => !OperatingSystem.IsMacOS ();
+
+	void WatchMenuExtensions ()
+		=> menuWatcher = new MenuExtensionWatcher (this);
+
+	void OnMenuExtensionsChanged ()
+		=> OnPropertyChanged (nameof (ShowToolsMenu));
 
 	// The tags selected in the sidebar tree (GTK's TagHighlight); the focused tag when none are.
 	public IReadOnlyList<TagNode> HighlightedTags
@@ -210,7 +221,7 @@ public partial class MainWindowViewModel
 		=> ContributionEntries (MenuExtensionPoint.Exports, separated: false);
 
 	internal IReadOnlyList<MenuEntry> BuildToolsMenu ()
-		=> ContributionEntries (MenuExtensionPoint.Tools, separated: true);
+		=> ContributionEntries (MenuExtensionPoint.Tools, separated: false);
 
 	List<MenuEntry> ContributionEntries (MenuExtensionPoint point, bool separated)
 	{
@@ -423,6 +434,31 @@ public partial class MainWindowViewModel
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Extension {Id} failed", contribution.Id);
 			await shell.ShowWarningAsync (contribution.Label, ex.Message);
+		}
+	}
+
+	// The static extension event must not root every view model tests construct.
+	sealed class MenuExtensionWatcher : IDisposable
+	{
+		readonly WeakReference<MainWindowViewModel> owner;
+
+		public MenuExtensionWatcher (MainWindowViewModel owner)
+		{
+			this.owner = new WeakReference<MainWindowViewModel> (owner);
+			MenuExtensions.Changed += OnChanged;
+		}
+
+		public void Dispose ()
+			=> MenuExtensions.Changed -= OnChanged;
+
+		void OnChanged (object? sender, EventArgs e)
+		{
+			if (!owner.TryGetTarget (out var viewModel)) {
+				Dispose ();
+				return;
+			}
+
+			viewModel.OnMenuExtensionsChanged ();
 		}
 	}
 }

@@ -72,21 +72,88 @@ namespace FSpot.Imaging.Tests
 			Assert.HasCount (512 * 8 * 4, wide);
 
 			Assert.HasCount (256 * 4 * 4, pixels);
-			AssertBottomPixel (pixels, 4, 0, 3, blue: 255, green: 0, red: 0);
-			AssertBottomPixel (pixels, 4, 0, 1, blue: 255, green: 0, red: 255);
-			AssertBottomPixel (pixels, 4, 0, 0, blue: 255, green: 255, red: 255);
-			AssertBottomPixel (pixels, 4, 1, 0, blue: 0, green: 0, red: 0);
+			AssertBottomPixel (pixels, 256, 4, 0, 3, blue: 255, green: 0, red: 0);
+			AssertBottomPixel (pixels, 256, 4, 0, 1, blue: 255, green: 0, red: 255);
+			AssertBottomPixel (pixels, 256, 4, 0, 0, blue: 255, green: 255, red: 255);
+			AssertBottomPixel (pixels, 256, 4, 1, 0, blue: 0, green: 0, red: 0);
 		}
 
-		static void AssertBottomPixel (byte[] pixels, int height, int x, int fromBottom,
+		[TestMethod]
+		public void CountRgb_CountsEveryRowOncePastPadding ()
+		{
+			var pixels = new byte[] {
+				9, 0, 0, 0xEE,
+				4, 0, 0, 0xEE,
+			};
+			var buffer = new ImageBuffer (1, 2, false, 4, pixels);
+
+			var counts = RgbHistogram.CountRgb (buffer);
+
+			Assert.AreEqual (1, counts[9, RgbHistogram.Red]);
+			Assert.AreEqual (1, counts[4, RgbHistogram.Red]);
+		}
+
+		[TestMethod]
+		public void RenderBgra_NarrowChartKeepsEndpointAndOddCodes ()
+		{
+			var counts = new int[256, 3];
+			counts[1, RgbHistogram.Red] = 50;
+			counts[255, RgbHistogram.Red] = 50;
+
+			byte[] pixels = RgbHistogram.RenderBgra (counts, 128, 8);
+
+			AssertBottomPixel (pixels, 128, 8, 0, 0, blue: 0, green: 0, red: 255);
+			AssertBottomPixel (pixels, 128, 8, 127, 0, blue: 0, green: 0, red: 255);
+		}
+
+		[TestMethod]
+		public void RenderBgra_Width192KeepsBinsTheSampleWouldSkip ()
+		{
+			var counts = new int[256, 3];
+			counts[3, RgbHistogram.Red] = 100;
+
+			byte[] pixels = RgbHistogram.RenderBgra (counts, 192, 4);
+
+			AssertBottomPixel (pixels, 192, 4, 2, 0, blue: 0, green: 0, red: 255);
+		}
+
+		[TestMethod]
+		public void RenderBgra_ScalesToTheSummedColumnNotTheTallestBin ()
+		{
+			var counts = new int[256, 3];
+			counts[0, RgbHistogram.Red] = 100;
+			counts[1, RgbHistogram.Red] = 50;
+			counts[254, RgbHistogram.Red] = 100;
+
+			byte[] pixels = RgbHistogram.RenderBgra (counts, 128, 15);
+
+			AssertBottomPixel (pixels, 128, 15, 0, 14, blue: 0, green: 0, red: 255);
+			AssertBottomPixel (pixels, 128, 15, 127, 14, blue: 0, green: 0, red: 0);
+			AssertBottomPixel (pixels, 128, 15, 127, 9, blue: 0, green: 0, red: 255);
+		}
+
+		[TestMethod]
+		public void RenderBgra_PaintsTheBackgroundOnlyAboveTheTallestChannel ()
+		{
+			var counts = new int[256, 3];
+			counts[0, RgbHistogram.Red] = 1;
+			counts[1, RgbHistogram.Red] = 3;
+
+			byte[] pixels = RgbHistogram.RenderBgra (counts, 256, 4, backgroundRed: 10, backgroundGreen: 20, backgroundBlue: 30);
+
+			AssertBottomPixel (pixels, 256, 4, 0, 3, blue: 30, green: 20, red: 10);
+			AssertBottomPixel (pixels, 256, 4, 0, 0, blue: 0, green: 0, red: 255);
+		}
+
+		static void AssertBottomPixel (byte[] pixels, int width, int height, int x, int fromBottom,
 			byte blue, byte green, byte red)
 		{
 			int y = height - 1 - fromBottom;
-			int i = (y * 256 + x) * 4;
-			Assert.AreEqual (blue, pixels[i]);
-			Assert.AreEqual (green, pixels[i + 1]);
-			Assert.AreEqual (red, pixels[i + 2]);
-			Assert.AreEqual (255, pixels[i + 3]);
+			int i = (y * width + x) * 4;
+			Assert.AreEqual (blue, pixels[i], $"blue x={x} fromBottom={fromBottom}");
+			Assert.AreEqual (green, pixels[i + 1], $"green x={x} fromBottom={fromBottom}");
+			Assert.AreEqual (red, pixels[i + 2], $"red x={x} fromBottom={fromBottom}");
+			Assert.AreEqual (255, pixels[i + 3], $"alpha x={x} fromBottom={fromBottom}");
 		}
 	}
 }

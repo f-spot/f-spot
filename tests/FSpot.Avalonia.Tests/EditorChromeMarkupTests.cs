@@ -62,7 +62,8 @@ public sealed class EditorChromeMarkupTests
 		Assert.Contains ("CopyCommand", markup);
 		Assert.Contains ("PageSetupCommand", markup);
 		Assert.Contains ("SetAsBackgroundCommand", markup);
-		Assert.Contains ("ShowToolsCommand", markup);
+		Assert.Contains ("ShowExtensionsCommand", markup);
+		Assert.DoesNotContain ("ShowToolsCommand", markup);
 		Assert.DoesNotContain ("Strings.Copy}\" Gesture=\"Ctrl+C\" IsEnabled=\"False\"", markup);
 		Assert.DoesNotContain ("Strings.PageSetup2}\" IsEnabled=\"False\"", markup);
 		Assert.DoesNotContain ("Strings.SetAsBackground}\" IsEnabled=\"False\"", markup);
@@ -186,7 +187,7 @@ public sealed class EditorChromeMarkupTests
 			Assert.Contains (item => item.Command.Contains (name), commands, name);
 		}
 
-		foreach (string name in new[] { "CopyCommand", "PageSetupCommand", "SetAsBackgroundCommand", "ShowToolsCommand" })
+		foreach (string name in new[] { "CopyCommand", "PageSetupCommand", "SetAsBackgroundCommand", "ShowExtensionsCommand" })
 			Assert.Contains (item => item.Command.Contains (name), commands, name);
 	}
 

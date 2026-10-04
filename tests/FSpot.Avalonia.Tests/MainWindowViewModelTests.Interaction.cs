@@ -182,6 +182,53 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
+	public void TagTree_DeleteAndF2ReachTheTagWhenTheRowIsFocused ()
+	{
+		AvaloniaApp.Ensure ();
+		var viewModel = NewViewModel ();
+		var tag = new TagNode (new Tag (null, 1, "Vacation"));
+		var item = new TreeViewItem { Header = tag.Name, DataContext = tag };
+		var tree = new TreeView { DataContext = viewModel };
+		tree.Items.Add (item);
+		TagTreeInput.SetEnable (tree, true);
+		var window = new Window { Width = 240, Height = 180, Content = tree, DataContext = viewModel };
+		window.Show ();
+		window.UpdateLayout ();
+		item.IsSelected = true;
+		item.Focus ();
+		Assert.IsTrue (item.IsFocused);
+
+		var delete = KeyDown (item, Key.Delete);
+		Assert.IsTrue (delete.Handled);
+
+		KeyDown (item, Key.F2);
+		Assert.IsTrue (tag.IsRenaming);
+
+		var box = new TextBox ();
+		item.Header = box;
+		window.UpdateLayout ();
+		box.Focus ();
+		Assert.IsTrue (box.IsFocused);
+		tag.IsRenaming = false;
+		var typed = KeyDown (box, Key.F2);
+		Assert.IsFalse (typed.Handled);
+		Assert.IsFalse (tag.IsRenaming);
+		window.Close ();
+	}
+
+	static KeyEventArgs KeyDown (Interactive source, Key key)
+	{
+		var args = new KeyEventArgs {
+			RoutedEvent = InputElement.KeyDownEvent,
+			Key = key,
+			KeyModifiers = KeyModifiers.None,
+			Source = source
+		};
+		source.RaiseEvent (args);
+		return args;
+	}
+
+	[UiTestMethod]
 	public void IncludeTagsInQuery_AddsEachTagToTheFind ()
 	{
 		var viewModel = NewViewModel ();
@@ -223,6 +270,8 @@ public sealed partial class MainWindowViewModelTests
 		await viewModel.ShowPreviewPopupAsync (viewModel.Photos[1], histogram: true, 1920, 1080);
 		Assert.AreSame (viewModel.Photos[1], viewModel.PreviewPopupItem);
 		Assert.IsNotNull (viewModel.PreviewPopupHistogram);
+		Assert.AreEqual (128, viewModel.PreviewPopupHistogram.PixelSize.Width);
+		Assert.AreEqual (64, viewModel.PreviewPopupHistogram.PixelSize.Height);
 
 		viewModel.HidePreviewPopup ();
 		Assert.IsFalse (viewModel.ShowPreviewPopup);

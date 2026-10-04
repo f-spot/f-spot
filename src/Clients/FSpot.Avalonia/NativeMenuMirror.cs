@@ -79,6 +79,7 @@ public static class NativeMenuMirror
 		item.Bind (MenuItem.CommandProperty, BindTo (native, nameof (NativeMenuItem.Command)));
 		item.Bind (MenuItem.CommandParameterProperty, BindTo (native, nameof (NativeMenuItem.CommandParameter)));
 		item.Bind (MenuItem.IsEnabledProperty, BindTo (native, nameof (NativeMenuItem.IsEnabled)));
+		item.Bind (MenuItem.IsVisibleProperty, BindTo (native, nameof (NativeMenuItem.IsVisible)));
 		if (native.Gesture is { } gesture)
 			item.InputGesture = gesture;
 		if (native.ToggleType != MenuItemToggleType.None) {

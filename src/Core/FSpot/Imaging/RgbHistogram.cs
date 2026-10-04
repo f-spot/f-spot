@@ -36,36 +36,61 @@ namespace FSpot.Imaging
 			if (values == null)
 				throw new ArgumentNullException (nameof (values));
 
-			double total = 0;
 			int bins = values.GetLength (0);
+			double total = 0;
 			for (int i = 0; i < bins; i++)
 				total += values[i, channel];
 
-			double current = 0.0;
 			low = 0;
 			high = 0;
-			if (total <= 0)
+			if (total <= 0 || bins < 2)
 				return;
 
-			for (int i = 0; i < bins - 1; i++) {
-				current += values[i, channel];
-				double percentage = current / total;
-				double next = (current + values[i + 1, channel]) / total;
-				if (Math.Abs (percentage - 0.006) < Math.Abs (next - 0.006)) {
-					low = i + 1;
-					break;
+			low = Cut (values, channel, bins, total, fromStart: true);
+			high = Cut (values, channel, bins, total, fromStart: false);
+		}
+
+		// Each end starts at zero. An empty run is not a step: before any pixels are clipped the
+		// cut is the next occupied code, and after that it stays at the end of the clipped prefix.
+		const double ClipFraction = 0.006;
+
+		static int Cut (int[,] values, int channel, int bins, double total, bool fromStart)
+		{
+			double current = 0;
+			if (fromStart) {
+				for (int i = 0; i < bins - 1; i++) {
+					current += values[i, channel];
+					int nextBin = NextOccupied (values, channel, i + 1, bins - 1, +1);
+					if (CloserThanNext (current, values[nextBin, channel], total))
+						return current == 0 ? nextBin : i + 1;
 				}
+
+				return 0;
 			}
 
 			for (int i = bins - 1; i > 0; i--) {
 				current += values[i, channel];
-				double percentage = current / total;
-				double next = (current + values[i - 1, channel]) / total;
-				if (Math.Abs (percentage - 0.006) < Math.Abs (next - 0.006)) {
-					high = i - 1;
-					break;
-				}
+				int nextBin = NextOccupied (values, channel, i - 1, 0, -1);
+				if (CloserThanNext (current, values[nextBin, channel], total))
+					return current == 0 ? nextBin : i - 1;
 			}
+
+			return bins - 1;
+		}
+
+		static bool CloserThanNext (double current, int nextCount, double total)
+		{
+			double percentage = current / total;
+			double next = (current + nextCount) / total;
+			return Math.Abs (percentage - ClipFraction) < Math.Abs (next - ClipFraction);
+		}
+
+		static int NextOccupied (int[,] values, int channel, int start, int last, int step)
+		{
+			int i = start;
+			while (i != last && values[i, channel] == 0)
+				i += step;
+			return i;
 		}
 
 		public static int[,] CountBgra (byte[] bgra)
@@ -87,7 +112,8 @@ namespace FSpot.Imaging
 		public static byte[] RenderBgra (int[,] values, int height)
 			=> RenderBgra (values, 256, height);
 
-		public static byte[] RenderBgra (int[,] values, int width, int height)
+		public static byte[] RenderBgra (int[,] values, int width, int height,
+			byte backgroundRed = 0, byte backgroundGreen = 0, byte backgroundBlue = 0, byte backgroundAlpha = 255)
 		{
 			if (values == null)
 				throw new ArgumentNullException (nameof (values));
@@ -96,29 +122,30 @@ namespace FSpot.Imaging
 			if (width <= 0)
 				throw new ArgumentOutOfRangeException (nameof (width));
 
-			int max = 1;
 			int bins = Math.Min (256, values.GetLength (0));
-			for (int i = 0; i < bins; i++) {
-				max = Math.Max (max, values[i, Red]);
-				max = Math.Max (max, values[i, Green]);
-				max = Math.Max (max, values[i, Blue]);
+			long max = 1;
+			for (int x = 0; x < width; x++) {
+				ColumnRange (bins, width, x, out int start, out int end);
+				max = Math.Max (max, Aggregate (values, Red, start, end));
+				max = Math.Max (max, Aggregate (values, Green, start, end));
+				max = Math.Max (max, Aggregate (values, Blue, start, end));
 			}
 
 			var pixels = new byte[width * height * 4];
 			for (int x = 0; x < width; x++) {
-				int bin = Math.Min (bins - 1, x * bins / width);
-				int r = values[bin, Red] * height / max;
-				int g = values[bin, Green] * height / max;
-				int b = values[bin, Blue] * height / max;
+				ColumnRange (bins, width, x, out int start, out int end);
+				int r = BarHeight (Aggregate (values, Red, start, end), height, max);
+				int g = BarHeight (Aggregate (values, Green, start, end), height, max);
+				int b = BarHeight (Aggregate (values, Blue, start, end), height, max);
 				int top = Math.Max (r, Math.Max (g, b));
 				for (int y = 0; y < height; y++) {
 					int fromBottom = height - 1 - y;
 					int i = (y * width + x) * 4;
 					if (fromBottom >= top) {
-						pixels[i] = 0;
-						pixels[i + 1] = 0;
-						pixels[i + 2] = 0;
-						pixels[i + 3] = 255;
+						pixels[i] = backgroundBlue;
+						pixels[i + 1] = backgroundGreen;
+						pixels[i + 2] = backgroundRed;
+						pixels[i + 3] = backgroundAlpha;
 					} else {
 						pixels[i] = (byte)(fromBottom < b ? 255 : 0);
 						pixels[i + 1] = (byte)(fromBottom < g ? 255 : 0);
@@ -130,5 +157,26 @@ namespace FSpot.Imaging
 
 			return pixels;
 		}
+
+		// Columns partition the bins when the chart is narrower than 256, and repeat a bin when
+		// it is wider. Sampling one bin per column drops codes, including the clip at 255.
+		static void ColumnRange (int bins, int width, int x, out int start, out int end)
+		{
+			start = x * bins / width;
+			end = (x + 1) * bins / width;
+			if (end <= start)
+				end = Math.Min (bins, start + 1);
+		}
+
+		static long Aggregate (int[,] values, int channel, int start, int end)
+		{
+			long sum = 0;
+			for (int bin = start; bin < end; bin++)
+				sum += values[bin, channel];
+			return sum;
+		}
+
+		static int BarHeight (long count, int height, long max)
+			=> (int)(count * height / max);
 	}
 }

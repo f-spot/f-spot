@@ -13,8 +13,8 @@ using FSpot.Avalonia.ViewModels;
 namespace FSpot.Avalonia.Controls;
 
 /// <summary>
-/// GTK's /FSpot/Menus/PhotoPopup on the photo view and on FullScreenView, plus extension rows.
-/// The browse grid keeps its shorter menu. The filmstrip menu is orientation only.
+/// GTK's /FSpot/Menus/PhotoPopup on the browse grid, the photo view, and FullScreenView, plus extension rows.
+/// The filmstrip menu is horizontal or vertical. The standalone viewer keeps rotate and set as background.
 /// </summary>
 public partial class PhotoPopup : ContextMenu
 {
