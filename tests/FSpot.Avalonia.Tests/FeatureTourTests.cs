@@ -26,7 +26,10 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class FeatureTourTests
 {
+	// Headless input has one pointer. MouseDown drains the dispatcher, so another
+	// test can move that pointer before MouseUp and the toolbar click is lost.
 	[UiTestMethod]
+	[DoNotParallelize]
 	public async Task MainWindow_ExercisesTheLibraryAndReleasesDecodedImages ()
 	{
 		AvaloniaApp.Ensure ();

@@ -248,10 +248,16 @@ public sealed partial class MainWindowViewModelTests
 		await Dispatcher.UIThread.InvokeAsync (() => { }, DispatcherPriority.Background);
 	}
 
+	// The scan posts each photo from the thread pool. A fixed hop count can
+	// finish before that post exists.
 	static async Task PumpUntil (Func<bool> done)
 	{
-		for (int i = 0; i < 50 && !done (); i++)
+		long started = Environment.TickCount64;
+		while (!done () && Environment.TickCount64 - started < 5_000) {
 			await Pump ();
+			await Task.Delay (10);
+		}
+
 		Assert.IsTrue (done ());
 	}
 
