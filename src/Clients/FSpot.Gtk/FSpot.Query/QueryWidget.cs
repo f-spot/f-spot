@@ -167,6 +167,10 @@ namespace FSpot.Query
 
 		public void HandleChanged (IBrowsableCollection collection)
 		{
+			// FolderQueryWidget sets FolderSet, which reloads the query, before LogicWidget exists.
+			if (logic_widget == null || folder_query_widget == null)
+				return;
+
 			if (query.TagTerm == null)
 				logic_widget.Clear ();
 
