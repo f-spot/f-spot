@@ -113,11 +113,14 @@ public sealed class DesktopBackgroundTests
 			const string path = "/tmp/a\"b\\c&d\ne.jpg";
 			DesktopBackground.Set (path);
 
-			Assert.IsNotEmpty (launched);
-			foreach (ProcessStartInfo start in launched) {
-				Assert.StartsWith ("/", start.FileName);
-				Assert.AreEqual (string.Empty, start.Arguments);
-				Assert.AreEqual (path, start.ArgumentList[start.ArgumentList.Count - 1]);
+			IReadOnlyList<WallpaperCommand> commands = OperatingSystem.IsMacOS ()
+				? new[] { DesktopBackground.MacCommand (path) }
+				: DesktopBackground.LinuxCommands (path);
+			Assert.HasCount (commands.Count, launched);
+			for (int i = 0; i < commands.Count; i++) {
+				Assert.AreEqual (commands[i].FileName, launched[i].FileName);
+				Assert.AreEqual (string.Empty, launched[i].Arguments);
+				Assert.AreSequenceEqual (commands[i].Arguments.ToArray (), launched[i].ArgumentList.ToArray ());
 			}
 		} finally {
 			DesktopBackground.StartProcess = originalStart;

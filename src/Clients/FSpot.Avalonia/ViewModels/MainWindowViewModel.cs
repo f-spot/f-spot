@@ -1947,23 +1947,25 @@ public partial class MainWindowViewModel : ObservableObject
 		var removed = new List<Photo> ();
 		var failures = new List<string> ();
 		foreach (var photo in photos) {
-			bool failed = false;
-			foreach (uint id in photo.VersionIds) {
-				string path = photo.VersionUri (id)?.ToString () ?? photo.Name;
-				try {
-					photo.DeleteVersion (id, true);
-				} catch (Exception ex) {
-					failed = true;
-					Logger.Log.Error (ex, "Failed to delete version {Version} of {Name}", id, photo.Name);
-					failures.Add (FormatDeleteFailure (ex, path));
-				}
-			}
+			// Captured before any version is removed. Photo.Name reads the original URI.
+			string name = PhotoDriveDelete.DisplayName (photo);
+			try {
+				var versionFailures = PhotoDriveDelete.TryDeleteAllVersions (photo);
+				if (versionFailures.Count > 0) {
+					foreach (var failure in versionFailures) {
+						Logger.Log.Error (failure.Exception, "Failed to delete a version of {Name}", name);
+						failures.Add (FormatDeleteFailure (failure.Exception, failure.Path));
+					}
 
-			// A photo stays in the catalog when any version file is still on disk.
-			if (failed)
-				database.Photos.Commit (photo);
-			else
-				removed.Add (photo);
+					// A photo stays in the catalog when any version file is still on disk.
+					database.Photos.Commit (photo);
+				} else {
+					removed.Add (photo);
+				}
+			} catch (Exception ex) {
+				Logger.Log.Error (ex, "Failed to delete {Name}", name);
+				failures.Add (FormatDeleteFailure (ex, name));
+			}
 		}
 
 		if (removed.Count > 0)

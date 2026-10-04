@@ -295,16 +295,25 @@ public sealed class FeatureTourDialogTests
 		Assert.IsNotNull (directory);
 		var viewModel = catalog.ViewModel;
 		viewModel.SelectPhoto (catalog.ItemFor (path));
-		var dirInfo = new DirectoryInfo (directory);
 		bool windows = OperatingSystem.IsWindows ();
 		FileAttributes previousAttributes = default;
 		UnixFileMode previousMode = default;
+		string lockedPath = path;
+		DirectoryInfo? lockedDir = null;
 		if (windows) {
 			previousAttributes = File.GetAttributes (path);
 			File.SetAttributes (path, previousAttributes | FileAttributes.ReadOnly);
 		} else {
-			previousMode = dirInfo.UnixFileMode;
-			dirInfo.UnixFileMode = UnixFileMode.UserRead | UnixFileMode.UserExecute;
+			// photos.db lives next to the original file. Locking that folder makes
+			// the failure-path commit throw "attempt to write a readonly database".
+			string album = Path.Combine (directory, "album");
+			Directory.CreateDirectory (album);
+			lockedPath = Path.Combine (album, Path.GetFileName (path));
+			File.Move (path, lockedPath);
+			((Photo)viewModel.SelectedPhoto!.Photo).GetVersion (Photo.OriginalVersionId).Uri = new SafeUri (lockedPath);
+			lockedDir = new DirectoryInfo (album);
+			previousMode = lockedDir.UnixFileMode;
+			lockedDir.UnixFileMode = UnixFileMode.UserRead | UnixFileMode.UserExecute;
 		}
 
 		try {
@@ -313,16 +322,81 @@ public sealed class FeatureTourDialogTests
 			await Drain ();
 			var warning = catalog.Window.OwnedWindows.OfType<MessageDialog> ().Single ();
 			Assert.AreEqual (Strings.ErrorDeletingPicture, warning.HeadingBlock.Text);
-			Assert.Contains (path, warning.BodyBlock.Text ?? string.Empty);
+			string body = warning.BodyBlock.Text ?? string.Empty;
+			Assert.Contains (lockedPath, body);
+			Assert.DoesNotContain ("file://", body);
 			Click (warning, AutomationIds.DialogOk);
 			await Drain ();
 			Assert.AreEqual (1, viewModel.Photos.Count);
-			Assert.IsTrue (File.Exists (path));
+			Assert.IsTrue (File.Exists (lockedPath));
 		} finally {
 			if (windows)
 				File.SetAttributes (path, previousAttributes);
+			else if (lockedDir is not null)
+				lockedDir.UnixFileMode = previousMode;
+		}
+	}
+
+	[UiTestMethod]
+	public async Task DeleteFromDrive_KeepsTheOriginalWhenOnlyTheDerivedFileIsLocked ()
+	{
+		using var catalog = CopyCatalog.Open (2);
+		string original = catalog.Paths[0];
+		string other = catalog.Paths[1];
+		string? directory = Path.GetDirectoryName (original);
+		Assert.IsNotNull (directory);
+		string album = Path.Combine (directory, "derived");
+		Directory.CreateDirectory (album);
+		string derived = Path.Combine (album, "edited.jpg");
+		File.Copy (original, derived);
+
+		var viewModel = catalog.ViewModel;
+		var kept = catalog.ItemFor (original);
+		var photo = (Photo)kept.Photo;
+		photo.AddVersion (new SafeUri (album), "edited.jpg", "Edited");
+		var also = catalog.ItemFor (other);
+		var grid = Find<ListBox> (catalog.Window, AutomationIds.PhotoGrid);
+		var selected = grid.SelectedItems!;
+		selected.Clear ();
+		selected.Add (kept);
+		selected.Add (also);
+		kept.Selected = true;
+		also.Selected = true;
+		viewModel.SelectedPhoto = kept;
+
+		bool windows = OperatingSystem.IsWindows ();
+		FileAttributes previousAttributes = default;
+		UnixFileMode previousMode = default;
+		var lockedDir = new DirectoryInfo (album);
+		if (windows) {
+			previousAttributes = File.GetAttributes (derived);
+			File.SetAttributes (derived, previousAttributes | FileAttributes.ReadOnly);
+		} else {
+			previousMode = lockedDir.UnixFileMode;
+			lockedDir.UnixFileMode = UnixFileMode.UserRead | UnixFileMode.UserExecute;
+		}
+
+		try {
+			viewModel.DeleteFromDriveCommand.Execute (null);
+			await Confirm (catalog.Window);
+			await Drain ();
+			var warning = catalog.Window.OwnedWindows.OfType<MessageDialog> ().Single ();
+			string body = warning.BodyBlock.Text ?? string.Empty;
+			Assert.Contains (derived, body);
+			Assert.DoesNotContain ("file://", body);
+			Click (warning, AutomationIds.DialogOk);
+			await Drain ();
+
+			Assert.AreEqual (1, viewModel.Photos.Count);
+			Assert.IsTrue (File.Exists (original));
+			Assert.IsTrue (File.Exists (derived));
+			Assert.IsFalse (File.Exists (other));
+			Assert.IsNotNull (photo.GetVersion (Photo.OriginalVersionId));
+		} finally {
+			if (windows)
+				File.SetAttributes (derived, previousAttributes);
 			else
-				dirInfo.UnixFileMode = previousMode;
+				lockedDir.UnixFileMode = previousMode;
 		}
 	}
 
