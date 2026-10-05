@@ -11,10 +11,12 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System;
 using System.IO;
 
 using FSpot.Settings;
 
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace FSpot.Platform
@@ -75,18 +77,64 @@ namespace FSpot.Platform
 		JObject LoadSettings ()
 		{
 			loadedFrom = SettingsFile;
-			if (!File.Exists (loadedFrom) || new FileInfo (loadedFrom).Length == 0) {
-				var empty = new JObject {
-					[SettingsRoot] = new JObject ()
-				};
-				EnsureSettingsDirectory (loadedFrom);
-				File.WriteAllText (loadedFrom, empty.ToString ());
+			if (!File.Exists (loadedFrom) || new FileInfo (loadedFrom).Length == 0)
+				WriteEmpty (loadedFrom);
+
+			if (!TryReadRoot (loadedFrom, out JObject root)) {
+				Quarantine (loadedFrom);
+				WriteEmpty (loadedFrom);
+				if (!TryReadRoot (loadedFrom, out root))
+					throw new InvalidDataException (loadedFrom);
 			}
 
-			var settingsFile = File.ReadAllText (loadedFrom);
-			var o = JObject.Parse (settingsFile);
-			client = (JObject)o[SettingsRoot];
+			client = root;
 			return client;
+		}
+
+		static bool TryReadRoot (string path, out JObject root)
+		{
+			root = null;
+			try {
+				var parsed = JObject.Parse (File.ReadAllText (path));
+				root = parsed[SettingsRoot] as JObject;
+				return root != null;
+			} catch (JsonException) {
+				return false;
+			}
+		}
+
+		void WriteEmpty (string path)
+		{
+			var empty = new JObject {
+				[SettingsRoot] = new JObject ()
+			};
+			EnsureSettingsDirectory (path);
+			ReplaceFile (path, empty.ToString ());
+		}
+
+		static void Quarantine (string path)
+		{
+			string dest = path + ".bad";
+			if (File.Exists (dest))
+				dest = path + "." + DateTime.UtcNow.ToString ("yyyyMMddHHmmssfff") + ".bad";
+			File.Move (path, dest);
+		}
+
+		static void ReplaceFile (string destination, string contents)
+		{
+			string directory = Path.GetDirectoryName (destination);
+			string temp = Path.Combine (string.IsNullOrEmpty (directory) ? "." : directory, Path.GetFileName (destination) + ".tmp");
+			File.WriteAllText (temp, contents);
+			try {
+				if (File.Exists (destination))
+					File.Replace (temp, destination, null);
+				else
+					File.Move (temp, destination);
+			} catch {
+				if (File.Exists (temp))
+					File.Delete (temp);
+				throw;
+			}
 		}
 
 		internal void SaveSettings ()
@@ -98,7 +146,7 @@ namespace FSpot.Platform
 
 				var settings = client.Root.ToString ();
 				EnsureSettingsDirectory (loadedFrom);
-				File.WriteAllText (loadedFrom, settings);
+				ReplaceFile (loadedFrom, settings);
 			}
 		}
 

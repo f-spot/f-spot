@@ -158,7 +158,7 @@ namespace FSpot.Database
 					try {
 						SetIconFromString (tag, reader["icon"].ToString ());
 					} catch (Exception ex) {
-						Logger.Log.Error (ex, $"Unable to load icon for tag {name}");
+						Logger.Log.Error (ex, "Unable to load icon for tag {Id}", id);
 					}
 
 				tag.SortPriority = Convert.ToInt32 (reader["sort_priority"]);

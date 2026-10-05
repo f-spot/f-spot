@@ -145,16 +145,19 @@ namespace FSpot
 				tags = Array.Empty<string> ();
 			}
 
+			// Paths first, so a tag name inside a path cannot split it.
+			text = ScrubPaths (text);
 			foreach (string tag in tags.Where (name => !string.IsNullOrWhiteSpace (name)).OrderByDescending (name => name.Length))
-				text = ReplaceOrdinal (text, tag, "[tag]");
+				text = ReplaceTag (text, tag);
 
-			return ScrubPaths (text);
+			return text;
 		}
 
-		// The old regex stopped at the first space, so "/Volumes/Photo Disk/…"
-		// leaked "Disk/…". A path keeps going through spaces while each next
-		// word still contains a separator or a dot, and stops before a word
-		// such as "now".
+		// A path keeps going through spaces while the next word still looks
+		// like a path. A quoted path runs to the closing quote, which is how
+		// .NET reports "Could not find file '/…'". A later word such as
+		// "house.jpg" keeps the plain words in front of it ("at Grandmas"),
+		// and the next path ("now then Macintosh HD:…") does not.
 		static string ScrubPaths (string text)
 		{
 			var builder = new System.Text.StringBuilder ();
@@ -188,7 +191,9 @@ namespace FSpot
 		{
 			if (StartsWithFileUri (text, index) || StartsWithUnc (text, index) || StartsWithDrive (text, index))
 				return true;
-			if (text[index] == '/' && (index == 0 || char.IsWhiteSpace (text[index - 1])))
+			// A quote, parenthesis, or other mark can sit against the slash.
+			// A letter or digit cannot, so "16/9" and "and/or" stay.
+			if (text[index] == '/' && (index == 0 || !char.IsLetterOrDigit (text[index - 1])))
 				return true;
 			if (text[index] == '~' && index + 1 < text.Length && (text[index + 1] == '/' || text[index + 1] == '\\') && IsBoundary (text, index))
 				return true;
@@ -257,24 +262,65 @@ namespace FSpot
 
 		static int ConsumePath (string text, int start)
 		{
-			int end = start;
-			while (end < text.Length && !char.IsWhiteSpace (text[end]))
-				end++;
+			if (start > 0 && IsQuote (text[start - 1])) {
+				char closer = text[start - 1];
+				int quoted = start;
+				while (quoted < text.Length && text[quoted] != closer)
+					quoted++;
+				return quoted;
+			}
 
-			while (end < text.Length && char.IsWhiteSpace (text[end])) {
-				int token = end;
-				while (token < text.Length && char.IsWhiteSpace (text[token]))
-					token++;
-				if (token >= text.Length || !LooksLikePathContinuation (text, token))
+			int end = EndOfToken (text, start);
+			while (true) {
+				int word = SkipSpace (text, end);
+				if (word >= text.Length || IsPathStart (text, word))
 					break;
+				if (LooksLikePathContinuation (text, word)) {
+					end = EndOfToken (text, word);
+					continue;
+				}
 
-				end = token;
-				while (end < text.Length && !char.IsWhiteSpace (text[end]))
-					end++;
+				int tail = EndOfFilenameTail (text, word);
+				if (tail < 0)
+					break;
+				end = tail;
 			}
 
 			return end;
 		}
+
+		static int EndOfFilenameTail (string text, int word)
+		{
+			int scan = word;
+			for (int count = 0; count < 8 && scan < text.Length; count++) {
+				if (count > 0 && IsPathStart (text, scan))
+					return -1;
+				int tokenEnd = EndOfToken (text, scan);
+				if (LooksLikePathContinuation (text, scan))
+					return tokenEnd;
+				scan = SkipSpace (text, tokenEnd);
+			}
+
+			return -1;
+		}
+
+		static int EndOfToken (string text, int start)
+		{
+			int end = start;
+			while (end < text.Length && !char.IsWhiteSpace (text[end]))
+				end++;
+			return end;
+		}
+
+		static int SkipSpace (string text, int index)
+		{
+			while (index < text.Length && char.IsWhiteSpace (text[index]))
+				index++;
+			return index;
+		}
+
+		static bool IsQuote (char c)
+			=> c == '\'' || c == '"';
 
 		static bool LooksLikePathContinuation (string text, int start)
 		{
@@ -380,6 +426,8 @@ namespace FSpot
 		{
 			if (IsPathKey (key))
 				return "[path]";
+			if (value == null)
+				return null;
 			if (value is string text)
 				return Scrub (text);
 			if (value is IDictionary<string, object> children) {
@@ -388,7 +436,52 @@ namespace FSpot
 				return children;
 			}
 
-			return value;
+			if (value is System.Collections.IDictionary map) {
+				var copy = new Dictionary<string, object> (map.Count);
+				foreach (System.Collections.DictionaryEntry entry in map) {
+					string child = entry.Key == null ? "" : entry.Key.ToString ();
+					copy[child] = ScrubStructured (child, entry.Value);
+				}
+				return copy;
+			}
+
+			// Numbers and flags have no path in them. Serilog hands
+			// StructureValue and Uri through as objects, and the sink later
+			// serializes those objects, so scrub their text here.
+			Type type = value.GetType ();
+			if (type.IsPrimitive || value is decimal || value is DateTime || value is DateTimeOffset || value is Guid || value is Enum)
+				return value;
+			return Scrub (Convert.ToString (value, System.Globalization.CultureInfo.InvariantCulture) ?? "");
+		}
+
+		static string ReplaceTag (string text, string tag)
+		{
+			int index = 0;
+			var builder = new System.Text.StringBuilder ();
+			int start = 0;
+			bool replaced = false;
+			while (index <= text.Length - tag.Length) {
+				int found = text.IndexOf (tag, index, StringComparison.OrdinalIgnoreCase);
+				if (found < 0)
+					break;
+				int after = found + tag.Length;
+				bool left = found == 0 || !char.IsLetterOrDigit (text[found - 1]);
+				bool right = after >= text.Length || !char.IsLetterOrDigit (text[after]);
+				if (left && right) {
+					builder.Append (text, start, found - start);
+					builder.Append ("[tag]");
+					start = after;
+					index = after;
+					replaced = true;
+				} else {
+					index = found + 1;
+				}
+			}
+
+			if (!replaced)
+				return text;
+			builder.Append (text, start, text.Length - start);
+			return builder.ToString ();
 		}
 
 		// "profile" contains the letters of "file" but is not a path field.

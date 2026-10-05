@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 using FSpot.Database;
 using FSpot.Imaging;
@@ -119,6 +120,102 @@ namespace FSpot.Tests
 			Breadcrumb scrubbedCrumb = FSpotSentry.ScrubBreadcrumb (crumb);
 			Assert.DoesNotContain (home, scrubbedCrumb.Message);
 			Assert.DoesNotContain ("Beach", scrubbedCrumb.Message);
+		}
+
+		[TestMethod]
+		public void Scrub_ReplacesQuotedPathsAndSpacedFilenames ()
+		{
+			string quoted = "Could not find file '/Volumes/PhotoDisk/Family/Carol Jones.jpg'.";
+			string denied = "Access to the path '/Volumes/Photo Disk/Family/x.jpg' is denied.";
+			string spacedName = "/Volumes/Photo Disk/Family/Holiday at Grandmas house.jpg";
+			string text = $"{quoted} {denied} open {spacedName} now";
+
+			string scrubbed = FSpotSentry.Scrub (text);
+
+			Assert.DoesNotContain ("PhotoDisk", scrubbed);
+			Assert.DoesNotContain ("Carol Jones", scrubbed);
+			Assert.DoesNotContain ("Grandmas", scrubbed);
+			Assert.DoesNotContain ("house.jpg", scrubbed);
+			Assert.Contains ("Could not find file '", scrubbed);
+			Assert.Contains ("' is denied.", scrubbed);
+			Assert.Contains (" now", scrubbed);
+			Assert.Contains ("[path]", scrubbed);
+		}
+
+		[TestMethod]
+		public void Scrub_MatchesTagsOnWordBoundariesIgnoringCase ()
+		{
+			FSpotSentry.TagNames = () => new[] { "Beach" };
+			string scrubbed = FSpotSentry.Scrub ("at beach today, not Beaches");
+
+			Assert.Contains ("[tag]", scrubbed);
+			Assert.DoesNotContain ("beach", scrubbed);
+			Assert.Contains ("Beaches", scrubbed);
+		}
+
+		[TestMethod]
+		public void ScrubEvent_RendersStructuredValuesBeforeScrubbing ()
+		{
+			string secret = "/Volumes/PhotoDisk/Family/Carol Jones.jpg";
+			var evt = new SentryEvent {
+				Message = new SentryMessage { Formatted = "kept" }
+			};
+			evt.SetExtra ("detail", new QuotedPath (secret));
+			evt.SetExtra ("link", new Uri ("file://" + secret));
+
+			SentryEvent scrubbed = FSpotSentry.ScrubEvent (evt);
+
+			Assert.DoesNotContain ("Carol Jones", scrubbed.Extra["detail"].ToString ());
+			Assert.DoesNotContain ("PhotoDisk", scrubbed.Extra["link"].ToString ());
+			Assert.DoesNotContain (secret, scrubbed.Extra["link"].ToString ());
+		}
+
+		[TestMethod]
+		public async Task SerilogSink_ScrubsQuotedPathsOutOfTheEnvelope ()
+		{
+			string secret = "/Volumes/PhotoDisk/Family/Carol Jones.jpg";
+			string logFile = Path.Combine (Path.GetTempPath (), "fspot-sentry-log-" + Guid.NewGuid ().ToString ("n"));
+			var transport = new CapturingTransport ();
+			try {
+				using (SentrySdk.Init (options => {
+					FSpotSentry.Configure (options, FSpotSentry.AvaloniaClient);
+					options.Transport = transport;
+				})) {
+					Serilog.ILogger logger = Logger.BuildLogger (logFile);
+					logger.Error (
+						new FileNotFoundException ("Could not find file '" + secret + "'."),
+						"load failed");
+					(logger as IDisposable)?.Dispose ();
+					await SentrySdk.FlushAsync (TimeSpan.FromSeconds (5));
+				}
+
+				Assert.IsGreaterThan (0, transport.Body.Length);
+				Assert.DoesNotContain (secret, transport.Body);
+				Assert.DoesNotContain ("Carol Jones", transport.Body);
+				Assert.DoesNotContain ("PhotoDisk", transport.Body);
+			} finally {
+				if (File.Exists (logFile))
+					File.Delete (logFile);
+			}
+		}
+
+		sealed class QuotedPath
+		{
+			readonly string path;
+			public QuotedPath (string path) => this.path = path;
+			public override string ToString () => "Could not find file '" + path + "'.";
+		}
+
+		sealed class CapturingTransport : Sentry.Extensibility.ITransport
+		{
+			public string Body { get; private set; } = "";
+
+			public async System.Threading.Tasks.Task SendEnvelopeAsync (Sentry.Protocol.Envelopes.Envelope envelope, System.Threading.CancellationToken cancellationToken = default)
+			{
+				using var buffer = new MemoryStream ();
+				await envelope.SerializeAsync (buffer, null, cancellationToken);
+				Body += System.Text.Encoding.UTF8.GetString (buffer.ToArray ());
+			}
 		}
 
 		[TestMethod]

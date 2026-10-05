@@ -46,7 +46,7 @@ Avalonia client (modern .NET, including macOS):
 
 The built binary is `artifacts/fspot-avalonia/FSpot.Avalonia`.
 
-Crash reports go to Sentry unless you turn them off in Preferences. `FSPOT_SENTRY=0` (or `false`, `off`, or `no`) forces them off. The same setting is stored for the GTK client. Events are scrubbed of home-directory paths, paths with spaces, tag names, and structured fields before they are sent. The About window states whether reports are on.
+Crash reports go to Sentry unless you turn them off in Preferences. `FSPOT_SENTRY=0` (or `false`, `off`, or `no`) forces them off. The same setting is stored for the GTK client. Events are scrubbed of paths (including quoted paths and paths with spaces), tag names, and the text of structured fields before they are sent. A file name that is not part of a path and is not a tag is left as it is. The About window states whether reports are on.
 
 GTK 2 client (Linux, Mono): `bin/f-spot --debug`, next to `f-spot.exe`. Print opens the page-setup window and prints. Send Mail prepares the selected photos and opens the mail client. Set as Background changes the desktop wallpaper on macOS, GNOME, and Windows.
 

@@ -202,6 +202,46 @@ namespace FSpot.Preferences.Tests
 		}
 
 		[TestMethod]
+		public void TruncatedSettings_AreMovedAsideAndStartEmpty ()
+		{
+			const string broken = "{ \"FSpotSettings\": {";
+			File.WriteAllText (TestSettingsFile, broken);
+			PreferenceJsonBackend.Unload ();
+
+			var backend = new PreferenceJsonBackend ();
+
+			Assert.ThrowsExactly<NoSuchKeyException> (() => backend.Get<bool> ("Missing"));
+			Assert.IsNotNull (LoadSettings (TestSettingsFile));
+			string[] quarantined = Directory.GetFiles (
+				Path.GetDirectoryName (TestSettingsFile),
+				Path.GetFileName (TestSettingsFile) + "*.bad");
+			Assert.HasCount (1, quarantined);
+			Assert.AreEqual (broken, File.ReadAllText (quarantined[0]));
+		}
+
+		[TestMethod]
+		public void SettingsWithoutARoot_AreMovedAsideAndStartEmpty ()
+		{
+			File.WriteAllText (TestSettingsFile, "{}");
+			PreferenceJsonBackend.Unload ();
+
+			var backend = new PreferenceJsonBackend ();
+
+			Assert.ThrowsExactly<NoSuchKeyException> (() => backend.Get<bool> ("Missing"));
+			Assert.IsNotNull (LoadSettings (TestSettingsFile));
+		}
+
+		[TestMethod]
+		public void SaveSettings_LeavesNoTempFile ()
+		{
+			jsonBackend.Set ("RandomKey", "kept");
+			jsonBackend.SaveSettings ();
+
+			Assert.IsFalse (File.Exists (TestSettingsFile + ".tmp"));
+			Assert.AreEqual ("kept", LoadSettings (TestSettingsFile)["RandomKey"].ToObject<string> ());
+		}
+
+		[TestMethod]
 		public void ResetIncorrectTypeInSettings ()
 		{
 			Settings.Preferences.Set ("RandomKey", "WrongValue");
