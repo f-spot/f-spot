@@ -135,6 +135,60 @@ namespace FSpot.Tests
 		}
 
 		[TestMethod]
+		public void DeletingAVersionDoesNotFollowALibraryRootThatWasCutAtAHash ()
+		{
+			string home = Path.Combine (root, "home");
+			string library = Path.Combine (home, "#Photos");
+			string imported = Path.Combine (home, "Imported");
+			string elsewhere = Path.Combine (home, "EmptyElsewhere");
+			Directory.CreateDirectory (library);
+			Directory.CreateDirectory (imported);
+			Directory.CreateDirectory (elsewhere);
+			FSpotConfiguration.PhotoUri = new SafeUri (library);
+
+			var photo = new Photo (null, null, 1, 0);
+			photo.AddVersionUnsafely (Photo.OriginalVersionId, new SafeUri (library), "keep.jpg", string.Empty, "Original", true);
+			photo.AddVersionUnsafely (2, new SafeUri (imported), "pic.jpg", string.Empty, "Edit", false);
+			string file = Path.Combine (imported, "pic.jpg");
+			File.WriteAllBytes (file, new byte[] { 1 });
+
+			photo.DeleteVersion (2);
+
+			Assert.IsFalse (File.Exists (file));
+			Assert.IsTrue (Directory.Exists (imported), "an in-place folder outside #Photos is not the library");
+			Assert.IsTrue (Directory.Exists (elsewhere));
+			Assert.IsTrue (Directory.Exists (library));
+			Assert.IsTrue (Directory.Exists (home));
+		}
+
+		[TestMethod]
+		public void DeletingAVersionInsideAHashNamedFolderRemovesOnlyThatFolder ()
+		{
+			string home = Path.Combine (root, "home");
+			string library = Path.Combine (home, "#Photos");
+			string album = Path.Combine (library, "Trip #2");
+			string elsewhere = Path.Combine (home, "EmptyElsewhere");
+			Directory.CreateDirectory (album);
+			Directory.CreateDirectory (elsewhere);
+			FSpotConfiguration.PhotoUri = SafeUri.FromPath (library);
+
+			var photo = new Photo (null, null, 1, 0);
+			photo.AddVersionUnsafely (Photo.OriginalVersionId, SafeUri.FromPath (library), "keep.jpg", string.Empty, "Original", true);
+			File.WriteAllBytes (Path.Combine (library, "keep.jpg"), new byte[] { 1 });
+			string file = Path.Combine (album, "a.jpg");
+			photo.AddVersionUnsafely (2, SafeUri.FromPath (album), "a.jpg", string.Empty, "Edit", false);
+			File.WriteAllBytes (file, new byte[] { 1 });
+
+			photo.DeleteVersion (2);
+
+			Assert.IsFalse (File.Exists (file));
+			Assert.IsFalse (Directory.Exists (album));
+			Assert.IsTrue (Directory.Exists (library));
+			Assert.IsTrue (Directory.Exists (elsewhere));
+			Assert.IsTrue (File.Exists (Path.Combine (library, "keep.jpg")));
+		}
+
+		[TestMethod]
 		public void ASiblingPathIsNotALibraryChild ()
 		{
 			string library = Path.Combine (root, "Photos");

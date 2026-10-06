@@ -71,7 +71,7 @@ namespace FSpot.Filters
 			} else
 				imgtemp = Path.GetTempFileName ();
 
-			var uri = new SafeUri (imgtemp);
+			var uri = SafeUri.FromPath (imgtemp);
 			if (!temp_uris.Contains (uri))
 				temp_uris.Add (uri);
 			return uri;

@@ -48,7 +48,7 @@ namespace FSpot.UI.Dialog
 			//Photos Folder
 			photosdir_chooser.SetCurrentFolderUri (FSpotConfiguration.PhotoUri);
 
-			var storage_path = new SafeUri (Preferences.Get<string> (Preferences.StoragePath));
+			var storage_path = SafeUri.FromPath (Preferences.Get<string> (Preferences.StoragePath));
 
 			//If the user has set a photo directory on the commandline then don't let it be changed in Preferences
 			if (storage_path.Equals (FSpotConfiguration.PhotoUri))

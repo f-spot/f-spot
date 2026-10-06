@@ -34,16 +34,25 @@ namespace FSpot.Utils
 
 		public static string GetExtension (this SafeUri uri)
 		{
-			var abs_uri = uri.AbsoluteUri;
-			var index = abs_uri.LastIndexOf ('.');
-			return index == -1 ? string.Empty : abs_uri.Substring (index);
+			string name = uri.GetFilename ();
+			int index = name.LastIndexOf ('.');
+			// A dot in a parent folder is not this file's type. A leading or
+			// trailing dot is not an extension either.
+			if (index <= 0 || index == name.Length - 1)
+				return string.Empty;
+
+			return name.Substring (index);
 		}
 
 		public static string GetFilenameWithoutExtension (this SafeUri uri)
 		{
 			var name = uri.GetFilename ();
 			var index = name.LastIndexOf ('.');
-			return index > -1 ? name.Substring (0, index) : name;
+			// Same rule as GetExtension: a leading or trailing dot is not an extension.
+			if (index <= 0 || index == name.Length - 1)
+				return name;
+
+			return name.Substring (0, index);
 		}
 
 		public static SafeUri ReplaceExtension (this SafeUri uri, string extension)

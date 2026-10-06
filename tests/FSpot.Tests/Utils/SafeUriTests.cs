@@ -9,6 +9,9 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System;
+using System.IO;
+
 using Hyena;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -86,6 +89,148 @@ namespace FSpot.Utils.Tests
 			var goal = new SafeUri ("file:///test/image.xmp", true);
 
 			Assert.AreEqual (goal, uri.ReplaceExtension (".xmp"));
+		}
+
+		[TestMethod]
+		public void FromPath_RoundTripsHashQuestionMarkAndALiteralPercent ()
+		{
+			string root = Path.Combine (Path.GetTempPath (), "fspot-safeuri-" + Guid.NewGuid ().ToString ("n"));
+			string hash = Path.Combine (root, "#Photos");
+			string trip = Path.Combine (hash, "Trip #2", "a.jpg");
+			string query = Path.Combine (root, "q?x");
+			string percent = Path.Combine (root, "a%20b");
+			Directory.CreateDirectory (Path.GetDirectoryName (trip));
+			Directory.CreateDirectory (query);
+			Directory.CreateDirectory (percent);
+			File.WriteAllBytes (trip, new byte[] { 1 });
+
+			try {
+				AssertRoundTrip (SafeUri.FromPath (hash), hash);
+				AssertRoundTrip (SafeUri.FromPath (trip), trip);
+				AssertRoundTrip (new SafeUri (query), query);
+				AssertRoundTrip (new SafeUri (percent), percent);
+				AssertRoundTrip (new SafeUri (Path.Combine (root, "My Photos", "a.jpg")), Path.Combine (root, "My Photos", "a.jpg"));
+
+				SafeUri appended = new SafeUri (hash).Append ("Trip #2.jpg");
+				Assert.AreEqual ("Trip #2.jpg", appended.GetFilename ());
+				Assert.AreEqual (Path.Combine (hash, "Trip #2.jpg"), appended.AbsolutePath);
+			} finally {
+				Directory.Delete (root, true);
+			}
+		}
+
+		[TestMethod]
+		public void AFileUriWithARawHashOrQuestionMarkKeepsTheWholePath ()
+		{
+			var hash = new SafeUri ("file:///tmp/Trip #2/a.jpg", true);
+			var query = new SafeUri ("file:///tmp/q?x/a.jpg", true);
+
+			Assert.AreEqual (Path.Combine (Path.DirectorySeparatorChar.ToString (), "tmp", "Trip #2", "a.jpg"), hash.AbsolutePath);
+			Assert.AreEqual ("a.jpg", hash.GetFilename ());
+			Assert.AreEqual (Path.Combine (Path.DirectorySeparatorChar.ToString (), "tmp", "q?x", "a.jpg"), query.AbsolutePath);
+		}
+
+		[TestMethod]
+		public void AFileUnderTheFilesystemRootStaysOnThatPath ()
+		{
+			SafeUri root = SafeUri.FromPath (Path.DirectorySeparatorChar.ToString ());
+			SafeUri child = root.Append ("keep.jpg");
+
+			Assert.AreEqual ("keep.jpg", child.GetFilename ());
+			Assert.AreEqual (Path.Combine (root.AbsolutePath, "keep.jpg"), child.AbsolutePath);
+		}
+
+		[TestMethod]
+		public void ADriveOrUncPathKeepsAHashInTheFileName ()
+		{
+			SafeUri drive = new SafeUri ("C:\\Trip #2\\a.jpg");
+			SafeUri unc = new SafeUri ("\\\\server\\share\\Trip #2\\a.jpg");
+
+			Assert.AreEqual ("a.jpg", drive.GetFilename ());
+			Assert.AreEqual ("a.jpg", unc.GetFilename ());
+			Assert.Contains ("Trip #2", drive.AbsolutePath);
+			Assert.Contains ("Trip #2", unc.AbsolutePath);
+			Assert.Contains ("server", unc.AbsolutePath);
+		}
+
+		[TestMethod]
+		public void ExtensionComesFromTheFileName ()
+		{
+			var dottedFolder = new SafeUri ("file:///photos/2020.05/img", true);
+			var jpeg = new SafeUri ("file:///photos/2020.05/a.jpg", true);
+			SafeUri encoded = new SafeUri ("file:///tmp/database/", true).Append ("sample%20(Modified).jpg");
+
+			Assert.AreEqual (string.Empty, dottedFolder.GetExtension ());
+			Assert.AreEqual (".jpg", jpeg.GetExtension ());
+			Assert.AreEqual (".jpg", encoded.GetExtension ());
+		}
+
+		[TestMethod]
+		public void AnOrdinaryPathMatchesTheNameAppendedToItsFolder ()
+		{
+			SafeUri folder = SafeUri.FromPath ("/home/u/My Photos");
+			SafeUri edited = folder.Append ("IMG (1).jpg");
+			SafeUri imported = SafeUri.FromPath ("/home/u/My Photos/IMG (1).jpg");
+
+			Assert.AreEqual (imported, edited);
+			Assert.Contains ("My Photos", imported.AbsolutePath);
+			Assert.Contains ("IMG (1).jpg", imported.AbsolutePath);
+		}
+
+		[TestMethod]
+		public void ABackslashInAPosixNameStaysInTheFileName ()
+		{
+			SafeUri uri = SafeUri.FromPath ("/tmp/x/a\\b.jpg");
+
+			// On Windows '\' separates folders, so this string names b.jpg.
+			// On POSIX it is one file whose name contains a backslash.
+			if (Path.DirectorySeparatorChar == '\\') {
+				Assert.AreEqual ("b.jpg", uri.GetFilename ());
+				return;
+			}
+
+			Assert.AreEqual ("a\\b.jpg", uri.GetFilename ());
+			Assert.Contains ("a\\b.jpg", uri.AbsolutePath);
+		}
+
+		[TestMethod]
+		public void ASingleSlashFileUriNamesThePath ()
+		{
+			var uri = new SafeUri ("file:/home/u/x.jpg");
+			var upper = new SafeUri ("FILE:/home/u/x.jpg");
+
+			Assert.AreEqual ("/home/u/x.jpg", uri.AbsolutePath.Replace ('\\', '/'));
+			Assert.AreEqual ("/home/u/x.jpg", upper.AbsolutePath.Replace ('\\', '/'));
+			Assert.AreEqual ("x.jpg", uri.GetFilename ());
+		}
+
+		[TestMethod]
+		public void ALeadingOrTrailingDotIsNotAnExtension ()
+		{
+			var hidden = new SafeUri ("file:///photos/.hidden", true);
+			var trailing = new SafeUri ("file:///photos/name.", true);
+
+			Assert.AreEqual (string.Empty, hidden.GetExtension ());
+			Assert.AreEqual (".hidden", hidden.GetFilenameWithoutExtension ());
+			Assert.AreEqual (".hidden.xmp", hidden.ReplaceExtension (".xmp").GetFilename ());
+			Assert.AreEqual (string.Empty, trailing.GetExtension ());
+			Assert.AreEqual ("name.", trailing.GetFilenameWithoutExtension ());
+		}
+
+		[TestMethod]
+		public void AnEncodedCatalogFilenameIsNotEscapedAgain ()
+		{
+			SafeUri uri = new SafeUri ("file:///tmp/database/", true).Append ("sample%20(Modified).jpg");
+
+			Assert.AreEqual ("sample%20(Modified).jpg", uri.GetFilename ());
+			Assert.AreEqual (
+				Path.Combine (Path.DirectorySeparatorChar.ToString (), "tmp", "database", "sample (Modified).jpg"),
+				uri.AbsolutePath);
+		}
+
+		static void AssertRoundTrip (SafeUri uri, string path)
+		{
+			Assert.AreEqual (new DirectoryInfo (path).FullName, new DirectoryInfo (uri.AbsolutePath).FullName);
 		}
 	}
 

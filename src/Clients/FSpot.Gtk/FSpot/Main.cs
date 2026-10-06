@@ -112,7 +112,7 @@ namespace FSpot
 
 			GLib.GType.Init ();
 
-			FSpotConfiguration.PhotoUri = new SafeUri (Preferences.Get<string> (Preferences.StoragePath));
+			FSpotConfiguration.PhotoUri = SafeUri.FromPath (Preferences.Get<string> (Preferences.StoragePath));
 
 			CommandLineOptions.Current = options;
 			// DebuggingRequested rather than the two flags, so BANSHEE_DEBUG still counts.

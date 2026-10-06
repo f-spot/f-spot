@@ -30,7 +30,7 @@ namespace FSpot.Filters
 			}
 
 			File.Copy (request.Current.LocalPath, dest);
-			request.Current = new SafeUri (dest);
+			request.Current = SafeUri.FromPath (dest);
 			return true;
 		}
 	}

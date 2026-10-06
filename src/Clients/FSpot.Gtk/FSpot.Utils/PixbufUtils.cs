@@ -212,7 +212,7 @@ namespace FSpot.Utils
 		public static void CreateDerivedVersion (SafeUri source, SafeUri destination, uint jpeg_quality, Pixbuf pixbuf)
 		{
 			DerivedVersionFile.Publish (source, destination, temp => {
-				SaveToSuitableFormat (new SafeUri (temp), pixbuf, jpeg_quality);
+				SaveToSuitableFormat (SafeUri.FromPath (temp), pixbuf, jpeg_quality);
 			});
 		}
 

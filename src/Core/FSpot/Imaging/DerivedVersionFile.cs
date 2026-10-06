@@ -33,7 +33,7 @@ namespace FSpot.Imaging
 				Path.GetFileNameWithoutExtension (destPath) + ".fspot-tmp" + extension);
 			try {
 				writePixels (temp);
-				CopyMetadataResettingOrientation (source, new SafeUri (temp));
+				CopyMetadataResettingOrientation (source, SafeUri.FromPath (temp));
 				Replace (temp, destPath);
 			} catch {
 				if (System.IO.File.Exists (temp))

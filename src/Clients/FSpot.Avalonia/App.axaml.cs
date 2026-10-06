@@ -65,7 +65,7 @@ public partial class App : Application
 		FSpot.Thumbnail.ModuleController.RegisterTypes (container);
 		ImagingServices.Backend = new AvaloniaImagingBackend ();
 
-		FSpotConfiguration.PhotoUri = new SafeUri (Preferences.Get<string> (Preferences.StoragePath));
+		FSpotConfiguration.PhotoUri = SafeUri.FromPath (Preferences.Get<string> (Preferences.StoragePath));
 
 		if (!Directory.Exists (FSpotConfiguration.BaseDirectory))
 			Directory.CreateDirectory (FSpotConfiguration.BaseDirectory);
