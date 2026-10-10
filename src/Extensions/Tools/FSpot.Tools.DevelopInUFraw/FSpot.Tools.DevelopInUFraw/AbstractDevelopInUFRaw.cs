@@ -111,7 +111,8 @@ namespace FSpot.Tools.DevelopInUFraw
 				File.Move (Path.ChangeExtension (developed.LocalPath, ".ufraw"), Path.ChangeExtension (raw.Uri.LocalPath, ".ufraw"));
 			}
 
-			p.DefaultVersionId = p.AddVersion (new SafeUri (developed).GetBaseUri (), new SafeUri (developed).GetFilename (), name, true);
+			SafeUri developed_uri = SafeUri.FromPath (developed.LocalPath);
+			p.DefaultVersionId = p.AddVersion (developed_uri.GetBaseUri (), developed_uri.GetFilename (), name, true);
 			p.Changes.DataChanged = true;
 			App.Instance.Database.Photos.Commit (p);
 		}

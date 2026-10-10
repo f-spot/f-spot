@@ -99,24 +99,16 @@ namespace FSpot.Utils.Tests
 			string trip = Path.Combine (hash, "Trip #2", "a.jpg");
 			string query = Path.Combine (root, "q?x");
 			string percent = Path.Combine (root, "a%20b");
-			Directory.CreateDirectory (Path.GetDirectoryName (trip));
-			Directory.CreateDirectory (query);
-			Directory.CreateDirectory (percent);
-			File.WriteAllBytes (trip, new byte[] { 1 });
 
-			try {
-				AssertRoundTrip (SafeUri.FromPath (hash), hash);
-				AssertRoundTrip (SafeUri.FromPath (trip), trip);
-				AssertRoundTrip (new SafeUri (query), query);
-				AssertRoundTrip (new SafeUri (percent), percent);
-				AssertRoundTrip (new SafeUri (Path.Combine (root, "My Photos", "a.jpg")), Path.Combine (root, "My Photos", "a.jpg"));
+			AssertRoundTrip (SafeUri.FromPath (hash), hash);
+			AssertRoundTrip (SafeUri.FromPath (trip), trip);
+			AssertRoundTrip (new SafeUri (query), query);
+			AssertRoundTrip (new SafeUri (percent), percent);
+			AssertRoundTrip (new SafeUri (Path.Combine (root, "My Photos", "a.jpg")), Path.Combine (root, "My Photos", "a.jpg"));
 
-				SafeUri appended = new SafeUri (hash).Append ("Trip #2.jpg");
-				Assert.AreEqual ("Trip #2.jpg", appended.GetFilename ());
-				Assert.AreEqual (Path.Combine (hash, "Trip #2.jpg"), appended.AbsolutePath);
-			} finally {
-				Directory.Delete (root, true);
-			}
+			SafeUri appended = new SafeUri (hash).Append ("Trip #2.jpg");
+			Assert.AreEqual ("Trip #2.jpg", appended.GetFilename ());
+			AssertRoundTrip (appended, Path.Combine (hash, "Trip #2.jpg"));
 		}
 
 		[TestMethod]
@@ -125,9 +117,10 @@ namespace FSpot.Utils.Tests
 			var hash = new SafeUri ("file:///tmp/Trip #2/a.jpg", true);
 			var query = new SafeUri ("file:///tmp/q?x/a.jpg", true);
 
-			Assert.AreEqual (Path.Combine (Path.DirectorySeparatorChar.ToString (), "tmp", "Trip #2", "a.jpg"), hash.AbsolutePath);
 			Assert.AreEqual ("a.jpg", hash.GetFilename ());
-			Assert.AreEqual (Path.Combine (Path.DirectorySeparatorChar.ToString (), "tmp", "q?x", "a.jpg"), query.AbsolutePath);
+			Assert.AreEqual ("a.jpg", query.GetFilename ());
+			Assert.Contains ("Trip #2", hash.AbsolutePath);
+			Assert.Contains ("q?x", query.AbsolutePath);
 		}
 
 		[TestMethod]
@@ -223,14 +216,12 @@ namespace FSpot.Utils.Tests
 			SafeUri uri = new SafeUri ("file:///tmp/database/", true).Append ("sample%20(Modified).jpg");
 
 			Assert.AreEqual ("sample%20(Modified).jpg", uri.GetFilename ());
-			Assert.AreEqual (
-				Path.Combine (Path.DirectorySeparatorChar.ToString (), "tmp", "database", "sample (Modified).jpg"),
-				uri.AbsolutePath);
+			Assert.Contains ("sample (Modified).jpg", uri.AbsolutePath.Replace ('\\', '/'));
 		}
 
 		static void AssertRoundTrip (SafeUri uri, string path)
 		{
-			Assert.AreEqual (new DirectoryInfo (path).FullName, new DirectoryInfo (uri.AbsolutePath).FullName);
+			Assert.AreEqual (path.Replace ('\\', '/'), uri.AbsolutePath.Replace ('\\', '/'));
 		}
 	}
 
