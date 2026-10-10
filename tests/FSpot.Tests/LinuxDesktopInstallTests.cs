@@ -7,6 +7,8 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -18,6 +20,8 @@ namespace FSpot.Tests
 	[TestClass]
 	public class LinuxDesktopInstallTests
 	{
+		public TestContext TestContext { get; set; }
+
 		readonly TemporaryDirectories temporaryDirectories = new TemporaryDirectories ();
 
 		[TestCleanup]
@@ -28,12 +32,12 @@ namespace FSpot.Tests
 
 		[TestMethod]
 		[Timeout (60_000, CooperativeCancellation = true)]
-		public void InstallLinux_WithoutFSpotExe_Fails ()
+		public async Task InstallLinux_WithoutFSpotExe_Fails ()
 		{
 			string output = temporaryDirectories.Create ("linux-out");
 			string prefix = temporaryDirectories.Create ("linux-prefix");
 
-			var result = RunInstallLinux (output, prefix);
+			var result = await RunInstallLinuxAsync (output, prefix);
 
 			Assert.AreNotEqual (0, result.ExitCode, result.Output);
 			Assert.Contains ("f-spot.exe", result.Output);
@@ -41,19 +45,19 @@ namespace FSpot.Tests
 
 		[TestMethod]
 		[Timeout (60_000, CooperativeCancellation = true)]
-		public void InstallLinux_WithFSpotExe_CopiesItToLibdir ()
+		public async Task InstallLinux_WithFSpotExe_CopiesItToLibdir ()
 		{
 			string output = temporaryDirectories.Create ("linux-out");
 			string prefix = temporaryDirectories.Create ("linux-prefix");
-			File.WriteAllText (Path.Combine (output, "f-spot.exe"), "stub");
+			await File.WriteAllTextAsync (Path.Combine (output, "f-spot.exe"), "stub", TestContext.CancellationToken);
 
-			var result = RunInstallLinux (output, prefix);
+			var result = await RunInstallLinuxAsync (output, prefix);
 
 			Assert.AreEqual (0, result.ExitCode, result.Output);
 			Assert.IsTrue (File.Exists (Path.Combine (prefix, "lib", "f-spot", "f-spot.exe")));
 		}
 
-		static (int ExitCode, string Output) RunInstallLinux (string outputDir, string prefix)
+		static async Task<(int ExitCode, string Output)> RunInstallLinuxAsync (string outputDir, string prefix)
 		{
 			var startInfo = new ProcessStartInfo ("dotnet") {
 				RedirectStandardOutput = true,
@@ -66,6 +70,7 @@ namespace FSpot.Tests
 			startInfo.ArgumentList.Add ($"-p:FSpotOutputDir={outputDir}{Path.DirectorySeparatorChar}");
 			startInfo.ArgumentList.Add ($"-p:Prefix={prefix}");
 			startInfo.ArgumentList.Add ("-nologo");
+			startInfo.ArgumentList.Add ("--disable-build-servers");
 
 			using var process = Process.Start (startInfo);
 			var output = new StringBuilder ();
@@ -73,8 +78,28 @@ namespace FSpot.Tests
 			process.ErrorDataReceived += (_, e) => { if (e.Data != null) output.AppendLine (e.Data); };
 			process.BeginOutputReadLine ();
 			process.BeginErrorReadLine ();
-			Assert.IsTrue (process.WaitForExit (60_000), "InstallLinux timed out");
+			// The timed wait returns before the redirected lines are delivered.
+			bool exited = process.WaitForExit (60_000);
+			if (exited)
+				await DrainChildOutputAsync (process);
+			Assert.IsTrue (exited, "InstallLinux timed out");
 			return (process.ExitCode, output.ToString ());
+		}
+
+		// The timed wait can return before the redirected lines are delivered.
+		// The parameterless wait has no limit, and a reused MSBuild node can
+		// hold the pipes, so the drain stops after 10 seconds.
+		static async Task DrainChildOutputAsync (Process process)
+		{
+			using var drain = new CancellationTokenSource (TimeSpan.FromSeconds (10));
+			bool drained = true;
+			try {
+				await process.WaitForExitAsync (drain.Token);
+			} catch (OperationCanceledException) {
+				drained = false;
+			}
+
+			Assert.IsTrue (drained, "The child exited but its output was still open after 10 seconds");
 		}
 
 		static string RepoRoot ()

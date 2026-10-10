@@ -9,6 +9,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -23,6 +25,8 @@ namespace FSpot.Gtk.Tests
 	[TestClass]
 	public class DllMapTests
 	{
+		public TestContext TestContext { get; set; }
+
 		[TestMethod]
 		public void EveryElfTargetIsExcludedOnMacOs ()
 		{
@@ -40,7 +44,7 @@ namespace FSpot.Gtk.Tests
 		// Mono dllmap entries unless the hand-written file is the AppConfig input.
 		[TestMethod]
 		[Timeout (120_000, CooperativeCancellation = true)]
-		public void BuiltExeConfig_KeepsGlibDllMap ()
+		public async Task BuiltExeConfig_KeepsGlibDllMap ()
 		{
 			string root = RepoRoot ();
 			string output = Path.Combine (Path.GetTempPath (), "f-spot-dllmap-" + Guid.NewGuid ().ToString ("N"));
@@ -55,6 +59,7 @@ namespace FSpot.Gtk.Tests
 				startInfo.ArgumentList.Add (Path.Combine (root, "src", "Clients", "FSpot.Gtk", "FSpot.Gtk.csproj"));
 				startInfo.ArgumentList.Add ("--configuration");
 				startInfo.ArgumentList.Add ("Release");
+				startInfo.ArgumentList.Add ("--disable-build-servers");
 				startInfo.ArgumentList.Add ($"-p:OutputPath={output}{Path.DirectorySeparatorChar}");
 
 				using var process = Process.Start (startInfo);
@@ -63,10 +68,14 @@ namespace FSpot.Gtk.Tests
 				process.ErrorDataReceived += (_, e) => { if (e.Data != null) log.AppendLine (e.Data); };
 				process.BeginOutputReadLine ();
 				process.BeginErrorReadLine ();
-				Assert.IsTrue (process.WaitForExit (120_000), "Gtk build timed out");
+				// The timed wait returns before the redirected lines are delivered.
+				bool exited = process.WaitForExit (120_000);
+				if (exited)
+					await DrainChildOutputAsync (process);
+				Assert.IsTrue (exited, "Gtk build timed out");
 				Assert.AreEqual (0, process.ExitCode, log.ToString ());
 
-				string config = File.ReadAllText (Path.Combine (output, "f-spot.exe.config"));
+				string config = await File.ReadAllTextAsync (Path.Combine (output, "f-spot.exe.config"), TestContext.CancellationToken);
 				Assert.Contains ("dllmap", config);
 				Assert.Contains ("libglib-2.0-0.dll", config);
 			} finally {
@@ -75,6 +84,22 @@ namespace FSpot.Gtk.Tests
 				} catch (IOException) {
 				}
 			}
+		}
+
+		// The timed wait can return before the redirected lines are delivered.
+		// The parameterless wait has no limit, and a reused MSBuild node can
+		// hold the pipes, so the drain stops after 10 seconds.
+		static async Task DrainChildOutputAsync (Process process)
+		{
+			using var drain = new CancellationTokenSource (TimeSpan.FromSeconds (10));
+			bool drained = true;
+			try {
+				await process.WaitForExitAsync (drain.Token);
+			} catch (OperationCanceledException) {
+				drained = false;
+			}
+
+			Assert.IsTrue (drained, "The child exited but its output was still open after 10 seconds");
 		}
 
 		static IEnumerable<XElement> DllMaps ()
