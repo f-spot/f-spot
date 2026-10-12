@@ -197,7 +197,7 @@ public sealed class MenubarParityTests
 	}
 
 	[UiTestMethod]
-	public void ToolsMenu_IsHiddenUntilAToolExtensionIsRegistered ()
+	public void ToolsMenu_ShowsChangePathAndAppendsExtensions ()
 	{
 		const string id = "menubar-parity-tool";
 		MenuExtensions.Unregister (MenuExtensionPoint.Tools, id);
@@ -208,13 +208,14 @@ public sealed class MenubarParityTests
 		try {
 			window.Show ();
 			var tools = NativeItem (window, Strings.Tools);
-			Assert.IsFalse (tools.IsVisible);
+			Assert.IsTrue (tools.IsVisible);
 			Assert.IsNull (tools.Command);
+			Assert.Contains (Strings.ChangePathToPhotos, Headers (tools.Menu));
 
 			MenuExtensions.Register (MenuExtensionPoint.Tools, new MenuContribution (id, "Sample Tool", _ => Task.CompletedTask));
-			Assert.IsTrue (tools.IsVisible);
 			DynamicMenu.Fill (tools);
 			Assert.Contains ("Sample Tool", Headers (tools.Menu));
+			Assert.Contains (Strings.ChangePathToPhotos, Headers (tools.Menu));
 		} finally {
 			MenuExtensions.Unregister (MenuExtensionPoint.Tools, id);
 			window.Close ();
@@ -242,6 +243,11 @@ public sealed class MenubarParityTests
 		var export = native.Single (item => (item.Attribute ("Header")?.Value ?? string.Empty).Contains ("ExportTo2"));
 		Assert.Contains ("ExportMenu", export.ToString ());
 		Assert.Contains ("ExportCommand", export.ToString ());
+		Assert.Contains ("ExportZipCommand", export.ToString ());
+
+		var tools = native.Single (item => HeaderIs (item, "Tools"));
+		Assert.Contains ("ChangePathCommand", tools.ToString ());
+		Assert.IsNull (tools.Attribute ("IsVisible"));
 
 		var attach = native.Single (item => HeaderIs (item, "AttachTag"));
 		Assert.Contains ("AttachTagMenu", attach.ToString ());

@@ -214,8 +214,13 @@
 				</NativeMenuItem.Menu>
 			</NativeMenuItem>
 			<NativeMenuItem Header="{x:Static lang:Strings.Tools}"
-			                IsVisible="{Binding ShowToolsMenu}"
-			                input:DynamicMenu.Source="{Binding ToolsMenu}" />
+			                input:DynamicMenu.Source="{Binding ToolsMenu}">
+				<NativeMenuItem.Menu>
+					<NativeMenu>
+						<NativeMenuItem Header="{x:Static lang:Strings.ChangePathToPhotos}" Command="{Binding ChangePathCommand}" />
+					</NativeMenu>
+				</NativeMenuItem.Menu>
+			</NativeMenuItem>
 			<NativeMenuItem Header="{x:Static lang:Strings.Help}">
 				<NativeMenuItem.Menu>
 					<NativeMenu>

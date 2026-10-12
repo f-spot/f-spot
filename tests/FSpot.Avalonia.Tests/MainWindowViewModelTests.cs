@@ -1190,6 +1190,18 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
+	public void ChangePathCommand_WarnsWhenThereIsNoCatalog ()
+	{
+		var shell = new RecordingShell ();
+		var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+
+		viewModel.ChangePathCommand.Execute (null);
+
+		Assert.AreEqual (Strings.ChangePhotosDirectory, shell.WarningTitle);
+		Assert.AreEqual (Strings.OpenACatalogBeforeChangingPaths, shell.WarningMessage);
+	}
+
+	[UiTestMethod]
 	public void FolderShare_UsesCatalogCountAfterSeed ()
 	{
 		var viewModel = NewViewModel ();

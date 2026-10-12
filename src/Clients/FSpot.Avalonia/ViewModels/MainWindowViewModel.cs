@@ -2192,6 +2192,44 @@ public partial class MainWindowViewModel : ObservableObject
 		RefreshEditedSelection ();
 	}
 
+	[RelayCommand]
+	async Task ChangePathAsync ()
+	{
+		if (database == null) {
+			await shell.ShowWarningAsync (Strings.ChangePhotosDirectory, Strings.OpenACatalogBeforeChangingPaths);
+			return;
+		}
+		Photo[] photos;
+		try {
+			photos = database.Photos.Query ("SELECT * FROM photos");
+		} catch (Exception ex) {
+			Logger.Log.Debug (ex, "Failed to read photos before changing paths");
+			await shell.ShowWarningAsync (Strings.ChangePhotosDirectory, ex.Message);
+			return;
+		}
+		string guessed = PhotoPathChange.GuessOldBase (photos.Select (photo => photo.DefaultVersion.Uri.AbsolutePath));
+		string? entered = await shell.PromptAsync (Strings.ChangePhotosDirectory, Strings.ChangePathToPhotos, guessed);
+		if (string.IsNullOrWhiteSpace (entered))
+			return;
+		if (FSpotConfiguration.PhotoUri == null) {
+			await shell.ShowWarningAsync (Strings.ChangePhotosDirectory, Strings.OpenACatalogBeforeChangingPaths);
+			return;
+		}
+		string oldBase = PhotoPathChange.WithTrailingSlash (entered);
+		string newBase = PhotoPathChange.WithTrailingSlash (FSpotConfiguration.PhotoUri.AbsolutePath);
+		if (PhotoPathChange.SameBase (oldBase, newBase)) {
+			await shell.ShowWarningAsync (Strings.ChangePhotosDirectory, Strings.NewAndOldBasePathAreTheSame);
+			return;
+		}
+		int changed = PhotoPathChange.Apply (photos, oldBase, newBase);
+		if (changed == 0) {
+			await shell.ShowWarningAsync (Strings.ChangePhotosDirectory, Strings.DidNotFindAnyPhotosWithTheOldBasePath);
+			return;
+		}
+		database.Photos.Commit (photos.Where (photo => photo.Changes.UriChanged).ToArray ());
+		ReloadPhotos ();
+	}
+
 	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
 	void RefreshThumbnail ()
 	{

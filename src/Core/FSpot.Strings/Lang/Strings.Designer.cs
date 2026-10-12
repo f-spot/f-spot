@@ -5365,5 +5365,35 @@ namespace FSpot.Resources.Lang {
                 return ResourceManager.GetString("FileName", resourceCulture);
             }
         }
+
+        public static string ChangePathToPhotos {
+            get {
+                return ResourceManager.GetString("ChangePathToPhotos", resourceCulture);
+            }
+        }
+
+        public static string ChangePhotosDirectory {
+            get {
+                return ResourceManager.GetString("ChangePhotosDirectory", resourceCulture);
+            }
+        }
+
+        public static string OpenACatalogBeforeChangingPaths {
+            get {
+                return ResourceManager.GetString("OpenACatalogBeforeChangingPaths", resourceCulture);
+            }
+        }
+
+        public static string NewAndOldBasePathAreTheSame {
+            get {
+                return ResourceManager.GetString("NewAndOldBasePathAreTheSame", resourceCulture);
+            }
+        }
+
+        public static string DidNotFindAnyPhotosWithTheOldBasePath {
+            get {
+                return ResourceManager.GetString("DidNotFindAnyPhotosWithTheOldBasePath", resourceCulture);
+            }
+        }
     }
 }
