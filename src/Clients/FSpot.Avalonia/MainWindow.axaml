@@ -54,6 +54,7 @@
 							<NativeMenuItem.Menu>
 								<NativeMenu>
 									<NativeMenuItem Header="{x:Static lang:Strings.Folder3}" Command="{Binding ExportCommand}" />
+									<NativeMenuItem Header="{x:Static lang:Strings.CompressedFile}" Command="{Binding ExportZipCommand}" />
 								</NativeMenu>
 							</NativeMenuItem.Menu>
 						</NativeMenuItem>

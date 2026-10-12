@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 
 using FSpot.Core;
 
@@ -37,6 +38,30 @@ namespace FSpot
 				written.Add (dest);
 			}
 			return written;
+		}
+
+		public static void WriteZip (IEnumerable<string> sources, string zipPath)
+		{
+			if (sources == null || string.IsNullOrWhiteSpace (zipPath))
+				return;
+
+			string directory = Path.GetDirectoryName (zipPath);
+			if (!string.IsNullOrEmpty (directory))
+				Directory.CreateDirectory (directory);
+
+			using (var archive = ZipFile.Open (zipPath, ZipArchiveMode.Create)) {
+				foreach (string source in sources) {
+					if (string.IsNullOrEmpty (source) || !File.Exists (source))
+						continue;
+					string name = Path.GetFileName (source);
+					if (string.IsNullOrEmpty (name))
+						continue;
+					ZipArchiveEntry entry = archive.CreateEntry (name, CompressionLevel.Optimal);
+					using (var input = File.OpenRead (source))
+					using (var output = entry.Open ())
+						input.CopyTo (output);
+				}
+			}
 		}
 
 		static string PathOf (IPhoto photo)

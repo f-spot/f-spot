@@ -875,6 +875,7 @@ public partial class MainWindowViewModel : ObservableObject
 		PrintCommand.NotifyCanExecuteChanged ();
 		MailCommand.NotifyCanExecuteChanged ();
 		ExportCommand.NotifyCanExecuteChanged ();
+		ExportZipCommand.NotifyCanExecuteChanged ();
 		SelectNoneCommand.NotifyCanExecuteChanged ();
 		SharpenCommand.NotifyCanExecuteChanged ();
 		ToggleLoupeCommand.NotifyCanExecuteChanged ();
@@ -1685,6 +1686,37 @@ public partial class MainWindowViewModel : ObservableObject
 		if (string.IsNullOrWhiteSpace (folder))
 			return;
 		PhotoFileActions.CopyToFolder (paths, folder);
+	}
+
+	[RelayCommand (CanExecute = nameof (HasPhotoSelection))]
+	async Task ExportZipAsync ()
+	{
+		var paths = PhotoFileActions.SelectedPaths (MutationItems ().Select (item => item.Photo));
+		if (paths.Count == 0) {
+			await shell.ShowWarningAsync (Strings.Export, Strings.NoSelectionAvailable);
+			return;
+		}
+		string? folder = await shell.PickFolderAsync (Strings.SelectExportFolder);
+		if (string.IsNullOrWhiteSpace (folder))
+			return;
+		string? name = await shell.PromptAsync (Strings.CompressedFile, Strings.FileName, "f-spot_export.zip");
+		if (name is not string zipName || !ZipStaysInFolder (folder, zipName))
+			return;
+		PhotoFileActions.WriteZip (paths, Path.Combine (folder, zipName));
+	}
+
+	// GTK enables Create only when the name matches "[.]zip$". A slash would
+	// also let the prompt write outside the folder the person just chose.
+	static bool ZipStaysInFolder (string folder, string name)
+	{
+		if (string.IsNullOrWhiteSpace (name) || !name.EndsWith (".zip", StringComparison.Ordinal))
+			return false;
+		if (name.IndexOfAny (new[] { '/', '\\' }) >= 0)
+			return false;
+		string root = Path.GetFullPath (folder);
+		string zipPath = Path.GetFullPath (Path.Combine (root, name));
+		string prefix = root.TrimEnd (Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar) + Path.DirectorySeparatorChar;
+		return zipPath.StartsWith (prefix, StringComparison.Ordinal);
 	}
 
 	[RelayCommand (CanExecute = nameof (CanMutateSelection))]

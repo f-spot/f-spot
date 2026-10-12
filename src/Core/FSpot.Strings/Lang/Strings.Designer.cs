@@ -5353,5 +5353,17 @@ namespace FSpot.Resources.Lang {
                 return ResourceManager.GetString("TheFollowingExtensionsAreCurrentlyInstalled", resourceCulture);
             }
         }
+
+        public static string CompressedFile {
+            get {
+                return ResourceManager.GetString("CompressedFile", resourceCulture);
+            }
+        }
+
+        public static string FileName {
+            get {
+                return ResourceManager.GetString("FileName", resourceCulture);
+            }
+        }
     }
 }

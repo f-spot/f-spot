@@ -55,6 +55,42 @@ namespace FSpot.Tests
 			}
 		}
 
+		[TestMethod]
+		public void WriteZip_StoresEachFileUnderItsOwnName ()
+		{
+			string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-zip-src-" + Guid.NewGuid ().ToString ("N"));
+			string otherDir = Path.Combine (Path.GetTempPath (), "fspot-zip-other-" + Guid.NewGuid ().ToString ("N"));
+			string zipPath = Path.Combine (Path.GetTempPath (), "fspot-zip-" + Guid.NewGuid ().ToString ("N") + ".zip");
+			Directory.CreateDirectory (sourceDir);
+			Directory.CreateDirectory (otherDir);
+			string one = Path.Combine (sourceDir, "one.jpg");
+			string two = Path.Combine (otherDir, "one.jpg");
+			File.WriteAllText (one, "aaa");
+			File.WriteAllText (two, "bbb");
+			try {
+				PhotoFileActions.WriteZip (new[] { one, two, Path.Combine (sourceDir, "missing.jpg") }, zipPath);
+
+				using var archive = System.IO.Compression.ZipFile.OpenRead (zipPath);
+				Assert.HasCount (2, archive.Entries);
+				Assert.AreEqual ("one.jpg", archive.Entries[0].FullName);
+				Assert.AreEqual ("one.jpg", archive.Entries[1].FullName);
+				Assert.AreEqual ("aaa", ReadEntry (archive.Entries[0]));
+				Assert.AreEqual ("bbb", ReadEntry (archive.Entries[1]));
+			} finally {
+				Directory.Delete (sourceDir, true);
+				Directory.Delete (otherDir, true);
+				if (File.Exists (zipPath))
+					File.Delete (zipPath);
+			}
+		}
+
+		static string ReadEntry (System.IO.Compression.ZipArchiveEntry entry)
+		{
+			using var stream = entry.Open ();
+			using var reader = new StreamReader (stream);
+			return reader.ReadToEnd ();
+		}
+
 		static IPhoto Photo (string path)
 		{
 			var version = new Mock<IPhotoVersion> ();

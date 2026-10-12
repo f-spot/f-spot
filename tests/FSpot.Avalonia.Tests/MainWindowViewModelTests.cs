@@ -1105,6 +1105,91 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
+	public void ExportZipCommand_WritesTheSelectionIntoTheNamedArchive ()
+	{
+		string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-src-" + Guid.NewGuid ().ToString ("N"));
+		string destDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-dst-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (sourceDir);
+		string file = Path.Combine (sourceDir, "shot.jpg");
+		File.WriteAllText (file, "photo");
+		try {
+			var shell = new RecordingShell { ExportFolder = destDir, PromptResult = "trip.zip" };
+			var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+			var item = new PhotoItemViewModel (new StubPhoto (file));
+			item.Selected = true;
+			viewModel.Photos.Add (item);
+
+			viewModel.ExportZipCommand.Execute (null);
+
+			using var archive = System.IO.Compression.ZipFile.OpenRead (Path.Combine (destDir, "trip.zip"));
+			Assert.HasCount (1, archive.Entries);
+			Assert.AreEqual ("shot.jpg", archive.Entries[0].FullName);
+			using var stream = archive.Entries[0].Open ();
+			using var reader = new StreamReader (stream);
+			Assert.AreEqual ("photo", reader.ReadToEnd ());
+		} finally {
+			Directory.Delete (sourceDir, true);
+			if (Directory.Exists (destDir))
+				Directory.Delete (destDir, true);
+		}
+	}
+
+	[UiTestMethod]
+	public void ExportZipCommand_LeavesTheFolderAloneWhenTheNameIsNotAZip ()
+	{
+		string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-src-" + Guid.NewGuid ().ToString ("N"));
+		string destDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-dst-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (sourceDir);
+		Directory.CreateDirectory (destDir);
+		string file = Path.Combine (sourceDir, "shot.jpg");
+		File.WriteAllText (file, "photo");
+		try {
+			var shell = new RecordingShell { ExportFolder = destDir, PromptResult = "notes.txt" };
+			var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+			var item = new PhotoItemViewModel (new StubPhoto (file));
+			item.Selected = true;
+			viewModel.Photos.Add (item);
+
+			viewModel.ExportZipCommand.Execute (null);
+
+			Assert.IsFalse (File.Exists (Path.Combine (destDir, "notes.txt")));
+			Assert.IsEmpty (Directory.EnumerateFileSystemEntries (destDir).ToList ());
+		} finally {
+			Directory.Delete (sourceDir, true);
+			if (Directory.Exists (destDir))
+				Directory.Delete (destDir, true);
+		}
+	}
+
+	[UiTestMethod]
+	public void ExportZipCommand_KeepsTheArchiveInsideTheChosenFolder ()
+	{
+		string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-src-" + Guid.NewGuid ().ToString ("N"));
+		string destDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-dst-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (sourceDir);
+		string file = Path.Combine (sourceDir, "shot.jpg");
+		File.WriteAllText (file, "photo");
+		string escaped = Path.GetFullPath (Path.Combine (destDir, "..", "outside.zip"));
+		try {
+			var shell = new RecordingShell { ExportFolder = destDir, PromptResult = "../outside.zip" };
+			var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+			var item = new PhotoItemViewModel (new StubPhoto (file));
+			item.Selected = true;
+			viewModel.Photos.Add (item);
+
+			viewModel.ExportZipCommand.Execute (null);
+
+			Assert.IsFalse (File.Exists (escaped));
+		} finally {
+			Directory.Delete (sourceDir, true);
+			if (Directory.Exists (destDir))
+				Directory.Delete (destDir, true);
+			if (File.Exists (escaped))
+				File.Delete (escaped);
+		}
+	}
+
+	[UiTestMethod]
 	public void FolderShare_UsesCatalogCountAfterSeed ()
 	{
 		var viewModel = NewViewModel ();
