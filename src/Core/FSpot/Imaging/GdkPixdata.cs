@@ -57,7 +57,8 @@ namespace FSpot.Imaging
 				return false;
 			if (width < 1 || height < 1 || width > MaxEdge || height > MaxEdge)
 				return false;
-			if (rowstride < width * channels)
+			// Gdk aligns a row to 4 bytes, so at most three padding bytes. A wider stride is how a 24-byte icon names a multi-gigabyte buffer.
+			if (rowstride < width * channels || rowstride > width * channels + 3)
 				return false;
 			if ((type & 0xff0000) != SampleWidth8)
 				return false;
@@ -71,18 +72,19 @@ namespace FSpot.Imaging
 				return false;
 			}
 
-			var pixels = new byte[pixelBytes];
 			var payload = new ArraySegment<byte> (data, HeaderLength, (int)length - HeaderLength);
 			if (encoding == EncodingRaw) {
 				if (payload.Count < pixelBytes)
 					return false;
-				Buffer.BlockCopy (payload.Array, payload.Offset, pixels, 0, pixelBytes);
-			} else if (encoding == EncodingRle) {
-				if (!DecodeRle (payload, channels, pixels))
-					return false;
-			} else {
+			} else if (encoding != EncodingRle) {
 				return false;
 			}
+
+			var pixels = new byte[pixelBytes];
+			if (encoding == EncodingRaw)
+				Buffer.BlockCopy (payload.Array, payload.Offset, pixels, 0, pixelBytes);
+			else if (!DecodeRle (payload, channels, pixels))
+				return false;
 
 			image = new ImageBuffer (width, height, hasAlpha, rowstride, pixels);
 			return true;

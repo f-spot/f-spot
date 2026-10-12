@@ -1,5 +1,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System;
+
 using FSpot.Imaging;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -57,6 +59,58 @@ namespace FSpot.Imaging.Tests
 		public void TryRead_RejectsATruncatedHeader ()
 		{
 			Assert.IsFalse (GdkPixdata.TryRead (new byte[] { 0x47, 0x64, 0x6b, 0x50 }, out _));
+		}
+
+		[TestMethod]
+		public void TryRead_RejectsARowstrideWiderThanTheGdkPad ()
+		{
+			// Gdk aligns a row to 4 bytes, so a stored stride is at most width * channels + 3.
+			const int width = 1;
+			const int height = 1;
+			const int channels = 3;
+			int rowstride = width * channels + 4;
+			byte[] stored = Header (width, height, rowstride, type: 0x01010001, payload: new byte[rowstride]);
+
+			Assert.IsFalse (GdkPixdata.TryRead (stored, out ImageBuffer loaded));
+			Assert.IsNull (loaded);
+		}
+
+		[TestMethod]
+		public void TryRead_RejectsAShortRawPayloadBeforeAllocatingThePixels ()
+		{
+			// A legal stride can still name a buffer the payload does not contain.
+			const int width = 512;
+			const int height = 512;
+			int rowstride = width * 3 + 3;
+			byte[] stored = Header (width, height, rowstride, type: 0x01010001, payload: new byte[] { 0 });
+
+			long before = GC.GetAllocatedBytesForCurrentThread ();
+			bool read = GdkPixdata.TryRead (stored, out ImageBuffer loaded);
+			long allocated = GC.GetAllocatedBytesForCurrentThread () - before;
+
+			Assert.IsFalse (read);
+			Assert.IsNull (loaded);
+			Assert.IsLessThan (64 * 1024, allocated);
+		}
+
+		[TestMethod]
+		public void TryRead_KeepsARowstrideAtTheGdkPad ()
+		{
+			const int width = 1;
+			const int height = 1;
+			int rowstride = width * 3 + 3;
+			var payload = new byte[rowstride];
+			payload[0] = 9;
+			payload[1] = 8;
+			payload[2] = 7;
+			byte[] stored = Header (width, height, rowstride, type: 0x01010001, payload: payload);
+
+			Assert.IsTrue (GdkPixdata.TryRead (stored, out ImageBuffer loaded));
+
+			Assert.AreEqual (rowstride, loaded.Rowstride);
+			Assert.AreEqual (9, loaded.Pixels[0]);
+			Assert.AreEqual (8, loaded.Pixels[1]);
+			Assert.AreEqual (7, loaded.Pixels[2]);
 		}
 
 		static byte[] Header (int width, int height, int rowstride, uint type, byte[] payload)
