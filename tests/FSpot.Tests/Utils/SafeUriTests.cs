@@ -235,6 +235,7 @@ namespace FSpot.Utils.Tests
 			}
 
 			AssertSameFileUri ("/d/a" + char.ConvertFromUtf32 (0xE0100) + "b.jpg", 0xE0100);
+			AssertSameFileUri ("/d/a" + char.ConvertFromUtf32 (0x1FFFE) + "b.jpg", 0x1FFFE);
 			AssertSameFileUri ("/d/a" + char.ConvertFromUtf32 (0xF0000) + "b.jpg", 0xF0000);
 		}
 
@@ -249,6 +250,31 @@ namespace FSpot.Utils.Tests
 			Assert.AreEqual ("file:///C:/a.jpg", new SafeUri ("C:/Trip/../a.jpg").AbsoluteUri);
 			Assert.AreEqual ("file:///C:/a.jpg", new SafeUri ("C:/../a.jpg").AbsoluteUri);
 			Assert.AreEqual ("file:///C:/a.jpg", new SafeUri ("C:/../../a.jpg").AbsoluteUri);
+		}
+
+		[TestMethod]
+		public void AResolvedDirectoryKeepsTheTrailingSlash ()
+		{
+			Assert.AreEqual ("file:///home/", new SafeUri ("/home/u/..").AbsoluteUri);
+			Assert.AreEqual ("file:///home/u/", new SafeUri ("/home/u/.").AbsoluteUri);
+			Assert.AreEqual ("file:///C:/", new SafeUri ("C:/..").AbsoluteUri);
+			Assert.AreEqual ("C:/", new SafeUri ("C:/..").AbsolutePath.Replace ('\\', '/'));
+			Assert.AreEqual ("file:///C:/", new SafeUri ("C:/.").AbsoluteUri);
+			Assert.AreEqual ("file:///C:/", new SafeUri ("C:\\.").AbsoluteUri);
+		}
+
+		[TestMethod]
+		public void ExtraLeadingSlashesAreTheFilesystemRoot ()
+		{
+			Assert.AreEqual ("file:///a", new SafeUri ("///a").AbsoluteUri);
+			Assert.AreEqual ("/a", new SafeUri ("///a").AbsolutePath.Replace ('\\', '/'));
+		}
+
+		[TestMethod]
+		public void ADriveShapedNameInsideARootedPathIsJustAName ()
+		{
+			Assert.AreEqual ("file:///a/", new SafeUri ("/../c:/../a/").AbsoluteUri);
+			Assert.AreEqual ("file://server/a", new SafeUri ("\\\\server\\c:\\..\\a").AbsoluteUri);
 		}
 
 		[TestMethod]
@@ -272,6 +298,7 @@ namespace FSpot.Utils.Tests
 
 			Assert.AreEqual (CatalogFileUri (path), uri.AbsoluteUri);
 			Assert.AreEqual (path, uri.AbsolutePath.Replace ('\\', '/'));
+			Assert.AreEqual ("file:///d/Photos /", SafeUri.FromPath ("/d/Photos /").AbsoluteUri);
 		}
 
 		[TestMethod]

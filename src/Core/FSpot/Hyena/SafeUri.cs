@@ -134,32 +134,44 @@ namespace Hyena
 				&& (path[2] == '\\' || path[2] == '/');
 		}
 
-		// FileUri calls this with a strict escape. SafeUri keeps empty segments
-		// and a root slash, and encodes a trailing space only on the last segment.
+		// FileUri calls this with a strict escape. SafeUri keeps an interior
+		// empty segment and a root slash, and encodes a trailing space only on
+		// the last segment. A final "." or ".." is the directory itself, so the
+		// slash stays. A drive letter is special only when the path is not
+		// already rooted, so "/c:/x" is a file name.
 		internal static void AppendFileSegments (StringBuilder builder, string path, bool trailingSlash, bool keepEmptySegments, bool ensureRootSlash, Func<string, bool, string> escape)
 		{
 			string[] parts = path.Split ('/');
-			int begin = path.StartsWith ("/", StringComparison.Ordinal) ? 1 : 0;
+			bool rooted = path.StartsWith ("/", StringComparison.Ordinal);
+			int begin = rooted ? 1 : 0;
 			int end = parts.Length;
 			if (trailingSlash && end > begin && parts[end - 1].Length == 0)
 				end--;
 
 			var segments = new List<string> ();
+			bool collapsedDot = false;
+			bool seenSegment = false;
 			for (int i = begin; i < end; i++) {
 				string segment = parts[i];
-				if (segment == ".")
-					continue;
-				if (segment == "..") {
-					if (segments.Count > 0 && !IsDriveRoot (segments))
+				if (segment == "." || segment == "..") {
+					collapsedDot = true;
+					if (segment == ".." && segments.Count > 0 && (rooted || !IsDriveRoot (segments)))
 						segments.RemoveAt (segments.Count - 1);
 					continue;
 				}
 
-				if (segment.Length == 0 && !keepEmptySegments)
+				collapsedDot = false;
+				if (segment.Length == 0 && (!keepEmptySegments || !seenSegment))
 					continue;
+
+				if (segment.Length > 0)
+					seenSegment = true;
 
 				segments.Add (segment);
 			}
+
+			if (collapsedDot)
+				trailingSlash = true;
 
 			// "file://" already ends in a slash. A path of only slashes, or a
 			// path that resolves to the root, still needs the slash in "file:///".
@@ -178,7 +190,7 @@ namespace Hyena
 			}
 
 			int first = 0;
-			if (IsDrivePrefix (segments[0])) {
+			if (!rooted && IsDrivePrefix (segments[0])) {
 				builder.Append ('/');
 				builder.Append (segments[0]);
 				first = 1;

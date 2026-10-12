@@ -352,7 +352,7 @@ namespace FSpot
 
 		uint CreateVersion (string name, string extension, uint base_version_id, bool create, bool is_protected = false)
 		{
-			extension ??= VersionUri (base_version_id).GetExtension ();
+			extension ??= Path.GetExtension (VersionUri (base_version_id).AbsolutePath);
 			SafeUri new_base_uri = DefaultVersion.BaseUri;
 			string filename = GetFilenameForVersionName (name, extension);
 			SafeUri original_uri = VersionUri (base_version_id);
@@ -408,8 +408,7 @@ namespace FSpot
 			while (true) {
 				string name = num <= 1 ? Strings.Modified : Strings.ModifiedX;
 				name = string.Format (name, num);
-				//var uri = GetUriForVersionName (name, Path.GetExtension (VersionUri(baseVersionId).GetFilename()));
-				string filename = GetFilenameForVersionName (name, Path.GetExtension (versions[baseVersionId].Filename));
+				string filename = GetFilenameForVersionName (name, Path.GetExtension (versions[baseVersionId].Uri.AbsolutePath));
 				SafeUri uri = DefaultVersion.BaseUri.AppendFileName (filename);
 
 				if (!VersionNameExists (name) && !File.Exists (uri.AbsolutePath))
@@ -426,7 +425,7 @@ namespace FSpot
 			while (true) {
 				var final_name = string.Format ((num == 1) ? Strings.ModifiedInY : Strings.ModifiedInYX, num, name);
 
-				string filename = GetFilenameForVersionName (name, Path.GetExtension (versions[baseVersionId].Filename));
+				string filename = GetFilenameForVersionName (final_name, Path.GetExtension (versions[baseVersionId].Uri.AbsolutePath));
 				SafeUri uri = DefaultVersion.BaseUri.AppendFileName (filename);
 
 				if (!VersionNameExists (final_name) && !File.Exists (uri.AbsolutePath))
