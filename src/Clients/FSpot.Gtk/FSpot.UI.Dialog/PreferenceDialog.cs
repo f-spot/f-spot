@@ -227,7 +227,7 @@ namespace FSpot.UI.Dialog
 			photosdir_chooser.CurrentFolderChanged -= HandlePhotosdirChanged;
 			Preferences.Set (Preferences.StoragePath, photosdir_chooser.Filename);
 			photosdir_chooser.CurrentFolderChanged += HandlePhotosdirChanged;
-			FSpotConfiguration.PhotoUri = new SafeUri (photosdir_chooser.Uri, true);
+			FSpotConfiguration.PhotoUri = SafeUri.FromPath (photosdir_chooser.Filename);
 		}
 
 		void HandleWritemetadataGroupChanged (object sender, EventArgs args)
