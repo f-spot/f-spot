@@ -37,7 +37,7 @@ namespace FSpot.Tests
 			string output = temporaryDirectories.Create ("linux-out");
 			string prefix = temporaryDirectories.Create ("linux-prefix");
 
-			var result = await RunInstallLinuxAsync (output, prefix);
+			var result = await RunInstallLinuxAsync (output, prefix, TestContext.CancellationToken);
 
 			Assert.AreNotEqual (0, result.ExitCode, result.Output);
 			Assert.Contains ("f-spot.exe", result.Output);
@@ -51,13 +51,13 @@ namespace FSpot.Tests
 			string prefix = temporaryDirectories.Create ("linux-prefix");
 			await File.WriteAllTextAsync (Path.Combine (output, "f-spot.exe"), "stub", TestContext.CancellationToken);
 
-			var result = await RunInstallLinuxAsync (output, prefix);
+			var result = await RunInstallLinuxAsync (output, prefix, TestContext.CancellationToken);
 
 			Assert.AreEqual (0, result.ExitCode, result.Output);
 			Assert.IsTrue (File.Exists (Path.Combine (prefix, "lib", "f-spot", "f-spot.exe")));
 		}
 
-		static async Task<(int ExitCode, string Output)> RunInstallLinuxAsync (string outputDir, string prefix)
+		static async Task<(int ExitCode, string Output)> RunInstallLinuxAsync (string outputDir, string prefix, CancellationToken cancellationToken)
 		{
 			var startInfo = new ProcessStartInfo ("dotnet") {
 				RedirectStandardOutput = true,
@@ -79,9 +79,9 @@ namespace FSpot.Tests
 			process.BeginOutputReadLine ();
 			process.BeginErrorReadLine ();
 			// The timed wait returns before the redirected lines are delivered.
-			bool exited = process.WaitForExit (60_000);
+			bool exited = process.WaitForExit (45_000);
 			if (exited)
-				await DrainChildOutputAsync (process);
+				await DrainChildOutputAsync (process, output, cancellationToken);
 			Assert.IsTrue (exited, "InstallLinux timed out");
 			return (process.ExitCode, output.ToString ());
 		}
@@ -89,17 +89,18 @@ namespace FSpot.Tests
 		// The timed wait can return before the redirected lines are delivered.
 		// The parameterless wait has no limit, and a reused MSBuild node can
 		// hold the pipes, so the drain stops after 10 seconds.
-		static async Task DrainChildOutputAsync (Process process)
+		static async Task DrainChildOutputAsync (Process process, StringBuilder log, CancellationToken cancellationToken)
 		{
-			using var drain = new CancellationTokenSource (TimeSpan.FromSeconds (10));
+			using var timeout = new CancellationTokenSource (TimeSpan.FromSeconds (10));
+			using var drain = CancellationTokenSource.CreateLinkedTokenSource (cancellationToken, timeout.Token);
 			bool drained = true;
 			try {
 				await process.WaitForExitAsync (drain.Token);
-			} catch (OperationCanceledException) {
+			} catch (OperationCanceledException) when (!cancellationToken.IsCancellationRequested) {
 				drained = false;
 			}
 
-			Assert.IsTrue (drained, "The child exited but its output was still open after 10 seconds");
+			Assert.IsTrue (drained, "The child exited but its output was still open after 10 seconds" + Environment.NewLine + log);
 		}
 
 		static string RepoRoot ()

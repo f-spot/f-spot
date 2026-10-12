@@ -69,9 +69,9 @@ namespace FSpot.Gtk.Tests
 				process.BeginOutputReadLine ();
 				process.BeginErrorReadLine ();
 				// The timed wait returns before the redirected lines are delivered.
-				bool exited = process.WaitForExit (120_000);
+				bool exited = process.WaitForExit (100_000);
 				if (exited)
-					await DrainChildOutputAsync (process);
+					await DrainChildOutputAsync (process, log, TestContext.CancellationToken);
 				Assert.IsTrue (exited, "Gtk build timed out");
 				Assert.AreEqual (0, process.ExitCode, log.ToString ());
 
@@ -89,17 +89,18 @@ namespace FSpot.Gtk.Tests
 		// The timed wait can return before the redirected lines are delivered.
 		// The parameterless wait has no limit, and a reused MSBuild node can
 		// hold the pipes, so the drain stops after 10 seconds.
-		static async Task DrainChildOutputAsync (Process process)
+		static async Task DrainChildOutputAsync (Process process, StringBuilder log, CancellationToken cancellationToken)
 		{
-			using var drain = new CancellationTokenSource (TimeSpan.FromSeconds (10));
+			using var timeout = new CancellationTokenSource (TimeSpan.FromSeconds (10));
+			using var drain = CancellationTokenSource.CreateLinkedTokenSource (cancellationToken, timeout.Token);
 			bool drained = true;
 			try {
 				await process.WaitForExitAsync (drain.Token);
-			} catch (OperationCanceledException) {
+			} catch (OperationCanceledException) when (!cancellationToken.IsCancellationRequested) {
 				drained = false;
 			}
 
-			Assert.IsTrue (drained, "The child exited but its output was still open after 10 seconds");
+			Assert.IsTrue (drained, "The child exited but its output was still open after 10 seconds" + Environment.NewLine + log);
 		}
 
 		static IEnumerable<XElement> DllMaps ()
