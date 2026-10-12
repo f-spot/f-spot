@@ -11,5 +11,6 @@
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo ("FSpot.Tests")]
+[assembly: InternalsVisibleTo ("FSpot.Avalonia")]
 [assembly: InternalsVisibleTo ("FSpot.Avalonia.Tests")]
 [assembly: InternalsVisibleTo ("DynamicProxyGenAssembly2")]

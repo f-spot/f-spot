@@ -20,6 +20,12 @@ namespace FSpot.Utils
 			return new SafeUri (base_uri.AbsoluteUri + (base_uri.AbsoluteUri.EndsWith ("/") ? "" : "/") + filename, true);
 		}
 
+		// filename is a new file on disk. Append keeps catalog text as stored.
+		public static SafeUri AppendFileName (this SafeUri base_uri, string filename)
+		{
+			return base_uri.Append (SafeUri.EscapeFileName (filename));
+		}
+
 		public static SafeUri GetBaseUri (this SafeUri uri)
 		{
 			var abs_uri = uri.AbsoluteUri;

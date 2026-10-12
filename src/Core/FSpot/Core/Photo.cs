@@ -56,7 +56,7 @@ namespace FSpot
 		}
 
 		public string Name {
-			get { return Uri.UnescapeDataString (Path.GetFileName (VersionUri (OriginalVersionId).AbsolutePath)); }
+			get { return Path.GetFileName (VersionUri (OriginalVersionId).AbsolutePath); }
 		}
 
 		readonly List<Tag> tags;
@@ -179,9 +179,7 @@ namespace FSpot
 		string GetFilenameForVersionName (string version_name, string extension)
 		{
 			string name_without_extension = Path.GetFileNameWithoutExtension (Name);
-
-			var escapeString = UriUtils.EscapeString (version_name, true, true, true);
-			return $"{name_without_extension} ({escapeString}){extension}";
+			return $"{name_without_extension} ({version_name}){extension}";
 		}
 
 		public bool VersionNameExists (string version_name)
@@ -358,7 +356,7 @@ namespace FSpot
 			SafeUri new_base_uri = DefaultVersion.BaseUri;
 			string filename = GetFilenameForVersionName (name, extension);
 			SafeUri original_uri = VersionUri (base_version_id);
-			SafeUri new_uri = new_base_uri.Append (filename);
+			SafeUri new_uri = new_base_uri.AppendFileName (filename);
 			string import_md5 = DefaultVersion.ImportMD5;
 
 			if (VersionNameExists (name))
@@ -373,7 +371,7 @@ namespace FSpot
 
 			highest_version_id++;
 
-			versions[highest_version_id] = new PhotoVersion (this, highest_version_id, new_base_uri, filename, import_md5, name, is_protected);
+			versions[highest_version_id] = new PhotoVersion (this, highest_version_id, new_base_uri, new_uri.GetFilename (), import_md5, name, is_protected);
 
 			changes.AddVersion (highest_version_id);
 
@@ -383,7 +381,7 @@ namespace FSpot
 		public uint CreateReparentedVersion (PhotoVersion version, bool is_protected = false)
 		{
 			// Try to derive version name from its filename
-			string filename = Uri.UnescapeDataString (Path.GetFileNameWithoutExtension (version.Uri.AbsolutePath));
+			string filename = Path.GetFileNameWithoutExtension (version.Uri.AbsolutePath);
 			string parent_filename = Path.GetFileNameWithoutExtension (Name);
 			string name = null;
 			if (filename.StartsWith (parent_filename))
@@ -412,7 +410,7 @@ namespace FSpot
 				name = string.Format (name, num);
 				//var uri = GetUriForVersionName (name, Path.GetExtension (VersionUri(baseVersionId).GetFilename()));
 				string filename = GetFilenameForVersionName (name, Path.GetExtension (versions[baseVersionId].Filename));
-				SafeUri uri = DefaultVersion.BaseUri.Append (filename);
+				SafeUri uri = DefaultVersion.BaseUri.AppendFileName (filename);
 
 				if (!VersionNameExists (name) && !File.Exists (uri.AbsolutePath))
 					return CreateVersion (name, baseVersionId, createFile);
@@ -429,7 +427,7 @@ namespace FSpot
 				var final_name = string.Format ((num == 1) ? Strings.ModifiedInY : Strings.ModifiedInYX, num, name);
 
 				string filename = GetFilenameForVersionName (name, Path.GetExtension (versions[baseVersionId].Filename));
-				SafeUri uri = DefaultVersion.BaseUri.Append (filename);
+				SafeUri uri = DefaultVersion.BaseUri.AppendFileName (filename);
 
 				if (!VersionNameExists (final_name) && !File.Exists (uri.AbsolutePath))
 					return CreateVersion (final_name, extension, baseVersionId, createFile);

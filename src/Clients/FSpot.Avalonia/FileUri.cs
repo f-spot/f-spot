@@ -2,6 +2,8 @@
 
 using System.Text;
 
+using Hyena;
+
 namespace FSpot.Avalonia;
 
 // gsettings and mailto attach= take a file URI. On Windows, Path.GetFullPath and
@@ -11,26 +13,15 @@ static class FileUri
 {
 	public static string FromPath (string path)
 	{
-		string normalized = Normalize (path);
-		var builder = new StringBuilder ("file://");
-		if (HasDrive (normalized)) {
-			builder.Append ('/');
-			builder.Append (normalized[0]);
-			builder.Append (':');
-			AppendSegments (builder, normalized.AsSpan (2));
-		} else {
-			AppendSegments (builder, normalized);
-		}
-
-		return builder.ToString ();
-	}
-
-	static string Normalize (string path)
-	{
 		string slash = path.Replace ('\\', '/');
-		if (!slash.StartsWith ('/') && !HasDrive (slash))
+		if (!slash.StartsWith ("/", StringComparison.Ordinal) && !HasDrive (slash))
 			slash = Path.GetFullPath (path).Replace ('\\', '/');
-		return Collapse (slash);
+
+		var builder = new StringBuilder ("file://");
+		// Strict escape: a space has to be %20 for gsettings. Empty segments are
+		// not meaningful in that URI, and a trailing slash is not kept.
+		SafeUri.AppendFileSegments (builder, slash, false, false, false, static (segment, _) => Uri.EscapeDataString (segment));
+		return builder.ToString ();
 	}
 
 	static bool HasDrive (string slash)
@@ -38,48 +29,4 @@ static class FileUri
 			&& char.IsLetter (slash[0])
 			&& slash[1] == ':'
 			&& slash[2] == '/';
-
-	static string Collapse (string slash)
-	{
-		bool rooted = slash.StartsWith ('/');
-		bool drive = HasDrive (slash);
-		string prefix = drive ? slash[..2] : "";
-		string body = drive ? slash[2..] : slash;
-		var stack = new List<string> ();
-		foreach (string segment in body.Split ('/', StringSplitOptions.RemoveEmptyEntries)) {
-			if (segment == ".")
-				continue;
-			if (segment == "..") {
-				if (stack.Count > 0)
-					stack.RemoveAt (stack.Count - 1);
-				continue;
-			}
-
-			stack.Add (segment);
-		}
-
-		string joined = string.Join ('/', stack);
-		if (drive)
-			return prefix + "/" + joined;
-		return rooted ? "/" + joined : joined;
-	}
-
-	static void AppendSegments (StringBuilder builder, ReadOnlySpan<char> path)
-	{
-		int start = 0;
-		while (start < path.Length) {
-			if (path[start] == '/') {
-				start++;
-				continue;
-			}
-
-			int relative = path[start..].IndexOf ('/');
-			ReadOnlySpan<char> segment = relative < 0 ? path[start..] : path.Slice (start, relative);
-			builder.Append ('/');
-			builder.Append (Uri.EscapeDataString (segment.ToString ()));
-			if (relative < 0)
-				break;
-			start += relative + 1;
-		}
-	}
 }

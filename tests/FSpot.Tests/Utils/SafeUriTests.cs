@@ -219,6 +219,135 @@ namespace FSpot.Utils.Tests
 			Assert.Contains ("sample (Modified).jpg", uri.AbsolutePath.Replace ('\\', '/'));
 		}
 
+		// Main stored these the way System.Uri does. A later import of the same
+		// folder has to produce that text, or the folder tree splits. '%' '#' '?'
+		// are excluded: a literal percent must stay a percent, and '#' and '?'
+		// are escaped so they are not a fragment or a query.
+		[TestMethod]
+		public void ACatalogCharacterMatchesTheStoredFileUri ()
+		{
+			for (int codePoint = 0; codePoint <= 0xFFFF; codePoint++) {
+				if (SkipCatalogSweep (codePoint))
+					continue;
+
+				string path = "/d/a" + char.ConvertFromUtf32 (codePoint) + "b.jpg";
+				AssertSameFileUri (path, codePoint);
+			}
+
+			AssertSameFileUri ("/d/a" + char.ConvertFromUtf32 (0xE0100) + "b.jpg", 0xE0100);
+			AssertSameFileUri ("/d/a" + char.ConvertFromUtf32 (0xF0000) + "b.jpg", 0xF0000);
+		}
+
+		[TestMethod]
+		public void AParentDirectorySegmentResolvesToTheSameFile ()
+		{
+			AssertSameFileUri ("/home/u/../v/a.jpg", 0);
+			AssertSameFileUri ("/home/u/./v/a.jpg", 0);
+			AssertSameFileUri ("/../a.jpg", 0);
+			AssertSameFileUri ("/home/u/../v/../w/./a.jpg", 0);
+			Assert.AreEqual ("file://server/a.jpg", new SafeUri ("\\\\server\\share\\..\\a.jpg").AbsoluteUri);
+			Assert.AreEqual ("file:///C:/a.jpg", new SafeUri ("C:/Trip/../a.jpg").AbsoluteUri);
+			Assert.AreEqual ("file:///C:/a.jpg", new SafeUri ("C:/../a.jpg").AbsoluteUri);
+			Assert.AreEqual ("file:///C:/a.jpg", new SafeUri ("C:/../../a.jpg").AbsoluteUri);
+		}
+
+		[TestMethod]
+		public void AFileNameEndingInWhitespaceKeepsThatName ()
+		{
+			foreach (char whitespace in new[] { ' ', '\t', '\n', '\r' }) {
+				string path = "/d/a.jpg" + whitespace;
+				SafeUri uri = SafeUri.FromPath (path);
+
+				Assert.AreEqual (path, uri.AbsolutePath.Replace ('\\', '/'), "U+" + ((int)whitespace).ToString ("X4"));
+			}
+
+			Assert.AreEqual ("/d/Photos ", SafeUri.FromPath ("/d/Photos ").AbsolutePath.Replace ('\\', '/'));
+		}
+
+		[TestMethod]
+		public void ASpaceAtTheEndOfAFolderNameStaysInThePath ()
+		{
+			const string path = "/d/Photos /a.jpg";
+			SafeUri uri = SafeUri.FromPath (path);
+
+			Assert.AreEqual (CatalogFileUri (path), uri.AbsoluteUri);
+			Assert.AreEqual (path, uri.AbsolutePath.Replace ('\\', '/'));
+		}
+
+		[TestMethod]
+		public void AHashOrQuestionMarkIsEscapedInTheStoredUri ()
+		{
+			Assert.AreEqual ("file:///x/%23Photos/q%3Fx", SafeUri.FromPath ("/x/#Photos/q?x").AbsoluteUri);
+		}
+
+		[TestMethod]
+		public void AUncPathKeepsTheHostAndEscapesAHash ()
+		{
+			SafeUri unc = new SafeUri ("\\\\server\\share\\Trip #2\\a.jpg");
+
+			Assert.AreEqual ("file://server/share/Trip %232/a.jpg", unc.AbsoluteUri);
+			Assert.Contains ("Trip #2", unc.AbsolutePath);
+		}
+
+		[TestMethod]
+		public void AFileUriBuiltAsAUriKeepsTheSingleSlashForm ()
+		{
+			Assert.AreEqual ("file:///home/u/x.jpg", new SafeUri ("file:/home/u/x.jpg", true).AbsoluteUri);
+		}
+
+		[TestMethod]
+		public void AnHttpUriHasNoFilePath ()
+		{
+			Assert.IsNull (new SafeUri ("http://example.com/a", true).AbsolutePath);
+		}
+
+		[TestMethod]
+		public void ASchemeLessCatalogStringIsNotAFile ()
+		{
+			var uri = new SafeUri ("not-a-uri", true);
+
+			Assert.AreEqual (string.Empty, uri.Scheme);
+			Assert.IsNull (uri.AbsolutePath);
+		}
+
+		[TestMethod]
+		public void FromPathTreatsASchemeShapedDirectoryAsAFile ()
+		{
+			const string path = "/tmp/sch://x/a.jpg";
+			SafeUri uri = SafeUri.FromPath (path);
+
+			Assert.IsNotNull (uri.AbsolutePath);
+			Assert.AreEqual (path, uri.AbsolutePath.Replace ('\\', '/'));
+			Assert.AreEqual ("file", uri.Scheme);
+		}
+
+		static void AssertSameFileUri (string path, int codePoint)
+		{
+			SafeUri uri = SafeUri.FromPath (path);
+			string label = "U+" + codePoint.ToString ("X4");
+
+			Assert.AreEqual (CatalogFileUri (path), uri.AbsoluteUri, label);
+			Assert.AreEqual (new Uri (CatalogFileUri (path)).LocalPath.Replace ('\\', '/'), uri.AbsolutePath.Replace ('\\', '/'), label);
+		}
+
+		// System.Uri decodes a %20 in the input and drops a trailing space.
+		// Those two are the cases where the catalog spelling is deliberate.
+		static string CatalogFileUri (string path)
+		{
+			return new Uri (new Uri ("file://"), path).ToString ();
+		}
+
+		static bool SkipCatalogSweep (int codePoint)
+		{
+			if (codePoint is '%' or '#' or '?' or '/')
+				return true;
+
+			if (codePoint == '\\' && Path.DirectorySeparatorChar == '\\')
+				return true;
+
+			return codePoint is >= 0xD800 and <= 0xDFFF;
+		}
+
 		static void AssertRoundTrip (SafeUri uri, string path)
 		{
 			Assert.AreEqual (path.Replace ('\\', '/'), uri.AbsolutePath.Replace ('\\', '/'));
