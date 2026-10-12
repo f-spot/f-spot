@@ -36,6 +36,7 @@ public partial class SlideshowWindow : Window
 	readonly Stopwatch animationClock = new ();
 	Bitmap? slide;
 	Bitmap? previousSlide;
+	int slideLoad;
 	bool playing;
 	bool busy;
 	SlideshowTransitionKind transition = SlideshowTransition.All[0];
@@ -83,6 +84,7 @@ public partial class SlideshowWindow : Window
 			Focus ();
 		};
 		Closed += (_, _) => {
+			slideLoad++;
 			flipTimer.Stop ();
 			animationTimer.Stop ();
 			cursorTimer.Stop ();
@@ -141,12 +143,24 @@ public partial class SlideshowWindow : Window
 	}
 
 	void ShowCurrent (bool animate)
+		=> _ = ShowCurrentAsync (animate);
+
+	async Task ShowCurrentAsync (bool animate)
 	{
+		string path = sequence.Current;
+		int generation = ++slideLoad;
 		Bitmap? next;
 		try {
-			next = AvaloniaPhotoDecoder.DecodeFile (sequence.Current, EditorPreview.MaxPixels);
+			next = await DecodeGate.RunAsync (
+				() => AvaloniaPhotoDecoder.DecodeFile (path, EditorPreview.MaxPixels),
+				CancellationToken.None);
 		} catch {
 			next = null;
+		}
+
+		if (generation != slideLoad) {
+			next?.Dispose ();
+			return;
 		}
 
 		if (animate) {
@@ -255,7 +269,7 @@ public partial class SlideshowWindow : Window
 				Close ();
 				return;
 			}
-			ShowCurrent (animate: false);
+			_ = ShowCurrentAsync (animate: false);
 		} finally {
 			busy = false;
 			if (resume && playing && IsVisible)

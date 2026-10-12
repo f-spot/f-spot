@@ -2,7 +2,9 @@
 
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Threading;
 
+using FSpot.Avalonia.Imaging;
 using FSpot.Avalonia.Services;
 using FSpot.Core;
 
@@ -115,6 +117,27 @@ public sealed class SlideshowWindowTests
 		combo.IsDropDownOpen = false;
 		Press (window, Key.F);
 		Assert.IsFalse (window.IsVisible);
+	}
+
+	[UiTestMethod]
+	public void Slideshow_DecodesTheSlideOffTheUiThread ()
+	{
+		AvaloniaApp.Ensure ();
+		int ui = Environment.CurrentManagedThreadId;
+		DecodeGate.ForgetLastRunThread ();
+		string path = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
+		var window = new SlideshowWindow (new[] { path }, 0, null, play: false);
+		window.Show ();
+
+		var until = DateTime.UtcNow.AddSeconds (5);
+		while (DecodeGate.LastRunThreadId == 0 && DateTime.UtcNow < until)
+			Dispatcher.UIThread.RunJobs ();
+
+		try {
+			Assert.AreNotEqual (ui, DecodeGate.LastRunThreadId);
+		} finally {
+			window.Close ();
+		}
 	}
 
 	[UiTestMethod]

@@ -127,11 +127,20 @@ public partial class EditTagIconWindow : Window
 	}
 
 	internal void ShowPhoto (int index)
+		=> _ = ShowPhotoAsync (index);
+
+	async Task ShowPhotoAsync (int index)
 	{
 		PhotoLabel.Text = string.Format (CultureInfo.CurrentCulture, Strings.PhotoXOfY, index + 1, source.PhotoPaths.Count);
 		Bitmap? bitmap = null;
 		try {
-			bitmap = AvaloniaPhotoDecoder.DecodeFile (source.PhotoPaths[index], PhotoDecodeWidth);
+			bitmap = await DecodeGate.RunAsync (
+				() => AvaloniaPhotoDecoder.DecodeFile (source.PhotoPaths[index], PhotoDecodeWidth),
+				CancellationToken.None);
+			if (index != PhotoNumber - 1) {
+				bitmap.Dispose ();
+				return;
+			}
 			photoBuffer = AvaloniaImagingBackend.ToRgbBuffer (bitmap);
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Failed to load {Path} for a tag icon", source.PhotoPaths[index]);
@@ -172,7 +181,9 @@ public partial class EditTagIconWindow : Window
 	internal async Task LoadExternalAsync (string path)
 	{
 		try {
-			using var bitmap = AvaloniaPhotoDecoder.DecodeFile (path, PhotoDecodeWidth);
+			using var bitmap = await DecodeGate.RunAsync (
+				() => AvaloniaPhotoDecoder.DecodeFile (path, PhotoDecodeWidth),
+				CancellationToken.None);
 			var buffer = AvaloniaImagingBackend.ToRgbBuffer (bitmap);
 			SetPreview (new TagIconChoice (null, TagIconImage.Create (buffer, null, backend.Scale)));
 			FileName.Text = path;

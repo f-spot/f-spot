@@ -21,6 +21,9 @@ static class AvaloniaPhotoDecoder
 	internal const int DefaultSvgMaxEdge = 2048;
 
 	internal static Bitmap Decode (Stream stream, string? path = null, int? decodeToWidth = null, uint svgBackgroundArgb = 0)
+		=> DecodeGate.Run (() => DecodeNow (stream, path, decodeToWidth, svgBackgroundArgb));
+
+	static Bitmap DecodeNow (Stream stream, string? path, int? decodeToWidth, uint svgBackgroundArgb)
 	{
 		if (SvgRasterizer.IsSvg (path, stream)) {
 			int maxEdge = decodeToWidth ?? DefaultSvgMaxEdge;

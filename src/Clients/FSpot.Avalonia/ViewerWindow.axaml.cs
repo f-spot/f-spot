@@ -133,7 +133,7 @@ public partial class ViewerWindow : Window, IViewerShell
 
 		Bitmap? next = null;
 		try {
-			next = await Task.Run (() => AvaloniaPhotoDecoder.DecodeFile (item.Path, EditorPreview.MaxPixels), closing.Token);
+			next = await DecodeGate.RunAsync (() => AvaloniaPhotoDecoder.DecodeFile (item.Path, EditorPreview.MaxPixels), closing.Token);
 		} catch (OperationCanceledException) {
 			return;
 		} catch (Exception ex) {

@@ -14,6 +14,9 @@ static class PrintImageLoader
 	// Decodes path so its longer edge is at most maxEdge (never upscaled); null when
 	// Skia cannot read the file.
 	public static SKBitmap? Load (string path, int maxEdge)
+		=> DecodeGate.Run (() => LoadNow (path, maxEdge));
+
+	static SKBitmap? LoadNow (string path, int maxEdge)
 	{
 		using var codec = SKCodec.Create (path);
 		if (codec is null)
