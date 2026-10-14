@@ -5395,5 +5395,65 @@ namespace FSpot.Resources.Lang {
                 return ResourceManager.GetString("DidNotFindAnyPhotosWithTheOldBasePath", resourceCulture);
             }
         }
+
+        public static string OpenACatalogBeforeMerging {
+            get {
+                return ResourceManager.GetString("OpenACatalogBeforeMerging", resourceCulture);
+            }
+        }
+
+        public static string BatchDevelop {
+            get {
+                return ResourceManager.GetString("BatchDevelop", resourceCulture);
+            }
+        }
+
+        public static string OpenACatalogBeforeDeveloping {
+            get {
+                return ResourceManager.GetString("OpenACatalogBeforeDeveloping", resourceCulture);
+            }
+        }
+
+        public static string MergeDb {
+            get {
+                return ResourceManager.GetString("MergeDb", resourceCulture);
+            }
+        }
+
+        public static string MergeAnotherFSpotCollection {
+            get {
+                return ResourceManager.GetString("MergeAnotherFSpotCollection", resourceCulture);
+            }
+        }
+
+        public static string MergeRaw {
+            get {
+                return ResourceManager.GetString("MergeRaw", resourceCulture);
+            }
+        }
+
+        public static string MergeRAWJpegAsMultipleVersionsOfTheSamePhoto {
+            get {
+                return ResourceManager.GetString("MergeRAWJpegAsMultipleVersionsOfTheSamePhoto", resourceCulture);
+            }
+        }
+
+        public static string DevelopInUFRaw2 {
+            get {
+                return ResourceManager.GetString("DevelopInUFRaw2", resourceCulture);
+            }
+        }
+
+        public static string ThatCatalogIsAlreadyOpen {
+            get {
+                return ResourceManager.GetString("ThatCatalogIsAlreadyOpen", resourceCulture);
+            }
+        }
+
+        public static string SkippedPhotosWhoseFilesAreMissing {
+            get {
+                return ResourceManager.GetString("SkippedPhotosWhoseFilesAreMissing", resourceCulture);
+            }
+        }
     }
 }

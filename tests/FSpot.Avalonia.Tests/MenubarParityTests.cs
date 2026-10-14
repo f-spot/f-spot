@@ -211,11 +211,19 @@ public sealed class MenubarParityTests
 			Assert.IsTrue (tools.IsVisible);
 			Assert.IsNull (tools.Command);
 			Assert.Contains (Strings.ChangePathToPhotos, Headers (tools.Menu));
+			Assert.Contains (Strings.MergeRaw, Headers (tools.Menu));
+			Assert.Contains (Strings.DevelopInUFRaw2, Headers (tools.Menu));
+			Assert.Contains (Strings.BatchDevelop, Headers (tools.Menu));
+			Assert.Contains (Strings.MergeDb, Headers (tools.Menu));
 
 			MenuExtensions.Register (MenuExtensionPoint.Tools, new MenuContribution (id, "Sample Tool", _ => Task.CompletedTask));
 			DynamicMenu.Fill (tools);
 			Assert.Contains ("Sample Tool", Headers (tools.Menu));
 			Assert.Contains (Strings.ChangePathToPhotos, Headers (tools.Menu));
+			Assert.Contains (Strings.MergeRaw, Headers (tools.Menu));
+			Assert.Contains (Strings.DevelopInUFRaw2, Headers (tools.Menu));
+			Assert.Contains (Strings.BatchDevelop, Headers (tools.Menu));
+			Assert.Contains (Strings.MergeDb, Headers (tools.Menu));
 		} finally {
 			MenuExtensions.Unregister (MenuExtensionPoint.Tools, id);
 			window.Close ();
@@ -244,9 +252,14 @@ public sealed class MenubarParityTests
 		Assert.Contains ("ExportMenu", export.ToString ());
 		Assert.Contains ("ExportCommand", export.ToString ());
 		Assert.Contains ("ExportZipCommand", export.ToString ());
+		Assert.Contains ("ExportGalleryCommand", export.ToString ());
 
 		var tools = native.Single (item => HeaderIs (item, "Tools"));
 		Assert.Contains ("ChangePathCommand", tools.ToString ());
+		Assert.Contains ("MergeRawJpegCommand", tools.ToString ());
+		Assert.Contains ("DevelopUfrawCommand", tools.ToString ());
+		Assert.Contains ("BatchDevelopCommand", tools.ToString ());
+		Assert.Contains ("MergeCatalogCommand", tools.ToString ());
 		Assert.IsNull (tools.Attribute ("IsVisible"));
 
 		var attach = native.Single (item => HeaderIs (item, "AttachTag"));

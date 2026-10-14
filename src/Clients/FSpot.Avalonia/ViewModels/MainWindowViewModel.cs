@@ -4,6 +4,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 
 using Avalonia.Controls;
@@ -16,6 +17,7 @@ using CommunityToolkit.Mvvm.Input;
 using FSpot;
 using FSpot.Avalonia.Dialogs;
 using FSpot.Avalonia.Imaging;
+using FSpot.Avalonia.Printing;
 using FSpot.Avalonia.Models;
 using FSpot.Avalonia.Services;
 using FSpot.Core;
@@ -31,6 +33,8 @@ using FSpot.Thumbnail;
 using FSpot.Utils;
 
 using Hyena;
+
+using SkiaSharp;
 
 using TinyIoC;
 
@@ -876,6 +880,9 @@ public partial class MainWindowViewModel : ObservableObject
 		MailCommand.NotifyCanExecuteChanged ();
 		ExportCommand.NotifyCanExecuteChanged ();
 		ExportZipCommand.NotifyCanExecuteChanged ();
+		ExportGalleryCommand.NotifyCanExecuteChanged ();
+		DevelopUfrawCommand.NotifyCanExecuteChanged ();
+		BatchDevelopCommand.NotifyCanExecuteChanged ();
 		SelectNoneCommand.NotifyCanExecuteChanged ();
 		SharpenCommand.NotifyCanExecuteChanged ();
 		ToggleLoupeCommand.NotifyCanExecuteChanged ();
@@ -1705,6 +1712,56 @@ public partial class MainWindowViewModel : ObservableObject
 		PhotoFileActions.WriteZip (paths, Path.Combine (folder, zipName));
 	}
 
+	[RelayCommand (CanExecute = nameof (HasPhotoSelection))]
+	async Task ExportGalleryAsync ()
+	{
+		var photos = new List<HtmlGalleryPhoto> ();
+		foreach (IPhoto photo in MutationItems ().Select (item => item.Photo)) {
+			if (photo == null)
+				continue;
+			string? path = photo.DefaultVersion?.Uri?.LocalPath;
+			if (string.IsNullOrEmpty (path))
+				path = photo.DefaultVersion?.Uri?.AbsolutePath;
+			if (string.IsNullOrEmpty (path))
+				continue;
+			var tags = new List<string> ();
+			if (photo.Tags != null) {
+				foreach (Tag tag in photo.Tags) {
+					if (tag != null && !string.IsNullOrEmpty (tag.Name))
+						tags.Add (tag.Name);
+				}
+			}
+			photos.Add (new HtmlGalleryPhoto (path, photo.Description ?? string.Empty, tags));
+		}
+		if (photos.Count == 0) {
+			await shell.ShowWarningAsync (Strings.Export, Strings.NoSelectionAvailable);
+			return;
+		}
+		string? folder = await shell.PickFolderAsync (Strings.SelectExportFolder);
+		if (string.IsNullOrWhiteSpace (folder))
+			return;
+		string? name = await shell.PromptAsync (Strings.Gallery, Strings.FileName, Strings.Gallery);
+		if (name is not string galleryName || !HtmlGallery.StaysInFolder (folder, galleryName))
+			return;
+		HtmlGallery.Write (folder, galleryName, photos, ScaleGalleryImage);
+	}
+
+	// Medium and thumb copies are JPEGs at quality 95. A file Skia cannot read
+	// stays a byte-for-byte copy, which is also what the full-size image is.
+	static bool ScaleGalleryImage (string source, string destination, int longerSide)
+	{
+		using SKBitmap? bitmap = PrintImageLoader.Load (source, longerSide);
+		if (bitmap is null)
+			return false;
+		using SKImage image = SKImage.FromBitmap (bitmap);
+		using SKData? data = image.Encode (SKEncodedImageFormat.Jpeg, 95);
+		if (data is null)
+			return false;
+		using Stream stream = File.Create (destination);
+		data.SaveTo (stream);
+		return true;
+	}
+
 	// GTK enables Create only when the name matches "[.]zip$". A slash would
 	// also let the prompt write outside the folder the person just chose.
 	static bool ZipStaysInFolder (string folder, string name)
@@ -2228,6 +2285,185 @@ public partial class MainWindowViewModel : ObservableObject
 		}
 		database.Photos.Commit (photos.Where (photo => photo.Changes.UriChanged).ToArray ());
 		ReloadPhotos ();
+	}
+
+	[RelayCommand]
+	async Task MergeCatalogAsync ()
+	{
+		if (database == null) {
+			await shell.ShowWarningAsync (Strings.MergeDb, Strings.OpenACatalogBeforeMerging);
+			return;
+		}
+		if (!await shell.ConfirmAsync (Strings.MergeDb, Strings.MergeAnotherFSpotCollection, Strings.MergeDb))
+			return;
+
+		IReadOnlyList<string> picked = await shell.PickFilesAsync (Strings.MergeDb, false);
+		string? source = null;
+		foreach (string path in picked) {
+			if (!string.IsNullOrWhiteSpace (path)) {
+				source = path;
+				break;
+			}
+		}
+		if (string.IsNullOrWhiteSpace (source))
+			return;
+
+		string openPath = Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName);
+		if (SameCatalogFile (source, openPath)) {
+			await shell.ShowWarningAsync (Strings.MergeDb, Strings.ThatCatalogIsAlreadyOpen);
+			return;
+		}
+		if (FSpotConfiguration.PhotoUri == null) {
+			await shell.ShowWarningAsync (Strings.MergeDb, Strings.OpenACatalogBeforeMerging);
+			return;
+		}
+
+		IImageFileFactory images;
+		IThumbnailService thumbs;
+		try {
+			images = TinyIoCContainer.Current.Resolve<IImageFileFactory> ();
+			thumbs = TinyIoCContainer.Current.Resolve<IThumbnailService> ();
+		} catch (Exception ex) {
+			Logger.Log.Debug (ex, "Failed to resolve imaging services before merging a catalog");
+			await shell.ShowWarningAsync (Strings.MergeDb, ex.Message);
+			return;
+		}
+
+		CatalogMergeResult result;
+		try {
+			result = CatalogMerge.Merge (database, source, openPath, true, CatalogRollChoice.New, 0, FSpotConfiguration.PhotoUri, images, thumbs, null);
+		} catch (Exception ex) {
+			Logger.Log.Debug (ex, "Failed to merge catalog {Path}", source);
+			await shell.ShowWarningAsync (Strings.MergeDb, string.Format (Strings.TheFileSelectedNotValidOrSupportedDataaseReceivedExceptionX, ex.Message));
+			return;
+		}
+		if (result.Missing.Count > 0)
+			await shell.ShowWarningAsync (Strings.MergeDb, Strings.SkippedPhotosWhoseFilesAreMissing + "\n" + string.Join ("\n", result.Missing));
+		if (result.Imported > 0)
+			ReloadPhotos ();
+	}
+
+	static bool SameCatalogFile (string left, string right)
+	{
+		try {
+			return string.Equals (Path.GetFullPath (left), Path.GetFullPath (right), StringComparison.Ordinal);
+		} catch (Exception) {
+			return false;
+		}
+	}
+
+	[RelayCommand]
+	async Task MergeRawJpegAsync ()
+	{
+		if (database == null) {
+			await shell.ShowWarningAsync (Strings.MergeRaw, Strings.OpenACatalogBeforeMerging);
+			return;
+		}
+		if (!await shell.ConfirmAsync (Strings.MergeRaw, Strings.MergeRAWJpegAsMultipleVersionsOfTheSamePhoto, Strings.MergeRaw))
+			return;
+		Photo[] photos;
+		try {
+			photos = database.Photos.Query ("SELECT * FROM photos");
+		} catch (Exception ex) {
+			Logger.Log.Debug (ex, "Failed to read photos before merging raw and JPEG versions");
+			await shell.ShowWarningAsync (Strings.MergeRaw, ex.Message);
+			return;
+		}
+		IImageFileFactory factory;
+		try {
+			factory = TinyIoCContainer.Current.Resolve<IImageFileFactory> ();
+		} catch (Exception ex) {
+			Logger.Log.Debug (ex, "Failed to resolve the image factory before merging raw and JPEG versions");
+			await shell.ShowWarningAsync (Strings.MergeRaw, ex.Message);
+			return;
+		}
+		foreach (RawJpegPairing.Pair pair in RawJpegPairing.Find (photos, factory.IsRaw, factory.IsJpeg)) {
+			RawJpegPairing.Merge (pair.Raw, pair.Jpeg);
+			database.Photos.Commit (pair.Raw);
+			database.Photos.Remove (pair.Jpeg);
+		}
+		ReloadPhotos ();
+	}
+
+	[RelayCommand (CanExecute = nameof (HasPhotoSelection))]
+	async Task DevelopUfrawAsync ()
+		=> await DevelopSelectionAsync (false);
+
+	[RelayCommand (CanExecute = nameof (HasPhotoSelection))]
+	async Task BatchDevelopAsync ()
+		=> await DevelopSelectionAsync (true);
+
+	async Task DevelopSelectionAsync (bool batch)
+	{
+		string title = batch ? Strings.BatchDevelop : Strings.DevelopInUFRaw2;
+		if (database == null) {
+			await shell.ShowWarningAsync (title, Strings.OpenACatalogBeforeDeveloping);
+			return;
+		}
+		Photo[] photos = SelectedCatalogPhotos ().ToArray ();
+		if (photos.Length == 0) {
+			await shell.ShowWarningAsync (title, Strings.NoSelectionAvailable);
+			return;
+		}
+
+		IImageFileFactory factory;
+		try {
+			factory = TinyIoCContainer.Current.Resolve<IImageFileFactory> ();
+		} catch (Exception ex) {
+			Logger.Log.Debug (ex, "Failed to resolve the image factory before developing photos");
+			await shell.ShowWarningAsync (title, ex.Message);
+			return;
+		}
+
+		int quality = ReadUfrawQuality ();
+		string extra = ReadUfrawArguments (batch);
+		bool changed = false;
+		foreach (Photo photo in photos) {
+			if (!UfrawDevelop.Develop (photo, batch, quality, extra, FSpotConfiguration.BaseDirectory, factory.IsRaw, LaunchUfraw))
+				continue;
+			database.Photos.Commit (photo);
+			changed = true;
+		}
+		if (changed)
+			ReloadPhotos ();
+	}
+
+	// Peek does not insert a default, so developing a photo cannot create the settings file.
+	static int ReadUfrawQuality ()
+	{
+		try {
+			if (!Preferences.Peek (UfrawDevelop.QualityKey, out int quality))
+				return UfrawDevelop.DefaultQuality;
+			return quality;
+		} catch (Exception ex) {
+			Logger.Log.Debug (ex, "UFRaw quality preference is unset");
+			return UfrawDevelop.DefaultQuality;
+		}
+	}
+
+	static string ReadUfrawArguments (bool batch)
+	{
+		try {
+			string key = batch ? UfrawDevelop.BatchArgumentsKey : UfrawDevelop.ArgumentsKey;
+			return Preferences.Peek (key, out string extra) ? extra ?? string.Empty : string.Empty;
+		} catch (Exception ex) {
+			Logger.Log.Debug (ex, "UFRaw arguments preference is unset");
+			return string.Empty;
+		}
+	}
+
+	static int LaunchUfraw (UfrawLaunch launch)
+	{
+		var info = new ProcessStartInfo {
+			FileName = launch.Executable,
+			Arguments = launch.Arguments,
+			UseShellExecute = false
+		};
+		using Process? process = Process.Start (info);
+		if (process == null)
+			return -1;
+		process.WaitForExit ();
+		return process.ExitCode;
 	}
 
 	[RelayCommand (CanExecute = nameof (CanMutateSelection))]

@@ -1190,6 +1190,117 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
+	public void ExportGalleryCommand_WritesTheSelectionIntoTheNamedFolder ()
+	{
+		string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-vm-gal-src-" + Guid.NewGuid ().ToString ("N"));
+		string destDir = Path.Combine (Path.GetTempPath (), "fspot-vm-gal-dst-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (sourceDir);
+		string file = Path.Combine (sourceDir, "shot.jpg");
+		File.WriteAllText (file, "photo");
+		try {
+			var shell = new RecordingShell { ExportFolder = destDir, PromptResult = "Trip" };
+			var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+			var item = new PhotoItemViewModel (new StubPhoto (file));
+			item.Selected = true;
+			viewModel.Photos.Add (item);
+
+			viewModel.ExportGalleryCommand.Execute (null);
+
+			Assert.AreEqual ("photo", File.ReadAllText (Path.Combine (destDir, "Trip", "hq", "img-1.jpg")));
+			Assert.Contains ("img-1.html", File.ReadAllText (Path.Combine (destDir, "Trip", "index.html")));
+		} finally {
+			Directory.Delete (sourceDir, true);
+			if (Directory.Exists (destDir))
+				Directory.Delete (destDir, true);
+		}
+	}
+
+	[UiTestMethod]
+	public void ExportGalleryCommand_KeepsTheGalleryInsideTheChosenFolder ()
+	{
+		string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-vm-gal-src-" + Guid.NewGuid ().ToString ("N"));
+		string destDir = Path.Combine (Path.GetTempPath (), "fspot-vm-gal-dst-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (sourceDir);
+		string file = Path.Combine (sourceDir, "shot.jpg");
+		File.WriteAllText (file, "photo");
+		string outside = Path.GetFullPath (Path.Combine (destDir, "..", "out"));
+		try {
+			var shell = new RecordingShell { ExportFolder = destDir, PromptResult = "../out" };
+			var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+			var item = new PhotoItemViewModel (new StubPhoto (file));
+			item.Selected = true;
+			viewModel.Photos.Add (item);
+
+			viewModel.ExportGalleryCommand.Execute (null);
+
+			Assert.IsFalse (Directory.Exists (outside));
+			Assert.IsFalse (Directory.Exists (Path.Combine (destDir, "out")));
+		} finally {
+			Directory.Delete (sourceDir, true);
+			if (Directory.Exists (destDir))
+				Directory.Delete (destDir, true);
+			if (Directory.Exists (outside))
+				Directory.Delete (outside, true);
+		}
+	}
+
+	[UiTestMethod]
+	public void MergeCatalogCommand_WarnsWhenThereIsNoCatalog ()
+	{
+		var shell = new RecordingShell ();
+		var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+
+		viewModel.MergeCatalogCommand.Execute (null);
+
+		Assert.AreEqual (Strings.MergeDb, shell.WarningTitle);
+		Assert.AreEqual (Strings.OpenACatalogBeforeMerging, shell.WarningMessage);
+		Assert.IsFalse (shell.ConfirmCalled);
+	}
+
+	[UiTestMethod]
+	public void DevelopUfrawCommand_WarnsWhenThereIsNoCatalog ()
+	{
+		var shell = new RecordingShell ();
+		var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+		var item = new PhotoItemViewModel (new StubPhoto ("/tmp/a.cr2"));
+		item.Selected = true;
+		viewModel.Photos.Add (item);
+
+		viewModel.DevelopUfrawCommand.Execute (null);
+
+		Assert.AreEqual (Strings.DevelopInUFRaw2, shell.WarningTitle);
+		Assert.AreEqual (Strings.OpenACatalogBeforeDeveloping, shell.WarningMessage);
+	}
+
+	[UiTestMethod]
+	public void BatchDevelopCommand_WarnsWhenThereIsNoCatalog ()
+	{
+		var shell = new RecordingShell ();
+		var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+		var item = new PhotoItemViewModel (new StubPhoto ("/tmp/a.cr2"));
+		item.Selected = true;
+		viewModel.Photos.Add (item);
+
+		viewModel.BatchDevelopCommand.Execute (null);
+
+		Assert.AreEqual (Strings.BatchDevelop, shell.WarningTitle);
+		Assert.AreEqual (Strings.OpenACatalogBeforeDeveloping, shell.WarningMessage);
+	}
+
+	[UiTestMethod]
+	public void MergeRawJpegCommand_WarnsWhenThereIsNoCatalog ()
+	{
+		var shell = new RecordingShell ();
+		var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+
+		viewModel.MergeRawJpegCommand.Execute (null);
+
+		Assert.AreEqual (Strings.MergeRaw, shell.WarningTitle);
+		Assert.AreEqual (Strings.OpenACatalogBeforeMerging, shell.WarningMessage);
+		Assert.IsFalse (shell.ConfirmCalled);
+	}
+
+	[UiTestMethod]
 	public void ChangePathCommand_WarnsWhenThereIsNoCatalog ()
 	{
 		var shell = new RecordingShell ();

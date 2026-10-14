@@ -55,6 +55,7 @@
 								<NativeMenu>
 									<NativeMenuItem Header="{x:Static lang:Strings.Folder3}" Command="{Binding ExportCommand}" />
 									<NativeMenuItem Header="{x:Static lang:Strings.CompressedFile}" Command="{Binding ExportZipCommand}" />
+									<NativeMenuItem Header="{x:Static lang:Strings.Gallery}" Command="{Binding ExportGalleryCommand}" />
 								</NativeMenu>
 							</NativeMenuItem.Menu>
 						</NativeMenuItem>
@@ -218,6 +219,10 @@
 				<NativeMenuItem.Menu>
 					<NativeMenu>
 						<NativeMenuItem Header="{x:Static lang:Strings.ChangePathToPhotos}" Command="{Binding ChangePathCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.MergeDb}" Command="{Binding MergeCatalogCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.MergeRaw}" Command="{Binding MergeRawJpegCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.DevelopInUFRaw2}" Command="{Binding DevelopUfrawCommand}" />
+						<NativeMenuItem Header="{x:Static lang:Strings.BatchDevelop}" Command="{Binding BatchDevelopCommand}" />
 					</NativeMenu>
 				</NativeMenuItem.Menu>
 			</NativeMenuItem>

@@ -247,6 +247,15 @@ public partial class MainWindow : Window, IAvaloniaShell
 	public Task<string?> PickFolderAsync (string title)
 		=> new FolderPickerWindow (title, BrowseFolderAsync).ShowDialog<string?> (this);
 
+	public async Task<IReadOnlyList<string>> PickFilesAsync (string title, bool allowMultiple)
+	{
+		var files = await StorageProvider.OpenFilePickerAsync (new FilePickerOpenOptions {
+			Title = title,
+			AllowMultiple = allowMultiple
+		});
+		return files.Select (file => file.TryGetLocalPath ()).OfType<string> ().ToList ();
+	}
+
 	async Task<string?> BrowseFolderAsync (string title)
 	{
 		var folders = await StorageProvider.OpenFolderPickerAsync (new FolderPickerOpenOptions {

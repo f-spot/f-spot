@@ -31,6 +31,8 @@ public interface IAvaloniaShell
 	Task<bool> ShowImportAsync ();
 	Task<bool> ShowImportAsync (IReadOnlyList<string> paths);
 	Task<string?> PickFolderAsync (string title);
+	Task<IReadOnlyList<string>> PickFilesAsync (string title, bool allowMultiple)
+		=> Task.FromResult<IReadOnlyList<string>> (Array.Empty<string> ());
 	Task<string?> PromptAsync (string title, string prompt, string defaultValue);
 	Task<bool> ConfirmAsync (string title, string message, string okCaption);
 
