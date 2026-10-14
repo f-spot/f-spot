@@ -1,0 +1,127 @@
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
+
+using System;
+using System.IO;
+using System.Text;
+
+using FSpot.Core;
+using FSpot.Resources.Lang;
+using FSpot.Settings;
+using FSpot.Utils;
+
+using Hyena;
+
+namespace FSpot
+{
+	public sealed class UfrawLaunch
+	{
+		public UfrawLaunch (string executable, string arguments, string developedPath, string rawPath)
+		{
+			Executable = executable ?? string.Empty;
+			Arguments = arguments ?? string.Empty;
+			DevelopedPath = developedPath ?? string.Empty;
+			RawPath = rawPath ?? string.Empty;
+		}
+
+		public string Executable { get; }
+		public string Arguments { get; }
+		public string DevelopedPath { get; }
+		public string RawPath { get; }
+	}
+
+	// Builds the UFRaw command and records the JPEG it writes. The caller starts
+	// the process. The developed path is a real file path, including a '#' in the name.
+	public static class UfrawDevelop
+	{
+		public const string QualityKey = Preferences.ExtensionKey + "DevelopInUfraw/JpegQuality";
+		public const string ArgumentsKey = Preferences.ExtensionKey + "DevelopInUfraw/Arguments";
+		public const string BatchArgumentsKey = Preferences.ExtensionKey + "DevelopInUfraw/BatchArguments";
+		public const int DefaultQuality = 98;
+
+		public static bool Develop (Photo photo, bool batch, int quality, string extraArguments, string baseDirectory, Func<SafeUri, bool> isRaw, Func<UfrawLaunch, int> launch)
+		{
+			if (photo == null || isRaw == null || launch == null)
+				return false;
+			PhotoVersion raw = photo.GetVersion (Photo.OriginalVersionId);
+			if (raw?.Uri == null || !isRaw (raw.Uri))
+				return false;
+
+			if (quality < 1 || quality > 100)
+				quality = DefaultQuality;
+
+			string name = VersionName (photo);
+			string directory = Path.GetDirectoryName (raw.Uri.AbsolutePath) ?? string.Empty;
+			string developedPath = Path.Combine (directory, Path.GetFileNameWithoutExtension (photo.Name) + " (" + name + ").jpg");
+			string conf = ConfPath (batch, baseDirectory, raw.Uri.AbsolutePath);
+			string arguments = BuildArguments (extraArguments, quality, conf, developedPath, raw.Uri.AbsolutePath);
+			launch (new UfrawLaunch (batch ? "ufraw-batch" : "ufraw", arguments, developedPath, raw.Uri.AbsolutePath));
+
+			// GTK asked File.Exists for the file:// text, which is never a file.
+			if (!File.Exists (developedPath))
+				return false;
+
+			MoveSidecar (developedPath, raw.Uri.AbsolutePath, baseDirectory);
+			SafeUri developed = SafeUri.FromPath (developedPath);
+			photo.DefaultVersionId = photo.AddVersion (developed.GetBaseUri (), developed.GetFilename (), name, true);
+			photo.Changes.DataChanged = true;
+			return true;
+		}
+
+		static string VersionName (Photo photo)
+		{
+			for (int i = 1; ; i++) {
+				string name = i <= 1 ? Strings.DevelopedInUFRaw : string.Format (Strings.DevelopedInUFRawX, i);
+				if (!photo.VersionNameExists (name))
+					return name;
+			}
+		}
+
+		static string ConfPath (bool batch, string baseDirectory, string rawPath)
+		{
+			if (batch) {
+				if (string.IsNullOrEmpty (baseDirectory))
+					return null;
+				string saved = Path.Combine (baseDirectory, "batch.ufraw");
+				return File.Exists (saved) ? saved : null;
+			}
+			string beside = Path.ChangeExtension (rawPath, ".ufraw");
+			return File.Exists (beside) ? beside : null;
+		}
+
+		static string BuildArguments (string extra, int quality, string conf, string developedPath, string rawPath)
+		{
+			var builder = new StringBuilder ();
+			if (!string.IsNullOrWhiteSpace (extra))
+				builder.Append (extra.Trim ()).Append (' ');
+			builder.Append ("--overwrite --create-id=also --compression=").Append (quality).Append (" --out-type=jpeg");
+			if (!string.IsNullOrEmpty (conf))
+				builder.Append (" --conf=").Append (Quote (conf));
+			builder.Append (" --output=").Append (Quote (developedPath));
+			builder.Append (' ').Append (Quote (rawPath));
+			return builder.ToString ();
+		}
+
+		static string Quote (string value)
+			=> "\"" + (value ?? string.Empty).Replace ("\\", "\\\\").Replace ("\"", "\\\"") + "\"";
+
+		static void MoveSidecar (string developedPath, string rawPath, string baseDirectory)
+		{
+			string developedSidecar = Path.ChangeExtension (developedPath, ".ufraw");
+			if (!File.Exists (developedSidecar))
+				return;
+			if (!string.IsNullOrEmpty (baseDirectory)) {
+				Directory.CreateDirectory (baseDirectory);
+				string batchPath = Path.Combine (baseDirectory, "batch.ufraw");
+				if (File.Exists (batchPath))
+					File.Delete (batchPath);
+				File.Copy (developedSidecar, batchPath);
+			}
+			string rawSidecar = Path.ChangeExtension (rawPath, ".ufraw");
+			if (!string.Equals (developedSidecar, rawSidecar, StringComparison.Ordinal)) {
+				if (File.Exists (rawSidecar))
+					File.Delete (rawSidecar);
+				File.Move (developedSidecar, rawSidecar);
+			}
+		}
+	}
+}

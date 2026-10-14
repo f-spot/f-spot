@@ -250,5 +250,40 @@ namespace FSpot.Preferences.Tests
 			Assert.IsTrue (result);
 			Assert.AreEqual (0.0, randomValue);
 		}
+
+		[TestMethod]
+		public void Peek_DoesNotCreateAMissingSettingsFileOrInsertADefault ()
+		{
+			var dirs = new TemporaryDirectories ();
+			string previous = PreferenceJsonBackend.PreferenceLocationOverride;
+			string key = "Extension/DevelopInUfraw/JpegQuality";
+			try {
+				PreferenceJsonBackend.Unload ();
+				string settingsFile = Path.Combine (dirs.Create ("prefs"), "absent", "f-spot-settings.json");
+				PreferenceJsonBackend.PreferenceLocationOverride = settingsFile;
+
+				bool missingFile = Settings.Preferences.Peek (key, out int unread);
+				Assert.IsFalse (missingFile);
+				Assert.AreEqual (0, unread);
+				Assert.IsFalse (File.Exists (settingsFile));
+
+				Directory.CreateDirectory (Path.GetDirectoryName (settingsFile));
+				File.WriteAllText (settingsFile, "{ \"FSpotSettings\": { \"Other\": 1 } }");
+				PreferenceJsonBackend.Unload ();
+
+				bool missingKey = Settings.Preferences.Peek (key, out int stillUnset);
+				Assert.IsFalse (missingKey);
+				Assert.AreEqual (0, stillUnset);
+				Assert.DoesNotContain (key, File.ReadAllText (settingsFile));
+
+				bool found = Settings.Preferences.Peek ("Other", out int stored);
+				Assert.IsTrue (found);
+				Assert.AreEqual (1, stored);
+			} finally {
+				PreferenceJsonBackend.PreferenceLocationOverride = previous;
+				PreferenceJsonBackend.Unload ();
+				dirs.DeleteAll ();
+			}
+		}
 	}
 }

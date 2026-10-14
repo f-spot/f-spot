@@ -148,6 +148,20 @@ namespace FSpot.Settings
 			return true;
 		}
 
+		// Unlike Get, a missing file or key is left untouched.
+		public static bool Peek<T> (string key, out T result)
+		{
+			result = default;
+			try {
+				if (!File.Exists (JsonBackend.SettingsFile))
+					return false;
+				result = JsonBackend.Get<T> (key);
+				return true;
+			} catch (NoSuchKeyException) {
+				return false;
+			}
+		}
+
 		public static void Set<T> (string key, T value)
 		{
 			lock (sync_handler) {
