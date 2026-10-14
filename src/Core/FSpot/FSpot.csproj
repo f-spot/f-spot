@@ -56,6 +56,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="..\..\Extensions\Exporters\FSpot.Exporters.Folder\Resources\f-spot-simple.css">
+      <LogicalName>f-spot-simple.css</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Extensions\Exporters\FSpot.Exporters.Folder\Resources\f-spot-simple-white.css">
+      <LogicalName>f-spot-simple-white.css</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Extensions\Exporters\FSpot.Exporters.Folder\Resources\f-spot.js">
+      <LogicalName>f-spot.js</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="FSpot.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
