@@ -324,9 +324,11 @@
 		<Border DockPanel.Dock="Bottom" IsVisible="{Binding IsFullScreen}" Padding="8,4"
 		        Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}">
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="8">
-				<Button Classes="tool" Content="◀" Command="{Binding PreviousCommand}" />
+				<Button Classes="tool" Content="◀" Command="{Binding PreviousCommand}"
+				        AutomationProperties.Name="{x:Static lang:Strings.PreviousPhoto}" />
 				<Button Classes="tool" Content="{x:Static lang:Strings.Fullscreen}" Command="{Binding ToggleFullscreenCommand}" />
-				<Button Classes="tool" Content="▶" Command="{Binding NextCommand}" />
+				<Button Classes="tool" Content="▶" Command="{Binding NextCommand}"
+				        AutomationProperties.Name="{x:Static lang:Strings.NextPhoto}" />
 			</StackPanel>
 		</Border>
 		<Border DockPanel.Dock="Bottom"
@@ -509,6 +511,7 @@
 								           IsVisible="{Binding !IsRenaming}" />
 								<TextBox Text="{Binding Name}" Width="120"
 								         IsVisible="{Binding IsRenaming}"
+								         AutomationProperties.Name="{x:Static dialogs:DialogStrings.TagName}"
 								         input:TagRenameInput.Enable="True" />
 							</StackPanel>
 						</TreeDataTemplate>

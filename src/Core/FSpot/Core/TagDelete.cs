@@ -16,11 +16,21 @@ namespace FSpot.Core
 			=> string.Format (Strings.CanNotDeleteTagsThatHaveTagsWihinThem_PleaseDeleteTagUnderXFirst, tag?.Name);
 
 		public static string ConfirmHeading (Tag tag)
-			=> string.Format (Strings.DeleteTagXQuestion, tag?.Name);
+			=> ConfirmHeading (1, tag);
+
+		public static string ConfirmHeading (int tagCount, Tag tag)
+			=> tagCount > 1
+				? string.Format (Strings.DeleteTheXSelectedTagsQuestion, tagCount)
+				: string.Format (Strings.DeleteTagXQuestion, tag?.Name);
 
 		public static string ConfirmBody (int associatedPhotos)
+			=> ConfirmBody (1, associatedPhotos);
+
+		public static string ConfirmBody (int tagCount, int associatedPhotos)
 			=> associatedPhotos > 0
-				? string.Format (Strings.IfYouDeleteThisTagTheAssociationWithXYWillBeLost,
+				? string.Format (tagCount > 1
+						? Strings.IfYouDeleteThisTagsTheAssociationWithXYWillBeLost
+						: Strings.IfYouDeleteThisTagTheAssociationWithXYWillBeLost,
 					associatedPhotos,
 					associatedPhotos == 1 ? Strings.Photo : Strings.Photos)
 				: Strings.ThisRemovesTheTagFromTheCatalogAndFromAnyPhotosThatUseIt;

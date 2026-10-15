@@ -314,6 +314,10 @@ public sealed class MenubarParityTests
 			var updateAll = window.GetLogicalDescendants ().OfType<Button> ().FirstOrDefault (button => button.Name == "UpdateAll");
 			Assert.IsNotNull (updateAll);
 			Assert.IsFalse (updateAll.IsEnabled);
+			var refresh = window.GetLogicalDescendants ().OfType<Button> ()
+				.FirstOrDefault (button => Equals (button.Content, Strings.Refresh));
+			Assert.IsNotNull (refresh);
+			Assert.IsFalse (refresh.IsEnabled);
 
 			var boxes = window.GetVisualDescendants ().OfType<CheckBox> ()
 				.Where (check => ReferenceEquals (check.DataContext, addin))

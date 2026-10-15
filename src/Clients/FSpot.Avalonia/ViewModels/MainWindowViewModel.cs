@@ -1910,28 +1910,47 @@ public partial class MainWindowViewModel : ObservableObject
 		if (target is null)
 			return;
 
-		if (TagDelete.HasChildren (target.Tag)) {
-			await shell.ShowWarningAsync (TagDelete.BlockedHeading, TagDelete.BlockedMessage (target.Tag));
+		await DeleteHighlightedTagsAsync (new[] { target });
+	}
+
+	public async Task DeleteHighlightedTagsAsync (IReadOnlyList<TagNode> nodes)
+	{
+		var targets = new List<TagNode> ();
+		foreach (var node in nodes) {
+			if (node is not null)
+				targets.Add (node);
+		}
+		if (targets.Count == 0)
+			return;
+
+		foreach (var node in targets) {
+			if (!TagDelete.HasChildren (node.Tag))
+				continue;
+			await shell.ShowWarningAsync (TagDelete.BlockedHeading, TagDelete.BlockedMessage (node.Tag));
 			return;
 		}
 
 		if (database is null)
 			return;
 
+		var tags = new List<Tag> (targets.Count);
+		foreach (var node in targets)
+			tags.Add (node.Tag);
+		int photos = database.Photos.Query (new OrOperator (tags.Select (tag => new TagTerm (tag)).ToArray ())).Length;
 		if (!await shell.ConfirmAsync (
-				TagDelete.ConfirmHeading (target.Tag),
-				TagDelete.ConfirmBody (0),
+				TagDelete.ConfirmHeading (targets.Count, targets[0].Tag),
+				TagDelete.ConfirmBody (targets.Count, photos),
 				Strings.Delete))
 			return;
 
 		try {
-			database.Photos.Remove (new List<Tag> { target.Tag });
+			database.Photos.Remove (tags);
 		} catch (InvalidTagOperationException ex) {
-			await shell.ShowWarningAsync (TagDelete.BlockedHeading, TagDelete.BlockedMessage (ex.Tag ?? target.Tag));
+			await shell.ShowWarningAsync (TagDelete.BlockedHeading, TagDelete.BlockedMessage (ex.Tag ?? targets[0].Tag));
 			return;
 		}
 
-		if (SelectedTag?.Tag.Id == target.Tag.Id)
+		if (SelectedTag is TagNode selected && targets.Exists (node => node.Tag.Id == selected.Tag.Id))
 			SelectedTag = null;
 		ReloadTags ();
 		ReloadPhotos ();

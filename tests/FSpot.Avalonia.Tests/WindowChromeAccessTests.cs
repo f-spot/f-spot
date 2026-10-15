@@ -5,9 +5,16 @@ using Avalonia.Automation;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.VisualTree;
 
+using FSpot.Avalonia.Dialogs;
 using FSpot.Avalonia.Input;
+using FSpot.Avalonia.Models;
+using FSpot.Avalonia.Services;
+using FSpot.Avalonia.ViewModels;
+using FSpot.Core;
+using FSpot.Editors;
 
 using FSpot.Resources.Lang;
 
@@ -138,6 +145,100 @@ public sealed class WindowChromeAccessTests
 			Assert.AreEqual (DragDropEffects.None, overLibrary.DragEffects);
 		} finally {
 			window.Close ();
+		}
+	}
+
+	[UiTestMethod]
+	public void FullscreenGlyphs_HaveNames ()
+	{
+		AvaloniaApp.Ensure ();
+		var window = new MainWindow (null) { Width = 900, Height = 600 };
+		window.Show ();
+		try {
+			var glyphs = window.GetVisualDescendants ().OfType<Button> ()
+				.Where (button => button.Content is "◀" or "▶")
+				.ToList ();
+			Assert.IsGreaterThan (0, glyphs.Count);
+			foreach (var button in glyphs) {
+				string name = AutomationProperties.GetName (button) ?? string.Empty;
+				Assert.IsFalse (string.IsNullOrWhiteSpace (name));
+				Assert.AreNotEqual (button.Content as string, name);
+			}
+		} finally {
+			window.Close ();
+		}
+	}
+
+	[UiTestMethod]
+	public void TagRenameBox_HasAName ()
+	{
+		AvaloniaApp.Ensure ();
+		var window = new MainWindow (null) { Width = 900, Height = 600 };
+		window.Show ();
+		try {
+			var viewModel = (MainWindowViewModel)window.DataContext!;
+			var tag = new TagNode (new Tag (null, 7, "Vacation"));
+			viewModel.Tags.Add (tag);
+			viewModel.BeginRenameTagCommand.Execute (tag);
+			window.UpdateLayout ();
+
+			var box = window.GetVisualDescendants ().OfType<TextBox> ()
+				.FirstOrDefault (candidate => ReferenceEquals (candidate.DataContext, tag));
+			Assert.IsNotNull (box);
+			Assert.AreEqual (DialogStrings.TagName, AutomationProperties.GetName (box));
+		} finally {
+			window.Close ();
+		}
+	}
+
+	[UiTestMethod]
+	public void PrintCopies_HasTheCopiesName ()
+	{
+		AvaloniaApp.Ensure ();
+		var window = new PrintWindow ([], PrintPageSetup.Letter, listPrinters: false);
+		window.Show ();
+		try {
+			var copies = window.GetVisualDescendants ().OfType<NumericUpDown> ()
+				.Single (box => AutomationProperties.GetAutomationId (box) == PrintAutomationIds.PrintCopies);
+			Assert.AreEqual (GtkMnemonic.Display (Strings.NumberOfCopies), AutomationProperties.GetName (copies));
+		} finally {
+			window.Close ();
+		}
+	}
+
+	[UiTestMethod]
+	public void SelectionRatio_WindowCloseSavesTheList ()
+	{
+		AvaloniaApp.Ensure ();
+		var window = new SelectionRatioWindow ([new CropConstraint ("Square", 1)]);
+		window.Show ();
+		try {
+			window.Close ();
+			Assert.IsNotNull (window.Result);
+			Assert.HasCount (1, window.Result);
+			Assert.AreEqual ("Square", window.Result[0].Label);
+			Assert.AreEqual (1.0, window.Result[0].XyRatio);
+		} finally {
+			if (window.IsVisible)
+				window.Close ();
+		}
+	}
+
+	[UiTestMethod]
+	public void SelectionRatio_CloseButtonStillSavesTheList ()
+	{
+		AvaloniaApp.Ensure ();
+		var window = new SelectionRatioWindow ([new CropConstraint ("Square", 1)]);
+		window.Show ();
+		try {
+			var close = window.GetVisualDescendants ().OfType<Button> ()
+				.Single (button => AutomationProperties.GetAutomationId (button) == AutomationIds.SelectionRatioClose);
+			close.RaiseEvent (new RoutedEventArgs (Button.ClickEvent, close));
+			Assert.IsNotNull (window.Result);
+			Assert.AreEqual ("Square", window.Result[0].Label);
+		} finally {
+			if (window.IsVisible)
+				window.Close ();
 		}
 	}
 

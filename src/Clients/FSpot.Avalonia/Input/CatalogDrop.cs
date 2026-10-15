@@ -122,10 +122,13 @@ public static class CatalogDrop
 
 	static void ApplyTagTree (MainWindowViewModel viewModel, DragEventArgs e)
 	{
-		var node = (e.Source as Control)?.DataContext as TagNode ?? viewModel.SelectedTag;
-		if (e.DataTransfer.Contains (DragFormats.TagId) && node is not null) {
-			string? id = Read (e.DataTransfer, DragFormats.TagId);
-			var child = id is null ? null : FindTag (viewModel.Tags, uint.Parse (id));
+		// Empty tree space has the window model as its data, not a tag. Do not fall back to the selection.
+		if ((e.Source as Control)?.DataContext is not TagNode node)
+			return;
+		if (e.DataTransfer.Contains (DragFormats.TagId)) {
+			if (!uint.TryParse (Read (e.DataTransfer, DragFormats.TagId), out uint id))
+				return;
+			var child = FindTag (viewModel.Tags, id);
 			if (child is not null && !ReferenceEquals (child, node))
 				viewModel.ReparentTagCommand.Execute (((TagNode Child, TagNode Parent)?) (child, node));
 			return;

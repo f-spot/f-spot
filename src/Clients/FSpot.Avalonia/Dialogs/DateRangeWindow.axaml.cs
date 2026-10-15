@@ -39,11 +39,12 @@ public partial class DateRangeWindow : Window
 		EndPicker.PropertyChanged += OnPickerChanged;
 
 		Preset = DateRangePresets.Default;
-		// Like GTK, an active filter's dates show in the pickers under the default period.
+		// Dates already on screen are the range OK applies. The default period would replace them.
 		if (start is DateTime from && end is DateTime to) {
 			syncing = true;
 			StartPicker.SelectedDate = from.Date;
 			EndPicker.SelectedDate = to.Date;
+			Preset = DateRangePreset.CustomizedRange;
 			syncing = false;
 		}
 	}

@@ -14,7 +14,8 @@ namespace FSpot.Avalonia.Input;
 
 /// <summary>
 /// GTK <c>TagEntry</c> completion on a tag text box: Tab and Shift+Tab cycle through the tags
-/// that start with the name being typed; comma or Return accepts the completion.
+/// that start with the name being typed. Tab leaves the box when nothing matches.
+/// Comma or Return accepts the completion.
 /// </summary>
 public static class TagCompletionInput
 {
@@ -56,9 +57,9 @@ public static class TagCompletionInput
 		case Key.Tab:
 			if ((e.KeyModifiers & ~KeyModifiers.Shift) != KeyModifiers.None)
 				return;
-			if (completion.Complete (text, box.CaretIndex, (e.KeyModifiers & KeyModifiers.Shift) == 0) is TagCompletion.Edit edit)
-				Apply (box, edit);
-			// GTK keeps Tab in the entry even when nothing completes.
+			if (completion.Complete (text, box.CaretIndex, (e.KeyModifiers & KeyModifiers.Shift) == 0) is not TagCompletion.Edit edit)
+				break;
+			Apply (box, edit);
 			e.Handled = true;
 			break;
 		case Key.OemComma:

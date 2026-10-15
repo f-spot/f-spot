@@ -111,6 +111,7 @@ public class TimelineScale : Control
 		scroller = this.FindAncestorOfType<ScrollViewer> ();
 		if (scroller is not null)
 			scroller.PropertyChanged += OnScrollerPropertyChanged;
+		ReloadBuckets ();
 	}
 
 	protected override void OnDetachedFromVisualTree (VisualTreeAttachmentEventArgs e)

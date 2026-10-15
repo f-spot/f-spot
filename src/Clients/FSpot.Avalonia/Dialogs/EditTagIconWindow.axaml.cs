@@ -29,6 +29,8 @@ public partial class EditTagIconWindow : Window
 	ImageBuffer? photoBuffer;
 	TagIconChoice? preview;
 	bool hasPreview;
+	bool showingPhoto;
+	int displayedPhoto = -1;
 
 	public EditTagIconWindow ()
 		: this (new TagIconSource (new FSpot.Core.Tag (null, 0, string.Empty), []), null)
@@ -58,7 +60,7 @@ public partial class EditTagIconWindow : Window
 			PhotoIndex.Value = 1;
 			PhotoIndex.ValueChanged += (_, _) => OnPhotoIndexChanged ();
 			PhotoSelection.SelectionCommand = new RelayCommand<PixelRect> (OnPhotoSelection);
-			ShowPhoto (0);
+			ShowPhoto (0, pending: false);
 		} else {
 			NoPhotosText.Text = DialogText.Plain (string.Format (CultureInfo.CurrentCulture, Strings.HowToAddImageToTagFromPhotoX, source.Tag.Name)).TrimEnd ('"');
 			NoPhotosText.IsVisible = true;
@@ -123,13 +125,19 @@ public partial class EditTagIconWindow : Window
 			PhotoIndex.Value = count;
 			return;
 		}
+		// The spinner reports the photo the dialog already opened. That is not a choice.
+		if (number - 1 == displayedPhoto)
+			return;
 		ShowPhoto (number - 1);
 	}
 
-	internal void ShowPhoto (int index)
-		=> _ = ShowPhotoAsync (index);
+	internal void ShowPhoto (int index, bool pending = true)
+	{
+		displayedPhoto = index;
+		_ = ShowPhotoAsync (index, pending);
+	}
 
-	async Task ShowPhotoAsync (int index)
+	async Task ShowPhotoAsync (int index, bool pending = true)
 	{
 		PhotoLabel.Text = string.Format (CultureInfo.CurrentCulture, Strings.PhotoXOfY, index + 1, source.PhotoPaths.Count);
 		Bitmap? bitmap = null;
@@ -144,20 +152,33 @@ public partial class EditTagIconWindow : Window
 			photoBuffer = AvaloniaImagingBackend.ToRgbBuffer (bitmap);
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Failed to load {Path} for a tag icon", source.PhotoPaths[index]);
+			if (index != PhotoNumber - 1) {
+				bitmap?.Dispose ();
+				return;
+			}
+			bitmap?.Dispose ();
+			bitmap = null;
 			photoBuffer = null;
 		}
 		var old = PhotoImage.Source as IDisposable;
 		PhotoImage.Source = bitmap;
-		PhotoSelection.Preview = bitmap;
+		// Replacing the bitmap clears the marquee and reports an empty selection.
+		// That report is the image change, not a selection the user drew.
+		showingPhoto = true;
+		try {
+			PhotoSelection.Preview = bitmap;
+		} finally {
+			showingPhoto = false;
+		}
 		old?.Dispose ();
-		// Like GTK, a new photo with no selection yet becomes the icon as a whole.
+		// A photo the user picked becomes the icon. The photo opened with the dialog does not.
 		if (photoBuffer is not null)
-			SetPreview (new TagIconChoice (null, TagIconImage.Create (photoBuffer, null, backend.Scale)));
+			SetPreview (new TagIconChoice (null, TagIconImage.Create (photoBuffer, null, backend.Scale)), pending);
 	}
 
 	internal void OnPhotoSelection (PixelRect selection)
 	{
-		if (photoBuffer is null)
+		if (showingPhoto || photoBuffer is null)
 			return;
 		SetPreview (new TagIconChoice (null, TagIconImage.Create (photoBuffer, selection, backend.Scale)));
 	}
@@ -220,7 +241,12 @@ public partial class EditTagIconWindow : Window
 	{
 		(PhotoImage.Source as IDisposable)?.Dispose ();
 		PhotoImage.Source = null;
-		PhotoSelection.Preview = null;
+		showingPhoto = true;
+		try {
+			PhotoSelection.Preview = null;
+		} finally {
+			showingPhoto = false;
+		}
 		base.OnClosed (e);
 	}
 }

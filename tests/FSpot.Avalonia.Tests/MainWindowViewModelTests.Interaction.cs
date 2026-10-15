@@ -182,6 +182,105 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
+	public void TagTree_DeleteWarnsWhenAnyHighlightedTagHasChildren ()
+	{
+		AvaloniaApp.Ensure ();
+		var shell = new RecordingShell { ConfirmResult = true };
+		var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+		var root = new Category (null, 1, "Root");
+		_ = new Tag (root, 2, "Child");
+		var leaf = new Tag (null, 3, "Leaf");
+		var rootNode = new TagNode (root);
+		var leafNode = new TagNode (leaf);
+		var tree = new TreeView {
+			DataContext = viewModel,
+			SelectionMode = SelectionMode.Multiple,
+			ItemsSource = new[] { leafNode, rootNode }
+		};
+		TagTreeInput.SetEnable (tree, true);
+		var window = new Window { Width = 240, Height = 180, Content = tree, DataContext = viewModel };
+		window.Show ();
+		try {
+			tree.SelectedItems!.Add (leafNode);
+			tree.SelectedItems.Add (rootNode);
+			Assert.HasCount (2, tree.SelectedItems);
+			Assert.AreSame (leafNode, tree.SelectedItems[0]);
+
+			KeyDown (tree, Key.Delete);
+
+			Assert.AreEqual (Strings.TagIsNotEmpty, shell.WarningTitle);
+			Assert.IsFalse (shell.ConfirmCalled);
+		} finally {
+			window.Close ();
+		}
+	}
+
+	[UiTestMethod]
+	public void TagTyping_TabLeavesTheBoxWhenNothingCompletes ()
+	{
+		AvaloniaApp.Ensure ();
+		var viewModel = NewViewModel ();
+		viewModel.Tags.Add (new TagNode (new Tag (null, 1, "Vacation")));
+		var before = new Button ();
+		var box = new TextBox { Text = "zz", CaretIndex = 2, DataContext = viewModel };
+		var after = new Button ();
+		TagCompletionInput.SetEnable (box, true);
+		var window = new Window {
+			Width = 200,
+			Height = 80,
+			Content = new StackPanel { Children = { before, box, after } },
+			DataContext = viewModel
+		};
+		window.Show ();
+		try {
+			box.Focus ();
+			KeyDown (box, Key.Tab);
+			Assert.AreEqual ("zz", box.Text);
+			Assert.AreSame (after, TopLevel.GetTopLevel (box)?.FocusManager?.GetFocusedElement ());
+
+			box.Focus ();
+			var shift = new KeyEventArgs {
+				RoutedEvent = InputElement.KeyDownEvent,
+				Key = Key.Tab,
+				KeyModifiers = KeyModifiers.Shift,
+				Source = box
+			};
+			box.RaiseEvent (shift);
+			Assert.AreEqual ("zz", box.Text);
+			Assert.AreSame (before, TopLevel.GetTopLevel (box)?.FocusManager?.GetFocusedElement ());
+		} finally {
+			window.Close ();
+		}
+	}
+
+	[UiTestMethod]
+	public void TagTyping_TabStillCompletesAMatchingTag ()
+	{
+		AvaloniaApp.Ensure ();
+		var viewModel = NewViewModel ();
+		viewModel.Tags.Add (new TagNode (new Tag (null, 1, "Vacation")));
+		var box = new TextBox { Text = "va", CaretIndex = 2, DataContext = viewModel };
+		var after = new Button ();
+		TagCompletionInput.SetEnable (box, true);
+		var window = new Window {
+			Width = 200,
+			Height = 80,
+			Content = new StackPanel { Children = { box, after } },
+			DataContext = viewModel
+		};
+		window.Show ();
+		try {
+			box.Focus ();
+			var tab = KeyDown (box, Key.Tab);
+			Assert.IsTrue (tab.Handled);
+			Assert.AreEqual ("vacation", box.Text);
+			Assert.AreSame (box, TopLevel.GetTopLevel (box)?.FocusManager?.GetFocusedElement ());
+		} finally {
+			window.Close ();
+		}
+	}
+
+	[UiTestMethod]
 	public void TagTree_DeleteAndF2ReachTheTagWhenTheRowIsFocused ()
 	{
 		AvaloniaApp.Ensure ();

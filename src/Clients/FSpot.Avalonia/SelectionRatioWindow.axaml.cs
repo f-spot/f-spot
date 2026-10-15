@@ -25,6 +25,7 @@ public partial class SelectionRatioWindow : Window
 		editor = new SelectionRatioEditor (custom);
 		DataContext = editor;
 		InitializeComponent ();
+		Closing += (_, _) => Result = editor.ToConstraints ();
 	}
 
 	public IReadOnlyList<CropConstraint>? Result { get; private set; }
@@ -36,8 +37,5 @@ public partial class SelectionRatioWindow : Window
 	}
 
 	void OnClose (object? sender, RoutedEventArgs e)
-	{
-		Result = editor.ToConstraints ();
-		Close ();
-	}
+		=> Close ();
 }

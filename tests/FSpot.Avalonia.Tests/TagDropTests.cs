@@ -1,12 +1,19 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Media.Imaging;
 
+using FSpot.Avalonia.Input;
+using FSpot.Avalonia.Models;
 using FSpot.Avalonia.Services;
 using FSpot.Avalonia.ViewModels;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Imaging;
+using FSpot.Query;
+using FSpot.Resources.Lang;
 using FSpot.Thumbnail;
 
 using Hyena;
@@ -140,6 +147,192 @@ public sealed class TagDropTests
 	}
 
 	[UiTestMethod]
+	public async Task DeleteTag_WarnsWithTheNumberOfPhotosThatUseIt ()
+	{
+		using var catalog = Catalog.Open (confirm: true);
+		var photos = catalog.ViewModel.Photos.Select (item => (Photo)item.Photo).ToArray ();
+		foreach (var photo in photos)
+			photo.AddTag (catalog.Tag);
+		catalog.Database.Photos.Commit (photos);
+		int stored = catalog.Database.Photos.Query (new OrOperator (new TagTerm (catalog.Tag))).Length;
+		Assert.AreEqual (2, stored);
+
+		var node = Walk (catalog.ViewModel.Tags).Single (item => item.Tag.Id == catalog.Tag.Id);
+		await catalog.ViewModel.DeleteTagCommand.ExecuteAsync (node);
+
+		Assert.AreEqual (
+			string.Format (Strings.IfYouDeleteThisTagTheAssociationWithXYWillBeLost, 2, Strings.Photos),
+			catalog.ConfirmMessage);
+	}
+
+	[UiTestMethod]
+	public async Task Delete_OnSeveralHighlightedTags_RemovesEachOne ()
+	{
+		using var catalog = Catalog.Open (confirm: true);
+		var beach = catalog.Database.Tags.CreateTag (catalog.Database.Tags.RootCategory, "Beach", false);
+		var photos = catalog.ViewModel.Photos.Select (item => (Photo)item.Photo).ToArray ();
+		foreach (var photo in photos)
+			photo.AddTag (catalog.Tag);
+		photos[0].AddTag (beach);
+		catalog.Database.Photos.Commit (photos);
+		catalog.ViewModel.LoadCatalog ();
+
+		var dropped = Walk (catalog.ViewModel.Tags).Single (item => item.Name == "Dropped");
+		var beachNode = Walk (catalog.ViewModel.Tags).Single (item => item.Name == "Beach");
+		var tree = new TreeView {
+			DataContext = catalog.ViewModel,
+			SelectionMode = SelectionMode.Multiple,
+			ItemsSource = new[] { dropped, beachNode }
+		};
+		TagTreeInput.SetEnable (tree, true);
+		var window = new Window { Width = 240, Height = 180, Content = tree, DataContext = catalog.ViewModel };
+		window.Show ();
+		try {
+			tree.SelectedItems!.Add (dropped);
+			tree.SelectedItems.Add (beachNode);
+			Assert.HasCount (2, tree.SelectedItems);
+			Assert.AreSame (dropped, tree.SelectedItems[0]);
+
+			var args = new KeyEventArgs {
+				RoutedEvent = InputElement.KeyDownEvent,
+				Key = Key.Delete,
+				KeyModifiers = KeyModifiers.None,
+				Source = tree
+			};
+			tree.RaiseEvent (args);
+
+			Assert.AreEqual (string.Format (Strings.DeleteTheXSelectedTagsQuestion, 2), catalog.ConfirmTitle);
+			Assert.AreEqual (
+				string.Format (Strings.IfYouDeleteThisTagsTheAssociationWithXYWillBeLost, 2, Strings.Photos),
+				catalog.ConfirmMessage);
+			Assert.AreEqual (1, catalog.Confirmations);
+			Assert.IsNull (catalog.Database.Tags.Get (dropped.Tag.Id));
+			Assert.IsNull (catalog.Database.Tags.Get (beach.Id));
+		} finally {
+			window.Close ();
+		}
+	}
+
+	[UiTestMethod]
+	public void DroppingATagOnEmptySpace_DoesNotReparentOntoTheSelectedTag ()
+	{
+		var people = new Category (null, 1, "People");
+		var mom = new Tag (null, 2, "Mom");
+		var viewModel = new MainWindowViewModel (null, new Shell (false), new NullThumbs ());
+		var peopleNode = new TagNode (people);
+		viewModel.Tags.Add (peopleNode);
+		viewModel.Tags.Add (new TagNode (mom));
+		viewModel.SelectTagCommand.Execute (peopleNode);
+
+		var host = new Panel { DataContext = viewModel, Width = 80, Height = 40 };
+		CatalogDrop.SetKind (host, CatalogDropKind.TagTree);
+		var window = new Window { Width = 120, Height = 80, Content = host, DataContext = viewModel };
+		window.Show ();
+		try {
+			Exception? thrown = Drop (host, host, mom.Id.ToString ());
+			Assert.IsNull (thrown);
+			Assert.IsNull (mom.Category);
+		} finally {
+			window.Close ();
+		}
+	}
+
+	[UiTestMethod]
+	public void DroppingATagOnATag_ReparentsOntoThatTag ()
+	{
+		var people = new Category (null, 1, "People");
+		var mom = new Tag (null, 2, "Mom");
+		var viewModel = new MainWindowViewModel (null, new Shell (false), new NullThumbs ());
+		var peopleNode = new TagNode (people);
+		viewModel.Tags.Add (peopleNode);
+		viewModel.Tags.Add (new TagNode (mom));
+		var row = new Border { DataContext = peopleNode, Width = 40, Height = 20 };
+		var host = new Panel { DataContext = viewModel, Width = 80, Height = 40 };
+		host.Children.Add (row);
+		CatalogDrop.SetKind (host, CatalogDropKind.TagTree);
+		var window = new Window { Width = 120, Height = 80, Content = host, DataContext = viewModel };
+		window.Show ();
+		try {
+			Exception? thrown = Drop (row, row, mom.Id.ToString ());
+			Assert.IsNull (thrown);
+			Assert.AreSame (people, mom.Category);
+		} finally {
+			window.Close ();
+		}
+	}
+
+	[UiTestMethod]
+	public void DroppingATagIdThatIsNotANumber_DoesNotThrow ()
+	{
+		var people = new Category (null, 1, "People");
+		var mom = new Tag (null, 2, "Mom");
+		var viewModel = new MainWindowViewModel (null, new Shell (false), new NullThumbs ());
+		var peopleNode = new TagNode (people);
+		var row = new Border { DataContext = peopleNode, Width = 40, Height = 20 };
+		var host = new Panel { DataContext = viewModel, Width = 80, Height = 40 };
+		host.Children.Add (row);
+		CatalogDrop.SetKind (host, CatalogDropKind.TagTree);
+		var window = new Window { Width = 120, Height = 80, Content = host, DataContext = viewModel };
+		window.Show ();
+		try {
+			Exception? thrown = Drop (row, row, "nope");
+			Assert.IsNull (thrown);
+			Assert.IsNull (mom.Category);
+		} finally {
+			window.Close ();
+		}
+	}
+
+	[UiTestMethod]
+	public void DroppingPhotosOnEmptySpace_DoesNotAttachThemToTheSelectedTag ()
+	{
+		using var catalog = Catalog.Open ();
+		var photo = catalog.ViewModel.Photos[0];
+		photo.Selected = true;
+		var tag = Walk (catalog.ViewModel.Tags).Single (item => item.Tag.Id == catalog.Tag.Id);
+		catalog.ViewModel.SelectTagCommand.Execute (tag);
+
+		var host = new Panel { DataContext = catalog.ViewModel, Width = 80, Height = 40 };
+		CatalogDrop.SetKind (host, CatalogDropKind.TagTree);
+		var window = new Window { Width = 120, Height = 80, Content = host, DataContext = catalog.ViewModel };
+		window.Show ();
+		try {
+			Exception? thrown = Drop (host, host, null, photos: "1");
+			Assert.IsNull (thrown);
+			Assert.IsFalse (catalog.HasStoredTag (photo));
+		} finally {
+			window.Close ();
+		}
+	}
+
+	static Exception? Drop (Control raiseOn, Control source, string? tagId, string? photos = null)
+	{
+		using var transfer = new DataTransfer ();
+		if (tagId is not null)
+			transfer.Add (DataTransferItem.Create (DragFormats.TagId, tagId));
+		if (photos is not null)
+			transfer.Add (DataTransferItem.Create (DragFormats.Photos, photos));
+		var args = new DragEventArgs (DragDrop.DropEvent, transfer, source, new Point (4, 4), KeyModifiers.None) {
+			RoutedEvent = DragDrop.DropEvent
+		};
+		try {
+			raiseOn.RaiseEvent (args);
+			return null;
+		} catch (Exception ex) {
+			return ex;
+		}
+	}
+
+	static IEnumerable<TagNode> Walk (IEnumerable<TagNode> nodes)
+	{
+		foreach (var node in nodes) {
+			yield return node;
+			foreach (var child in Walk (node.Children))
+				yield return child;
+		}
+	}
+
+	[UiTestMethod]
 	public void DragOutPaths_ListsTheSelectedPhotoFiles ()
 	{
 		using var catalog = Catalog.Open ();
@@ -158,6 +351,8 @@ public sealed class TagDropTests
 		public Tag Tag { get; }
 		public string Root => root;
 		public int Confirmations => shell.Confirmations;
+		public string? ConfirmTitle => shell.Title;
+		public string? ConfirmMessage => shell.Message;
 		readonly string root;
 		readonly Shell shell;
 
@@ -209,6 +404,8 @@ public sealed class TagDropTests
 	sealed class Shell (bool confirm) : IAvaloniaShell
 	{
 		public int Confirmations { get; private set; }
+		public string? Title { get; private set; }
+		public string? Message { get; private set; }
 
 		public void Close () { }
 		public void ToggleFullscreen () { }
@@ -222,6 +419,8 @@ public sealed class TagDropTests
 		public Task<bool> ConfirmAsync (string title, string message, string okCaption)
 		{
 			Confirmations++;
+			Title = title;
+			Message = message;
 			return Task.FromResult (confirm);
 		}
 		public Task<(uint Min, uint Max)?> PromptRatingRangeAsync () => Task.FromResult<(uint, uint)?> (null);

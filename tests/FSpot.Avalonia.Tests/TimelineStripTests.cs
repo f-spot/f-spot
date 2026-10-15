@@ -42,6 +42,25 @@ public sealed class TimelineStripTests
 	}
 
 	[UiTestMethod]
+	public void Scale_RebuildsBucketsAfterItLeavesAndReturns ()
+	{
+		AvaloniaApp.Ensure ();
+		var scale = new TimelineScale { Items = Months (3), Width = 300, Height = 48 };
+		var window = new Window { Width = 320, Height = 80, Content = scale };
+		windows.Add (window);
+		window.Show ();
+		window.UpdateLayout ();
+		Assert.IsTrue (scale.Step (1));
+
+		window.Content = new Border ();
+		window.UpdateLayout ();
+		window.Content = scale;
+		window.UpdateLayout ();
+
+		Assert.IsTrue (scale.Step (1));
+	}
+
+	[UiTestMethod]
 	public void Months_StretchAndStayAddressable ()
 	{
 		AvaloniaApp.Ensure ();

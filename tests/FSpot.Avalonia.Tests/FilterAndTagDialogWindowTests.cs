@@ -1,6 +1,8 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using Avalonia.Controls;
 using Avalonia.Threading;
+using Avalonia.VisualTree;
 
 using FSpot.Avalonia.Dialogs;
 using FSpot.Core;
@@ -50,6 +52,21 @@ public sealed class FilterAndTagDialogWindowTests
 		window.Accept ();
 		Assert.IsNotNull (window.Result?.Range);
 		Assert.AreEqual (new DateTime (2026, 1, 1), window.Result.Range.Value.Start);
+	}
+
+	[UiTestMethod]
+	public void DateRange_OkUsesTheDatesAlreadyOnScreen ()
+	{
+		var today = new DateTime (2026, 9, 23);
+		var start = new DateTime (2020, 3, 1);
+		var end = new DateTime (2020, 3, 15);
+		var window = new DateRangeWindow (today, start, end);
+
+		window.Accept ();
+
+		Assert.IsNotNull (window.Result?.Range);
+		Assert.AreEqual (start, window.Result.Range.Value.Start);
+		Assert.AreEqual (end.Add (new TimeSpan (23, 59, 59)), window.Result.Range.Value.End);
 	}
 
 	[UiTestMethod]
@@ -178,6 +195,102 @@ public sealed class FilterAndTagDialogWindowTests
 		window.Accept ();
 		Assert.IsNotNull (window.Result?.Icon);
 		Assert.AreEqual (TagIconImage.Size, window.Result.Icon.Height);
+	}
+
+	[UiTestMethod]
+	public async Task EditTagIcon_LeavesTheFirstPhotoUntouched ()
+	{
+		var (_, _, mom) = Tree ();
+		string sample = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
+		var window = new EditTagIconWindow (new TagIconSource (mom, [sample]), null);
+
+		long started = Environment.TickCount64;
+		while (window.Preview?.Icon is null && Environment.TickCount64 - started < 5_000) {
+			await Dispatcher.UIThread.InvokeAsync (() => { }, DispatcherPriority.Background, TestContext.CancellationToken);
+			await Task.Delay (10, TestContext.CancellationToken);
+		}
+
+		Assert.IsNotNull (window.Preview?.Icon);
+		window.Accept ();
+		Assert.IsNull (window.Result);
+	}
+
+	[UiTestMethod]
+	public async Task EditTagIcon_ChangingThePhotoAppliesThatPhoto ()
+	{
+		var (_, _, mom) = Tree ();
+		string sample = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
+		var window = new EditTagIconWindow (new TagIconSource (mom, [sample, sample]), null);
+		window.Show ();
+
+		long started = Environment.TickCount64;
+		while (window.Preview?.Icon is null && Environment.TickCount64 - started < 5_000) {
+			await Dispatcher.UIThread.InvokeAsync (() => { }, DispatcherPriority.Background, TestContext.CancellationToken);
+			await Task.Delay (10, TestContext.CancellationToken);
+		}
+
+		Assert.IsNotNull (window.Preview?.Icon);
+		var first = window.Preview.Icon;
+		var spinner = window.GetVisualDescendants ().OfType<NumericUpDown> ().Single ();
+		spinner.Value = 2;
+		started = Environment.TickCount64;
+		while (ReferenceEquals (window.Preview?.Icon, first) && Environment.TickCount64 - started < 5_000) {
+			await Dispatcher.UIThread.InvokeAsync (() => { }, DispatcherPriority.Background, TestContext.CancellationToken);
+			await Task.Delay (10, TestContext.CancellationToken);
+		}
+
+		Assert.AreEqual (2, window.PhotoNumber);
+		window.Accept ();
+		Assert.IsNotNull (window.Result?.Icon);
+		Assert.AreEqual (TagIconImage.Size, window.Result.Icon.Width);
+		if (window.IsVisible)
+			window.Close ();
+	}
+
+	[UiTestMethod]
+	public async Task EditTagIcon_StaleDecodeFailureLeavesTheCurrentPhoto ()
+	{
+		var (_, _, mom) = Tree ();
+		string sample = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
+		string missing = sample + ".missing.jpg";
+		var window = new EditTagIconWindow (new TagIconSource (mom, [sample, missing]), null);
+
+		long started = Environment.TickCount64;
+		while (window.PhotoImage.Source is null && Environment.TickCount64 - started < 5_000) {
+			await Dispatcher.UIThread.InvokeAsync (() => { }, DispatcherPriority.Background, TestContext.CancellationToken);
+			await Task.Delay (10, TestContext.CancellationToken);
+		}
+
+		var first = window.PhotoImage.Source;
+		Assert.IsNotNull (first);
+		Assert.AreEqual (1, window.PhotoNumber);
+		window.ShowPhoto (1);
+
+		started = Environment.TickCount64;
+		while (Environment.TickCount64 - started < 2_000) {
+			await Dispatcher.UIThread.InvokeAsync (() => { }, DispatcherPriority.Background, TestContext.CancellationToken);
+			await Task.Delay (10, TestContext.CancellationToken);
+		}
+
+		Assert.AreSame (first, window.PhotoImage.Source);
+		Assert.AreEqual (1, window.PhotoNumber);
+	}
+
+	[UiTestMethod]
+	public async Task EditTagIcon_CurrentDecodeFailureClearsThePhoto ()
+	{
+		var (_, _, mom) = Tree ();
+		string missing = Path.Combine (Path.GetTempPath (), "fspot-missing-" + Guid.NewGuid ().ToString ("N") + ".jpg");
+		var window = new EditTagIconWindow (new TagIconSource (mom, [missing]), null);
+
+		long started = Environment.TickCount64;
+		while (Environment.TickCount64 - started < 2_000) {
+			await Dispatcher.UIThread.InvokeAsync (() => { }, DispatcherPriority.Background, TestContext.CancellationToken);
+			await Task.Delay (10, TestContext.CancellationToken);
+		}
+
+		Assert.IsNull (window.PhotoImage.Source);
+		Assert.AreEqual (1, window.PhotoNumber);
 	}
 
 	[UiTestMethod]
