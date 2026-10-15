@@ -45,5 +45,20 @@ namespace FSpot.Imaging.Tests
 
 			Assert.AreEqual (160, output.Pixels[3]);
 		}
+
+		[TestMethod]
+		public void UnsharpMask_UsesAPeakedBlurSoTheShoulderStaysDarkerThanABox ()
+		{
+			// GTK's blur weights the center more than its neighbors. A flat box
+			// of radius 1 turns 100 into 167 here; the peaked kernel turns it into 150.
+			var input = new ImageBuffer (5, 1, false, 15, new byte[] {
+				0, 0, 0, 0, 0, 0, 100, 100, 100, 0, 0, 0, 0, 0, 0
+			});
+
+			var output = ImageBuffers.UnsharpMask (input, radius: 1, amount: 1, threshold: 0);
+
+			Assert.AreEqual (150, output.Pixels[6]);
+			Assert.AreEqual (0, output.Pixels[3]);
+		}
 	}
 }

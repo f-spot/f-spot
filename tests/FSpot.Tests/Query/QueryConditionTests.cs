@@ -88,6 +88,19 @@ namespace FSpot.Query.Tests
 		}
 
 		[TestMethod]
+		public void FolderSet_EscapesLikeWildcardsInTheFolderUri ()
+		{
+			var folders = new FolderSet {
+				Folders = new[] { new SafeUri ("file:///photos/100%_done", true) }
+			};
+
+			string sql = folders.SqlClause ();
+			Assert.Contains ("base_uri = 'file:///photos/100%_done'", sql);
+			Assert.Contains ("base_uri LIKE 'file:///photos/100\\%\\_done/%' ESCAPE '\\'", sql);
+			Assert.DoesNotContain ("LIKE 'file:///photos/100%_done/%'", sql);
+		}
+
+		[TestMethod]
 		public void AndOperator_FlattensNestedAndsAndJoinsWithAnd ()
 		{
 			var t1 = new TagTerm (new Tag (null, 1, "one"));

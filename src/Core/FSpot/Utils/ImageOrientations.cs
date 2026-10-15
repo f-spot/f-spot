@@ -46,20 +46,24 @@ namespace FSpot.Utils
 				y = totalHeight - args.Y - args.Height;
 				break;
 			case ImageOrientation.TopRight:
-				x = totalWidth - args.X - args.Width;
-				break;
-			case ImageOrientation.BottomLeft:
+				// The upright buffer is a vertical flip, so a raw selection mirrors Y.
 				y = totalHeight - args.Y - args.Height;
 				break;
+			case ImageOrientation.BottomLeft:
+				// The upright buffer is a horizontal flip, so a raw selection mirrors X.
+				x = totalWidth - args.X - args.Width;
+				break;
 			case ImageOrientation.LeftTop:
-				x = args.Y;
-				y = args.X;
+				// Upright is FlipVertical(Rotate90Clockwise): source (sx, sy) lands at (height-1-sy, width-1-sx).
+				x = totalHeight - args.Y - args.Height;
+				y = totalWidth - args.X - args.Width;
 				width = args.Height;
 				height = args.Width;
 				break;
 			case ImageOrientation.RightBottom:
-				x = totalHeight - args.Y - args.Height;
-				y = totalWidth - args.X - args.Width;
+				// Upright is FlipVertical(Rotate90Counterclockwise), which is a transpose.
+				x = args.Y;
+				y = args.X;
 				width = args.Height;
 				height = args.Width;
 				break;

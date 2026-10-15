@@ -24,20 +24,21 @@ namespace FSpot
 		public bool Date { get; set; } = true;
 		public bool Size { get; set; } = true;
 		public bool Exposure { get; set; } = true;
-		public bool FocalLength { get; set; } = true;
-		public bool Camera { get; set; } = true;
+		// GTK InfoBox starts focal length, camera, and rating hidden.
+		public bool FocalLength { get; set; }
+		public bool Camera { get; set; }
 		public bool Creator { get; set; } = true;
-		public bool Rating { get; set; } = true;
+		public bool Rating { get; set; }
 
 		public static InfoFieldVisibility Load ()
 			=> new InfoFieldVisibility {
-				Date = Read (DateKey),
-				Size = Read (SizeKey),
-				Exposure = Read (ExposureKey),
-				FocalLength = Read (FocalLengthKey),
-				Camera = Read (CameraKey),
-				Creator = Read (CreatorKey),
-				Rating = Read (RatingKey)
+				Date = Read (DateKey, true),
+				Size = Read (SizeKey, true),
+				Exposure = Read (ExposureKey, true),
+				FocalLength = Read (FocalLengthKey, false),
+				Camera = Read (CameraKey, false),
+				Creator = Read (CreatorKey, true),
+				Rating = Read (RatingKey, false)
 			};
 
 		// Per-context visibility in the GTK MRUInfoBoxContextSwitchStrategy key format and defaults.
@@ -100,12 +101,12 @@ namespace FSpot
 			}
 		}
 
-		static bool Read (string key)
+		static bool Read (string key, bool defaultValue)
 		{
 			try {
 				return Preferences.JsonBackend.Get<bool> (key);
 			} catch (NoSuchKeyException) {
-				return true;
+				return defaultValue;
 			}
 		}
 	}

@@ -71,26 +71,26 @@ namespace FSpot.Utils
 			case ImageOrientation.TopLeft:
 				break;
 			case ImageOrientation.TopRight:
-				p.X = total_width - p.X;
+				p.Y = total_height - args.Y;
 				break;
 			case ImageOrientation.BottomRight:
 				p.X = total_width - p.X;
 				p.Y = total_height - p.Y;
 				break;
 			case ImageOrientation.BottomLeft:
-				p.Y = total_height - p.Y;
+				p.X = total_width - args.X;
 				break;
 			case ImageOrientation.LeftTop:
-				p.X = args.Y;
-				p.Y = args.X;
+				p.X = total_height - args.Y;
+				p.Y = total_width - args.X;
 				break;
 			case ImageOrientation.RightTop:
 				p.X = total_height - args.Y;
 				p.Y = args.X;
 				break;
 			case ImageOrientation.RightBottom:
-				p.X = total_height - args.Y;
-				p.Y = total_width - args.X;
+				p.X = args.Y;
+				p.Y = args.X;
 				break;
 			case ImageOrientation.LeftBottom:
 				p.X = args.Y;

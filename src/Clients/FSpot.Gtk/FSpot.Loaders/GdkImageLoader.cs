@@ -111,12 +111,7 @@ namespace FSpot.Loaders
 		public override void Dispose ()
 		{
 			is_disposed = true;
-			if (image_stream != null) {
-				try {
-					image_stream.Close ();
-				} catch (GLib.GException) {
-				}
-			}
+			ReleaseImageStream ();
 			Close ();
 			if (thumb != null) {
 				thumb.Dispose ();
@@ -187,40 +182,97 @@ namespace FSpot.Loaders
 		Rectangle damage;
 		readonly object sync_handle = new object ();
 
-		void HandleReadDone (IAsyncResult ar)
+		void ReleaseImageStream ()
 		{
-			if (is_disposed)
+			System.IO.Stream stream;
+			lock (sync_handle) {
+				stream = image_stream;
+				image_stream = null;
+			}
+
+			if (stream == null)
 				return;
 
-			int byte_read = image_stream.EndRead (ar);
+			try {
+				stream.Close ();
+			} catch (GLib.GException) {
+			} catch (ObjectDisposedException) {
+			}
+		}
+
+		void HandleReadDone (IAsyncResult ar)
+		{
+			bool disposed;
+			bool endOfStream = false;
+			bool decoderFailed = false;
+			bool stop = false;
 			lock (sync_handle) {
-				if (byte_read == 0) {
-					image_stream.Close ();
-					Close ();
+				disposed = is_disposed;
+				if (disposed) {
+					try {
+						image_stream?.EndRead (ar);
+					} catch (ObjectDisposedException) {
+					} catch (System.IO.IOException) {
+					} catch (GLib.GException) {
+					}
+				} else if (image_stream == null) {
+					decoderFailed = true;
 					Loading = false;
 					notify_completed = true;
 				} else {
 					try {
-						// SizePrepared runs inside Write, so the budget flag is only
-						// visible after Write returns.
-						bool wrote = !is_disposed && Write (buffer, (ulong)byte_read);
-						if (wrote && !over_budget) {
-							image_stream.BeginRead (buffer, 0, count, HandleReadDone, null);
-						} else {
+						int byte_read = image_stream.EndRead (ar);
+						if (byte_read == 0) {
+							endOfStream = true;
 							Loading = false;
 							notify_completed = true;
+						} else {
+							// SizePrepared runs inside Write, so the budget flag is only
+							// visible after Write returns.
+							bool wrote = !is_disposed && Write (buffer, (ulong)byte_read);
+							if (wrote && !over_budget && image_stream != null)
+								image_stream.BeginRead (buffer, 0, count, HandleReadDone, null);
+							else {
+								stop = true;
+								Loading = false;
+								notify_completed = true;
+							}
 						}
 					} catch (ObjectDisposedException) {
+						decoderFailed = true;
+						Loading = false;
+						notify_completed = true;
+					} catch (System.IO.IOException) {
+						decoderFailed = true;
 						Loading = false;
 						notify_completed = true;
 					} catch (GLib.GException) {
 						// Unrecognized format (SVG on quartz, etc.): without this
 						// Completed never fires and PhotoImageView keeps the previous pixbuf.
+						decoderFailed = true;
 						Loading = false;
 						notify_completed = true;
 					}
 				}
 			}
+
+			if (disposed) {
+				ReleaseImageStream ();
+				return;
+			}
+
+			if (endOfStream) {
+				ReleaseImageStream ();
+				Close ();
+			} else if (decoderFailed) {
+				if (thumb != null) {
+					thumb.Dispose ();
+					thumb = null;
+				}
+				ReleaseImageStream ();
+				Close ();
+			} else if (stop)
+				ReleaseImageStream ();
 
 			GLib.Idle.Add (delegate {
 				//Send the AreaPrepared event

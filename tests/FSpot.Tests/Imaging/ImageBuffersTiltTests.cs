@@ -53,5 +53,22 @@ namespace FSpot.Imaging.Tests
 			Assert.AreEqual (3, output.Height);
 			Assert.AreEqual (5, output.Pixels[output.Rowstride + 3]);
 		}
+
+		[TestMethod]
+		public void TiltFill_PositiveDegreesMovesTheTopTowardTheRight ()
+		{
+			// GTK Cairo rotates a positive tilt clockwise, so the pixel above
+			// the center lands closer to the pixel on the right than the left.
+			var pixels = new byte[5 * 5 * 3];
+			int above = 1 * 15 + 2 * 3;
+			pixels[above] = pixels[above + 1] = pixels[above + 2] = 255;
+			var input = new ImageBuffer (5, 5, false, 15, pixels);
+
+			var output = ImageBuffers.TiltFill (input, 35);
+
+			int left = 2 * 15 + 1 * 3;
+			int right = 2 * 15 + 3 * 3;
+			Assert.IsGreaterThan (output.Pixels[left], output.Pixels[right]);
+		}
 	}
 }

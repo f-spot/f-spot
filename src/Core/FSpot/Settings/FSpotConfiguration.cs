@@ -60,20 +60,30 @@ namespace FSpot.Settings
 
 		static string DefaultBaseDirectory ()
 		{
-			string configHome = Environment.GetEnvironmentVariable ("XDG_CONFIG_HOME");
-			if (string.IsNullOrWhiteSpace (configHome)) {
 #if NET
-				configHome = OperatingSystem.IsWindows ()
-					? Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData)
-					: Path.Combine (HomeDirectory, ".config");
+			bool windows = OperatingSystem.IsWindows ();
 #else
-				configHome = Environment.OSVersion.Platform == PlatformID.Win32NT
-					? Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData)
-					: Path.Combine (HomeDirectory, ".config");
+			bool windows = Environment.OSVersion.Platform == PlatformID.Win32NT;
 #endif
-			}
+			return DefaultBaseDirectory (
+				windows,
+				Environment.GetEnvironmentVariable ("XDG_CONFIG_HOME"),
+				Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData),
+				HomeDirectory);
+		}
 
-			return Path.Combine (configHome, "f-spot");
+		// XDG_CONFIG_HOME is a Unix convention. On Windows it must not move the catalog.
+		internal static string DefaultBaseDirectory (bool windows, string configHome, string windowsAppData, string home)
+		{
+			string root;
+			if (windows)
+				root = windowsAppData;
+			else if (string.IsNullOrWhiteSpace (configHome))
+				root = Path.Combine (home, ".config");
+			else
+				root = configHome;
+
+			return Path.Combine (root, "f-spot");
 		}
 
 		public static SafeUri PhotoUri { get; set; }

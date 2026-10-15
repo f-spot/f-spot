@@ -142,11 +142,14 @@ namespace FSpot.Tests
 		{
 			var visibility = new InfoFieldVisibility ();
 			Assert.IsTrue (visibility.Date);
+			Assert.IsFalse (visibility.FocalLength);
+			Assert.IsFalse (visibility.Camera);
+			Assert.IsFalse (visibility.Rating);
 			visibility.Date = false;
 			visibility.Save ();
 			var loaded = InfoFieldVisibility.Load ();
 			Assert.IsFalse (loaded.Date);
-			Assert.IsTrue (loaded.Rating);
+			Assert.IsFalse (loaded.Rating);
 		}
 
 		[TestMethod]

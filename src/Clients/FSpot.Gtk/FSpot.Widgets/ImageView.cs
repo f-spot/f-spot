@@ -222,7 +222,7 @@ namespace FSpot.Widgets
 			win.X = Clamp (win.X - x_offset, 0, (int)scaled_width - 1);
 			win.Y = Clamp (win.Y - y_offset, 0, (int)scaled_height - 1);
 
-			win = FSpot.Utils.PixbufUtils.TransformOrientation ((int)scaled_width, (int)scaled_height, win, FSpot.Utils.PixbufUtils.ReverseTransformation (pixbuf_orientation));
+			win = FSpot.Utils.PixbufUtils.TransformOrientation ((int)scaled_width, (int)scaled_height, win, pixbuf_orientation);
 
 			return new Point ((int)Math.Floor (win.X * (double)(((int)PixbufOrientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) / (double)(scaled_width - 1) + .5),
 					   (int)Math.Floor (win.Y * (double)(((int)PixbufOrientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) / (double)(scaled_height - 1) + .5));
@@ -652,7 +652,7 @@ namespace FSpot.Widgets
 												 (area.Y - y_offset),
 												 area.Width,
 												 area.Height),
-										  FSpot.Utils.PixbufUtils.ReverseTransformation (pixbuf_orientation));
+										  pixbuf_orientation);
 			using (var temp_pixbuf = new Pixbuf (Colorspace.Rgb, false, 8, pixbuf_area.Width, pixbuf_area.Height)) {
 				if (Pixbuf.HasAlpha)
 					temp_pixbuf.Fill (0x00000000);

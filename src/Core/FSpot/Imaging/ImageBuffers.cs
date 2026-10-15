@@ -293,10 +293,11 @@ namespace FSpot.Imaging
 			if (degrees == 0)
 				return Clone (buffer);
 
-			double tilt = degrees * Math.PI / -180.0;
+			// Cairo rotates a positive angle clockwise when y grows downward.
+			double tilt = degrees * Math.PI / 180.0;
 			double scale = TiltCoverScale (buffer.Width, buffer.Height, tilt);
-			double cos = Math.Cos (-tilt);
-			double sin = Math.Sin (-tilt);
+			double cos = Math.Cos (tilt);
+			double sin = Math.Sin (tilt);
 			double cx = (buffer.Width - 1) / 2.0;
 			double cy = (buffer.Height - 1) / 2.0;
 			int channels = Channels (buffer);
@@ -307,8 +308,8 @@ namespace FSpot.Imaging
 				double vy = y - cy;
 				for (int x = 0; x < buffer.Width; x++) {
 					double vx = x - cx;
-					double sx = (cos * vx - sin * vy) / scale + cx;
-					double sy = (sin * vx + cos * vy) / scale + cy;
+					double sx = (cos * vx + sin * vy) / scale + cx;
+					double sy = (-sin * vx + cos * vy) / scale + cy;
 					SampleBilinear (buffer, sx, sy, pixels, dstRow + x * channels, channels);
 				}
 			}
@@ -377,7 +378,7 @@ namespace FSpot.Imaging
 				throw new ArgumentNullException (nameof (buffer));
 
 			int blurRadius = Math.Max (0, (int)radius);
-			var blurred = BoxBlur (buffer, blurRadius);
+			var blurred = PeakedBlur (buffer, blurRadius);
 			int channels = Channels (buffer);
 			int stride = buffer.Width * channels;
 			var pixels = new byte[stride * buffer.Height];
@@ -405,6 +406,67 @@ namespace FSpot.Imaging
 			}
 
 			return new ImageBuffer (buffer.Width, buffer.Height, buffer.HasAlpha, stride, pixels);
+		}
+
+		// GTK GaussianBlurEffect.CreateGaussianBlurRow: a tent, heavier at the center than a box.
+		static ImageBuffer PeakedBlur (ImageBuffer buffer, int radius)
+		{
+			if (radius <= 0)
+				return Clone (buffer);
+
+			int size = 1 + radius * 2;
+			var weights = new int[size];
+			int weightSum = 0;
+			for (int i = 0; i <= radius; i++) {
+				int weight = 16 * (i + 1);
+				weights[i] = weight;
+				weights[size - i - 1] = weight;
+				weightSum += weight;
+				if (i != radius)
+					weightSum += weight;
+			}
+
+			int channels = Channels (buffer);
+			var horizontal = Clone (buffer);
+			for (int y = 0; y < buffer.Height; y++) {
+				int row = y * buffer.Rowstride;
+				for (int x = 0; x < buffer.Width; x++) {
+					for (int c = 0; c < channels; c++) {
+						int sum = 0;
+						for (int k = 0; k < size; k++) {
+							int sx = x + k - radius;
+							if (sx < 0)
+								sx = 0;
+							else if (sx >= buffer.Width)
+								sx = buffer.Width - 1;
+							sum += buffer.Pixels[row + sx * channels + c] * weights[k];
+						}
+
+						horizontal.Pixels[row + x * channels + c] = (byte)(sum / weightSum);
+					}
+				}
+			}
+
+			var vertical = Clone (horizontal);
+			for (int y = 0; y < buffer.Height; y++) {
+				for (int x = 0; x < buffer.Width; x++) {
+					for (int c = 0; c < channels; c++) {
+						int sum = 0;
+						for (int k = 0; k < size; k++) {
+							int sy = y + k - radius;
+							if (sy < 0)
+								sy = 0;
+							else if (sy >= buffer.Height)
+								sy = buffer.Height - 1;
+							sum += horizontal.Pixels[sy * horizontal.Rowstride + x * channels + c] * weights[k];
+						}
+
+						vertical.Pixels[y * vertical.Rowstride + x * channels + c] = (byte)(sum / weightSum);
+					}
+				}
+			}
+
+			return vertical;
 		}
 
 		static ImageBuffer BoxBlur (ImageBuffer buffer, int radius)

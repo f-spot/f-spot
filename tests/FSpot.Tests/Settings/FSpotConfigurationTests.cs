@@ -48,6 +48,16 @@ namespace FSpot.Tests.Settings
 		}
 
 		[TestMethod]
+		public void DefaultBaseDirectory_IgnoresXdgConfigHomeOnWindows ()
+		{
+			string windows = FSpotConfiguration.DefaultBaseDirectory (windows: true, configHome: "/tmp/xdg", windowsAppData: "C:\\Users\\ada\\AppData\\Roaming", home: "/home/ada");
+			string unix = FSpotConfiguration.DefaultBaseDirectory (windows: false, configHome: "/tmp/xdg", windowsAppData: "C:\\Users\\ada\\AppData\\Roaming", home: "/home/ada");
+
+			Assert.AreEqual (Path.Combine ("C:\\Users\\ada\\AppData\\Roaming", "f-spot"), windows);
+			Assert.AreEqual (Path.Combine ("/tmp/xdg", "f-spot"), unix);
+		}
+
+		[TestMethod]
 		public void TryApplyBaseDirectory_UsesAPresentDirectoryAndRejectsAnEmptyOne ()
 		{
 			string previous = FSpotConfiguration.BaseDirectory;

@@ -37,6 +37,12 @@ namespace FSpot.Query
 			return v == null ? string.Empty : v.Replace ("'", "''");
 		}
 
+		// LIKE treats % and _ as wildcards unless the clause names an escape character.
+		static string EscapeLike (string value)
+		{
+			return EscapeQuotes (value).Replace ("\\", "\\\\").Replace ("%", "\\%").Replace ("_", "\\_");
+		}
+
 		public string SqlClause ()
 		{
 			var items = new string[uri_list.Count];
@@ -48,10 +54,11 @@ namespace FSpot.Query
 			foreach (var uri in uri_list) {
 				// Folder nodes carry a trailing slash. Photos store the directory
 				// without one, and a bare prefix would also match a sibling folder.
-				string folder = EscapeQuotes (uri.ToString ().TrimEnd ('/'));
+				string plain = EscapeQuotes (uri.ToString ().TrimEnd ('/'));
+				string folder = EscapeLike (uri.ToString ().TrimEnd ('/'));
 				items[i] = string.Format (
-					"id IN (SELECT id FROM photos WHERE base_uri = '{0}' OR base_uri LIKE '{0}/%')",
-					folder);
+					"id IN (SELECT id FROM photos WHERE base_uri = '{0}' OR base_uri LIKE '{1}/%' ESCAPE '\\')",
+					plain, folder);
 				i++;
 			}
 
