@@ -162,6 +162,32 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
+	public async Task ReleasingAThumbnailCancelsThatDecodeAndLeavesTheOneStillShown ()
+	{
+		var thumbs = new TokenThumbnails ();
+		var viewModel = new MainWindowViewModel (null, new RecordingShell (), thumbs);
+		viewModel.SeedCatalog (new StubPhoto ("/a.jpg"), new StubPhoto ("/b.jpg"));
+		var firstHold = new object ();
+		var stillShown = new object ();
+		var secondHold = new object ();
+		int before = thumbs.Calls;
+		await viewModel.RealizeThumbnailAsync (firstHold, viewModel.Photos[0]);
+		await viewModel.RealizeThumbnailAsync (secondHold, viewModel.Photos[1]);
+		await viewModel.RealizeThumbnailAsync (stillShown, viewModel.Photos[0]);
+		Assert.AreEqual (before + 2, thumbs.Calls);
+		var firstToken = thumbs.Loads[before].Token;
+		var secondToken = thumbs.Loads[before + 1].Token;
+
+		viewModel.ReleaseThumbnail (firstHold);
+		Assert.IsFalse (firstToken.IsCancellationRequested);
+		Assert.IsFalse (secondToken.IsCancellationRequested);
+
+		viewModel.ReleaseThumbnail (stillShown);
+		Assert.IsTrue (firstToken.IsCancellationRequested);
+		Assert.IsFalse (secondToken.IsCancellationRequested);
+	}
+
+	[UiTestMethod]
 	[DoNotParallelize]
 	public async Task Editing_DecodesOneCappedPreviewAndDisposesThePrevious ()
 	{
@@ -200,6 +226,33 @@ public sealed partial class MainWindowViewModelTests
 			await viewModel.RealizeThumbnailAsync (new object (), viewModel.Photos[i]);
 
 		Assert.AreEqual (31, thumbs.Calls);
+	}
+
+	[UiTestMethod]
+	public async Task ReleasingAnImportThumbnailCancelsThatDecodeAndLeavesTheOneStillShown ()
+	{
+		var thumbs = new TokenThumbnails ();
+		var viewModel = new ImportViewModel (null!, new RecordingShell (), thumbs, static _ => { });
+		viewModel.AddPendingPhoto (new PhotoItemViewModel (new StubPhoto ("/import/a.jpg")));
+		viewModel.AddPendingPhoto (new PhotoItemViewModel (new StubPhoto ("/import/b.jpg")));
+		var firstHold = new object ();
+		var stillShown = new object ();
+		var secondHold = new object ();
+		int before = thumbs.Calls;
+		await viewModel.RealizeThumbnailAsync (firstHold, viewModel.Photos[0]);
+		await viewModel.RealizeThumbnailAsync (secondHold, viewModel.Photos[1]);
+		await viewModel.RealizeThumbnailAsync (stillShown, viewModel.Photos[0]);
+		Assert.AreEqual (before + 2, thumbs.Calls);
+		var firstToken = thumbs.Loads[before].Token;
+		var secondToken = thumbs.Loads[before + 1].Token;
+
+		viewModel.ReleaseThumbnail (firstHold);
+		Assert.IsFalse (firstToken.IsCancellationRequested);
+		Assert.IsFalse (secondToken.IsCancellationRequested);
+
+		viewModel.ReleaseThumbnail (stillShown);
+		Assert.IsTrue (firstToken.IsCancellationRequested);
+		Assert.IsFalse (secondToken.IsCancellationRequested);
 	}
 
 	[UiTestMethod]
@@ -361,6 +414,57 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsLessThanOrEqualTo (1, thumbs.Calls);
 	}
 
+	[UiTestMethod]
+	public async Task ImportThumbnail_RetriesAfterADecodeFailure ()
+	{
+		var thumbs = new FailUntilAllowed ();
+		var viewModel = new ImportViewModel (null!, new RecordingShell (), thumbs, static _ => { });
+		viewModel.AddPendingPhoto (new PhotoItemViewModel (new StubPhoto ("/import/a.jpg")));
+		var container = new object ();
+
+		await viewModel.RealizeThumbnailAsync (container, viewModel.Photos[0]);
+		Assert.AreEqual (1, thumbs.GridCalls);
+		Assert.IsNull (viewModel.Photos[0].Thumbnail);
+
+		thumbs.Allow = true;
+		await viewModel.RealizeThumbnailAsync (container, viewModel.Photos[0]);
+		Assert.AreEqual (2, thumbs.GridCalls);
+		Assert.IsNotNull (viewModel.Photos[0].Thumbnail);
+	}
+
+	[UiTestMethod]
+	public async Task ReloadThumbnails_ContinuesAfterOneItemIsCancelled ()
+	{
+		var thumbs = new CancelSecondOfFirstPhoto ();
+		var viewModel = new MainWindowViewModel (null, new RecordingShell (), thumbs);
+		viewModel.SeedCatalog (new StubPhoto ("/a.jpg"), new StubPhoto ("/b.jpg"));
+		await viewModel.RealizeThumbnailAsync (new object (), viewModel.Photos[0]);
+		await viewModel.RealizeThumbnailAsync (new object (), viewModel.Photos[1]);
+		Assert.AreEqual (1, thumbs.BLoads);
+
+		thumbs.CancelA = true;
+		await viewModel.ReloadThumbnailsAsync ();
+
+		Assert.AreEqual (2, thumbs.BLoads);
+	}
+
+	[UiTestMethod]
+	public async Task RealizeThumbnail_RetriesAfterADecodeFailure ()
+	{
+		var thumbs = new FailUntilAllowed ();
+		var viewModel = new MainWindowViewModel (null, new RecordingShell (), thumbs);
+		viewModel.SeedCatalog (new StubPhoto ("/a.jpg"));
+		var container = new object ();
+
+		await viewModel.RealizeThumbnailAsync (container, viewModel.Photos[0]);
+		Assert.AreEqual (1, thumbs.GridCalls);
+		Assert.IsNull (viewModel.Photos[0].Thumbnail);
+
+		thumbs.Allow = true;
+		await viewModel.RealizeThumbnailAsync (container, viewModel.Photos[0]);
+		Assert.AreEqual (2, thumbs.GridCalls);
+		Assert.IsNotNull (viewModel.Photos[0].Thumbnail);
+	}
 	[UiTestMethod]
 	public void SelectTag_HighlightsWithoutTogglingOff ()
 	{
@@ -2257,6 +2361,19 @@ public sealed partial class MainWindowViewModelTests
 		}
 	}
 
+	internal sealed class TokenThumbnails : IPhotoThumbnailLoader
+	{
+		public int Calls => Loads.Count;
+
+		public List<(string Path, CancellationToken Token)> Loads { get; } = new ();
+
+		public Task<Bitmap?> LoadAsync (string path, int size, CancellationToken cancellationToken)
+		{
+			Loads.Add ((path, cancellationToken));
+			return Task.FromResult<Bitmap?> (null);
+		}
+	}
+
 	// Headless WriteableBitmap.Lock discards pixels. Histogram counting calls CopyPixels.
 	sealed class FilledBitmap : WriteableBitmap
 	{
@@ -2378,4 +2495,43 @@ public sealed partial class MainWindowViewModelTests
 		public IPhotoVersion DefaultVersion { get; }
 		public IEnumerable<IPhotoVersion> Versions { get; }
 	}
+
+	sealed class FailUntilAllowed : IPhotoThumbnailLoader
+	{
+		public int GridCalls { get; private set; }
+		public bool Allow { get; set; }
+
+		public Task<Bitmap?> LoadAsync (string path, int size, CancellationToken cancellationToken)
+		{
+			if (cancellationToken == CancellationToken.None)
+				return Task.FromResult<Bitmap?> (TinyBitmap ());
+			GridCalls++;
+			if (!Allow)
+				throw new InvalidOperationException ("thumb broke");
+			return Task.FromResult<Bitmap?> (TinyBitmap ());
+		}
+	}
+
+	sealed class CancelSecondOfFirstPhoto : IPhotoThumbnailLoader
+	{
+		public bool CancelA { get; set; }
+		public int BLoads { get; private set; }
+
+		public Task<Bitmap?> LoadAsync (string path, int size, CancellationToken cancellationToken)
+		{
+			if (cancellationToken != CancellationToken.None) {
+				if (path.EndsWith ("a.jpg", StringComparison.Ordinal)) {
+					if (CancelA)
+						throw new OperationCanceledException ();
+				} else {
+					BLoads++;
+				}
+			}
+
+			return Task.FromResult<Bitmap?> (TinyBitmap ());
+		}
+	}
+
+	static WriteableBitmap TinyBitmap ()
+		=> new (new PixelSize (1, 1), new global::Avalonia.Vector (96, 96), PixelFormat.Bgra8888, AlphaFormat.Premul);
 }

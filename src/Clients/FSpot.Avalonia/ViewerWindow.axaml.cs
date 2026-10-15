@@ -26,8 +26,12 @@ public partial class ViewerWindow : Window, IViewerShell
 	const double SidebarWidth = 189;
 
 	readonly ViewerViewModel viewModel;
-	readonly IPhotoThumbnailLoader thumbnails = new AvaloniaThumbnailLoader ();
+	readonly IPhotoThumbnailLoader thumbnails;
+	readonly ThumbnailLease trayLease = new ();
+	readonly ThumbnailLoads trayLoads = new ();
 	readonly CancellationTokenSource closing = new ();
+	readonly Func<string, int, Bitmap?> decodePhoto;
+	CancellationTokenSource? photoDecode;
 	ViewerItemViewModel? shownItem;
 	Bitmap? photo;
 	int photoLoad;
@@ -38,7 +42,14 @@ public partial class ViewerWindow : Window, IViewerShell
 	}
 
 	public ViewerWindow (IReadOnlyList<string> paths, Func<string, bool>? canLoad = null)
+		: this (paths, canLoad, new AvaloniaThumbnailLoader ())
 	{
+	}
+
+	internal ViewerWindow (IReadOnlyList<string> paths, Func<string, bool>? canLoad, IPhotoThumbnailLoader thumbnails, Func<string, int, Bitmap?>? decode = null)
+	{
+		this.thumbnails = thumbnails;
+		decodePhoto = decode ?? ((path, size) => AvaloniaPhotoDecoder.DecodeFile (path, size));
 		viewModel = new ViewerViewModel (this, canLoad);
 		DataContext = viewModel;
 		InitializeComponent ();
@@ -62,12 +73,17 @@ public partial class ViewerWindow : Window, IViewerShell
 		viewModel.PropertyChanged += OnViewModelChanged;
 		ViewerSettings.Changed += OnViewerSettingsChanged;
 		ImageScroller.SizeChanged += (_, _) => UpdateFit ();
+		FolderTray.ContainerPrepared += OnTrayPrepared;
+		FolderTray.ContainerClearing += OnTrayClearing;
 		AddHandler (DragDrop.DragOverEvent, OnDragOver);
 		AddHandler (DragDrop.DropEvent, OnDrop);
 		Closing += (_, _) => SavePreferences ();
 		Closed += (_, _) => {
 			ViewerSettings.Changed -= OnViewerSettingsChanged;
 			closing.Cancel ();
+			photoDecode?.Cancel ();
+			photoDecode?.Dispose ();
+			trayLoads.EndAll ();
 			ShowPhoto (null);
 		};
 
@@ -83,23 +99,49 @@ public partial class ViewerWindow : Window, IViewerShell
 		item.PropertyChanged += (_, e) => {
 			if (e.PropertyName != nameof (ViewerItemViewModel.Revision))
 				return;
-			_ = LoadThumbnailAsync (item);
+			if (trayLease.IsHeld (item))
+				_ = LoadThumbnailAsync (item);
 			if (ReferenceEquals (item, viewModel.CurrentItem))
 				_ = LoadPhotoAsync (item);
 		};
-		_ = LoadThumbnailAsync (item);
+	}
+
+	internal void OnTrayPrepared (object? sender, ContainerPreparedEventArgs e)
+	{
+		if ((uint)e.Index >= (uint)viewModel.Items.Count)
+			return;
+		var item = viewModel.Items[e.Index];
+		trayLease.Realize (e.Container, item);
+		if (item.Thumbnail is null && !trayLoads.IsLoading (item))
+			_ = LoadThumbnailAsync (item);
+	}
+
+	void OnTrayClearing (object? sender, ContainerClearingEventArgs e)
+	{
+		if (trayLease.Release (e.Container) is not ViewerItemViewModel item)
+			return;
+		trayLoads.End (item);
+		var previous = item.Thumbnail;
+		item.Thumbnail = null;
+		previous?.Dispose ();
 	}
 
 	async Task LoadThumbnailAsync (ViewerItemViewModel item)
 	{
+		var token = trayLoads.Begin (item);
 		try {
-			var bitmap = await thumbnails.LoadAsync (item.Path, TrayThumbnailSize, closing.Token);
+			var bitmap = await thumbnails.LoadAsync (item.Path, TrayThumbnailSize, token);
+			if (token.IsCancellationRequested || !trayLease.IsHeld (item)) {
+				bitmap?.Dispose ();
+				return;
+			}
 			var previous = item.Thumbnail;
 			item.Thumbnail = bitmap;
 			ReleasedBitmap.DisposePrevious (previous, bitmap);
 		} catch (OperationCanceledException) {
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Cannot load a tray thumbnail for {Path}", item.Path);
+			trayLoads.EndIfCurrent (item, token);
 		}
 	}
 
@@ -127,6 +169,7 @@ public partial class ViewerWindow : Window, IViewerShell
 	{
 		shownItem = item;
 		int load = ++photoLoad;
+		var token = RenewPhotoDecode ();
 		if (item is null) {
 			ShowPhoto (null);
 			return;
@@ -134,7 +177,7 @@ public partial class ViewerWindow : Window, IViewerShell
 
 		Bitmap? next = null;
 		try {
-			next = await DecodeGate.RunAsync (() => AvaloniaPhotoDecoder.DecodeFile (item.Path, EditorPreview.MaxPixels), closing.Token);
+			next = await DecodeGate.RunAsync (() => decodePhoto (item.Path, EditorPreview.MaxPixels), token);
 		} catch (OperationCanceledException) {
 			return;
 		} catch (Exception ex) {
@@ -148,6 +191,17 @@ public partial class ViewerWindow : Window, IViewerShell
 		ShowPhoto (next);
 		viewModel.ResetZoom (FitZoom ());
 		ApplyZoom ();
+	}
+
+	// The previous photo is still waiting on the one decode gate. Cancelling it before this
+	// method awaits means that wait never starts the decode.
+	CancellationToken RenewPhotoDecode ()
+	{
+		var previous = photoDecode;
+		photoDecode = CancellationTokenSource.CreateLinkedTokenSource (closing.Token);
+		previous?.Cancel ();
+		previous?.Dispose ();
+		return photoDecode.Token;
 	}
 
 	void ShowPhoto (Bitmap? next)

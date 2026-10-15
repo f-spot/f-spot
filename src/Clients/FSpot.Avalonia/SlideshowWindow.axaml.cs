@@ -27,6 +27,7 @@ public partial class SlideshowWindow : Window
 
 	readonly SlideshowSequence sequence;
 	readonly IFullScreenHost? host;
+	readonly Func<string, int, Bitmap?> decodeSlide;
 	readonly PhotoInfoViewModel info = new ();
 	readonly DispatcherTimer flipTimer;
 	readonly DispatcherTimer animationTimer;
@@ -38,6 +39,7 @@ public partial class SlideshowWindow : Window
 	Bitmap? previousSlide;
 	int slideLoad;
 	bool slidePending;
+	CancellationTokenSource slideDecode = new ();
 	bool playing;
 	bool busy;
 	SlideshowTransitionKind transition = SlideshowTransition.All[0];
@@ -49,10 +51,11 @@ public partial class SlideshowWindow : Window
 	{
 	}
 
-	public SlideshowWindow (IReadOnlyList<string> paths, int startIndex, IFullScreenHost? host = null, bool play = true)
+	public SlideshowWindow (IReadOnlyList<string> paths, int startIndex, IFullScreenHost? host = null, bool play = true, Func<string, int, Bitmap?>? decode = null)
 	{
 		sequence = new SlideshowSequence (paths, startIndex);
 		this.host = host;
+		decodeSlide = decode ?? ((path, size) => AvaloniaPhotoDecoder.DecodeFile (path, size));
 		InitializeComponent ();
 
 		InfoOverlay.DataContext = info;
@@ -86,6 +89,7 @@ public partial class SlideshowWindow : Window
 		};
 		Closed += (_, _) => {
 			slideLoad++;
+			slideDecode.Cancel ();
 			flipTimer.Stop ();
 			animationTimer.Stop ();
 			cursorTimer.Stop ();
@@ -160,13 +164,14 @@ public partial class SlideshowWindow : Window
 	{
 		string path = sequence.Current;
 		int generation = ++slideLoad;
+		var token = RenewSlideDecode ();
 		slidePending = true;
 		flipTimer.Stop ();
 		Bitmap? next;
 		try {
 			next = await DecodeGate.RunAsync (
-				() => AvaloniaPhotoDecoder.DecodeFile (path, EditorPreview.MaxPixels),
-				CancellationToken.None);
+				() => decodeSlide (path, EditorPreview.MaxPixels),
+				token);
 		} catch {
 			next = null;
 		}
@@ -199,6 +204,17 @@ public partial class SlideshowWindow : Window
 		}
 
 		UpdateInfo ();
+	}
+
+	// The previous slide is still waiting on the one decode gate. Cancelling it means
+	// that wait never starts the decode.
+	CancellationToken RenewSlideDecode ()
+	{
+		var previous = slideDecode;
+		slideDecode = new CancellationTokenSource ();
+		previous.Cancel ();
+		previous.Dispose ();
+		return slideDecode.Token;
 	}
 
 	void StepAnimation ()

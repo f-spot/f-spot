@@ -3,6 +3,7 @@
         xmlns:vm="using:FSpot.Avalonia.ViewModels"
         xmlns:svg="using:Avalonia.Svg.Skia"
         xmlns:auto="using:FSpot.Avalonia"
+        xmlns:controls="using:FSpot.Avalonia.Controls"
         xmlns:lang="using:FSpot.Resources.Lang"
         x:Class="FSpot.Avalonia.ViewerWindow"
         x:DataType="vm:ViewerViewModel"
@@ -148,7 +149,7 @@
 				         AutomationProperties.Name="{x:Static lang:Strings.Folder}">
 					<ListBox.ItemsPanel>
 						<ItemsPanelTemplate>
-							<WrapPanel Orientation="Horizontal" />
+							<controls:UniformVirtualizingWrapPanel ItemWidth="76" ItemHeight="88" />
 						</ItemsPanelTemplate>
 					</ListBox.ItemsPanel>
 					<ListBox.ItemTemplate>

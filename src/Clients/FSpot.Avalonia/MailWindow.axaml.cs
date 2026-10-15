@@ -24,6 +24,8 @@ public partial class MailWindow : Window
 	readonly IReadOnlyList<string> paths;
 	readonly bool forceOriginal;
 	readonly long originalTotal;
+	readonly Func<string, int, Bitmap?> decodeTray;
+	readonly CancellationTokenSource closing = new ();
 	double[] scales = MailSizing.ReferenceScales.ToArray ();
 
 	public MailWindow ()
@@ -31,9 +33,10 @@ public partial class MailWindow : Window
 	{
 	}
 
-	public MailWindow (IReadOnlyList<string> paths, bool loadTray = true)
+	public MailWindow (IReadOnlyList<string> paths, bool loadTray = true, Func<string, int, Bitmap?>? decode = null)
 	{
 		this.paths = paths;
+		decodeTray = decode ?? ((path, size) => AvaloniaPhotoDecoder.DecodeFile (path, size));
 		InitializeComponent ();
 		SummaryHeading.Text = GtkMarkupText.Split (Strings.BSummaryB).Title;
 		CreateButton.Content = GtkMnemonic.Display (Strings.CreateMail2);
@@ -58,6 +61,8 @@ public partial class MailWindow : Window
 		TotalOriginalSize.Text = MailSizing.FormatSize (originalTotal);
 		UpdateEstimatedSize ();
 
+		// Closing runs inside Close, including a window that was never shown. Closed does not.
+		Closing += (_, _) => closing.Cancel ();
 		if (loadTray) {
 			LoadTray ();
 			if (!forceOriginal && paths.Count > 0)
@@ -97,13 +102,17 @@ public partial class MailWindow : Window
 		var files = paths.ToList ();
 		_ = Task.Run (() => {
 			for (int i = 0; i < files.Count; i++) {
-				Bitmap bitmap;
+				Bitmap? bitmap;
 				try {
-					bitmap = AvaloniaPhotoDecoder.DecodeFile (files[i], TrayThumbnailWidth);
+					bitmap = DecodeGate.Run (() => decodeTray (files[i], TrayThumbnailWidth), closing.Token);
+				} catch (OperationCanceledException) {
+					break;
 				} catch (Exception e) {
 					Logger.Log.Warning ($"No tray thumbnail for {files[i]}: {e.Message}");
 					continue;
 				}
+				if (bitmap is null || closing.IsCancellationRequested)
+					continue;
 				var image = images[i];
 				Dispatcher.UIThread.Post (() => image.Source = bitmap);
 			}

@@ -46,8 +46,8 @@ public partial class MainWindowViewModel : ObservableObject
 	readonly IAvaloniaShell shell;
 	readonly IPhotoThumbnailLoader thumbnails;
 	readonly ThumbnailLease shownThumbnails = new ();
+	readonly ThumbnailLoads thumbnailLoads = new ();
 	readonly Dictionary<PhotoItemViewModel, int> thumbnailGeneration = new ();
-	CancellationTokenSource thumbnailLoads = new ();
 	Task previewTask = Task.CompletedTask;
 
 	[ObservableProperty]
@@ -590,7 +590,7 @@ public partial class MainWindowViewModel : ObservableObject
 		shownThumbnails.Realize (container, item);
 		if (item.Thumbnail is not null || thumbnailGeneration.ContainsKey (item))
 			return Task.CompletedTask;
-		return LoadOneAsync (item, thumbnailLoads.Token);
+		return LoadOneAsync (item);
 	}
 
 	internal void ReleaseThumbnail (object container)
@@ -598,14 +598,13 @@ public partial class MainWindowViewModel : ObservableObject
 		if (shownThumbnails.Release (container) is not PhotoItemViewModel item)
 			return;
 		thumbnailGeneration.Remove (item);
+		thumbnailLoads.End (item);
 		ReplaceThumbnail (item, null);
 	}
 
 	void DropAllThumbnails ()
 	{
-		thumbnailLoads.Cancel ();
-		thumbnailLoads.Dispose ();
-		thumbnailLoads = new CancellationTokenSource ();
+		thumbnailLoads.EndAll ();
 		var extras = shownThumbnails.Held.OfType<PhotoItemViewModel> ().ToArray ();
 		shownThumbnails.Clear ();
 		thumbnailGeneration.Clear ();
@@ -618,20 +617,19 @@ public partial class MainWindowViewModel : ObservableObject
 
 	async Task LoadThumbnailsAsync ()
 	{
-		var token = thumbnailLoads.Token;
 		var held = shownThumbnails.Held.OfType<PhotoItemViewModel> ().ToArray ();
-		try {
-			foreach (var item in held) {
-				token.ThrowIfCancellationRequested ();
-				await LoadOneAsync (item, token);
+		foreach (var item in held) {
+			try {
+				await LoadOneAsync (item);
+			} catch (OperationCanceledException) {
 			}
-		} catch (OperationCanceledException) {
 		}
 	}
 
-	async Task LoadOneAsync (PhotoItemViewModel item, CancellationToken token)
+	async Task LoadOneAsync (PhotoItemViewModel item)
 	{
 		int generation = NextThumbnailGeneration (item);
+		var token = thumbnailLoads.Begin (item);
 		int size = HiDpi.PixelSize (Zoom, UiScale);
 		Bitmap? bitmap = null;
 		try {
@@ -649,6 +647,9 @@ public partial class MainWindowViewModel : ObservableObject
 		} catch (Exception ex) {
 			bitmap?.Dispose ();
 			Logger.Log.Debug (ex, "Failed to decode thumbnail for {Path}", item.Path);
+			if (thumbnailGeneration.TryGetValue (item, out int current) && current == generation)
+				thumbnailGeneration.Remove (item);
+			thumbnailLoads.EndIfCurrent (item, token);
 		}
 	}
 
@@ -2140,6 +2141,7 @@ public partial class MainWindowViewModel : ObservableObject
 		foreach (var item in MutationItems ()) {
 			ReplaceThumbnail (item, null);
 			thumbnailGeneration.Remove (item);
+			thumbnailLoads.End (item);
 			item.RefreshFromPhoto ();
 		}
 

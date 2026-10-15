@@ -1,5 +1,8 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using Avalonia.Threading;
+
+using FSpot.Avalonia.Imaging;
 using FSpot.Avalonia.Mail;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
@@ -175,6 +178,39 @@ public sealed class PrintAndMailWindowTests
 		Assert.IsFalse (window.MediumSize.IsEnabled);
 		Assert.AreEqual (0, window.SizeIndex);
 		Assert.AreEqual ("2", window.NumberOfPictures.Text);
+	}
+
+	[UiTestMethod]
+	public void MailTray_DoesNotDecodeWhileAnotherDecodeHoldsTheGate ()
+	{
+		AvaloniaApp.Ensure ();
+		int started = 0;
+		string sample = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
+		using var hold = DecodeGate.Enter ();
+		var window = new MailWindow (new[] { sample, sample }, decode: (_, _) => {
+			Interlocked.Increment (ref started);
+			return null;
+		});
+		try {
+			var until = DateTime.UtcNow.AddMilliseconds (400);
+			while (started == 0 && DateTime.UtcNow < until) {
+				Dispatcher.UIThread.RunJobs ();
+				Thread.Sleep (20);
+			}
+
+			Assert.AreEqual (0, started);
+			window.Close ();
+		} finally {
+			hold.Dispose ();
+		}
+
+		var finished = DateTime.UtcNow.AddMilliseconds (400);
+		while (started == 0 && DateTime.UtcNow < finished) {
+			Dispatcher.UIThread.RunJobs ();
+			Thread.Sleep (20);
+		}
+
+		Assert.AreEqual (0, started);
 	}
 
 	[UiTestMethod]

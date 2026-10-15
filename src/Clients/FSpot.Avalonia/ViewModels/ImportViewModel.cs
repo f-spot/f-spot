@@ -34,6 +34,7 @@ public partial class ImportViewModel : ObservableObject
 	readonly IAvaloniaShell shell;
 	readonly IPhotoThumbnailLoader thumbnails;
 	readonly ThumbnailLease shownThumbnails = new ();
+	readonly ThumbnailLoads thumbnailLoads = new ();
 	readonly Dictionary<PhotoItemViewModel, int> thumbnailGeneration = new ();
 	readonly Action<bool> close;
 	readonly PhotoList importList = new PhotoList ();
@@ -461,6 +462,7 @@ public partial class ImportViewModel : ObservableObject
 	void ReleaseListedThumbnails ()
 	{
 		var listed = Photos.ToArray ();
+		thumbnailLoads.EndAll ();
 		shownThumbnails.Clear ();
 		thumbnailGeneration.Clear ();
 		foreach (var item in listed)
@@ -473,7 +475,7 @@ public partial class ImportViewModel : ObservableObject
 		shownThumbnails.Realize (container, item);
 		if (item.Thumbnail is not null || thumbnailGeneration.ContainsKey (item))
 			return Task.CompletedTask;
-		return LoadThumbnailAsync (item, CancellationToken.None);
+		return LoadThumbnailAsync (item);
 	}
 
 	internal void ReleaseThumbnail (object container)
@@ -481,24 +483,32 @@ public partial class ImportViewModel : ObservableObject
 		if (shownThumbnails.Release (container) is not PhotoItemViewModel item)
 			return;
 		thumbnailGeneration.Remove (item);
+		thumbnailLoads.End (item);
 		ReplaceThumbnail (item, null);
 	}
 
-	async Task LoadThumbnailAsync (PhotoItemViewModel item, CancellationToken token)
+	async Task LoadThumbnailAsync (PhotoItemViewModel item)
 	{
 		int generation = NextGeneration (item);
+		var token = thumbnailLoads.Begin (item);
 		Bitmap? bitmap = null;
 		try {
 			bitmap = await thumbnails.LoadAsync (item.Path, HiDpi.PixelSize (HiDpi.ImportListDip, UiScale), token);
+			token.ThrowIfCancellationRequested ();
 			if (!shownThumbnails.IsHeld (item) || !thumbnailGeneration.TryGetValue (item, out int current) || current != generation) {
 				bitmap?.Dispose ();
 				return;
 			}
 
 			ReplaceThumbnail (item, bitmap);
+		} catch (OperationCanceledException) {
+			bitmap?.Dispose ();
 		} catch (Exception ex) {
 			bitmap?.Dispose ();
 			Logger.Log.Debug (ex, "Failed to thumbnail import preview {Path}", item.Path);
+			if (thumbnailGeneration.TryGetValue (item, out int current) && current == generation)
+				thumbnailGeneration.Remove (item);
+			thumbnailLoads.EndIfCurrent (item, token);
 		}
 	}
 

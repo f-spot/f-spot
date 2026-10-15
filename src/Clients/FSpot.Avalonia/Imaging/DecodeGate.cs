@@ -23,18 +23,24 @@ static class DecodeGate
 		return new Held ();
 	}
 
-	internal static T Run<T> (Func<T> decode)
+	internal static T Run<T> (Func<T> decode, CancellationToken cancellationToken = default)
 	{
 		if (depth.Value > 0)
 			return decode ();
 
-		gate.Wait ();
-		depth.Value = 1;
+		gate.Wait (cancellationToken);
 		try {
-			LastRunThreadId = Environment.CurrentManagedThreadId;
-			return decode ();
+			// Wait can return after the token is already cancelled, when the gate opens
+			// in the same moment. That decode must not start, and the permit is returned.
+			cancellationToken.ThrowIfCancellationRequested ();
+			depth.Value = 1;
+			try {
+				LastRunThreadId = Environment.CurrentManagedThreadId;
+				return decode ();
+			} finally {
+				depth.Value = 0;
+			}
 		} finally {
-			depth.Value = 0;
 			gate.Release ();
 		}
 	}

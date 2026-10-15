@@ -5,6 +5,9 @@ using System.Reflection;
 
 using Avalonia.Controls;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
+using Avalonia.Threading;
 
 using FSpot.Avalonia.Services;
 using FSpot.Avalonia.ViewModels;
@@ -446,6 +449,148 @@ public sealed class ViewerWindowTests
 		} finally {
 			window.Close ();
 		}
+	}
+
+	[UiTestMethod]
+	public void FolderTray_DecodesTheVisibleWindowNotTheFolder ()
+	{
+		var window = ShowTray (out var thumbs, out var directory);
+		try {
+			Dispatcher.UIThread.RunJobs ();
+			Assert.IsGreaterThan (0, thumbs.Calls);
+			Assert.IsLessThan (40, thumbs.Calls);
+		} finally {
+			window.Close ();
+			directory.Delete (recursive: true);
+		}
+	}
+
+	[UiTestMethod]
+	public void FolderTray_CancelsAThumbnailThatScrollsAway ()
+	{
+		var window = ShowTray (out var thumbs, out var directory);
+		try {
+			Dispatcher.UIThread.RunJobs ();
+			int shown = thumbs.Calls;
+			Assert.IsGreaterThan (0, shown);
+			var first = new CancellationToken[shown];
+			for (int i = 0; i < shown; i++)
+				first[i] = thumbs.Loads[i].Token;
+
+			window.ViewModel.SelectedIndex = window.ViewModel.Items.Count - 1;
+			Dispatcher.UIThread.RunJobs ();
+
+			int cancelled = 0;
+			foreach (var token in first)
+				if (token.IsCancellationRequested)
+					cancelled++;
+			int stillRunning = 0;
+			foreach (var load in thumbs.Loads)
+				if (!load.Token.IsCancellationRequested)
+					stillRunning++;
+			Assert.IsGreaterThan (0, cancelled);
+			Assert.IsGreaterThan (0, stillRunning);
+		} finally {
+			window.Close ();
+			directory.Delete (recursive: true);
+		}
+	}
+
+	[UiTestMethod]
+	public void Viewer_DoesNotDecodeAPhotoSkippedWhileItWasWaiting ()
+	{
+		AvaloniaApp.Ensure ();
+		int started = 0;
+		string? seen = null;
+		string root = Path.Combine (Path.GetTempPath (), "fspot-viewer-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (root);
+		string first = Path.Combine (root, "a.jpg");
+		string second = Path.Combine (root, "b.jpg");
+		File.WriteAllBytes (first, Array.Empty<byte> ());
+		File.WriteAllBytes (second, Array.Empty<byte> ());
+		ViewerWindow window;
+		using (FSpot.Avalonia.Imaging.DecodeGate.Enter ()) {
+			window = new ViewerWindow (new[] { first, second }, _ => true, new MainWindowViewModelTests.NullThumbnails (), (path, _) => {
+				Interlocked.Increment (ref started);
+				seen = path;
+				return null;
+			});
+			window.ViewModel.SelectedIndex = 1;
+		}
+
+		try {
+			var until = DateTime.UtcNow.AddSeconds (2);
+			while (DateTime.UtcNow < until) {
+				Dispatcher.UIThread.RunJobs ();
+				Thread.Sleep (20);
+			}
+
+			Assert.AreEqual (1, started);
+			Assert.AreEqual (second, seen);
+		} finally {
+			window.Close ();
+			Directory.Delete (root, true);
+		}
+	}
+
+	[UiTestMethod]
+	public void ViewerTray_RetriesAThumbnailAfterTheLoadFails ()
+	{
+		AvaloniaApp.Ensure ();
+		string root = Path.Combine (Path.GetTempPath (), "fspot-tray-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (root);
+		string photo = Path.Combine (root, "a.jpg");
+		File.WriteAllBytes (photo, Array.Empty<byte> ());
+		var thumbs = new TrayFailThenBitmap ();
+		var window = new ViewerWindow (new[] { photo }, _ => true, thumbs);
+		var border = new Border ();
+		try {
+			window.OnTrayPrepared (null, new ContainerPreparedEventArgs (border, 0));
+			Assert.AreEqual (1, thumbs.Calls);
+			Assert.IsNull (window.ViewModel.Items[0].Thumbnail);
+
+			window.OnTrayPrepared (null, new ContainerPreparedEventArgs (border, 0));
+			Assert.AreEqual (2, thumbs.Calls);
+			Assert.IsNotNull (window.ViewModel.Items[0].Thumbnail);
+		} finally {
+			window.Close ();
+			Directory.Delete (root, true);
+		}
+	}
+
+	sealed class TrayFailThenBitmap : IPhotoThumbnailLoader
+	{
+		public int Calls { get; private set; }
+
+		public Task<Bitmap?> LoadAsync (string path, int size, CancellationToken cancellationToken)
+		{
+			Calls++;
+			if (Calls == 1)
+				throw new InvalidOperationException ("tray broke");
+			var bitmap = new WriteableBitmap (new global::Avalonia.PixelSize (1, 1), new global::Avalonia.Vector (96, 96), PixelFormat.Bgra8888, AlphaFormat.Premul);
+			return Task.FromResult<Bitmap?> (bitmap);
+		}
+	}
+
+	static ViewerWindow ShowTray (out MainWindowViewModelTests.TokenThumbnails thumbs, out DirectoryInfo directory)
+	{
+		AvaloniaApp.Ensure ();
+		thumbs = new MainWindowViewModelTests.TokenThumbnails ();
+		string path = Path.Combine (Path.GetTempPath (), "fspot-tray-" + Guid.NewGuid ().ToString ("N"));
+		directory = Directory.CreateDirectory (path);
+		var files = new string[400];
+		for (int i = 0; i < files.Length; i++) {
+			files[i] = Path.Combine (path, i.ToString ("000") + ".jpg");
+			File.WriteAllBytes (files[i], Array.Empty<byte> ());
+		}
+
+		var window = new ViewerWindow (files, _ => true, thumbs);
+		window.WindowState = WindowState.Normal;
+		window.Width = 720;
+		window.Height = 480;
+		window.FolderTray.MaxHeight = 220;
+		window.Show ();
+		return window;
 	}
 
 	[UiTestMethod]

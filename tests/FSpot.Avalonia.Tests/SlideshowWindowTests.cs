@@ -168,6 +168,37 @@ public sealed class SlideshowWindowTests
 	}
 
 	[UiTestMethod]
+	public void Slideshow_DoesNotDecodeASlideSkippedWhileItWasWaiting ()
+	{
+		AvaloniaApp.Ensure ();
+		int started = 0;
+		string first = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
+		string second = first + ".next.jpg";
+		using var hold = DecodeGate.Enter ();
+		var window = new SlideshowWindow (new[] { first, second }, 0, null, play: false, decode: (_, _) => {
+			Interlocked.Increment (ref started);
+			return null;
+		});
+		window.Show ();
+		Dispatcher.UIThread.RunJobs ();
+		try {
+			Press (window, Key.Right);
+			Assert.AreEqual (second, window.CurrentPath);
+		} finally {
+			window.Close ();
+			hold.Dispose ();
+		}
+
+		var until = DateTime.UtcNow.AddSeconds (2);
+		while (started == 0 && DateTime.UtcNow < until) {
+			Dispatcher.UIThread.RunJobs ();
+			Thread.Sleep (20);
+		}
+
+		Assert.AreEqual (0, started);
+	}
+
+	[UiTestMethod]
 	public void Slideshow_DoesNotStartTheFlipTimerWhenARemoveIsCancelledDuringADecode ()
 	{
 		AvaloniaApp.Ensure ();
