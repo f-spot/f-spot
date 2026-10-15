@@ -357,16 +357,29 @@ namespace FSpot
 		{
 			if (evt == null)
 				return null;
+
+			// A delete log stores the file name in {Name} and again in the
+			// rendered sentence. Collect those names before the values are replaced.
+			var bareNames = new List<string> ();
+			if (evt.Extra != null) {
+				foreach (KeyValuePair<string, object> pair in evt.Extra)
+					CollectBareFileNames (pair.Key, pair.Value, bareNames);
+			}
+			if (evt.Contexts != null) {
+				foreach (string key in evt.Contexts.Keys.ToArray ())
+					CollectBareFileNames (key, evt.Contexts[key], bareNames);
+			}
+
 			if (evt.Message != null) {
 				evt.Message = new SentryMessage {
-					Message = Scrub (evt.Message.Message),
-					Formatted = Scrub (evt.Message.Formatted)
+					Message = ScrubText (evt.Message.Message, bareNames),
+					Formatted = ScrubText (evt.Message.Formatted, bareNames)
 				};
 			}
 
 			if (evt.SentryExceptions != null) {
 				foreach (SentryException exception in evt.SentryExceptions) {
-					exception.Value = Scrub (exception.Value);
+					exception.Value = ScrubText (exception.Value, bareNames);
 					ScrubStack (exception.Stacktrace);
 				}
 			}
@@ -395,7 +408,84 @@ namespace FSpot
 		{
 			if (crumb == null)
 				return null;
-			return new Breadcrumb (Scrub (crumb.Message), crumb.Type, ScrubBreadcrumbData (crumb.Data), crumb.Category, crumb.Level);
+			var bareNames = new List<string> ();
+			if (crumb.Data != null) {
+				foreach (KeyValuePair<string, string> pair in crumb.Data)
+					CollectBareFileNames (pair.Key, pair.Value, bareNames);
+			}
+			return new Breadcrumb (ScrubText (crumb.Message, bareNames), crumb.Type, ScrubBreadcrumbData (crumb.Data), crumb.Category, crumb.Level);
+		}
+
+		static string ScrubText (string text, List<string> bareNames)
+		{
+			// A tag that is one word of the file name must not rewrite the name before it is replaced.
+			if (!string.IsNullOrEmpty (text) && bareNames != null && bareNames.Count > 0) {
+				var ordered = new List<string> (bareNames);
+				ordered.Sort ((left, right) => right.Length.CompareTo (left.Length));
+				foreach (string name in ordered)
+					text = ReplaceOrdinal (text, name, "[path]");
+			}
+			return Scrub (text);
+		}
+
+		static void CollectBareFileNames (string key, object value, List<string> found)
+		{
+			if (value is string text) {
+				if (IsNameKey (key) && IsBareFileName (text))
+					found.Add (text);
+				return;
+			}
+
+			if (value is IDictionary<string, object> children) {
+				foreach (KeyValuePair<string, object> child in children)
+					CollectBareFileNames (child.Key, child.Value, found);
+				return;
+			}
+
+			if (value is System.Collections.IDictionary map) {
+				foreach (System.Collections.DictionaryEntry entry in map) {
+					string child = entry.Key == null ? "" : entry.Key.ToString ();
+					CollectBareFileNames (child, entry.Value, found);
+				}
+			}
+		}
+
+		// "Name" is a person's name as often as a file. Only a name-shaped
+		// value with a short extension is the file a delete log stored.
+		static bool IsNameKey (string key)
+		{
+			foreach (string part in KeyWords (key)) {
+				if (part.Equals ("name", StringComparison.OrdinalIgnoreCase))
+					return true;
+			}
+			return false;
+		}
+
+		static bool IsBareFileName (string text)
+		{
+			if (string.IsNullOrWhiteSpace (text))
+				return false;
+			for (int i = 0; i < text.Length; i++) {
+				char c = text[i];
+				if (c == '/' || c == '\\' || c == ':')
+					return false;
+			}
+
+			int dot = text.LastIndexOf ('.');
+			if (dot <= 0 || dot >= text.Length - 1)
+				return false;
+			string ext = text.Substring (dot + 1);
+			if (ext.Length < 2 || ext.Length > 5)
+				return false;
+			bool letter = false;
+			for (int i = 0; i < ext.Length; i++) {
+				char c = ext[i];
+				if (!char.IsLetterOrDigit (c))
+					return false;
+				if (char.IsLetter (c))
+					letter = true;
+			}
+			return letter;
 		}
 
 		static void ScrubStack (SentryStackTrace stack)
@@ -418,8 +508,17 @@ namespace FSpot
 
 			var copy = new Dictionary<string, string> (data.Count);
 			foreach (KeyValuePair<string, string> pair in data)
-				copy[pair.Key] = IsPathKey (pair.Key) ? "[path]" : Scrub (pair.Value);
+				copy[pair.Key] = RedactKeyedText (pair.Key, pair.Value);
 			return copy;
+		}
+
+		static string RedactKeyedText (string key, string text)
+		{
+			if (IsPathKey (key))
+				return "[path]";
+			if (IsNameKey (key) && IsBareFileName (text))
+				return "[path]";
+			return Scrub (text);
 		}
 
 		static object ScrubStructured (string key, object value)
@@ -429,7 +528,7 @@ namespace FSpot
 			if (value == null)
 				return null;
 			if (value is string text)
-				return Scrub (text);
+				return RedactKeyedText (key, text);
 			if (value is IDictionary<string, object> children) {
 				foreach (string child in children.Keys.ToArray ())
 					children[child] = ScrubStructured (child, children[child]);
@@ -486,14 +585,22 @@ namespace FSpot
 
 		// "profile" contains the letters of "file" but is not a path field.
 		// Split camel case and separators, then match a whole word.
+		static string[] KeyWords (string key)
+		{
+			if (string.IsNullOrEmpty (key))
+				return Array.Empty<string> ();
+
+			string spaced = System.Text.RegularExpressions.Regex.Replace (key, "([a-z0-9])([A-Z])", "$1 $2");
+			spaced = System.Text.RegularExpressions.Regex.Replace (spaced, "[^A-Za-z0-9]+", " ");
+			return spaced.Split (new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+		}
+
 		static bool IsPathKey (string key)
 		{
 			if (string.IsNullOrEmpty (key))
 				return false;
 
-			string spaced = System.Text.RegularExpressions.Regex.Replace (key, "([a-z0-9])([A-Z])", "$1 $2");
-			spaced = System.Text.RegularExpressions.Regex.Replace (spaced, "[^A-Za-z0-9]+", " ");
-			foreach (string part in spaced.Split (new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)) {
+			foreach (string part in KeyWords (key)) {
 				if (part.Equals ("path", StringComparison.OrdinalIgnoreCase)
 					|| part.Equals ("file", StringComparison.OrdinalIgnoreCase)
 					|| part.Equals ("filename", StringComparison.OrdinalIgnoreCase)

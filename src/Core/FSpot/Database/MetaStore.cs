@@ -56,9 +56,11 @@ namespace FSpot.Database
 
 		MetaItem GetByName (string name)
 		{
-			foreach (MetaItem i in itemCache.Values)
-				if (i.Name == name)
-					return i;
+			lock (itemCacheLock) {
+				foreach (MetaItem i in itemCache.Values)
+					if (i.Name == name)
+						return i;
+			}
 
 			// Otherwise make it and return it
 			return Create (name, null);

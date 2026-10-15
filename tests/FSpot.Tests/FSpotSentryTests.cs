@@ -322,6 +322,99 @@ namespace FSpot.Tests
 		}
 
 		[TestMethod]
+		public void Scrub_LeavesABareFileNameInProse ()
+		{
+			const string file = "Carol Jones birthday.jpg";
+			string scrubbed = FSpotSentry.Scrub ("see " + file + " tomorrow");
+
+			Assert.Contains (file, scrubbed);
+			Assert.Contains (" tomorrow", scrubbed);
+		}
+
+		[TestMethod]
+		public void ScrubEvent_RemovesABareFileNameStoredAsName ()
+		{
+			const string file = "Carol Jones birthday.jpg";
+			var evt = new SentryEvent {
+				Message = new SentryMessage {
+					Message = "Failed to delete {Name}",
+					Formatted = "Failed to delete " + file
+				}
+			};
+			evt.SetExtra ("Name", file);
+			evt.SetExtra ("DisplayName", "Carol Jones");
+			evt.SetExtra ("note", "kept the words Carol Jones");
+			evt.SetExtra ("name", "camera");
+
+			SentryEvent scrubbed = FSpotSentry.ScrubEvent (evt);
+
+			Assert.DoesNotContain (file, scrubbed.Message.Formatted);
+			Assert.DoesNotContain ("birthday.jpg", scrubbed.Message.Formatted);
+			Assert.Contains ("Failed to delete ", scrubbed.Message.Formatted);
+			Assert.AreEqual ("[path]", scrubbed.Extra["Name"]);
+			Assert.AreEqual ("Carol Jones", scrubbed.Extra["DisplayName"]);
+			Assert.AreEqual ("kept the words Carol Jones", scrubbed.Extra["note"]);
+			Assert.AreEqual ("camera", scrubbed.Extra["name"]);
+
+			var data = new Dictionary<string, string> {
+				["Name"] = file,
+				["name"] = "camera"
+			};
+			Breadcrumb crumb = FSpotSentry.ScrubBreadcrumb (
+				new Breadcrumb ("Failed to delete " + file, "default", data, "log", BreadcrumbLevel.Error));
+			Assert.AreEqual ("[path]", crumb.Data["Name"]);
+			Assert.AreEqual ("camera", crumb.Data["name"]);
+			Assert.DoesNotContain (file, crumb.Message);
+			Assert.Contains ("Failed to delete ", crumb.Message);
+		}
+
+		[TestMethod]
+		public void ScrubEvent_ReplacesTheFileNameBeforeATagThatIsOneOfItsWords ()
+		{
+			const string file = "Carol Jones birthday.jpg";
+			string root = Path.Combine (Path.GetTempPath (), "fspot-tags-" + Guid.NewGuid ().ToString ("n"));
+			Directory.CreateDirectory (root);
+			Db db = null;
+			try {
+				db = new Db (new Mock<IImageFileFactory> ().Object, new Mock<IThumbnailService> ().Object, new Mock<IUpdaterUI> ().Object);
+				db.Init (Path.Combine (root, "photos.db"), true);
+				db.Tags.CreateTag (db.Tags.RootCategory, "Carol", false);
+				FSpotSentry.UseTagCatalog (db.Tags);
+
+				var evt = new SentryEvent {
+					Message = new SentryMessage {
+						Message = "Failed to delete {Name}",
+						Formatted = "Failed to delete " + file
+					},
+					SentryExceptions = new[] {
+						new SentryException { Value = "Failed to delete " + file }
+					}
+				};
+				evt.SetExtra ("Name", file);
+
+				SentryEvent scrubbed = FSpotSentry.ScrubEvent (evt);
+
+				Assert.AreEqual ("Failed to delete [path]", scrubbed.Message.Formatted);
+				Assert.DoesNotContain ("Jones", scrubbed.Message.Formatted);
+				Assert.DoesNotContain ("birthday.jpg", scrubbed.Message.Formatted);
+				Assert.AreEqual ("Failed to delete [path]", scrubbed.SentryExceptions.Single ().Value);
+				Assert.AreEqual ("[path]", scrubbed.Extra["Name"]);
+
+				var data = new Dictionary<string, string> { ["Name"] = file };
+				Breadcrumb crumb = FSpotSentry.ScrubBreadcrumb (
+					new Breadcrumb ("Failed to delete " + file, "default", data, "log", BreadcrumbLevel.Error));
+				Assert.AreEqual ("Failed to delete [path]", crumb.Message);
+				Assert.DoesNotContain ("Jones", crumb.Message);
+				Assert.DoesNotContain ("birthday.jpg", crumb.Message);
+			} finally {
+				FSpotSentry.UseTagCatalog (null);
+				db?.Dispose ();
+				if (Directory.Exists (root))
+					Directory.Delete (root, true);
+			}
+		}
+
+		[TestMethod]
 		public void Scrub_UsesTheTagCatalogRatherThanAReplacedDelegate ()
 		{
 			string root = Path.Combine (Path.GetTempPath (), "fspot-tags-" + Guid.NewGuid ().ToString ("n"));

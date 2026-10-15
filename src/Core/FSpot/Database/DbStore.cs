@@ -27,38 +27,46 @@ namespace FSpot.Database
 		public event EventHandler<DbItemEventArgs<T>> ItemsChanged;
 
 		protected Dictionary<uint, object> itemCache;
+		// One lock for every cache write and every walk. Tag names are read
+		// while a tag is added, and Dictionary throws if that overlaps.
+		protected readonly object itemCacheLock = new object ();
 		readonly bool cacheIsImmortal;
 
 		protected void AddToCache (T item)
 		{
-			if (itemCache.ContainsKey (item.Id)) {
-				itemCache.Remove (item.Id);
-			}
+			lock (itemCacheLock) {
+				if (itemCache.ContainsKey (item.Id)) {
+					itemCache.Remove (item.Id);
+				}
 
-			if (cacheIsImmortal) {
-				itemCache.Add (item.Id, item);
-			} else {
-				itemCache.Add (item.Id, new WeakReference (item));
+				if (cacheIsImmortal) {
+					itemCache.Add (item.Id, item);
+				} else {
+					itemCache.Add (item.Id, new WeakReference (item));
+				}
 			}
 		}
 
 		protected T LookupInCache (uint id)
 		{
-			if (!itemCache.ContainsKey (id)) {
-				return null;
-			}
+			lock (itemCacheLock) {
+				if (!itemCache.ContainsKey (id)) {
+					return null;
+				}
 
-			if (cacheIsImmortal) {
-				return itemCache[id] as T;
-			}
+				if (cacheIsImmortal) {
+					return itemCache[id] as T;
+				}
 
-			var weakref = itemCache[id] as WeakReference;
-			return (T)weakref.Target;
+				var weakref = itemCache[id] as WeakReference;
+				return (T)weakref.Target;
+			}
 		}
 
 		protected void RemoveFromCache (T item)
 		{
-			itemCache.Remove (item.Id);
+			lock (itemCacheLock)
+				itemCache.Remove (item.Id);
 		}
 
 		protected void EmitAdded (T item)
@@ -109,7 +117,10 @@ namespace FSpot.Database
 		}
 
 		public bool CacheEmpty {
-			get { return itemCache.Count == 0; }
+			get {
+				lock (itemCacheLock)
+					return itemCache.Count == 0;
+			}
 		}
 
 		protected IDb Db { get; private set; }

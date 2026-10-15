@@ -89,40 +89,48 @@ namespace FSpot.Database
 
 		public string[] Names ()
 		{
-			var names = new List<string> ();
-			foreach (object cached in itemCache.Values) {
-				var tag = cached as Tag;
-				if (tag != null && !string.IsNullOrWhiteSpace (tag.Name))
-					names.Add (tag.Name);
-			}
+			lock (itemCacheLock) {
+				var names = new List<string> ();
+				foreach (object cached in itemCache.Values) {
+					var tag = cached as Tag;
+					if (tag != null && !string.IsNullOrWhiteSpace (tag.Name))
+						names.Add (tag.Name);
+				}
 
-			return names.ToArray ();
+				return names.ToArray ();
+			}
 		}
 
 		public Tag GetTagByName (string name)
 		{
 			var nameToLower = name.ToLower ();
-			foreach (Tag t in itemCache.Values)
-				if (t.Name.ToLower () == nameToLower)
-					return t;
+			lock (itemCacheLock) {
+				foreach (Tag t in itemCache.Values)
+					if (t.Name.ToLower () == nameToLower)
+						return t;
+			}
 
 			return null;
 		}
 
 		public Tag GetTagById (int id)
 		{
-			foreach (Tag t in itemCache.Values)
-				if (t.Id == id)
-					return t;
+			lock (itemCacheLock) {
+				foreach (Tag t in itemCache.Values)
+					if (t.Id == id)
+						return t;
+			}
 			return null;
 		}
 
 		public Tag[] GetTagsByNameStart (string s)
 		{
 			var l = new List<Tag> ();
-			foreach (Tag t in itemCache.Values) {
-				if (t.Name.ToLower ().StartsWith (s.ToLower ()))
-					l.Add (t);
+			lock (itemCacheLock) {
+				foreach (Tag t in itemCache.Values) {
+					if (t.Name.ToLower ().StartsWith (s.ToLower ()))
+						l.Add (t);
+				}
 			}
 
 			if (l.Count == 0)
@@ -401,10 +409,16 @@ namespace FSpot.Database
 
 			if (disposing) {
 				// free managed resources
-				foreach (Tag tag in itemCache.Values) {
-					tag.Dispose ();
+				Tag[] snapshot;
+				lock (itemCacheLock) {
+					snapshot = new Tag[itemCache.Count];
+					int index = 0;
+					foreach (Tag tag in itemCache.Values)
+						snapshot[index++] = tag;
+					itemCache.Clear ();
 				}
-				itemCache.Clear ();
+				for (int i = 0; i < snapshot.Length; i++)
+					snapshot[i].Dispose ();
 				if (RootCategory != null) {
 					RootCategory.Dispose ();
 					RootCategory = null;
