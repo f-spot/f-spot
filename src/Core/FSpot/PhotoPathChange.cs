@@ -18,6 +18,9 @@ namespace FSpot
 		{
 			if (string.IsNullOrEmpty (absolutePath) || string.IsNullOrEmpty (oldBase) || newBase == null)
 				return null;
+			// A root is every absolute path. Accepting the failed guess rewrites the catalog.
+			if (IsFilesystemRoot (oldBase))
+				return null;
 			int slash = absolutePath.LastIndexOf ('/');
 			int backslash = absolutePath.LastIndexOf ('\\');
 			int cut = slash > backslash ? slash : backslash;
@@ -29,7 +32,8 @@ namespace FSpot
 			return newBase + absolutePath.Substring (oldBase.Length);
 		}
 
-		// Catalog paths use '/' even on Windows. The year scan looks for /20, /19, or /18.
+		// Catalog paths use '/' even on Windows, except a path stored with '\'.
+		// The year scan looks for /20, /19, /18 and the same markers with '\'.
 		public static string GuessOldBase (IEnumerable<string> absolutePaths)
 		{
 			string found = null;
@@ -45,6 +49,14 @@ namespace FSpot
 
 		public static bool SameBase (string left, string right)
 			=> WithTrailingSlash (left) == WithTrailingSlash (right);
+
+		public static bool IsFilesystemRoot (string path)
+		{
+			if (string.IsNullOrEmpty (path))
+				return false;
+			string slashed = WithTrailingSlash (path);
+			return slashed == "/" || slashed == "\\";
+		}
 
 		public static string WithTrailingSlash (string path)
 		{

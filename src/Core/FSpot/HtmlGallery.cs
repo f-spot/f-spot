@@ -55,6 +55,18 @@ namespace FSpot
 			if (present.Count == 0)
 				return;
 
+			var tags = new SortedDictionary<string, List<int>> (StringComparer.Ordinal);
+			for (int i = 0; i < present.Count; i++) {
+				foreach (string tag in present[i].Tags) {
+					if (!tags.TryGetValue (tag, out List<int> indexes)) {
+						indexes = new List<int> ();
+						tags.Add (tag, indexes);
+					}
+					indexes.Add (i);
+				}
+			}
+			Dictionary<string, string> stems = TagStems (tags);
+
 			string gallery = Path.Combine (Path.GetFullPath (folder), galleryName);
 			Directory.CreateDirectory (Path.Combine (gallery, "hq"));
 			Directory.CreateDirectory (Path.Combine (gallery, "mq"));
@@ -71,28 +83,19 @@ namespace FSpot
 			}
 
 			for (int i = 0; i < present.Count; i++)
-				File.WriteAllText (Path.Combine (gallery, PhotoPageName (i)), PhotoPage (galleryName, present, i));
+				File.WriteAllText (Path.Combine (gallery, PhotoPageName (i)), PhotoPage (galleryName, present, i, stems));
 
 			int pages = (present.Count + PageSize - 1) / PageSize;
 			for (int page = 0; page < pages; page++)
 				File.WriteAllText (Path.Combine (gallery, IndexName (page)), IndexPage (galleryName, present, page, pages));
 
-			var tags = new SortedDictionary<string, List<int>> (StringComparer.Ordinal);
-			for (int i = 0; i < present.Count; i++) {
-				foreach (string tag in present[i].Tags) {
-					if (!tags.TryGetValue (tag, out List<int> indexes)) {
-						indexes = new List<int> ();
-						tags.Add (tag, indexes);
-					}
-					indexes.Add (i);
-				}
-			}
 			if (tags.Count > 0) {
-				File.WriteAllText (Path.Combine (gallery, "tags.html"), TagsPage (galleryName, tags.Keys));
+				File.WriteAllText (Path.Combine (gallery, "tags.html"), TagsPage (galleryName, tags, stems));
 				foreach (KeyValuePair<string, List<int>> tag in tags) {
 					int tagPages = (tag.Value.Count + PageSize - 1) / PageSize;
+					string stem = stems[tag.Key];
 					for (int page = 0; page < tagPages; page++)
-						File.WriteAllText (Path.Combine (gallery, TagFileName (tag.Key, page)), TagPage (galleryName, tag.Key, tag.Value, page, tagPages));
+						File.WriteAllText (Path.Combine (gallery, TagFile (stem, page)), TagPage (galleryName, tag.Key, stem, tag.Value, page, tagPages));
 				}
 			}
 
@@ -111,9 +114,8 @@ namespace FSpot
 			if (name.IndexOfAny (Path.GetInvalidFileNameChars ()) >= 0)
 				return false;
 			string root = Path.GetFullPath (folder);
-			string gallery = Path.GetFullPath (Path.Combine (root, name));
-			string prefix = root.TrimEnd (Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar) + Path.DirectorySeparatorChar;
-			return gallery.StartsWith (prefix, StringComparison.Ordinal);
+			// GetFullPath does not resolve a directory symlink that already has this name.
+			return FileIdentity.IsInside (root, Path.Combine (root, name));
 		}
 
 		static void PlaceScaled (string source, string destination, int longerSide, ScaleImage scale)
@@ -151,6 +153,38 @@ namespace FSpot
 			=> page == 0 ? "index.html" : "index" + page + ".html";
 
 		public static string TagFileName (string tag, int page)
+			=> TagFile (TagStem (tag), page);
+
+		// "North Beach" and "North_Beach" sanitize to one file name, and a later
+		// page (tag_North_Beach_1.html) can match another tag's first page.
+		static Dictionary<string, string> TagStems (SortedDictionary<string, List<int>> tags)
+		{
+			var used = new HashSet<string> (StringComparer.Ordinal);
+			var stems = new Dictionary<string, string> (StringComparer.Ordinal);
+			foreach (KeyValuePair<string, List<int>> tag in tags) {
+				int pages = (tag.Value.Count + PageSize - 1) / PageSize;
+				string stem = TagStem (tag.Key);
+				string unique = stem;
+				int suffix = 2;
+				while (StemTaken (used, unique, pages))
+					unique = stem + "-" + suffix++;
+				for (int page = 0; page < pages; page++)
+					used.Add (TagFile (unique, page));
+				stems.Add (tag.Key, unique);
+			}
+			return stems;
+		}
+
+		static bool StemTaken (HashSet<string> used, string stem, int pages)
+		{
+			for (int page = 0; page < pages; page++) {
+				if (used.Contains (TagFile (stem, page)))
+					return true;
+			}
+			return false;
+		}
+
+		static string TagStem (string tag)
 		{
 			var builder = new StringBuilder ("tag_");
 			foreach (char c in tag ?? string.Empty) {
@@ -159,12 +193,13 @@ namespace FSpot
 				else
 					builder.Append ('_');
 			}
-			if (page == 0)
-				return builder.ToString () + ".html";
-			return builder.ToString () + "_" + page + ".html";
+			return builder.ToString ();
 		}
 
-		static string PhotoPage (string galleryName, IReadOnlyList<HtmlGalleryPhoto> photos, int index)
+		static string TagFile (string stem, int page)
+			=> page == 0 ? stem + ".html" : stem + "_" + page + ".html";
+
+		static string PhotoPage (string galleryName, IReadOnlyList<HtmlGalleryPhoto> photos, int index, IReadOnlyDictionary<string, string> stems)
 		{
 			var page = new StringBuilder ();
 			Open (page, galleryName, "");
@@ -181,7 +216,7 @@ namespace FSpot
 			page.Append ("<div class=\"photo\"><a href=\"hq/").Append (ImageName (index)).Append ("\">");
 			page.Append ("<img src=\"mq/").Append (ImageName (index)).Append ("\" alt=\"#\" /></a>");
 			page.Append ("<div id=\"description\">").Append (Encode (photos[index].Description)).Append ("</div></div>");
-			WriteTagLinks (page, photos[index].Tags);
+			WriteTagLinks (page, photos[index].Tags, stems);
 			Close (page);
 			return page.ToString ();
 		}
@@ -204,25 +239,25 @@ namespace FSpot
 			return page.ToString ();
 		}
 
-		static string TagsPage (string galleryName, IEnumerable<string> tags)
+		static string TagsPage (string galleryName, SortedDictionary<string, List<int>> tags, IReadOnlyDictionary<string, string> stems)
 		{
 			var page = new StringBuilder ();
 			Open (page, galleryName, " " + Strings.Tags);
 			page.Append ("<div id=\"title\">").Append (Encode (galleryName)).Append (' ').Append (Encode (Strings.Tags)).Append ("</div>");
 			page.Append ("<a href=\"index.html\">").Append (Encode (Strings.Index)).Append ("</a>");
-			WriteTagLinks (page, tags);
+			WriteTagLinks (page, tags.Keys, stems);
 			Close (page);
 			return page.ToString ();
 		}
 
-		static string TagPage (string galleryName, string tag, IReadOnlyList<int> indexes, int pageNumber, int pages)
+		static string TagPage (string galleryName, string tag, string stem, IReadOnlyList<int> indexes, int pageNumber, int pages)
 		{
 			var page = new StringBuilder ();
 			Open (page, galleryName, ": " + tag);
 			page.Append ("<div id=\"title\">").Append (Encode (galleryName)).Append (": ").Append (Encode (tag)).Append ("</div>");
 			page.Append ("<a href=\"index.html\">").Append (Encode (Strings.Index)).Append ("</a>");
 			page.Append ("<a href=\"tags.html\">").Append (Encode (Strings.Tags)).Append ("</a>");
-			WritePageLinks (page, pages, pageNumber, pageIndex => TagFileName (tag, pageIndex), false);
+			WritePageLinks (page, pages, pageNumber, pageIndex => TagFile (stem, pageIndex), false);
 			int start = pageNumber * PageSize;
 			int end = Math.Min (start + PageSize, indexes.Count);
 			page.Append ("<div class=\"thumbs\">");
@@ -250,11 +285,11 @@ namespace FSpot
 			page.Append ("</div>");
 		}
 
-		static void WriteTagLinks (StringBuilder page, IEnumerable<string> tags)
+		static void WriteTagLinks (StringBuilder page, IEnumerable<string> tags, IReadOnlyDictionary<string, string> stems)
 		{
 			page.Append ("<div id=\"tagbox\"><ul>");
 			foreach (string tag in tags) {
-				page.Append ("<li class=\"tag\"><a href=\"").Append (TagFileName (tag, 0)).Append ("\">");
+				page.Append ("<li class=\"tag\"><a href=\"").Append (TagFile (stems[tag], 0)).Append ("\">");
 				page.Append ("<span>").Append (Encode (tag)).Append ("</span></a></li>");
 			}
 			page.Append ("</ul></div>");

@@ -54,10 +54,9 @@ namespace FSpot
 			string developedPath = Path.Combine (directory, Path.GetFileNameWithoutExtension (photo.Name) + " (" + name + ").jpg");
 			string conf = ConfPath (batch, baseDirectory, raw.Uri.AbsolutePath);
 			string arguments = BuildArguments (extraArguments, quality, conf, developedPath, raw.Uri.AbsolutePath);
-			launch (new UfrawLaunch (batch ? "ufraw-batch" : "ufraw", arguments, developedPath, raw.Uri.AbsolutePath));
-
-			// GTK asked File.Exists for the file:// text, which is never a file.
-			if (!File.Exists (developedPath))
+			// A cancelled or missing ufraw must not adopt a JPEG left by an earlier develop.
+			int exitCode = launch (new UfrawLaunch (batch ? "ufraw-batch" : "ufraw", arguments, developedPath, raw.Uri.AbsolutePath));
+			if (exitCode != 0 || !File.Exists (developedPath))
 				return false;
 
 			MoveSidecar (developedPath, raw.Uri.AbsolutePath, baseDirectory);

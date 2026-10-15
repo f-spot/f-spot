@@ -1692,7 +1692,12 @@ public partial class MainWindowViewModel : ObservableObject
 		string? folder = await shell.PickFolderAsync (Strings.SelectExportFolder);
 		if (string.IsNullOrWhiteSpace (folder))
 			return;
-		PhotoFileActions.CopyToFolder (paths, folder);
+		try {
+			PhotoFileActions.CopyToFolder (paths, folder);
+		} catch (Exception ex) when (ex is IOException or UnauthorizedAccessException) {
+			Logger.Log.Debug (ex, "Failed to export photos to {Folder}", folder);
+			await shell.ShowWarningAsync (Strings.Export, ex.Message);
+		}
 	}
 
 	[RelayCommand (CanExecute = nameof (HasPhotoSelection))]
@@ -1709,7 +1714,12 @@ public partial class MainWindowViewModel : ObservableObject
 		string? name = await shell.PromptAsync (Strings.CompressedFile, Strings.FileName, "f-spot_export.zip");
 		if (name is not string zipName || !ZipStaysInFolder (folder, zipName))
 			return;
-		PhotoFileActions.WriteZip (paths, Path.Combine (folder, zipName));
+		try {
+			PhotoFileActions.WriteZip (paths, Path.Combine (folder, zipName));
+		} catch (Exception ex) when (ex is IOException or UnauthorizedAccessException) {
+			Logger.Log.Debug (ex, "Failed to write export archive {Name}", zipName);
+			await shell.ShowWarningAsync (Strings.Export, ex.Message);
+		}
 	}
 
 	[RelayCommand (CanExecute = nameof (HasPhotoSelection))]
@@ -1743,7 +1753,12 @@ public partial class MainWindowViewModel : ObservableObject
 		string? name = await shell.PromptAsync (Strings.Gallery, Strings.FileName, Strings.Gallery);
 		if (name is not string galleryName || !HtmlGallery.StaysInFolder (folder, galleryName))
 			return;
-		HtmlGallery.Write (folder, galleryName, photos, ScaleGalleryImage);
+		try {
+			HtmlGallery.Write (folder, galleryName, photos, ScaleGalleryImage);
+		} catch (Exception ex) when (ex is IOException or UnauthorizedAccessException) {
+			Logger.Log.Debug (ex, "Failed to write gallery {Name}", galleryName);
+			await shell.ShowWarningAsync (Strings.Export, ex.Message);
+		}
 	}
 
 	// Medium and thumb copies are JPEGs at quality 95. A file Skia cannot read
@@ -1770,10 +1785,11 @@ public partial class MainWindowViewModel : ObservableObject
 			return false;
 		if (name.IndexOfAny (new[] { '/', '\\' }) >= 0)
 			return false;
+		// '<' is a legal file name on Unix and an illegal one on Windows.
+		if (name.IndexOfAny (Path.GetInvalidFileNameChars ()) >= 0)
+			return false;
 		string root = Path.GetFullPath (folder);
-		string zipPath = Path.GetFullPath (Path.Combine (root, name));
-		string prefix = root.TrimEnd (Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar) + Path.DirectorySeparatorChar;
-		return zipPath.StartsWith (prefix, StringComparison.Ordinal);
+		return FileIdentity.IsInside (root, Path.Combine (root, name));
 	}
 
 	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
@@ -2264,16 +2280,26 @@ public partial class MainWindowViewModel : ObservableObject
 			await shell.ShowWarningAsync (Strings.ChangePhotosDirectory, ex.Message);
 			return;
 		}
-		string guessed = PhotoPathChange.GuessOldBase (photos.Select (photo => photo.DefaultVersion.Uri.AbsolutePath));
-		string? entered = await shell.PromptAsync (Strings.ChangePhotosDirectory, Strings.ChangePathToPhotos, guessed);
-		if (string.IsNullOrWhiteSpace (entered))
-			return;
 		if (FSpotConfiguration.PhotoUri == null) {
 			await shell.ShowWarningAsync (Strings.ChangePhotosDirectory, Strings.OpenACatalogBeforeChangingPaths);
 			return;
 		}
-		string oldBase = PhotoPathChange.WithTrailingSlash (entered);
 		string newBase = PhotoPathChange.WithTrailingSlash (FSpotConfiguration.PhotoUri.AbsolutePath);
+		string guessed = PhotoPathChange.GuessOldBase (photos.Select (photo => photo.DefaultVersion.Uri.AbsolutePath));
+		// The failed guess is "/", and OK would accept it. Leave the box empty instead.
+		if (PhotoPathChange.IsFilesystemRoot (guessed))
+			guessed = string.Empty;
+		string? entered = await shell.PromptAsync (
+			Strings.ChangePhotosDirectory,
+			Strings.OldBasePathURIWas + "\n" + Strings.ChangeBasePathURITo + " " + newBase,
+			guessed);
+		if (string.IsNullOrWhiteSpace (entered))
+			return;
+		string oldBase = PhotoPathChange.WithTrailingSlash (entered);
+		if (PhotoPathChange.IsFilesystemRoot (oldBase)) {
+			await shell.ShowWarningAsync (Strings.ChangePhotosDirectory, Strings.CouldNotFindAnOldBasePath);
+			return;
+		}
 		if (PhotoPathChange.SameBase (oldBase, newBase)) {
 			await shell.ShowWarningAsync (Strings.ChangePhotosDirectory, Strings.NewAndOldBasePathAreTheSame);
 			return;
@@ -2339,18 +2365,16 @@ public partial class MainWindowViewModel : ObservableObject
 		}
 		if (result.Missing.Count > 0)
 			await shell.ShowWarningAsync (Strings.MergeDb, Strings.SkippedPhotosWhoseFilesAreMissing + "\n" + string.Join ("\n", result.Missing));
-		if (result.Imported > 0)
+		// Tags are written even when every photo is skipped. The sidebar reads its own list.
+		ReloadTags ();
+		if (result.Imported > 0) {
 			ReloadPhotos ();
+			ReloadFolders ();
+		}
 	}
 
 	static bool SameCatalogFile (string left, string right)
-	{
-		try {
-			return string.Equals (Path.GetFullPath (left), Path.GetFullPath (right), StringComparison.Ordinal);
-		} catch (Exception) {
-			return false;
-		}
-	}
+		=> FileIdentity.Same (left, right);
 
 	[RelayCommand]
 	async Task MergeRawJpegAsync ()
@@ -2419,8 +2443,15 @@ public partial class MainWindowViewModel : ObservableObject
 		string extra = ReadUfrawArguments (batch);
 		bool changed = false;
 		foreach (Photo photo in photos) {
-			if (!UfrawDevelop.Develop (photo, batch, quality, extra, FSpotConfiguration.BaseDirectory, factory.IsRaw, LaunchUfraw))
-				continue;
+			try {
+				if (!UfrawDevelop.Develop (photo, batch, quality, extra, FSpotConfiguration.BaseDirectory, factory.IsRaw, LaunchUfraw))
+					continue;
+			} catch (Exception ex) {
+				// A missing ufraw binary throws from Process.Start onto the UI thread.
+				Logger.Log.Debug (ex, "UFRaw failed to start");
+				await shell.ShowWarningAsync (title, ex.Message);
+				return;
+			}
 			database.Photos.Commit (photo);
 			changed = true;
 		}

@@ -84,6 +84,65 @@ namespace FSpot.Tests
 			}
 		}
 
+		[TestMethod]
+		public void WriteZip_KeepsAParentSegmentInsideTheArchive ()
+		{
+			string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-zip-src-" + Guid.NewGuid ().ToString ("N"));
+			string zipPath = Path.Combine (Path.GetTempPath (), "fspot-zip-" + Guid.NewGuid ().ToString ("N") + ".zip");
+			string extract = Path.Combine (Path.GetTempPath (), "fspot-zip-out-" + Guid.NewGuid ().ToString ("N"));
+			Directory.CreateDirectory (sourceDir);
+			// '\' is a legal file name on Unix and a parent segment on Windows.
+			string tricky = Path.Combine (sourceDir, "..\\..\\evil.txt");
+			File.WriteAllText (tricky, "secret");
+			try {
+				PhotoFileActions.WriteZip (new[] { tricky }, zipPath);
+
+				using (var archive = System.IO.Compression.ZipFile.OpenRead (zipPath)) {
+					Assert.HasCount (1, archive.Entries);
+					string entry = archive.Entries[0].FullName;
+					Assert.AreEqual (Path.GetFileName (entry), entry);
+					Assert.DoesNotContain ("\\", entry);
+					Assert.DoesNotContain ("/", entry);
+					Assert.AreEqual ("secret", ReadEntry (archive.Entries[0]));
+				}
+
+				System.IO.Compression.ZipFile.ExtractToDirectory (zipPath, extract);
+				string[] files = Directory.GetFiles (extract, "*", SearchOption.AllDirectories);
+				Assert.HasCount (1, files);
+				Assert.AreEqual (extract, Path.GetDirectoryName (files[0]));
+				Assert.AreEqual ("secret", File.ReadAllText (files[0]));
+			} finally {
+				Directory.Delete (sourceDir, true);
+				if (Directory.Exists (extract))
+					Directory.Delete (extract, true);
+				if (File.Exists (zipPath))
+					File.Delete (zipPath);
+			}
+		}
+
+		[TestMethod]
+		public void WriteZip_ReplacesAnExistingArchive ()
+		{
+			string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-zip-src-" + Guid.NewGuid ().ToString ("N"));
+			string zipPath = Path.Combine (Path.GetTempPath (), "fspot-zip-" + Guid.NewGuid ().ToString ("N") + ".zip");
+			Directory.CreateDirectory (sourceDir);
+			string one = Path.Combine (sourceDir, "one.jpg");
+			File.WriteAllText (one, "aaa");
+			try {
+				PhotoFileActions.WriteZip (new[] { one }, zipPath);
+				File.WriteAllText (one, "bbb");
+				PhotoFileActions.WriteZip (new[] { one }, zipPath);
+
+				using var archive = System.IO.Compression.ZipFile.OpenRead (zipPath);
+				Assert.HasCount (1, archive.Entries);
+				Assert.AreEqual ("bbb", ReadEntry (archive.Entries[0]));
+			} finally {
+				Directory.Delete (sourceDir, true);
+				if (File.Exists (zipPath))
+					File.Delete (zipPath);
+			}
+		}
+
 		static string ReadEntry (System.IO.Compression.ZipArchiveEntry entry)
 		{
 			using var stream = entry.Open ();

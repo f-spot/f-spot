@@ -162,6 +162,67 @@ namespace FSpot.Tests
 		}
 
 		[TestMethod]
+		[OSCondition (ConditionMode.Exclude, OperatingSystems.Windows)]
+		public void Merge_RefusesTheOpenCatalogWhenReachedThroughALink ()
+		{
+			using var libraries = new Libraries ();
+			AddPhoto (libraries.Destination, Path.Combine (libraries.Root, "stay.jpg"), libraries.Destination.Rolls.Create (January).Id, Shot);
+			string link = Path.Combine (libraries.Root, "via-link.db");
+			File.CreateSymbolicLink (link, libraries.DestinationPath);
+
+			CatalogMergeResult result = libraries.MergeInto (link, libraries.DestinationPath, copyFiles: true, CatalogRollChoice.All, 0);
+
+			Assert.AreEqual (0, result.Imported);
+			Assert.AreEqual ("stay.jpg", libraries.Destination.Photos.Query ("SELECT * FROM photos").Single ().Name);
+		}
+
+		[TestMethod]
+		public void Merge_RecordsAPhotoWhenTheLibraryFolderRejectsTheCopy ()
+		{
+			using var libraries = new Libraries ();
+			string sourceFile = Path.Combine (libraries.Root, "present.jpg");
+			Db source = libraries.Open (libraries.SourcePath);
+			try {
+				AddPhoto (source, sourceFile, source.Rolls.Create (June).Id, Shot);
+			} finally {
+				source.Dispose ();
+			}
+			string month = Path.Combine (libraries.Library.AbsolutePath, "2020", "01");
+			Directory.CreateDirectory (Path.GetDirectoryName (month));
+			File.WriteAllText (month, "not-a-directory");
+
+			CatalogMergeResult result = libraries.Merge (copyFiles: true, CatalogRollChoice.All, 0);
+
+			Assert.AreEqual (0, result.Imported);
+			Assert.AreEqual (sourceFile, result.Missing.Single ());
+			Assert.IsEmpty (libraries.Destination.Photos.Query ("SELECT * FROM photos").ToList ());
+		}
+
+		[TestMethod]
+		public void Merge_KeepsAnIncomingCategoryWhenThatNameIsAlreadyATag ()
+		{
+			using var libraries = new Libraries ();
+			libraries.Destination.Tags.CreateTag (libraries.Destination.Tags.RootCategory, "Trips", false);
+			Db source = libraries.Open (libraries.SourcePath);
+			try {
+				Category trips = source.Tags.CreateCategory (source.Tags.RootCategory, "Trips", false);
+				Photo photo = AddPhoto (source, Path.Combine (libraries.Root, "beach.jpg"), source.Rolls.Create (June).Id, Shot);
+				photo.AddTag (source.Tags.CreateTag (trips, "Beach", false));
+				source.Photos.Commit (photo);
+			} finally {
+				source.Dispose ();
+			}
+
+			libraries.Merge (copyFiles: false, CatalogRollChoice.All, 0);
+
+			Tag beach = libraries.Destination.Tags.GetTagByName ("Beach");
+			Assert.AreNotEqual (libraries.Destination.Tags.RootCategory.Id, beach.Category.Id);
+			Assert.AreEqual ("Trips 2", beach.Category.Name);
+			Assert.IsInstanceOfType<Category> (beach.Category);
+			Assert.IsNotInstanceOfType<Category> (libraries.Destination.Tags.GetTagByName ("Trips"));
+		}
+
+		[TestMethod]
 		public void Merge_RefusesTheOpenCatalog ()
 		{
 			using var libraries = new Libraries ();

@@ -134,10 +134,37 @@ public sealed class SlideshowWindowTests
 			Dispatcher.UIThread.RunJobs ();
 
 		try {
+			Assert.AreNotEqual (0, DecodeGate.LastRunThreadId);
 			Assert.AreNotEqual (ui, DecodeGate.LastRunThreadId);
 		} finally {
 			window.Close ();
 		}
+	}
+
+	[UiTestMethod]
+	public void Slideshow_DoesNotSkipTheSlideWhileItsDecodeIsStillWaiting ()
+	{
+		AvaloniaApp.Ensure ();
+		string first = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
+		string second = first + ".next.jpg";
+		using var hold = DecodeGate.Enter ();
+		var window = new SlideshowWindow (new[] { first, second }, 0, null, play: true);
+		window.Show ();
+		Dispatcher.UIThread.RunJobs ();
+
+		try {
+			window.Flip ();
+			Assert.AreEqual (first, window.CurrentPath);
+			Press (window, Key.Right);
+			Assert.AreEqual (second, window.CurrentPath);
+		} finally {
+			window.Close ();
+		}
+
+		hold.Dispose ();
+		var until = DateTime.UtcNow.AddSeconds (5);
+		while (DateTime.UtcNow < until)
+			Dispatcher.UIThread.RunJobs ();
 	}
 
 	[UiTestMethod]

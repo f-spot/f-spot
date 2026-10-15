@@ -37,6 +37,7 @@ public partial class SlideshowWindow : Window
 	Bitmap? slide;
 	Bitmap? previousSlide;
 	int slideLoad;
+	bool slidePending;
 	bool playing;
 	bool busy;
 	SlideshowTransitionKind transition = SlideshowTransition.All[0];
@@ -62,7 +63,7 @@ public partial class SlideshowWindow : Window
 		TransitionCombo.SelectedIndex = 0;
 
 		flipTimer = new DispatcherTimer { Interval = SlideshowTransition.Interval };
-		flipTimer.Tick += (_, _) => Go (1);
+		flipTimer.Tick += (_, _) => Flip ();
 		animationTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds (16) };
 		animationTimer.Tick += (_, _) => StepAnimation ();
 		cursorTimer = new DispatcherTimer { Interval = ControlOverlayPolicy.CursorHide };
@@ -119,12 +120,22 @@ public partial class SlideshowWindow : Window
 			return;
 		playing = !playing;
 		PlayPauseGlyph.Text = playing ? "❚❚" : "▶";
-		if (playing)
-			flipTimer.Start ();
-		else {
+		if (playing) {
+			// The interval starts when the slide is visible, not when the decode is queued.
+			if (!slidePending)
+				flipTimer.Start ();
+		} else {
 			flipTimer.Stop ();
 			FinishAnimation ();
 		}
+	}
+
+	// The flip timer. A tick during a decode would discard the slide that is about to appear.
+	internal void Flip ()
+	{
+		if (slidePending)
+			return;
+		Go (1);
 	}
 
 	void Go (int delta)
@@ -134,11 +145,8 @@ public partial class SlideshowWindow : Window
 		bool moved = delta > 0 ? sequence.Advance () : sequence.Retreat ();
 		if (!moved)
 			return;
-		if (playing) {
-			// GTK SlideShow.HandleItemChanged restarts the flip timer whenever the photo changes.
+		if (playing)
 			flipTimer.Stop ();
-			flipTimer.Start ();
-		}
 		ShowCurrent (animate: playing);
 	}
 
@@ -149,6 +157,8 @@ public partial class SlideshowWindow : Window
 	{
 		string path = sequence.Current;
 		int generation = ++slideLoad;
+		slidePending = true;
+		flipTimer.Stop ();
 		Bitmap? next;
 		try {
 			next = await DecodeGate.RunAsync (
@@ -162,6 +172,10 @@ public partial class SlideshowWindow : Window
 			next?.Dispose ();
 			return;
 		}
+
+		slidePending = false;
+		if (playing)
+			flipTimer.Start ();
 
 		if (animate) {
 			var discarded = previousSlide;
@@ -258,6 +272,7 @@ public partial class SlideshowWindow : Window
 		string path = sequence.Current;
 		busy = true;
 		bool resume = playing;
+		bool showedNext = false;
 		flipTimer.Stop ();
 		try {
 			bool removed = await host.RemovePhotoAsync (path, deleteFromDrive);
@@ -270,9 +285,10 @@ public partial class SlideshowWindow : Window
 				return;
 			}
 			_ = ShowCurrentAsync (animate: false);
+			showedNext = true;
 		} finally {
 			busy = false;
-			if (resume && playing && IsVisible)
+			if (resume && playing && IsVisible && !showedNext)
 				flipTimer.Start ();
 			// GTK presents the fullscreen view again so the confirmation dialog does not leave it buried.
 			if (IsVisible)

@@ -169,6 +169,90 @@ namespace FSpot.Tests
 			}
 		}
 
+		[TestMethod]
+		public void Write_GivesTwoTagsThatSanitizeTogetherDifferentPages ()
+		{
+			string root = NewRoot ();
+			string source = Path.Combine (root, "a.jpg");
+			File.WriteAllText (source, "full-bytes");
+			string dest = Path.Combine (root, "chosen");
+			Directory.CreateDirectory (dest);
+			try {
+				HtmlGallery.Write (dest, "Trip", new[] {
+					new HtmlGalleryPhoto (source, "plain", new[] { "North Beach", "North_Beach" })
+				}, null);
+
+				string gallery = Path.Combine (dest, "Trip");
+				string tags = File.ReadAllText (Path.Combine (gallery, "tags.html"));
+				Assert.Contains ("tag_North_Beach.html", tags);
+				Assert.Contains ("tag_North_Beach-2.html", tags);
+				string beach = File.ReadAllText (Path.Combine (gallery, "tag_North_Beach.html"));
+				string underscored = File.ReadAllText (Path.Combine (gallery, "tag_North_Beach-2.html"));
+				Assert.Contains ("Trip: North Beach", beach);
+				Assert.DoesNotContain ("Trip: North_Beach", beach);
+				Assert.Contains ("Trip: North_Beach", underscored);
+			} finally {
+				Directory.Delete (root, true);
+			}
+		}
+
+		[TestMethod]
+		public void Write_DoesNotLetATagPageReplaceAnotherTagsFirstPage ()
+		{
+			string root = NewRoot ();
+			string dest = Path.Combine (root, "chosen");
+			Directory.CreateDirectory (dest);
+			var photos = new List<HtmlGalleryPhoto> ();
+			for (int i = 0; i < 17; i++) {
+				string source = Path.Combine (root, "p" + i + ".jpg");
+				File.WriteAllText (source, "full-bytes");
+				var tags = new List<string> { "North Beach" };
+				if (i == 0)
+					tags.Add ("North Beach_1");
+				photos.Add (new HtmlGalleryPhoto (source, "plain", tags));
+			}
+			try {
+				HtmlGallery.Write (dest, "Trip", photos, null);
+
+				string gallery = Path.Combine (dest, "Trip");
+				string laterPage = File.ReadAllText (Path.Combine (gallery, "tag_North_Beach_1.html"));
+				string otherTag = File.ReadAllText (Path.Combine (gallery, "tag_North_Beach_1-2.html"));
+				Assert.Contains ("img-17.html", laterPage);
+				Assert.DoesNotContain ("North Beach_1", laterPage);
+				Assert.Contains ("North Beach_1", otherTag);
+				Assert.Contains ("img-1.html", otherTag);
+			} finally {
+				Directory.Delete (root, true);
+			}
+		}
+
+		[TestMethod]
+		public void StaysInFolder_RejectsANameThatIsADirectoryLink ()
+		{
+			string root = NewRoot ();
+			string chosen = Path.Combine (root, "chosen");
+			string outside = Path.Combine (root, "outside");
+			Directory.CreateDirectory (chosen);
+			Directory.CreateDirectory (outside);
+			Directory.CreateSymbolicLink (Path.Combine (chosen, "linked"), outside);
+			try {
+				Assert.IsFalse (HtmlGallery.StaysInFolder (chosen, "linked"));
+
+				HtmlGallery.Write (chosen, "linked", new[] {
+					new HtmlGalleryPhoto (Path.Combine (root, "missing.jpg"), "plain", Array.Empty<string> ())
+				}, null);
+				string source = Path.Combine (root, "a.jpg");
+				File.WriteAllText (source, "full-bytes");
+				HtmlGallery.Write (chosen, "linked", new[] {
+					new HtmlGalleryPhoto (source, "plain", Array.Empty<string> ())
+				}, null);
+
+				Assert.IsFalse (Directory.Exists (Path.Combine (outside, "hq")));
+			} finally {
+				Directory.Delete (root, true);
+			}
+		}
+
 		static string NewRoot ()
 		{
 			string root = Path.Combine (Path.GetTempPath (), "fspot-gallery-" + Guid.NewGuid ().ToString ("N"));

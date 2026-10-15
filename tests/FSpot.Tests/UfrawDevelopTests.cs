@@ -135,6 +135,30 @@ namespace FSpot.Tests
 		}
 
 		[TestMethod]
+		public void Develop_LeavesTheVersionAloneWhenUfrawFails ()
+		{
+			string root = Path.Combine (Path.GetTempPath (), "fspot-ufraw-" + Guid.NewGuid ().ToString ("N"));
+			Directory.CreateDirectory (root);
+			string rawPath = Path.Combine (root, "shot.cr2");
+			File.WriteAllText (rawPath, "raw");
+			string developed = Path.Combine (root, "shot (" + Strings.DevelopedInUFRaw + ").jpg");
+			File.WriteAllText (developed, "stale");
+			string sidecar = Path.ChangeExtension (rawPath, ".ufraw");
+			File.WriteAllText (sidecar, "keep-me");
+			try {
+				Photo photo = PhotoAt (rawPath);
+				bool developedVersion = UfrawDevelop.Develop (photo, false, 98, null, root, IsRaw, launch => 1);
+
+				Assert.IsFalse (developedVersion);
+				Assert.AreEqual ((uint)Photo.OriginalVersionId, photo.DefaultVersionId);
+				Assert.AreEqual ("keep-me", File.ReadAllText (sidecar));
+				Assert.AreEqual ("stale", File.ReadAllText (developed));
+			} finally {
+				Directory.Delete (root, true);
+			}
+		}
+
+		[TestMethod]
 		public void Develop_BatchUsesTheSavedSidecarAndUfrawBatch ()
 		{
 			string root = Path.Combine (Path.GetTempPath (), "fspot-ufraw-" + Guid.NewGuid ().ToString ("N"));

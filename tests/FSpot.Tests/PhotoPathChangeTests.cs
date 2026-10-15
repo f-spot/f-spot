@@ -71,6 +71,19 @@ namespace FSpot.Tests
 		}
 
 		[TestMethod]
+		public void Apply_LeavesPathsAloneWhenTheOldBaseIsOnlyASlash ()
+		{
+			Photo photo = PhotoAt ("/Users/photos/img.jpg");
+
+			int changed = PhotoPathChange.Apply (new[] { photo }, "/", "/library/");
+
+			Assert.AreEqual (0, changed);
+			Assert.AreEqual ("/Users/photos/img.jpg", WithSlashes (photo.VersionUri (Photo.OriginalVersionId).AbsolutePath));
+			Assert.IsFalse (photo.Changes.UriChanged);
+			Assert.AreEqual (0, PhotoPathChange.Apply (new[] { PhotoAt (@"C:\Users\photos\img.jpg") }, @"\", @"D:\library\"));
+		}
+
+		[TestMethod]
 		public void Apply_RewritesAYearFolderAndLeavesAFileInTheOldFolder ()
 		{
 			Photo moved = PhotoAt ("/old/2020/a#b.jpg");

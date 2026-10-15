@@ -5396,6 +5396,24 @@ namespace FSpot.Resources.Lang {
             }
         }
 
+        public static string CouldNotFindAnOldBasePath {
+            get {
+                return ResourceManager.GetString("CouldNotFindAnOldBasePath", resourceCulture);
+            }
+        }
+
+        public static string OldBasePathURIWas {
+            get {
+                return ResourceManager.GetString("OldBasePathURIWas", resourceCulture);
+            }
+        }
+
+        public static string ChangeBasePathURITo {
+            get {
+                return ResourceManager.GetString("ChangeBasePathURITo", resourceCulture);
+            }
+        }
+
         public static string OpenACatalogBeforeMerging {
             get {
                 return ResourceManager.GetString("OpenACatalogBeforeMerging", resourceCulture);

@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Text;
 
 using FSpot.Core;
 
@@ -49,11 +50,15 @@ namespace FSpot
 			if (!string.IsNullOrEmpty (directory))
 				Directory.CreateDirectory (directory);
 
+			// Create refuses a file that is already there. A second export replaces it.
+			if (File.Exists (zipPath))
+				File.Delete (zipPath);
+
 			using (var archive = ZipFile.Open (zipPath, ZipArchiveMode.Create)) {
 				foreach (string source in sources) {
 					if (string.IsNullOrEmpty (source) || !File.Exists (source))
 						continue;
-					string name = Path.GetFileName (source);
+					string name = ZipEntryName (source);
 					if (string.IsNullOrEmpty (name))
 						continue;
 					ZipArchiveEntry entry = archive.CreateEntry (name, CompressionLevel.Optimal);
@@ -72,6 +77,26 @@ namespace FSpot
 			if (!string.IsNullOrEmpty (local))
 				return local;
 			return photo.DefaultVersion.Uri.AbsolutePath;
+		}
+
+		// A Unix file name may contain '\' or ':'. On Windows those are a parent
+		// segment and a drive marker, so an unzipper would write outside the folder.
+		static string ZipEntryName (string path)
+		{
+			string name = Path.GetFileName (path);
+			if (string.IsNullOrEmpty (name))
+				return null;
+			var builder = new StringBuilder (name.Length);
+			foreach (char c in name) {
+				if (c == '/' || c == '\\' || c == ':')
+					builder.Append ('_');
+				else
+					builder.Append (c);
+			}
+			string entry = builder.ToString ();
+			if (entry.Length == 0 || entry == "." || entry == "..")
+				return null;
+			return entry;
 		}
 
 		static string UniqueDestination (string folder, string filename)

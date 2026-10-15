@@ -1190,6 +1190,62 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
+	public void ExportZipCommand_RefusesANameTheFileSystemRejects ()
+	{
+		string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-src-" + Guid.NewGuid ().ToString ("N"));
+		string destDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-dst-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (sourceDir);
+		Directory.CreateDirectory (destDir);
+		string file = Path.Combine (sourceDir, "shot.jpg");
+		File.WriteAllText (file, "photo");
+		try {
+			var shell = new RecordingShell { ExportFolder = destDir, PromptResult = "sum\0mer.zip" };
+			var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+			var item = new PhotoItemViewModel (new StubPhoto (file));
+			item.Selected = true;
+			viewModel.Photos.Add (item);
+
+			viewModel.ExportZipCommand.Execute (null);
+
+			Assert.IsEmpty (Directory.GetFiles (destDir));
+		} finally {
+			Directory.Delete (sourceDir, true);
+			if (Directory.Exists (destDir))
+				Directory.Delete (destDir, true);
+		}
+	}
+
+	[TestMethod]
+	[OSCondition (ConditionMode.Exclude, OperatingSystems.Windows)]
+	public void ExportZipCommand_RefusesANameThatIsALinkOutsideTheFolder ()
+	{
+		string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-src-" + Guid.NewGuid ().ToString ("N"));
+		string destDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-dst-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (sourceDir);
+		Directory.CreateDirectory (destDir);
+		string file = Path.Combine (sourceDir, "shot.jpg");
+		string outside = Path.Combine (sourceDir, "outside.zip");
+		File.WriteAllText (file, "photo");
+		File.WriteAllText (outside, "keep");
+		File.CreateSymbolicLink (Path.Combine (destDir, "out.zip"), outside);
+		try {
+			var shell = new RecordingShell { ExportFolder = destDir, PromptResult = "out.zip" };
+			var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+			var item = new PhotoItemViewModel (new StubPhoto (file));
+			item.Selected = true;
+			viewModel.Photos.Add (item);
+
+			viewModel.ExportZipCommand.Execute (null);
+
+			Assert.AreEqual ("keep", File.ReadAllText (outside));
+		} finally {
+			Directory.Delete (sourceDir, true);
+			if (Directory.Exists (destDir))
+				Directory.Delete (destDir, true);
+		}
+	}
+
+	[UiTestMethod]
 	public void ExportGalleryCommand_WritesTheSelectionIntoTheNamedFolder ()
 	{
 		string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-vm-gal-src-" + Guid.NewGuid ().ToString ("N"));
@@ -1258,6 +1314,62 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
+	public void MergeCatalogCommand_ShowsTheImportedTagAndFolder ()
+	{
+		string root = Path.Combine (Path.GetTempPath (), "fspot-vm-merge-" + Guid.NewGuid ().ToString ("N"));
+		string destDir = Path.Combine (root, "dest");
+		string sourceDir = Path.Combine (root, "source");
+		string library = Path.Combine (root, "library");
+		Directory.CreateDirectory (destDir);
+		Directory.CreateDirectory (sourceDir);
+		Directory.CreateDirectory (library);
+		string previousBase = FSpot.Settings.FSpotConfiguration.BaseDirectory;
+		SafeUri previousLibrary = FSpot.Settings.FSpotConfiguration.PhotoUri;
+		Db? destination = null;
+		Db? source = null;
+		try {
+			EnsureMergeServices ();
+			string sample = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
+			string shot = Path.Combine (sourceDir, "shot.jpg");
+			File.Copy (sample, shot);
+			var images = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Imaging.IImageFileFactory> ();
+			var thumbs = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Thumbnail.IThumbnailService> ();
+			destination = new Db (images, thumbs, new MergeUpdater ());
+			destination.Init (Path.Combine (destDir, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
+			source = new Db (images, thumbs, new MergeUpdater ());
+			source.Init (Path.Combine (sourceDir, "photos.db"), true);
+			uint roll = source.Rolls.Create (new DateTime (2019, 3, 4, 0, 0, 0, DateTimeKind.Utc)).Id;
+			Photo photo = source.Photos.CreateFrom (new FilePhoto (new SafeUri (shot)), true, roll);
+			photo.AddTag (source.Tags.CreateTag (source.Tags.RootCategory, "Beach", false));
+			source.Photos.Commit (photo);
+			source.Dispose ();
+			source = null;
+
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = destDir;
+			FSpot.Settings.FSpotConfiguration.PhotoUri = SafeUri.FromPath (library);
+			var shell = new RecordingShell {
+				ConfirmResult = true,
+				PickedFiles = new[] { Path.Combine (sourceDir, "photos.db") }
+			};
+			var viewModel = new MainWindowViewModel (destination, shell, new NullThumbnails ());
+			viewModel.LoadCatalog ();
+			Assert.IsFalse (HasTag (viewModel.Tags, "Beach"));
+
+			viewModel.MergeCatalogCommand.Execute (null);
+
+			Assert.IsTrue (HasTag (viewModel.Tags, "Beach"));
+			Assert.IsNotEmpty (viewModel.Folders);
+		} finally {
+			source?.Dispose ();
+			destination?.Dispose ();
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = previousBase;
+			FSpot.Settings.FSpotConfiguration.PhotoUri = previousLibrary;
+			if (Directory.Exists (root))
+				Directory.Delete (root, true);
+		}
+	}
+
+	[UiTestMethod]
 	public void DevelopUfrawCommand_WarnsWhenThereIsNoCatalog ()
 	{
 		var shell = new RecordingShell ();
@@ -1270,6 +1382,46 @@ public sealed partial class MainWindowViewModelTests
 
 		Assert.AreEqual (Strings.DevelopInUFRaw2, shell.WarningTitle);
 		Assert.AreEqual (Strings.OpenACatalogBeforeDeveloping, shell.WarningMessage);
+	}
+
+	[UiTestMethod]
+	public void DevelopUfrawCommand_WarnsWhenUfrawIsNotInstalled ()
+	{
+		string root = Path.Combine (Path.GetTempPath (), "fspot-vm-ufraw-" + Guid.NewGuid ().ToString ("N"));
+		string destDir = Path.Combine (root, "dest");
+		Directory.CreateDirectory (destDir);
+		string previousBase = FSpot.Settings.FSpotConfiguration.BaseDirectory;
+		Db? database = null;
+		try {
+			EnsureMergeServices ();
+			string rawPath = Path.Combine (destDir, "shot.cr2");
+			File.WriteAllText (rawPath, "raw");
+			var images = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Imaging.IImageFileFactory> ();
+			var thumbs = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Thumbnail.IThumbnailService> ();
+			database = new Db (images, thumbs, new MergeUpdater ());
+			database.Init (Path.Combine (destDir, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
+			SafeUri uri = SafeUri.FromPath (rawPath);
+			var photo = new Photo (images, thumbs, 1, DateTimeUtil.FromDateTime (new DateTime (2019, 3, 4, 0, 0, 0, DateTimeKind.Utc)));
+			photo.AddVersionUnsafely (Photo.OriginalVersionId, uri.GetBaseUri (), uri.GetFilename (), string.Empty, "Original", true);
+
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = destDir;
+			var shell = new RecordingShell ();
+			var viewModel = new MainWindowViewModel (database, shell, new NullThumbnails ());
+			var item = new PhotoItemViewModel (photo);
+			item.Selected = true;
+			viewModel.Photos.Add (item);
+
+			viewModel.DevelopUfrawCommand.Execute (null);
+
+			Assert.AreEqual (Strings.DevelopInUFRaw2, shell.WarningTitle);
+			Assert.IsFalse (string.IsNullOrEmpty (shell.WarningMessage));
+			Assert.AreEqual ((uint)Photo.OriginalVersionId, photo.DefaultVersionId);
+		} finally {
+			database?.Dispose ();
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = previousBase;
+			if (Directory.Exists (root))
+				Directory.Delete (root, true);
+		}
 	}
 
 	[UiTestMethod]
@@ -1310,6 +1462,52 @@ public sealed partial class MainWindowViewModelTests
 
 		Assert.AreEqual (Strings.ChangePhotosDirectory, shell.WarningTitle);
 		Assert.AreEqual (Strings.OpenACatalogBeforeChangingPaths, shell.WarningMessage);
+	}
+
+	[UiTestMethod]
+	public void ChangePathCommand_LeavesPhotosAloneWhenTheOldBaseIsOnlyASlash ()
+	{
+		string root = Path.Combine (Path.GetTempPath (), "fspot-vm-path-" + Guid.NewGuid ().ToString ("N"));
+		string destDir = Path.Combine (root, "dest");
+		string library = Path.Combine (root, "library");
+		Directory.CreateDirectory (destDir);
+		Directory.CreateDirectory (library);
+		string previousBase = FSpot.Settings.FSpotConfiguration.BaseDirectory;
+		SafeUri previousLibrary = FSpot.Settings.FSpotConfiguration.PhotoUri;
+		Db? database = null;
+		try {
+			EnsureMergeServices ();
+			string shot = Path.Combine (destDir, "shot.jpg");
+			File.WriteAllText (shot, "photo");
+			var images = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Imaging.IImageFileFactory> ();
+			var thumbs = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Thumbnail.IThumbnailService> ();
+			database = new Db (images, thumbs, new MergeUpdater ());
+			database.Init (Path.Combine (destDir, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
+			uint roll = database.Rolls.Create (new DateTime (2019, 3, 4, 0, 0, 0, DateTimeKind.Utc)).Id;
+			database.Photos.CreateFrom (new FilePhoto (new SafeUri (shot)), true, roll);
+			string before = database.Photos.Query ("SELECT * FROM photos")[0].DefaultVersion.Uri.AbsolutePath;
+
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = destDir;
+			FSpot.Settings.FSpotConfiguration.PhotoUri = SafeUri.FromPath (library);
+			var shell = new RecordingShell { PromptResult = "/" };
+			var viewModel = new MainWindowViewModel (database, shell, new NullThumbnails ());
+
+			viewModel.ChangePathCommand.Execute (null);
+
+			string after = database.Photos.Query ("SELECT * FROM photos")[0].DefaultVersion.Uri.AbsolutePath;
+			Assert.AreEqual (before, after);
+			Assert.AreEqual (Strings.CouldNotFindAnOldBasePath, shell.WarningMessage);
+			Assert.Contains (Strings.OldBasePathURIWas, shell.PromptText ?? string.Empty);
+			Assert.Contains (library, shell.PromptText ?? string.Empty);
+			if (PhotoPathChange.GuessOldBase (new[] { before }) == "/")
+				Assert.AreEqual (string.Empty, shell.PromptDefault);
+		} finally {
+			database?.Dispose ();
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = previousBase;
+			FSpot.Settings.FSpotConfiguration.PhotoUri = previousLibrary;
+			if (Directory.Exists (root))
+				Directory.Delete (root, true);
+		}
 	}
 
 	[UiTestMethod]
@@ -1818,6 +2016,33 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreEqual (Strings.ThisFeatureIsNotYetAvailable, shell.WarningMessage);
 	}
 
+	static bool HasTag (IEnumerable<TagNode> nodes, string name)
+	{
+		foreach (TagNode node in nodes) {
+			if (node.Name == name)
+				return true;
+			if (HasTag (node.Children, name))
+				return true;
+		}
+		return false;
+	}
+
+	static void EnsureMergeServices ()
+	{
+		var container = TinyIoC.TinyIoCContainer.Current;
+		TryRegister (() => FSpot.FileSystem.ModuleController.RegisterTypes (container));
+		TryRegister (() => FSpot.Imaging.ModuleController.RegisterTypes (container));
+		TryRegister (() => FSpot.Thumbnail.ModuleController.RegisterTypes (container));
+	}
+
+	static void TryRegister (Action register)
+	{
+		try {
+			register ();
+		} catch (Exception ex) when (ex is TinyIoC.TinyIoCResolutionException or ArgumentException) {
+		}
+	}
+
 	static MainWindowViewModel NewViewModel ()
 		=> new (null, new NullShell (), new NullThumbnails ());
 
@@ -1853,6 +2078,13 @@ public sealed partial class MainWindowViewModelTests
 		return viewModel;
 	}
 
+	sealed class MergeUpdater : FSpot.Database.IUpdaterUI
+	{
+		public void Show () { }
+		public void Pulse () { }
+		public void Destroy () { }
+	}
+
 	internal class NullShell : IAvaloniaShell
 	{
 		public virtual void Close () { }
@@ -1884,7 +2116,7 @@ public sealed partial class MainWindowViewModelTests
 			=> Task.FromResult<TimeAdjustChoice?> (null);
 	}
 
-	sealed class RecordingShell : NullShell
+	sealed class RecordingShell : NullShell, IAvaloniaShell
 	{
 		public string? WarningTitle { get; private set; }
 		public string? WarningMessage { get; private set; }
@@ -1900,6 +2132,7 @@ public sealed partial class MainWindowViewModelTests
 		public bool ExtensionsShown { get; private set; }
 		public IList<AddinStatus>? ShownAddins { get; private set; }
 		public string? PromptResult { get; set; }
+		public IReadOnlyList<string>? PickedFiles { get; set; }
 		public bool ConfirmResult { get; set; }
 		public bool ConfirmCalled { get; private set; }
 		public double? Hours { get; set; }
@@ -1917,8 +2150,18 @@ public sealed partial class MainWindowViewModelTests
 			return Task.FromResult (false);
 		}
 
+		public string? PromptText { get; private set; }
+		public string? PromptDefault { get; private set; }
+
 		public override Task<string?> PromptAsync (string title, string prompt, string defaultValue)
-			=> Task.FromResult (PromptResult);
+		{
+			PromptText = prompt;
+			PromptDefault = defaultValue;
+			return Task.FromResult (PromptResult);
+		}
+
+		public Task<IReadOnlyList<string>> PickFilesAsync (string title, bool allowMultiple)
+			=> Task.FromResult (PickedFiles ?? (IReadOnlyList<string>)Array.Empty<string> ());
 
 		public override Task<bool> ConfirmAsync (string title, string message, string okCaption)
 		{

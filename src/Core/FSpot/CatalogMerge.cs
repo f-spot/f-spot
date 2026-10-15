@@ -109,15 +109,18 @@ namespace FSpot
 		{
 			if (tag != source.RootCategory) {
 				Tag dest = destination.GetTagByName (tag.Name);
+				// A plain tag and a category cannot share a name. Children follow the category we create.
+				if (dest != null && tag is Category && !(dest is Category))
+					dest = null;
 				if (dest == null) {
-					Category parent = tag.Category == null || tag.Category == source.RootCategory
-						? destination.RootCategory
-						: destination.GetTagByName (tag.Category.Name) as Category;
-					if (parent == null)
-						parent = destination.RootCategory;
-					dest = tag is Category
-						? (Tag)destination.CreateCategory (parent, tag.Name, false)
-						: destination.CreateTag (parent, tag.Name, false);
+					Category parent = ParentCategory (tag, source, destination, map);
+					if (tag is Category) {
+						string name = destination.GetTagByName (tag.Name) == null
+							? tag.Name
+							: Disambiguated (destination, tag.Name);
+						dest = destination.CreateCategory (parent, name, false);
+					} else
+						dest = destination.CreateTag (parent, tag.Name, false);
 				}
 				map[tag.Id] = dest;
 			}
@@ -127,6 +130,25 @@ namespace FSpot
 				return;
 			foreach (Tag child in category.Children)
 				MergeTags (child, source, destination, map);
+		}
+
+		static Category ParentCategory (Tag tag, TagStore source, TagStore destination, Dictionary<uint, Tag> map)
+		{
+			if (tag.Category == null || tag.Category == source.RootCategory)
+				return destination.RootCategory;
+			if (map.TryGetValue (tag.Category.Id, out Tag mapped) && mapped is Category category)
+				return category;
+			return destination.RootCategory;
+		}
+
+		static string Disambiguated (TagStore destination, string name)
+		{
+			for (int i = 2; i < 10000; i++) {
+				string candidate = name + " " + i;
+				if (destination.GetTagByName (candidate) == null)
+					return candidate;
+			}
+			return name + " " + Guid.NewGuid ().ToString ("N");
 		}
 
 		static bool ImportPhoto (Db destination, Photo photo, bool copyFiles, uint rollId, SafeUri libraryRoot, Dictionary<uint, Tag> tagMap, List<string> missing)
@@ -140,20 +162,24 @@ namespace FSpot
 
 			SafeUri stored = original.Uri;
 			if (copyFiles) {
-				stored = CopyTarget (original.Uri, photo.Time, libraryRoot);
-				if (stored == null) {
+				try {
+					stored = CopyTarget (original.Uri, photo.Time, libraryRoot);
+					if (stored == null) {
+						missing.Add (sourcePath);
+						return false;
+					}
+					if (!string.Equals (stored.AbsolutePath, sourcePath, StringComparison.Ordinal)) {
+						File.Copy (sourcePath, stored.AbsolutePath);
+						try {
+							File.SetAttributes (stored.AbsolutePath, File.GetAttributes (stored.AbsolutePath) & ~FileAttributes.ReadOnly);
+							File.SetCreationTime (stored.AbsolutePath, File.GetCreationTime (sourcePath));
+							File.SetLastWriteTime (stored.AbsolutePath, File.GetLastWriteTime (sourcePath));
+						} catch (IOException) {
+						}
+					}
+				} catch (Exception ex) when (ex is IOException or UnauthorizedAccessException) {
 					missing.Add (sourcePath);
 					return false;
-				}
-				if (!string.Equals (stored.AbsolutePath, sourcePath, StringComparison.Ordinal)) {
-					Directory.CreateDirectory (Path.GetDirectoryName (stored.AbsolutePath));
-					File.Copy (sourcePath, stored.AbsolutePath);
-					try {
-						File.SetAttributes (stored.AbsolutePath, File.GetAttributes (stored.AbsolutePath) & ~FileAttributes.ReadOnly);
-						File.SetCreationTime (stored.AbsolutePath, File.GetCreationTime (sourcePath));
-						File.SetLastWriteTime (stored.AbsolutePath, File.GetLastWriteTime (sourcePath));
-					} catch (IOException) {
-					}
 				}
 			}
 
@@ -208,15 +234,7 @@ namespace FSpot
 		}
 
 		static bool SameFile (string left, string right)
-		{
-			if (string.IsNullOrEmpty (left) || string.IsNullOrEmpty (right))
-				return false;
-			try {
-				return string.Equals (Path.GetFullPath (left), Path.GetFullPath (right), StringComparison.Ordinal);
-			} catch (Exception) {
-				return false;
-			}
-		}
+			=> FileIdentity.Same (left, right);
 
 		sealed class SilentUpdater : IUpdaterUI
 		{

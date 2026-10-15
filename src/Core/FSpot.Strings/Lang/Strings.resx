@@ -2045,6 +2045,9 @@ between</value>
   <data name="DidNotFindAnyPhotosWithTheOldBasePath" xml:space="preserve">
     <value>Did not find any photos with the old base path.</value>
   </data>
+  <data name="CouldNotFindAnOldBasePath" xml:space="preserve">
+    <value>Could not find an old base path. A year folder needs to start with /20, /19, or /18.</value>
+  </data>
   <data name="CheckForDuplicates" xml:space="preserve">
     <value>Check for Duplicates...</value>
   </data>
