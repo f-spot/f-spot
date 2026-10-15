@@ -41,6 +41,7 @@ public partial class ImportViewModel : ObservableObject
 	CancellationTokenSource? scan;
 	Task? scanTask;
 	CancellationTokenSource? import;
+	bool importAccepted;
 	IReadOnlyList<string>? droppedPaths;
 	bool closed;
 
@@ -230,7 +231,7 @@ public partial class ImportViewModel : ObservableObject
 
 	partial void OnSelectedSourceOptionChanged (ImportSourceOption? value)
 	{
-		if (suppressSourceSelection || value is null || IsBusy)
+		if (suppressSourceSelection || value is null || IsBusy || importAccepted)
 			return;
 
 		if (value.Kind == ImportSourceKind.ChooseFolder) {
@@ -247,7 +248,7 @@ public partial class ImportViewModel : ObservableObject
 	[RelayCommand]
 	async Task ChooseFolderAsync ()
 	{
-		if (IsBusy)
+		if (IsBusy || importAccepted)
 			return;
 
 		string? path = await shell.PickFolderAsync (Strings.ChooseFolder);
@@ -270,7 +271,12 @@ public partial class ImportViewModel : ObservableObject
 	async Task ImportAsync ()
 	{
 		// Finish the scan first. A click while photos are still arriving used
-		// to import only the files found so far.
+		// to import only the files found so far. A later source change must
+		// not replace that set, and the status must stop offering Import.
+		if (importAccepted)
+			return;
+		importAccepted = true;
+		StatusText = Strings.ImportingPhotos;
 		while (scanTask is Task pending && !pending.IsCompleted) {
 			try {
 				await pending;
@@ -278,14 +284,20 @@ public partial class ImportViewModel : ObservableObject
 			}
 		}
 
-		if (closed || Photos.Count == 0)
+		if (closed || Photos.Count == 0) {
+			importAccepted = false;
+			if (!closed)
+				StatusText = string.Format (Photos.Count <= 1 ? Strings.XPhoto : Strings.XPhotos, Photos.Count);
 			return;
+		}
 
 		// The scan keeps appending to importList on the UI thread. DoImport
 		// enumerates on a pool thread, so it must see a copy.
 		var snapshot = new PhotoList (importList.Items.ToArray ());
-		if (snapshot.Count == 0)
+		if (snapshot.Count == 0) {
+			importAccepted = false;
 			return;
+		}
 
 		IsBusy = true;
 		ImportCommand.NotifyCanExecuteChanged ();
@@ -313,6 +325,7 @@ public partial class ImportViewModel : ObservableObject
 		} catch (OperationCanceledException) {
 			Finish (false);
 		} catch (Exception ex) {
+			importAccepted = false;
 			Logger.Log.Error (ex, "Import failed");
 			StatusText = ex.Message;
 			IsBusy = false;
@@ -357,7 +370,7 @@ public partial class ImportViewModel : ObservableObject
 
 	internal async Task ScanAsync ()
 	{
-		if (IsBusy)
+		if (IsBusy || importAccepted)
 			return;
 		if (ScanOverride is null && SourcePath is null && droppedPaths is not { Count: > 0 })
 			return;
@@ -386,7 +399,8 @@ public partial class ImportViewModel : ObservableObject
 		try {
 			ResetListedPhotos ();
 			IsScanning = true;
-			StatusText = Strings.SearchingForPhotosYouCanAlreadyClickImportToContinue;
+			if (!importAccepted)
+				StatusText = Strings.SearchingForPhotosYouCanAlreadyClickImportToContinue;
 			Progress = 0;
 			ImportCommand.NotifyCanExecuteChanged ();
 
@@ -423,12 +437,14 @@ public partial class ImportViewModel : ObservableObject
 			} catch (OperationCanceledException) {
 			} catch (Exception ex) {
 				Logger.Log.Error (ex, "Import scan failed");
-				StatusText = ex.Message;
+				if (!importAccepted)
+					StatusText = ex.Message;
 			}
 
 			if (!token.IsCancellationRequested) {
 				IsScanning = false;
-				StatusText = string.Format (Photos.Count <= 1 ? Strings.XPhoto : Strings.XPhotos, Photos.Count);
+				if (!importAccepted)
+					StatusText = string.Format (Photos.Count <= 1 ? Strings.XPhoto : Strings.XPhotos, Photos.Count);
 				ImportCommand.NotifyCanExecuteChanged ();
 			}
 		} finally {

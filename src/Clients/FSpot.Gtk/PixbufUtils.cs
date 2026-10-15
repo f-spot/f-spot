@@ -132,34 +132,36 @@ namespace FSpot
 
 			public Pixbuf Load (Stream stream, ImageOrientation orientation)
 			{
-				int count;
-				var data = new byte[8192];
-				while ((count = stream.Read (data, 0, data.Length)) > 0 && loader.Write (data, (ulong)count)) {
-					if (refused)
-						break;
-				}
-
 				try {
-					loader.Close ();
-				} catch (GLib.GException) {
-					if (!refused)
-						throw;
-				}
+					int count;
+					var data = new byte[8192];
+					while ((count = stream.Read (data, 0, data.Length)) > 0 && loader.Write (data, (ulong)count)) {
+						if (refused)
+							break;
+					}
 
-				if (refused) {
-					if (loader.Pixbuf != null)
-						loader.Pixbuf.Dispose ();
+					try {
+						loader.Close ();
+					} catch (GLib.GException) {
+						if (!refused)
+							throw;
+					}
+
+					if (refused) {
+						if (loader.Pixbuf != null)
+							loader.Pixbuf.Dispose ();
+						throw new InvalidDataException (DecodeBudget.TooLargeMessage);
+					}
+
+					var orig = loader.Pixbuf;
+					var rotated = orig.TransformOrientation (orientation);
+
+					if (orig != rotated)
+						orig.Dispose ();
+					return rotated;
+				} finally {
 					loader.Dispose ();
-					throw new InvalidDataException (DecodeBudget.TooLargeMessage);
 				}
-
-				var orig = loader.Pixbuf;
-				var rotated = orig.TransformOrientation (orientation);
-
-				if (orig != rotated)
-					orig.Dispose ();
-				loader.Dispose ();
-				return rotated;
 			}
 
 			public Pixbuf LoadFromFile (string path)

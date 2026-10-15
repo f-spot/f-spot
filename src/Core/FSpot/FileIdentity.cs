@@ -135,15 +135,33 @@ namespace FSpot
 #if NET5_0_OR_GREATER
 		static string WindowsFinal (string path)
 		{
+			// ResolveLinkTarget throws on a Windows drive root, and Same would then
+			// treat one missing file as a different file from itself.
+			if (IsVolumeRoot (path))
+				return Path.GetFullPath (path);
 			FileSystemInfo target = null;
-			if (Directory.Exists (path))
-				target = Directory.ResolveLinkTarget (path, returnFinalTarget: true);
-			else if (File.Exists (path))
-				target = File.ResolveLinkTarget (path, returnFinalTarget: true);
+			try {
+				if (Directory.Exists (path))
+					target = Directory.ResolveLinkTarget (path, returnFinalTarget: true);
+				else if (File.Exists (path))
+					target = File.ResolveLinkTarget (path, returnFinalTarget: true);
+			} catch (Exception) {
+				return Path.GetFullPath (path);
+			}
 			if (target == null)
 				return Path.GetFullPath (path);
 			return target.FullName;
 		}
+
+		static bool IsVolumeRoot (string path)
+		{
+			string full = TrimSeparator (Path.GetFullPath (path));
+			string root = TrimSeparator (Path.GetPathRoot (full) ?? "");
+			return root.Length > 0 && string.Equals (full, root, StringComparison.OrdinalIgnoreCase);
+		}
+
+		static string TrimSeparator (string path)
+			=> path.TrimEnd (Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
 #endif
 
 		static string UnixReal (string path)

@@ -104,11 +104,17 @@ public sealed class SlideshowWindowTests
 		Assert.IsFalse (combo.IsDropDownOpen);
 
 		Press (window, Key.I);
-		Assert.IsFalse (info.IsVisible);
+		Assert.IsTrue (info.IsVisible);
 		Press (window, Key.Delete);
-		Assert.IsNull (host.RemovedPath);
+		Assert.AreEqual ("/missing/a.jpg", host.RemovedPath);
 		Press (window, Key.OemOpenBrackets);
-		Assert.IsNull (host.Rotated);
+		Assert.AreEqual (("/missing/a.jpg", false), host.Rotated);
+		Press (window, Key.OemCloseBrackets);
+		Assert.AreEqual (("/missing/a.jpg", true), host.Rotated);
+		Press (window, Key.D1, KeyModifiers.Alt);
+		Assert.AreEqual (("/missing/a.jpg", 1u), host.Rated);
+		Press (window, Key.Right);
+		Assert.AreEqual ("/missing/a.jpg", window.CurrentPath);
 
 		combo.IsDropDownOpen = true;
 		Press (window, Key.Escape);

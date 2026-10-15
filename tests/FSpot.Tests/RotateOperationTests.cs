@@ -70,7 +70,7 @@ namespace FSpot.Tests
 
 				var ex = Assert.ThrowsExactly<RotateException> (() => op.Step ());
 				Assert.IsTrue (ex.ReadOnly);
-				Assert.AreEqual (uri.ToString (), ex.Path);
+				Assert.AreEqual (uri.LocalPath, ex.Path);
 			} finally {
 				System.IO.File.SetAttributes (uri.AbsolutePath, FileAttributes.Normal);
 				ImageTestHelper.DeleteTempFile (uri);
@@ -135,10 +135,47 @@ namespace FSpot.Tests
 
 			var ex = Assert.ThrowsExactly<RotateException> (() => op.Step ());
 
-			Assert.AreEqual (uri.ToString (), ex.Path);
+			Assert.AreEqual (uri.LocalPath, ex.Path);
 			Assert.AreSame (photo, op.FailedItem);
 			Assert.AreEqual (1, op.Index);
 			Assert.AreEqual (uri.LocalPath, op.FailedPath ());
+		}
+
+		[TestMethod]
+		public void Rotate_MissingFileWithASpaceInTheName_ReportsTheDecodedPath ()
+		{
+			string directory = Path.Combine (Path.GetTempPath (), "fspot-rotate-" + Guid.NewGuid ().ToString ("N"));
+			Directory.CreateDirectory (directory);
+			string path = Path.Combine (directory, "Carol Jones.jpg");
+			try {
+				var uri = SafeUri.FromPath (path);
+				var photo = new FilePhoto (uri);
+				var op = new RotateMultiple (new IPhoto[] { photo }, RotateDirection.Clockwise, Mock.Of<IThumbnailService> ());
+
+				var ex = Assert.ThrowsExactly<RotateException> (() => op.Step ());
+
+				Assert.AreEqual (FSpot.Resources.Lang.Strings.FileNotFonud, ex.Message);
+				Assert.AreEqual (path, ex.Path);
+				Assert.DoesNotContain ("%20", ex.Path);
+				Assert.AreEqual (path, op.FailedPath ());
+			} finally {
+				Directory.Delete (directory, true);
+			}
+		}
+
+		[TestMethod]
+		public void Rotate_MissingDirectoryWithASpaceInTheName_ReportsTheDecodedPath ()
+		{
+			string path = Path.Combine (Path.GetTempPath (), "fspot-rotate-" + Guid.NewGuid ().ToString ("N"), "Carol Jones", "a.jpg");
+			var uri = SafeUri.FromPath (path);
+			var photo = new FilePhoto (uri);
+			var op = new RotateMultiple (new IPhoto[] { photo }, RotateDirection.Clockwise, Mock.Of<IThumbnailService> ());
+
+			var ex = Assert.ThrowsExactly<RotateException> (() => op.Step ());
+
+			Assert.AreEqual (FSpot.Resources.Lang.Strings.DirectoryNotFound, ex.Message);
+			Assert.AreEqual (path, ex.Path);
+			Assert.DoesNotContain ("%20", ex.Path);
 		}
 
 		[TestMethod]

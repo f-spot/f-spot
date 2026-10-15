@@ -1,11 +1,13 @@
 using System.Diagnostics;
 
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Threading;
+using Avalonia.VisualTree;
 
 using FSpot.Avalonia.Controls;
 using FSpot.Avalonia.Imaging;
@@ -356,12 +358,38 @@ public partial class SlideshowWindow : Window
 		if (action.Command == FullScreenCommand.None)
 			return;
 		// F, Q, F11 and Escape leave the show even when a combo or text box is focused.
+		// The transition combo also keeps the photo keys; arrows stay with the combo.
 		var focused = FocusManager?.GetFocusedElement ();
 		if (action.Command != FullScreenCommand.Exit
-			&& !Input.ShortcutGuards.AllowsUnadornedKey (focused, e.Key))
+			&& !Input.ShortcutGuards.AllowsUnadornedKey (focused, e.Key)
+			&& !TransitionComboYields (focused, action.Command))
 			return;
 		e.Handled = true;
 		Execute (action);
+	}
+
+	bool TransitionComboYields (object? focused, FullScreenCommand command)
+	{
+		if (!IsTransitionCombo (focused))
+			return false;
+		return command is FullScreenCommand.ToggleInfo
+			or FullScreenCommand.RotateLeft
+			or FullScreenCommand.RotateRight
+			or FullScreenCommand.Rate
+			or FullScreenCommand.RemoveFromCatalog
+			or FullScreenCommand.DeleteFromDrive;
+	}
+
+	bool IsTransitionCombo (object? focused)
+	{
+		for (var visual = focused as Visual; visual is not null; visual = visual.GetVisualParent ()) {
+			if (ReferenceEquals (visual, TransitionCombo))
+				return true;
+			if (visual is TopLevel)
+				break;
+		}
+
+		return false;
 	}
 
 	void OnAnyPointerMoved (object? sender, PointerEventArgs e)

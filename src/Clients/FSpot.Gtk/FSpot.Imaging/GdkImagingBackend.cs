@@ -85,39 +85,42 @@ namespace FSpot.Imaging
 		static Pixbuf LoadWithinBudget (Stream stream)
 		{
 			var loader = new PixbufLoader ();
-			bool refused = false;
-			loader.SizePrepared += (o, args) => {
-				if (!DecodeBudget.Exceeds (args.Width, args.Height))
-					return;
-				loader.SetSize (1, 1);
-				refused = true;
-			};
-
-			var data = new byte[8192];
-			int count;
-			while ((count = stream.Read (data, 0, data.Length)) > 0 && loader.Write (data, (ulong)count)) {
-				if (refused)
-					break;
-			}
-
 			try {
-				loader.Close ();
-			} catch (GLib.GException) {
-				if (!refused)
-					throw;
-			}
+				bool refused = false;
+				loader.SizePrepared += (o, args) => {
+					if (!DecodeBudget.Exceeds (args.Width, args.Height))
+						return;
+					loader.SetSize (1, 1);
+					refused = true;
+				};
 
-			Pixbuf pixbuf = loader.Pixbuf;
-			loader.Dispose ();
-			if (refused) {
-				if (pixbuf != null)
-					pixbuf.Dispose ();
-				throw new InvalidDataException (DecodeBudget.TooLargeMessage);
-			}
+				var data = new byte[8192];
+				int count;
+				while ((count = stream.Read (data, 0, data.Length)) > 0 && loader.Write (data, (ulong)count)) {
+					if (refused)
+						break;
+				}
 
-			if (pixbuf == null)
-				throw new InvalidDataException ("Unable to decode the image.");
-			return pixbuf;
+				try {
+					loader.Close ();
+				} catch (GLib.GException) {
+					if (!refused)
+						throw;
+				}
+
+				Pixbuf pixbuf = loader.Pixbuf;
+				if (refused) {
+					if (pixbuf != null)
+						pixbuf.Dispose ();
+					throw new InvalidDataException (DecodeBudget.TooLargeMessage);
+				}
+
+				if (pixbuf == null)
+					throw new InvalidDataException ("Unable to decode the image.");
+				return pixbuf;
+			} finally {
+				loader.Dispose ();
+			}
 		}
 
 		public static void TryEnableXcf (IImageFileFactory factory)

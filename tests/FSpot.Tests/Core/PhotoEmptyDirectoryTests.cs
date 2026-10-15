@@ -1,13 +1,19 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 
 using FSpot.Settings;
 
 using Hyena;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using Serilog;
+using Serilog.Core;
+using Serilog.Events;
 
 namespace FSpot.Tests
 {
@@ -91,6 +97,41 @@ namespace FSpot.Tests
 			photo.DeleteVersion (2);
 
 			Assert.IsTrue (Directory.Exists (library));
+		}
+
+		[TestMethod]
+		public void DeletingAVersionWhoseFolderIsAlreadyGoneDoesNotLogAnError ()
+		{
+			string library = Path.Combine (root, "Photos");
+			string missing = Path.Combine (library, "gone");
+			Directory.CreateDirectory (library);
+			FSpotConfiguration.PhotoUri = new SafeUri (new DirectoryInfo (library).FullName);
+
+			var photo = new Photo (null, null, 1, 0);
+			photo.AddVersionUnsafely (Photo.OriginalVersionId, new SafeUri (library), "keep.jpg", string.Empty, "Original", true);
+			photo.AddVersionUnsafely (2, new SafeUri (missing), "pic.jpg", string.Empty, "Edit", false);
+
+			var events = new List<LogEvent> ();
+			var sink = new CollectingSink (events);
+			using var logger = new LoggerConfiguration ().MinimumLevel.Verbose ().WriteTo.Sink (sink).CreateLogger ();
+			var field = typeof (FSpot.Logger).GetField ("log", BindingFlags.Static | BindingFlags.NonPublic);
+			Assert.IsNotNull (field);
+			object previous = field.GetValue (null);
+			field.SetValue (null, logger);
+			try {
+				photo.DeleteVersion (2);
+			} finally {
+				field.SetValue (null, previous);
+			}
+
+			bool sawMissingFolder = false;
+			foreach (LogEvent ev in events) {
+				Assert.IsTrue (ev.Level < LogEventLevel.Error, ev.RenderMessage ());
+				if (ev.Exception is DirectoryNotFoundException)
+					sawMissingFolder = true;
+			}
+
+			Assert.IsTrue (sawMissingFolder);
 		}
 
 		[TestMethod]
@@ -196,6 +237,21 @@ namespace FSpot.Tests
 			Assert.IsFalse (Photo.IsStrictLibraryChild (sibling, library));
 			Assert.IsFalse (Photo.IsStrictLibraryChild (library, library));
 			Assert.IsTrue (Photo.IsStrictLibraryChild (Path.Combine (library, "album"), library));
+		}
+
+		sealed class CollectingSink : ILogEventSink
+		{
+			readonly List<LogEvent> events;
+
+			public CollectingSink (List<LogEvent> events)
+			{
+				this.events = events;
+			}
+
+			public void Emit (LogEvent logEvent)
+			{
+				events.Add (logEvent);
+			}
 		}
 	}
 }

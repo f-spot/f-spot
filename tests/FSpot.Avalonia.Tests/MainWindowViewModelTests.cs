@@ -287,6 +287,166 @@ public sealed partial class MainWindowViewModelTests
 		Assert.IsTrue (reloaded);
 	}
 
+	[UiTestMethod]
+	public async Task Import_WhileTheScanIsStillRunning_StopsOfferingImport_AndKeepsTheOriginalSource ()
+	{
+		string root = Path.Combine (Path.GetTempPath (), "fspot-import-switch-" + Guid.NewGuid ().ToString ("N"));
+		string sourceA = Path.Combine (root, "a");
+		string sourceB = Path.Combine (root, "b");
+		Directory.CreateDirectory (sourceA);
+		Directory.CreateDirectory (sourceB);
+		bool reloaded = false;
+		var viewModel = new ImportViewModel (null!, new RecordingShell (), new CountingThumbnails (), _ => reloaded = true);
+		viewModel.SourcePath = sourceA;
+		using var release = new ManualResetEventSlim (false);
+		viewModel.ScanOverride = _ => viewModel.SourcePath == sourceB
+			? new IPhoto[] { new StubPhoto ("/import/from-b.jpg") }
+			: ScanTwoThenBlock (release);
+		var importer = new FrozenImport (() => { });
+		viewModel.Importer = () => importer;
+
+		try {
+			var scanning = viewModel.ScanAsync ();
+			await PumpUntil (() => viewModel.Photos.Count == 1);
+			var importing = viewModel.ImportCommand.ExecuteAsync (null);
+			await Pump ();
+			Assert.AreEqual (Strings.ImportingPhotos, viewModel.StatusText);
+
+			viewModel.SelectedSourceOption = ImportSourceOption.ForSource ("Other", sourceB);
+			release.Set ();
+			await importing;
+			await scanning;
+
+			Assert.HasCount (2, importer.Names);
+			Assert.AreEqual ("a.jpg", importer.Names[0]);
+			Assert.AreEqual ("b.jpg", importer.Names[1]);
+			Assert.IsTrue (reloaded);
+		} finally {
+			release.Set ();
+			if (Directory.Exists (root))
+				Directory.Delete (root, true);
+		}
+	}
+
+	[UiTestMethod]
+	public async Task Import_AfterAFailure_ImportsAgain ()
+	{
+		int calls = 0;
+		var viewModel = new ImportViewModel (null!, new RecordingShell (), new CountingThumbnails (), static _ => { });
+		viewModel.AddScanned (new StubPhoto ("/import/a.jpg"));
+		viewModel.Importer = () => new ThrowingImport (() => calls++);
+
+		await viewModel.ImportCommand.ExecuteAsync (null);
+
+		Assert.IsTrue (viewModel.CanImport);
+		Assert.IsFalse (viewModel.IsBusy);
+		Assert.AreEqual ("import broke", viewModel.StatusText);
+
+		await viewModel.ImportCommand.ExecuteAsync (null);
+		Assert.AreEqual (2, calls);
+	}
+
+	[UiTestMethod]
+	public async Task RemovePhoto_KeepsThePhotoWhenTheOriginalIsLockedAndTheDefaultWasEdited ()
+	{
+		string root = Path.Combine (Path.GetTempPath (), "fspot-slide-lock-" + Guid.NewGuid ().ToString ("N"));
+		string catalogDir = Path.Combine (root, "catalog");
+		string originalDir = Path.Combine (root, "originals");
+		string editDir = Path.Combine (root, "edits");
+		Directory.CreateDirectory (catalogDir);
+		Directory.CreateDirectory (originalDir);
+		Directory.CreateDirectory (editDir);
+		string previousBase = FSpot.Settings.FSpotConfiguration.BaseDirectory;
+		SafeUri previousLibrary = FSpot.Settings.FSpotConfiguration.PhotoUri;
+		Db? database = null;
+		var lockedDir = new DirectoryInfo (originalDir);
+		UnixFileMode previousMode = default;
+		FileAttributes previousAttributes = default;
+		string originalPath = Path.Combine (originalDir, "carol.jpg");
+		bool windows = OperatingSystem.IsWindows ();
+		bool locked = false;
+		try {
+			EnsureMergeServices ();
+			File.Copy (Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg"), originalPath);
+			string editedPath = Path.Combine (editDir, "edited.jpg");
+			File.Copy (originalPath, editedPath);
+			var images = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Imaging.IImageFileFactory> ();
+			var thumbs = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Thumbnail.IThumbnailService> ();
+			database = new Db (images, thumbs, new MergeUpdater ());
+			database.Init (Path.Combine (catalogDir, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = catalogDir;
+			FSpot.Settings.FSpotConfiguration.PhotoUri = SafeUri.FromPath (Path.Combine (root, "library"));
+			Directory.CreateDirectory (FSpot.Settings.FSpotConfiguration.PhotoUri.LocalPath);
+			uint roll = database.Rolls.Create (new DateTime (2019, 3, 4, 0, 0, 0, DateTimeKind.Utc)).Id;
+			Photo created = database.Photos.CreateFrom (new FilePhoto (SafeUri.FromPath (originalPath)), true, roll);
+			uint edited = created.AddVersion (SafeUri.FromPath (editDir), "edited.jpg", "Edited");
+			created.DefaultVersionId = edited;
+			database.Photos.Commit (created);
+
+			var shell = new RecordingShell { ConfirmResult = true };
+			var viewModel = new MainWindowViewModel (database, shell, new NullThumbnails ());
+			viewModel.LoadCatalog ();
+			Assert.HasCount (1, viewModel.Photos);
+			var photo = (Photo)viewModel.Photos[0].Photo;
+			string slideshowPath = photo.DefaultVersion.Uri.LocalPath;
+			Assert.AreEqual ("edited.jpg", Path.GetFileName (slideshowPath));
+			originalPath = photo.VersionUri (Photo.OriginalVersionId).LocalPath;
+
+			if (windows) {
+				previousAttributes = File.GetAttributes (originalPath);
+				File.SetAttributes (originalPath, previousAttributes | FileAttributes.ReadOnly);
+			} else {
+				previousMode = lockedDir.UnixFileMode;
+				lockedDir.UnixFileMode = UnixFileMode.UserRead | UnixFileMode.UserExecute;
+			}
+			locked = true;
+
+			bool removed = await viewModel.RemovePhotoAsync (slideshowPath, deleteFromDrive: true);
+
+			Assert.IsFalse (File.Exists (slideshowPath));
+			Assert.IsTrue (File.Exists (originalPath));
+			Assert.HasCount (1, viewModel.Photos);
+			Assert.IsFalse (removed);
+		} finally {
+			if (locked) {
+				if (windows)
+					File.SetAttributes (originalPath, previousAttributes);
+				else
+					lockedDir.UnixFileMode = previousMode;
+			}
+			database?.Dispose ();
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = previousBase;
+			FSpot.Settings.FSpotConfiguration.PhotoUri = previousLibrary;
+			if (Directory.Exists (root))
+				Directory.Delete (root, true);
+		}
+	}
+
+	[UiTestMethod]
+	public void RotateSelection_MissingFile_NamesTheDecodedFile ()
+	{
+		string directory = Path.Combine (Path.GetTempPath (), "fspot-rotate-ui-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (directory);
+		string path = Path.Combine (directory, "Carol Jones.jpg");
+		try {
+			EnsureMergeServices ();
+			var shell = new RecordingShell ();
+			var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+			var item = new PhotoItemViewModel (new FilePhoto (SafeUri.FromPath (path)));
+			viewModel.Photos.Add (item);
+			viewModel.SelectPhoto (item);
+
+			viewModel.RotateRightCommand.Execute (null);
+
+			Assert.AreEqual (Strings.ErrorWhileRotatingPhoto, shell.WarningTitle);
+			Assert.AreEqual (
+				string.Format (Strings.ReceivedErrorXWhileAttemptingToRotateY, Strings.FileNotFonud, "Carol Jones.jpg"),
+				shell.WarningMessage);
+		} finally {
+			Directory.Delete (directory, true);
+		}
+	}
+
 	static IEnumerable<IPhoto> ScanTwoThenBlock (ManualResetEventSlim release)
 	{
 		yield return new StubPhoto ("/import/a.jpg");
@@ -2453,6 +2613,25 @@ public sealed partial class MainWindowViewModelTests
 		public SafeUri Uri { get; set; }
 	}
 
+	sealed class ThrowingImport : IImportController
+	{
+		readonly Action onImport;
+
+		public ThrowingImport (Action onImport)
+			=> this.onImport = onImport;
+
+		public int PhotosImported => 0;
+		public IEnumerable<SafeUri> FailedImports => Array.Empty<SafeUri> ();
+
+		public void DoImport (IDb db, IBrowsableCollection photos, IList<Tag> tagsToAttach, ImportPreferences preferences, IProgress<int> progress, CancellationToken token)
+		{
+			onImport ();
+			throw new InvalidOperationException ("import broke");
+		}
+	}
+
+	// Preview and histogram loads pass CancellationToken.None. The grid load does not.
+
 	sealed class FrozenImport : IImportController
 	{
 		readonly Action mutateDuringImport;
@@ -2462,6 +2641,7 @@ public sealed partial class MainWindowViewModelTests
 
 		public int Seen { get; private set; }
 		public int Enumerated { get; private set; }
+		public List<string> Names { get; } = [];
 		public int PhotosImported => Enumerated;
 		public IEnumerable<SafeUri> FailedImports => Array.Empty<SafeUri> ();
 
@@ -2469,8 +2649,10 @@ public sealed partial class MainWindowViewModelTests
 		{
 			Seen = photos.Count;
 			mutateDuringImport ();
-			foreach (var _ in photos.Items)
+			foreach (var photo in photos.Items) {
 				Enumerated++;
+				Names.Add (photo.DefaultVersion.Filename);
+			}
 		}
 	}
 

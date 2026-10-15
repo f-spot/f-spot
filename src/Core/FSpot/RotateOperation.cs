@@ -64,7 +64,7 @@ namespace FSpot
 				// this try so the caller gets a RotateException for this uri.
 				var attrs = File.GetAttributes (uri.AbsolutePath);
 				if (attrs.HasFlag (FileAttributes.ReadOnly))
-					throw new RotateException (Strings.UnableToRotateReadonlyFile, uri, true);
+					throw new RotateException (Strings.UnableToRotateReadonlyFile, DecodedPath (uri), true);
 
 				using var metadata = MetadataUtils.Parse (uri);
 
@@ -79,10 +79,24 @@ namespace FSpot
 				thumbnails?.DeleteThumbnails (uri);
 			} catch (RotateException) {
 				throw;
+			} catch (FileNotFoundException e) {
+				Logger.Log.Debug (e, "");
+				throw new RotateException (Strings.FileNotFonud, DecodedPath (uri));
+			} catch (DirectoryNotFoundException e) {
+				Logger.Log.Debug (e, "");
+				throw new RotateException (Strings.DirectoryNotFound, DecodedPath (uri));
 			} catch (Exception e) {
 				Logger.Log.Debug (e, "");
-				throw new RotateException (Strings.UnableToRotateThisTypeOfPhoto, uri);
+				throw new RotateException (Strings.UnableToRotateThisTypeOfPhoto, DecodedPath (uri));
 			}
+		}
+
+		static string DecodedPath (SafeUri uri)
+		{
+			if (uri == null)
+				return string.Empty;
+			string local = uri.LocalPath;
+			return string.IsNullOrEmpty (local) ? uri.AbsolutePath : local;
 		}
 	}
 

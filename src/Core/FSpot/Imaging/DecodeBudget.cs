@@ -2,7 +2,6 @@
 
 using System;
 using System.IO;
-using System.Threading;
 
 namespace FSpot.Imaging
 {
@@ -36,8 +35,8 @@ namespace FSpot.Imaging
 
 		internal static IDisposable LimitForTest (long pixels)
 		{
-			Monitor.Enter (gate);
-			limitedTo = pixels;
+			lock (gate)
+				limitedTo = pixels;
 			return new RestoreLimit ();
 		}
 
@@ -45,8 +44,8 @@ namespace FSpot.Imaging
 		{
 			public void Dispose ()
 			{
-				limitedTo = 0;
-				Monitor.Exit (gate);
+				lock (gate)
+					limitedTo = 0;
 			}
 		}
 	}

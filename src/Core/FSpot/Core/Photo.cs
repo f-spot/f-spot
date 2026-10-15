@@ -299,9 +299,8 @@ namespace FSpot
 					Logger.Log.Debug ($"Removing empty directory: {directory.FullName}");
 					directory.Delete ();
 				} catch (Exception e) {
-					// silently log the exception, but don't re-throw it
-					// as to not annoy the user
-					Logger.Log.Error (e, "");
+					// Debug, so a folder that is already gone does not open a crash report.
+					Logger.Log.Debug (e, "");
 				}
 				// check to see if the parent is empty
 				DeleteEmptyDirectory (directory.Parent);

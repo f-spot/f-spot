@@ -2125,7 +2125,9 @@ public partial class MainWindowViewModel : ObservableObject
 		try {
 			while (op.Step ()) { }
 		} catch (RotateException ex) {
-			_ = shell.ShowWarningAsync (Strings.ErrorWhileRotatingPhoto, ex.Message);
+			string name = System.IO.Path.GetFileName (ex.Path);
+			_ = shell.ShowWarningAsync (Strings.ErrorWhileRotatingPhoto,
+				string.Format (Strings.ReceivedErrorXWhileAttemptingToRotateY, ex.Message, name));
 			return;
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Failed to rotate selection");

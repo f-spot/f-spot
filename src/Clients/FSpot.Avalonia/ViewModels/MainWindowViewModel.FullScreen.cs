@@ -42,7 +42,23 @@ public partial class MainWindowViewModel : IFullScreenHost
 	}
 
 	PhotoItemViewModel? ItemAt (string path)
-		=> Photos.FirstOrDefault (item => string.Equals (PathOf (item), path, StringComparison.Ordinal));
+		=> Photos.FirstOrDefault (item => Matches (item, path));
+
+	static bool Matches (PhotoItemViewModel item, string path)
+	{
+		if (item.Photo is Photo photo) {
+			foreach (uint versionId in photo.VersionIds) {
+				string versionPath = PhotoDriveDelete.PathFor (photo, versionId);
+				if (FileIdentity.Same (versionPath, path))
+					return true;
+			}
+
+			return false;
+		}
+
+		string? current = PathOf (item);
+		return current is not null && FileIdentity.Same (current, path);
+	}
 
 	public IPhoto? PhotoAt (string path)
 		=> ItemAt (path)?.Photo;
@@ -74,11 +90,16 @@ public partial class MainWindowViewModel : IFullScreenHost
 	{
 		if (ItemAt (path) is not { } item)
 			return false;
+		uint? id = item.Photo is Photo photo ? photo.Id : null;
 		SelectPhoto (item);
 		if (deleteFromDrive)
 			await DeleteFromDriveAsync ();
 		else
 			await RemoveFromCatalogAsync ();
+		// The edited file can disappear while the original stays. The slideshow
+		// path is then no longer the default version, and the photo is still here.
+		if (id is uint photoId)
+			return !Photos.Any (candidate => candidate.Photo is Photo kept && kept.Id == photoId);
 		return ItemAt (path) is null;
 	}
 }
