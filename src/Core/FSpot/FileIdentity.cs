@@ -81,7 +81,7 @@ namespace FSpot
 		{
 			string full = Path.GetFullPath (path);
 			if (Path.DirectorySeparatorChar == '\\')
-				return full;
+				return WindowsCanonical (full);
 			// realpath fails for a segment that does not exist yet. Walk up to an
 			// existing directory so the new name and its folder share one prefix.
 			string resolved = UnixReal (full);
@@ -105,6 +105,46 @@ namespace FSpot
 				return resolved;
 			}
 		}
+
+		// GetFullPath leaves a directory symlink in place, so a name inside the chosen
+		// folder can still point at another drive. net472 has no ResolveLinkTarget.
+		static string WindowsCanonical (string full)
+		{
+#if NET5_0_OR_GREATER
+			var pending = new Stack<string> ();
+			string current = full;
+			while (true) {
+				if (Directory.Exists (current) || File.Exists (current)) {
+					string resolved = WindowsFinal (current);
+					while (pending.Count > 0)
+						resolved = Path.Combine (resolved, pending.Pop ());
+					return resolved;
+				}
+				string name = Path.GetFileName (current);
+				string parent = Path.GetDirectoryName (current);
+				if (string.IsNullOrEmpty (parent) || string.IsNullOrEmpty (name) || parent == current)
+					return full;
+				pending.Push (name);
+				current = parent;
+			}
+#else
+			return full;
+#endif
+		}
+
+#if NET5_0_OR_GREATER
+		static string WindowsFinal (string path)
+		{
+			FileSystemInfo target = null;
+			if (Directory.Exists (path))
+				target = Directory.ResolveLinkTarget (path, returnFinalTarget: true);
+			else if (File.Exists (path))
+				target = File.ResolveLinkTarget (path, returnFinalTarget: true);
+			if (target == null)
+				return Path.GetFullPath (path);
+			return target.FullName;
+		}
+#endif
 
 		static string UnixReal (string path)
 		{
