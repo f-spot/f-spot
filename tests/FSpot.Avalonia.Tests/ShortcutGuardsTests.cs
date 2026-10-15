@@ -78,7 +78,14 @@ public sealed class ShortcutGuardsTests
 		AvaloniaApp.Ensure ();
 		Assert.IsFalse (ShortcutGuards.ContinueToWindowKeyBindings (new TextBox (), Key.V, KeyModifiers.None));
 		Assert.IsTrue (ShortcutGuards.ContinueToWindowKeyBindings (new Button (), Key.V, KeyModifiers.None));
-		Assert.IsTrue (ShortcutGuards.ContinueToWindowKeyBindings (new TextBox (), Key.V, KeyModifiers.Control));
+		Assert.IsTrue (ShortcutGuards.ContinueToWindowKeyBindings (new TextBox (), Key.V, KeyModifiers.Control, KeyModifiers.Meta));
+		Assert.IsFalse (ShortcutGuards.ContinueToWindowKeyBindings (new TextBox (), Key.V, KeyModifiers.Meta, KeyModifiers.Meta));
+		Assert.IsFalse (ShortcutGuards.ContinueToWindowKeyBindings (new TextBox (), Key.C, KeyModifiers.Control, KeyModifiers.Control));
+		Assert.IsTrue (ShortcutGuards.ContinueToWindowKeyBindings (new Button (), Key.C, KeyModifiers.Meta, KeyModifiers.Meta));
+		Assert.IsTrue (ShortcutGuards.ContinueToWindowKeyBindings (new TextBox (), Key.A, KeyModifiers.Meta | KeyModifiers.Shift, KeyModifiers.Meta));
+		Assert.IsFalse (ShortcutGuards.ContinueToWindowKeyBindings (new TextBox (), Key.F5, KeyModifiers.None, KeyModifiers.Meta));
+		Assert.IsTrue (ShortcutGuards.ContinueToWindowKeyBindings (new Button (), Key.F5, KeyModifiers.None, KeyModifiers.Meta));
+		Assert.IsTrue (ShortcutGuards.ContinueToWindowKeyBindings (new TextBox (), Key.Escape, KeyModifiers.None, KeyModifiers.Meta));
 		Assert.IsTrue (ShortcutGuards.ContinueToWindowKeyBindings (new TextBox (), Key.A, KeyModifiers.None));
 	}
 }

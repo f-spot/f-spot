@@ -4,6 +4,8 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.VisualTree;
 
+using FSpot.Avalonia;
+
 namespace FSpot.Avalonia.Input;
 
 public static class ShortcutGuards
@@ -38,5 +40,32 @@ public static class ShortcutGuards
 	// Window KeyBindings run in base.OnKeyDown. Returning false means the
 	// caller must not call base, so V can type into a TextBox.
 	public static bool ContinueToWindowKeyBindings (object? focused, Key key, KeyModifiers modifiers)
-		=> !(IsUnadornedLoupeKey (key, modifiers) && !AllowsUnadornedKey (focused));
+		=> ContinueToWindowKeyBindings (focused, key, modifiers, PlatformGestures.CommandModifiers);
+
+	public static bool ContinueToWindowKeyBindings (object? focused, Key key, KeyModifiers modifiers, KeyModifiers command)
+	{
+		if (modifiers == command && key is Key.C or Key.A or Key.V && OwnsText (focused))
+			return false;
+		if (modifiers == KeyModifiers.None && YieldsWhenTyping (key) && !AllowsUnadornedKey (focused, key))
+			return false;
+		return true;
+	}
+
+	// Window bindings for these keys must not run while a text box, list, or
+	// slider owns the key. Escape still dismisses find from a text box.
+	static bool YieldsWhenTyping (Key key)
+		=> key is Key.V or Key.F1 or Key.F5 or Key.F9 or Key.F11
+			or Key.Delete or Key.Left or Key.Right or Key.Up or Key.Down
+			or Key.OemOpenBrackets or Key.OemCloseBrackets;
+
+	static bool OwnsText (object? focused)
+	{
+		for (var visual = focused as Visual; visual is not null; visual = visual.GetVisualParent ()) {
+			if (visual is TextBox)
+				return true;
+			if (visual is TopLevel)
+				break;
+		}
+		return false;
+	}
 }

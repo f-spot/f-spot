@@ -60,6 +60,8 @@ public partial class MainWindow : Window, IAvaloniaShell
 			PlatformGestures.Apply (this);
 			EnsureMenuInAutomationTree ();
 			NativeMenuMirror.ApplyAsKeyBindings (this, NativeMenu.GetMenu (this));
+			PlatformGestures.ReleaseNativeEquivalents (NativeMenu.GetMenu (this));
+			PlatformGestures.GuardYieldingBindings (this);
 			GtkMnemonic.ApplyHotKey (ToolbarImportButton, FSpot.Resources.Lang.Strings.Import2);
 			GtkMnemonic.ApplyHotKey (EmptyImportButton, FSpot.Resources.Lang.Strings.Import2);
 		};
@@ -117,8 +119,7 @@ public partial class MainWindow : Window, IAvaloniaShell
 			e.Handled = true;
 			return;
 		}
-		if (e.Key is Key.Delete or Key.Left or Key.Right or Key.Up or Key.Down
-				&& !Input.ShortcutGuards.AllowsUnadornedKey (focused, e.Key))
+		if (!Input.ShortcutGuards.ContinueToWindowKeyBindings (focused, e.Key, e.KeyModifiers))
 			return;
 		base.OnKeyDown (e);
 	}

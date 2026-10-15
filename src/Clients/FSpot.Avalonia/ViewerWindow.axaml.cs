@@ -43,6 +43,7 @@ public partial class ViewerWindow : Window, IViewerShell
 		DataContext = viewModel;
 		InitializeComponent ();
 		PlatformGestures.Apply (this);
+		PlatformGestures.GuardYieldingBindings (this);
 
 		var (width, height) = ViewerSettings.Size;
 		if (width > 0 && height > 0) {
@@ -269,6 +270,9 @@ public partial class ViewerWindow : Window, IViewerShell
 			e.Handled = true;
 			return;
 		}
+		var focused = FocusManager?.GetFocusedElement () ?? e.Source;
+		if (!Input.ShortcutGuards.ContinueToWindowKeyBindings (focused, e.Key, e.KeyModifiers))
+			return;
 		base.OnKeyDown (e);
 	}
 
