@@ -50,8 +50,7 @@ namespace FSpot
 				quality = DefaultQuality;
 
 			string name = VersionName (photo);
-			string directory = Path.GetDirectoryName (raw.Uri.AbsolutePath) ?? string.Empty;
-			string developedPath = Path.Combine (directory, Path.GetFileNameWithoutExtension (photo.Name) + " (" + name + ").jpg");
+			string developedPath = DevelopedJpegPath (raw.Uri, photo.Name, name);
 			string conf = ConfPath (batch, baseDirectory, raw.Uri.AbsolutePath);
 			string arguments = BuildArguments (extraArguments, quality, conf, developedPath, raw.Uri.AbsolutePath);
 			// A cancelled or missing ufraw must not adopt a JPEG left by an earlier develop.
@@ -64,6 +63,13 @@ namespace FSpot
 			photo.DefaultVersionId = photo.AddVersion (developed.GetBaseUri (), developed.GetFilename (), name, true);
 			photo.Changes.DataChanged = true;
 			return true;
+		}
+
+		public static string DevelopedJpegPath (SafeUri original, string photoName, string versionName)
+		{
+			string directory = Path.GetDirectoryName (original.AbsolutePath) ?? string.Empty;
+			string file = Path.GetFileNameWithoutExtension (photoName) + " (" + versionName + ").jpg";
+			return Path.Combine (directory, file);
 		}
 
 		static string VersionName (Photo photo)

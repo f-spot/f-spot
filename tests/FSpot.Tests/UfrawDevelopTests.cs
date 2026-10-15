@@ -24,6 +24,40 @@ namespace FSpot.Tests
 		}
 
 		[TestMethod]
+		public void DevelopedJpegPath_KeepsAHashInTheFolder ()
+		{
+			string parent = Path.Combine (Path.GetTempPath (), "fspot-ufraw-" + Guid.NewGuid ().ToString ("N"));
+			string root = Path.Combine (parent, "Trip #2");
+			Directory.CreateDirectory (root);
+			string raw = Path.Combine (root, "shot.cr2");
+			File.WriteAllText (raw, "raw");
+			try {
+				string developed = UfrawDevelop.DevelopedJpegPath (SafeUri.FromPath (raw), "shot.cr2", "Developed");
+				Assert.AreEqual (Path.Combine (root, "shot (Developed).jpg"), developed);
+				Assert.Contains ("Trip #2", developed);
+			} finally {
+				Directory.Delete (parent, true);
+			}
+		}
+
+		// '?' is illegal in a Windows file name. DevelopedJpegPath only joins strings; creating the raw is what Windows rejects.
+		[TestMethod]
+		[OSCondition (ConditionMode.Exclude, OperatingSystems.Windows)]
+		public void DevelopedJpegPath_KeepsAQuestionMarkInTheFileName ()
+		{
+			string root = Path.Combine (Path.GetTempPath (), "fspot-ufraw-" + Guid.NewGuid ().ToString ("N"));
+			Directory.CreateDirectory (root);
+			string raw = Path.Combine (root, "q?x.cr2");
+			File.WriteAllText (raw, "raw");
+			try {
+				string developed = UfrawDevelop.DevelopedJpegPath (SafeUri.FromPath (raw), "q?x.cr2", "Developed");
+				Assert.AreEqual (Path.Combine (root, "q?x (Developed).jpg"), developed);
+			} finally {
+				Directory.Delete (root, true);
+			}
+		}
+
+		[TestMethod]
 		public void Develop_KeepsAHashInTheDevelopedFileName ()
 		{
 			string root = Path.Combine (Path.GetTempPath (), "fspot-ufraw-" + Guid.NewGuid ().ToString ("N"));

@@ -9,6 +9,10 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System.IO;
+
+using Hyena;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using TagLib;
@@ -19,6 +23,56 @@ namespace FSpot.Utils.Tests
 	[TestClass]
 	public class MetadataTest
 	{
+		[TestMethod]
+		public void Keyword_RoundTripsInAFolderWhoseNameContainsAHash ()
+		{
+			string root = Path.Combine (Path.GetTempPath (), "fspot-meta-" + System.Guid.NewGuid ().ToString ("N"));
+			string folder = Path.Combine (root, "Trip #2");
+			Directory.CreateDirectory (folder);
+			string source = ImageTestHelper.CreateTempFile ("taglib-sample.jpg").AbsolutePath;
+			string photo = Path.Combine (folder, "photo.jpg");
+			System.IO.File.Copy (source, photo, true);
+			RoundTripKeyword (root, source, photo, hashFolder: true);
+		}
+
+		// '?' is illegal in a Windows file name. The hash folder above is the case Windows can create.
+		[TestMethod]
+		[OSCondition (ConditionMode.Exclude, OperatingSystems.Windows)]
+		public void Keyword_RoundTripsInAFileWhoseNameContainsAQuestionMark ()
+		{
+			string root = Path.Combine (Path.GetTempPath (), "fspot-meta-" + System.Guid.NewGuid ().ToString ("N"));
+			Directory.CreateDirectory (root);
+			string source = ImageTestHelper.CreateTempFile ("taglib-sample.jpg").AbsolutePath;
+			string photo = Path.Combine (root, "q?x.jpg");
+			System.IO.File.Copy (source, photo, true);
+			RoundTripKeyword (root, source, photo, hashFolder: false);
+		}
+
+		static void RoundTripKeyword (string root, string source, string photo, bool hashFolder)
+		{
+			SafeUri uri = SafeUri.FromPath (photo);
+			try {
+				var file = MetadataUtils.Parse (uri);
+				file.ImageTag.Keywords = new[] { "Birthday" };
+				file.SaveSafely (uri, alwaysSidecar: false);
+				file.Dispose ();
+
+				var again = MetadataUtils.Parse (uri);
+				Assert.AreSequenceEqual (new[] { "Birthday" }, again.ImageTag.Keywords);
+				again.Dispose ();
+				Assert.IsTrue (System.IO.File.Exists (photo));
+				if (hashFolder) {
+					Assert.Contains ("#", Path.GetDirectoryName (photo));
+					Assert.IsFalse (Directory.Exists (Path.Combine (root, "Trip ")));
+				} else {
+					Assert.Contains ("?", Path.GetFileName (photo));
+				}
+			} finally {
+				ImageTestHelper.DeleteTempFile (new SafeUri (source, true));
+				Directory.Delete (root, true);
+			}
+		}
+
 		[TestMethod]
 		public void ValidateWithoutSidecar ()
 		{
