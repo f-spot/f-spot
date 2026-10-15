@@ -168,6 +168,30 @@ public sealed class SlideshowWindowTests
 	}
 
 	[UiTestMethod]
+	public void Slideshow_DoesNotStartTheFlipTimerWhenARemoveIsCancelledDuringADecode ()
+	{
+		AvaloniaApp.Ensure ();
+		var hold = DecodeGate.Enter ();
+		var host = new RecordingHost ();
+		var window = new SlideshowWindow (new[] { "/missing/a.jpg", "/missing/b.jpg" }, 0, host, play: true);
+		window.Show ();
+		Dispatcher.UIThread.RunJobs ();
+		try {
+			Press (window, Key.Delete);
+			Assert.AreEqual ("/missing/a.jpg", host.RemovedPath);
+			Assert.AreEqual ("/missing/a.jpg", window.CurrentPath);
+			Assert.IsFalse (window.FlipIsScheduled);
+		} finally {
+			window.Close ();
+			hold.Dispose ();
+		}
+
+		var until = DateTime.UtcNow.AddSeconds (2);
+		while (DateTime.UtcNow < until)
+			Dispatcher.UIThread.RunJobs ();
+	}
+
+	[UiTestMethod]
 	public void Slideshow_OpensPlaying_AndPlayPauseToggles ()
 	{
 		AvaloniaApp.Ensure ();

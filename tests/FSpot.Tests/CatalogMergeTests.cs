@@ -1,6 +1,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -174,6 +175,52 @@ namespace FSpot.Tests
 
 			Assert.AreEqual (0, result.Imported);
 			Assert.AreEqual ("stay.jpg", libraries.Destination.Photos.Query ("SELECT * FROM photos").Single ().Name);
+		}
+
+		[TestMethod]
+		[OSCondition (ConditionMode.Exclude, OperatingSystems.Windows)]
+		public void Merge_RefusesTheOpenCatalogWhenReachedThroughAHardLink ()
+		{
+			using var libraries = new Libraries ();
+			AddPhoto (libraries.Destination, Path.Combine (libraries.Root, "stay.jpg"), libraries.Destination.Rolls.Create (January).Id, Shot);
+			string link = Path.Combine (libraries.Root, "via-hard.db");
+			using (Process linkProcess = Process.Start (new ProcessStartInfo {
+				FileName = "/bin/ln",
+				ArgumentList = { libraries.DestinationPath, link },
+				UseShellExecute = false,
+			})) {
+				linkProcess.WaitForExit ();
+				Assert.AreEqual (0, linkProcess.ExitCode);
+			}
+
+			CatalogMergeResult result = libraries.MergeInto (link, libraries.DestinationPath, copyFiles: true, CatalogRollChoice.All, 0);
+
+			Assert.AreEqual (0, result.Imported);
+			Assert.AreEqual ("stay.jpg", libraries.Destination.Photos.Query ("SELECT * FROM photos").Single ().Name);
+		}
+
+		[TestMethod]
+		[OSCondition (ConditionMode.Exclude, OperatingSystems.Windows)]
+		public void Merge_DoesNotCopyThroughADirectoryLinkOnTheDatePath ()
+		{
+			using var libraries = new Libraries ();
+			string sourceFile = Path.Combine (libraries.Root, "present.jpg");
+			Db source = libraries.Open (libraries.SourcePath);
+			try {
+				AddPhoto (source, sourceFile, source.Rolls.Create (June).Id, Shot);
+			} finally {
+				source.Dispose ();
+			}
+			string outside = Path.Combine (libraries.Root, "outside");
+			Directory.CreateDirectory (outside);
+			Directory.CreateSymbolicLink (Path.Combine (libraries.Library.AbsolutePath, "2020"), outside);
+
+			CatalogMergeResult result = libraries.Merge (copyFiles: true, CatalogRollChoice.All, 0);
+
+			Assert.AreEqual (0, result.Imported);
+			Assert.AreEqual (sourceFile, result.Missing.Single ());
+			Assert.IsFalse (File.Exists (Path.Combine (outside, "01", "02", "present.jpg")));
+			Assert.IsEmpty (libraries.Destination.Photos.Query ("SELECT * FROM photos").ToList ());
 		}
 
 		[TestMethod]

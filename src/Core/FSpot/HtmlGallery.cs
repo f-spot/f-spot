@@ -157,9 +157,10 @@ namespace FSpot
 
 		// "North Beach" and "North_Beach" sanitize to one file name, and a later
 		// page (tag_North_Beach_1.html) can match another tag's first page.
+		// tag_Beach_1.html and tag_beach_1.html are one file on a case-insensitive volume.
 		static Dictionary<string, string> TagStems (SortedDictionary<string, List<int>> tags)
 		{
-			var used = new HashSet<string> (StringComparer.Ordinal);
+			var used = new HashSet<string> (StringComparer.OrdinalIgnoreCase);
 			var stems = new Dictionary<string, string> (StringComparer.Ordinal);
 			foreach (KeyValuePair<string, List<int>> tag in tags) {
 				int pages = (tag.Value.Count + PageSize - 1) / PageSize;

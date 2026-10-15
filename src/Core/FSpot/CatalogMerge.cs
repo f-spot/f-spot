@@ -217,6 +217,9 @@ namespace FSpot
 				return null;
 			string name = uri.GetFilename ();
 			SafeUri folder = libraryRoot.Append (time.Year.ToString ()).Append (time.Month.ToString ("D2")).Append (time.Day.ToString ("D2"));
+			// CreateDirectory follows a directory link, so a year folder pointing outside the library would receive the copy.
+			if (!FileIdentity.IsInside (libraryRoot.AbsolutePath, folder.AbsolutePath))
+				return null;
 			Directory.CreateDirectory (folder.AbsolutePath);
 
 			SafeUri candidate = folder.Append (name);

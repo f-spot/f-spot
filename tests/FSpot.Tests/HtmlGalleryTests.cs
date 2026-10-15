@@ -227,6 +227,37 @@ namespace FSpot.Tests
 		}
 
 		[TestMethod]
+		public void Write_DoesNotLetATagPageReplaceAnotherTagThatDiffersOnlyByCase ()
+		{
+			string root = NewRoot ();
+			string dest = Path.Combine (root, "chosen");
+			Directory.CreateDirectory (dest);
+			var photos = new List<HtmlGalleryPhoto> ();
+			for (int i = 0; i < 17; i++) {
+				string source = Path.Combine (root, "p" + i + ".jpg");
+				File.WriteAllText (source, "full-bytes");
+				var tags = new List<string> { "beach" };
+				if (i == 0)
+					tags.Add ("Beach_1");
+				photos.Add (new HtmlGalleryPhoto (source, "plain", tags));
+			}
+			try {
+				HtmlGallery.Write (dest, "Trip", photos, null);
+
+				string gallery = Path.Combine (dest, "Trip");
+				string onePhoto = File.ReadAllText (Path.Combine (gallery, "tag_Beach_1.html"));
+				string laterPage = File.ReadAllText (Path.Combine (gallery, "tag_beach-2_1.html"));
+				Assert.Contains ("Trip: Beach_1", onePhoto);
+				Assert.Contains ("img-1.html", onePhoto);
+				Assert.DoesNotContain ("img-17.html", onePhoto);
+				Assert.Contains ("Trip: beach", laterPage);
+				Assert.Contains ("img-17.html", laterPage);
+			} finally {
+				Directory.Delete (root, true);
+			}
+		}
+
+		[TestMethod]
 		public void StaysInFolder_RejectsANameThatIsADirectoryLink ()
 		{
 			string root = NewRoot ();

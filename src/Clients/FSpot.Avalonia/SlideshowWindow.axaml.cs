@@ -104,6 +104,9 @@ public partial class SlideshowWindow : Window
 
 	public bool IsPlaying => playing;
 
+	// A tick while a decode is in flight would advance as soon as that decode finishes.
+	internal bool FlipIsScheduled => flipTimer.IsEnabled;
+
 	public string CurrentPath => sequence.Current;
 
 	static string TransitionName (SlideshowTransitionKind kind)
@@ -288,7 +291,7 @@ public partial class SlideshowWindow : Window
 			showedNext = true;
 		} finally {
 			busy = false;
-			if (resume && playing && IsVisible && !showedNext)
+			if (resume && playing && IsVisible && !showedNext && !slidePending)
 				flipTimer.Start ();
 			// GTK presents the fullscreen view again so the confirmation dialog does not leave it buried.
 			if (IsVisible)

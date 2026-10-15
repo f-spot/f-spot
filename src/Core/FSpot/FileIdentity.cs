@@ -17,10 +17,47 @@ namespace FSpot
 			if (string.IsNullOrEmpty (left) || string.IsNullOrEmpty (right))
 				return false;
 			try {
-				return string.Equals (Canonical (left), Canonical (right), Comparison);
+				if (string.Equals (Canonical (left), Canonical (right), Comparison))
+					return true;
+				return SameNode (left, right);
 			} catch (Exception) {
 				return false;
 			}
+		}
+
+		// realpath keeps two names for one inode distinct. A hard link of the open catalog is still that catalog.
+		static bool SameNode (string left, string right)
+		{
+			if (Path.DirectorySeparatorChar == '\\')
+				return false;
+			if (!TryNode (left, out ulong device, out ulong inode))
+				return false;
+			if (!TryNode (right, out ulong otherDevice, out ulong otherInode))
+				return false;
+			return device == otherDevice && inode == otherInode;
+		}
+
+		static bool TryNode (string path, out ulong device, out ulong inode)
+		{
+			device = 0;
+			inode = 0;
+			var buffer = new byte[256];
+			if (stat (Encoding.UTF8.GetBytes (path + "\0"), buffer) != 0)
+				return false;
+			// Darwin st_dev is 4 bytes at 0 and st_ino is 8 bytes at 8. The 8 bytes at 0
+			// also cover mode and link count, which a hard link shares. Linux stores
+			// st_dev and st_ino as the 8-byte fields at those same offsets.
+			device = ReadLittle (buffer, 0);
+			inode = ReadLittle (buffer, 8);
+			return inode != 0;
+		}
+
+		static ulong ReadLittle (byte[] buffer, int offset)
+		{
+			ulong value = 0;
+			for (int i = 0; i < 8; i++)
+				value |= (ulong)buffer[offset + i] << (8 * i);
+			return value;
 		}
 
 		public static bool IsInside (string folder, string candidate)
@@ -90,6 +127,9 @@ namespace FSpot
 			Marshal.Copy (native, bytes, 0, length);
 			return Encoding.UTF8.GetString (bytes);
 		}
+
+		[DllImport ("libc", EntryPoint = "stat")]
+		static extern int stat (byte[] path, byte[] buffer);
 
 		[DllImport ("libc", EntryPoint = "realpath")]
 		static extern IntPtr realpath (byte[] path, IntPtr resolved);
