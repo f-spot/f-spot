@@ -3,6 +3,7 @@ using Avalonia.Svg.Skia;
 using Avalonia.Threading;
 
 using FSpot;
+using FSpot.Avalonia.Imaging;
 using FSpot.Cms;
 
 using Sentry;
@@ -19,6 +20,8 @@ static class Program
 			Logger.CreateLogger ();
 			MacDisplayLink.WaitForActiveDisplay ();
 			try {
+				// Before any window chrome. The rasterizer type may not have been touched yet.
+				SvgRasterizer.DenyExternalResources ();
 				BuildAvaloniaApp ().StartWithClassicDesktopLifetime (args);
 			} catch (Exception ex) {
 				SentrySdk.CaptureException (ex);
@@ -33,6 +36,7 @@ static class Program
 	public static AppBuilder BuildAvaloniaApp ()
 	{
 		GC.KeepAlive (typeof (SvgImageExtension).Assembly);
+		SvgRasterizer.DenyExternalResources ();
 		return AppBuilder.Configure<App> ()
 			.UsePlatformDetect ()
 			.WithInterFont ()

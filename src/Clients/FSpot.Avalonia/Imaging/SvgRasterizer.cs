@@ -20,14 +20,24 @@ static class SvgRasterizer
 
 	const int SniffLength = 4096;
 
+	// A character reference keeps the scheme out of the literal href/url patterns until the XML parser decodes it.
+	static readonly Regex EntityEncodedScheme = new (
+		@"(?:https?|file)(?:&#0*58;|&#x0*3a;)",
+		RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant);
 	static readonly Regex ExternalHref = new (
 		@"(href\s*=\s*)(['""])(?:https?:|file:|//)[^'""]*\2",
 		RegexOptions.IgnoreCase | RegexOptions.Compiled);
 	static readonly Regex ExternalCssUrl = new (
 		@"url\(\s*(['""]?)(?:https?:|file:|//)[^)'""]*\1\s*\)",
 		RegexOptions.IgnoreCase | RegexOptions.Compiled);
+	static readonly Regex ExternalImport = new (
+		@"@import\s+(?:url\(\s*(['""]?)[^)'""]*(?:file:|https?:|//)[^)'""]*\1\s*\)|(['""])[^'""]*(?:file:|https?:|//)[^'""]*\2)",
+		RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 	static SvgRasterizer ()
+		=> DenyExternalResources ();
+
+	internal static void DenyExternalResources ()
 	{
 		Svg.SvgDocument.ResolveExternalImages = Svg.ExternalType.None;
 		Svg.SvgDocument.ResolveExternalElements = Svg.ExternalType.None;
@@ -63,7 +73,11 @@ static class SvgRasterizer
 			}
 
 			using var sanitized = Sanitize (input);
-			using var svg = SKSvg.CreateFromStream (sanitized);
+			using var svg = SKSvg.CreateFromStream (sanitized, new Svg.Model.SvgParameters {
+				LoadOptions = new Svg.SvgDocumentLoadOptions {
+					ExternalResources = Svg.SvgExternalResourcePolicy.Disabled
+				}
+			});
 			var picture = svg.Picture ?? throw new InvalidOperationException ("Failed to rasterize SVG.");
 			var bounds = picture.CullRect;
 			float longest = Math.Max (bounds.Width, bounds.Height);
@@ -134,6 +148,8 @@ static class SvgRasterizer
 		using var copy = new MemoryStream ();
 		bounded.CopyTo (copy);
 		string text = Encoding.UTF8.GetString (copy.ToArray ());
+		text = EntityEncodedScheme.Replace (text, "file:");
+		text = ExternalImport.Replace (text, "");
 		text = ExternalHref.Replace (text, "$1$2$2");
 		text = ExternalCssUrl.Replace (text, "url()");
 		return new MemoryStream (Encoding.UTF8.GetBytes (text));

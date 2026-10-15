@@ -53,14 +53,17 @@ namespace FSpot.Slideshow
 		}
 
 		/// <summary>
-		/// Drops <paramref name="path"/> even when the show has moved on. Returns false when the path is
-		/// absent or nothing is left to show. Removing the current photo leaves the one that followed it.
+		/// Drops <paramref name="path"/> even when the show has moved on. When the photo on screen is that
+		/// path, that copy is the one removed; otherwise the first match goes. Returns false when the path
+		/// is absent or nothing is left to show. Removing the current photo leaves the one that followed it.
 		/// </summary>
 		public bool Remove (string path)
 		{
 			if (paths.Count == 0 || path is null)
 				return false;
-			int at = paths.FindIndex (item => string.Equals (item, path, StringComparison.Ordinal));
+			int at = string.Equals (paths[index], path, StringComparison.Ordinal)
+				? index
+				: paths.FindIndex (item => string.Equals (item, path, StringComparison.Ordinal));
 			if (at < 0)
 				return false;
 			paths.RemoveAt (at);

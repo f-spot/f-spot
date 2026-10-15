@@ -97,6 +97,43 @@ namespace FSpot.Tests
 		}
 
 		[TestMethod]
+		public void Remove_ShownDuplicate_DropsThatCopyAndShowsTheFollower ()
+		{
+			var sequence = new SlideshowSequence (new[] { "/a.jpg", "/a.jpg", "/b.jpg" }, startIndex: 1);
+
+			Assert.IsTrue (sequence.Remove ("/a.jpg"));
+
+			Assert.AreEqual ("/b.jpg", sequence.Current);
+			Assert.AreEqual (1, sequence.Index);
+			Assert.IsTrue (sequence.Retreat ());
+			Assert.AreEqual ("/a.jpg", sequence.Current);
+		}
+
+		[TestMethod]
+		public void RemoveCurrent_DuplicateAtTheEnd_StepsBackToThePreviousPhoto ()
+		{
+			var sequence = new SlideshowSequence (new[] { "/a.jpg", "/b.jpg", "/a.jpg" }, startIndex: 2);
+
+			Assert.IsTrue (sequence.RemoveCurrent ());
+
+			Assert.AreEqual ("/b.jpg", sequence.Current);
+			Assert.AreEqual (1, sequence.Index);
+		}
+
+		[TestMethod]
+		public void Remove_DuplicateThatIsNotCurrent_DropsTheFirstCopy ()
+		{
+			var sequence = new SlideshowSequence (new[] { "/a.jpg", "/b.jpg", "/a.jpg" }, startIndex: 1);
+
+			Assert.IsTrue (sequence.Remove ("/a.jpg"));
+
+			Assert.AreEqual ("/b.jpg", sequence.Current);
+			Assert.AreEqual (0, sequence.Index);
+			Assert.IsTrue (sequence.Advance ());
+			Assert.AreEqual ("/a.jpg", sequence.Current);
+		}
+
+		[TestMethod]
 		public void Constructor_CopiesThePaths ()
 		{
 			var paths = new System.Collections.Generic.List<string> { "/a.jpg", "/b.jpg" };

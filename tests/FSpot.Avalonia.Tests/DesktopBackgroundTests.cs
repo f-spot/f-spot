@@ -2,6 +2,8 @@
 
 using System.Diagnostics;
 
+using FSpot.Resources.Lang;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FSpot.Avalonia.Tests;
@@ -85,8 +87,7 @@ public sealed class DesktopBackgroundTests
 	{
 		var failed = Assert.ThrowsExactly<InvalidOperationException> (() =>
 			DesktopBackground.EnsureProcessSucceeded ("/usr/bin/gsettings", 1, "no schema"));
-		Assert.Contains ("exited 1", failed.Message);
-		Assert.Contains ("no schema", failed.Message);
+		Assert.AreEqual (string.Format (Strings.WallpaperToolExited, "/usr/bin/gsettings", 1, "no schema"), failed.Message);
 		DesktopBackground.EnsureProcessSucceeded ("/usr/bin/gsettings", 0, string.Empty);
 	}
 
@@ -95,7 +96,8 @@ public sealed class DesktopBackgroundTests
 	{
 		var failed = Assert.ThrowsExactly<InvalidOperationException> (() =>
 			DesktopBackground.EnsureWindowsWallpaperAccepted (false));
-		Assert.Contains ("SystemParametersInfo", failed.Message);
+		int code = int.Parse (failed.Message.Substring (failed.Message.IndexOf ('(') + 1, failed.Message.IndexOf (')') - failed.Message.IndexOf ('(') - 1));
+		Assert.AreEqual (string.Format (Strings.SystemParametersInfoFailed, code), failed.Message);
 	}
 
 	[UiTestMethod]
@@ -141,11 +143,35 @@ public sealed class DesktopBackgroundTests
 			DesktopBackground.CurrentDesktop = () => "KDE";
 			DesktopBackground.StartProcess = _ => launched = true;
 			var failed = Assert.ThrowsExactly<InvalidOperationException> (() => DesktopBackground.Set ("/tmp/wall.jpg"));
-			Assert.Contains ("not supported", failed.Message);
+			Assert.AreEqual (Strings.DesktopBackgroundNotSupported, failed.Message);
 			Assert.IsFalse (launched);
 		} finally {
 			DesktopBackground.StartProcess = originalStart;
 			DesktopBackground.CurrentDesktop = originalDesktop;
+		}
+	}
+
+	[UiTestMethod]
+	[OSCondition (ConditionMode.Exclude, OperatingSystems.Windows)]
+	public void DefaultStart_StopsWaitingWhenTheToolDoesNotExit ()
+	{
+		TimeSpan previous = DesktopBackground.ToolTimeout;
+		try {
+			DesktopBackground.ToolTimeout = TimeSpan.FromMilliseconds (200);
+			var start = new ProcessStartInfo {
+				FileName = "/bin/sleep",
+				UseShellExecute = false,
+				RedirectStandardError = true,
+				RedirectStandardOutput = true
+			};
+			start.ArgumentList.Add ("2");
+			var watch = Stopwatch.StartNew ();
+			var failed = Assert.ThrowsExactly<InvalidOperationException> (() => DesktopBackground.DefaultStart (start));
+			watch.Stop ();
+			Assert.IsLessThan (TimeSpan.FromSeconds (1), watch.Elapsed);
+			Assert.AreEqual (Strings.DesktopBackgroundTimedOut, failed.Message);
+		} finally {
+			DesktopBackground.ToolTimeout = previous;
 		}
 	}
 }

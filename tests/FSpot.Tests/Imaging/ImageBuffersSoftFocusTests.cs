@@ -55,6 +55,22 @@ namespace FSpot.Imaging.Tests
 			Assert.IsLessThan (tight.Pixels[at], wide.Pixels[at]);
 		}
 
+		[TestMethod]
+		public void SoftFocus_CenterPixelStaysSharpWhenTheMaskIsCenteredOnIt ()
+		{
+			const int size = 256;
+			var pixels = new byte[size * size * 3];
+			int center = 128 * size * 3 + 128 * 3;
+			pixels[center] = pixels[center + 1] = pixels[center + 2] = 200;
+			var input = new ImageBuffer (size, size, false, size * 3, pixels);
+
+			var output = ImageBuffers.SoftFocus (input, 0);
+
+			Assert.AreEqual (200, output.Pixels[center]);
+			Assert.AreEqual (200, output.Pixels[center + 1]);
+			Assert.AreEqual (200, output.Pixels[center + 2]);
+		}
+
 		static byte[] Repeat (byte value, int count)
 		{
 			var data = new byte[count];

@@ -748,6 +748,24 @@ namespace FSpot.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Setting the desktop background is not supported on this desktop.
+        /// </summary>
+        public static string DesktopBackgroundNotSupported {
+            get {
+                return ResourceManager.GetString("DesktopBackgroundNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setting the desktop background timed out.
+        /// </summary>
+        public static string DesktopBackgroundTimedOut {
+            get {
+                return ResourceManager.GetString("DesktopBackgroundTimedOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to De_tach.
         /// </summary>
         public static string DetachMnemonic {
@@ -3545,6 +3563,15 @@ namespace FSpot.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SystemParametersInfo failed ({0})..
+        /// </summary>
+        public static string SystemParametersInfoFailed {
+            get {
+                return ResourceManager.GetString("SystemParametersInfoFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to System profile.
         /// </summary>
         public static string SystemProfile {
@@ -4010,6 +4037,24 @@ namespace FSpot.Resources.Lang {
         public static string WaitingForResponseXOfY {
             get {
                 return ResourceManager.GetString("WaitingForResponseXOfY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} did not start..
+        /// </summary>
+        public static string WallpaperToolDidNotStart {
+            get {
+                return ResourceManager.GetString("WallpaperToolDidNotStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} exited {1}: {2}.
+        /// </summary>
+        public static string WallpaperToolExited {
+            get {
+                return ResourceManager.GetString("WallpaperToolExited", resourceCulture);
             }
         }
         

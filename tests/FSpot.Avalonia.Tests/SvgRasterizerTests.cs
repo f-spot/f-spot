@@ -14,6 +14,7 @@ using SkiaSharp;
 namespace FSpot.Avalonia.Tests;
 
 [TestClass]
+[DoNotParallelize]
 public sealed class SvgRasterizerTests
 {
 	const string RedRectSvg = """
@@ -132,6 +133,35 @@ public sealed class SvgRasterizerTests
 	}
 
 	[UiTestMethod]
+	public void Rasterize_DoesNotOpenAnImportedStylesheet ()
+	{
+		string root = Path.Combine (Path.GetTempPath (), "fspot-svg-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (root);
+		string css = Path.Combine (root, "secret.css");
+		File.WriteAllText (css, "rect { fill: #00ff00 !important; }");
+		string literal = new Uri (css).AbsoluteUri;
+		// The colon is a character reference, so a literal file: strip leaves a URI the XML parser decodes.
+		string encoded = literal.Replace (":", "&#58;");
+		string svg = $"""
+			<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+			  <style type="text/css">@import "{literal}"; @import "{encoded}";</style>
+			  <rect width="32" height="32" fill="#ff0000"/>
+			</svg>
+			""";
+		try {
+			using var stream = new MemoryStream (Encoding.UTF8.GetBytes (svg));
+			byte[] png = SvgRasterizer.RasterizePng (stream, 32);
+			using var bitmap = SKBitmap.Decode (png);
+			SKColor pixel = bitmap.GetPixel (16, 16);
+			Assert.AreEqual (255, pixel.Red);
+			Assert.AreEqual (0, pixel.Green);
+			Assert.AreEqual (0, pixel.Blue);
+		} finally {
+			Directory.Delete (root, true);
+		}
+	}
+
+	[UiTestMethod]
 	public void Rasterize_RejectsAnSvgThatInflatesPastTheByteCap ()
 	{
 		int previous = SvgRasterizer.SvgByteLimit;
@@ -142,6 +172,24 @@ public sealed class SvgRasterizerTests
 			Assert.ThrowsExactly<InvalidOperationException> (() => SvgRasterizer.RasterizePng (stream, 16));
 		} finally {
 			SvgRasterizer.SvgByteLimit = previous;
+		}
+	}
+
+	[UiTestMethod]
+	public void DenyExternalResources_ClosesResourcesThatWereOpenedAgain ()
+	{
+		Svg.SvgDocument.ResolveExternalImages = Svg.ExternalType.Remote;
+		Svg.SvgDocument.ResolveExternalElements = Svg.ExternalType.Local;
+		Svg.SvgDocument.ResolveExternalXmlEntites = Svg.ExternalType.Remote;
+		try {
+			SvgRasterizer.DenyExternalResources ();
+			Assert.AreEqual (Svg.ExternalType.None, Svg.SvgDocument.ResolveExternalImages);
+			Assert.AreEqual (Svg.ExternalType.None, Svg.SvgDocument.ResolveExternalElements);
+			Assert.AreEqual (Svg.ExternalType.None, Svg.SvgDocument.ResolveExternalXmlEntites);
+		} finally {
+			Svg.SvgDocument.ResolveExternalImages = Svg.ExternalType.None;
+			Svg.SvgDocument.ResolveExternalElements = Svg.ExternalType.None;
+			Svg.SvgDocument.ResolveExternalXmlEntites = Svg.ExternalType.None;
 		}
 	}
 

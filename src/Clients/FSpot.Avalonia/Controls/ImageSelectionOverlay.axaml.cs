@@ -94,9 +94,9 @@ public partial class ImageSelectionOverlay : UserControl
 		// GTK re-constrains the live selection when the ratio changes.
 		if (change.Property == SelectionXyRatioProperty && !current.IsEmpty && !dragging) {
 			var constrained = Constrain (current);
+			current = constrained;
 			ShowSelection (constrained);
-			if (!constrained.IsEmpty)
-				SelectionCommand?.Execute (constrained);
+			SelectionCommand?.Execute (constrained);
 		} else if (change.Property == PreviewProperty && !ReferenceEquals (change.OldValue, change.NewValue)) {
 			current = default;
 			Marquee.IsVisible = false;

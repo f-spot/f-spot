@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
+using FSpot.Resources.Lang;
+
 namespace FSpot.Avalonia;
 
 public readonly record struct WallpaperCommand (string FileName, IReadOnlyList<string> Arguments);
@@ -53,7 +55,7 @@ public static class DesktopBackground
 		}
 
 		if (OperatingSystem.IsLinux () && !IsGnomeDesktop (CurrentDesktop ()))
-			throw new InvalidOperationException ("Setting the desktop background is not supported on this desktop.");
+			throw new InvalidOperationException (Strings.DesktopBackgroundNotSupported);
 
 		IReadOnlyList<WallpaperCommand> commands;
 		if (OperatingSystem.IsMacOS ())
@@ -61,7 +63,7 @@ public static class DesktopBackground
 		else if (OperatingSystem.IsLinux ())
 			commands = LinuxCommands (path);
 		else
-			throw new InvalidOperationException ("Setting the desktop background is not supported on this desktop.");
+			throw new InvalidOperationException (Strings.DesktopBackgroundNotSupported);
 
 		foreach (WallpaperCommand command in commands)
 			Run (command);
@@ -70,6 +72,9 @@ public static class DesktopBackground
 	internal static Func<string> CurrentDesktop = () => Environment.GetEnvironmentVariable ("XDG_CURRENT_DESKTOP") ?? string.Empty;
 
 	internal static Action<ProcessStartInfo> StartProcess = DefaultStart;
+
+	// osascript can sit on an Automation prompt. The wait has to end.
+	internal static TimeSpan ToolTimeout = TimeSpan.FromSeconds (30);
 
 	internal static bool IsGnomeDesktop (string? desktop)
 		=> !string.IsNullOrEmpty (desktop) && desktop.Contains ("GNOME", StringComparison.OrdinalIgnoreCase);
@@ -90,13 +95,13 @@ public static class DesktopBackground
 	internal static void EnsureProcessSucceeded (string fileName, int exitCode, string stderr)
 	{
 		if (exitCode != 0)
-			throw new InvalidOperationException ($"{fileName} exited {exitCode}: {stderr}");
+			throw new InvalidOperationException (string.Format (Strings.WallpaperToolExited, fileName, exitCode, stderr));
 	}
 
 	internal static void EnsureWindowsWallpaperAccepted (bool accepted)
 	{
 		if (!accepted)
-			throw new InvalidOperationException ($"SystemParametersInfo failed ({Marshal.GetLastWin32Error ()}).");
+			throw new InvalidOperationException (string.Format (Strings.SystemParametersInfoFailed, Marshal.GetLastWin32Error ()));
 	}
 
 	static WallpaperCommand GnomeCommand (string key, string uri)
@@ -107,15 +112,25 @@ public static class DesktopBackground
 		try {
 			StartProcess (CreateStartInfo (command));
 		} catch (Exception ex) when (ex is Win32Exception or FileNotFoundException) {
-			throw new InvalidOperationException ("Setting the desktop background is not supported on this desktop.", ex);
+			throw new InvalidOperationException (Strings.DesktopBackgroundNotSupported, ex);
 		}
 	}
 
-	static void DefaultStart (ProcessStartInfo start)
+	internal static void DefaultStart (ProcessStartInfo start)
 	{
-		using var process = Process.Start (start) ?? throw new InvalidOperationException ($"{start.FileName} did not start.");
+		using var process = Process.Start (start) ?? throw new InvalidOperationException (string.Format (Strings.WallpaperToolDidNotStart, start.FileName));
 		// gsettings and osascript write a few lines. Read after exit so the exit code is the result.
-		process.WaitForExit ();
+		int milliseconds = ToolTimeout <= TimeSpan.Zero
+			? 0
+			: (int)Math.Min (int.MaxValue, ToolTimeout.TotalMilliseconds);
+		if (!process.WaitForExit (milliseconds)) {
+			try {
+				process.Kill (entireProcessTree: true);
+			} catch (Exception ex) when (ex is InvalidOperationException or Win32Exception) {
+			}
+			process.WaitForExit (1000);
+			throw new InvalidOperationException (Strings.DesktopBackgroundTimedOut);
+		}
 		string stderr = process.StandardError.ReadToEnd ();
 		_ = process.StandardOutput.ReadToEnd ();
 		EnsureProcessSucceeded (start.FileName, process.ExitCode, stderr);

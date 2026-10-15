@@ -166,6 +166,29 @@ public sealed class ImageSelectionOverlayTests
 		Assert.AreEqual (60, command.Last.Value.Height);
 	}
 
+	[UiTestMethod]
+	public void ChangingTheRatio_ClearsTheSelectionWhenTheConstraintCannotFit ()
+	{
+		AvaloniaApp.Ensure ();
+		var command = new RecordingCommand ();
+		var overlay = ShowOverlay (new ImageSelectionOverlay {
+			Width = 200,
+			Height = 100,
+			ImageWidth = 200,
+			ImageHeight = 100,
+			SelectionCommand = command
+		});
+		overlay.CompleteSelection (new Point (10, 10), new Point (70, 40));
+		Assert.IsFalse (command.Last is { IsEmpty: true });
+
+		overlay.SelectionXyRatio = 10_000;
+
+		Assert.IsTrue (command.Last is { IsEmpty: true });
+
+		overlay.SelectionXyRatio = 1;
+		Assert.IsTrue (command.Last is { IsEmpty: true });
+	}
+
 	static ImageSelectionOverlay ShowOverlay (ImageSelectionOverlay overlay)
 	{
 		var window = new Window {

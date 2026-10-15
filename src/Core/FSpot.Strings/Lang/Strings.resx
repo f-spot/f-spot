@@ -334,6 +334,21 @@
   <data name="Description" xml:space="preserve">
     <value>Description:</value>
   </data>
+  <data name="DesktopBackgroundNotSupported" xml:space="preserve">
+    <value>Setting the desktop background is not supported on this desktop.</value>
+  </data>
+  <data name="DesktopBackgroundTimedOut" xml:space="preserve">
+    <value>Setting the desktop background timed out.</value>
+  </data>
+  <data name="SystemParametersInfoFailed" xml:space="preserve">
+    <value>SystemParametersInfo failed ({0}).</value>
+  </data>
+  <data name="WallpaperToolDidNotStart" xml:space="preserve">
+    <value>{0} did not start.</value>
+  </data>
+  <data name="WallpaperToolExited" xml:space="preserve">
+    <value>{0} exited {1}: {2}</value>
+  </data>
   <data name="DetachMnemonic" xml:space="preserve">
     <value>De_tach</value>
   </data>
