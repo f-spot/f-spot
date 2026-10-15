@@ -202,7 +202,7 @@ public sealed class FeatureTourDialogTests
 		} finally {
 			window.Close ();
 			database.Dispose ();
-			Directory.Delete (root, true);
+			DeleteWhenReleased (root);
 		}
 	}
 
@@ -789,7 +789,7 @@ public sealed class FeatureTourDialogTests
 			if (Window.IsVisible)
 				Window.Close ();
 			database.Dispose ();
-			Directory.Delete (root, true);
+			DeleteWhenReleased (root);
 		}
 	}
 
@@ -850,6 +850,20 @@ public sealed class FeatureTourDialogTests
 		string dest = Path.Combine (Path.GetTempPath (), Guid.NewGuid ().ToString ("N") + ".jpg");
 		File.Copy (source, dest);
 		return dest;
+	}
+
+	// A slideshow decode still has the JPEG open. Windows will not delete it
+	// until that read finishes. Unix deletes an open file, so only Windows noticed.
+	static void DeleteWhenReleased (string root)
+	{
+		for (int attempt = 0; ; attempt++) {
+			try {
+				Directory.Delete (root, true);
+				return;
+			} catch (IOException) when (attempt < 20) {
+				System.Threading.Thread.Sleep (50);
+			}
+		}
 	}
 
 	static async Task Drain ()

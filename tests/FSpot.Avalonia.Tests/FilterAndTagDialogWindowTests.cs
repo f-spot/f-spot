@@ -1,5 +1,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using Avalonia.Threading;
+
 using FSpot.Avalonia.Dialogs;
 using FSpot.Core;
 
@@ -11,6 +13,10 @@ namespace FSpot.Avalonia.Tests;
 [DoNotParallelize]
 public sealed class FilterAndTagDialogWindowTests
 {
+	public TestContext TestContext { get; }
+
+	public FilterAndTagDialogWindowTests (TestContext testContext) => TestContext = testContext;
+
 	[TestInitialize]
 	public void Start ()
 		=> AvaloniaApp.Ensure ();
@@ -152,13 +158,19 @@ public sealed class FilterAndTagDialogWindowTests
 	}
 
 	[UiTestMethod]
-	public void EditTagIcon_PhotoSelectionBecomesTheIcon ()
+	public async Task EditTagIcon_PhotoSelectionBecomesTheIcon ()
 	{
 		var (_, _, mom) = Tree ();
 		string sample = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
 		var window = new EditTagIconWindow (new TagIconSource (mom, [sample, sample]), null);
 
 		Assert.AreEqual (1, window.PhotoNumber);
+		long started = Environment.TickCount64;
+		while (window.Preview?.Icon is null && Environment.TickCount64 - started < 5_000) {
+			await Dispatcher.UIThread.InvokeAsync (() => { }, DispatcherPriority.Background, TestContext.CancellationToken);
+			await Task.Delay (10, TestContext.CancellationToken);
+		}
+
 		Assert.IsNotNull (window.Preview?.Icon);
 		Assert.AreEqual (TagIconImage.Size, window.Preview.Icon.Width);
 

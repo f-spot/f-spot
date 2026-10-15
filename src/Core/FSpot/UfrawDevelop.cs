@@ -102,7 +102,43 @@ namespace FSpot
 		}
 
 		static string Quote (string value)
-			=> "\"" + (value ?? string.Empty).Replace ("\\", "\\\\").Replace ("\"", "\\\"") + "\"";
+		{
+			value ??= string.Empty;
+			// CreateProcess treats a backslash as literal unless it escapes a quote.
+			// Doubling every one makes Windows look for a path that does not exist.
+			if (Path.DirectorySeparatorChar == '\\')
+				return QuoteForWindows (value);
+			return "\"" + value.Replace ("\\", "\\\\").Replace ("\"", "\\\"") + "\"";
+		}
+
+		internal static string QuoteForWindows (string value)
+		{
+			value ??= string.Empty;
+			var builder = new StringBuilder (value.Length + 2);
+			builder.Append ('"');
+			int slashes = 0;
+			foreach (char c in value) {
+				if (c == '\\') {
+					slashes++;
+					continue;
+				}
+				if (c == '"') {
+					builder.Append ('\\', (slashes * 2) + 1);
+					builder.Append ('"');
+					slashes = 0;
+					continue;
+				}
+				if (slashes > 0) {
+					builder.Append ('\\', slashes);
+					slashes = 0;
+				}
+				builder.Append (c);
+			}
+			if (slashes > 0)
+				builder.Append ('\\', slashes * 2);
+			builder.Append ('"');
+			return builder.ToString ();
+		}
 
 		static void MoveSidecar (string developedPath, string rawPath, string baseDirectory)
 		{

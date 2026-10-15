@@ -107,6 +107,9 @@ namespace FSpot
 				return false;
 			if (name.IndexOfAny (new[] { '/', '\\' }) >= 0 || name == "." || name == "..")
 				return false;
+			// '<' is a legal file name on Unix and an illegal one on Windows.
+			if (name.IndexOfAny (Path.GetInvalidFileNameChars ()) >= 0)
+				return false;
 			string root = Path.GetFullPath (folder);
 			string gallery = Path.GetFullPath (Path.Combine (root, name));
 			string prefix = root.TrimEnd (Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar) + Path.DirectorySeparatorChar;

@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 using Hyena;
 
@@ -13,14 +12,19 @@ namespace FSpot
 		// GTK compares the directory, so a trailing slash on the old base
 		// matches only files in a subdirectory. The slice still uses the
 		// path text, which is why "/old" also rewrites "/old-other".
+		// Path.GetDirectoryName rewrites '/' to '\' on Windows, so the
+		// directory is the text before the last separator instead.
 		public static string Rewrite (string absolutePath, string oldBase, string newBase)
 		{
 			if (string.IsNullOrEmpty (absolutePath) || string.IsNullOrEmpty (oldBase) || newBase == null)
 				return null;
-			if (absolutePath.Length < oldBase.Length)
+			int slash = absolutePath.LastIndexOf ('/');
+			int backslash = absolutePath.LastIndexOf ('\\');
+			int cut = slash > backslash ? slash : backslash;
+			if (cut <= 0)
 				return null;
-			string directory = Path.GetDirectoryName (absolutePath);
-			if (directory == null || !directory.StartsWith (oldBase, StringComparison.Ordinal))
+			string directory = absolutePath.Substring (0, cut);
+			if (!directory.StartsWith (oldBase, StringComparison.Ordinal))
 				return null;
 			return newBase + absolutePath.Substring (oldBase.Length);
 		}
@@ -46,15 +50,17 @@ namespace FSpot
 		{
 			if (string.IsNullOrEmpty (path))
 				return "/";
+			bool windows = path.IndexOf ('\\') >= 0 && path.IndexOf ('/') < 0;
+			char slash = windows ? '\\' : '/';
 			path = path.TrimEnd ('/', '\\');
-			return path.Length == 0 ? "/" : path + "/";
+			return path.Length == 0 ? slash.ToString () : path + slash;
 		}
 
 		static string BaseBeforeYear (string path)
 		{
 			if (string.IsNullOrEmpty (path))
 				return null;
-			foreach (string marker in new[] { "/20", "/19", "/18" }) {
+			foreach (string marker in new[] { "/20", "/19", "/18", "\\20", "\\19", "\\18" }) {
 				int index = path.IndexOf (marker, StringComparison.Ordinal);
 				if (index > 0)
 					return path.Substring (0, index);

@@ -17,6 +17,13 @@ namespace FSpot.Tests
 	public sealed class UfrawDevelopTests
 	{
 		[TestMethod]
+		public void QuoteForWindows_LeavesASeparatorAsOneBackslash ()
+		{
+			Assert.AreEqual ("\"C:\\shot.cr2\"", UfrawDevelop.QuoteForWindows (@"C:\shot.cr2"));
+			Assert.AreEqual ("\"C:\\a\\\"b\\ \"", UfrawDevelop.QuoteForWindows ("C:\\a\"b\\ "));
+		}
+
+		[TestMethod]
 		public void Develop_KeepsAHashInTheDevelopedFileName ()
 		{
 			string root = Path.Combine (Path.GetTempPath (), "fspot-ufraw-" + Guid.NewGuid ().ToString ("N"));

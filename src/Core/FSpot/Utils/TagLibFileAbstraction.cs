@@ -41,7 +41,7 @@ namespace FSpot.Utils
 		public Stream ReadStream {
 			get {
 				if (stream == null)
-					stream = new FileStream (Uri.AbsolutePath, FileMode.Open, FileAccess.Read);
+					stream = new FileStream (Uri.AbsolutePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
 
 				if (!stream.CanRead)
 					throw new Exception ("Can't read from this resource");

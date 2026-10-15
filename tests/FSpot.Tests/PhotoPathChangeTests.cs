@@ -20,7 +20,7 @@ namespace FSpot.Tests
 			string rewritten = PhotoPathChange.Rewrite ("/old/2020/a#b.jpg", "/old/", "/new/");
 
 			SafeUri uri = SafeUri.FromPath (rewritten);
-			Assert.AreEqual ("/new/2020/a#b.jpg", uri.AbsolutePath);
+			Assert.AreEqual ("/new/2020/a#b.jpg", WithSlashes (uri.AbsolutePath));
 			Assert.AreEqual ("a#b.jpg", System.IO.Path.GetFileName (uri.AbsolutePath));
 		}
 
@@ -37,12 +37,24 @@ namespace FSpot.Tests
 		}
 
 		[TestMethod]
+		public void Rewrite_MovesAWindowsYearFolderWithoutAskingTheRuntimeToRewriteSeparators ()
+		{
+			Assert.AreEqual (@"C:\new\2020\a#b.jpg", PhotoPathChange.Rewrite (@"C:\old\2020\a#b.jpg", @"C:\old\", @"C:\new\"));
+		}
+
+		[TestMethod]
 		public void GuessOldBase_StopsAtTheFirstYearFolder ()
 		{
 			Assert.AreEqual ("/photos/", PhotoPathChange.GuessOldBase (new[] {
 				"/photos/2020/a.jpg",
 				"/other/2019/b.jpg"
 			}));
+		}
+
+		[TestMethod]
+		public void GuessOldBase_StopsAtAWindowsYearFolder ()
+		{
+			Assert.AreEqual (@"C:\photos\", PhotoPathChange.GuessOldBase (new[] { @"C:\photos\2020\a.jpg" }));
 		}
 
 		[TestMethod]
@@ -67,11 +79,14 @@ namespace FSpot.Tests
 			int changed = PhotoPathChange.Apply (new[] { moved, stayed }, "/old/", "/new/");
 
 			Assert.AreEqual (1, changed);
-			Assert.AreEqual ("/new/2020/a#b.jpg", moved.VersionUri (Photo.OriginalVersionId).AbsolutePath);
+			Assert.AreEqual ("/new/2020/a#b.jpg", WithSlashes (moved.VersionUri (Photo.OriginalVersionId).AbsolutePath));
 			Assert.IsTrue (moved.Changes.UriChanged);
-			Assert.AreEqual ("/old/file.jpg", stayed.VersionUri (Photo.OriginalVersionId).AbsolutePath);
+			Assert.AreEqual ("/old/file.jpg", WithSlashes (stayed.VersionUri (Photo.OriginalVersionId).AbsolutePath));
 			Assert.IsFalse (stayed.Changes.UriChanged);
 		}
+
+		static string WithSlashes (string path)
+			=> (path ?? string.Empty).Replace ('\\', '/');
 
 		static Photo PhotoAt (string absolutePath)
 		{

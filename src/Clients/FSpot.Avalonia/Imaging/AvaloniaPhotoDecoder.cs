@@ -47,7 +47,8 @@ static class AvaloniaPhotoDecoder
 
 	internal static Bitmap DecodeFile (string path, int? decodeToWidth = null, uint svgBackgroundArgb = 0)
 	{
-		using var stream = System.IO.File.OpenRead (path);
+		// FileShare.Delete lets a background decode finish while Windows removes the file.
+		using var stream = new System.IO.FileStream (path, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.ReadWrite | System.IO.FileShare.Delete);
 		var bitmap = Decode (stream, path, decodeToWidth, svgBackgroundArgb);
 		if (SvgRasterizer.IsSvg (path, stream: null))
 			return bitmap;

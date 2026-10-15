@@ -20,16 +20,16 @@ namespace FSpot.Tests
 			string dest = Path.Combine (root, "chosen");
 			Directory.CreateDirectory (dest);
 			try {
-				HtmlGallery.Write (dest, "Summer <1>", new[] {
+				HtmlGallery.Write (dest, "Summer & 1", new[] {
 					new HtmlGalleryPhoto (source, "A < B", new[] { "Beach" })
 				}, null);
 
-				string gallery = Path.Combine (dest, "Summer <1>");
+				string gallery = Path.Combine (dest, "Summer & 1");
 				Assert.AreEqual ("full-bytes", File.ReadAllText (Path.Combine (gallery, "hq", "img-1.jpg")));
 				string index = File.ReadAllText (Path.Combine (gallery, "index.html"));
 				Assert.Contains ("img-1.html", index);
-				Assert.Contains ("Summer &lt;1&gt;", index);
-				Assert.DoesNotContain ("Summer <1>", index);
+				Assert.Contains ("Summer &amp; 1", index);
+				Assert.DoesNotContain ("Summer & 1", index);
 				string page = File.ReadAllText (Path.Combine (gallery, "img-1.html"));
 				Assert.Contains ("hq/img-1.jpg", page);
 				Assert.Contains ("mq/img-1.jpg", page);
@@ -85,6 +85,25 @@ namespace FSpot.Tests
 				}, null);
 
 				Assert.IsFalse (Directory.Exists (outside));
+				Assert.IsEmpty (Directory.GetDirectories (dest));
+			} finally {
+				Directory.Delete (root, true);
+			}
+		}
+
+		[TestMethod]
+		public void Write_RefusesANameTheFileSystemRejects ()
+		{
+			string root = NewRoot ();
+			string source = Path.Combine (root, "a.jpg");
+			File.WriteAllText (source, "full-bytes");
+			string dest = Path.Combine (root, "chosen");
+			Directory.CreateDirectory (dest);
+			try {
+				HtmlGallery.Write (dest, "Sum\0mer", new[] {
+					new HtmlGalleryPhoto (source, "plain", Array.Empty<string> ())
+				}, null);
+
 				Assert.IsEmpty (Directory.GetDirectories (dest));
 			} finally {
 				Directory.Delete (root, true);
