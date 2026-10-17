@@ -61,6 +61,26 @@ public sealed class TimelineStripTests
 	}
 
 	[UiTestMethod]
+	public void Scale_KeepsANarrowedRangeWhenItLeavesAndReturns ()
+	{
+		AvaloniaApp.Ensure ();
+		var scale = new TimelineScale { Items = Months (4), Width = 400, Height = 48 };
+		var window = new Window { Width = 420, Height = 80, Content = scale };
+		windows.Add (window);
+		window.Show ();
+		window.UpdateLayout ();
+		scale.ApplyRange (1, 2);
+		Assert.AreEqual ((1, 2), scale.Limits);
+
+		window.Content = new Border ();
+		window.UpdateLayout ();
+		window.Content = scale;
+		window.UpdateLayout ();
+
+		Assert.AreEqual ((1, 2), scale.Limits);
+	}
+
+	[UiTestMethod]
 	public void Months_StretchAndStayAddressable ()
 	{
 		AvaloniaApp.Ensure ();

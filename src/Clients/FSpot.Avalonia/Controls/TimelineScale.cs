@@ -50,6 +50,7 @@ public class TimelineScale : Control
 	Point pressPoint;
 	int minLimit;
 	int maxLimit = -1;
+	int rangeCount;
 	TimelineLimit dragLimit;
 	double dragLimitX;
 
@@ -341,12 +342,7 @@ public class TimelineScale : Control
 		dragLimit = TimelineLimit.None;
 		var (min, max) = TimelineLimits.Drop (limit, x, minLimit, maxLimit, columnWidth, buckets.Count);
 		InvalidateVisual ();
-		if (min == minLimit && max == maxLimit)
-			return;
-		minLimit = min;
-		maxLimit = max;
-		if (LimitsCommand?.CanExecute ((min, max)) == true)
-			LimitsCommand.Execute ((min, max));
+		ApplyRange (min, max);
 	}
 
 	void SnapDrag (int index)
@@ -422,9 +418,22 @@ public class TimelineScale : Control
 	void OnItemsChanged (object? sender, NotifyCollectionChangedEventArgs e)
 		=> ReloadBuckets ();
 
+	internal void ApplyRange (int min, int max)
+	{
+		if (min == minLimit && max == maxLimit)
+			return;
+		minLimit = min;
+		maxLimit = max;
+		if (LimitsCommand?.CanExecute ((min, max)) == true)
+			LimitsCommand.Execute ((min, max));
+	}
+
 	void ReloadBuckets ()
 	{
-		int previous = buckets.Count;
+		// Detach clears the bucket list. The count from the last load is what
+		// "the month count changed" has to be compared with, or a reattach
+		// looks like a new strip and snaps the range back to every month.
+		int previous = buckets.Count > 0 ? buckets.Count : rangeCount;
 		UnhookBuckets ();
 		if (Items is not null)
 			buckets.AddRange (Items.OfType<TimelineBucket> ());
@@ -433,6 +442,8 @@ public class TimelineScale : Control
 			minLimit = 0;
 			maxLimit = buckets.Count - 1;
 		}
+		if (buckets.Count > 0)
+			rangeCount = buckets.Count;
 		foreach (var bucket in buckets)
 			bucket.PropertyChanged += OnBucketChanged;
 		InvalidateMeasure ();

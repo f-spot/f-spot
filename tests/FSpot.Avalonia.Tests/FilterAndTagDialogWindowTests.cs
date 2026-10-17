@@ -5,6 +5,7 @@ using Avalonia.Threading;
 using Avalonia.VisualTree;
 
 using FSpot.Avalonia.Dialogs;
+using FSpot.Avalonia.Imaging;
 using FSpot.Core;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -291,6 +292,32 @@ public sealed class FilterAndTagDialogWindowTests
 
 		Assert.IsNull (window.PhotoImage.Source);
 		Assert.AreEqual (1, window.PhotoNumber);
+	}
+
+	[UiTestMethod]
+	public async Task EditTagIcon_AChoiceDuringTheFirstDecodeStaysTheIcon ()
+	{
+		var (_, _, mom) = Tree ();
+		string sample = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
+		string icon = PredefinedTagIcons.Names (PackedIconFiles.All).First ();
+		using var hold = DecodeGate.Enter ();
+		var window = new EditTagIconWindow (new TagIconSource (mom, [sample]), null);
+		var list = window.FindControl<ListBox> ("PredefinedList");
+		Assert.IsNotNull (list);
+		list.SelectedItem = icon;
+		Assert.AreEqual (icon, window.Preview?.ThemeIconName);
+		hold.Dispose ();
+
+		long started = Environment.TickCount64;
+		while (window.PhotoImage.Source is null && Environment.TickCount64 - started < 5_000) {
+			await Dispatcher.UIThread.InvokeAsync (() => { }, DispatcherPriority.Background, TestContext.CancellationToken);
+			await Task.Delay (10, TestContext.CancellationToken);
+		}
+
+		Assert.IsNotNull (window.PhotoImage.Source);
+		window.Accept ();
+		Assert.AreEqual (icon, window.Result?.ThemeIconName);
+		Assert.IsNull (window.Result?.Icon);
 	}
 
 	[UiTestMethod]

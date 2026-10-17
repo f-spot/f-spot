@@ -18,6 +18,46 @@ public sealed class DecodeGateTests
 	public DecodeGateTests (TestContext testContext) => TestContext = testContext;
 
 	[TestMethod]
+	public void Run_AlreadyCancelled_DoesNotDecodeAndLeavesTheGateFree ()
+	{
+		using var hold = DecodeGate.Enter ();
+		using var cts = new CancellationTokenSource ();
+		cts.Cancel ();
+		int calls = 0;
+		Exception? error = null;
+		using var finished = new ManualResetEventSlim (false);
+		var thread = new Thread (() => {
+			try {
+				DecodeGate.Run (() => {
+					calls++;
+					return 1;
+				}, cts.Token);
+			} catch (Exception ex) {
+				error = ex;
+			} finally {
+				finished.Set ();
+			}
+		}) {
+			IsBackground = true,
+		};
+		thread.Start ();
+
+		try {
+			// Wait(token) throws before taking a permit. Wait() would sit here until the hold ends.
+			bool completedWhileHeld = finished.Wait (TimeSpan.FromSeconds (2), TestContext.CancellationToken);
+			Assert.IsTrue (completedWhileHeld, "a cancelled Run waited for a gate another decode still held");
+			Assert.IsInstanceOfType<OperationCanceledException> (error);
+			Assert.AreEqual (0, calls);
+		} finally {
+			hold.Dispose ();
+			finished.Wait (TimeSpan.FromSeconds (2), TestContext.CancellationToken);
+			thread.Join (TimeSpan.FromSeconds (2));
+		}
+
+		Assert.AreEqual (4, DecodeGate.Run (() => 4, TestContext.CancellationToken));
+	}
+
+	[TestMethod]
 	public async Task ADecodeInsideTheAsyncSlotDoesNotWaitForItself ()
 	{
 		int value = await DecodeGate.RunAsync (() => DecodeGate.Run (() => 7), TestContext.CancellationToken);

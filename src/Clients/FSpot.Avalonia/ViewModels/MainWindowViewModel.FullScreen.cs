@@ -86,20 +86,27 @@ public partial class MainWindowViewModel : IFullScreenHost
 		RotateSelection (clockwise ? RotateDirection.Clockwise : RotateDirection.Counterclockwise);
 	}
 
-	public async Task<bool> RemovePhotoAsync (string path, bool deleteFromDrive)
+	public async Task<CatalogRemoval> RemovePhotoAsync (string path, bool deleteFromDrive)
 	{
 		if (ItemAt (path) is not { } item)
-			return false;
+			return CatalogRemoval.Unchanged;
 		uint? id = item.Photo is Photo photo ? photo.Id : null;
 		SelectPhoto (item);
 		if (deleteFromDrive)
 			await DeleteFromDriveAsync ();
 		else
 			await RemoveFromCatalogAsync ();
-		// The edited file can disappear while the original stays. The slideshow
-		// path is then no longer the default version, and the photo is still here.
-		if (id is uint photoId)
-			return !Photos.Any (candidate => candidate.Photo is Photo kept && kept.Id == photoId);
-		return ItemAt (path) is null;
+		// The edited file can disappear while the original stays. The photo is still
+		// in the grid, and the show has to follow the version that survived.
+		if (id is uint photoId) {
+			PhotoItemViewModel? kept = Photos.FirstOrDefault (candidate => candidate.Photo is Photo photo && photo.Id == photoId);
+			if (kept is null)
+				return CatalogRemoval.Gone;
+			string? surviving = PathOf (kept);
+			if (surviving is not null && !FileIdentity.Same (surviving, path))
+				return CatalogRemoval.StayedAt (surviving);
+			return CatalogRemoval.Unchanged;
+		}
+		return ItemAt (path) is null ? CatalogRemoval.Gone : CatalogRemoval.Unchanged;
 	}
 }

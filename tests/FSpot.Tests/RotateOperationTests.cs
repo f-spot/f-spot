@@ -164,6 +164,28 @@ namespace FSpot.Tests
 		}
 
 		[TestMethod]
+		public void Rotate_UnreadablePhotoWithASpaceInTheName_ReportsTheDecodedPath ()
+		{
+			string directory = Path.Combine (Path.GetTempPath (), "fspot-rotate-" + Guid.NewGuid ().ToString ("N"));
+			Directory.CreateDirectory (directory);
+			string path = Path.Combine (directory, "Carol Jones.jpg");
+			System.IO.File.WriteAllText (path, "not a photo");
+			try {
+				var uri = SafeUri.FromPath (path);
+				var op = new RotateOperation (new FilePhoto (uri), RotateDirection.Clockwise, Mock.Of<IThumbnailService> ());
+
+				var ex = Assert.ThrowsExactly<RotateException> (() => op.Step ());
+
+				Assert.AreEqual (FSpot.Resources.Lang.Strings.UnableToRotateThisTypeOfPhoto, ex.Message);
+				Assert.AreEqual (path, ex.Path);
+				Assert.DoesNotContain ("%20", ex.Path);
+				Assert.DoesNotContain ("file:", ex.Path);
+			} finally {
+				Directory.Delete (directory, true);
+			}
+		}
+
+		[TestMethod]
 		public void Rotate_MissingDirectoryWithASpaceInTheName_ReportsTheDecodedPath ()
 		{
 			string path = Path.Combine (Path.GetTempPath (), "fspot-rotate-" + Guid.NewGuid ().ToString ("N"), "Carol Jones", "a.jpg");

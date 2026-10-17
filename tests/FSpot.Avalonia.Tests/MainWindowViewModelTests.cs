@@ -401,12 +401,13 @@ public sealed partial class MainWindowViewModelTests
 			}
 			locked = true;
 
-			bool removed = await viewModel.RemovePhotoAsync (slideshowPath, deleteFromDrive: true);
+			CatalogRemoval removed = await viewModel.RemovePhotoAsync (slideshowPath, deleteFromDrive: true);
 
 			Assert.IsFalse (File.Exists (slideshowPath));
 			Assert.IsTrue (File.Exists (originalPath));
 			Assert.HasCount (1, viewModel.Photos);
-			Assert.IsFalse (removed);
+			Assert.IsFalse (removed.LeftGrid);
+			Assert.AreEqual (originalPath, removed.Path);
 		} finally {
 			if (locked) {
 				if (windows)
@@ -606,6 +607,31 @@ public sealed partial class MainWindowViewModelTests
 		await viewModel.ReloadThumbnailsAsync ();
 
 		Assert.AreEqual (2, thumbs.BLoads);
+	}
+
+	[UiTestMethod]
+	public async Task ReloadThumbnails_ReleasedCellIsLoadedAgainWhenItComesBack ()
+	{
+		var thumbs = new HoldAThenCount ();
+		var viewModel = new MainWindowViewModel (null, new RecordingShell (), thumbs);
+		viewModel.SeedCatalog (new StubPhoto ("/a.jpg"), new StubPhoto ("/b.jpg"));
+		var bContainer = new object ();
+		await viewModel.RealizeThumbnailAsync (new object (), viewModel.Photos[0]);
+		await viewModel.RealizeThumbnailAsync (bContainer, viewModel.Photos[1]);
+		Assert.AreEqual (1, thumbs.BLoads);
+
+		thumbs.HoldA = true;
+		Task reload = viewModel.ReloadThumbnailsAsync ();
+		await thumbs.EnteredA.Task.WaitAsync (TestContext.CancellationToken);
+		viewModel.ReleaseThumbnail (bContainer);
+		thumbs.ReleaseA.SetResult (TinyBitmap ());
+		await reload.WaitAsync (TestContext.CancellationToken);
+
+		Assert.IsNull (viewModel.Photos[1].Thumbnail);
+		Assert.AreEqual (1, thumbs.BLoads);
+		await viewModel.RealizeThumbnailAsync (new object (), viewModel.Photos[1]);
+		Assert.AreEqual (2, thumbs.BLoads);
+		Assert.IsNotNull (viewModel.Photos[1].Thumbnail);
 	}
 
 	[UiTestMethod]
@@ -2708,6 +2734,31 @@ public sealed partial class MainWindowViewModelTests
 				} else {
 					BLoads++;
 				}
+			}
+
+			return Task.FromResult<Bitmap?> (TinyBitmap ());
+		}
+	}
+
+	sealed class HoldAThenCount : IPhotoThumbnailLoader
+	{
+		public bool HoldA { get; set; }
+		public int BLoads { get; private set; }
+		public TaskCompletionSource<bool> EnteredA { get; } = new (TaskCreationOptions.RunContinuationsAsynchronously);
+		public TaskCompletionSource<Bitmap?> ReleaseA { get; } = new (TaskCreationOptions.RunContinuationsAsynchronously);
+
+		public Task<Bitmap?> LoadAsync (string path, int size, CancellationToken cancellationToken)
+		{
+			if (cancellationToken == CancellationToken.None)
+				return Task.FromResult<Bitmap?> (TinyBitmap ());
+			if (path.EndsWith ("b.jpg", StringComparison.Ordinal)) {
+				BLoads++;
+				return Task.FromResult<Bitmap?> (TinyBitmap ());
+			}
+
+			if (HoldA) {
+				EnteredA.TrySetResult (true);
+				return ReleaseA.Task;
 			}
 
 			return Task.FromResult<Bitmap?> (TinyBitmap ());

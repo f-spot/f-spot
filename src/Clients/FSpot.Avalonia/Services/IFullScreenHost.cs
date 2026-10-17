@@ -14,5 +14,18 @@ public interface IFullScreenHost
 	void FocusPhoto (string path);
 	void RatePhoto (string path, uint rating);
 	void RotatePhoto (string path, bool clockwise);
-	Task<bool> RemovePhotoAsync (string path, bool deleteFromDrive);
+	Task<CatalogRemoval> RemovePhotoAsync (string path, bool deleteFromDrive);
+}
+
+/// <summary>
+/// What a fullscreen delete did. <see cref="Path"/> is the file the show should use when the photo
+/// stayed in the catalog under a different version.
+/// </summary>
+public readonly record struct CatalogRemoval (bool LeftGrid, string? Path)
+{
+	public static CatalogRemoval Gone => new (true, null);
+
+	public static CatalogRemoval Unchanged => new (false, null);
+
+	public static CatalogRemoval StayedAt (string path) => new (false, path);
 }

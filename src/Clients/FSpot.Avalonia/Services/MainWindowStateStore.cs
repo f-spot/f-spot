@@ -22,12 +22,24 @@ public static class MainWindowStateStore
 			window.WindowState = WindowState.Maximized;
 	}
 
-	public static void Save (Window window)
+	public static void Note (Window window)
 	{
-		// Minimized and fullscreen frames are transient. Keep the last normal bounds
-		// and whatever maximized flag the previous normal or maximized save stored.
 		if (window.WindowState is WindowState.Minimized or WindowState.FullScreen)
 			return;
+		Remember (window);
+	}
+
+	public static void Save (Window window)
+	{
+		// Minimized and fullscreen frames are transient. The bounds from the last
+		// Normal or Maximized Note are what the next launch restores.
+		if (window.WindowState is WindowState.Minimized or WindowState.FullScreen)
+			return;
+		Remember (window);
+	}
+
+	static void Remember (Window window)
+	{
 		bool maximized = window.WindowState == WindowState.Maximized;
 		LibraryPreferences.MainWindowMaximized = maximized;
 		if (maximized)

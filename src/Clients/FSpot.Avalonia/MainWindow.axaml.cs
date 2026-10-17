@@ -34,6 +34,12 @@ public partial class MainWindow : Window, IAvaloniaShell
 		DataContext = viewModel;
 		InitializeComponent ();
 		MainWindowStateStore.Restore (this);
+		Opened += (_, _) => MainWindowStateStore.Note (this);
+		PropertyChanged += (_, e) => {
+			if (e.Property == WidthProperty || e.Property == HeightProperty || e.Property == WindowStateProperty)
+				MainWindowStateStore.Note (this);
+		};
+		PositionChanged += (_, _) => MainWindowStateStore.Note (this);
 		Closing += (_, _) => {
 			MainWindowStateStore.Save (this);
 			viewModel.SaveWindowState ();

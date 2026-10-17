@@ -138,6 +138,26 @@ namespace FSpot.Tests
 		}
 
 		[TestMethod]
+		public void InfoFieldVisibility_MissingKeysUseTheGtkDefaults ()
+		{
+			var loaded = InfoFieldVisibility.Load ();
+			Assert.IsTrue (loaded.Date);
+			Assert.IsTrue (loaded.Size);
+			Assert.IsTrue (loaded.Exposure);
+			Assert.IsTrue (loaded.Creator);
+			Assert.IsFalse (loaded.FocalLength);
+			Assert.IsFalse (loaded.Camera);
+			Assert.IsFalse (loaded.Rating);
+
+			var library = InfoFieldVisibility.Load (InfoFieldVisibility.LibraryContext);
+			Assert.AreEqual (InfoFieldVisibility.LibraryContext, library.Context);
+			Assert.IsTrue (library.Date);
+			Assert.IsFalse (library.FocalLength);
+			Assert.IsFalse (library.Camera);
+			Assert.IsFalse (library.Rating);
+		}
+
+		[TestMethod]
 		public void InfoFieldVisibility_HidesAFieldAndRoundTrips ()
 		{
 			var visibility = new InfoFieldVisibility ();

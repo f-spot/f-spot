@@ -53,7 +53,7 @@ public sealed class SlideshowWindowTests
 		host.OnRemove = _ => {
 			Press (window, Key.Right);
 			window.PlayPause ();
-			return Task.FromResult (true);
+			return Task.FromResult (CatalogRemoval.Gone);
 		};
 
 		Press (window, Key.Delete);
@@ -69,6 +69,24 @@ public sealed class SlideshowWindowTests
 	}
 
 	[UiTestMethod]
+	public void Delete_PartialDriveDelete_ShowsTheSurvivingOriginal ()
+	{
+		AvaloniaApp.Ensure ();
+		var host = new RecordingHost ();
+		var window = new SlideshowWindow (new[] { "/photos/edited.jpg", "/photos/b.jpg" }, 0, host, play: false);
+		window.Show ();
+		host.OnRemove = _ => Task.FromResult (CatalogRemoval.StayedAt ("/photos/original.jpg"));
+
+		Press (window, Key.Delete, KeyModifiers.Shift);
+
+		Assert.AreEqual ("/photos/edited.jpg", host.RemovedPath);
+		Assert.AreEqual ("/photos/original.jpg", window.CurrentPath);
+		Press (window, Key.D3, KeyModifiers.Alt);
+		Assert.AreEqual (("/photos/original.jpg", 3u), host.Rated);
+		window.Close ();
+	}
+
+	[UiTestMethod]
 	public void Delete_ClosedDuringConfirm_DoesNotDecodeAnotherSlide ()
 	{
 		AvaloniaApp.Ensure ();
@@ -77,7 +95,7 @@ public sealed class SlideshowWindowTests
 		window.Show ();
 		host.OnRemove = _ => {
 			window.Close ();
-			return Task.FromResult (true);
+			return Task.FromResult (CatalogRemoval.Gone);
 		};
 
 		Press (window, Key.Delete);
@@ -255,16 +273,16 @@ public sealed class SlideshowWindowTests
 		public (string, bool)? Rotated { get; private set; }
 		public string? Focused { get; private set; }
 		public string? RemovedPath { get; private set; }
-		public Func<string, Task<bool>>? OnRemove { get; set; }
+		public Func<string, Task<CatalogRemoval>>? OnRemove { get; set; }
 
 		public IPhoto? PhotoAt (string path) => null;
 		public void FocusPhoto (string path) => Focused = path;
 		public void RatePhoto (string path, uint rating) => Rated = (path, rating);
 		public void RotatePhoto (string path, bool clockwise) => Rotated = (path, clockwise);
-		public Task<bool> RemovePhotoAsync (string path, bool deleteFromDrive)
+		public Task<CatalogRemoval> RemovePhotoAsync (string path, bool deleteFromDrive)
 		{
 			RemovedPath = path;
-			return OnRemove is null ? Task.FromResult (false) : OnRemove (path);
+			return OnRemove is null ? Task.FromResult (CatalogRemoval.Unchanged) : OnRemove (path);
 		}
 	}
 }

@@ -86,6 +86,23 @@ namespace FSpot.Slideshow
 		public bool RemoveCurrent ()
 			=> paths.Count == 0 ? false : Remove (Current);
 
+		/// <summary>
+		/// Points <paramref name="path"/> at <paramref name="updated"/> without leaving the slide.
+		/// The edited file can disappear while the original stays.
+		/// </summary>
+		public bool Replace (string path, string updated)
+		{
+			if (paths.Count == 0 || path is null || string.IsNullOrEmpty (updated))
+				return false;
+			int at = string.Equals (paths[index], path, StringComparison.Ordinal)
+				? index
+				: paths.FindIndex (item => string.Equals (item, path, StringComparison.Ordinal));
+			if (at < 0)
+				return false;
+			paths[at] = updated;
+			return true;
+		}
+
 		public void Stop ()
 			=> running = false;
 	}

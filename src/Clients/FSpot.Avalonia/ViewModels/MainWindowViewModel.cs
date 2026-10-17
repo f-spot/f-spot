@@ -628,6 +628,11 @@ public partial class MainWindowViewModel : ObservableObject
 
 	async Task LoadOneAsync (PhotoItemViewModel item)
 	{
+		// A batch reload still walks a cell that scrolled away while an earlier item was loading.
+		// Stamping a generation then would make the next prepare treat the blank cell as in flight.
+		if (!shownThumbnails.IsHeld (item))
+			return;
+
 		int generation = NextThumbnailGeneration (item);
 		var token = thumbnailLoads.Begin (item);
 		int size = HiDpi.PixelSize (Zoom, UiScale);
@@ -637,6 +642,7 @@ public partial class MainWindowViewModel : ObservableObject
 			token.ThrowIfCancellationRequested ();
 			if (!shownThumbnails.IsHeld (item) || !thumbnailGeneration.TryGetValue (item, out int current) || current != generation) {
 				bitmap?.Dispose ();
+				DropThumbnailGeneration (item, generation);
 				return;
 			}
 
@@ -647,10 +653,15 @@ public partial class MainWindowViewModel : ObservableObject
 		} catch (Exception ex) {
 			bitmap?.Dispose ();
 			Logger.Log.Debug (ex, "Failed to decode thumbnail for {Path}", item.Path);
-			if (thumbnailGeneration.TryGetValue (item, out int current) && current == generation)
-				thumbnailGeneration.Remove (item);
+			DropThumbnailGeneration (item, generation);
 			thumbnailLoads.EndIfCurrent (item, token);
 		}
+	}
+
+	void DropThumbnailGeneration (PhotoItemViewModel item, int generation)
+	{
+		if (thumbnailGeneration.TryGetValue (item, out int current) && current == generation)
+			thumbnailGeneration.Remove (item);
 	}
 
 	int NextThumbnailGeneration (PhotoItemViewModel item)

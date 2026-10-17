@@ -25,6 +25,19 @@ namespace FSpot.Tests
 		}
 
 		[TestMethod]
+		public void Replace_PointsTheCurrentSlideAtTheSurvivingFile ()
+		{
+			var sequence = new SlideshowSequence (new[] { "/edit.jpg", "/b.jpg" }, startIndex: 0);
+
+			Assert.IsTrue (sequence.Replace ("/edit.jpg", "/original.jpg"));
+
+			Assert.AreEqual ("/original.jpg", sequence.Current);
+			Assert.AreEqual (2, sequence.Count);
+			Assert.IsTrue (sequence.Advance ());
+			Assert.AreEqual ("/b.jpg", sequence.Current);
+		}
+
+		[TestMethod]
 		public void Stop_PreventsAdvance ()
 		{
 			var sequence = new SlideshowSequence (new[] { "/a.jpg", "/b.jpg" });

@@ -71,6 +71,41 @@ public sealed class MainWindowStateStoreTests
 	}
 
 	[UiTestMethod]
+	public void Note_KeepsThisSessionsBoundsWhenQuitHappensMinimized ()
+	{
+		var previous = Remember ();
+		try {
+			LibraryPreferences.MainWindowX = 10;
+			LibraryPreferences.MainWindowY = 20;
+			LibraryPreferences.MainWindowWidth = 800;
+			LibraryPreferences.MainWindowHeight = 600;
+			LibraryPreferences.MainWindowMaximized = true;
+
+			var window = new Window {
+				Width = 640,
+				Height = 480,
+				Position = new PixelPoint (40, 50),
+				WindowState = WindowState.Normal
+			};
+			MainWindowStateStore.Note (window);
+
+			window.WindowState = WindowState.Minimized;
+			window.Width = 120;
+			window.Height = 80;
+			window.Position = new PixelPoint (-3000, -3000);
+			MainWindowStateStore.Save (window);
+
+			Assert.AreEqual (40, LibraryPreferences.MainWindowX);
+			Assert.AreEqual (50, LibraryPreferences.MainWindowY);
+			Assert.AreEqual (640, LibraryPreferences.MainWindowWidth);
+			Assert.AreEqual (480, LibraryPreferences.MainWindowHeight);
+			Assert.IsFalse (LibraryPreferences.MainWindowMaximized);
+		} finally {
+			Restore (previous);
+		}
+	}
+
+	[UiTestMethod]
 	public void Save_StillRecordsAMaximizedWindowWithoutItsTransientSize ()
 	{
 		var previous = Remember ();

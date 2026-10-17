@@ -31,6 +31,7 @@ public partial class EditTagIconWindow : Window
 	bool hasPreview;
 	bool showingPhoto;
 	int displayedPhoto = -1;
+	int choiceGeneration;
 
 	public EditTagIconWindow ()
 		: this (new TagIconSource (new FSpot.Core.Tag (null, 0, string.Empty), []), null)
@@ -104,6 +105,7 @@ public partial class EditTagIconWindow : Window
 
 	void SetPreview (TagIconChoice choice, bool pending = true)
 	{
+		choiceGeneration++;
 		preview = choice;
 		hasPreview |= pending;
 		PreviewSvg.Path = choice.ThemeIconName is null ? null : TagIcons.UriFor (choice.ThemeIconName);
@@ -134,10 +136,11 @@ public partial class EditTagIconWindow : Window
 	internal void ShowPhoto (int index, bool pending = true)
 	{
 		displayedPhoto = index;
-		_ = ShowPhotoAsync (index, pending);
+		int generation = ++choiceGeneration;
+		_ = ShowPhotoAsync (index, pending, generation);
 	}
 
-	async Task ShowPhotoAsync (int index, bool pending = true)
+	async Task ShowPhotoAsync (int index, bool pending, int generation)
 	{
 		PhotoLabel.Text = string.Format (CultureInfo.CurrentCulture, Strings.PhotoXOfY, index + 1, source.PhotoPaths.Count);
 		Bitmap? bitmap = null;
@@ -172,7 +175,8 @@ public partial class EditTagIconWindow : Window
 		}
 		old?.Dispose ();
 		// A photo the user picked becomes the icon. The photo opened with the dialog does not.
-		if (photoBuffer is not null)
+		// A choice made while this decode was in flight keeps its generation.
+		if (generation == choiceGeneration && photoBuffer is not null)
 			SetPreview (new TagIconChoice (null, TagIconImage.Create (photoBuffer, null, backend.Scale)), pending);
 	}
 

@@ -142,9 +142,15 @@ public sealed class SvgRasterizerTests
 		string literal = new Uri (css).AbsoluteUri;
 		// The colon is a character reference, so a literal file: strip leaves a URI the XML parser decodes.
 		string encoded = literal.Replace (":", "&#58;");
+		// Each letter of the scheme is a character reference, so the stylesheet strip never sees "file:".
+		// No space after @import, and this import is first: the loader follows that form, and a
+		// leading semicolon from a stripped import would make it ignore the rest.
+		// The external-resource policy is what keeps that import from being read.
+		int scheme = literal.IndexOf (':');
+		string numericScheme = "&#102;&#105;&#108;&#101;&#58;" + literal.Substring (scheme + 1);
 		string svg = $"""
 			<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">
-			  <style type="text/css">@import "{literal}"; @import "{encoded}";</style>
+			  <style type="text/css">@import"{numericScheme}";@import"{literal}";@import "{literal}";@import "{encoded}";</style>
 			  <rect width="32" height="32" fill="#ff0000"/>
 			</svg>
 			""";

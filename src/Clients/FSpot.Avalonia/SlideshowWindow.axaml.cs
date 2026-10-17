@@ -296,11 +296,16 @@ public partial class SlideshowWindow : Window
 		bool showedNext = false;
 		flipTimer.Stop ();
 		try {
-			bool removed = await host.RemovePhotoAsync (path, deleteFromDrive);
+			CatalogRemoval removed = await host.RemovePhotoAsync (path, deleteFromDrive);
 			if (!IsVisible)
 				return;
-			if (!removed)
+			if (!removed.LeftGrid) {
+				if (removed.Path is string surviving && sequence.Replace (path, surviving)) {
+					_ = ShowCurrentAsync (animate: false);
+					showedNext = true;
+				}
 				return;
+			}
 			if (!sequence.Remove (path)) {
 				Close ();
 				return;

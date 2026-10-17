@@ -30,6 +30,16 @@ namespace FSpot.Utils
 		public static ImageOrientation Rotate90 (ImageOrientation orientation)
 			=> Rotate270 (Rotate270 (Rotate270 (orientation)));
 
+		// RightTop and LeftBottom are not their own inverses. A display rectangle
+		// mapped with the forward orientation lands on the wrong raw pixels.
+		// The other six orientations are involutions, so they stay as they are.
+		public static ImageOrientation ForDisplayToRaw (ImageOrientation orientation)
+			=> orientation switch {
+				ImageOrientation.RightTop => ImageOrientation.LeftBottom,
+				ImageOrientation.LeftBottom => ImageOrientation.RightTop,
+				_ => orientation
+			};
+
 		// GTK PixbufUtils.TransformOrientation: map a rectangle drawn on the
 		// oriented display into the un-oriented buffer. Crop, red-eye, pixelate,
 		// and blackout each map the GTK selection once through this.

@@ -47,6 +47,41 @@ namespace FSpot.Utils.Tests
 			AssertRect (2, 6, 4, 3, area);
 		}
 
+		// A 4×2 raw buffer shown as RightTop is a 2×4 display. Display (0,0) is raw (0,1).
+		// The forward map returns (3,0). LeftBottom is the lookup that recovers (0,1).
+		[TestMethod]
+		public void TransformRect_RightTopDisplayOrigin_LandsOnRawRow1 ()
+		{
+			var orientation = ImageOrientations.ForDisplayToRaw (ImageOrientation.RightTop);
+			var area = ImageOrientations.TransformRect (2, 4, new PixelRect (0, 0, 1, 1), orientation);
+
+			Assert.AreEqual (0, area.X);
+			Assert.AreEqual (1, area.Y);
+		}
+
+		// The same buffer shown as LeftBottom: display (0,0) is raw (3,0).
+		[TestMethod]
+		public void TransformRect_LeftBottomDisplayOrigin_LandsOnRawColumn3 ()
+		{
+			var orientation = ImageOrientations.ForDisplayToRaw (ImageOrientation.LeftBottom);
+			var area = ImageOrientations.TransformRect (2, 4, new PixelRect (0, 0, 1, 1), orientation);
+
+			Assert.AreEqual (3, area.X);
+			Assert.AreEqual (0, area.Y);
+		}
+
+		// LeftTop is already the inverse. Reversing it points at (0,0) instead of raw (3,1).
+		[TestMethod]
+		public void TransformRect_LeftTopDisplayOrigin_KeepsTheForwardOrientation ()
+		{
+			var orientation = ImageOrientations.ForDisplayToRaw (ImageOrientation.LeftTop);
+			var area = ImageOrientations.TransformRect (2, 4, new PixelRect (0, 0, 1, 1), orientation);
+
+			Assert.AreEqual (ImageOrientation.LeftTop, orientation);
+			Assert.AreEqual (3, area.X);
+			Assert.AreEqual (1, area.Y);
+		}
+
 		// WindowCoordsToImage and the paint blit must pass the pixbuf orientation.
 		// ReverseTransformation(LeftTop) is RightBottom, and that transpose does not recover (2, 3).
 		[TestMethod]
