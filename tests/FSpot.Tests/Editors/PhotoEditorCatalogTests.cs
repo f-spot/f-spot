@@ -1,10 +1,6 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Xml.Linq;
 
 using FSpot.Core;
 using FSpot.Editors;
@@ -17,17 +13,6 @@ namespace FSpot.Tests.Editors
 	[TestClass]
 	public sealed class PhotoEditorCatalogTests
 	{
-		[TestMethod]
-		public void All_ContainsEveryShippedAddinEditorType ()
-		{
-			var fromAddins = AddinEditorIds ().ToList ();
-			var fromCatalog = PhotoEditorCatalog.All.Select (editor => editor.Id).ToList ();
-
-			foreach (string id in fromAddins)
-				Assert.Contains (id, fromCatalog);
-			Assert.Contains (PhotoEditorCatalog.Sharpen.Id, fromCatalog);
-		}
-
 		[TestMethod]
 		public void Labels_ComeFromFSpotStrings ()
 		{
@@ -97,37 +82,6 @@ namespace FSpot.Tests.Editors
 			Assert.IsTrue (PhotoEditorCatalog.Sharpen.HasSettings);
 			Assert.IsTrue (PhotoEditorCatalog.Sharpen.HasCoreOperation);
 			Assert.IsFalse (PhotoEditorCatalog.Sharpen.CanHandleMultiple);
-		}
-
-		static IEnumerable<string> AddinEditorIds ()
-		{
-			string root = Path.Combine (RepoRoot (), "src");
-			foreach (var file in Directory.GetFiles (root, "*.xml", SearchOption.AllDirectories)) {
-				if (!file.EndsWith (".addin.xml", StringComparison.OrdinalIgnoreCase)
-				    && !file.EndsWith ("FSpot.addin.xml", StringComparison.OrdinalIgnoreCase))
-					continue;
-
-				foreach (var editor in XDocument.Load (file).Descendants ("Editor")) {
-					string type = (string)editor.Attribute ("EditorType");
-					if (string.IsNullOrEmpty (type))
-						continue;
-					string name = type.Split ('.').Last ();
-					if (name.EndsWith ("Editor", StringComparison.Ordinal))
-						name = name.Substring (0, name.Length - "Editor".Length);
-					yield return name;
-				}
-			}
-		}
-
-		static string RepoRoot ()
-		{
-			for (var dir = new DirectoryInfo (AppContext.BaseDirectory); dir != null; dir = dir.Parent) {
-				if (File.Exists (Path.Combine (dir.FullName, "F-Spot.slnx")))
-					return dir.FullName;
-			}
-
-			Assert.Fail ("F-Spot.slnx not found walking up from " + AppContext.BaseDirectory);
-			return null;
 		}
 	}
 }

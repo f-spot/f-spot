@@ -46,21 +46,10 @@ namespace FSpot.Gtk.Tests
 
 		static IEnumerable<(string file, XDocument document)> AddinDocuments ()
 		{
-			string root = RepoRoot ();
+			string root = RepoPaths.Root ();
 			var files = Directory.GetFiles (Path.Combine (root, "src"), "*.addin.xml", SearchOption.AllDirectories);
 			Assert.IsNotEmpty (files, "no addin XML under src/; the search root is wrong");
 			return files.Select (file => (file, XDocument.Load (file)));
-		}
-
-		static string RepoRoot ()
-		{
-			for (var dir = new DirectoryInfo (AppContext.BaseDirectory); dir != null; dir = dir.Parent) {
-				if (File.Exists (Path.Combine (dir.FullName, "F-Spot.slnx")))
-					return dir.FullName;
-			}
-
-			Assert.Fail ("F-Spot.slnx not found walking up from " + AppContext.BaseDirectory);
-			return null;
 		}
 	}
 }

@@ -2339,7 +2339,7 @@ public sealed partial class MainWindowViewModelTests
 	static Photo CatalogPhoto ()
 	{
 		string dest = Path.GetTempFileName () + ".jpg";
-		string src = Path.Combine (RepoRoot (), "tests", "FSpot.Tests", "TestData", "taglib-sample.jpg");
+		string src = Path.Combine (RepoPaths.Root (), "tests", "FSpot.Tests", "TestData", "taglib-sample.jpg");
 		File.Copy (src, dest, true);
 		FSpot.Settings.FSpotConfiguration.PhotoUri = new SafeUri (Path.GetTempPath ());
 		var photo = new Photo (null, null, 1, DateTimeUtil.FromDateTime (new DateTime (2026, 6, 1, 12, 0, 0, DateTimeKind.Utc)));
@@ -2347,16 +2347,6 @@ public sealed partial class MainWindowViewModelTests
 		photo.AddVersionUnsafely (Photo.OriginalVersionId, uri.GetBaseUri (), uri.GetFilename (), string.Empty, "Original", true);
 		photo.AllVersionsLoaded = true;
 		return photo;
-	}
-
-	static string RepoRoot ()
-	{
-		for (var dir = new DirectoryInfo (AppContext.BaseDirectory); dir != null; dir = dir.Parent) {
-			if (File.Exists (Path.Combine (dir.FullName, "F-Spot.slnx")))
-				return dir.FullName;
-		}
-		Assert.Fail ("F-Spot.slnx not found");
-		return null!;
 	}
 
 	static MainWindowViewModel ViewModelWithFocusedPhoto ()

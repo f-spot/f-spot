@@ -46,7 +46,7 @@ namespace FSpot.Gtk.Tests
 		[Timeout (120_000, CooperativeCancellation = true)]
 		public async Task BuiltExeConfig_KeepsGlibDllMap ()
 		{
-			string root = RepoRoot ();
+			string root = RepoPaths.Root ();
 			string output = Path.Combine (Path.GetTempPath (), "f-spot-dllmap-" + Guid.NewGuid ().ToString ("N"));
 			Directory.CreateDirectory (output);
 			try {
@@ -109,17 +109,6 @@ namespace FSpot.Gtk.Tests
 			Assert.IsTrue (File.Exists (path), $"{path} is missing; the build should copy f-spot.exe.config next to the testhost.");
 
 			return XDocument.Load (path).Descendants ("dllmap");
-		}
-
-		static string RepoRoot ()
-		{
-			for (var dir = new DirectoryInfo (AppContext.BaseDirectory); dir != null; dir = dir.Parent) {
-				if (File.Exists (Path.Combine (dir.FullName, "F-Spot.slnx")))
-					return dir.FullName;
-			}
-
-			Assert.Fail ("F-Spot.slnx not found walking up from " + AppContext.BaseDirectory);
-			return null;
 		}
 
 		static bool IsElf (string target) =>

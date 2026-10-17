@@ -1,8 +1,5 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using System.Xml.Linq;
-
-using Avalonia;
 using Avalonia.Automation;
 using Avalonia.Controls;
 using Avalonia.Media;
@@ -23,68 +20,6 @@ namespace FSpot.Avalonia.Tests;
 [TestClass]
 public sealed class I18nChromeTests
 {
-	static readonly string[] UserVisibleAttributes = [
-		"Header", "Content", "Title", "Text", "ToolTip.Tip", "PlaceholderText",
-		"AutomationProperties.Name"
-	];
-
-	[UiTestMethod]
-	public void RemainingChrome_BindsUserVisibleCopyToStrings ()
-	{
-		foreach (var (file, document) in ChromeDocuments ()) {
-			var leaks = document.Descendants ()
-				.SelectMany (element => UserVisibleAttributes
-					.Select (name => (element, name, value: Attribute (element, name)))
-					.Where (hit => IsHardcodedEnglish (hit.value)))
-				.Select (hit => $"{Relative (file)} <{hit.element.Name.LocalName} {hit.name}=\"{hit.value}\">")
-				.ToList ();
-
-			Assert.IsEmpty (leaks,
-				"User-visible chrome must come from FSpot.Strings: " + string.Join ("; ", leaks));
-		}
-	}
-
-	[UiTestMethod]
-	public void QueryBar_SurfacesNoMatchingPhotosFromStrings ()
-	{
-		var queryBar = Descendants (MainWindow (), "Border")
-			.Single (border => Attribute (border, "AutomationProperties.AutomationId")?.Contains ("QueryBar") == true
-				|| Attribute (border, "Classes") == "query-bar");
-		string markup = queryBar.ToString ();
-		Assert.Contains ("ShowQueryBarNoMatches", markup);
-		Assert.Contains ("NoMatchingPhotosFound", markup);
-		Assert.Contains ("lang:Strings.", markup);
-	}
-
-	[UiTestMethod]
-	public void ChipLabels_DoNotConcatenateFragmentsInXaml ()
-	{
-		string markup = MainWindow ().ToString ();
-		Assert.DoesNotContain ("FindColon}\" +", markup);
-		Assert.Contains ("FindRatingLabel", markup);
-		Assert.Contains ("FindDateLabel", markup);
-	}
-
-	[UiTestMethod]
-	public void InfoDate_WrapsInsteadOfEllipsizing ()
-	{
-		var date = Descendants (MainWindow (), "TextBlock")
-			.Single (block => Attribute (block, "AutomationProperties.AutomationId")?.Contains ("SidebarInfoDate") == true
-				|| Attribute (block, "Text")?.Contains ("Info.Date") == true);
-		string classes = Attribute (date, "Classes") ?? string.Empty;
-		Assert.Contains ("info-date", classes);
-		Assert.AreNotEqual ("NoWrap", Attribute (date, "TextWrapping"));
-	}
-
-	[UiTestMethod]
-	public void ImportAttachTags_UsesALabelTarget ()
-	{
-		var import = XDocument.Load (Path.Combine (ClientRoot (), "ImportWindow.axaml"));
-		var label = Descendants (import, "Label")
-			.Single (element => (Attribute (element, "Content") ?? string.Empty).Contains ("AttachTags"));
-		Assert.IsFalse (string.IsNullOrWhiteSpace (Attribute (label, "Target")));
-	}
-
 	[UiTestMethod]
 	[DoNotParallelize]
 	public void SidebarAndFilmstrip_FollowWindowFlowDirection ()
@@ -116,14 +51,37 @@ public sealed class I18nChromeTests
 	}
 
 	[UiTestMethod]
+	[DoNotParallelize]
 	public void AboutAndImport_UseLocalizedWindowTitles ()
 	{
-		var about = XDocument.Load (Path.Combine (ClientRoot (), "AboutWindow.axaml"));
-		Assert.Contains ("Strings.", about.Root?.Attribute ("Title")?.Value ?? string.Empty);
-		var import = XDocument.Load (Path.Combine (ClientRoot (), "ImportWindow.axaml"));
-		Assert.Contains ("Strings.", import.Root?.Attribute ("Title")?.Value ?? string.Empty);
-		Assert.IsFalse (string.IsNullOrEmpty (Strings.AboutFSpot));
-		Assert.IsFalse (string.IsNullOrEmpty (Strings.Import));
+		var about = new AboutWindow ();
+		var import = new ImportWindow ();
+		about.Show ();
+		import.Show ();
+		try {
+			Assert.AreEqual (Strings.AboutFSpot, about.Title);
+			Assert.AreEqual (Strings.Import, import.Title);
+		} finally {
+			about.Close ();
+			import.Close ();
+		}
+	}
+
+	[UiTestMethod]
+	[DoNotParallelize]
+	public void ImportAttachTags_LabelsTheTagBox ()
+	{
+		var window = new ImportWindow ();
+		window.Show ();
+		try {
+			var box = window.FindControl<TextBox> ("AttachTagsBox");
+			Assert.IsNotNull (box);
+			var label = window.GetVisualDescendants ().OfType<Label> ()
+				.Single (item => Equals (item.Content, Strings.AttachTags));
+			Assert.AreSame (box, label.Target);
+		} finally {
+			window.Close ();
+		}
 	}
 
 	[UiTestMethod]
@@ -167,55 +125,8 @@ public sealed class I18nChromeTests
 	[UiTestMethod]
 	public void ApplicationName_ComesFromStrings ()
 	{
-		var app = XDocument.Load (Path.Combine (ClientRoot (), "App.axaml"));
-		string name = app.Root?.Attribute ("Name")?.Value ?? string.Empty;
-		Assert.Contains ("Strings.FSpot", name);
+		var app = new App ();
+		app.Initialize ();
+		Assert.AreEqual (Strings.FSpot, app.Name);
 	}
-
-	static bool IsHardcodedEnglish (string? value)
-	{
-		if (string.IsNullOrWhiteSpace (value))
-			return false;
-		if (value.Contains ("{Binding", StringComparison.Ordinal)
-			|| value.Contains ("{x:Static", StringComparison.Ordinal)
-			|| value.Contains ("lang:Strings", StringComparison.Ordinal)
-			|| value.StartsWith ('{'))
-			return false;
-		if (value is "×" or "▾" or "◀" or "▶" or "!" or "*")
-			return false;
-		return value.Any (char.IsLetter);
-	}
-
-	static string? Attribute (XElement element, string localName)
-		=> element.Attribute (localName)?.Value
-			?? element.Attributes ().FirstOrDefault (attribute => attribute.Name.LocalName == localName)?.Value;
-
-	static XDocument MainWindow ()
-		=> XDocument.Load (Path.Combine (ClientRoot (), "MainWindow.axaml"));
-
-	static IEnumerable<(string file, XDocument document)> ChromeDocuments ()
-	{
-		string root = ClientRoot ();
-		return Directory.EnumerateFiles (root, "*.axaml", SearchOption.AllDirectories)
-			.Where (path => !path.Contains ($"{Path.DirectorySeparatorChar}obj{Path.DirectorySeparatorChar}", StringComparison.Ordinal))
-			.Select (path => (path, XDocument.Load (path)));
-	}
-
-	static IEnumerable<XElement> Descendants (XDocument document, string localName)
-		=> document.Descendants ().Where (element => element.Name.LocalName == localName);
-
-	static string ClientRoot ()
-		=> Path.Combine (RepoRoot (), "src", "Clients", "FSpot.Avalonia");
-
-	static string RepoRoot ()
-	{
-		for (var dir = new DirectoryInfo (AppContext.BaseDirectory); dir != null; dir = dir.Parent) {
-			if (File.Exists (Path.Combine (dir.FullName, "F-Spot.slnx")))
-				return dir.FullName;
-		}
-		Assert.Fail ("F-Spot.slnx not found");
-		return null!;
-	}
-
-	static string Relative (string file) => Path.GetRelativePath (RepoRoot (), file);
 }

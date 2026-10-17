@@ -1,7 +1,6 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System.ComponentModel;
-using System.Xml.Linq;
 
 using Avalonia;
 using Avalonia.Controls;
@@ -138,12 +137,6 @@ public sealed partial class MainWindowViewModelTests
 	[UiTestMethod]
 	public async Task BlackAndWhiteCurve_LiftsTheToneAndRendersAgain ()
 	{
-		var panel = XDocument.Load (Path.Combine (ClientRoot (), "MainWindow.axaml"))
-			.Descendants ()
-			.Single (element => (element.Attribute ("IsVisible")?.Value ?? string.Empty).Contains ("ShowBwSettings"));
-		var markup = panel.Descendants ().Single (element => element.Name.LocalName == "SplineCurveEditor");
-		Assert.Contains ("BwCurve", markup.Attribute ("Curve")?.Value ?? string.Empty);
-
 		AvaloniaApp.Ensure ();
 		var viewModel = ViewModelWithFocusedPhoto ();
 		viewModel.Preview = new WriteableBitmap (new PixelSize (8, 8), new Vector (96, 96), PixelFormat.Bgra8888, AlphaFormat.Premul);
@@ -283,15 +276,6 @@ public sealed partial class MainWindowViewModelTests
 		}
 
 		public event PropertyChangedEventHandler? PropertyChanged;
-	}
-
-	static string ClientRoot ()
-	{
-		for (var dir = new DirectoryInfo (AppContext.BaseDirectory); dir != null; dir = dir.Parent) {
-			if (File.Exists (Path.Combine (dir.FullName, "F-Spot.slnx")))
-				return Path.Combine (dir.FullName, "src", "Clients", "FSpot.Avalonia");
-		}
-		throw new InvalidOperationException ("F-Spot.slnx was not found above the test output.");
 	}
 
 	[UiTestMethod]

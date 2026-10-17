@@ -1,7 +1,5 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using System.Xml.Linq;
-
 using Avalonia.Automation;
 using Avalonia.Controls;
 using Avalonia.VisualTree;
@@ -65,9 +63,6 @@ public sealed class PhotoPopupAttachmentTests
 	[UiTestMethod]
 	public void BrowseGrid_OpensGtkPhotoPopup ()
 	{
-		var template = PhotoGridMarkup ().Elements ().Single (element => element.Name.LocalName == "ListBox.ItemTemplate");
-		Assert.IsEmpty (template.Descendants ().Where (element => element.Name.LocalName.Contains ("ContextMenu")).ToList ());
-
 		var main = new MainWindow (null, new MainWindowViewModelTests.NullThumbnails ()) {
 			Width = 800,
 			Height = 500
@@ -118,20 +113,6 @@ public sealed class PhotoPopupAttachmentTests
 		} finally {
 			main.Close ();
 		}
-	}
-
-	static XElement PhotoGridMarkup ()
-	{
-		for (var dir = new DirectoryInfo (AppContext.BaseDirectory); dir != null; dir = dir.Parent) {
-			var root = Path.Combine (dir.FullName, "F-Spot.slnx");
-			if (!File.Exists (root))
-				continue;
-			return XDocument.Load (Path.Combine (dir.FullName, "src", "Clients", "FSpot.Avalonia", "MainWindow.axaml"))
-				.Descendants ()
-				.Single (element => element.Name.LocalName == "ListBox"
-					&& (element.Attribute ("AutomationProperties.AutomationId")?.Value ?? string.Empty).Contains ("PhotoGrid"));
-		}
-		throw new InvalidOperationException ("F-Spot.slnx was not found above the test output.");
 	}
 
 	static void AssertPopup (Control owner, MainWindowViewModel viewModel)

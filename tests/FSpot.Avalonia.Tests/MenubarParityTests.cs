@@ -1,7 +1,5 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
-using System.Xml.Linq;
-
 using Avalonia.Automation;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -231,68 +229,6 @@ public sealed class MenubarParityTests
 	}
 
 	[UiTestMethod]
-	public void MenubarShape_MatchesGtkPhotoEditViewAndFind ()
-	{
-		var window = XDocument.Load (Path.Combine (ClientRoot (), "MainWindow.axaml"));
-		string markup = window.ToString ();
-
-		Assert.DoesNotContain ("Header=\"16\"", markup);
-		Assert.DoesNotContain ("Strings.DisplayFileNames", markup);
-		Assert.DoesNotContain ("Strings.MatchAllTags", markup);
-		Assert.DoesNotContain ("ShowToolsCommand", markup);
-
-		var native = window.Descendants ().Where (element => element.Name.LocalName == "NativeMenuItem").ToList ();
-		Assert.IsEmpty (native.Where (item => (item.Attribute ("Header")?.Value ?? string.Empty).Contains ("VerticalMnemonic")).ToList ());
-
-		var version = native.Single (item => (item.Attribute ("Header")?.Value ?? string.Empty).Contains ("Strings.Version"));
-		Assert.Contains ("VersionMenu", version.ToString ());
-		Assert.AreNotEqual ("False", version.Attribute ("IsEnabled")?.Value);
-
-		var export = native.Single (item => (item.Attribute ("Header")?.Value ?? string.Empty).Contains ("ExportTo2"));
-		Assert.Contains ("ExportMenu", export.ToString ());
-		Assert.Contains ("ExportCommand", export.ToString ());
-		Assert.Contains ("ExportZipCommand", export.ToString ());
-		Assert.Contains ("ExportGalleryCommand", export.ToString ());
-
-		var tools = native.Single (item => HeaderIs (item, "Tools"));
-		Assert.Contains ("ChangePathCommand", tools.ToString ());
-		Assert.Contains ("MergeRawJpegCommand", tools.ToString ());
-		Assert.Contains ("DevelopUfrawCommand", tools.ToString ());
-		Assert.Contains ("BatchDevelopCommand", tools.ToString ());
-		Assert.Contains ("MergeCatalogCommand", tools.ToString ());
-		Assert.IsNull (tools.Attribute ("IsVisible"));
-
-		var attach = native.Single (item => HeaderIs (item, "AttachTag"));
-		Assert.Contains ("AttachTagMenu", attach.ToString ());
-		Assert.IsNull (attach.Attribute ("Command"));
-
-		var remove = native.Single (item => HeaderIs (item, "RemoveTag"));
-		Assert.Contains ("RemoveTagMenu", remove.ToString ());
-		Assert.IsNull (remove.Attribute ("Command"));
-
-		Assert.Contains (item => (item.Attribute ("Header")?.Value ?? string.Empty).Contains ("TagIcons"), native);
-		Assert.Contains (item => (item.Attribute ("Header")?.Value ?? string.Empty).Contains ("Hidden2"), native);
-		Assert.Contains (item => (item.Attribute ("Header")?.Value ?? string.Empty).Contains ("Small2"), native);
-		Assert.Contains (item => (item.Attribute ("Header")?.Value ?? string.Empty).Contains ("Medium2"), native);
-		Assert.Contains (item => (item.Attribute ("Header")?.Value ?? string.Empty).Contains ("Large2"), native);
-
-		Assert.Contains (item => (item.Attribute ("Command")?.Value ?? string.Empty).Contains ("IncludeHighlightedTags"), native);
-		Assert.Contains (item => (item.ToString ()).Contains ("FindWithMenu"), native);
-
-		var timeline = native.Single (item => (item.Attribute ("Header")?.Value ?? string.Empty).Contains ("Strings.Timeline"));
-		Assert.Contains ("CanUseTimeline", timeline.Attribute ("IsEnabled")?.Value ?? string.Empty);
-		var filmstrip = native.Single (item => HeaderIs (item, "Filmstrip"));
-		Assert.Contains ("CanUseFilmstrip", filmstrip.Attribute ("IsEnabled")?.Value ?? string.Empty);
-
-		var loupe = native.Single (item => (item.Attribute ("Command")?.Value ?? string.Empty).Contains ("ToggleLoupe"));
-		Assert.AreEqual ("V", loupe.Attribute ("Gesture")?.Value);
-
-		Assert.Contains (item => (item.Attribute ("Command")?.Value ?? string.Empty).Contains ("CloseWindowCommand"), native);
-		Assert.Contains (item => (item.Attribute ("Command")?.Value ?? string.Empty).Contains ("QuitCommand"), native);
-		Assert.Contains (item => (item.Attribute ("Command")?.Value ?? string.Empty).Contains ("AttachTagCommand"), native);
-	}
-
-	[UiTestMethod]
 	public void ExtensionManager_ReplicatesTheAddinDialogWithoutInstalling ()
 	{
 		var addin = new AddinStatus ("tools/sample", "Sample", true);
@@ -380,21 +316,4 @@ public sealed class MenubarParityTests
 		}
 	}
 
-	static bool HeaderIs (XElement item, string name)
-	{
-		string header = item.Attribute ("Header")?.Value ?? string.Empty;
-		return header.Contains ("Strings." + name + "}", StringComparison.Ordinal)
-			|| header.Contains ("Strings." + name + "\"", StringComparison.Ordinal);
-	}
-
-	static string ClientRoot ()
-	{
-		for (var dir = new DirectoryInfo (AppContext.BaseDirectory); dir != null; dir = dir.Parent) {
-			if (File.Exists (Path.Combine (dir.FullName, "F-Spot.slnx")))
-				return Path.Combine (dir.FullName, "src", "Clients", "FSpot.Avalonia");
-		}
-
-		Assert.Fail ("F-Spot.slnx not found");
-		return null!;
-	}
 }

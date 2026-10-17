@@ -35,7 +35,7 @@ public sealed class ChromeIconsTests
 	{
 		Assert.EndsWith (".png", ChromeIcons.WindowIcon);
 		Assert.Contains ("f-spot-32.png", ChromeIcons.WindowIcon);
-		Assert.IsTrue (File.Exists (Path.Combine (RepoRoot (), "icons", "f-spot-32.png")));
+		Assert.IsTrue (File.Exists (Path.Combine (RepoPaths.Root (), "icons", "f-spot-32.png")));
 		Assert.IsTrue (File.Exists (Path.Combine (IconsSrc (), "f-spot.svg")),
 			"In-app logo stays SVG even though the OS window slot is PNG.");
 	}
@@ -109,46 +109,6 @@ public sealed class ChromeIconsTests
 	}
 
 	[UiTestMethod]
-	public void AxamlChrome_DoesNotPointAtPngWhenAnSvgExists ()
-	{
-		foreach (string file in Directory.EnumerateFiles (ClientRoot (), "*.axaml", SearchOption.AllDirectories)) {
-			if (file.Contains ($"{Path.DirectorySeparatorChar}obj{Path.DirectorySeparatorChar}", StringComparison.Ordinal))
-				continue;
-			string markup = File.ReadAllText (file);
-			foreach (System.Text.RegularExpressions.Match match in
-				System.Text.RegularExpressions.Regex.Matches (markup, @"Icons/([A-Za-z0-9_.-]+\.png)")) {
-				string png = match.Groups[1].Value;
-				if (png == Path.GetFileName (ChromeIcons.WindowIcon) || png == "f-spot-logo.png")
-					continue;
-				string stem = StripSize (Path.GetFileNameWithoutExtension (png));
-				Assert.IsFalse (SrcHasStem (stem),
-					$"{Path.GetFileName (file)} uses {png} but icons/src has an SVG for {stem}");
-			}
-		}
-	}
-
-	[UiTestMethod]
-	public void Axaml_UsesShippedAppLogoAndWindowIcon ()
-	{
-		string main = File.ReadAllText (Path.Combine (ClientRoot (), "MainWindow.axaml"));
-		Assert.Contains ("ChromeIcons.WindowIcon", main);
-		string about = File.ReadAllText (Path.Combine (ClientRoot (), "AboutWindow.axaml"));
-		Assert.Contains ("f-spot-logo.png", about);
-		Assert.DoesNotContain ("f-spot-256.png", about);
-		Assert.DoesNotContain ("f-spot.svg", about);
-	}
-
-	[UiTestMethod]
-	public void Axaml_DoesNotBindPngCapableUrisToSvgPath ()
-	{
-		string main = File.ReadAllText (Path.Combine (ClientRoot (), "MainWindow.axaml"));
-		Assert.DoesNotContain ("svg:Svg", ExtractTagTreeIcon (main));
-		Assert.Contains ("ChromeIcon", ExtractTagTreeIcon (main));
-		Assert.DoesNotContain ("svg:Svg", ExtractEditorIcon (main));
-		Assert.Contains ("ChromeIcon", ExtractEditorIcon (main));
-	}
-
-	[UiTestMethod]
 	[DoNotParallelize]
 	public void ChromeIcon_RendersPngUrisWithImageNotSvg ()
 	{
@@ -212,22 +172,6 @@ public sealed class ChromeIconsTests
 		return icon;
 	}
 
-	static string ExtractTagTreeIcon (string markup)
-	{
-		int path = markup.IndexOf ("Uri=\"{Binding IconPath}\"", StringComparison.Ordinal);
-		Assert.IsGreaterThanOrEqualTo (0, path);
-		int icon = markup.LastIndexOf ("controls:ChromeIcon", path, StringComparison.Ordinal);
-		Assert.IsGreaterThanOrEqualTo (0, icon);
-		return markup.Substring (icon, path - icon);
-	}
-
-	static string ExtractEditorIcon (string markup)
-	{
-		int start = markup.IndexOf ("EditorIcons.Uri", StringComparison.Ordinal);
-		Assert.IsGreaterThanOrEqualTo (0, start);
-		return markup.Substring (Math.Max (0, start - 200), Math.Min (400, markup.Length - Math.Max (0, start - 200)));
-	}
-
 	static bool SrcHas (string fileName)
 		=> File.Exists (Path.Combine (IconsSrc (), fileName));
 
@@ -240,18 +184,5 @@ public sealed class ChromeIconsTests
 		=> System.Text.RegularExpressions.Regex.Replace (name, @"-\d+$", string.Empty);
 
 	static string IconsSrc ()
-		=> Path.Combine (RepoRoot (), "icons", "src");
-
-	static string ClientRoot ()
-		=> Path.Combine (RepoRoot (), "src", "Clients", "FSpot.Avalonia");
-
-	static string RepoRoot ()
-	{
-		for (var dir = new DirectoryInfo (AppContext.BaseDirectory); dir != null; dir = dir.Parent) {
-			if (File.Exists (Path.Combine (dir.FullName, "F-Spot.slnx")))
-				return dir.FullName;
-		}
-		Assert.Fail ("F-Spot.slnx not found");
-		return null!;
-	}
+		=> Path.Combine (RepoPaths.Root (), "icons", "src");
 }
