@@ -52,6 +52,7 @@ namespace FSpot.Loaders
 			//First, send a thumbnail if we have one
 			if ((thumb = App.Instance.Container.Resolve<IThumbnailService> ().TryLoadThumbnail (uri, ThumbnailSize.Large).ToPixbuf ()) != null) {
 				pixbuf_orientation = ImageOrientation.TopLeft;
+				thumbnailHandoff.Hold ();
 				AreaPrepared?.Invoke (this, new AreaPreparedEventArgs (true));
 				AreaUpdated?.Invoke (this, new AreaUpdatedEventArgs (new Rectangle (0, 0, thumb.Width, thumb.Height)));
 			}
@@ -76,6 +77,17 @@ namespace FSpot.Loaders
 		public event EventHandler Completed;
 
 		Pixbuf thumb;
+		readonly ThumbnailHandoff thumbnailHandoff = new ();
+
+		internal void ClaimThumbnail ()
+			=> thumbnailHandoff.Claim ();
+
+		void ReleaseThumbnailForTheView ()
+		{
+			if (thumbnailHandoff.Release () && thumb != null)
+				thumb.Dispose ();
+			thumb = null;
+		}
 
 		new public Pixbuf Pixbuf {
 			get {
@@ -263,14 +275,10 @@ namespace FSpot.Loaders
 
 			if (endOfStream) {
 				ReleaseImageStream ();
-				Close ();
 			} else if (decoderFailed) {
-				if (thumb != null) {
-					thumb.Dispose ();
-					thumb = null;
-				}
+				// The view may already be showing this thumbnail. Dispose it on
+				// the GTK idle, once, after the view has dropped its reference.
 				ReleaseImageStream ();
-				Close ();
 			} else if (stop)
 				ReleaseImageStream ();
 
@@ -278,13 +286,11 @@ namespace FSpot.Loaders
 				//Send the AreaPrepared event
 				if (notify_prepared && !over_budget) {
 					notify_prepared = false;
-					if (thumb != null) {
-						thumb.Dispose ();
-						thumb = null;
-					}
+					ReleaseThumbnailForTheView ();
 
 					AreaPrepared?.Invoke (this, new AreaPreparedEventArgs (false));
-				}
+				} else if (decoderFailed)
+					ReleaseThumbnailForTheView ();
 
 				//Send the AreaUpdated events
 				if (damage != Rectangle.Zero && !over_budget) {

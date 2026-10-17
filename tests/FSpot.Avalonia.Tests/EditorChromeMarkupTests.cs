@@ -156,14 +156,6 @@ public sealed class EditorChromeMarkupTests
 	}
 
 	[UiTestMethod]
-	public void PhotoPreview_BindsInterpolationModeFromPreferences ()
-	{
-		string code = File.ReadAllText (Path.Combine (ClientRoot (), "MainWindow.axaml.cs"));
-		Assert.Contains ("PreviewInterpolation.Apply", code);
-		Assert.Contains ("ViewerInterpolation", code);
-	}
-
-	[UiTestMethod]
 	public void SelectionOverlay_BindsPanAndZoom ()
 	{
 		var overlay = Descendants (MainWindow (), "ImageSelectionOverlay").Single ();

@@ -182,6 +182,7 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
+	[DoNotParallelize]
 	public void TagTree_DeleteWarnsWhenAnyHighlightedTagHasChildren ()
 	{
 		AvaloniaApp.Ensure ();
@@ -216,6 +217,7 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
+	[DoNotParallelize]
 	public void TagTyping_TabLeavesTheBoxWhenNothingCompletes ()
 	{
 		AvaloniaApp.Ensure ();
@@ -254,6 +256,7 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
+	[DoNotParallelize]
 	public void TagTyping_TabStillCompletesAMatchingTag ()
 	{
 		AvaloniaApp.Ensure ();
@@ -281,6 +284,7 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
+	[DoNotParallelize]
 	public void TagTree_DeleteAndF2ReachTheTagWhenTheRowIsFocused ()
 	{
 		AvaloniaApp.Ensure ();

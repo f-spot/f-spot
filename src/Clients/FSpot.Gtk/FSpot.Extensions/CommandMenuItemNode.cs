@@ -18,7 +18,7 @@ namespace FSpot.Extensions
 	[ExtensionNode ("Command")]
 	public class CommandMenuItemNode : MenuItemNode
 	{
-		[NodeAttribute ("CommandType", true)]
+		[NodeAttribute (AddinAttributeNames.CommandType, true)]
 		protected string commandType;
 
 		protected override void OnActivated (object o, EventArgs e)

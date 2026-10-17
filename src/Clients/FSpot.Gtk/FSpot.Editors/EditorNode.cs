@@ -7,6 +7,8 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using FSpot.Extensions;
+
 using Mono.Addins;
 
 namespace FSpot.Editors
@@ -15,7 +17,7 @@ namespace FSpot.Editors
 	[ExtensionNode ("Editor")]
 	public class EditorNode : ExtensionNode
 	{
-		[NodeAttribute ("EditorType", Required = true)]
+		[NodeAttribute (AddinAttributeNames.EditorType, Required = true)]
 		protected string editorType;
 
 		public Editor GetEditor ()

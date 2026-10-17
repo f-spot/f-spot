@@ -202,6 +202,8 @@ namespace FSpot.Widgets
 
 			Gdk.Pixbuf prev = Pixbuf;
 			Pixbuf = loader.Pixbuf;
+			if (loader is GdkImageLoader images)
+				images.ClaimThumbnail ();
 			prev?.Dispose ();
 
 			ZoomFit (args.ReducedResolution);
