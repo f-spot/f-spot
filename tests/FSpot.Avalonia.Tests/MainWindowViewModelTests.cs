@@ -2340,7 +2340,7 @@ public sealed partial class MainWindowViewModelTests
 	static Photo CatalogPhoto ()
 	{
 		string dest = Path.GetTempFileName () + ".jpg";
-		string src = Path.Combine (RepoPaths.Root (), "tests", "FSpot.Tests", "TestData", "taglib-sample.jpg");
+		string src = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
 		File.Copy (src, dest, true);
 		FSpot.Settings.FSpotConfiguration.PhotoUri = new SafeUri (Path.GetTempPath ());
 		var photo = new Photo (null, null, 1, DateTimeUtil.FromDateTime (new DateTime (2026, 6, 1, 12, 0, 0, DateTimeKind.Utc)));

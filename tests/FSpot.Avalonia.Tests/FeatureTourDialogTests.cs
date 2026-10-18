@@ -34,9 +34,8 @@ using TinyIoC;
 
 namespace FSpot.Avalonia.Tests;
 
-// Opens the dialogs and runs the editing tools against real files. Copies are taken
-// from this machine's pictures when any exist, then from the bundled sample. The
-// copies are edited, tagged, and deleted; the originals are not.
+// Opens the dialogs and runs the editing tools against copies of the bundled sample.
+// The copies are edited, tagged, and deleted. The sample in the test output is not.
 [TestClass]
 [DoNotParallelize]
 public sealed class FeatureTourDialogTests
@@ -147,7 +146,7 @@ public sealed class FeatureTourDialogTests
 	}
 
 	[UiTestMethod]
-	public async Task Tools_DesaturateAndRotateCopiesFromThisMachine ()
+	public async Task Tools_RotateAndDesaturateTheBundledSample ()
 	{
 		AvaloniaApp.Ensure ();
 		EnsureEditingServices ();
@@ -822,27 +821,6 @@ public sealed class FeatureTourDialogTests
 	static IEnumerable<string> SourcePhotos ()
 	{
 		yield return Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
-		foreach (string folder in new[] {
-			Environment.GetFolderPath (Environment.SpecialFolder.MyPictures),
-			Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.UserProfile), "Photos")
-		}) {
-			if (!Directory.Exists (folder))
-				continue;
-			string? found = null;
-			try {
-				found = Directory.EnumerateFiles (folder, "*.jpg").FirstOrDefault ()
-					?? Directory.EnumerateDirectories (folder).SelectMany (dir => {
-						try {
-							return Directory.EnumerateFiles (dir, "*.jpg");
-						} catch (Exception ex) when (ex is IOException or UnauthorizedAccessException) {
-							return [];
-						}
-					}).FirstOrDefault ();
-			} catch (Exception ex) when (ex is IOException or UnauthorizedAccessException) {
-			}
-			if (found is not null)
-				yield return found;
-		}
 	}
 
 	static string CopySample ()
