@@ -71,6 +71,8 @@ namespace FSpot.Database
 				backup_path = Path.Combine (directory, $"{name}-{DateTime.Now:yyyyMMdd}-{i++}{extension}");
 			}
 
+			// Windows will not rename a database file that SQLite still has open.
+			CloseStores ();
 			File.Move (path, backup_path);
 			Init (path, true);
 
@@ -87,26 +89,50 @@ namespace FSpot.Database
 			if (new_db && !createIfMissing)
 				throw new Exception ($"{path}: File not found");
 
-			Database = new FSpotDatabaseConnection (path);
+			try {
+				Database = new FSpotDatabaseConnection (path);
 
-			// Load or create the meta table
-			Meta = new MetaStore (this, new_db);
+				// Load or create the meta table
+				Meta = new MetaStore (this, new_db);
 
-			// Update the database schema if necessary
-			Updater.Run (Database, updaterDialog);
+				// Update the database schema if necessary
+				Updater.Run (Database, updaterDialog);
 
-			Database.BeginTransaction ();
+				Database.BeginTransaction ();
 
-			Tags = new TagStore (this, new_db);
-			Rolls = new RollStore (this, new_db);
-			Exports = new ExportStore (this, new_db);
-			Jobs = new JobStore (this, new_db);
-			Photos = new PhotoStore (imageFileFactory, thumbnailService, this, new_db);
+				Tags = new TagStore (this, new_db);
+				Rolls = new RollStore (this, new_db);
+				Exports = new ExportStore (this, new_db);
+				Jobs = new JobStore (this, new_db);
+				Photos = new PhotoStore (imageFileFactory, thumbnailService, this, new_db);
 
-			Database.CommitTransaction ();
+				Database.CommitTransaction ();
 
-			Empty = new_db;
-			op.Complete ();
+				Empty = new_db;
+				op.Complete ();
+			} catch {
+				CloseStores ();
+				throw;
+			}
+		}
+
+		void CloseStores ()
+		{
+			if (Tags != null) {
+				Tags.Dispose ();
+				Tags = null;
+			}
+
+			Photos = null;
+			Rolls = null;
+			Exports = null;
+			Jobs = null;
+			Meta = null;
+
+			if (Database != null) {
+				Database.Dispose ();
+				Database = null;
+			}
 		}
 
 		public void Dispose ()
@@ -122,16 +148,8 @@ namespace FSpot.Database
 			disposed = true;
 
 			// free managed resources
-			if (disposing) {
-				if (Tags != null) {
-					Tags.Dispose ();
-					Tags = null;
-				}
-				if (Database != null) {
-					Database.Dispose ();
-					Database = null;
-				}
-			}
+			if (disposing)
+				CloseStores ();
 			// free unmanaged resources
 		}
 
