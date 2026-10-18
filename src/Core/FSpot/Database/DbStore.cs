@@ -69,6 +69,12 @@ namespace FSpot.Database
 				itemCache.Remove (item.Id);
 		}
 
+		protected void ClearCache ()
+		{
+			lock (itemCacheLock)
+				itemCache.Clear ();
+		}
+
 		protected void EmitAdded (T item)
 		{
 			EmitAdded (new T[] { item });

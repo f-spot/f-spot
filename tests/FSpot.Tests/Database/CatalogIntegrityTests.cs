@@ -73,6 +73,20 @@ namespace FSpot.Database.Tests
 		}
 
 		[TestMethod]
+		public void Init_RejectsAFileThatIsNotACatalog ()
+		{
+			database.Dispose ();
+			database = null;
+			string path = Path.Combine (root, "notes.db");
+			File.WriteAllText (path, "this is not a catalog");
+			var unopened = new Db (new Mock<IImageFileFactory> ().Object, new Mock<IThumbnailService> ().Object, new Mock<IUpdaterUI> ().Object);
+
+			Assert.ThrowsExactly<SqliteException> (() => unopened.Init (path, false));
+
+			Assert.AreEqual ("this is not a catalog", File.ReadAllText (path));
+		}
+
+		[TestMethod]
 		public void Rollback_DropsThePhotoAndTagWrittenInsideIt ()
 		{
 			Tag kept = database.Tags.CreateTag (null, "Kept", false);
@@ -88,6 +102,42 @@ namespace FSpot.Database.Tests
 			Assert.IsNull (database.Tags.GetTagByName ("Gone"));
 			Assert.AreEqual (0, Count ("photos"));
 			Assert.AreEqual (1, Count ("tags", "name = 'Kept'"));
+		}
+
+		[TestMethod]
+		public void Rollback_SameSession_ForgetsTheUndoneTagRatingAndRoll ()
+		{
+			Photo photo = AddPhoto ("kept.jpg");
+			database.BeginTransaction ();
+			database.Tags.CreateTag (null, "Gone", false);
+			photo.Rating = 4;
+			database.Photos.Commit (photo);
+			uint rollId = database.Rolls.Create ().Id;
+			Photo seen = database.Photos.Get (photo.Id);
+			Assert.AreEqual (4u, seen.Rating);
+
+			database.RollbackTransaction ();
+
+			Assert.IsNull (database.Tags.GetTagByName ("Gone"));
+			Assert.AreEqual (0u, database.Photos.Get (photo.Id).Rating);
+			Assert.IsNull (database.Rolls.Get (rollId));
+			Assert.AreEqual ("kept.jpg", database.Photos.Get (photo.Id).Name);
+		}
+
+		[TestMethod]
+		public void CalculateMD5Sum_MissingFile_LeavesTheStoredHashAlone ()
+		{
+			Photo photo = AddPhoto ("gone.jpg");
+			var version = (PhotoVersion)photo.DefaultVersion;
+			string hash = version.ImportMD5;
+			Assert.IsFalse (string.IsNullOrEmpty (hash));
+			version.ImportMD5 = string.Empty;
+			File.Delete (Path.Combine (root, "gone.jpg"));
+
+			Assert.ThrowsExactly<FileNotFoundException> (() => database.Photos.CalculateMD5Sum (photo));
+
+			Assert.AreEqual (hash, database.Photos.Get (photo.Id).DefaultVersion.ImportMD5);
+			Assert.AreEqual ("gone.jpg", database.Photos.Get (photo.Id).Name);
 		}
 
 		[TestMethod]

@@ -145,6 +145,13 @@ namespace FSpot.Database
 		// mostly to simplify handling of the parent relationship between tags, but it also makes it
 		// a little bit faster.  We achieve this by passing "true" as the cache_is_immortal to our
 		// base class.
+		internal void Reload ()
+		{
+			ClearCache ();
+			RootCategory = new Category (null, 0, Strings.ParenNoneParen);
+			LoadAllTags ();
+		}
+
 		void LoadAllTags ()
 		{
 			// Pass 1, get all the tags.

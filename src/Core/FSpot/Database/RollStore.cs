@@ -53,6 +53,11 @@ namespace FSpot.Database
 			return Create (DateTime.UtcNow);
 		}
 
+		internal void ForgetCached ()
+		{
+			ClearCache ();
+		}
+
 		public override Roll Get (uint id)
 		{
 			var roll = LookupInCache (id) as Roll;

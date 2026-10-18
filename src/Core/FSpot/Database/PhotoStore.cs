@@ -311,6 +311,11 @@ namespace FSpot.Database
 			}
 		}
 
+		internal void ForgetCached ()
+		{
+			ClearCache ();
+		}
+
 		public override Photo Get (uint id)
 		{
 			Photo photo = LookupInCache (id);

@@ -105,6 +105,11 @@ namespace FSpot.Database
 			EmitChanged (item);
 		}
 
+		internal void ForgetCached ()
+		{
+			ClearCache ();
+		}
+
 		public override ExportItem Get (uint id)
 		{
 			// we never use this

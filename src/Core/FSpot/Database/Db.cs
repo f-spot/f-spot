@@ -148,6 +148,13 @@ namespace FSpot.Database
 		public void RollbackTransaction ()
 		{
 			Database.RollbackTransaction ();
+			// The file no longer has the rows written inside the transaction.
+			// The open stores must look them up again, or the next read returns
+			// the copy that was just undone.
+			Tags?.Reload ();
+			Photos?.ForgetCached ();
+			Rolls?.ForgetCached ();
+			Exports?.ForgetCached ();
 		}
 	}
 }
