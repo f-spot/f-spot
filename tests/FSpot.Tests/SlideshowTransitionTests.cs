@@ -21,9 +21,9 @@ namespace FSpot.Tests
 		[TestMethod]
 		public void All_ListsTheThreeGtkTransitions ()
 		{
-			CollectionAssert.AreEqual (
+			Assert.AreSequenceEqual (
 				new[] { SlideshowTransitionKind.Cover, SlideshowTransitionKind.Dissolve, SlideshowTransitionKind.Push },
-				new System.Collections.Generic.List<SlideshowTransitionKind> (SlideshowTransition.All));
+				SlideshowTransition.All);
 		}
 
 		[TestMethod]

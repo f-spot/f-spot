@@ -54,9 +54,9 @@ public sealed class PreferencesWindowTests
 			var window = new PreferencesWindow ();
 			window.Show ();
 			try {
-				Assert.AreEqual (false, window.EmbedMetadata.IsChecked);
-				Assert.AreEqual (true, window.SeparateMetadata.IsChecked);
-				Assert.AreEqual (true, window.AlwaysSidecar.IsChecked);
+				Assert.IsFalse (window.EmbedMetadata.IsChecked);
+				Assert.IsTrue (window.SeparateMetadata.IsChecked);
+				Assert.IsTrue (window.AlwaysSidecar.IsChecked);
 				Assert.IsFalse (window.AlwaysSidecar.IsEnabled);
 				Assert.Contains (Strings.None, window.DisplayProfile.Items.Cast<object> ());
 				Assert.Contains (Strings.None, window.PrintProfile.Items.Cast<object> ());

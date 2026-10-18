@@ -607,7 +607,7 @@ public sealed class ViewerWindowTests
 			var window = ViewerPreferencesWindow.ShowUp (null);
 			try {
 				Assert.AreSame (window, ViewerPreferencesWindow.ShowUp (null));
-				Assert.IsTrue (window.AsBackground.IsChecked == true);
+				Assert.IsTrue (window.AsBackground.IsChecked);
 
 				window.AsCheckPattern.IsChecked = true;
 				Assert.AreEqual (ViewerTransparency.CheckPattern, ViewerSettings.Transparency);

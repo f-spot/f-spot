@@ -101,11 +101,9 @@ public sealed class DesktopBackgroundTests
 	}
 
 	[UiTestMethod]
+	[OSCondition (ConditionMode.Exclude, OperatingSystems.Windows)]
 	public void Set_LaunchesWithArgumentListRatherThanASingleArgumentsString ()
 	{
-		if (OperatingSystem.IsWindows ())
-			return;
-
 		var launched = new List<ProcessStartInfo> ();
 		Action<ProcessStartInfo> originalStart = DesktopBackground.StartProcess;
 		Func<string> originalDesktop = DesktopBackground.CurrentDesktop;
@@ -131,11 +129,9 @@ public sealed class DesktopBackgroundTests
 	}
 
 	[UiTestMethod]
+	[OSCondition (OperatingSystems.Linux)]
 	public void Set_OnANonGnomeDesktopDoesNotLaunch ()
 	{
-		if (!OperatingSystem.IsLinux ())
-			return;
-
 		bool launched = false;
 		Action<ProcessStartInfo> originalStart = DesktopBackground.StartProcess;
 		Func<string> originalDesktop = DesktopBackground.CurrentDesktop;

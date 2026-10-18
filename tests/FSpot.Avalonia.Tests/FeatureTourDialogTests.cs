@@ -234,11 +234,11 @@ public sealed class FeatureTourDialogTests
 		Assert.IsNotNull (tour);
 		viewModel.SelectedTag = tour;
 		viewModel.AttachTagCommand.Execute (null);
-		Assert.IsTrue (catalog.Photo.Tags.Any (tag => tag.Name == "Tour"));
+		Assert.Contains (tag => tag.Name == "Tour", catalog.Photo.Tags);
 		Assert.Contains ("Tour", viewModel.Info.Tags);
 
 		viewModel.RemoveTagCommand.Execute (null);
-		Assert.IsFalse (catalog.Photo.Tags.Any (tag => tag.Name == "Tour"));
+		Assert.DoesNotContain (tag => tag.Name == "Tour", catalog.Photo.Tags);
 
 		Press (window, AutomationIds.ToolbarSlideshow);
 		await Drain ();
@@ -261,13 +261,13 @@ public sealed class FeatureTourDialogTests
 		int before = viewModel.Photos.Count;
 		viewModel.RemoveFromCatalogCommand.Execute (null);
 		await Confirm (window);
-		Assert.AreEqual (before - 1, viewModel.Photos.Count);
+		Assert.HasCount (before - 1, viewModel.Photos);
 		Assert.IsTrue (File.Exists (catalog.Paths[1]));
 
 		viewModel.SelectPhoto (catalog.ItemFor (catalog.Paths[0]));
 		viewModel.DeleteFromDriveCommand.Execute (null);
 		await Confirm (window);
-		Assert.AreEqual (0, viewModel.Photos.Count);
+		Assert.IsEmpty (viewModel.Photos);
 		Assert.IsFalse (File.Exists (catalog.Paths[0]));
 
 		window.Close ();
@@ -327,7 +327,7 @@ public sealed class FeatureTourDialogTests
 			Assert.DoesNotContain ("file://", body);
 			Click (warning, AutomationIds.DialogOk);
 			await Drain ();
-			Assert.AreEqual (1, viewModel.Photos.Count);
+			Assert.HasCount (1, viewModel.Photos);
 			Assert.IsTrue (File.Exists (lockedPath));
 		} finally {
 			if (windows)
@@ -387,7 +387,7 @@ public sealed class FeatureTourDialogTests
 			Click (warning, AutomationIds.DialogOk);
 			await Drain ();
 
-			Assert.AreEqual (1, viewModel.Photos.Count);
+			Assert.HasCount (1, viewModel.Photos);
 			Assert.IsTrue (File.Exists (original));
 			Assert.IsTrue (File.Exists (derived));
 			Assert.IsFalse (File.Exists (other));
@@ -474,12 +474,12 @@ public sealed class FeatureTourDialogTests
 			Press (window, AutomationIds.ToolbarBrowse);
 			viewModel.ShowFindCommand.Execute (null);
 			viewModel.FindText = "Picnic";
-			Assert.AreEqual (1, viewModel.Photos.Count);
+			Assert.HasCount (1, viewModel.Photos);
 			viewModel.FindText = "zzzz-no-such-photo";
 			Assert.IsEmpty (viewModel.Photos);
 			Assert.IsTrue (viewModel.ShowFindBarNoMatches);
 			viewModel.ClearVisibleFiltersCommand.Execute (null);
-			Assert.AreEqual (2, viewModel.Photos.Count);
+			Assert.HasCount (2, viewModel.Photos);
 
 			var picnic = viewModel.Photos.First (item => item.Photo.Description == "Picnic");
 			viewModel.SelectPhoto (picnic);
@@ -494,34 +494,34 @@ public sealed class FeatureTourDialogTests
 			viewModel.SelectedTag = places;
 			viewModel.AttachTagCommand.Execute (null);
 			viewModel.ActivateTagCommand.Execute (places);
-			Assert.AreEqual (1, viewModel.Photos.Count);
+			Assert.HasCount (1, viewModel.Photos);
 			Assert.AreEqual ("Picnic", viewModel.Photos[0].Photo.Description);
 			viewModel.ClearTagFilterCommand.Execute (null);
-			Assert.AreEqual (2, viewModel.Photos.Count);
+			Assert.HasCount (2, viewModel.Photos);
 
 			viewModel.FindUntagged = true;
-			Assert.AreEqual (1, viewModel.Photos.Count);
+			Assert.HasCount (1, viewModel.Photos);
 			Assert.AreNotEqual ("Picnic", viewModel.Photos[0].Photo.Description);
 			viewModel.FindUntagged = false;
 
 			string other = catalog.ImportAnother ("side");
 			viewModel.LoadCatalog ();
-			Assert.AreEqual (3, viewModel.Photos.Count);
+			Assert.HasCount (3, viewModel.Photos);
 			var home = PhotoFolder (viewModel.Folders, Path.GetDirectoryName (catalog.Paths[0])!).Leaf;
 			var sideFolder = PhotoFolder (viewModel.Folders, Path.GetDirectoryName (other)!).Leaf;
 			Assert.IsNotNull (home);
 			Assert.IsNotNull (sideFolder);
 			viewModel.ActivateFolderCommand.Execute (sideFolder);
-			Assert.AreEqual (1, viewModel.Photos.Count);
+			Assert.HasCount (1, viewModel.Photos);
 			viewModel.ActivateFolderCommand.Execute (home);
-			Assert.AreEqual (3, viewModel.Photos.Count);
+			Assert.HasCount (3, viewModel.Photos);
 			viewModel.ClearFolderFilterCommand.Execute (null);
-			Assert.AreEqual (3, viewModel.Photos.Count);
+			Assert.HasCount (3, viewModel.Photos);
 
 			var month = viewModel.TimelineBuckets.First (bucket => bucket.Count > 0);
 			viewModel.SelectTimelineCommand.Execute (month);
 			Assert.AreSame (month, viewModel.SelectedTimeline);
-			Assert.AreEqual (month.Count, viewModel.Photos.Count);
+			Assert.HasCount (month.Count, viewModel.Photos);
 			viewModel.SelectTimelineCommand.Execute (month);
 			Assert.IsNull (viewModel.SelectedTimeline);
 
@@ -569,7 +569,7 @@ public sealed class FeatureTourDialogTests
 		window.UpdateLayout ();
 
 		await NameVersion (window, viewModel, create: true, "Cropped");
-		Assert.AreEqual (2, catalog.Photo.Versions.Count ());
+		Assert.HasCount (2, catalog.Photo.Versions);
 		Assert.AreEqual ("Cropped", catalog.Photo.DefaultVersion.Name);
 
 		SelectVersion (window, Strings.Original);
@@ -582,20 +582,20 @@ public sealed class FeatureTourDialogTests
 		Assert.AreEqual ("Final", viewModel.Info.SelectedVersion);
 
 		await NameVersion (window, viewModel, create: true, "Extra");
-		Assert.AreEqual (3, catalog.Photo.Versions.Count ());
+		Assert.HasCount (3, catalog.Photo.Versions);
 		viewModel.DeleteVersionCommand.Execute (null);
 		await Confirm (window);
-		Assert.AreEqual (2, catalog.Photo.Versions.Count ());
-		Assert.IsFalse (catalog.Photo.Versions.Any (version => version.Name == "Extra"));
+		Assert.HasCount (2, catalog.Photo.Versions);
+		Assert.DoesNotContain (version => version.Name == "Extra", catalog.Photo.Versions);
 
 		SelectVersion (window, "Final");
 		var parent = catalog.Photo;
 		int photos = viewModel.Photos.Count;
 		viewModel.DetachVersionCommand.Execute (null);
 		await Confirm (window);
-		Assert.AreEqual (photos + 1, viewModel.Photos.Count);
-		Assert.IsFalse (parent.Versions.Any (version => version.Name == "Final"));
-		Assert.AreEqual (1, parent.Versions.Count ());
+		Assert.HasCount (photos + 1, viewModel.Photos);
+		Assert.DoesNotContain (version => version.Name == "Final", parent.Versions);
+		Assert.HasCount (1, parent.Versions);
 
 		window.Close ();
 		Assert.AreEqual (0, catalog.Loader.Live);

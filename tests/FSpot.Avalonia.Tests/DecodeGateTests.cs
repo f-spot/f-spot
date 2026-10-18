@@ -60,7 +60,7 @@ public sealed class DecodeGateTests
 	[TestMethod]
 	public async Task ADecodeInsideTheAsyncSlotDoesNotWaitForItself ()
 	{
-		int value = await DecodeGate.RunAsync (() => DecodeGate.Run (() => 7), TestContext.CancellationToken);
+		int value = await DecodeGate.RunAsync (() => DecodeGate.Run (() => 7, TestContext.CancellationToken), TestContext.CancellationToken);
 		Assert.AreEqual (7, value);
 	}
 

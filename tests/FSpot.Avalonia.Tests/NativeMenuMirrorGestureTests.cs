@@ -61,8 +61,8 @@ public sealed class NativeMenuMirrorGestureTests
 		NativeMenuMirror.ApplyAsKeyBindings (window, menu);
 
 		Assert.HasCount (2, window.KeyBindings);
-		Assert.IsTrue (window.KeyBindings.Any (b => Equals (b.Gesture, new KeyGesture (Key.N, KeyModifiers.Control)) && ReferenceEquals (b.Command, importCommand)));
-		Assert.IsTrue (window.KeyBindings.Any (b => Equals (b.Gesture, new KeyGesture (Key.Q, KeyModifiers.Control)) && ReferenceEquals (b.Command, quitCommand)));
+		Assert.Contains (b => Equals (b.Gesture, new KeyGesture (Key.N, KeyModifiers.Control)) && ReferenceEquals (b.Command, importCommand), window.KeyBindings);
+		Assert.Contains (b => Equals (b.Gesture, new KeyGesture (Key.Q, KeyModifiers.Control)) && ReferenceEquals (b.Command, quitCommand), window.KeyBindings);
 	}
 
 	[UiTestMethod]

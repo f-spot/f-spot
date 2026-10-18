@@ -283,7 +283,7 @@ public sealed partial class MainWindowViewModelTests
 
 		Assert.AreEqual (2, importer.Seen);
 		Assert.AreEqual (2, importer.Enumerated);
-		Assert.AreEqual (3, viewModel.Photos.Count);
+		Assert.HasCount (3, viewModel.Photos);
 		Assert.IsTrue (reloaded);
 	}
 
