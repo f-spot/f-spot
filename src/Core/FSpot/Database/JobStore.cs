@@ -102,6 +102,10 @@ namespace FSpot.Database
 				Convert.ToInt32 (job_priority)));
 
 			var job = CreateJob (job_type, (uint)id, job_options, run_at, job_priority);
+			if (job == null) {
+				Database.Execute (new DatabaseCommand ($"DELETE FROM {jobsTableName} WHERE id = ?", id));
+				throw new InvalidOperationException ($"Unknown job type {job_type}.");
+			}
 
 			AddToCache (job);
 			job.Finished += HandleRemoveJob;

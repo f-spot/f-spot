@@ -61,11 +61,14 @@ namespace FSpot.Database
 
 		public string Repair ()
 		{
+			string directory = Path.GetDirectoryName (path) ?? string.Empty;
+			string name = Path.GetFileNameWithoutExtension (path);
+			string extension = Path.GetExtension (path);
 			string backup_path = path;
 			int i = 0;
 
 			while (File.Exists (backup_path)) {
-				backup_path = $"{Path.GetFileNameWithoutExtension (path)}-{DateTime.Now.ToString ("yyyyMMdd")}-{i++}{Path.GetExtension (path)}";
+				backup_path = Path.Combine (directory, $"{name}-{DateTime.Now:yyyyMMdd}-{i++}{extension}");
 			}
 
 			File.Move (path, backup_path);

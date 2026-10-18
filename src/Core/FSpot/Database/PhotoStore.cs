@@ -410,6 +410,8 @@ namespace FSpot.Database
 			Database.Execute ($"DELETE FROM photos WHERE id IN ('{id_list}')");
 			Database.Execute ($"DELETE FROM photo_tags WHERE photo_id IN ('{id_list}')");
 			Database.Execute ($"DELETE FROM photo_versions WHERE photo_id IN ('{id_list}')");
+			if (Database.TableExists ("exports"))
+				Database.Execute ($"DELETE FROM exports WHERE image_id IN ('{id_list}')");
 		}
 
 		public override void Remove (Photo item)
