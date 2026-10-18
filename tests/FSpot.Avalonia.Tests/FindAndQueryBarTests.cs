@@ -19,7 +19,7 @@ public sealed class FindAndQueryBarTests
 
 	static MainWindowViewModel NewViewModel (out TaggedPhoto beach, out TaggedPhoto both, out TaggedPhoto work)
 	{
-		var viewModel = new MainWindowViewModel (null, new MainWindowViewModelTests.NullShell (), new MainWindowViewModelTests.NullThumbnails ());
+		var viewModel = new MainWindowViewModel (null, new MainWindowViewModelTests.NullShell (), new NullThumbnails ());
 		viewModel.Tags.Add (new TagNode (Beach));
 		viewModel.Tags.Add (new TagNode (Family));
 		viewModel.Tags.Add (new TagNode (Work));
@@ -212,7 +212,7 @@ public sealed class FindAndQueryBarTests
 		public string Description => string.Empty;
 		public string Name { get; } = name;
 		public uint Rating => 0;
-		public IPhotoVersion DefaultVersion { get; } = new MainWindowViewModelTests.StubVersion ("/p/" + name);
+		public IPhotoVersion DefaultVersion { get; } = new StubVersion ("/p/" + name);
 		public IEnumerable<IPhotoVersion> Versions => [DefaultVersion];
 	}
 }

@@ -154,7 +154,7 @@ public sealed class FeatureTourTests
 		{
 			Name = System.IO.Path.GetFileName (path);
 			Time = time;
-			DefaultVersion = new MainWindowViewModelTests.StubVersion (path);
+			DefaultVersion = new StubVersion (path);
 			Versions = new[] { DefaultVersion };
 			Tags = [];
 		}

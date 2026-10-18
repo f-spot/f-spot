@@ -103,7 +103,10 @@ public sealed class FullScreenTests
 	{
 		var shell = new Shell ();
 		var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
-		viewModel.SeedCatalog (new StubPhoto ("/a.jpg", 1), new StubPhoto ("/b.jpg", 2), new StubPhoto ("/c.jpg", 3));
+		viewModel.SeedCatalog (
+			new StubPhoto ("/a.jpg", new DateTime (2026, 1, 1)),
+			new StubPhoto ("/b.jpg", new DateTime (2026, 1, 2)),
+			new StubPhoto ("/c.jpg", new DateTime (2026, 1, 3)));
 		viewModel.SelectPhoto (viewModel.Photos[1]);
 
 		viewModel.ToggleFullscreenCommand.Execute (null);
@@ -119,7 +122,10 @@ public sealed class FullScreenTests
 	{
 		var shell = new Shell ();
 		var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
-		viewModel.SeedCatalog (new StubPhoto ("/a.jpg", 1), new StubPhoto ("/b.jpg", 2), new StubPhoto ("/c.jpg", 3));
+		viewModel.SeedCatalog (
+			new StubPhoto ("/a.jpg", new DateTime (2026, 1, 1)),
+			new StubPhoto ("/b.jpg", new DateTime (2026, 1, 2)),
+			new StubPhoto ("/c.jpg", new DateTime (2026, 1, 3)));
 		viewModel.SelectPhoto (viewModel.Photos[2]);
 
 		viewModel.SlideshowCommand.Execute (null);
@@ -146,7 +152,9 @@ public sealed class FullScreenTests
 	{
 		var shell = new Shell ();
 		var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
-		viewModel.SeedCatalog (new StubPhoto ("/a.jpg", 1), new StubPhoto ("/b.jpg", 2));
+		viewModel.SeedCatalog (
+			new StubPhoto ("/a.jpg", new DateTime (2026, 1, 1)),
+			new StubPhoto ("/b.jpg", new DateTime (2026, 1, 2)));
 		viewModel.SelectPhoto (viewModel.Photos[0]);
 		viewModel.ToggleFullscreenCommand.Execute (null);
 		string path = shell.FullScreen!.Value.Paths[1];
@@ -189,45 +197,4 @@ public sealed class FullScreenTests
 		public void ShowFullScreen (IReadOnlyList<string> paths, int startIndex) => FullScreen = (paths, startIndex);
 	}
 
-	sealed class NullThumbnails : IPhotoThumbnailLoader
-	{
-		public Task<Bitmap?> LoadAsync (string path, int size, CancellationToken cancellationToken)
-			=> Task.FromResult<Bitmap?> (null);
-	}
-
-	sealed class StubVersion : IPhotoVersion
-	{
-		public StubVersion (string path)
-		{
-			Uri = new SafeUri ("file://" + path, true);
-			BaseUri = Uri;
-			Filename = System.IO.Path.GetFileName (path);
-		}
-
-		public string Name => "Original";
-		public bool IsProtected => true;
-		public SafeUri BaseUri { get; }
-		public string Filename { get; }
-		public string ImportMD5 => string.Empty;
-		public SafeUri Uri { get; set; }
-	}
-
-	sealed class StubPhoto : IPhoto
-	{
-		public StubPhoto (string path, int day)
-		{
-			Name = System.IO.Path.GetFileName (path);
-			DefaultVersion = new StubVersion (path);
-			Versions = new[] { DefaultVersion };
-			Time = new DateTime (2026, 1, day);
-		}
-
-		public DateTime Time { get; }
-		public Tag[] Tags { get; } = [];
-		public string Description => string.Empty;
-		public string Name { get; }
-		public uint Rating => 0;
-		public IPhotoVersion DefaultVersion { get; }
-		public IEnumerable<IPhotoVersion> Versions { get; }
-	}
 }

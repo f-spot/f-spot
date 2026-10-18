@@ -16,7 +16,7 @@ public sealed class ShownChromeTests
 	public void ShownWindows_DoNotDisplayAttributeText ()
 	{
 		var windows = new Window[] {
-			new MainWindow (null, new MainWindowViewModelTests.NullThumbnails ()) { Width = 800, Height = 500 },
+			new MainWindow (null, new NullThumbnails ()) { Width = 800, Height = 500 },
 			new AboutWindow (),
 			new ImportWindow ()
 		};

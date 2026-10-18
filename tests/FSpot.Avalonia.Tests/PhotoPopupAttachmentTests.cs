@@ -38,7 +38,7 @@ public sealed class PhotoPopupAttachmentTests
 	[UiTestMethod]
 	public void ViewedPhoto_OpensGtkPhotoPopupOnEditAndFullscreen ()
 	{
-		var main = new MainWindow (null, new MainWindowViewModelTests.NullThumbnails ()) {
+		var main = new MainWindow (null, new NullThumbnails ()) {
 			Width = 800,
 			Height = 500
 		};
@@ -63,7 +63,7 @@ public sealed class PhotoPopupAttachmentTests
 	[UiTestMethod]
 	public void BrowseGrid_OpensGtkPhotoPopup ()
 	{
-		var main = new MainWindow (null, new MainWindowViewModelTests.NullThumbnails ()) {
+		var main = new MainWindow (null, new NullThumbnails ()) {
 			Width = 800,
 			Height = 500
 		};
@@ -80,7 +80,7 @@ public sealed class PhotoPopupAttachmentTests
 	[UiTestMethod]
 	public void Filmstrip_OpensTheGtkOrientationMenu ()
 	{
-		var main = new MainWindow (null, new MainWindowViewModelTests.NullThumbnails ()) {
+		var main = new MainWindow (null, new NullThumbnails ()) {
 			Width = 800,
 			Height = 500
 		};

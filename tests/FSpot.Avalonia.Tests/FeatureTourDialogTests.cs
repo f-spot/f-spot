@@ -38,6 +38,7 @@ namespace FSpot.Avalonia.Tests;
 // from this machine's pictures when any exist, then from the bundled sample. The
 // copies are edited, tagged, and deleted; the originals are not.
 [TestClass]
+[DoNotParallelize]
 public sealed class FeatureTourDialogTests
 {
 	[UiTestMethod]

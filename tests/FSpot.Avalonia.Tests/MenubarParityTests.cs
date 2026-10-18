@@ -34,7 +34,7 @@ public sealed class MenubarParityTests
 		var photo = OriginalPhoto ();
 		bool mail = LibraryPreferences.MailToEnabled;
 		LibraryPreferences.MailToEnabled = false;
-		var window = new MainWindow (null, new MainWindowViewModelTests.NullThumbnails ()) {
+		var window = new MainWindow (null, new NullThumbnails ()) {
 			Width = 800,
 			Height = 500
 		};
@@ -71,7 +71,7 @@ public sealed class MenubarParityTests
 	[UiTestMethod]
 	public void PhotoMenu_OnMacShowsQuitWithoutClose_ElsewhereShowsBoth ()
 	{
-		var window = new MainWindow (null, new MainWindowViewModelTests.NullThumbnails ()) {
+		var window = new MainWindow (null, new NullThumbnails ()) {
 			Width = 800,
 			Height = 500
 		};
@@ -131,7 +131,7 @@ public sealed class MenubarParityTests
 	[UiTestMethod]
 	public void SelectionCommands_AreDisabledWithoutAPhoto_AndSharpenAndLoupeNeedEditMode ()
 	{
-		var viewModel = new MainWindowViewModel (null, new MainWindowViewModelTests.NullShell (), new MainWindowViewModelTests.NullThumbnails ());
+		var viewModel = new MainWindowViewModel (null, new MainWindowViewModelTests.NullShell (), new NullThumbnails ());
 
 		Assert.IsFalse (viewModel.PrintCommand.CanExecute (null));
 		Assert.IsFalse (viewModel.MailCommand.CanExecute (null));
@@ -167,7 +167,7 @@ public sealed class MenubarParityTests
 	[UiTestMethod]
 	public void ZoomAndViewComponents_UseTheGtkEndsAndTheCurrentMode ()
 	{
-		var window = new MainWindow (null, new MainWindowViewModelTests.NullThumbnails ()) {
+		var window = new MainWindow (null, new NullThumbnails ()) {
 			Width = 800,
 			Height = 500
 		};
@@ -199,7 +199,7 @@ public sealed class MenubarParityTests
 	{
 		const string id = "menubar-parity-tool";
 		MenuExtensions.Unregister (MenuExtensionPoint.Tools, id);
-		var window = new MainWindow (null, new MainWindowViewModelTests.NullThumbnails ()) {
+		var window = new MainWindow (null, new NullThumbnails ()) {
 			Width = 800,
 			Height = 500
 		};
@@ -272,7 +272,7 @@ public sealed class MenubarParityTests
 
 	static MainWindowViewModel ViewModelWith (Photo photo)
 	{
-		var viewModel = new MainWindowViewModel (null, new MainWindowViewModelTests.NullShell (), new MainWindowViewModelTests.NullThumbnails ());
+		var viewModel = new MainWindowViewModel (null, new MainWindowViewModelTests.NullShell (), new NullThumbnails ());
 		viewModel.SeedCatalog (photo);
 		viewModel.Photos[0].Selected = true;
 		viewModel.SelectedPhoto = viewModel.Photos[0];

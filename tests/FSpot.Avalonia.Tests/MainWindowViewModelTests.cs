@@ -476,6 +476,7 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
+	[DoNotParallelize]
 	public void ClosingTheImportWindow_CancelsInFlightWorkWithoutClosingTwice ()
 	{
 		AvaloniaApp.Ensure ();
@@ -2509,12 +2510,6 @@ public sealed partial class MainWindowViewModelTests
 			=> Task.FromResult (ExportFolder);
 	}
 
-	internal sealed class NullThumbnails : IPhotoThumbnailLoader
-	{
-		public Task<Bitmap?> LoadAsync (string path, int size, CancellationToken cancellationToken)
-			=> Task.FromResult<Bitmap?> (null);
-	}
-
 	sealed class RecordingThumbnails : IPhotoThumbnailLoader
 	{
 		public int LastSize { get; private set; }
@@ -2612,23 +2607,6 @@ public sealed partial class MainWindowViewModelTests
 
 
 
-	internal sealed class StubVersion : IPhotoVersion
-	{
-		public StubVersion (string path)
-		{
-			Uri = new SafeUri ("file://" + path, true);
-			BaseUri = Uri;
-			Filename = System.IO.Path.GetFileName (path);
-		}
-
-		public string Name => "Original";
-		public bool IsProtected => true;
-		public SafeUri BaseUri { get; }
-		public string Filename { get; }
-		public string ImportMD5 => string.Empty;
-		public SafeUri Uri { get; set; }
-	}
-
 	sealed class ThrowingImport : IImportController
 	{
 		readonly Action onImport;
@@ -2670,28 +2648,6 @@ public sealed partial class MainWindowViewModelTests
 				Names.Add (photo.DefaultVersion.Filename);
 			}
 		}
-	}
-
-	sealed class StubPhoto : IPhoto
-	{
-		public StubPhoto (string path, DateTime? time = null, uint rating = 0, params Tag?[] tags)
-		{
-			Name = System.IO.Path.GetFileName (path);
-			DefaultVersion = new StubVersion (path);
-			Versions = new[] { DefaultVersion };
-			Time = time ?? DateTime.UnixEpoch;
-			Rating = rating;
-			// FormatTags skips null entries. IPhoto.Tags cannot say an element may be null.
-			Tags = tags is null ? Array.Empty<Tag> () : Array.ConvertAll (tags, static tag => tag!);
-		}
-
-		public DateTime Time { get; }
-		public Tag[] Tags { get; }
-		public string Description => string.Empty;
-		public string Name { get; }
-		public uint Rating { get; }
-		public IPhotoVersion DefaultVersion { get; }
-		public IEnumerable<IPhotoVersion> Versions { get; }
 	}
 
 	sealed class FailUntilAllowed : IPhotoThumbnailLoader

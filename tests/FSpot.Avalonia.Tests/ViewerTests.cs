@@ -510,7 +510,7 @@ public sealed class ViewerWindowTests
 		File.WriteAllBytes (second, Array.Empty<byte> ());
 		ViewerWindow window;
 		using (FSpot.Avalonia.Imaging.DecodeGate.Enter ()) {
-			window = new ViewerWindow (new[] { first, second }, _ => true, new MainWindowViewModelTests.NullThumbnails (), (path, _) => {
+			window = new ViewerWindow (new[] { first, second }, _ => true, new NullThumbnails (), (path, _) => {
 				Interlocked.Increment (ref started);
 				seen = path;
 				return null;
