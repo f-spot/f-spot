@@ -110,7 +110,7 @@ public partial class EditTagIconWindow : Window
 		hasPreview |= pending;
 		PreviewSvg.Path = choice.ThemeIconName is null ? null : TagIcons.UriFor (choice.ThemeIconName);
 		PreviewSvg.IsVisible = choice.ThemeIconName is not null;
-		PreviewImage.Source = choice.Icon is null ? null : AvaloniaImagingBackend.ToBgraBitmap (choice.Icon);
+		PreviewImage.Source = choice.Icon is null ? null : AvaloniaImagingBackend.ToBgraBitmap (DisplayColor.Apply (choice.Icon, DisplayColor.Selected ()));
 		PreviewImage.IsVisible = choice.Icon is not null;
 	}
 
@@ -145,14 +145,18 @@ public partial class EditTagIconWindow : Window
 		PhotoLabel.Text = string.Format (CultureInfo.CurrentCulture, Strings.PhotoXOfY, index + 1, source.PhotoPaths.Count);
 		Bitmap? bitmap = null;
 		try {
-			bitmap = await DecodeGate.RunAsync (
-				() => AvaloniaPhotoDecoder.DecodeFile (source.PhotoPaths[index], PhotoDecodeWidth),
-				CancellationToken.None);
+			// The crop keeps the stored pixels. The photo on screen is converted after that copy.
+			ImageBuffer? stored;
+			(stored, bitmap) = await DecodeGate.RunAsync (() => {
+				var decoded = AvaloniaPhotoDecoder.DecodeFile (source.PhotoPaths[index], PhotoDecodeWidth);
+				var pixels = AvaloniaImagingBackend.ToRgbBuffer (decoded);
+				return (pixels, DisplayColor.Present (decoded));
+			}, CancellationToken.None);
 			if (index != PhotoNumber - 1) {
-				bitmap.Dispose ();
+				bitmap?.Dispose ();
 				return;
 			}
-			photoBuffer = AvaloniaImagingBackend.ToRgbBuffer (bitmap);
+			photoBuffer = stored;
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Failed to load {Path} for a tag icon", source.PhotoPaths[index]);
 			if (index != PhotoNumber - 1) {

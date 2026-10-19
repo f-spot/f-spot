@@ -173,10 +173,11 @@ sealed class AvaloniaImagingBackend : IImagingBackend
 				for (int x = 0; x < buffer.Width; x++) {
 					int src = srcRow + x * channels;
 					int dst = x * 4;
-					dstRow[dst] = buffer.Pixels[src + 2];
-					dstRow[dst + 1] = buffer.Pixels[src + 1];
-					dstRow[dst + 2] = buffer.Pixels[src];
-					dstRow[dst + 3] = buffer.HasAlpha ? buffer.Pixels[src + 3] : (byte)255;
+					byte alpha = buffer.HasAlpha ? buffer.Pixels[src + 3] : (byte)255;
+					dstRow[dst] = StraightAlpha.Premultiply (buffer.Pixels[src + 2], alpha);
+					dstRow[dst + 1] = StraightAlpha.Premultiply (buffer.Pixels[src + 1], alpha);
+					dstRow[dst + 2] = StraightAlpha.Premultiply (buffer.Pixels[src], alpha);
+					dstRow[dst + 3] = alpha;
 				}
 			}
 		}

@@ -70,7 +70,7 @@
 						</ListBox.ItemsPanel>
 						<ListBox.ItemTemplate>
 							<DataTemplate x:DataType="x:String">
-								<svg:Svg Width="32" Height="32" Path="{Binding Converter={x:Static dialogs:TagIconPathConverter.Instance}}"
+								<controls:ChromeIcon Width="32" Height="32" ColorManage="True" Uri="{Binding Converter={x:Static dialogs:TagIconPathConverter.Instance}}"
 								         ToolTip.Tip="{Binding}" AutomationProperties.Name="{Binding}" />
 							</DataTemplate>
 						</ListBox.ItemTemplate>

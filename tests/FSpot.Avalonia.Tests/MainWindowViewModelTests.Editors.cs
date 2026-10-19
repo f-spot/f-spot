@@ -11,6 +11,9 @@ using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 
 using FSpot.Avalonia.Controls;
+using FSpot.Avalonia.Services;
+using FSpot.Avalonia.ViewModels;
+using FSpot.Core;
 using FSpot.Editors;
 using FSpot.Resources.Lang;
 
@@ -22,6 +25,25 @@ namespace FSpot.Avalonia.Tests;
 
 public sealed partial class MainWindowViewModelTests
 {
+	sealed class SplitThumbnails : IPhotoThumbnailLoader
+	{
+		public int DisplayLoads { get; private set; }
+
+		public int MeasurementLoads { get; private set; }
+
+		public Task<Bitmap?> LoadAsync (string path, int size, CancellationToken cancellationToken)
+		{
+			DisplayLoads++;
+			return Task.FromResult<Bitmap?> (new FilledBitmap (4, 4, 1));
+		}
+
+		public Task<Bitmap?> LoadForMeasurementAsync (string path, int size, CancellationToken cancellationToken)
+		{
+			MeasurementLoads++;
+			return Task.FromResult<Bitmap?> (new FilledBitmap (4, 4, 9));
+		}
+	}
+
 	[UiTestMethod]
 	public void ApplyEditor_Crop_ListsTheGtkConstraintsWithNoConstraintSelected ()
 	{
@@ -109,6 +131,25 @@ public sealed partial class MainWindowViewModelTests
 			Assert.IsNotNull (viewModel.EditedPreview, editor.Id);
 			Assert.AreNotSame (opened, viewModel.EditedPreview, editor.Id);
 		}
+	}
+
+	[UiTestMethod]
+	public async Task EditorPreview_EditsTheStoredPixels ()
+	{
+		AvaloniaApp.Ensure ();
+		var thumbs = new SplitThumbnails ();
+		var viewModel = new MainWindowViewModel (null, new RecordingShell (), thumbs);
+		viewModel.SeedCatalog (new StubPhoto ("/stored.jpg"));
+		viewModel.ViewMode = LibraryViewMode.PhotoView;
+		await viewModel.ReloadPreviewAsync ();
+
+		viewModel.ApplyEditorCommand.Execute (PhotoEditorCatalog.Tilt);
+		await viewModel.LivePreviewTask;
+
+		Assert.AreEqual (0, thumbs.DisplayLoads);
+		Assert.IsGreaterThan (0, thumbs.MeasurementLoads);
+		Assert.IsNotNull (viewModel.EditorSource);
+		Assert.AreEqual (9, viewModel.EditorSource.Pixels[0]);
 	}
 
 	[UiTestMethod]

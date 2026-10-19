@@ -114,7 +114,7 @@ public partial class TagWindow : Window
 			buffer = PendingIcon is null ? CurrentIcon () : PendingIcon.Icon;
 		IconSvg.Path = theme is null ? null : TagIcons.UriFor (theme);
 		IconSvg.IsVisible = theme is not null;
-		IconImage.Source = buffer is null ? null : AvaloniaImagingBackend.ToBgraBitmap (buffer);
+		IconImage.Source = buffer is null ? null : AvaloniaImagingBackend.ToBgraBitmap (DisplayColor.Apply (buffer, DisplayColor.Selected ()));
 		IconImage.IsVisible = buffer is not null;
 	}
 

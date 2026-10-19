@@ -57,7 +57,7 @@ public partial class SlideshowWindow : Window
 	{
 		sequence = new SlideshowSequence (paths, startIndex);
 		this.host = host;
-		decodeSlide = decode ?? ((path, size) => AvaloniaPhotoDecoder.DecodeFile (path, size));
+		decodeSlide = decode ?? ((path, size) => DisplayColor.Present (AvaloniaPhotoDecoder.DecodeFile (path, size)));
 		InitializeComponent ();
 
 		InfoOverlay.DataContext = info;

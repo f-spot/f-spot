@@ -507,6 +507,7 @@
 								<controls:ChromeIcon Width="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).TagIconEdge}"
 								                     Height="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).TagIconEdge}"
 								                     IsVisible="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).TagIconsVisible}"
+								                     ColorManage="True"
 								                     Uri="{Binding IconPath}" />
 								<TextBlock Text="{Binding Name}" VerticalAlignment="Center"
 								           IsVisible="{Binding !IsRenaming}" />
@@ -847,7 +848,9 @@
 														        AutomationProperties.AutomationId="{Binding AutomationId}"
 														        AutomationProperties.Name="{Binding ToolTip}">
 															<StackPanel Orientation="Horizontal" Spacing="4">
-																<svg:Svg Width="14" Height="14" Path="{Binding IconPath}" Opacity="{Binding IsNegated, Converter={x:Static input:QueryDrop.NegatedOpacity}}" />
+																<controls:ChromeIcon Width="14" Height="14" ColorManage="True"
+																                     Uri="{Binding IconPath}"
+																                     Opacity="{Binding IsNegated, Converter={x:Static input:QueryDrop.NegatedOpacity}}" />
 																<TextBlock Text="{Binding Name}" VerticalAlignment="Center" FontSize="12"
 																           TextDecorations="{Binding IsNegated, Converter={x:Static input:QueryDrop.NegatedDecorations}}" />
 															</StackPanel>

@@ -49,7 +49,7 @@ public partial class ViewerWindow : Window, IViewerShell
 	internal ViewerWindow (IReadOnlyList<string> paths, Func<string, bool>? canLoad, IPhotoThumbnailLoader thumbnails, Func<string, int, Bitmap?>? decode = null)
 	{
 		this.thumbnails = thumbnails;
-		decodePhoto = decode ?? ((path, size) => AvaloniaPhotoDecoder.DecodeFile (path, size));
+		decodePhoto = decode ?? ((path, size) => DisplayColor.Present (AvaloniaPhotoDecoder.DecodeFile (path, size)));
 		viewModel = new ViewerViewModel (this, canLoad);
 		DataContext = viewModel;
 		InitializeComponent ();

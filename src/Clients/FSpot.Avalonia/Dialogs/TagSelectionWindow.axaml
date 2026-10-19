@@ -3,6 +3,7 @@
         xmlns:auto="using:FSpot.Avalonia"
         xmlns:dialogs="using:FSpot.Avalonia.Dialogs"
         xmlns:models="using:FSpot.Avalonia.Models"
+        xmlns:controls="using:FSpot.Avalonia.Controls"
         xmlns:lang="using:FSpot.Resources.Lang"
         xmlns:svg="using:Avalonia.Svg.Skia"
         x:Class="FSpot.Avalonia.Dialogs.TagSelectionWindow"
@@ -29,7 +30,7 @@
 						<StackPanel Orientation="Horizontal" Spacing="6"
 						            AutomationProperties.AutomationId="{Binding AutomationId}"
 						            AutomationProperties.Name="{Binding Name}">
-							<svg:Svg Width="16" Height="16" Path="{Binding IconPath}" />
+							<controls:ChromeIcon Width="16" Height="16" ColorManage="True" Uri="{Binding IconPath}" />
 							<TextBlock Text="{Binding Name}" VerticalAlignment="Center" />
 						</StackPanel>
 					</TreeDataTemplate>

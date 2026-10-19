@@ -698,17 +698,43 @@ public partial class MainWindowViewModel : ObservableObject
 
 		var item = SelectedPhoto;
 		int size = EditorPreview.DecodeWidth (UiScale);
-		Bitmap? bitmap = null;
+		Bitmap? shown = null;
 		try {
-			bitmap = await thumbnails.LoadAsync (item.Path, size, CancellationToken.None);
+			// The editor and the histogram read this bitmap. The screen copy is made
+			// after that, so a display profile is not baked into the edit.
+			var bitmap = await thumbnails.LoadForMeasurementAsync (item.Path, size, CancellationToken.None);
 			if (!IsEditing || !ReferenceEquals (item, SelectedPhoto)) {
 				bitmap?.Dispose ();
 				return;
 			}
 
-			SetPreview (bitmap);
+			if (bitmap is null) {
+				pendingEditorSource = null;
+				SetPreview (null);
+				return;
+			}
+
+			ImageBuffer stored;
+			(stored, shown) = await Task.Run (() => {
+				try {
+					var source = LivePreviewSource (bitmap);
+					return (source, DisplayColor.Present (bitmap));
+				} catch {
+					bitmap.Dispose ();
+					throw;
+				}
+			});
+			if (!IsEditing || !ReferenceEquals (item, SelectedPhoto)) {
+				shown.Dispose ();
+				shown = null;
+				return;
+			}
+
+			pendingEditorSource = stored;
+			SetPreview (shown);
+			shown = null;
 		} catch (Exception ex) {
-			bitmap?.Dispose ();
+			shown?.Dispose ();
 			Logger.Log.Debug (ex, "Failed to load preview {Path}", item.Path);
 		}
 	}
@@ -778,14 +804,16 @@ public partial class MainWindowViewModel : ObservableObject
 	async Task UpdateHistogramAsync (PhotoItemViewModel item, int generation)
 	{
 		var context = SynchronizationContext.Current;
-		if (EditedPreview is Bitmap edited && ReferenceEquals (item, SelectedPhoto)) {
+		// A live edit histograms the editor output before the display profile.
+		Bitmap? sample = uncorrectedPreview ?? EditedPreview;
+		if (sample is Bitmap edited && ReferenceEquals (item, SelectedPhoto)) {
 			ApplyChart (edited, generation, item);
 			return;
 		}
 
 		Bitmap? loaded = null;
 		try {
-			loaded = await thumbnails.LoadAsync (item.Path, HistogramRenderer.SourceEdge, CancellationToken.None);
+			loaded = await thumbnails.LoadForMeasurementAsync (item.Path, HistogramRenderer.SourceEdge, CancellationToken.None);
 			if (!HistogramStillCurrent (generation, item))
 				return;
 			if (loaded is null) {
@@ -971,6 +999,8 @@ public partial class MainWindowViewModel : ObservableObject
 	{
 		// The edited preview belongs to the previous photo. GTK drops it and histograms the file.
 		ClearLivePreview ();
+		storedPreview = null;
+		pendingEditorSource = null;
 		if (value is null) {
 			Info.Clear ();
 			RequestHistogram (null);

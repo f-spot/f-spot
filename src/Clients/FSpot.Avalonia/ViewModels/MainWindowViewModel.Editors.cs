@@ -36,6 +36,9 @@ public partial class MainWindowViewModel
 	Bitmap? editedPreview;
 
 	ImageBuffer? livePreviewSource;
+	ImageBuffer? storedPreview;
+	ImageBuffer? pendingEditorSource;
+	Bitmap? uncorrectedPreview;
 	int livePreviewGeneration;
 	Task livePreviewTask = Task.CompletedTask;
 	bool editingCustomRatios;
@@ -53,6 +56,9 @@ public partial class MainWindowViewModel
 	}
 
 	internal Task LivePreviewTask => livePreviewTask;
+
+	// The buffer the open editor processes. The screen bitmap is a separate copy.
+	internal ImageBuffer? EditorSource => livePreviewSource ?? storedPreview;
 
 	partial void OnEditorSessionChanged (PhotoEditorSession? oldValue, PhotoEditorSession? newValue)
 	{
@@ -79,6 +85,10 @@ public partial class MainWindowViewModel
 	{
 		OnPropertyChanged (nameof (DisplayedPreview));
 		ClearLivePreview ();
+		// UpdatePreviewAsync hands off the stored pixels for this bitmap. A preview
+		// assigned directly, as the tests do, has no handoff and is read as itself.
+		storedPreview = newValue is null ? null : pendingEditorSource;
+		pendingEditorSource = null;
 		if (EditorSession is not null && PhotoEditorSession.HasLivePreview (EditorSession.Editor))
 			RequestLivePreview ();
 		// CropEditor.UpdateSelectionCombo: a new photo drops "Same as photo".
@@ -133,7 +143,13 @@ public partial class MainWindowViewModel
 		livePreviewGeneration++;
 		livePreviewSource = null;
 		var previous = EditedPreview;
+		var chart = uncorrectedPreview;
+		// Drop the chart before the preview change asks for a histogram, or that
+		// histogram counts a bitmap this method is about to dispose.
+		uncorrectedPreview = null;
 		EditedPreview = null;
+		if (!ReferenceEquals (chart, previous))
+			chart?.Dispose ();
 		previous?.Dispose ();
 	}
 
@@ -144,7 +160,11 @@ public partial class MainWindowViewModel
 		if (session is null || source is null || !PhotoEditorSession.HasLivePreview (session.Editor))
 			return;
 
-		livePreviewSource ??= LivePreviewSource (source);
+		// storedPreview survives ClearLivePreview, so opening the editor does not
+		// reread the screen bitmap. The working copy is separate from that store.
+		livePreviewSource ??= storedPreview is ImageBuffer stored
+			? ImageBuffers.Clone (stored)
+			: LivePreviewSource (source);
 		int generation = ++livePreviewGeneration;
 		livePreviewTask = RenderLivePreviewAsync (session, livePreviewSource, generation);
 	}
@@ -161,28 +181,52 @@ public partial class MainWindowViewModel
 	{
 		var editor = session.Editor;
 		var context = session.CreateContext ();
-		Bitmap? rendered = null;
+		ScreenAndChart pair = default;
 		try {
-			rendered = await Task.Run (() => {
+			pair = await Task.Run (() => {
 				if (generation != Volatile.Read (ref livePreviewGeneration))
-					return null;
+					return default;
 				var output = PhotoEditorOperations.Process (editor, source, null, context);
-				return (Bitmap)AvaloniaImagingBackend.ToBgraBitmap (output);
+				// The histogram counts the editor output. The screen gets one conversion after it.
+				var measured = (Bitmap)AvaloniaImagingBackend.ToBgraBitmap (output);
+				var converted = DisplayColor.Apply (output, DisplayColor.Selected ());
+				if (ReferenceEquals (converted, output))
+					return new ScreenAndChart (measured, measured);
+				var shown = (Bitmap)AvaloniaImagingBackend.ToBgraBitmap (converted);
+				return new ScreenAndChart (shown, measured);
 			}).ConfigureAwait (true);
 		} catch (Exception ex) {
+			pair.Release ();
 			Logger.Log.Debug (ex, "Failed to render {Editor} preview", editor.Id);
 			return;
 		}
 
-		if (rendered is null)
+		if (pair.Screen is null)
 			return;
 		if (generation != livePreviewGeneration || !ReferenceEquals (session, EditorSession)) {
-			rendered.Dispose ();
+			pair.Release ();
 			return;
 		}
 
 		var previous = EditedPreview;
-		EditedPreview = rendered;
-		previous?.Dispose ();
+		var previousChart = uncorrectedPreview;
+		uncorrectedPreview = pair.Chart;
+		EditedPreview = pair.Screen;
+		if (!ReferenceEquals (previousChart, previous))
+			previousChart?.Dispose ();
+		if (!ReferenceEquals (previous, pair.Screen))
+			previous?.Dispose ();
+	}
+
+	readonly record struct ScreenAndChart (Bitmap? Screen, Bitmap? Chart)
+	{
+		public void Release ()
+		{
+			if (Screen is null)
+				return;
+			if (!ReferenceEquals (Chart, Screen))
+				Chart?.Dispose ();
+			Screen.Dispose ();
+		}
 	}
 }
