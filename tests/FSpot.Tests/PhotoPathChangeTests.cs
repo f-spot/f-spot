@@ -2,12 +2,20 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
+using FSpot.Core;
+using FSpot.Database;
+using FSpot.Imaging;
+using FSpot.Thumbnail;
 using FSpot.Utils;
 
 using Hyena;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using Moq;
 
 namespace FSpot.Tests
 {
@@ -96,6 +104,112 @@ namespace FSpot.Tests
 			Assert.IsTrue (moved.Changes.UriChanged);
 			Assert.AreEqual ("/old/file.jpg", WithSlashes (stayed.VersionUri (Photo.OriginalVersionId).AbsolutePath));
 			Assert.IsFalse (stayed.Changes.UriChanged);
+		}
+
+		[TestMethod]
+		public void Commit_RollsBackEveryVersionWhenSavingThrows ()
+		{
+			using var library = new Library ();
+			Photo first = library.Add ("a.jpg");
+			SafeUri edited = SafeUri.FromPath (Path.Combine (library.Year, "a-edit.jpg"));
+			first.AddVersion (edited.GetBaseUri (), edited.GetFilename (), "Edited", true);
+			library.Database.Photos.Commit (first);
+			Photo second = library.Add ("b.jpg");
+			string[] before = library.StoredBases ();
+			string firstPath = first.VersionUri (Photo.OriginalVersionId).AbsolutePath;
+			string editPath = first.VersionUri (first.VersionIds.Last ()).AbsolutePath;
+			string secondPath = second.VersionUri (Photo.OriginalVersionId).AbsolutePath;
+
+			Assert.ThrowsExactly<IOException> (() => PhotoPathChange.Commit (library.Database, new[] { first, second }, library.OldBase, library.NewBase, items => {
+				library.Database.Photos.Commit (new[] { items[0] });
+				throw new IOException ("disk");
+			}, null));
+
+			Assert.AreEqual (firstPath, first.VersionUri (Photo.OriginalVersionId).AbsolutePath);
+			Assert.AreEqual (editPath, first.VersionUri (first.VersionIds.Last ()).AbsolutePath);
+			Assert.AreEqual (secondPath, second.VersionUri (Photo.OriginalVersionId).AbsolutePath);
+			Assert.IsFalse (first.Changes.UriChanged);
+			Assert.IsFalse (second.Changes.UriChanged);
+			Assert.AreSequenceEqual (before, library.StoredBases ());
+		}
+
+		[TestMethod]
+		public void Commit_LeavesTheCatalogAloneWhenTheChangeIsCancelled ()
+		{
+			using var library = new Library ();
+			Photo photo = library.Add ("a.jpg");
+			string[] before = library.StoredBases ();
+			string path = photo.VersionUri (Photo.OriginalVersionId).AbsolutePath;
+
+			int changed = PhotoPathChange.Commit (library.Database, new[] { photo }, library.OldBase, library.NewBase, null, () => true);
+
+			Assert.AreEqual (-1, changed);
+			Assert.AreEqual (path, photo.VersionUri (Photo.OriginalVersionId).AbsolutePath);
+			Assert.IsFalse (photo.Changes.UriChanged);
+			Assert.AreSequenceEqual (before, library.StoredBases ());
+		}
+
+		[TestMethod]
+		public void Commit_StoresTheNewBaseForEveryVersion ()
+		{
+			using var library = new Library ();
+			Photo photo = library.Add ("a.jpg");
+			SafeUri edited = SafeUri.FromPath (Path.Combine (library.Year, "a-edit.jpg"));
+			photo.AddVersion (edited.GetBaseUri (), edited.GetFilename (), "Edited", true);
+			library.Database.Photos.Commit (photo);
+
+			int changed = PhotoPathChange.Commit (library.Database, new[] { photo }, library.OldBase, library.NewBase, null, null);
+
+			Assert.AreEqual (1, changed);
+			string[] stored = library.StoredBases ();
+			Assert.HasCount (2, stored);
+			Assert.IsTrue (stored.All (uri => uri.Contains ("/new/2020") || uri.Contains ("\\new\\2020")));
+			Assert.DoesNotContain ("/old/", stored[0]);
+		}
+
+		sealed class Library : IDisposable
+		{
+			public Db Database { get; }
+			public string OldBase { get; }
+			public string NewBase { get; }
+			public string Year { get; }
+			readonly string root;
+
+			public Library ()
+			{
+				root = Path.Combine (Path.GetTempPath (), "fspot-path-" + Guid.NewGuid ().ToString ("N"));
+				Year = Path.Combine (root, "old", "2020");
+				Directory.CreateDirectory (Year);
+				Directory.CreateDirectory (Path.Combine (root, "new"));
+				OldBase = PhotoPathChange.WithTrailingSlash (Path.Combine (root, "old"));
+				NewBase = PhotoPathChange.WithTrailingSlash (Path.Combine (root, "new"));
+				Database = new Db (new Mock<IImageFileFactory> ().Object, new Mock<IThumbnailService> ().Object, new Mock<IUpdaterUI> ().Object);
+				Database.Init (Path.Combine (root, "photos.db"), true);
+			}
+
+			public Photo Add (string name)
+			{
+				string path = Path.Combine (Year, name);
+				File.WriteAllText (path, "photo");
+				uint roll = Database.Rolls.Create (new DateTime (2020, 1, 2, 0, 0, 0, DateTimeKind.Utc)).Id;
+				return Database.Photos.CreateFrom (new FilePhoto (SafeUri.FromPath (path)), true, roll);
+			}
+
+			public string[] StoredBases ()
+			{
+				var found = new List<string> ();
+				using var reader = Database.Database.Query ("SELECT base_uri FROM photo_versions ORDER BY photo_id, version_id");
+				while (reader.Read ())
+					found.Add (reader[0].ToString ());
+				return found.ToArray ();
+			}
+
+			public void Dispose ()
+			{
+				Database.Dispose ();
+				if (Directory.Exists (root))
+					Directory.Delete (root, true);
+			}
 		}
 
 		static string WithSlashes (string path)

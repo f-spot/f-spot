@@ -297,7 +297,12 @@ namespace Hyena
 
 		public static string UriToFilename (string uri)
 		{
-			return new Uri (EscapeRawFileDelimiters (uri)).LocalPath;
+			string path = new Uri (EscapeRawFileDelimiters (uri)).LocalPath;
+			// LocalPath rewrites a Windows drive or UNC to '\' on every host.
+			// A POSIX name that contains a backslash is not that shape and stays.
+			if (Path.DirectorySeparatorChar != '\\' && IsWindowsDriveOrUnc (path))
+				return path.Replace ('\\', '/');
+			return path;
 		}
 
 		// A file URI stored with a raw '#' or '?' still names one path. Those

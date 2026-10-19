@@ -2390,12 +2390,21 @@ public partial class MainWindowViewModel : ObservableObject
 			await shell.ShowWarningAsync (Strings.ChangePhotosDirectory, Strings.NewAndOldBasePathAreTheSame);
 			return;
 		}
-		int changed = PhotoPathChange.Apply (photos, oldBase, newBase);
+		int changed;
+		try {
+			using IProgressHandle progress = shell.ShowProgress (Strings.ChangePhotosDirectory, photos.Length, ProgressCancelKind.Cancelable);
+			changed = PhotoPathChange.Commit (database, photos, oldBase, newBase, () => progress.Update (Strings.ChangePhotosDirectory));
+		} catch (Exception ex) {
+			Logger.Log.Debug (ex, "Failed to change photo paths");
+			await shell.ShowWarningAsync (Strings.ChangePhotosDirectory, ex.Message);
+			return;
+		}
+		if (changed < 0)
+			return;
 		if (changed == 0) {
 			await shell.ShowWarningAsync (Strings.ChangePhotosDirectory, Strings.DidNotFindAnyPhotosWithTheOldBasePath);
 			return;
 		}
-		database.Photos.Commit (photos.Where (photo => photo.Changes.UriChanged).ToArray ());
 		ReloadPhotos ();
 	}
 

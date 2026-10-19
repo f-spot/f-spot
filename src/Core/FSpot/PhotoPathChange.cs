@@ -2,6 +2,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+
+using FSpot.Database;
 
 using Hyena;
 
@@ -105,6 +108,95 @@ namespace FSpot
 					changed++;
 			}
 			return changed;
+		}
+
+		// Stores every rewritten version, or stores none of them. A cancel or a
+		// failed save puts each version URI back, in memory and in the database.
+		// Cancel returns -1.
+		public static int Commit (Db database, IEnumerable<Photo> photos, string oldBase, string newBase)
+			=> Commit (database, photos, oldBase, newBase, null);
+
+		public static int Commit (Db database, IEnumerable<Photo> photos, string oldBase, string newBase, Func<bool> stop)
+			=> Commit (database, photos, oldBase, newBase, null, stop);
+
+		internal static int Commit (Db database, IEnumerable<Photo> photos, string oldBase, string newBase, Action<Photo[]> save, Func<bool> stop)
+		{
+			if (database == null || photos == null)
+				return 0;
+			Photo[] list = photos.Where (photo => photo != null).ToArray ();
+			List<Shot> shots = Snapshot (list);
+			try {
+				int changed = Apply (list, oldBase, newBase);
+				if (changed == 0)
+					return 0;
+				if (stop != null && stop ()) {
+					Restore (shots);
+					return -1;
+				}
+				Photo[] dirty = list.Where (photo => photo.Changes.UriChanged).ToArray ();
+				bool own = !database.Database.InTransaction;
+				if (own)
+					database.BeginTransaction ();
+				try {
+					if (save != null)
+						save (dirty);
+					else
+						database.Photos.Commit (dirty);
+					if (own)
+						database.CommitTransaction ();
+				} catch {
+					if (own && database.Database.InTransaction)
+						database.RollbackTransaction ();
+					throw;
+				}
+				return changed;
+			} catch {
+				Restore (shots);
+				throw;
+			}
+		}
+
+		sealed class Shot
+		{
+			public Photo Photo;
+			public bool Clean;
+			public bool UriChanged;
+			public List<KeyValuePair<uint, SafeUri>> Versions;
+		}
+
+		static List<Shot> Snapshot (Photo[] photos)
+		{
+			var shots = new List<Shot> ();
+			foreach (Photo photo in photos) {
+				var shot = new Shot {
+					Photo = photo,
+					Clean = !photo.Changes.UriChanged && photo.Changes.VersionsModified == null,
+					UriChanged = photo.Changes.UriChanged,
+					Versions = new List<KeyValuePair<uint, SafeUri>> ()
+				};
+				foreach (uint versionId in photo.VersionIds) {
+					PhotoVersion version = photo.GetVersion (versionId);
+					if (version?.Uri != null)
+						shot.Versions.Add (new KeyValuePair<uint, SafeUri> (versionId, version.Uri));
+				}
+				shots.Add (shot);
+			}
+			return shots;
+		}
+
+		static void Restore (List<Shot> shots)
+		{
+			foreach (Shot shot in shots) {
+				foreach (KeyValuePair<uint, SafeUri> version in shot.Versions) {
+					PhotoVersion current = shot.Photo.GetVersion (version.Key);
+					if (current != null)
+						current.Uri = version.Value;
+				}
+				if (shot.Clean)
+					shot.Photo.Changes = null;
+				else
+					shot.Photo.Changes.UriChanged = shot.UriChanged;
+			}
 		}
 	}
 }

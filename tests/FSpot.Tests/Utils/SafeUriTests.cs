@@ -12,6 +12,8 @@
 using System;
 using System.IO;
 
+using FSpot;
+
 using Hyena;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -168,6 +170,22 @@ namespace FSpot.Utils.Tests
 			Assert.AreEqual (imported, edited);
 			Assert.Contains ("My Photos", imported.AbsolutePath);
 			Assert.Contains ("IMG (1).jpg", imported.AbsolutePath);
+		}
+
+		[TestMethod]
+		public void AWindowsFileUriKeepsHashAndUsesTheHostSeparator ()
+		{
+			var uri = new SafeUri ("file:///C:/Users/me/Photos/2020/01/02/a%23b.jpg", true);
+
+			Assert.Contains ("a#b.jpg", uri.AbsolutePath);
+			if (Path.DirectorySeparatorChar == '\\') {
+				Assert.AreEqual (@"C:\Users\me\Photos\2020\01\02\a#b.jpg", uri.AbsolutePath);
+				return;
+			}
+
+			Assert.AreEqual ("C:/Users/me/Photos/2020/01/02/a#b.jpg", uri.AbsolutePath);
+			string rewritten = PhotoPathChange.Rewrite (uri.AbsolutePath, "C:/Users/me/Photos/", "/library/");
+			Assert.AreEqual ("/library/2020/01/02/a#b.jpg", rewritten);
 		}
 
 		[TestMethod]
