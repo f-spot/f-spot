@@ -5423,6 +5423,18 @@ namespace FSpot.Resources.Lang {
             }
         }
 
+        public static string Scale {
+            get {
+                return ResourceManager.GetString("Scale", resourceCulture);
+            }
+        }
+
+        public static string ScalePhotosToNoLargerThan {
+            get {
+                return ResourceManager.GetString("ScalePhotosToNoLargerThan", resourceCulture);
+            }
+        }
+
         public static string ChangePhotosDirectory {
             get {
                 return ResourceManager.GetString("ChangePhotosDirectory", resourceCulture);

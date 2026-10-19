@@ -1,0 +1,31 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:auto="using:FSpot.Avalonia"
+        xmlns:dialogs="using:FSpot.Avalonia.Dialogs"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        x:Class="FSpot.Avalonia.Dialogs.ZipScaleWindow"
+        SizeToContent="WidthAndHeight"
+        MinWidth="360"
+        CanResize="False"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.ZipScaleWindow}">
+	<DockPanel Margin="20,16">
+		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,16,0,0">
+			<Button Classes="dialog" MinWidth="88" Content="{x:Static lang:Strings.Cancel}" IsCancel="True" Click="OnCancel"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogCancel}" />
+			<Button Name="OkButton" Classes="dialog accent" MinWidth="88" Content="{x:Static lang:Strings.Ok}" IsDefault="True" Click="OnOk"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogOk}" />
+		</StackPanel>
+		<StackPanel Spacing="12">
+			<CheckBox Name="ScaleBox" x:FieldModifier="internal"
+			          AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.ZipScaleToggle}" />
+			<DockPanel>
+				<TextBlock Name="EdgeLabel" x:FieldModifier="internal" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="0,0,8,0" />
+				<NumericUpDown Name="Edge" x:FieldModifier="internal" Width="120" HorizontalAlignment="Left"
+				               Minimum="1" Maximum="10000" Increment="1" FormatString="0" ParsingNumberStyle="Integer"
+				               AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.ZipScaleEdge}" />
+			</DockPanel>
+		</StackPanel>
+	</DockPanel>
+</Window>

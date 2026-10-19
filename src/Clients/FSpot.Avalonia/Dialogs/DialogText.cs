@@ -39,6 +39,10 @@ public static class DialogAutomationIds
 	public const string ImportRollsSecond = "ImportRolls.Second";
 	public const string ImportRollsCount = "ImportRolls.Count";
 
+	public const string ZipScaleWindow = "ZipScale.Window";
+	public const string ZipScaleToggle = "ZipScale.Toggle";
+	public const string ZipScaleEdge = "ZipScale.Edge";
+
 	public const string CreateTagWindow = "CreateTag.Window";
 	public const string EditTagWindow = "EditTag.Window";
 	public const string TagName = "TagDialog.Name";

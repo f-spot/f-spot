@@ -846,6 +846,15 @@ public partial class MainWindowViewModel : ObservableObject
 #pragma warning restore VSTHRD001
 	}
 
+	// Send blocks until the UI thread reports stop, so the next photo is not packed
+	// after the person cancelled. This process does not reference JoinableTaskFactory.
+	static void SendTo (SynchronizationContext context, Action action)
+	{
+#pragma warning disable VSTHRD001
+		context.Send (_ => action (), null);
+#pragma warning restore VSTHRD001
+	}
+
 	bool HistogramStillCurrent (int generation, PhotoItemViewModel item)
 		=> generation == histogramGeneration && ReferenceEquals (item, SelectedPhoto);
 
@@ -1727,8 +1736,14 @@ public partial class MainWindowViewModel : ObservableObject
 		string? name = await shell.PromptAsync (Strings.CompressedFile, Strings.FileName, "f-spot_export.zip");
 		if (name is not string zipName || !ZipStaysInFolder (folder, zipName))
 			return;
+		ZipScaleChoice? scale = await shell.PromptZipScaleAsync ();
+		if (scale is null)
+			return;
+		int? longerSide = scale.Value.Scale
+			? Math.Clamp (scale.Value.LongerSide, ZipScaleChoice.MinimumLongerSide, ZipScaleChoice.MaximumLongerSide)
+			: null;
 		try {
-			PhotoFileActions.WriteZip (paths, Path.Combine (folder, zipName));
+			await WriteExportZipAsync (paths, Path.Combine (folder, zipName), longerSide);
 		} catch (Exception ex) when (ex is IOException or UnauthorizedAccessException) {
 			Logger.Log.Debug (ex, "Failed to write export archive {Name}", zipName);
 			await shell.ShowWarningAsync (Strings.Export, ex.Message);
@@ -1788,6 +1803,31 @@ public partial class MainWindowViewModel : ObservableObject
 		using Stream stream = File.Create (destination);
 		data.SaveTo (stream);
 		return true;
+	}
+
+	// Scaling decodes the photo, so it runs off the thread that started the export.
+	// Progress hops back to that thread. Stop keeps the photos already packed and
+	// drops the archive when nothing was packed.
+	async Task WriteExportZipAsync (IReadOnlyList<string> paths, string zipPath, int? longerSide)
+	{
+		int caller = Environment.CurrentManagedThreadId;
+		SynchronizationContext? context = SynchronizationContext.Current;
+		using IProgressHandle progress = shell.ShowProgress (Strings.ExportingFiles, paths.Count, ProgressCancelKind.Cancelable);
+		await Task.Run (() => PhotoFileActions.WriteZip (paths, zipPath, longerSide,
+			(path, edge) => {
+				if (Environment.CurrentManagedThreadId == caller)
+					throw new InvalidOperationException ("Zip scaling stays off the thread that started the export.");
+				return FSpot.Avalonia.ZipJpeg.Encode (path, edge);
+			},
+			(index, total, entry) => {
+				bool stopped = false;
+				void Report () => stopped = progress.Update (string.Format (Strings.PreparingPhotoX, entry));
+				if (context != null)
+					SendTo (context, Report);
+				else
+					Report ();
+				return stopped;
+			}));
 	}
 
 	// GTK enables Create only when the name matches "[.]zip$". A slash would

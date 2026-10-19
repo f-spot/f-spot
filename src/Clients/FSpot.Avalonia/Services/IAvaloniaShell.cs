@@ -34,6 +34,9 @@ public interface IAvaloniaShell
 	Task<IReadOnlyList<string>> PickFilesAsync (string title, bool allowMultiple)
 		=> Task.FromResult<IReadOnlyList<string>> (Array.Empty<string> ());
 	Task<string?> PromptAsync (string title, string prompt, string defaultValue);
+	// Scale starts off, matching the GTK zip dialog. Null means the person cancelled.
+	Task<ZipScaleChoice?> PromptZipScaleAsync ()
+		=> Task.FromResult<ZipScaleChoice?> (new ZipScaleChoice (false, ZipScaleChoice.DefaultLongerSide));
 	Task<bool> ConfirmAsync (string title, string message, string okCaption);
 
 	// The GTK filter and tag dialogs. The tag and version defaults fall back to the plain

@@ -40,6 +40,26 @@ public sealed class FilterAndTagDialogWindowTests
 	}
 
 	[UiTestMethod]
+	public void ZipScale_StartsOffAt1024AndReturnsTheEdgeWhenChecked ()
+	{
+		var window = new ZipScaleWindow ();
+		window.Show ();
+		try {
+			Assert.IsFalse (window.Scale);
+			Assert.AreEqual (ZipScaleChoice.DefaultLongerSide, window.LongerSide);
+			Assert.AreEqual (1024, window.LongerSide);
+			window.SetScale (true);
+			window.SetLongerSide (32);
+			window.Accept ();
+			Assert.IsNotNull (window.Result);
+			Assert.IsTrue (window.Result.Value.Scale);
+			Assert.AreEqual (32, window.Result.Value.LongerSide);
+		} finally {
+			window.Close ();
+		}
+	}
+
+	[UiTestMethod]
 	public void DateRange_PresetFillsTheDatesAndEditingADateMakesItCustom ()
 	{
 		var today = new DateTime (2026, 9, 23);

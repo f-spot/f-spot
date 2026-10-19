@@ -2,6 +2,7 @@
 
 using System;
 using System.IO;
+using System.Text;
 
 using FSpot.Core;
 
@@ -136,6 +137,107 @@ namespace FSpot.Tests
 				using var archive = System.IO.Compression.ZipFile.OpenRead (zipPath);
 				Assert.HasCount (1, archive.Entries);
 				Assert.AreEqual ("bbb", ReadEntry (archive.Entries[0]));
+			} finally {
+				Directory.Delete (sourceDir, true);
+				if (File.Exists (zipPath))
+					File.Delete (zipPath);
+			}
+		}
+
+		[TestMethod]
+		public void WriteZip_StoresScaledBytesAndKeepsTheOriginalName ()
+		{
+			string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-zip-src-" + Guid.NewGuid ().ToString ("N"));
+			string zipPath = Path.Combine (Path.GetTempPath (), "fspot-zip-" + Guid.NewGuid ().ToString ("N") + ".zip");
+			Directory.CreateDirectory (sourceDir);
+			string one = Path.Combine (sourceDir, "one.png");
+			File.WriteAllText (one, "original");
+			int calls = 0;
+			try {
+				PhotoFileActions.WriteZip (new[] { one, Path.Combine (sourceDir, "missing.jpg") }, zipPath, 32,
+					(path, edge) => {
+						calls++;
+						Assert.AreEqual (one, path);
+						Assert.AreEqual (32, edge);
+						return Encoding.UTF8.GetBytes ("jpeg");
+					},
+					null);
+
+				Assert.AreEqual (1, calls);
+				Assert.AreEqual ("original", File.ReadAllText (one));
+				using var archive = System.IO.Compression.ZipFile.OpenRead (zipPath);
+				Assert.HasCount (1, archive.Entries);
+				Assert.AreEqual ("one.png", archive.Entries[0].FullName);
+				Assert.AreEqual ("jpeg", ReadEntry (archive.Entries[0]));
+			} finally {
+				Directory.Delete (sourceDir, true);
+				if (File.Exists (zipPath))
+					File.Delete (zipPath);
+			}
+		}
+
+		[TestMethod]
+		public void WriteZip_KeepsTheOriginalBytesWhenThePhotoCannotBeScaled ()
+		{
+			string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-zip-src-" + Guid.NewGuid ().ToString ("N"));
+			string zipPath = Path.Combine (Path.GetTempPath (), "fspot-zip-" + Guid.NewGuid ().ToString ("N") + ".zip");
+			Directory.CreateDirectory (sourceDir);
+			string one = Path.Combine (sourceDir, "one.jpg");
+			File.WriteAllText (one, "original");
+			try {
+				PhotoFileActions.WriteZip (new[] { one }, zipPath, 1024, (path, edge) => null, null);
+
+				using var archive = System.IO.Compression.ZipFile.OpenRead (zipPath);
+				Assert.AreEqual ("original", ReadEntry (archive.Entries[0]));
+			} finally {
+				Directory.Delete (sourceDir, true);
+				if (File.Exists (zipPath))
+					File.Delete (zipPath);
+			}
+		}
+
+		[TestMethod]
+		public void WriteZip_StopsBeforeThePhotoThePersonCancelled ()
+		{
+			string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-zip-src-" + Guid.NewGuid ().ToString ("N"));
+			string zipPath = Path.Combine (Path.GetTempPath (), "fspot-zip-" + Guid.NewGuid ().ToString ("N") + ".zip");
+			Directory.CreateDirectory (sourceDir);
+			string one = Path.Combine (sourceDir, "one.jpg");
+			string two = Path.Combine (sourceDir, "two.jpg");
+			File.WriteAllText (one, "aaa");
+			File.WriteAllText (two, "bbb");
+			int scaled = 0;
+			try {
+				PhotoFileActions.WriteZip (new[] { one, two }, zipPath, 64,
+					(path, edge) => {
+						scaled++;
+						return Encoding.UTF8.GetBytes ("jpeg");
+					},
+					(index, total, name) => index == 1);
+
+				Assert.AreEqual (1, scaled);
+				using var archive = System.IO.Compression.ZipFile.OpenRead (zipPath);
+				Assert.HasCount (1, archive.Entries);
+				Assert.AreEqual ("one.jpg", archive.Entries[0].FullName);
+			} finally {
+				Directory.Delete (sourceDir, true);
+				if (File.Exists (zipPath))
+					File.Delete (zipPath);
+			}
+		}
+
+		[TestMethod]
+		public void WriteZip_LeavesNoArchiveWhenTheFirstPhotoIsCancelled ()
+		{
+			string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-zip-src-" + Guid.NewGuid ().ToString ("N"));
+			string zipPath = Path.Combine (Path.GetTempPath (), "fspot-zip-" + Guid.NewGuid ().ToString ("N") + ".zip");
+			Directory.CreateDirectory (sourceDir);
+			string one = Path.Combine (sourceDir, "one.jpg");
+			File.WriteAllText (one, "aaa");
+			try {
+				PhotoFileActions.WriteZip (new[] { one }, zipPath, 64, (path, edge) => Encoding.UTF8.GetBytes ("jpeg"), (index, total, name) => true);
+
+				Assert.IsFalse (File.Exists (zipPath));
 			} finally {
 				Directory.Delete (sourceDir, true);
 				if (File.Exists (zipPath))

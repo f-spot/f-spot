@@ -15,6 +15,13 @@ namespace FSpot.Avalonia;
 // The GTK filter and tag dialogs, shown for the view model through IAvaloniaShell.
 public partial class MainWindow
 {
+	public async Task<ZipScaleChoice?> PromptZipScaleAsync ()
+	{
+		var dialog = new ZipScaleWindow ();
+		await dialog.ShowDialog (this);
+		return dialog.Result;
+	}
+
 	public async Task<(uint Min, uint Max)?> PromptRatingFilterAsync (uint min, uint max)
 	{
 		var dialog = new RatingFilterWindow (min, max);

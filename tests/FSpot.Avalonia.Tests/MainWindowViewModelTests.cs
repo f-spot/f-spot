@@ -1396,7 +1396,7 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
-	public void ExportZipCommand_WritesTheSelectionIntoTheNamedArchive ()
+	public async Task ExportZipCommand_WritesTheSelectionIntoTheNamedArchive ()
 	{
 		string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-src-" + Guid.NewGuid ().ToString ("N"));
 		string destDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-dst-" + Guid.NewGuid ().ToString ("N"));
@@ -1410,7 +1410,7 @@ public sealed partial class MainWindowViewModelTests
 			item.Selected = true;
 			viewModel.Photos.Add (item);
 
-			viewModel.ExportZipCommand.Execute (null);
+			await viewModel.ExportZipCommand.ExecuteAsync (null);
 
 			using var archive = System.IO.Compression.ZipFile.OpenRead (Path.Combine (destDir, "trip.zip"));
 			Assert.HasCount (1, archive.Entries);
@@ -1426,7 +1426,112 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
-	public void ExportZipCommand_LeavesTheFolderAloneWhenTheNameIsNotAZip ()
+	public async Task ExportZipCommand_ScalesTheLongerSideWhenAsked ()
+	{
+		string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-src-" + Guid.NewGuid ().ToString ("N"));
+		string destDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-dst-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (sourceDir);
+		string file = Path.Combine (sourceDir, "shot.jpg");
+		File.Copy (Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg"), file);
+		byte[] original = File.ReadAllBytes (file);
+		try {
+			var shell = new RecordingShell {
+				ExportFolder = destDir,
+				PromptResult = "trip.zip",
+				AskForZipScale = true,
+				ZipScale = new ZipScaleChoice (true, 32)
+			};
+			var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+			var item = new PhotoItemViewModel (new StubPhoto (file));
+			item.Selected = true;
+			viewModel.Photos.Add (item);
+
+			await viewModel.ExportZipCommand.ExecuteAsync (null);
+
+			Assert.AreSequenceEqual (original, File.ReadAllBytes (file));
+			byte[] archived = ZipEntryBytes (Path.Combine (destDir, "trip.zip"), "shot.jpg");
+			Assert.AreEqual (0xFF, archived[0]);
+			Assert.AreEqual (0xD8, archived[1]);
+			(int width, int height) = JpegSize (archived);
+			int longer = Math.Max (width, height);
+			Assert.IsLessThanOrEqualTo (32, longer);
+			Assert.IsGreaterThanOrEqualTo (1, longer);
+		} finally {
+			Directory.Delete (sourceDir, true);
+			if (Directory.Exists (destDir))
+				Directory.Delete (destDir, true);
+		}
+	}
+
+	[UiTestMethod]
+	public async Task ExportZipCommand_WritesNothingWhenScaleIsCancelled ()
+	{
+		string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-src-" + Guid.NewGuid ().ToString ("N"));
+		string destDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-dst-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (sourceDir);
+		Directory.CreateDirectory (destDir);
+		string file = Path.Combine (sourceDir, "shot.jpg");
+		File.WriteAllText (file, "photo");
+		try {
+			var shell = new RecordingShell {
+				ExportFolder = destDir,
+				PromptResult = "trip.zip",
+				AskForZipScale = true,
+				ZipScale = null
+			};
+			var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+			var item = new PhotoItemViewModel (new StubPhoto (file));
+			item.Selected = true;
+			viewModel.Photos.Add (item);
+
+			await viewModel.ExportZipCommand.ExecuteAsync (null);
+
+			Assert.IsFalse (File.Exists (Path.Combine (destDir, "trip.zip")));
+		} finally {
+			Directory.Delete (sourceDir, true);
+			Directory.Delete (destDir, true);
+		}
+	}
+
+	static byte[] ZipEntryBytes (string zipPath, string name)
+	{
+		using var archive = System.IO.Compression.ZipFile.OpenRead (zipPath);
+		var entry = archive.GetEntry (name);
+		Assert.IsNotNull (entry);
+		using var stream = entry.Open ();
+		using var memory = new MemoryStream ();
+		stream.CopyTo (memory);
+		return memory.ToArray ();
+	}
+
+	static (int Width, int Height) JpegSize (byte[] data)
+	{
+		int i = 2;
+		while (i + 9 < data.Length) {
+			if (data[i] != 0xFF) {
+				i++;
+				continue;
+			}
+			byte marker = data[i + 1];
+			if (marker == 0xC0 || marker == 0xC1 || marker == 0xC2) {
+				int height = (data[i + 5] << 8) | data[i + 6];
+				int width = (data[i + 7] << 8) | data[i + 8];
+				return (width, height);
+			}
+			if (marker == 0xD8 || marker == 0xD9 || marker == 0x01 || (marker >= 0xD0 && marker <= 0xD7)) {
+				i += 2;
+				continue;
+			}
+			int length = (data[i + 2] << 8) | data[i + 3];
+			if (length < 2)
+				break;
+			i += 2 + length;
+		}
+		return (0, 0);
+	}
+
+	[UiTestMethod]
+	public async Task ExportZipCommand_LeavesTheFolderAloneWhenTheNameIsNotAZip ()
 	{
 		string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-src-" + Guid.NewGuid ().ToString ("N"));
 		string destDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-dst-" + Guid.NewGuid ().ToString ("N"));
@@ -1441,7 +1546,7 @@ public sealed partial class MainWindowViewModelTests
 			item.Selected = true;
 			viewModel.Photos.Add (item);
 
-			viewModel.ExportZipCommand.Execute (null);
+			await viewModel.ExportZipCommand.ExecuteAsync (null);
 
 			Assert.IsFalse (File.Exists (Path.Combine (destDir, "notes.txt")));
 			Assert.IsEmpty (Directory.EnumerateFileSystemEntries (destDir).ToList ());
@@ -1453,7 +1558,7 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
-	public void ExportZipCommand_KeepsTheArchiveInsideTheChosenFolder ()
+	public async Task ExportZipCommand_KeepsTheArchiveInsideTheChosenFolder ()
 	{
 		string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-src-" + Guid.NewGuid ().ToString ("N"));
 		string destDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-dst-" + Guid.NewGuid ().ToString ("N"));
@@ -1468,7 +1573,7 @@ public sealed partial class MainWindowViewModelTests
 			item.Selected = true;
 			viewModel.Photos.Add (item);
 
-			viewModel.ExportZipCommand.Execute (null);
+			await viewModel.ExportZipCommand.ExecuteAsync (null);
 
 			Assert.IsFalse (File.Exists (escaped));
 		} finally {
@@ -1481,7 +1586,7 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
-	public void ExportZipCommand_RefusesANameTheFileSystemRejects ()
+	public async Task ExportZipCommand_RefusesANameTheFileSystemRejects ()
 	{
 		string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-src-" + Guid.NewGuid ().ToString ("N"));
 		string destDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-dst-" + Guid.NewGuid ().ToString ("N"));
@@ -1496,7 +1601,7 @@ public sealed partial class MainWindowViewModelTests
 			item.Selected = true;
 			viewModel.Photos.Add (item);
 
-			viewModel.ExportZipCommand.Execute (null);
+			await viewModel.ExportZipCommand.ExecuteAsync (null);
 
 			Assert.IsEmpty (Directory.GetFiles (destDir));
 		} finally {
@@ -1508,7 +1613,7 @@ public sealed partial class MainWindowViewModelTests
 
 	[TestMethod]
 	[OSCondition (ConditionMode.Exclude, OperatingSystems.Windows)]
-	public void ExportZipCommand_RefusesANameThatIsALinkOutsideTheFolder ()
+	public async Task ExportZipCommand_RefusesANameThatIsALinkOutsideTheFolder ()
 	{
 		string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-src-" + Guid.NewGuid ().ToString ("N"));
 		string destDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-dst-" + Guid.NewGuid ().ToString ("N"));
@@ -1526,7 +1631,7 @@ public sealed partial class MainWindowViewModelTests
 			item.Selected = true;
 			viewModel.Photos.Add (item);
 
-			viewModel.ExportZipCommand.Execute (null);
+			await viewModel.ExportZipCommand.ExecuteAsync (null);
 
 			Assert.AreEqual ("keep", File.ReadAllText (outside));
 		} finally {
@@ -2513,6 +2618,8 @@ public sealed partial class MainWindowViewModelTests
 		public bool ExtensionsShown { get; private set; }
 		public IList<AddinStatus>? ShownAddins { get; private set; }
 		public string? PromptResult { get; set; }
+		public bool AskForZipScale { get; set; }
+		public ZipScaleChoice? ZipScale { get; set; }
 		public IReadOnlyList<string>? PickedFiles { get; set; }
 		public bool ConfirmResult { get; set; }
 		public bool ConfirmCalled { get; private set; }
@@ -2540,6 +2647,9 @@ public sealed partial class MainWindowViewModelTests
 			PromptDefault = defaultValue;
 			return Task.FromResult (PromptResult);
 		}
+
+		public Task<ZipScaleChoice?> PromptZipScaleAsync ()
+			=> Task.FromResult (AskForZipScale ? ZipScale : new ZipScaleChoice (false, ZipScaleChoice.DefaultLongerSide));
 
 		public Task<IReadOnlyList<string>> PickFilesAsync (string title, bool allowMultiple)
 			=> Task.FromResult (PickedFiles ?? (IReadOnlyList<string>)Array.Empty<string> ());
