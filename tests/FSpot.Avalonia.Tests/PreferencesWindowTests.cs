@@ -3,6 +3,7 @@
 using Avalonia.Controls;
 
 using FSpot;
+using FSpot.Cms;
 using FSpot.Resources.Lang;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -217,7 +218,44 @@ public sealed class SystemColorProfileTests
 	{
 		var profile = SystemColorProfile.Current;
 		Assert.AreEqual (profile is not null, SystemColorProfile.IsAvailable);
-		if (!OperatingSystem.IsMacOS ())
-			Assert.IsNull (profile);
+	}
+
+	[TestMethod]
+	public void Combine_KeepsARootedPathAndJoinsAFileName ()
+	{
+		string directory = Path.Combine ("spool", "drivers", "color");
+		string rooted = Path.GetFullPath ("display.icc");
+
+		Assert.AreEqual (rooted, SystemColorProfile.Combine (directory, rooted));
+		Assert.AreEqual (Path.Combine (directory, "sRGB Color Space Profile.icm"),
+			SystemColorProfile.Combine (directory, "sRGB Color Space Profile.icm"));
+		Assert.IsNull (SystemColorProfile.Combine (directory, null));
+		Assert.IsNull (SystemColorProfile.Combine (directory, ""));
+		Assert.IsNull (SystemColorProfile.Combine (directory, "   "));
+	}
+
+	[TestMethod]
+	public void TryOpen_OpensInjectedBytesAndRejectsGarbage ()
+	{
+		if (!LcmsProbe.IsAvailable ())
+			Assert.Inconclusive ("liblcms2 is not available on this machine");
+
+		using var made = Profile.CreateAlternateRgb ();
+		using Profile? opened = SystemColorProfile.TryOpen (Save (made));
+
+		Assert.IsNotNull (opened);
+		Assert.AreEqual (IccColorSpace.Rgb, opened.ColorSpace);
+		Assert.IsNull (SystemColorProfile.TryOpen (null));
+		Assert.IsNull (SystemColorProfile.TryOpen (Array.Empty<byte> ()));
+		Assert.IsNull (SystemColorProfile.TryOpen (new byte[] { 1, 2, 3, 4 }));
+	}
+
+	static byte[] Save (Profile profile)
+	{
+		profile.Native.Save (null, out uint size);
+		var bytes = new byte[size + 1];
+		Assert.IsTrue (profile.Native.Save (bytes, out _));
+		int length = (bytes[0] << 24) | (bytes[1] << 16) | (bytes[2] << 8) | bytes[3];
+		return bytes[..length];
 	}
 }
