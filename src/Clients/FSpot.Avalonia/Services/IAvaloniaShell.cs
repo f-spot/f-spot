@@ -37,6 +37,10 @@ public interface IAvaloniaShell
 	// Scale starts off, matching the GTK zip dialog. Null means the person cancelled.
 	Task<ZipScaleChoice?> PromptZipScaleAsync ()
 		=> Task.FromResult<ZipScaleChoice?> (new ZipScaleChoice (false, ZipScaleChoice.DefaultLongerSide));
+
+	// New rolls and a copy, matching the GTK merge dialog. Null means the person cancelled.
+	Task<CatalogMergeChoice?> PromptCatalogMergeAsync (IReadOnlyList<ImportRollOption> rolls)
+		=> Task.FromResult<CatalogMergeChoice?> (CatalogMergeChoice.NewRollsCopied);
 	Task<bool> ConfirmAsync (string title, string message, string okCaption);
 
 	// The GTK filter and tag dialogs. The tag and version defaults fall back to the plain

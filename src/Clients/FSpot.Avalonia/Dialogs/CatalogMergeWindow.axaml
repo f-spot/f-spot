@@ -1,0 +1,41 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:auto="using:FSpot.Avalonia"
+        xmlns:dialogs="using:FSpot.Avalonia.Dialogs"
+        xmlns:lang="using:FSpot.Resources.Lang"
+        x:Class="FSpot.Avalonia.Dialogs.CatalogMergeWindow"
+        SizeToContent="WidthAndHeight"
+        MinWidth="460"
+        MaxWidth="560"
+        CanResize="False"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.CatalogMergeWindow}">
+	<DockPanel Margin="20,16">
+		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,16,0,0">
+			<Button Classes="dialog" MinWidth="88" Content="{x:Static lang:Strings.Cancel}" IsCancel="True" Click="OnCancel"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogCancel}" />
+			<Button Name="OkButton" Classes="dialog accent" MinWidth="88" Content="{x:Static lang:Strings.Ok}" IsDefault="True" Click="OnOk"
+			        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.DialogOk}" />
+		</StackPanel>
+		<StackPanel Spacing="8">
+			<TextBlock Name="ImportLabel" x:FieldModifier="internal" />
+			<RadioButton Name="NewRolls" x:FieldModifier="internal" GroupName="merge-rolls" IsChecked="True"
+			             AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.CatalogMergeNewRolls}" />
+			<StackPanel Orientation="Horizontal" Spacing="8">
+				<RadioButton Name="OneRoll" x:FieldModifier="internal" GroupName="merge-rolls"
+				             AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.CatalogMergeOneRoll}" />
+				<ComboBox Name="RollBox" x:FieldModifier="internal" MinWidth="200"
+				          AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.CatalogMergeRoll}" />
+			</StackPanel>
+			<RadioButton Name="AllRolls" x:FieldModifier="internal" GroupName="merge-rolls"
+			             AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.CatalogMergeAllRolls}" />
+			<TextBlock Name="RollHelp" x:FieldModifier="internal" TextWrapping="Wrap" Opacity="0.8" />
+			<RadioButton Name="CopyFilesBox" x:FieldModifier="internal" GroupName="merge-files" IsChecked="True" Margin="0,8,0,0"
+			             AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.CatalogMergeCopy}" />
+			<RadioButton Name="KeepFiles" x:FieldModifier="internal" GroupName="merge-files"
+			             AutomationProperties.AutomationId="{x:Static dialogs:DialogAutomationIds.CatalogMergeKeep}" />
+			<TextBlock Name="CopyHelp" x:FieldModifier="internal" TextWrapping="Wrap" Opacity="0.8" />
+		</StackPanel>
+	</DockPanel>
+</Window>

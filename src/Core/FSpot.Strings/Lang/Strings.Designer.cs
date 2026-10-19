@@ -5507,6 +5507,54 @@ namespace FSpot.Resources.Lang {
             }
         }
 
+        public static string NewRollsOnly {
+            get {
+                return ResourceManager.GetString("NewRollsOnly", resourceCulture);
+            }
+        }
+
+        public static string ASingleImportRoll {
+            get {
+                return ResourceManager.GetString("ASingleImportRoll", resourceCulture);
+            }
+        }
+
+        public static string Everything {
+            get {
+                return ResourceManager.GetString("Everything", resourceCulture);
+            }
+        }
+
+        public static string CopyImagesToPhotosFolder {
+            get {
+                return ResourceManager.GetString("CopyImagesToPhotosFolder", resourceCulture);
+            }
+        }
+
+        public static string KeepTheImagesAtTheirOriginalLocation {
+            get {
+                return ResourceManager.GetString("KeepTheImagesAtTheirOriginalLocation", resourceCulture);
+            }
+        }
+
+        public static string Import3 {
+            get {
+                return ResourceManager.GetString("Import3", resourceCulture);
+            }
+        }
+
+        public static string SmallIChooseWhatToImportFromTheSelectedDbNewRollsOnlyIsTheSmartOptionThatWillAvoidReImportingPhotosYouCouldHaveImportedDuringAPreviousOperationASingleImportRollLetYouChooseWhichRollYouWantToMergeBackEverythingWillImportEverythingCreatingDuplicatesIfYouAlreadyImportedFromThatDatabaseISmall {
+            get {
+                return ResourceManager.GetString("SmallIChooseWhatToImportFromTheSelectedDbNewRollsOnlyIsTheSmartOptionThatWillAvoidReImportingPhotosYouCouldHaveImportedDuringAPreviousOperationASingleImportRollLetYouChooseWhichRollYouWantToMergeBackEverythingWillImportEverythingCreatingDuplicatesIfYouAlreadyImportedFromThatDatabaseISmall", resourceCulture);
+            }
+        }
+
+        public static string SmallICopyTheImagesLocallyOrKeepThemWhereTheyAreIfYouChoseTheLaterBeSureThatThisLocationWillStayAccessibleFromFSpotISmall {
+            get {
+                return ResourceManager.GetString("SmallICopyTheImagesLocallyOrKeepThemWhereTheyAreIfYouChoseTheLaterBeSureThatThisLocationWillStayAccessibleFromFSpotISmall", resourceCulture);
+            }
+        }
+
         public static string MergeRaw {
             get {
                 return ResourceManager.GetString("MergeRaw", resourceCulture);

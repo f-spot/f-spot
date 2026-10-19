@@ -1866,6 +1866,60 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
+	public void MergeCatalogCommand_ImportsEveryRollAndOffersOnlyRollsThatAreNew ()
+	{
+		var january = new DateTime (2019, 1, 2, 0, 0, 0, DateTimeKind.Utc);
+		var june = new DateTime (2019, 6, 7, 0, 0, 0, DateTimeKind.Utc);
+		using var libraries = new MergeLibraries ();
+		uint oldRoll = libraries.AddSource ("old.jpg", january);
+		uint newRoll = libraries.AddSource ("new.jpg", june);
+		libraries.AddDestination ("stay.jpg", january);
+		libraries.Shell.AskForCatalogMerge = true;
+		libraries.Shell.CatalogMerge = new CatalogMergeChoice (CatalogRollChoice.All, false, 0);
+
+		libraries.Merge ();
+
+		Assert.HasCount (1, libraries.Shell.OfferedMergeRolls);
+		Assert.AreEqual (newRoll, libraries.Shell.OfferedMergeRolls[0].Id);
+		string[] names = libraries.Destination.Photos.Query ("SELECT * FROM photos").Select (photo => photo.Name).OrderBy (name => name).ToArray ();
+		Assert.AreSequenceEqual (new[] { "new.jpg", "old.jpg", "stay.jpg" }, names);
+		Assert.AreNotEqual (oldRoll, newRoll);
+	}
+
+	[UiTestMethod]
+	public void MergeCatalogCommand_ImportsOnlyTheChosenRollAndKeepsItsPath ()
+	{
+		var january = new DateTime (2019, 1, 2, 0, 0, 0, DateTimeKind.Utc);
+		var june = new DateTime (2019, 6, 7, 0, 0, 0, DateTimeKind.Utc);
+		using var libraries = new MergeLibraries ();
+		uint oldRoll = libraries.AddSource ("old.jpg", january);
+		libraries.AddSource ("new.jpg", june);
+		string oldPath = Path.Combine (libraries.SourceDir, "old.jpg");
+		libraries.Shell.AskForCatalogMerge = true;
+		libraries.Shell.CatalogMerge = new CatalogMergeChoice (CatalogRollChoice.One, false, oldRoll);
+
+		libraries.Merge ();
+
+		Photo imported = libraries.Destination.Photos.Query ("SELECT * FROM photos").Single ();
+		Assert.AreEqual ("old.jpg", imported.Name);
+		Assert.AreEqual (oldPath, imported.VersionUri (Photo.OriginalVersionId).AbsolutePath);
+		Assert.IsEmpty (Directory.GetFiles (libraries.Library, "*.jpg", SearchOption.AllDirectories));
+	}
+
+	[UiTestMethod]
+	public void MergeCatalogCommand_WritesNothingWhenTheChoiceIsCancelled ()
+	{
+		using var libraries = new MergeLibraries ();
+		libraries.AddSource ("shot.jpg", new DateTime (2019, 3, 4, 0, 0, 0, DateTimeKind.Utc));
+		libraries.Shell.AskForCatalogMerge = true;
+		libraries.Shell.CatalogMerge = null;
+
+		libraries.Merge ();
+
+		Assert.IsEmpty (libraries.Destination.Photos.Query ("SELECT * FROM photos").ToList ());
+	}
+
+	[UiTestMethod]
 	public void DevelopUfrawCommand_WarnsWhenThereIsNoCatalog ()
 	{
 		var shell = new RecordingShell ();
@@ -2564,6 +2618,83 @@ public sealed partial class MainWindowViewModelTests
 		return viewModel;
 	}
 
+	sealed class MergeLibraries : IDisposable
+	{
+		public string SourceDir { get; }
+		public string Library { get; }
+		public Db Destination { get; }
+		public RecordingShell Shell { get; }
+		public MainWindowViewModel ViewModel { get; }
+		readonly string root;
+		readonly string previousBase;
+		readonly SafeUri? previousLibrary;
+		Db? source;
+
+		public MergeLibraries ()
+		{
+			root = Path.Combine (Path.GetTempPath (), "fspot-vm-merge-" + Guid.NewGuid ().ToString ("N"));
+			string destDir = Path.Combine (root, "dest");
+			SourceDir = Path.Combine (root, "source");
+			Library = Path.Combine (root, "library");
+			Directory.CreateDirectory (destDir);
+			Directory.CreateDirectory (SourceDir);
+			Directory.CreateDirectory (Library);
+			previousBase = FSpot.Settings.FSpotConfiguration.BaseDirectory;
+			previousLibrary = FSpot.Settings.FSpotConfiguration.PhotoUri;
+			EnsureMergeServices ();
+			var images = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Imaging.IImageFileFactory> ();
+			var thumbs = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Thumbnail.IThumbnailService> ();
+			Destination = new Db (images, thumbs, new MergeUpdater ());
+			Destination.Init (Path.Combine (destDir, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
+			source = new Db (images, thumbs, new MergeUpdater ());
+			source.Init (Path.Combine (SourceDir, "photos.db"), true);
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = destDir;
+			FSpot.Settings.FSpotConfiguration.PhotoUri = SafeUri.FromPath (Library);
+			Shell = new RecordingShell {
+				ConfirmResult = true,
+				PickedFiles = new[] { Path.Combine (SourceDir, "photos.db") }
+			};
+			ViewModel = new MainWindowViewModel (Destination, Shell, new NullThumbnails ());
+			ViewModel.LoadCatalog ();
+		}
+
+		public uint AddSource (string name, DateTime rollTime)
+		{
+			if (source is null)
+				throw new InvalidOperationException ("The source catalog is already closed.");
+			return Add (source, SourceDir, name, rollTime);
+		}
+
+		public uint AddDestination (string name, DateTime rollTime)
+			=> Add (Destination, Path.Combine (root, "already"), name, rollTime);
+
+		public void Merge ()
+		{
+			source?.Dispose ();
+			source = null;
+			ViewModel.MergeCatalogCommand.Execute (null);
+		}
+
+		static uint Add (Db database, string directory, string name, DateTime rollTime)
+		{
+			Directory.CreateDirectory (directory);
+			File.Copy (Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg"), Path.Combine (directory, name), true);
+			uint roll = database.Rolls.Create (rollTime).Id;
+			database.Photos.CreateFrom (new FilePhoto (SafeUri.FromPath (Path.Combine (directory, name))), true, roll);
+			return roll;
+		}
+
+		public void Dispose ()
+		{
+			source?.Dispose ();
+			Destination.Dispose ();
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = previousBase;
+			FSpot.Settings.FSpotConfiguration.PhotoUri = previousLibrary;
+			if (Directory.Exists (root))
+				Directory.Delete (root, true);
+		}
+	}
+
 	sealed class MergeUpdater : FSpot.Database.IUpdaterUI
 	{
 		public void Show () { }
@@ -2620,6 +2751,9 @@ public sealed partial class MainWindowViewModelTests
 		public string? PromptResult { get; set; }
 		public bool AskForZipScale { get; set; }
 		public ZipScaleChoice? ZipScale { get; set; }
+		public bool AskForCatalogMerge { get; set; }
+		public CatalogMergeChoice? CatalogMerge { get; set; }
+		public IReadOnlyList<ImportRollOption> OfferedMergeRolls { get; private set; } = [];
 		public IReadOnlyList<string>? PickedFiles { get; set; }
 		public bool ConfirmResult { get; set; }
 		public bool ConfirmCalled { get; private set; }
@@ -2650,6 +2784,12 @@ public sealed partial class MainWindowViewModelTests
 
 		public Task<ZipScaleChoice?> PromptZipScaleAsync ()
 			=> Task.FromResult (AskForZipScale ? ZipScale : new ZipScaleChoice (false, ZipScaleChoice.DefaultLongerSide));
+
+		public Task<CatalogMergeChoice?> PromptCatalogMergeAsync (IReadOnlyList<ImportRollOption> rolls)
+		{
+			OfferedMergeRolls = rolls;
+			return Task.FromResult (AskForCatalogMerge ? CatalogMerge : CatalogMergeChoice.NewRollsCopied);
+		}
 
 		public Task<IReadOnlyList<string>> PickFilesAsync (string title, bool allowMultiple)
 			=> Task.FromResult (PickedFiles ?? (IReadOnlyList<string>)Array.Empty<string> ());

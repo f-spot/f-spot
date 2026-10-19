@@ -43,6 +43,14 @@ public static class DialogAutomationIds
 	public const string ZipScaleToggle = "ZipScale.Toggle";
 	public const string ZipScaleEdge = "ZipScale.Edge";
 
+	public const string CatalogMergeWindow = "CatalogMerge.Window";
+	public const string CatalogMergeNewRolls = "CatalogMerge.NewRolls";
+	public const string CatalogMergeOneRoll = "CatalogMerge.OneRoll";
+	public const string CatalogMergeRoll = "CatalogMerge.Roll";
+	public const string CatalogMergeAllRolls = "CatalogMerge.AllRolls";
+	public const string CatalogMergeCopy = "CatalogMerge.Copy";
+	public const string CatalogMergeKeep = "CatalogMerge.Keep";
+
 	public const string CreateTagWindow = "CreateTag.Window";
 	public const string EditTagWindow = "EditTag.Window";
 	public const string TagName = "TagDialog.Name";

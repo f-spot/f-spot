@@ -22,6 +22,13 @@ public partial class MainWindow
 		return dialog.Result;
 	}
 
+	public async Task<CatalogMergeChoice?> PromptCatalogMergeAsync (IReadOnlyList<ImportRollOption> rolls)
+	{
+		var dialog = new CatalogMergeWindow (rolls);
+		await dialog.ShowDialog (this);
+		return dialog.Result;
+	}
+
 	public async Task<(uint Min, uint Max)?> PromptRatingFilterAsync (uint min, uint max)
 	{
 		var dialog = new RatingFilterWindow (min, max);

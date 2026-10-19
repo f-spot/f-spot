@@ -2441,9 +2441,26 @@ public partial class MainWindowViewModel : ObservableObject
 			return;
 		}
 
+		IReadOnlyList<ImportRollOption> rolls;
+		try {
+			var existing = new HashSet<DateTime> (database.Rolls.GetRolls ().Select (roll => roll.Time));
+			rolls = CatalogMerge.SourceRolls (source, images, thumbs)
+				.Where (roll => !existing.Contains (roll.Time))
+				.Select (roll => new ImportRollOption (roll.Id, roll.Time, roll.PhotoCount))
+				.ToList ();
+		} catch (Exception ex) {
+			Logger.Log.Debug (ex, "Failed to read rolls from catalog {Path}", source);
+			await shell.ShowWarningAsync (Strings.MergeDb, string.Format (Strings.TheFileSelectedNotValidOrSupportedDataaseReceivedExceptionX, ex.Message));
+			return;
+		}
+
+		CatalogMergeChoice? choice = await shell.PromptCatalogMergeAsync (rolls);
+		if (choice is null)
+			return;
+
 		CatalogMergeResult result;
 		try {
-			result = CatalogMerge.Merge (database, source, openPath, true, CatalogRollChoice.New, 0, FSpotConfiguration.PhotoUri, images, thumbs, null);
+			result = CatalogMerge.Merge (database, source, openPath, choice.Value.CopyFiles, choice.Value.Rolls, choice.Value.RollId, FSpotConfiguration.PhotoUri, images, thumbs, null);
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Failed to merge catalog {Path}", source);
 			await shell.ShowWarningAsync (Strings.MergeDb, string.Format (Strings.TheFileSelectedNotValidOrSupportedDataaseReceivedExceptionX, ex.Message));

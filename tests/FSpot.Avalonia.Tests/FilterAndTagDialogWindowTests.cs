@@ -6,6 +6,7 @@ using Avalonia.VisualTree;
 
 using FSpot.Avalonia.Dialogs;
 using FSpot.Avalonia.Imaging;
+using FSpot;
 using FSpot.Core;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -37,6 +38,34 @@ public sealed class FilterAndTagDialogWindowTests
 
 		window.Accept ();
 		Assert.AreEqual ((2u, 2u), window.Result);
+	}
+
+	[UiTestMethod]
+	public void CatalogMerge_StartsOnNewRollsAndCopyAndReturnsTheChosenRoll ()
+	{
+		var window = new CatalogMergeWindow ([
+			new ImportRollOption (8, new DateTime (2019, 6, 7, 0, 0, 0, DateTimeKind.Utc), 1),
+			new ImportRollOption (4, new DateTime (2019, 1, 2, 0, 0, 0, DateTimeKind.Utc), 2)
+		]);
+		window.Show ();
+		try {
+			Assert.AreEqual (CatalogRollChoice.New, window.Rolls);
+			Assert.IsTrue (window.CopyFiles);
+			Assert.IsFalse (window.RollListEnabled);
+
+			window.ChooseRolls (CatalogRollChoice.One);
+			Assert.IsTrue (window.RollListEnabled);
+			window.ChooseRoll (1);
+			window.SetCopy (false);
+			window.Accept ();
+
+			Assert.IsNotNull (window.Result);
+			Assert.AreEqual (CatalogRollChoice.One, window.Result.Value.Rolls);
+			Assert.IsFalse (window.Result.Value.CopyFiles);
+			Assert.AreEqual (4u, window.Result.Value.RollId);
+		} finally {
+			window.Close ();
+		}
 	}
 
 	[UiTestMethod]

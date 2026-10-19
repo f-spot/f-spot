@@ -46,18 +46,51 @@ namespace FSpot
 			if (SameFile (sourcePath, destinationPath))
 				return new CatalogMergeResult (0, Array.Empty<string> ());
 
-			string temp = Path.GetTempFileName ();
+			string temp = null;
 			Db incoming = null;
 			try {
-				File.Copy (sourcePath, temp, true);
-				File.SetAttributes (temp, FileAttributes.Normal);
-				incoming = new Db (images, thumbnails, updater ?? new SilentUpdater ());
-				incoming.Init (temp, true);
+				incoming = OpenCopy (sourcePath, images, thumbnails, updater, out temp);
 				return MergeOpen (destination, incoming, copyFiles, rolls, rollId, libraryRoot);
 			} finally {
 				if (incoming != null)
 					incoming.Dispose ();
 				DeleteTemp (temp);
+			}
+		}
+
+		// Rolls in the source catalog, read from a temp copy so the original is not upgraded.
+		public static IReadOnlyList<(uint Id, DateTime Time, uint PhotoCount)> SourceRolls (string sourcePath, IImageFileFactory images, IThumbnailService thumbnails)
+		{
+			if (string.IsNullOrEmpty (sourcePath))
+				return Array.Empty<(uint, DateTime, uint)> ();
+
+			string temp = null;
+			Db incoming = null;
+			try {
+				incoming = OpenCopy (sourcePath, images, thumbnails, null, out temp);
+				var list = new List<(uint, DateTime, uint)> ();
+				foreach (Roll roll in incoming.Rolls.GetRolls ())
+					list.Add ((roll.Id, roll.Time, incoming.Rolls.PhotosInRoll (roll)));
+				return list;
+			} finally {
+				if (incoming != null)
+					incoming.Dispose ();
+				DeleteTemp (temp);
+			}
+		}
+
+		static Db OpenCopy (string sourcePath, IImageFileFactory images, IThumbnailService thumbnails, IUpdaterUI updater, out string temp)
+		{
+			temp = Path.GetTempFileName ();
+			File.Copy (sourcePath, temp, true);
+			File.SetAttributes (temp, FileAttributes.Normal);
+			var incoming = new Db (images, thumbnails, updater ?? new SilentUpdater ());
+			try {
+				incoming.Init (temp, true);
+				return incoming;
+			} catch {
+				incoming.Dispose ();
+				throw;
 			}
 		}
 
@@ -256,6 +289,8 @@ namespace FSpot
 
 		static void DeleteTemp (string path)
 		{
+			if (string.IsNullOrEmpty (path))
+				return;
 			foreach (string extra in new[] { path, path + "-wal", path + "-shm", path + "-journal" }) {
 				try {
 					if (File.Exists (extra))
