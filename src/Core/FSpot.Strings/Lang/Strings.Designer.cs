@@ -5584,5 +5584,11 @@ namespace FSpot.Resources.Lang {
                 return ResourceManager.GetString("SkippedPhotosWhoseFilesAreMissing", resourceCulture);
             }
         }
+
+        public static string ChooseTheFolderThatContainsPhotosFromX {
+            get {
+                return ResourceManager.GetString("ChooseTheFolderThatContainsPhotosFromX", resourceCulture);
+            }
+        }
     }
 }

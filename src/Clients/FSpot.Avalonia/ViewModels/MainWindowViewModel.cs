@@ -2499,7 +2499,10 @@ public partial class MainWindowViewModel : ObservableObject
 
 		CatalogMergeResult result;
 		try {
-			result = CatalogMerge.Merge (database, source, openPath, choice.Value.CopyFiles, choice.Value.Rolls, choice.Value.RollId, FSpotConfiguration.PhotoUri, images, thumbs, null);
+			var replacements = new Dictionary<string, string?> ();
+			foreach (string prefix in CatalogMerge.MissingFolders (database, source, choice.Value.Rolls, choice.Value.RollId, images, thumbs))
+				replacements[prefix] = await shell.PickFolderAsync (string.Format (Strings.ChooseTheFolderThatContainsPhotosFromX, prefix));
+			result = CatalogMerge.Merge (database, source, openPath, choice.Value.CopyFiles, choice.Value.Rolls, choice.Value.RollId, FSpotConfiguration.PhotoUri, images, thumbs, null, replacements);
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Failed to merge catalog {Path}", source);
 			await shell.ShowWarningAsync (Strings.MergeDb, string.Format (Strings.TheFileSelectedNotValidOrSupportedDataaseReceivedExceptionX, ex.Message));

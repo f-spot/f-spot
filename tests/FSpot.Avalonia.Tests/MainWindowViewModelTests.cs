@@ -1907,6 +1907,53 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
+	public void MergeCatalogCommand_UsesTheReplacementFolderForAMissingPhoto ()
+	{
+		using var libraries = new MergeLibraries ();
+		var shot = new DateTime (2020, 1, 2, 15, 0, 0, DateTimeKind.Utc);
+		libraries.AddSource ("day.jpg", shot);
+		libraries.AddSource ("kept.jpg", shot);
+		libraries.MoveOriginal ("day.jpg", "/volume/library/photos/2020/01/02/day.jpg");
+		string folder = Path.Combine (libraries.SourceDir, "moved");
+		string found = Path.Combine (folder, "2020", "01", "02", "day.jpg");
+		Directory.CreateDirectory (Path.GetDirectoryName (found)!);
+		File.Copy (Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg"), found, true);
+		libraries.Shell.AskForCatalogMerge = true;
+		libraries.Shell.CatalogMerge = new CatalogMergeChoice (CatalogRollChoice.All, false, 0);
+		libraries.Shell.ExportFolder = folder;
+
+		libraries.Merge ();
+
+		Assert.HasCount (1, libraries.Shell.FolderPrompts);
+		Assert.Contains ("photos", libraries.Shell.FolderPrompts[0]);
+		string[] paths = libraries.Destination.Photos.Query ("SELECT * FROM photos")
+			.Select (photo => photo.VersionUri (Photo.OriginalVersionId).AbsolutePath)
+			.OrderBy (path => path)
+			.ToArray ();
+		string[] expected = new[] { found, Path.Combine (libraries.SourceDir, "kept.jpg") }
+			.OrderBy (path => path)
+			.ToArray ();
+		Assert.AreSequenceEqual (expected, paths);
+	}
+
+	[UiTestMethod]
+	public void MergeCatalogCommand_SkipsAMissingPhotoWhenTheFolderPromptIsCancelled ()
+	{
+		using var libraries = new MergeLibraries ();
+		var shot = new DateTime (2020, 1, 2, 15, 0, 0, DateTimeKind.Utc);
+		libraries.AddSource ("day.jpg", shot);
+		libraries.AddSource ("kept.jpg", shot);
+		libraries.MoveOriginal ("day.jpg", "/volume/library/photos/2020/01/02/day.jpg");
+		libraries.Shell.AskForCatalogMerge = true;
+		libraries.Shell.CatalogMerge = new CatalogMergeChoice (CatalogRollChoice.All, false, 0);
+
+		libraries.Merge ();
+
+		Assert.HasCount (1, libraries.Shell.FolderPrompts);
+		Assert.AreEqual ("kept.jpg", libraries.Destination.Photos.Query ("SELECT * FROM photos").Single ().Name);
+	}
+
+	[UiTestMethod]
 	public void MergeCatalogCommand_WritesNothingWhenTheChoiceIsCancelled ()
 	{
 		using var libraries = new MergeLibraries ();
@@ -2665,6 +2712,17 @@ public sealed partial class MainWindowViewModelTests
 			return Add (source, SourceDir, name, rollTime);
 		}
 
+		public void MoveOriginal (string name, string path)
+		{
+			if (source is null)
+				throw new InvalidOperationException ("The source catalog is already closed.");
+			Photo photo = source.Photos.Query ("SELECT * FROM photos").Single (item => item.Name == name);
+			photo.GetVersion (Photo.OriginalVersionId).Uri = SafeUri.FromPath (path);
+			photo.Changes.ChangeVersion (Photo.OriginalVersionId);
+			photo.Changes.UriChanged = true;
+			source.Photos.Commit (photo);
+		}
+
 		public uint AddDestination (string name, DateTime rollTime)
 			=> Add (Destination, Path.Combine (root, "already"), name, rollTime);
 
@@ -2741,6 +2799,7 @@ public sealed partial class MainWindowViewModelTests
 		public IReadOnlyList<string>? Mailed { get; private set; }
 		public IReadOnlyList<string>? Slideshow { get; private set; }
 		public string? ExportFolder { get; set; }
+		public List<string> FolderPrompts { get; } = new ();
 		public string? OpenedUri { get; private set; }
 		public IReadOnlyList<string>? Copied { get; private set; }
 		public string? BackgroundPath { get; private set; }
@@ -2857,7 +2916,10 @@ public sealed partial class MainWindowViewModelTests
 			=> OpenedUri = uri;
 
 		public override Task<string?> PickFolderAsync (string title)
-			=> Task.FromResult (ExportFolder);
+		{
+			FolderPrompts.Add (title);
+			return Task.FromResult (ExportFolder);
+		}
 	}
 
 	sealed class RecordingThumbnails : IPhotoThumbnailLoader

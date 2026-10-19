@@ -1,6 +1,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -119,6 +120,126 @@ namespace FSpot.Tests
 			Assert.IsLessThan (7, missing.Split ('/').Length);
 			Assert.IsFalse (File.Exists (missing));
 			Assert.IsEmpty (libraries.Destination.Photos.Query ("SELECT * FROM photos").ToList ());
+			Assert.IsEmpty (CatalogMerge.MissingFolders (libraries.Destination, libraries.SourcePath, CatalogRollChoice.All, 0, libraries.Images, libraries.Thumbnails).ToList ());
+		}
+
+		[TestMethod]
+		public void Merge_ImportsAWindowsLibraryFromTheFolderTheCallerSupplies ()
+		{
+			using var libraries = new Libraries ();
+			string folder = Path.Combine (libraries.Root, "moved");
+			string found = Path.Combine (folder, "2020", "01", "02", "a#b.jpg");
+			Directory.CreateDirectory (Path.GetDirectoryName (found));
+			File.WriteAllText (found, "photo");
+			Db source = libraries.Open (libraries.SourcePath);
+			try {
+				Photo photo = AddPhoto (source, Path.Combine (libraries.Root, "placeholder.jpg"), source.Rolls.Create (June).Id, Shot);
+				photo.GetVersion (Photo.OriginalVersionId).Uri = new SafeUri ("file:///C:/Users/me/Photos/2020/01/02/a%23b.jpg", true);
+				photo.Changes.ChangeVersion (Photo.OriginalVersionId);
+				photo.Changes.UriChanged = true;
+				source.Photos.Commit (photo);
+			} finally {
+				source.Dispose ();
+			}
+
+			IReadOnlyList<string> folders = CatalogMerge.MissingFolders (libraries.Destination, libraries.SourcePath, CatalogRollChoice.All, 0, libraries.Images, libraries.Thumbnails);
+			string prefix = folders.Single ();
+			CatalogMergeResult result = libraries.Merge (copyFiles: false, CatalogRollChoice.All, 0,
+				new Dictionary<string, string> { [prefix] = folder });
+
+			Assert.AreEqual (1, result.Imported);
+			Assert.IsEmpty (result.Missing.ToList ());
+			Photo imported = libraries.Destination.Photos.Query ("SELECT * FROM photos").Single ();
+			Assert.AreEqual (found, imported.VersionUri (Photo.OriginalVersionId).AbsolutePath);
+		}
+
+		[TestMethod]
+		public void Merge_ImportsAMissingFileFromTheFolderTheCallerSupplies ()
+		{
+			using var libraries = new Libraries ();
+			const string stored = "/volume/library/photos/2020/01/02/day.jpg";
+			string folder = Path.Combine (libraries.Root, "moved");
+			string found = Path.Combine (folder, "2020", "01", "02", "day.jpg");
+			Directory.CreateDirectory (Path.GetDirectoryName (found));
+			File.WriteAllText (found, "photo");
+			Db source = libraries.Open (libraries.SourcePath);
+			try {
+				Photo photo = AddPhoto (source, Path.Combine (libraries.Root, "placeholder.jpg"), source.Rolls.Create (June).Id, Shot);
+				photo.GetVersion (Photo.OriginalVersionId).Uri = SafeUri.FromPath (stored);
+				photo.Changes.ChangeVersion (Photo.OriginalVersionId);
+				photo.Changes.UriChanged = true;
+				source.Photos.Commit (photo);
+			} finally {
+				source.Dispose ();
+			}
+
+			IReadOnlyList<string> folders = CatalogMerge.MissingFolders (libraries.Destination, libraries.SourcePath, CatalogRollChoice.All, 0, libraries.Images, libraries.Thumbnails);
+			string prefix = folders.Single ();
+			CatalogMergeResult result = libraries.Merge (copyFiles: false, CatalogRollChoice.All, 0,
+				new Dictionary<string, string> { [prefix] = folder });
+
+			Assert.Contains ("photos", prefix);
+			Assert.DoesNotContain ("2020", prefix);
+			Assert.DoesNotContain ("day.jpg", prefix);
+			Assert.AreEqual (1, result.Imported);
+			Assert.IsEmpty (result.Missing.ToList ());
+			Photo imported = libraries.Destination.Photos.Query ("SELECT * FROM photos").Single ();
+			Assert.AreEqual (found, imported.VersionUri (Photo.OriginalVersionId).AbsolutePath);
+		}
+
+		[TestMethod]
+		public void Merge_AsksOnceForAPrefixAndSkipsItWhenDeclined ()
+		{
+			using var libraries = new Libraries ();
+			string kept = Path.Combine (libraries.Root, "kept.jpg");
+			Db source = libraries.Open (libraries.SourcePath);
+			try {
+				uint roll = source.Rolls.Create (June).Id;
+				Retarget (source, AddPhoto (source, Path.Combine (libraries.Root, "one.jpg"), roll, Shot), "/volume/library/photos/2020/01/02/one.jpg");
+				Retarget (source, AddPhoto (source, Path.Combine (libraries.Root, "two.jpg"), roll, Shot), "/volume/library/photos/2020/01/02/two.jpg");
+				AddPhoto (source, kept, roll, Shot);
+			} finally {
+				source.Dispose ();
+			}
+
+			IReadOnlyList<string> folders = CatalogMerge.MissingFolders (libraries.Destination, libraries.SourcePath, CatalogRollChoice.All, 0, libraries.Images, libraries.Thumbnails);
+			string prefix = folders.Single ();
+			var declined = new Dictionary<string, string> { [prefix] = null };
+			CatalogMergeResult result = libraries.Merge (copyFiles: false, CatalogRollChoice.All, 0, declined);
+
+			Assert.Contains ("photos", prefix);
+			Assert.DoesNotContain ("one.jpg", prefix);
+			Assert.DoesNotContain ("two.jpg", prefix);
+			Assert.AreEqual (1, result.Imported);
+			Assert.HasCount (2, result.Missing);
+			Assert.AreEqual (kept, libraries.Destination.Photos.Query ("SELECT * FROM photos").Single ().VersionUri (Photo.OriginalVersionId).AbsolutePath);
+		}
+
+		[TestMethod]
+		public void Merge_KeepsTheVersionThatWasTheDefault ()
+		{
+			using var libraries = new Libraries ();
+			string sourceFile = Path.Combine (libraries.Root, "keep.jpg");
+			string editedFile = Path.Combine (libraries.Root, "keep (Edited).jpg");
+			File.WriteAllText (editedFile, "edited");
+			Db source = libraries.Open (libraries.SourcePath);
+			try {
+				Photo photo = AddPhoto (source, sourceFile, source.Rolls.Create (June).Id, Shot);
+				SafeUri edited = SafeUri.FromPath (editedFile);
+				uint editedId = photo.AddVersion (edited.GetBaseUri (), edited.GetFilename (), "Edited", false);
+				photo.DefaultVersionId = editedId;
+				source.Photos.Commit (photo);
+			} finally {
+				source.Dispose ();
+			}
+
+			libraries.Merge (copyFiles: false, CatalogRollChoice.All, 0);
+
+			Photo imported = libraries.Destination.Photos.Query ("SELECT * FROM photos").Single ();
+			Assert.AreEqual ("Edited", imported.DefaultVersion.Name);
+			Assert.AreEqual (editedFile, imported.DefaultVersion.Uri.AbsolutePath);
+			Assert.AreEqual (sourceFile, imported.VersionUri (Photo.OriginalVersionId).AbsolutePath);
+			Assert.IsFalse (File.Exists (Path.Combine (libraries.Library.AbsolutePath, "keep (Edited).jpg")));
 		}
 
 		[TestMethod]
@@ -305,6 +426,14 @@ namespace FSpot.Tests
 			Assert.AreEqual ("already", File.ReadAllText (occupied));
 		}
 
+		static void Retarget (Db database, Photo photo, string path)
+		{
+			photo.GetVersion (Photo.OriginalVersionId).Uri = SafeUri.FromPath (path);
+			photo.Changes.ChangeVersion (Photo.OriginalVersionId);
+			photo.Changes.UriChanged = true;
+			database.Photos.Commit (photo);
+		}
+
 		static Photo AddPhoto (Db database, string path, uint rollId, DateTime time)
 		{
 			Directory.CreateDirectory (Path.GetDirectoryName (path));
@@ -350,11 +479,14 @@ namespace FSpot.Tests
 				return database;
 			}
 
-			public CatalogMergeResult Merge (bool copyFiles, CatalogRollChoice rolls, uint rollId)
-				=> MergeInto (SourcePath, DestinationPath, copyFiles, rolls, rollId);
+			public IImageFileFactory Images => images;
+			public IThumbnailService Thumbnails => thumbnails;
 
-			public CatalogMergeResult MergeInto (string sourcePath, string destinationPath, bool copyFiles, CatalogRollChoice rolls, uint rollId)
-				=> CatalogMerge.Merge (Destination, sourcePath, destinationPath, copyFiles, rolls, rollId, Library, images, thumbnails, updater);
+			public CatalogMergeResult Merge (bool copyFiles, CatalogRollChoice rolls, uint rollId, IReadOnlyDictionary<string, string> replacements = null)
+				=> MergeInto (SourcePath, DestinationPath, copyFiles, rolls, rollId, replacements);
+
+			public CatalogMergeResult MergeInto (string sourcePath, string destinationPath, bool copyFiles, CatalogRollChoice rolls, uint rollId, IReadOnlyDictionary<string, string> replacements = null)
+				=> CatalogMerge.Merge (Destination, sourcePath, destinationPath, copyFiles, rolls, rollId, Library, images, thumbnails, updater, replacements);
 
 			public void Dispose ()
 			{

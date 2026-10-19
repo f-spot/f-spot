@@ -39,7 +39,35 @@ namespace FSpot
 	// in the catalog are appended as-is, so a '%' in the filename is not encoded again.
 	public static class CatalogMerge
 	{
-		public static CatalogMergeResult Merge (Db destination, string sourcePath, string destinationPath, bool copyFiles, CatalogRollChoice rolls, uint rollId, SafeUri libraryRoot, IImageFileFactory images, IThumbnailService thumbnails, IUpdaterUI updater)
+		// Prefixes of missing originals that sit below a library folder (more than the
+		// year/month/day/file GTK asks about). The caller shows one folder prompt per
+		// prefix and passes the answers to Merge. A short path is not listed: there is
+		// nothing to ask, and the photo is skipped.
+		public static IReadOnlyList<string> MissingFolders (Db destination, string sourcePath, CatalogRollChoice rolls, uint rollId, IImageFileFactory images, IThumbnailService thumbnails)
+		{
+			if (destination == null || string.IsNullOrEmpty (sourcePath))
+				return Array.Empty<string> ();
+
+			string temp = null;
+			Db incoming = null;
+			try {
+				incoming = OpenCopy (sourcePath, images, thumbnails, null, out temp);
+				var prefixes = new List<string> ();
+				var seen = new HashSet<string> ();
+				foreach (Photo photo in ChosenPhotos (destination, incoming, rolls, rollId)) {
+					string prefix = MissingPrefix (OriginalPath (photo));
+					if (prefix != null && seen.Add (prefix))
+						prefixes.Add (prefix);
+				}
+				return prefixes;
+			} finally {
+				if (incoming != null)
+					incoming.Dispose ();
+				DeleteTemp (temp);
+			}
+		}
+
+		public static CatalogMergeResult Merge (Db destination, string sourcePath, string destinationPath, bool copyFiles, CatalogRollChoice rolls, uint rollId, SafeUri libraryRoot, IImageFileFactory images, IThumbnailService thumbnails, IUpdaterUI updater, IReadOnlyDictionary<string, string> replacements = null)
 		{
 			if (destination == null || string.IsNullOrEmpty (sourcePath))
 				return new CatalogMergeResult (0, Array.Empty<string> ());
@@ -50,7 +78,7 @@ namespace FSpot
 			Db incoming = null;
 			try {
 				incoming = OpenCopy (sourcePath, images, thumbnails, updater, out temp);
-				return MergeOpen (destination, incoming, copyFiles, rolls, rollId, libraryRoot);
+				return MergeOpen (destination, incoming, copyFiles, rolls, rollId, libraryRoot, replacements);
 			} finally {
 				if (incoming != null)
 					incoming.Dispose ();
@@ -94,7 +122,7 @@ namespace FSpot
 			}
 		}
 
-		static CatalogMergeResult MergeOpen (Db destination, Db source, bool copyFiles, CatalogRollChoice rolls, uint rollId, SafeUri libraryRoot)
+		static CatalogMergeResult MergeOpen (Db destination, Db source, bool copyFiles, CatalogRollChoice rolls, uint rollId, SafeUri libraryRoot, IReadOnlyDictionary<string, string> replacements)
 		{
 			var tagMap = new Dictionary<uint, Tag> ();
 			MergeTags (source.Tags.RootCategory, source.Tags, destination.Tags, tagMap);
@@ -108,13 +136,24 @@ namespace FSpot
 
 			int imported = 0;
 			var missing = new List<string> ();
-			foreach (Photo photo in source.Photos.Query ("SELECT * FROM photos")) {
-				if (!rollMap.ContainsKey (photo.RollId))
-					continue;
-				if (ImportPhoto (destination, photo, copyFiles, rollMap[photo.RollId], libraryRoot, tagMap, missing))
+			foreach (Photo photo in ChosenPhotos (destination, source, rolls, rollId)) {
+				if (ImportPhoto (destination, photo, copyFiles, rollMap[photo.RollId], libraryRoot, tagMap, missing, replacements))
 					imported++;
 			}
 			return new CatalogMergeResult (imported, missing);
+		}
+
+		static IEnumerable<Photo> ChosenPhotos (Db destination, Db source, CatalogRollChoice rolls, uint rollId)
+		{
+			var ids = new HashSet<uint> ();
+			foreach (Roll roll in ChosenRolls (source, destination, rolls, rollId)) {
+				if (source.Rolls.PhotosInRoll (roll) == 0)
+					continue;
+				ids.Add (roll.Id);
+			}
+			foreach (Photo photo in source.Photos.Query ("SELECT * FROM photos"))
+				if (ids.Contains (photo.RollId))
+					yield return photo;
 		}
 
 		static IEnumerable<Roll> ChosenRolls (Db source, Db destination, CatalogRollChoice rolls, uint rollId)
@@ -184,13 +223,22 @@ namespace FSpot
 			return name + " " + Guid.NewGuid ().ToString ("N");
 		}
 
-		static bool ImportPhoto (Db destination, Photo photo, bool copyFiles, uint rollId, SafeUri libraryRoot, Dictionary<uint, Tag> tagMap, List<string> missing)
+		static bool ImportPhoto (Db destination, Photo photo, bool copyFiles, uint rollId, SafeUri libraryRoot, Dictionary<uint, Tag> tagMap, List<string> missing, IReadOnlyDictionary<string, string> replacements)
 		{
 			PhotoVersion original = photo.GetVersion (Photo.OriginalVersionId);
-			string sourcePath = original?.Uri?.AbsolutePath;
+			string sourcePath = OriginalPath (photo);
 			if (string.IsNullOrEmpty (sourcePath) || !File.Exists (sourcePath)) {
-				missing.Add (sourcePath ?? string.Empty);
-				return false;
+				string prefix = FolderPrefix (sourcePath);
+				string folder = null;
+				if (prefix != null && replacements != null)
+					replacements.TryGetValue (prefix, out folder);
+				string found = Remap (sourcePath, prefix, folder);
+				if (found == null || !File.Exists (found)) {
+					missing.Add (sourcePath ?? string.Empty);
+					return false;
+				}
+				sourcePath = found;
+				original.Uri = SafeUri.FromPath (found);
 			}
 
 			SafeUri stored = original.Uri;
@@ -217,6 +265,7 @@ namespace FSpot
 			}
 
 			PhotoVersion[] versions = photo.VersionIds.Select (photo.GetVersion).Where (version => version != null).ToArray ();
+			uint wanted = photo.DefaultVersionId;
 			photo.DefaultVersionId = Photo.OriginalVersionId;
 			if (copyFiles)
 				original.Uri = stored;
@@ -234,7 +283,9 @@ namespace FSpot
 			foreach (PhotoVersion version in versions) {
 				if (version.VersionId == Photo.OriginalVersionId)
 					continue;
-				created.AddVersion (version.BaseUri, version.Filename, version.Name, version.IsProtected);
+				uint newId = created.AddVersion (version.BaseUri, version.Filename, version.Name, version.IsProtected);
+				if (version.VersionId == wanted)
+					created.DefaultVersionId = newId;
 			}
 
 			created.Time = photo.Time;
@@ -242,6 +293,45 @@ namespace FSpot
 			created.Rating = photo.Rating;
 			destination.Photos.Commit (created);
 			return true;
+		}
+
+		static string OriginalPath (Photo photo)
+		{
+			PhotoVersion original = photo?.GetVersion (Photo.OriginalVersionId);
+			return original?.Uri?.AbsolutePath;
+		}
+
+		// GTK asks only when the path has a folder above year/month/day: more than six
+		// slash-separated pieces. The prefix is those leading pieces, so the date and
+		// the file name are what the replacement folder is joined back onto.
+		static string FolderPrefix (string path)
+		{
+			if (string.IsNullOrEmpty (path))
+				return null;
+			string[] parts = path.Split (new[] { '/', '\\' });
+			if (parts.Length <= 6)
+				return null;
+			char joiner = path.IndexOf ('\\') >= 0 && path.IndexOf ('/') < 0 ? '\\' : '/';
+			return string.Join (joiner.ToString (), parts, 0, parts.Length - 4);
+		}
+
+		static string MissingPrefix (string path)
+		{
+			if (string.IsNullOrEmpty (path) || File.Exists (path))
+				return null;
+			return FolderPrefix (path);
+		}
+
+		static string Remap (string path, string prefix, string folder)
+		{
+			if (string.IsNullOrEmpty (path) || string.IsNullOrEmpty (prefix) || string.IsNullOrWhiteSpace (folder))
+				return null;
+			if (path.Length <= prefix.Length || !path.StartsWith (prefix, StringComparison.Ordinal))
+				return null;
+			char next = path[prefix.Length];
+			if (next != '/' && next != '\\')
+				return null;
+			return folder.TrimEnd ('/', '\\') + path.Substring (prefix.Length);
 		}
 
 		static SafeUri CopyTarget (SafeUri uri, DateTime time, SafeUri libraryRoot)
