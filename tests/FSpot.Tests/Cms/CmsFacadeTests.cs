@@ -56,6 +56,39 @@ namespace FSpot.Cms.Tests
 				"the two built-in profiles must not collide in ColorManagement's dictionary");
 		}
 
+		// Adobe RGB (1998) specifies 563/256. A plain 2.2 curve is a different profile.
+		[TestMethod]
+		public void AlternateRgbUsesTheAdobeSpecificationGamma ()
+		{
+			using var adobe = Profile.CreateAlternateRgb ();
+
+			double gamma = adobe.Native.DetectRGBGamma (0.001);
+
+			Assert.AreEqual (563.0 / 256.0, gamma, 0.0001);
+		}
+
+		[TestMethod]
+		public void OpeningAProfileLcmsRejectsReportsTheLcmsReason ()
+		{
+			var garbage = new byte[128];
+			garbage[36] = (byte)'a';
+			garbage[37] = (byte)'c';
+			garbage[38] = (byte)'s';
+			garbage[39] = (byte)'p';
+
+			string reported = null;
+			CmsDiagnostics.Report = text => reported = text;
+			try {
+				CmsDiagnostics.Install ();
+				var ex = Assert.ThrowsExactly<CmsException> (() => new Profile (garbage));
+
+				Assert.IsFalse (string.IsNullOrEmpty (reported));
+				Assert.Contains (reported, ex.Message);
+			} finally {
+				CmsDiagnostics.Report = null;
+			}
+		}
+
 		// AddProfilesByExtension catches CmsException per file; anything else aborts the
 		// directory walk.
 		[TestMethod]

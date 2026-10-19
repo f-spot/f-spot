@@ -15,8 +15,12 @@ namespace FSpot.Cms
 	{
 		public static void GetXY (int temp, out double x, out double y)
 		{
-			x = XY[temp - 1000, 0];
-			y = XY[temp - 1000, 1];
+			int index = temp - 1000;
+			if ((uint)index >= (uint)XY.GetLength (0))
+				throw new System.ArgumentOutOfRangeException (nameof (temp));
+
+			x = XY[index, 0];
+			y = XY[index, 1];
 		}
 
 		static readonly double[,] XY = {

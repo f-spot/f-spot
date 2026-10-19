@@ -71,9 +71,7 @@ namespace FSpot.Cms
 
 		public static Profile CreateAlternateRgb ()
 		{
-			// FIXME I'm basing this off the values set in the camera
-			// exif data when the adobe profile is selected.  They could
-			// easily be off
+			// Adobe RGB (1998): D65, those primaries, encoding gamma 563/256.
 			var wp = new ColorCIExyY (.3127, .329, 1.0);
 			var primaries = new ColorCIExyYTriple (
 				new ColorCIExyY (.64, .33, 1.0),
@@ -81,7 +79,7 @@ namespace FSpot.Cms
 				new ColorCIExyY (.15, .06, 1.0));
 
 			// lcms copies the curves into the profile, so ours can go straight away.
-			using var tc = new ToneCurve (2.2);
+			using var tc = new ToneCurve (563.0 / 256.0);
 			return new Profile (wp, primaries, new[] { tc, tc, tc });
 		}
 
@@ -209,7 +207,11 @@ namespace FSpot.Cms
 			try {
 				return lcmsNET.Profile.Open (slice);
 			} catch (LcmsNETException e) {
-				throw new CmsException ("Invalid Profile Data", e);
+				string reason = CmsDiagnostics.Take ();
+				string message = string.IsNullOrEmpty (reason)
+					? "Invalid Profile Data"
+					: "Invalid Profile Data: " + reason;
+				throw new CmsException (message, e);
 			}
 		}
 

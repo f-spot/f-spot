@@ -13,9 +13,9 @@ namespace FSpot.Cms
 {
 	public enum IccColorSpace : uint
 	{
-		// Only Rgb is ever named. Profile.ColorSpace casts whatever signature lcms
-		// reports, so an unlisted space still compares unequal to Rgb, which is all
-		// any caller asks. Add members back when something needs to name one.
+		// Profile.ColorSpace casts whatever signature lcms reports, so an unlisted
+		// space still compares unequal to these. Name one when a caller has to.
 		Rgb = 0x52474220,  /* 'RGB ' */
+		Cmyk = 0x434D594B, /* 'CMYK' */
 	}
 }

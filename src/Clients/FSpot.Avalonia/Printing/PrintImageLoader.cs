@@ -98,17 +98,22 @@ static class PrintImageLoader
 		canvas.DrawImage (image, 0, 0, new SKSamplingOptions (SKFilterMode.Nearest));
 	}
 
-	// ColorManagement.ApplyProfile: sRGB to the print profile, in place. Like GTK it
-	// leaves images with alpha alone and degrades to unmanaged colour on a CMS failure.
+	// sRGB to the print profile, in place. The buffer is packed straight RGBA, so the
+	// alpha byte is copied rather than skipped. Premultiplied pixels are left alone:
+	// lcms would treat that RGB as straight. A profile lcms cannot apply to RGBA
+	// (a CMYK printer profile) degrades to unmanaged colour, as the GTK pixbuf path does.
 	public static void ApplyProfile (SKBitmap bitmap, Profile destination)
 	{
-		if (bitmap.AlphaType != SKAlphaType.Opaque || bitmap.ColorType != SKColorType.Rgba8888)
+		if (bitmap.ColorType != SKColorType.Rgba8888)
+			return;
+		if (bitmap.AlphaType is not (SKAlphaType.Opaque or SKAlphaType.Unpremul))
 			return;
 		if (bitmap.RowBytes != bitmap.Width * 4)
 			return;
 		try {
 			using var source = Profile.CreateStandardRgb ();
-			using var transform = new Transform (source, Format.Rgba8, destination, Format.Rgba8, Intent.Perceptual, 0);
+			using var transform = new Transform (source, Format.Rgba8, destination, Format.Rgba8,
+				Intent.Perceptual, CmsTransforms.For (print: true, copyAlpha: true));
 			var pixels = bitmap.GetPixels ();
 			transform.Apply (pixels, pixels, (uint)(bitmap.Width * bitmap.Height));
 			bitmap.NotifyPixelsChanged ();

@@ -39,8 +39,12 @@ namespace FSpot.Cms.Tests
 				Assert.Contains ("/System/Library/ColorSync/Profiles", paths);
 			else if (RuntimeInformation.IsOSPlatform (OSPlatform.Linux))
 				Assert.Contains ("/usr/share/color/icc", paths);
-			else
-				Assert.IsEmpty (paths);
+			else {
+				string root = Environment.GetEnvironmentVariable ("SystemRoot");
+				if (string.IsNullOrEmpty (root))
+					root = @"C:\Windows";
+				Assert.Contains (Path.Combine (root, "System32", "spool", "drivers", "color"), paths);
+			}
 		}
 
 		[TestMethod]
@@ -76,6 +80,37 @@ namespace FSpot.Cms.Tests
 
 			Assert.IsFalse (catalog.Add (profile));
 			Assert.IsEmpty (catalog.Profiles);
+		}
+
+		// The print dropdown asks for Output profiles. A CMYK printer profile is the
+		// usual one, and the display list never asks for Output, so it stays RGB.
+		[TestMethod]
+		public void Add_RegistersACmykPrinterProfileUnderItsDescription ()
+		{
+			var catalog = new ProfileCatalog ();
+			var profile = new Profile (DescribedProfile.Output ("CMYK", "Generic CMYK"));
+
+			Assert.AreEqual ("Generic CMYK", profile.ProductDescription);
+			Assert.AreEqual (IccProfileClass.Output, profile.DeviceClass);
+			Assert.AreNotEqual (IccColorSpace.Rgb, profile.ColorSpace);
+			Assert.IsTrue (catalog.Add (profile));
+			Assert.AreSame (profile, catalog.Profiles["Generic CMYK"]);
+		}
+
+		[TestMethod]
+		public void Add_StillRefusesGrayAndACmykProfileThatIsNotAPrinter ()
+		{
+			var catalog = new ProfileCatalog ();
+			var gray = new Profile (DescribedProfile.Display ("GRAY", "Gray display"));
+			var displayCmyk = new Profile (DescribedProfile.Display ("CMYK", "Display CMYK"));
+			var unnamed = new Profile (MinimalIccProfile.WithColorSpace ("CMYK"));
+
+			Assert.AreEqual ("Gray display", gray.ProductDescription);
+			Assert.IsFalse (catalog.Add (gray));
+			Assert.IsFalse (catalog.Add (displayCmyk));
+			Assert.IsFalse (catalog.Add (unnamed));
+			Assert.IsEmpty (catalog.Profiles);
+			Assert.IsFalse (catalog.Profiles.ContainsKey (string.Empty));
 		}
 
 		// A directory scan has nowhere to put a profile the catalogue declines, so the

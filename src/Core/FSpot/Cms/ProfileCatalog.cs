@@ -72,7 +72,7 @@ namespace FSpot.Cms
 			// switches colour management on for a user who never enabled it.
 			string description = profile.ProductDescription;
 			if (string.IsNullOrEmpty (description)
-					|| profile.ColorSpace != IccColorSpace.Rgb
+					|| !Admitted (profile)
 					|| profiles.ContainsKey (description)) {
 				profile.Dispose ();
 				return false;
@@ -82,30 +82,63 @@ namespace FSpot.Cms
 			return true;
 		}
 
+		// Display profiles are RGB. A printer profile is often CMYK, and the print
+		// list is the only one that asks for Output, so that is the only non-RGB
+		// space admitted. Gray and a CMYK profile tagged as a display stay out.
+		static bool Admitted (Profile profile)
+		{
+			if (profile.ColorSpace == IccColorSpace.Rgb)
+				return true;
+
+			return profile.DeviceClass == IccProfileClass.Output
+				&& profile.ColorSpace == IccColorSpace.Cmyk;
+		}
+
 		// Adds every profile below a directory, recursively. A directory or a file it
 		// cannot read is skipped rather than abandoning the walk: the search paths
 		// include user-writable trees, and the catalogue is published only once the walk
 		// completes, so an escape here would repeat on every later lookup.
-		public static IReadOnlyList<string> InstalledDirectories ()
+		public static IReadOnlyList<string> Directories (CmsPlatform platform, string home, string systemRoot)
 		{
-			if (RuntimeInformation.IsOSPlatform (OSPlatform.Linux)) {
+			if (platform == CmsPlatform.Linux) {
 				return new[] {
 					"/usr/share/color/icc",
-					Path.Combine (FSpotConfiguration.HomeDirectory, ".color/icc"),
+					Path.Combine (home ?? string.Empty, ".color/icc"),
 					"/usr/local/share/color/icc"
 				};
 			}
 
-			if (RuntimeInformation.IsOSPlatform (OSPlatform.OSX)) {
+			if (platform == CmsPlatform.Mac) {
 				return new[] {
 					"/System/Library/ColorSync/Profiles",
 					"/Library/ColorSync/Profiles",
-					Path.Combine (FSpotConfiguration.HomeDirectory, "Library/ColorSync/Profiles"),
+					Path.Combine (home ?? string.Empty, "Library/ColorSync/Profiles"),
 					"/Library/Application Support/Adobe/Color/Profiles"
 				};
 			}
 
+			// GetColorDirectory returns %SystemRoot%\System32\spool\drivers\color.
+			// A per-user choice is a registry association to a file in that directory,
+			// not a second tree of profiles.
+			if (platform == CmsPlatform.Windows) {
+				string root = string.IsNullOrEmpty (systemRoot) ? @"C:\Windows" : systemRoot;
+				return new[] { Path.Combine (root, "System32", "spool", "drivers", "color") };
+			}
+
 			return Array.Empty<string> ();
+		}
+
+		public static IReadOnlyList<string> InstalledDirectories ()
+		{
+			CmsPlatform platform = CmsPlatform.Linux;
+			if (RuntimeInformation.IsOSPlatform (OSPlatform.OSX))
+				platform = CmsPlatform.Mac;
+			else if (RuntimeInformation.IsOSPlatform (OSPlatform.Windows))
+				platform = CmsPlatform.Windows;
+			else if (!RuntimeInformation.IsOSPlatform (OSPlatform.Linux))
+				return Array.Empty<string> ();
+
+			return Directories (platform, FSpotConfiguration.HomeDirectory, Environment.GetEnvironmentVariable ("SystemRoot"));
 		}
 
 		public void AddInstalled ()

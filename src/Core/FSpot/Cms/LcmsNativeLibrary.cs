@@ -20,12 +20,14 @@ namespace FSpot.Cms
 		{
 #if NETCOREAPP
 			lock (gate) {
-				if (registered)
-					return;
-				NativeLibrary.SetDllImportResolver (typeof (lcmsNET.Profile).Assembly, Resolve);
-				registered = true;
+				if (!registered) {
+					NativeLibrary.SetDllImportResolver (typeof (lcmsNET.Profile).Assembly, Resolve);
+					registered = true;
+				}
 			}
 #endif
+			// After the resolver: this is the first P/Invoke, and it has to see lcms2.
+			CmsDiagnostics.Install ();
 		}
 
 		public static IReadOnlyList<string> Candidates ()

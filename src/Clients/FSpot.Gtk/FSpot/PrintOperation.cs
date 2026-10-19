@@ -119,7 +119,7 @@ namespace FSpot
 								continue;
 							}
 							if (ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.ColorManagementDisplayOutputProfile), out var printer_profile))
-								ColorManagement.ApplyProfile (pixbuf, img.GetProfile (), printer_profile);
+								ColorManagement.ApplyProfile (pixbuf, img.GetProfile (), printer_profile, print: true);
 						} catch (Exception e) {
 							Logger.Log.Error (e, $"Unable to load image {selected_photos[p_index].DefaultVersion.Uri}");
 							// If the image is not found load error pixbuf

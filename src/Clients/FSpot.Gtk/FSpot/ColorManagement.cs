@@ -73,22 +73,23 @@ namespace FSpot
 			ApplyProfile (pixbuf, null, destinationProfile);
 		}
 
-		public static void ApplyProfile (Gdk.Pixbuf pixbuf, Profile imageProfile, Profile destinationProfile)
+		public static void ApplyProfile (Gdk.Pixbuf pixbuf, Profile imageProfile, Profile destinationProfile, bool print = false)
 		{
-			if (pixbuf == null || pixbuf.HasAlpha)
+			if (pixbuf == null)
 				return;
 
 			try {
 				imageProfile = imageProfile ?? Profile.CreateStandardRgb ();
 
 				Profile[] list = { imageProfile, destinationProfile };
+				bool alpha = pixbuf.HasAlpha;
+				var format = PixbufUtils.PixbufCmsFormat (pixbuf);
 				// CollectionCellGridView calls this from its draw handler, so an undisposed
 				// transform here leaks a native handle per thumbnail per repaint.
-				using var transform = new Transform (list,
-									 PixbufUtils.PixbufCmsFormat (pixbuf),
-									 PixbufUtils.PixbufCmsFormat (pixbuf),
-									 Intent.Perceptual,
-									 0x0000);
+				// Print asks for black-point compensation. Display does not: on the matrix
+				// profiles this ships it changes nothing, and the display goldens pin flags 0.
+				using var transform = new Transform (list, format, format, Intent.Perceptual,
+									 CmsTransforms.For (print, alpha));
 				PixbufUtils.ColorAdjust (pixbuf, pixbuf, transform);
 			} catch (Exception e) when (e is CmsException || ProfileCatalog.IsNativeLibraryMissing (e)) {
 				// Every caller but PrintOperation is a bare call in a draw or render

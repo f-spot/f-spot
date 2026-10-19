@@ -356,7 +356,9 @@ namespace FSpot
 
 		public static Cms.Format PixbufCmsFormat (Pixbuf buf)
 		{
-			return buf.HasAlpha ? Cms.Format.Rgba8Planar : Cms.Format.Rgb8;
+			// Packed RGBA. Rgba8Planar reads the same bytes as planes and scrambles them.
+			// Rgba8 alone zeroes alpha; the transform has to pass CmsTransforms.CopyAlpha.
+			return buf.HasAlpha ? Cms.Format.Rgba8 : Cms.Format.Rgb8;
 		}
 
 		public static unsafe void ColorAdjust (Pixbuf src, Pixbuf dest, Transform trans)
