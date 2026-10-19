@@ -48,6 +48,7 @@ public partial class SlideshowWindow : Window
 	ControlOverlayVisibility controlsVisibility;
 	double controlsTarget;
 	DateTime dismissedUntil;
+	Action? displayRefresh;
 
 	public SlideshowWindow () : this (new[] { "about:blank" }, 0)
 	{
@@ -88,8 +89,16 @@ public partial class SlideshowWindow : Window
 			if (play)
 				PlayPause ();
 			Focus ();
+			if (displayRefresh == null) {
+				displayRefresh = () => ShowCurrent (animate: false);
+				DisplayProfileWatch.Attach (displayRefresh);
+			}
 		};
 		Closed += (_, _) => {
+			if (displayRefresh != null) {
+				DisplayProfileWatch.Detach (displayRefresh);
+				displayRefresh = null;
+			}
 			slideLoad++;
 			slideDecode.Cancel ();
 			flipTimer.Stop ();

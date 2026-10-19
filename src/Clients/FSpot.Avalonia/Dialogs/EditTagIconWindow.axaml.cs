@@ -32,6 +32,7 @@ public partial class EditTagIconWindow : Window
 	bool showingPhoto;
 	int displayedPhoto = -1;
 	int choiceGeneration;
+	Action? displayRefresh;
 
 	public EditTagIconWindow ()
 		: this (new TagIconSource (new FSpot.Core.Tag (null, 0, string.Empty), []), null)
@@ -74,6 +75,27 @@ public partial class EditTagIconWindow : Window
 			if (PredefinedList.SelectedItem is string name)
 				SetPreview (new TagIconChoice (name, null));
 		};
+		Opened += (_, _) => {
+			if (displayRefresh != null)
+				return;
+			displayRefresh = RefreshForDisplayProfile;
+			DisplayProfileWatch.Attach (displayRefresh);
+		};
+		Closed += (_, _) => {
+			if (displayRefresh == null)
+				return;
+			DisplayProfileWatch.Detach (displayRefresh);
+			displayRefresh = null;
+		};
+	}
+
+	// The icon buffer and the photo file are stored pixels. Each is converted once for the screen.
+	void RefreshForDisplayProfile ()
+	{
+		if (preview is not null)
+			SetPreview (preview, pending: false);
+		if (displayedPhoto >= 0)
+			ShowPhoto (displayedPhoto, pending: false);
 	}
 
 	/// <summary>

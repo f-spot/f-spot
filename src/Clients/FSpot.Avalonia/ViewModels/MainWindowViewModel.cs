@@ -351,6 +351,9 @@ public partial class MainWindowViewModel : ObservableObject
 	int hoverEdge = 480;
 
 	int hoverGeneration;
+	PhotoItemViewModel? hoverItem;
+	int hoverScreenWidth;
+	int hoverScreenHeight;
 	public PrintPageSetup PageSetup { get; private set; } = PrintPageSetup.Letter;
 	public string CountText =>
 		SelectedPhoto is null
@@ -1101,6 +1104,22 @@ public partial class MainWindowViewModel : ObservableObject
 	internal Task ReloadThumbnailsAsync ()
 		=> LoadThumbnailsAsync ();
 
+	// The grid, the hover, and the open editor each convert the stored pixels once.
+	// The histogram keeps the measurement it already drew.
+	internal async Task RefreshDisplayAsync ()
+	{
+		await LoadThumbnailsAsync ();
+		if (hoverItem is { } item && ShowHoverPreview && !IsEditing)
+			await ShowHoverAsync (item, hoverScreenWidth, hoverScreenHeight);
+		if (ShowPreviewPopup && PreviewPopupItem is { } popup && IsBrowsing)
+			await LoadPreviewPopupAsync (popup, PreviewPopupShowsHistogram, PreviewPopupEdge, ++previewPopupGeneration);
+		if (IsEditing && SelectedPhoto is not null) {
+			// A live editor converts its own output when this preview lands.
+			RequestPreview ();
+			await ReloadPreviewAsync ();
+		}
+	}
+
 	[RelayCommand]
 	void Browse ()
 		=> ViewMode = LibraryViewMode.IconView;
@@ -1295,6 +1314,9 @@ public partial class MainWindowViewModel : ObservableObject
 	{
 		if (!ShowHoverPreviewEnabled || IsEditing)
 			return Task.CompletedTask;
+		hoverItem = item;
+		hoverScreenWidth = screenWidth;
+		hoverScreenHeight = screenHeight;
 		int generation = ++hoverGeneration;
 		int edge = screenWidth > 0 && screenHeight > 0 ? HoverPreview.Edge (screenWidth, screenHeight) : 480;
 		return LoadHoverAsync (item, edge, generation);
@@ -1325,6 +1347,7 @@ public partial class MainWindowViewModel : ObservableObject
 
 	void ClearHover ()
 	{
+		hoverItem = null;
 		hoverGeneration++;
 		ShowHoverPreview = false;
 		HoverDetail = string.Empty;

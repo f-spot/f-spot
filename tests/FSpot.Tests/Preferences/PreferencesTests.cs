@@ -285,5 +285,34 @@ namespace FSpot.Preferences.Tests
 				dirs.DeleteAll ();
 			}
 		}
+
+		[TestMethod]
+		public void Set_RaisesSettingChangedOnlyWhenTheValueChanges ()
+		{
+			var keys = new List<string> ();
+			var values = new List<object> ();
+			EventHandler<NotifyEventArgs> handler = (_, args) => {
+				keys.Add (args.Key);
+				values.Add (args.Value);
+			};
+			Settings.Preferences.SettingChanged += handler;
+			try {
+				Settings.Preferences.Set (Settings.Preferences.ColorManagementDisplayProfile, "studio.icc");
+				Settings.Preferences.Set (Settings.Preferences.ColorManagementDisplayProfile, "studio.icc");
+				Settings.Preferences.Set (Settings.Preferences.ColorManagementDisplayProfile, "other.icc");
+				Settings.Preferences.Set (Settings.Preferences.StoragePath, "/photos/library");
+
+				Assert.AreSequenceEqual (new[] {
+					Settings.Preferences.ColorManagementDisplayProfile,
+					Settings.Preferences.ColorManagementDisplayProfile,
+					Settings.Preferences.StoragePath
+				}, keys);
+				Assert.AreEqual ("studio.icc", values[0]);
+				Assert.AreEqual ("other.icc", values[1]);
+				Assert.AreEqual ("/photos/library", values[2]);
+			} finally {
+				Settings.Preferences.SettingChanged -= handler;
+			}
+		}
 	}
 }

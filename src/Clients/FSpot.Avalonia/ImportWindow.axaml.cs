@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 
+using FSpot.Avalonia.Imaging;
 using FSpot.Avalonia.ViewModels;
 
 namespace FSpot.Avalonia;
@@ -11,14 +12,28 @@ public partial class ImportWindow : Window
 		InitializeComponent ();
 	}
 
+	Action? displayRefresh;
+
 	public ImportWindow (ImportViewModel viewModel)
 	{
 		DataContext = viewModel;
 		InitializeComponent ();
 		GtkMnemonic.ApplyHotKey (ImportButton, FSpot.Resources.Lang.Strings.Import2);
-		Opened += (_, _) => ApplyUiScale ();
+		Opened += (_, _) => {
+			ApplyUiScale ();
+			if (displayRefresh != null)
+				return;
+			displayRefresh = () => _ = viewModel.RefreshDisplayAsync ();
+			DisplayProfileWatch.Attach (displayRefresh);
+		};
 		ScalingChanged += (_, _) => ApplyUiScale ();
-		Closing += (_, _) => viewModel.CancelInFlight ();
+		Closing += (_, _) => {
+			if (displayRefresh != null) {
+				DisplayProfileWatch.Detach (displayRefresh);
+				displayRefresh = null;
+			}
+			viewModel.CancelInFlight ();
+		};
 	}
 
 	void ApplyUiScale ()

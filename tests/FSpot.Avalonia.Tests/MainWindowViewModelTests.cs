@@ -3069,7 +3069,9 @@ public sealed partial class MainWindowViewModelTests
 
 		public Task<Bitmap?> LoadAsync (string path, int size, CancellationToken cancellationToken)
 		{
-			if (cancellationToken == CancellationToken.None)
+			// The import preview uses its own token. A missing token is a measurement.
+			// Neither of those is the grid decode this counter watches.
+			if (cancellationToken == CancellationToken.None || size == HiDpi.PixelSize (HiDpi.ImportPreviewDip, 1))
 				return Task.FromResult<Bitmap?> (TinyBitmap ());
 			GridCalls++;
 			if (!Allow)

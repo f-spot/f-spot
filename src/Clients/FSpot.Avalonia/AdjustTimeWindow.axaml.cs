@@ -8,6 +8,7 @@ using Avalonia.Media.Imaging;
 using Avalonia.Threading;
 
 using FSpot;
+using FSpot.Avalonia.Imaging;
 using FSpot.Avalonia.Services;
 using FSpot.Avalonia.ViewModels;
 using FSpot.Resources.Lang;
@@ -28,6 +29,7 @@ public partial class AdjustTimeWindow : Window
 	bool released;
 	double uiScale = 1;
 	int previewGeneration;
+	Action? displayRefresh;
 
 	public AdjustTimeWindow ()
 		: this (new[] { ("", DateTime.Now, "") })
@@ -46,7 +48,13 @@ public partial class AdjustTimeWindow : Window
 
 		trayItems = this.photos.Select (photo => new AdjustTimePhotoItem (photo.Name, photo.Time, photo.Path)).ToList ();
 		PhotoList.ItemsSource = trayItems;
-		Closing += (_, _) => ReleaseDecodedImages ();
+		Closing += (_, _) => {
+			if (displayRefresh != null) {
+				DisplayProfileWatch.Detach (displayRefresh);
+				displayRefresh = null;
+			}
+			ReleaseDecodedImages ();
+		};
 		PhotoList.SelectionChanged += (_, _) => OnReferenceChanged ();
 
 		bool multiple = this.photos.Count > 1;
@@ -64,6 +72,13 @@ public partial class AdjustTimeWindow : Window
 			uiScale = RenderScaling;
 			_ = LoadPreviewAsync ();
 			_ = LoadTrayThumbnailsAsync ();
+			if (displayRefresh == null) {
+				displayRefresh = () => {
+					_ = LoadPreviewAsync ();
+					_ = LoadTrayThumbnailsAsync ();
+				};
+				DisplayProfileWatch.Attach (displayRefresh);
+			}
 		};
 		ScalingChanged += (_, _) => uiScale = RenderScaling;
 

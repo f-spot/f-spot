@@ -30,8 +30,14 @@ public sealed class ChromeIcon : Panel
 	{
 		UriProperty.Changed.AddClassHandler<ChromeIcon> ((icon, _) => icon.Rebuild ());
 		RasterScaleProperty.Changed.AddClassHandler<ChromeIcon> ((icon, _) => icon.Rebuild ());
-		ColorManageProperty.Changed.AddClassHandler<ChromeIcon> ((icon, _) => icon.Rebuild ());
+		ColorManageProperty.Changed.AddClassHandler<ChromeIcon> ((icon, _) => {
+			icon.WatchDisplayProfile ();
+			icon.Rebuild ();
+		});
 	}
+
+	bool onScreen;
+	Action? profileRefresh;
 
 	public string? Uri {
 		get => GetValue (UriProperty);
@@ -52,19 +58,40 @@ public sealed class ChromeIcon : Panel
 	protected override void OnAttachedToVisualTree (VisualTreeAttachmentEventArgs e)
 	{
 		base.OnAttachedToVisualTree (e);
+		onScreen = true;
 		if (TopLevel.GetTopLevel (this) is { } top)
 			top.ScalingChanged += OnScalingChanged;
 		SizeChanged += OnSizeChanged;
 		if (HasDipSize)
 			Rebuild ();
+		WatchDisplayProfile ();
 	}
 
 	protected override void OnDetachedFromVisualTree (VisualTreeAttachmentEventArgs e)
 	{
+		onScreen = false;
+		WatchDisplayProfile ();
 		SizeChanged -= OnSizeChanged;
 		if (TopLevel.GetTopLevel (this) is { } top)
 			top.ScalingChanged -= OnScalingChanged;
 		base.OnDetachedFromVisualTree (e);
+	}
+
+	// Toolbar artwork leaves ColorManage off, so a profile change leaves those icons alone.
+	void WatchDisplayProfile ()
+	{
+		if (onScreen && ColorManage) {
+			if (profileRefresh != null)
+				return;
+			profileRefresh = Rebuild;
+			DisplayProfileWatch.Attach (profileRefresh);
+			return;
+		}
+
+		if (profileRefresh == null)
+			return;
+		DisplayProfileWatch.Detach (profileRefresh);
+		profileRefresh = null;
 	}
 
 	void OnSizeChanged (object? sender, SizeChangedEventArgs e)

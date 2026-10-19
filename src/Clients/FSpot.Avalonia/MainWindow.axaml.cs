@@ -5,6 +5,7 @@ using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 
 using FSpot;
+using FSpot.Avalonia.Imaging;
 using FSpot.Avalonia.Mail;
 using FSpot.Avalonia.Printing;
 using FSpot.Avalonia.Services;
@@ -28,6 +29,8 @@ public partial class MainWindow : Window, IAvaloniaShell
 	{
 	}
 
+	Action? displayRefresh;
+
 	internal MainWindow (Db? database, IPhotoThumbnailLoader thumbnails)
 	{
 		var viewModel = new MainWindowViewModel (database, this, thumbnails);
@@ -41,6 +44,7 @@ public partial class MainWindow : Window, IAvaloniaShell
 		};
 		PositionChanged += (_, _) => MainWindowStateStore.Note (this);
 		Closing += (_, _) => {
+			DetachDisplayRefresh ();
 			MainWindowStateStore.Save (this);
 			viewModel.SaveWindowState ();
 			viewModel.ReleaseDecodedImages ();
@@ -70,10 +74,22 @@ public partial class MainWindow : Window, IAvaloniaShell
 			PlatformGestures.GuardYieldingBindings (this);
 			GtkMnemonic.ApplyHotKey (ToolbarImportButton, FSpot.Resources.Lang.Strings.Import2);
 			GtkMnemonic.ApplyHotKey (EmptyImportButton, FSpot.Resources.Lang.Strings.Import2);
+			if (displayRefresh == null) {
+				displayRefresh = () => _ = viewModel.RefreshDisplayAsync ();
+				DisplayProfileWatch.Attach (displayRefresh);
+			}
 		};
 		ScalingChanged += (_, _) => ApplyUiScale ();
 		WireTagHighlight (viewModel);
 		viewModel.LoadCatalog ();
+	}
+
+	void DetachDisplayRefresh ()
+	{
+		if (displayRefresh == null)
+			return;
+		DisplayProfileWatch.Detach (displayRefresh);
+		displayRefresh = null;
 	}
 
 	void ApplyUiScale ()

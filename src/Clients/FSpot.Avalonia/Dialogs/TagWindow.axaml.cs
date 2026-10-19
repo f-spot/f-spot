@@ -22,6 +22,7 @@ public partial class TagWindow : Window
 	readonly IReadOnlyList<TagParentOption> parents;
 	readonly TagIconSource? editing;
 	readonly string? originalName;
+	Action? displayRefresh;
 
 	public TagWindow ()
 		: this (new Category (null, 0, string.Empty), null, null, true)
@@ -67,6 +68,16 @@ public partial class TagWindow : Window
 		Opened += (_, _) => {
 			NameBox.Focus ();
 			NameBox.SelectAll ();
+			if (displayRefresh == null) {
+				displayRefresh = ShowIcon;
+				DisplayProfileWatch.Attach (displayRefresh);
+			}
+		};
+		Closed += (_, _) => {
+			if (displayRefresh == null)
+				return;
+			DisplayProfileWatch.Detach (displayRefresh);
+			displayRefresh = null;
 		};
 		Update ();
 	}

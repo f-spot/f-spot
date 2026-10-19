@@ -36,6 +36,7 @@ public partial class ViewerWindow : Window, IViewerShell
 	Bitmap? photo;
 	int photoLoad;
 	GridLength sidebarLength = new (SidebarWidth);
+	Action? displayRefresh;
 
 	public ViewerWindow () : this (Array.Empty<string> ())
 	{
@@ -78,7 +79,17 @@ public partial class ViewerWindow : Window, IViewerShell
 		AddHandler (DragDrop.DragOverEvent, OnDragOver);
 		AddHandler (DragDrop.DropEvent, OnDrop);
 		Closing += (_, _) => SavePreferences ();
+		Opened += (_, _) => {
+			if (displayRefresh != null)
+				return;
+			displayRefresh = RefreshForDisplayProfile;
+			DisplayProfileWatch.Attach (displayRefresh);
+		};
 		Closed += (_, _) => {
+			if (displayRefresh != null) {
+				DisplayProfileWatch.Detach (displayRefresh);
+				displayRefresh = null;
+			}
 			ViewerSettings.Changed -= OnViewerSettingsChanged;
 			closing.Cancel ();
 			photoDecode?.Cancel ();
@@ -142,6 +153,15 @@ public partial class ViewerWindow : Window, IViewerShell
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Cannot load a tray thumbnail for {Path}", item.Path);
 			trayLoads.EndIfCurrent (item, token);
+		}
+	}
+
+	void RefreshForDisplayProfile ()
+	{
+		_ = LoadPhotoAsync (viewModel.CurrentItem);
+		foreach (var held in trayLease.Held) {
+			if (held is ViewerItemViewModel item)
+				_ = LoadThumbnailAsync (item);
 		}
 	}
 

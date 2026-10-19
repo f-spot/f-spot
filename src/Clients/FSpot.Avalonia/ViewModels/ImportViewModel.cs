@@ -41,6 +41,7 @@ public partial class ImportViewModel : ObservableObject
 	CancellationTokenSource? scan;
 	Task? scanTask;
 	CancellationTokenSource? import;
+	CancellationTokenSource previewLoad = new ();
 	bool importAccepted;
 	IReadOnlyList<string>? droppedPaths;
 	bool closed;
@@ -344,8 +345,12 @@ public partial class ImportViewModel : ObservableObject
 		closed = true;
 		scan?.Cancel ();
 		import?.Cancel ();
+		CancelPreview ();
 		ReleaseListedThumbnails ();
 	}
+
+	void CancelPreview ()
+		=> previewLoad.Cancel ();
 
 	void Finish (bool reload)
 	{
@@ -528,17 +533,33 @@ public partial class ImportViewModel : ObservableObject
 		}
 	}
 
+	internal async Task RefreshDisplayAsync ()
+	{
+		foreach (var held in shownThumbnails.Held) {
+			if (held is PhotoItemViewModel item)
+				await LoadThumbnailAsync (item);
+		}
+
+		if (SelectedPhoto is { } selected)
+			await LoadPreviewAsync (selected);
+	}
+
 	async Task LoadPreviewAsync (PhotoItemViewModel item)
 	{
+		CancelPreview ();
+		var load = new CancellationTokenSource ();
+		previewLoad = load;
 		Bitmap? bitmap = null;
 		try {
-			bitmap = await thumbnails.LoadAsync (item.Path, HiDpi.PixelSize (HiDpi.ImportPreviewDip, UiScale), CancellationToken.None);
-			if (!ReferenceEquals (item, SelectedPhoto)) {
+			bitmap = await thumbnails.LoadAsync (item.Path, HiDpi.PixelSize (HiDpi.ImportPreviewDip, UiScale), load.Token);
+			if (closed || load.IsCancellationRequested || !ReferenceEquals (item, SelectedPhoto)) {
 				bitmap?.Dispose ();
 				return;
 			}
 
 			SetPreview (bitmap);
+		} catch (OperationCanceledException) {
+			bitmap?.Dispose ();
 		} catch (Exception ex) {
 			bitmap?.Dispose ();
 			Logger.Log.Debug (ex, "Failed to load import preview {Path}", item.Path);

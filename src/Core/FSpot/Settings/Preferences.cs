@@ -164,14 +164,22 @@ namespace FSpot.Settings
 
 		public static void Set<T> (string key, T value)
 		{
+			// Read before the write. The handler runs after the lock, because the lock is
+			// not recursive and a listener that stores another key would deadlock inside it.
+			T previous = Get<T> (key);
+			bool stored = false;
 			lock (sync_handler) {
 				try {
 					//cache[key] = value;
 					JsonBackend.Set<T> (key, value);
+					stored = true;
 				} catch (Exception ex) {
 					Logger.Log.Error (ex, $"[Preferences] Unable to set this : {key}");
 				}
 			}
+
+			if (stored && !EqualityComparer<T>.Default.Equals (previous, value))
+				OnSettingChanged (null, new NotifyEventArgs (key, value));
 		}
 
 		public static event EventHandler<NotifyEventArgs> SettingChanged;
