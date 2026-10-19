@@ -1550,6 +1550,7 @@ public sealed partial class MainWindowViewModelTests
 
 			Assert.IsFalse (File.Exists (Path.Combine (destDir, "notes.txt")));
 			Assert.IsEmpty (Directory.EnumerateFileSystemEntries (destDir).ToList ());
+			Assert.Contains (Strings.TheNameMustEndWithZip, shell.WarningMessage ?? string.Empty);
 		} finally {
 			Directory.Delete (sourceDir, true);
 			if (Directory.Exists (destDir))
@@ -1576,6 +1577,7 @@ public sealed partial class MainWindowViewModelTests
 			await viewModel.ExportZipCommand.ExecuteAsync (null);
 
 			Assert.IsFalse (File.Exists (escaped));
+			Assert.Contains (Strings.ASlashMeansTheArchiveDoesNotStayInTheChosenFolder, shell.WarningMessage ?? string.Empty);
 		} finally {
 			Directory.Delete (sourceDir, true);
 			if (Directory.Exists (destDir))
@@ -1604,6 +1606,37 @@ public sealed partial class MainWindowViewModelTests
 			await viewModel.ExportZipCommand.ExecuteAsync (null);
 
 			Assert.IsEmpty (Directory.GetFiles (destDir));
+			Assert.Contains (Strings.TheNameContainsACharacterTheFileSystemRejects, shell.WarningMessage ?? string.Empty);
+		} finally {
+			Directory.Delete (sourceDir, true);
+			if (Directory.Exists (destDir))
+				Directory.Delete (destDir, true);
+		}
+	}
+
+	[UiTestMethod]
+	public async Task ExportZipCommand_ExplainsARejectedNameAndAsksAgain ()
+	{
+		string sourceDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-src-" + Guid.NewGuid ().ToString ("N"));
+		string destDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-dst-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (sourceDir);
+		string file = Path.Combine (sourceDir, "shot.jpg");
+		File.WriteAllText (file, "photo");
+		try {
+			var shell = new RecordingShell { ExportFolder = destDir };
+			shell.PromptAnswers.Enqueue ("notes.txt");
+			shell.PromptAnswers.Enqueue ("export.zip");
+			var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+			var item = new PhotoItemViewModel (new StubPhoto (file));
+			item.Selected = true;
+			viewModel.Photos.Add (item);
+
+			await viewModel.ExportZipCommand.ExecuteAsync (null);
+
+			Assert.Contains (Strings.TheNameMustEndWithZip, shell.WarningMessage ?? string.Empty);
+			using var archive = System.IO.Compression.ZipFile.OpenRead (Path.Combine (destDir, "export.zip"));
+			Assert.HasCount (1, archive.Entries);
+			Assert.AreEqual ("shot.jpg", archive.Entries[0].FullName);
 		} finally {
 			Directory.Delete (sourceDir, true);
 			if (Directory.Exists (destDir))
@@ -1634,6 +1667,7 @@ public sealed partial class MainWindowViewModelTests
 			await viewModel.ExportZipCommand.ExecuteAsync (null);
 
 			Assert.AreEqual ("keep", File.ReadAllText (outside));
+			Assert.IsNull (shell.WarningMessage);
 		} finally {
 			Directory.Delete (sourceDir, true);
 			if (Directory.Exists (destDir))
@@ -1725,7 +1759,7 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
-	public void ReassignToNewImportRollCommand_DatesTheRollFromTheNewestSelectedPhoto ()
+	public async Task ReassignToNewImportRollCommand_DatesTheRollFromTheNewestSelectedPhoto ()
 	{
 		string root = Path.Combine (Path.GetTempPath (), "fspot-vm-roll-" + Guid.NewGuid ().ToString ("N"));
 		Directory.CreateDirectory (root);
@@ -1744,7 +1778,8 @@ public sealed partial class MainWindowViewModelTests
 			Photo aside = RollPhoto (database, sample, root, "aside.jpg", new DateTime (2019, 1, 1, 0, 0, 0, DateTimeKind.Utc));
 			uint asideRoll = aside.RollId;
 			DateTime newest = newer.Time;
-			var viewModel = new MainWindowViewModel (database, new RecordingShell (), new NullThumbnails ());
+			var shell = new RecordingShell { ConfirmResult = true };
+			var viewModel = new MainWindowViewModel (database, shell, new NullThumbnails ());
 			var olderItem = new PhotoItemViewModel (older);
 			olderItem.Selected = true;
 			var newerItem = new PhotoItemViewModel (newer);
@@ -1753,7 +1788,7 @@ public sealed partial class MainWindowViewModelTests
 			viewModel.Photos.Add (newerItem);
 			viewModel.Photos.Add (new PhotoItemViewModel (aside));
 
-			viewModel.ReassignToNewImportRollCommand.Execute (null);
+			await viewModel.ReassignToNewImportRollCommand.ExecuteAsync (null);
 
 			Assert.AreEqual (newer.RollId, older.RollId);
 			Assert.AreNotEqual (asideRoll, newer.RollId);
@@ -1771,6 +1806,111 @@ public sealed partial class MainWindowViewModelTests
 			Assert.AreEqual (rollId, database.Photos.Get (newerId).RollId);
 			Assert.AreEqual (asideRoll, database.Photos.Get (asideId).RollId);
 			Assert.AreEqual (newest, database.Rolls.Get (rollId).Time);
+		} finally {
+			database?.Dispose ();
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = previousBase;
+			if (Directory.Exists (root))
+				Directory.Delete (root, true);
+		}
+	}
+
+	[UiTestMethod]
+	public async Task ReassignToNewImportRollCommand_LeavesThePhotosAloneWhenTheConfirmIsDeclined ()
+	{
+		string root = Path.Combine (Path.GetTempPath (), "fspot-vm-roll-no-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (root);
+		string previousBase = FSpot.Settings.FSpotConfiguration.BaseDirectory;
+		Db? database = null;
+		try {
+			EnsureMergeServices ();
+			string sample = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
+			var images = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Imaging.IImageFileFactory> ();
+			var thumbs = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Thumbnail.IThumbnailService> ();
+			database = new Db (images, thumbs, new MergeUpdater ());
+			database.Init (Path.Combine (root, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = root;
+			Photo older = RollPhoto (database, sample, root, "older.jpg", new DateTime (2020, 1, 1, 0, 0, 0, DateTimeKind.Utc));
+			Photo newer = RollPhoto (database, sample, root, "newer.jpg", new DateTime (2020, 6, 1, 12, 0, 0, DateTimeKind.Utc));
+			Photo aside = RollPhoto (database, sample, root, "aside.jpg", new DateTime (2019, 1, 1, 0, 0, 0, DateTimeKind.Utc));
+			uint olderRoll = older.RollId;
+			uint newerRoll = newer.RollId;
+			uint asideRoll = aside.RollId;
+			var shell = new RecordingShell ();
+			var viewModel = new MainWindowViewModel (database, shell, new NullThumbnails ());
+			var olderItem = new PhotoItemViewModel (older);
+			olderItem.Selected = true;
+			var newerItem = new PhotoItemViewModel (newer);
+			newerItem.Selected = true;
+			viewModel.Photos.Add (olderItem);
+			viewModel.Photos.Add (newerItem);
+
+			await viewModel.ReassignToNewImportRollCommand.ExecuteAsync (null);
+
+			Assert.IsTrue (shell.ConfirmCalled);
+			Assert.AreEqual (Strings.ReassignToNewImportRoll, shell.ConfirmTitle);
+			Assert.AreEqual (
+				string.Format (Strings.MoveXPhotosOntoANewImportRollDatedY, 2, newer.Time.ToString ("g")) + "\n" + Strings.ThisCannotBeUndone,
+				shell.ConfirmMessage);
+			Assert.IsNull (shell.WarningMessage);
+			Assert.AreEqual (olderRoll, older.RollId);
+			Assert.AreEqual (newerRoll, newer.RollId);
+			Assert.AreEqual (asideRoll, aside.RollId);
+			Assert.AreEqual (3, RollCount (database));
+		} finally {
+			database?.Dispose ();
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = previousBase;
+			if (Directory.Exists (root))
+				Directory.Delete (root, true);
+		}
+	}
+
+	[UiTestMethod]
+	public async Task ReassignToNewImportRollCommand_ConfirmsTheCountAndDateThenRefreshesTheGrid ()
+	{
+		string root = Path.Combine (Path.GetTempPath (), "fspot-vm-roll-yes-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (root);
+		string previousBase = FSpot.Settings.FSpotConfiguration.BaseDirectory;
+		Db? database = null;
+		try {
+			EnsureMergeServices ();
+			string sample = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
+			var images = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Imaging.IImageFileFactory> ();
+			var thumbs = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Thumbnail.IThumbnailService> ();
+			database = new Db (images, thumbs, new MergeUpdater ());
+			database.Init (Path.Combine (root, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = root;
+			Photo older = RollPhoto (database, sample, root, "older.jpg", new DateTime (2020, 1, 1, 0, 0, 0, DateTimeKind.Utc));
+			Photo newer = RollPhoto (database, sample, root, "newer.jpg", new DateTime (2020, 6, 1, 12, 0, 0, DateTimeKind.Utc));
+			Photo aside = RollPhoto (database, sample, root, "aside.jpg", new DateTime (2019, 1, 1, 0, 0, 0, DateTimeKind.Utc));
+			uint asideRoll = aside.RollId;
+			uint olderId = older.Id;
+			uint newerId = newer.Id;
+			uint asideId = aside.Id;
+			var shell = new RecordingShell { ImportRolls = [older.RollId, newer.RollId] };
+			var viewModel = new MainWindowViewModel (database, shell, new NullThumbnails ());
+			viewModel.LoadCatalog ();
+			await viewModel.FindByImportRollCommand.ExecuteAsync (null);
+			Assert.HasCount (2, viewModel.Photos);
+			foreach (PhotoItemViewModel item in viewModel.Photos)
+				item.Selected = true;
+			shell.ConfirmResult = true;
+
+			await viewModel.ReassignToNewImportRollCommand.ExecuteAsync (null);
+
+			Assert.AreEqual (
+				string.Format (Strings.MoveXPhotosOntoANewImportRollDatedY, 2, newer.Time.ToString ("g")) + "\n" + Strings.ThisCannotBeUndone,
+				shell.ConfirmMessage);
+			Assert.AreEqual (string.Format (Strings.MovedXPhotosToANewImportRoll, 2), shell.WarningMessage);
+			Assert.IsEmpty (viewModel.Photos);
+			database.Dispose ();
+			var again = new Db (images, thumbs, new MergeUpdater ());
+			again.Init (Path.Combine (root, FSpot.Settings.FSpotConfiguration.DatabaseName), false);
+			database = again;
+			uint moved = database.Photos.Get (newerId).RollId;
+			Assert.AreEqual (moved, database.Photos.Get (olderId).RollId);
+			Assert.AreNotEqual (asideRoll, moved);
+			Assert.AreEqual (asideRoll, database.Photos.Get (asideId).RollId);
+			Assert.AreEqual (newer.Time, database.Rolls.Get (moved).Time);
 		} finally {
 			database?.Dispose ();
 			FSpot.Settings.FSpotConfiguration.BaseDirectory = previousBase;
@@ -2094,6 +2234,8 @@ public sealed partial class MainWindowViewModelTests
 			string after = database.Photos.Query ("SELECT * FROM photos")[0].DefaultVersion.Uri.AbsolutePath;
 			Assert.AreEqual (before, after);
 			Assert.AreEqual (Strings.CouldNotFindAnOldBasePath, shell.WarningMessage);
+			Assert.AreEqual ("Old base path was", Strings.OldBasePathURIWas);
+			Assert.AreEqual ("Change base path to", Strings.ChangeBasePathURITo);
 			Assert.Contains (Strings.OldBasePathURIWas, shell.PromptText ?? string.Empty);
 			Assert.Contains (library, shell.PromptText ?? string.Empty);
 			if (PhotoPathChange.GuessOldBase (new[] { before }) == "/")
@@ -2124,7 +2266,9 @@ public sealed partial class MainWindowViewModelTests
 	[UiTestMethod]
 	public void CreateRenameDeleteVersionCommands_MutateTheFocusedPhoto ()
 	{
-		var shell = new RecordingShell { PromptResult = "Edited" };
+		var shell = new RecordingShell ();
+		shell.PromptAnswers.Enqueue ("Edited");
+		shell.PromptAnswers.Enqueue ("Final");
 		var photo = CatalogPhoto ();
 		var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
 		viewModel.SeedCatalog (photo);
@@ -2135,7 +2279,6 @@ public sealed partial class MainWindowViewModelTests
 		Assert.HasCount (2, photo.Versions);
 		Assert.AreEqual ("Edited", photo.DefaultVersion.Name);
 
-		shell.PromptResult = "Final";
 		viewModel.RenameVersionCommand.Execute (null);
 		Assert.AreEqual ("Final", photo.DefaultVersion.Name);
 
@@ -2808,6 +2951,9 @@ public sealed partial class MainWindowViewModelTests
 		public bool ExtensionsShown { get; private set; }
 		public IList<AddinStatus>? ShownAddins { get; private set; }
 		public string? PromptResult { get; set; }
+		public Queue<string?> PromptAnswers { get; } = new ();
+		public bool RepeatPromptResult { get; set; }
+		bool prompted;
 		public bool AskForZipScale { get; set; }
 		public ZipScaleChoice? ZipScale { get; set; }
 		public bool AskForCatalogMerge { get; set; }
@@ -2816,6 +2962,9 @@ public sealed partial class MainWindowViewModelTests
 		public IReadOnlyList<string>? PickedFiles { get; set; }
 		public bool ConfirmResult { get; set; }
 		public bool ConfirmCalled { get; private set; }
+		public string? ConfirmTitle { get; private set; }
+		public string? ConfirmMessage { get; private set; }
+		public IReadOnlyList<uint>? ImportRolls { get; set; }
 		public double? Hours { get; set; }
 		public TimeAdjustChoice? AdjustTimeResult { get; set; }
 		public IReadOnlyList<string>? ImportedPaths { get; private set; }
@@ -2838,7 +2987,15 @@ public sealed partial class MainWindowViewModelTests
 		{
 			PromptText = prompt;
 			PromptDefault = defaultValue;
-			return Task.FromResult (PromptResult);
+			if (PromptAnswers.Count > 0)
+				return Task.FromResult (PromptAnswers.Dequeue ());
+			// One stored answer serves the first prompt. A loop that keeps asking
+			// then gets cancel, unless the test opted in to the same answer again.
+			if (!prompted || RepeatPromptResult) {
+				prompted = true;
+				return Task.FromResult (PromptResult);
+			}
+			return Task.FromResult<string?> (null);
 		}
 
 		public Task<ZipScaleChoice?> PromptZipScaleAsync ()
@@ -2856,8 +3013,13 @@ public sealed partial class MainWindowViewModelTests
 		public override Task<bool> ConfirmAsync (string title, string message, string okCaption)
 		{
 			ConfirmCalled = true;
+			ConfirmTitle = title;
+			ConfirmMessage = message;
 			return Task.FromResult (ConfirmResult);
 		}
+
+		public override Task<IReadOnlyList<uint>?> PickImportRollsAsync (IReadOnlyList<ImportRollOption> rolls)
+			=> Task.FromResult<IReadOnlyList<uint>?> (ImportRolls ?? new uint[] { 1 });
 
 		public override Task<double?> PromptHoursOffsetAsync ()
 			=> Task.FromResult (Hours);

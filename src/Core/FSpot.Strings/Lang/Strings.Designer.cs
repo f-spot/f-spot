@@ -5590,5 +5590,41 @@ namespace FSpot.Resources.Lang {
                 return ResourceManager.GetString("ChooseTheFolderThatContainsPhotosFromX", resourceCulture);
             }
         }
+
+        public static string TheNameMustEndWithZip {
+            get {
+                return ResourceManager.GetString("TheNameMustEndWithZip", resourceCulture);
+            }
+        }
+
+        public static string ASlashMeansTheArchiveDoesNotStayInTheChosenFolder {
+            get {
+                return ResourceManager.GetString("ASlashMeansTheArchiveDoesNotStayInTheChosenFolder", resourceCulture);
+            }
+        }
+
+        public static string TheNameContainsACharacterTheFileSystemRejects {
+            get {
+                return ResourceManager.GetString("TheNameContainsACharacterTheFileSystemRejects", resourceCulture);
+            }
+        }
+
+        public static string MoveXPhotosOntoANewImportRollDatedY {
+            get {
+                return ResourceManager.GetString("MoveXPhotosOntoANewImportRollDatedY", resourceCulture);
+            }
+        }
+
+        public static string ThisCannotBeUndone {
+            get {
+                return ResourceManager.GetString("ThisCannotBeUndone", resourceCulture);
+            }
+        }
+
+        public static string MovedXPhotosToANewImportRoll {
+            get {
+                return ResourceManager.GetString("MovedXPhotosToANewImportRoll", resourceCulture);
+            }
+        }
     }
 }

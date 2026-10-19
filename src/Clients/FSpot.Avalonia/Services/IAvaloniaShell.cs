@@ -24,6 +24,9 @@ public interface IAvaloniaShell
 	void FocusFind ();
 	Task ShowAboutAsync ();
 	Task ShowWarningAsync (string title, string message);
+	// A shell without its own info dialog keeps the message and uses the warning icon.
+	Task ShowInfoAsync (string title, string message)
+		=> ShowWarningAsync (title, message);
 	// Falls back to a plain warning (still listing every failed file) for a
 	// shell that doesn't override it, e.g. the NullShell test double.
 	Task ShowImportFailuresAsync (IReadOnlyList<SafeUri> failed)

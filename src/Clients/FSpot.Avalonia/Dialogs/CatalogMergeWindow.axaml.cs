@@ -36,7 +36,14 @@ public partial class CatalogMergeWindow : Window
 		RollBox.ItemsSource = this.rolls.Select (roll => roll.Label).ToList ();
 		RollBox.SelectedIndex = this.rolls.Count > 0 ? 0 : -1;
 		RollBox.IsEnabled = false;
-		OneRoll.IsCheckedChanged += (_, _) => RollBox.IsEnabled = Rolls == CatalogRollChoice.One;
+		NewRolls.IsCheckedChanged += (_, _) => UpdateOk ();
+		OneRoll.IsCheckedChanged += (_, _) => {
+			RollBox.IsEnabled = Rolls == CatalogRollChoice.One;
+			UpdateOk ();
+		};
+		AllRolls.IsCheckedChanged += (_, _) => UpdateOk ();
+		RollBox.SelectionChanged += (_, _) => UpdateOk ();
+		UpdateOk ();
 		Opened += (_, _) => OkButton.Focus ();
 	}
 
@@ -57,6 +64,7 @@ public partial class CatalogMergeWindow : Window
 		OneRoll.IsChecked = choice == CatalogRollChoice.One;
 		AllRolls.IsChecked = choice == CatalogRollChoice.All;
 		RollBox.IsEnabled = choice == CatalogRollChoice.One;
+		UpdateOk ();
 	}
 
 	internal void ChooseRoll (int index) => RollBox.SelectedIndex = index;
@@ -69,11 +77,25 @@ public partial class CatalogMergeWindow : Window
 
 	internal void Accept ()
 	{
+		// Roll id 0 means "not one chosen roll" for new rolls and everything.
+		// A single roll with nothing selected must not accept that sentinel.
 		uint id = 0;
-		if (Rolls == CatalogRollChoice.One && RollBox.SelectedIndex >= 0 && RollBox.SelectedIndex < rolls.Count)
-			id = rolls[RollBox.SelectedIndex].Id;
+		if (Rolls == CatalogRollChoice.One && !TrySelectedRoll (out id))
+			return;
 		Result = new CatalogMergeChoice (Rolls, CopyFiles, id);
 		Close ();
+	}
+
+	void UpdateOk ()
+		=> OkButton.IsEnabled = Rolls != CatalogRollChoice.One || TrySelectedRoll (out _);
+
+	bool TrySelectedRoll (out uint id)
+	{
+		id = 0;
+		if (RollBox.SelectedIndex < 0 || RollBox.SelectedIndex >= rolls.Count)
+			return false;
+		id = rolls[RollBox.SelectedIndex].Id;
+		return true;
 	}
 
 	void OnOk (object? sender, RoutedEventArgs e)

@@ -2040,7 +2040,7 @@ between</value>
     <value>Caption:</value>
   </data>
   <data name="ChangeBasePathURITo" xml:space="preserve">
-    <value>Change base path (URI) to</value>
+    <value>Change base path to</value>
   </data>
   <data name="ChangePath" xml:space="preserve">
     <value>ChangePath</value>
@@ -3405,7 +3405,7 @@ Photo Details</value>
     <value>Obtaining URL for upload</value>
   </data>
   <data name="OldBasePathURIWas" xml:space="preserve">
-    <value>Old base path (URI) was</value>
+    <value>Old base path was</value>
   </data>
   <data name="OnlyPhotosTakenWithinTheseDatesWillBeDisplayed" xml:space="preserve">
     <value>Only photos taken within these dates will be displayed.</value>
@@ -5035,5 +5035,23 @@ Facebook said: {0}</value>
   </data>
   <data name="ChooseTheFolderThatContainsPhotosFromX" xml:space="preserve">
     <value>Choose the folder that now contains photos from {0}</value>
+  </data>
+  <data name="TheNameMustEndWithZip" xml:space="preserve">
+    <value>The name must end with .zip.</value>
+  </data>
+  <data name="ASlashMeansTheArchiveDoesNotStayInTheChosenFolder" xml:space="preserve">
+    <value>A slash means the archive does not stay in the chosen folder.</value>
+  </data>
+  <data name="TheNameContainsACharacterTheFileSystemRejects" xml:space="preserve">
+    <value>The name contains a character the file system rejects.</value>
+  </data>
+  <data name="MoveXPhotosOntoANewImportRollDatedY" xml:space="preserve">
+    <value>Move {0} photos onto a new import roll dated {1}?</value>
+  </data>
+  <data name="ThisCannotBeUndone" xml:space="preserve">
+    <value>This cannot be undone.</value>
+  </data>
+  <data name="MovedXPhotosToANewImportRoll" xml:space="preserve">
+    <value>Moved {0} photos to a new import roll.</value>
   </data>
 </root>

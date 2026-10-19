@@ -1787,6 +1787,12 @@ public partial class MainWindowViewModel : ObservableObject
 		if (string.IsNullOrWhiteSpace (folder))
 			return;
 		string? name = await shell.PromptAsync (Strings.CompressedFile, Strings.FileName, "f-spot_export.zip");
+		while (name is string rejected && ZipNameProblem (rejected) is string problem) {
+			await shell.ShowWarningAsync (Strings.CompressedFile, problem);
+			name = await shell.PromptAsync (Strings.CompressedFile, Strings.FileName, rejected);
+		}
+		// A name that passes those checks can still point outside the folder, for
+		// example a symlink. That is a single refusal, not another prompt.
 		if (name is not string zipName || !ZipStaysInFolder (folder, zipName))
 			return;
 		ZipScaleChoice? scale = await shell.PromptZipScaleAsync ();
@@ -1887,15 +1893,24 @@ public partial class MainWindowViewModel : ObservableObject
 	// also let the prompt write outside the folder the person just chose.
 	static bool ZipStaysInFolder (string folder, string name)
 	{
-		if (string.IsNullOrWhiteSpace (name) || !name.EndsWith (".zip", StringComparison.Ordinal))
-			return false;
-		if (name.IndexOfAny (new[] { '/', '\\' }) >= 0)
-			return false;
-		// '<' is a legal file name on Unix and an illegal one on Windows.
-		if (name.IndexOfAny (Path.GetInvalidFileNameChars ()) >= 0)
+		if (ZipNameProblem (name) is not null)
 			return false;
 		string root = Path.GetFullPath (folder);
 		return FileIdentity.IsInside (root, Path.Combine (root, name));
+	}
+
+	// The order matches the checks that used to live in ZipStaysInFolder, so a
+	// slash is explained as a slash even where the file system also rejects it.
+	static string? ZipNameProblem (string name)
+	{
+		if (string.IsNullOrWhiteSpace (name) || !name.EndsWith (".zip", StringComparison.Ordinal))
+			return Strings.TheNameMustEndWithZip;
+		if (name.IndexOf ('/') >= 0 || name.IndexOf ('\\') >= 0)
+			return Strings.ASlashMeansTheArchiveDoesNotStayInTheChosenFolder;
+		// '<' is a legal file name on Unix and an illegal one on Windows.
+		if (name.IndexOfAny (Path.GetInvalidFileNameChars ()) >= 0)
+			return Strings.TheNameContainsACharacterTheFileSystemRejects;
+		return null;
 	}
 
 	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
@@ -2394,14 +2409,27 @@ public partial class MainWindowViewModel : ObservableObject
 	}
 
 	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
-	void ReassignToNewImportRoll ()
+	async Task ReassignToNewImportRollAsync ()
 	{
 		if (database == null)
 			return;
 		Photo[] photos = SelectedCatalogPhotos ().ToArray ();
+		if (photos.Length == 0)
+			return;
+		DateTime newest = photos[0].Time;
+		for (int i = 1; i < photos.Length; i++) {
+			if (photos[i].Time > newest)
+				newest = photos[i].Time;
+		}
+		string confirm = string.Format (Strings.MoveXPhotosOntoANewImportRollDatedY, photos.Length, newest.ToString ("g"))
+			+ "\n" + Strings.ThisCannotBeUndone;
+		if (!await shell.ConfirmAsync (Strings.ReassignToNewImportRoll, confirm, Strings.Ok))
+			return;
 		if (!ImportRollReassign.TryAssign (photos, time => database.Rolls.Create (time).Id))
 			return;
 		database.Photos.Commit (photos);
+		await shell.ShowInfoAsync (Strings.ReassignToNewImportRoll, string.Format (Strings.MovedXPhotosToANewImportRoll, photos.Length));
+		ReloadPhotos ();
 	}
 
 	[RelayCommand]

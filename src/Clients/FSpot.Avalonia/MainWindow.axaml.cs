@@ -234,6 +234,9 @@ public partial class MainWindow : Window, IAvaloniaShell
 	public Task ShowWarningAsync (string title, string message)
 		=> MessageDialog.ShowAsync (this, title, message, MessageDialogKind.Warning);
 
+	public Task ShowInfoAsync (string title, string message)
+		=> MessageDialog.ShowAsync (this, title, message, MessageDialogKind.Info);
+
 	public Task ShowImportFailuresAsync (IReadOnlyList<SafeUri> failed)
 		=> failed.Count == 0 ? Task.CompletedTask : ImportFailureWindow.Create (failed).ShowDialog (this);
 

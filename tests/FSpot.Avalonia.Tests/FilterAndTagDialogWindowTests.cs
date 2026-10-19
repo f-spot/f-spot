@@ -1,8 +1,11 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
+
+using FSpot.Avalonia.Services;
 
 using FSpot.Avalonia.Dialogs;
 using FSpot.Avalonia.Imaging;
@@ -55,6 +58,7 @@ public sealed class FilterAndTagDialogWindowTests
 
 			window.ChooseRolls (CatalogRollChoice.One);
 			Assert.IsTrue (window.RollListEnabled);
+			Assert.IsTrue (window.OkButton.IsEnabled);
 			window.ChooseRoll (1);
 			window.SetCopy (false);
 			window.Accept ();
@@ -63,6 +67,44 @@ public sealed class FilterAndTagDialogWindowTests
 			Assert.AreEqual (CatalogRollChoice.One, window.Result.Value.Rolls);
 			Assert.IsFalse (window.Result.Value.CopyFiles);
 			Assert.AreEqual (4u, window.Result.Value.RollId);
+		} finally {
+			window.Close ();
+		}
+	}
+
+	[UiTestMethod]
+	public void CatalogMerge_DisablesOkWhenASingleRollIsSelectedAndTheListIsEmpty ()
+	{
+		var window = new CatalogMergeWindow ([]);
+		window.Show ();
+		try {
+			window.ChooseRolls (CatalogRollChoice.One);
+			Assert.IsFalse (window.OkButton.IsEnabled);
+
+			window.Accept ();
+			Assert.IsNull (window.Result);
+
+			window.ChooseRolls (CatalogRollChoice.New);
+			Assert.IsTrue (window.OkButton.IsEnabled);
+		} finally {
+			window.Close ();
+		}
+	}
+
+	[UiTestMethod]
+	public async Task MainWindow_ShowsAnInformationDialogInsteadOfAWarning ()
+	{
+		var window = new MainWindow (null) { Width = 900, Height = 600 };
+		window.Show ();
+		try {
+			IAvaloniaShell shell = window;
+			Task pending = shell.ShowInfoAsync ("Moved", "Moved 2 photos to a new import roll.");
+			MessageDialog dialog = window.OwnedWindows.OfType<MessageDialog> ().Single ();
+			Assert.AreEqual ("i", dialog.IconGlyph.Text);
+			Assert.AreEqual ("Moved", dialog.HeadingBlock.Text);
+			Assert.AreEqual ("Moved 2 photos to a new import roll.", dialog.BodyBlock.Text);
+			dialog.OkButton.RaiseEvent (new RoutedEventArgs (Button.ClickEvent));
+			await pending;
 		} finally {
 			window.Close ();
 		}
