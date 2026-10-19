@@ -893,6 +893,7 @@ public partial class MainWindowViewModel : ObservableObject
 		ExportCommand.NotifyCanExecuteChanged ();
 		ExportZipCommand.NotifyCanExecuteChanged ();
 		ExportGalleryCommand.NotifyCanExecuteChanged ();
+		ReassignToNewImportRollCommand.NotifyCanExecuteChanged ();
 		DevelopUfrawCommand.NotifyCanExecuteChanged ();
 		BatchDevelopCommand.NotifyCanExecuteChanged ();
 		SelectNoneCommand.NotifyCanExecuteChanged ();
@@ -2297,6 +2298,17 @@ public partial class MainWindowViewModel : ObservableObject
 				choice.AnchorTime ?? photos[Math.Clamp (choice.AnchorIndex, 0, photos.Count - 1)].Time,
 				TimeSpan.FromMinutes (choice.SpacingMinutes), batch => database?.Photos.Commit (batch));
 		RefreshEditedSelection ();
+	}
+
+	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
+	void ReassignToNewImportRoll ()
+	{
+		if (database == null)
+			return;
+		Photo[] photos = SelectedCatalogPhotos ().ToArray ();
+		if (!ImportRollReassign.TryAssign (photos, time => database.Rolls.Create (time).Id))
+			return;
+		database.Photos.Commit (photos);
 	}
 
 	[RelayCommand]

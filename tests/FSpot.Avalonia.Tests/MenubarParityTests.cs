@@ -209,6 +209,7 @@ public sealed class MenubarParityTests
 			Assert.IsTrue (tools.IsVisible);
 			Assert.IsNull (tools.Command);
 			Assert.Contains (Strings.ChangePathToPhotos, Headers (tools.Menu));
+			Assert.Contains (Strings.ReassignToNewImportRoll, Headers (tools.Menu));
 			Assert.Contains (Strings.MergeRaw, Headers (tools.Menu));
 			Assert.Contains (Strings.DevelopInUFRaw2, Headers (tools.Menu));
 			Assert.Contains (Strings.BatchDevelop, Headers (tools.Menu));
@@ -217,6 +218,7 @@ public sealed class MenubarParityTests
 			MenuExtensions.Register (MenuExtensionPoint.Tools, new MenuContribution (id, "Sample Tool", _ => Task.CompletedTask));
 			DynamicMenu.Fill (tools);
 			Assert.Contains ("Sample Tool", Headers (tools.Menu));
+			Assert.Contains (Strings.ReassignToNewImportRoll, Headers (tools.Menu));
 			Assert.Contains (Strings.ChangePathToPhotos, Headers (tools.Menu));
 			Assert.Contains (Strings.MergeRaw, Headers (tools.Menu));
 			Assert.Contains (Strings.DevelopInUFRaw2, Headers (tools.Menu));

@@ -5417,6 +5417,12 @@ namespace FSpot.Resources.Lang {
             }
         }
 
+        public static string ReassignToNewImportRoll {
+            get {
+                return ResourceManager.GetString("ReassignToNewImportRoll", resourceCulture);
+            }
+        }
+
         public static string ChangePhotosDirectory {
             get {
                 return ResourceManager.GetString("ChangePhotosDirectory", resourceCulture);

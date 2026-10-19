@@ -141,6 +141,27 @@ namespace FSpot.Database.Tests
 		}
 
 		[TestMethod]
+		public void Commit_RollChange_SurvivesReopenAndLeavesTheOtherPhoto ()
+		{
+			Photo changed = database.Photos.Get (AddPhoto ("changed.jpg").Id);
+			Photo other = database.Photos.Get (AddPhoto ("other.jpg").Id);
+			uint previous = changed.RollId;
+			uint kept = other.RollId;
+			var when = new DateTime (2020, 6, 1, 12, 0, 0, DateTimeKind.Utc);
+			uint next = database.Rolls.Create (when).Id;
+			changed.RollId = next;
+			database.Photos.Commit (changed);
+			string path = Path.Combine (root, "photos.db");
+			database.Dispose ();
+			database = Reopen (path);
+
+			Assert.AreNotEqual (previous, next);
+			Assert.AreEqual (next, database.Photos.Get (changed.Id).RollId);
+			Assert.AreEqual (kept, database.Photos.Get (other.Id).RollId);
+			Assert.AreEqual (when, database.Rolls.Get (next).Time);
+		}
+
+		[TestMethod]
 		public void Commit_RatingAndTag_SurviveReopenAndLeaveTheOtherPhotoAlone ()
 		{
 			Photo changed = AddPhoto ("changed.jpg");

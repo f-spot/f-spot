@@ -452,6 +452,16 @@ namespace FSpot.Database
 		PhotoChanges Update (Photo photo)
 		{
 			PhotoChanges changes = photo.Changes;
+			// Roll id is not part of the field update below. A freshly loaded photo
+			// marks this flag while it is filled in, and writing it then stores the
+			// same id. CreateFrom leaves the flag clear, so a later description
+			// commit does not replace the roll the insert already stored.
+			if (changes.RollIdChanged)
+				Database.Execute (new DatabaseCommand (
+					"UPDATE photos SET roll_id = ? WHERE id = ?",
+					photo.RollId,
+					photo.Id));
+
 			// Update photo.
 			if (changes.DescriptionChanged || changes.DefaultVersionIdChanged || changes.TimeChanged || changes.UriChanged || changes.RatingChanged || changes.MD5SumChanged)
 				Database.Execute (

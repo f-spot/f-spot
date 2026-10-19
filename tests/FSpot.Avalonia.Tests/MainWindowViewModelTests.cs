@@ -1592,6 +1592,106 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
+	public void ReassignToNewImportRollCommand_DoesNothingWhenNothingIsSelected ()
+	{
+		string root = Path.Combine (Path.GetTempPath (), "fspot-vm-roll-empty-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (root);
+		string previousBase = FSpot.Settings.FSpotConfiguration.BaseDirectory;
+		Db? database = null;
+		try {
+			EnsureMergeServices ();
+			var images = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Imaging.IImageFileFactory> ();
+			var thumbs = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Thumbnail.IThumbnailService> ();
+			database = new Db (images, thumbs, new MergeUpdater ());
+			database.Init (Path.Combine (root, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = root;
+			var viewModel = new MainWindowViewModel (database, new RecordingShell (), new NullThumbnails ());
+
+			Assert.IsFalse (viewModel.ReassignToNewImportRollCommand.CanExecute (null));
+			viewModel.ReassignToNewImportRollCommand.Execute (null);
+
+			Assert.AreEqual (0, RollCount (database));
+		} finally {
+			database?.Dispose ();
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = previousBase;
+			if (Directory.Exists (root))
+				Directory.Delete (root, true);
+		}
+	}
+
+	[UiTestMethod]
+	public void ReassignToNewImportRollCommand_DatesTheRollFromTheNewestSelectedPhoto ()
+	{
+		string root = Path.Combine (Path.GetTempPath (), "fspot-vm-roll-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (root);
+		string previousBase = FSpot.Settings.FSpotConfiguration.BaseDirectory;
+		Db? database = null;
+		try {
+			EnsureMergeServices ();
+			string sample = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
+			var images = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Imaging.IImageFileFactory> ();
+			var thumbs = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Thumbnail.IThumbnailService> ();
+			database = new Db (images, thumbs, new MergeUpdater ());
+			database.Init (Path.Combine (root, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = root;
+			Photo older = RollPhoto (database, sample, root, "older.jpg", new DateTime (2020, 1, 1, 0, 0, 0, DateTimeKind.Utc));
+			Photo newer = RollPhoto (database, sample, root, "newer.jpg", new DateTime (2020, 6, 1, 12, 0, 0, DateTimeKind.Utc));
+			Photo aside = RollPhoto (database, sample, root, "aside.jpg", new DateTime (2019, 1, 1, 0, 0, 0, DateTimeKind.Utc));
+			uint asideRoll = aside.RollId;
+			DateTime newest = newer.Time;
+			var viewModel = new MainWindowViewModel (database, new RecordingShell (), new NullThumbnails ());
+			var olderItem = new PhotoItemViewModel (older);
+			olderItem.Selected = true;
+			var newerItem = new PhotoItemViewModel (newer);
+			newerItem.Selected = true;
+			viewModel.Photos.Add (olderItem);
+			viewModel.Photos.Add (newerItem);
+			viewModel.Photos.Add (new PhotoItemViewModel (aside));
+
+			viewModel.ReassignToNewImportRollCommand.Execute (null);
+
+			Assert.AreEqual (newer.RollId, older.RollId);
+			Assert.AreNotEqual (asideRoll, newer.RollId);
+			Assert.AreEqual (asideRoll, aside.RollId);
+			Assert.AreEqual (newest, database.Rolls.Get (newer.RollId).Time);
+			uint rollId = newer.RollId;
+			uint olderId = older.Id;
+			uint newerId = newer.Id;
+			uint asideId = aside.Id;
+			database.Dispose ();
+			var again = new Db (images, thumbs, new MergeUpdater ());
+			again.Init (Path.Combine (root, FSpot.Settings.FSpotConfiguration.DatabaseName), false);
+			database = again;
+			Assert.AreEqual (rollId, database.Photos.Get (olderId).RollId);
+			Assert.AreEqual (rollId, database.Photos.Get (newerId).RollId);
+			Assert.AreEqual (asideRoll, database.Photos.Get (asideId).RollId);
+			Assert.AreEqual (newest, database.Rolls.Get (rollId).Time);
+		} finally {
+			database?.Dispose ();
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = previousBase;
+			if (Directory.Exists (root))
+				Directory.Delete (root, true);
+		}
+	}
+
+	static Photo RollPhoto (Db database, string sample, string root, string name, DateTime time)
+	{
+		string path = Path.Combine (root, name);
+		File.Copy (sample, path);
+		Photo created = database.Photos.CreateFrom (new FilePhoto (SafeUri.FromPath (path)), true, database.Rolls.Create ().Id);
+		created.Time = time;
+		database.Photos.Commit (created);
+		return database.Photos.Get (created.Id);
+	}
+
+	static int RollCount (Db database)
+	{
+		using var reader = database.Database.Query ("SELECT COUNT(*) FROM rolls");
+		reader.Read ();
+		return Convert.ToInt32 (reader[0]);
+	}
+
+	[UiTestMethod]
 	public void MergeCatalogCommand_WarnsWhenThereIsNoCatalog ()
 	{
 		var shell = new RecordingShell ();
