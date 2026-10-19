@@ -2,6 +2,7 @@
 
 using FSpot.Avalonia.Services;
 using FSpot.Cms;
+using FSpot.Imaging;
 
 using SkiaSharp;
 
@@ -84,8 +85,10 @@ public sealed class PrintRenderer
 		SKBitmap? bitmap = null;
 		try {
 			bitmap = PrintImageLoader.Load (photo.Path, Math.Max (decodeWidth, decodeHeight));
-			if (bitmap is not null && printerProfile is not null)
-				PrintImageLoader.ApplyProfile (bitmap, printerProfile);
+			if (bitmap is not null && printerProfile is not null) {
+				using Profile? source = EmbeddedProfile.Open (photo.Path);
+				PrintImageLoader.ApplyProfile (bitmap, source, printerProfile);
+			}
 		} catch (Exception e) {
 			Logger.Log.Error (e, $"Unable to load image {photo.Path}");
 			bitmap?.Dispose ();

@@ -74,7 +74,16 @@ namespace FSpot.Imaging
 		// FIXME this need to have an intent just like the loading stuff.
 		public virtual Cms.Profile GetProfile ()
 		{
-			return null;
+			try {
+				using Stream stream = OpenImageStream ();
+				byte[] bytes = EmbeddedProfile.TryRead (stream);
+				if (bytes == null)
+					return null;
+				return new Cms.Profile (bytes);
+			} catch (Exception e) when (e is Cms.CmsException || e is IOException || e is UnauthorizedAccessException
+					|| Cms.ProfileCatalog.IsNativeLibraryMissing (e)) {
+				return null;
+			}
 		}
 
 		public void Dispose ()
