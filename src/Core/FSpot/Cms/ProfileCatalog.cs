@@ -103,7 +103,7 @@ namespace FSpot.Cms
 			if (platform == CmsPlatform.Linux) {
 				return new[] {
 					"/usr/share/color/icc",
-					Path.Combine (home ?? string.Empty, ".color/icc"),
+					UnixDirectory (home, ".color/icc"),
 					"/usr/local/share/color/icc"
 				};
 			}
@@ -112,7 +112,7 @@ namespace FSpot.Cms
 				return new[] {
 					"/System/Library/ColorSync/Profiles",
 					"/Library/ColorSync/Profiles",
-					Path.Combine (home ?? string.Empty, "Library/ColorSync/Profiles"),
+					UnixDirectory (home, "Library/ColorSync/Profiles"),
 					"/Library/Application Support/Adobe/Color/Profiles"
 				};
 			}
@@ -126,6 +126,16 @@ namespace FSpot.Cms
 			}
 
 			return Array.Empty<string> ();
+		}
+
+		// Linux and Mac lists are checked on Windows too, where Path.Combine would
+		// insert '\'. An empty home keeps the child, and a trailing slash is not doubled.
+		static string UnixDirectory (string home, string child)
+		{
+			if (string.IsNullOrEmpty (home))
+				return child;
+
+			return home.TrimEnd ('/') + "/" + child;
 		}
 
 		public static IReadOnlyList<string> InstalledDirectories ()
