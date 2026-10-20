@@ -41,6 +41,7 @@ public partial class MainWindowViewModel
 	Bitmap? uncorrectedPreview;
 	int livePreviewGeneration;
 	Task livePreviewTask = Task.CompletedTask;
+	bool livePreviewRunning;
 	bool editingCustomRatios;
 
 	public ObservableCollection<CropConstraint> CropConstraintOptions { get; } = new ();
@@ -160,13 +161,12 @@ public partial class MainWindowViewModel
 		if (session is null || source is null || !PhotoEditorSession.HasLivePreview (session.Editor))
 			return;
 
-		// storedPreview survives ClearLivePreview, so opening the editor does not
-		// reread the screen bitmap. The working copy is separate from that store.
-		livePreviewSource ??= storedPreview is ImageBuffer stored
-			? ImageBuffers.Clone (stored)
-			: LivePreviewSource (source);
-		int generation = ++livePreviewGeneration;
-		livePreviewTask = RenderLivePreviewAsync (session, livePreviewSource, generation);
+		// A caller may already be awaiting the render that this request replaces.
+		// That same task keeps running until it has published the newest one.
+		livePreviewGeneration++;
+		if (livePreviewRunning)
+			return;
+		livePreviewTask = RunLivePreviewAsync ();
 	}
 
 	static ImageBuffer LivePreviewSource (Bitmap source)
@@ -177,45 +177,81 @@ public partial class MainWindowViewModel
 		return new AvaloniaImagingBackend ().ScaleToMaxSize (buffer, LivePreviewMaxEdge, LivePreviewMaxEdge, upscale: false);
 	}
 
-	async Task RenderLivePreviewAsync (PhotoEditorSession session, ImageBuffer source, int generation)
+	async Task RunLivePreviewAsync ()
 	{
-		var editor = session.Editor;
-		var context = session.CreateContext ();
-		ScreenAndChart pair = default;
+		livePreviewRunning = true;
 		try {
-			pair = await Task.Run (() => {
-				if (generation != Volatile.Read (ref livePreviewGeneration))
-					return default;
-				var output = PhotoEditorOperations.Process (editor, source, null, context);
-				// The histogram counts the editor output. The screen gets one conversion after it.
-				var measured = (Bitmap)AvaloniaImagingBackend.ToBgraBitmap (output);
-				var converted = DisplayColor.Apply (output, DisplayColor.Selected ());
-				if (ReferenceEquals (converted, output))
-					return new ScreenAndChart (measured, measured);
-				var shown = (Bitmap)AvaloniaImagingBackend.ToBgraBitmap (converted);
-				return new ScreenAndChart (shown, measured);
-			}).ConfigureAwait (true);
-		} catch (Exception ex) {
-			pair.Release ();
-			Logger.Log.Debug (ex, "Failed to render {Editor} preview", editor.Id);
-			return;
-		}
+			while (true) {
+				int generation = livePreviewGeneration;
+				var session = EditorSession;
+				if (session is null || Preview is null || !PhotoEditorSession.HasLivePreview (session.Editor))
+					return;
 
-		if (pair.Screen is null)
-			return;
-		if (generation != livePreviewGeneration || !ReferenceEquals (session, EditorSession)) {
-			pair.Release ();
-			return;
-		}
+				var loading = previewTask;
+				if (!loading.IsCompleted) {
+					await loading.ConfigureAwait (true);
+					continue;
+				}
 
-		var previous = EditedPreview;
-		var previousChart = uncorrectedPreview;
-		uncorrectedPreview = pair.Chart;
-		EditedPreview = pair.Screen;
-		if (!ReferenceEquals (previousChart, previous))
-			previousChart?.Dispose ();
-		if (!ReferenceEquals (previous, pair.Screen))
-			previous?.Dispose ();
+				if (generation != livePreviewGeneration)
+					continue;
+
+				session = EditorSession;
+				var screen = Preview;
+				if (session is null || screen is null || !PhotoEditorSession.HasLivePreview (session.Editor))
+					return;
+
+				// storedPreview survives ClearLivePreview, so opening the editor does not
+				// reread the screen bitmap. The working copy is separate from that store.
+				livePreviewSource ??= storedPreview is ImageBuffer stored
+					? ImageBuffers.Clone (stored)
+					: LivePreviewSource (screen);
+				var source = livePreviewSource;
+				var editor = session.Editor;
+				var context = session.CreateContext ();
+				ScreenAndChart pair = default;
+				try {
+					pair = await Task.Run (() => {
+						if (generation != Volatile.Read (ref livePreviewGeneration))
+							return default;
+						var output = PhotoEditorOperations.Process (editor, source, null, context);
+						// The histogram counts the editor output. The screen gets one conversion after it.
+						var measured = (Bitmap)AvaloniaImagingBackend.ToBgraBitmap (output);
+						var converted = DisplayColor.Apply (output, DisplayColor.Selected ());
+						if (ReferenceEquals (converted, output))
+							return new ScreenAndChart (measured, measured);
+						var shown = (Bitmap)AvaloniaImagingBackend.ToBgraBitmap (converted);
+						return new ScreenAndChart (shown, measured);
+					}).ConfigureAwait (true);
+				} catch (Exception ex) {
+					pair.Release ();
+					Logger.Log.Debug (ex, "Failed to render {Editor} preview", editor.Id);
+					if (generation != livePreviewGeneration)
+						continue;
+					return;
+				}
+
+				if (pair.Screen is null || generation != livePreviewGeneration || !ReferenceEquals (session, EditorSession)) {
+					pair.Release ();
+					if (generation == livePreviewGeneration && ReferenceEquals (session, EditorSession))
+						return;
+					continue;
+				}
+
+				var previous = EditedPreview;
+				var previousChart = uncorrectedPreview;
+				uncorrectedPreview = pair.Chart;
+				EditedPreview = pair.Screen;
+				if (!ReferenceEquals (previousChart, previous))
+					previousChart?.Dispose ();
+				if (!ReferenceEquals (previous, pair.Screen))
+					previous?.Dispose ();
+				if (generation == livePreviewGeneration)
+					return;
+			}
+		} finally {
+			livePreviewRunning = false;
+		}
 	}
 
 	readonly record struct ScreenAndChart (Bitmap? Screen, Bitmap? Chart)

@@ -133,6 +133,55 @@ public sealed partial class MainWindowViewModelTests
 		}
 	}
 
+	// Close does not pump the dispatcher. A preview that has already been decoded,
+	// and has not been shown, still has to be released here.
+	[UiTestMethod]
+	public void ReleaseDecodedImages_DisposesAPreviewTheScreenHasNotShown ()
+	{
+		AvaloniaApp.Ensure ();
+		var thumbs = new GatedPreviewLoads ();
+		var viewModel = new MainWindowViewModel (null, new RecordingShell (), thumbs);
+		viewModel.SeedCatalog (new StubPhoto ("/stored.jpg"));
+		viewModel.ViewMode = LibraryViewMode.PhotoView;
+		var bitmap = Square (8);
+		thumbs.Release (0, bitmap);
+
+		viewModel.ReleaseDecodedImages ();
+
+		Assert.ThrowsExactly<ObjectDisposedException> (() => _ = bitmap.PixelSize);
+		Assert.IsNull (viewModel.Preview);
+	}
+
+	// The editor opens while a newer preview decode is still running, and an older
+	// decode fails after that. The task captured at open has to show the newer preview.
+	[UiTestMethod]
+	public async Task LivePreview_UsesThePreviewThatLandsAfterTheEditorOpens ()
+	{
+		AvaloniaApp.Ensure ();
+		var thumbs = new GatedPreviewLoads ();
+		var viewModel = new MainWindowViewModel (null, new RecordingShell (), thumbs);
+		viewModel.SeedCatalog (new StubPhoto ("/stored.jpg"));
+		viewModel.ViewMode = LibraryViewMode.PhotoView;
+		Assert.AreEqual (1, thumbs.PreviewLoads);
+
+		thumbs.Release (0, Square (4));
+		await viewModel.ReloadPreviewAsync ();
+		Assert.IsNotNull (viewModel.Preview);
+
+		viewModel.UiScale = 2;
+		viewModel.UiScale = 3;
+		Assert.AreEqual (3, thumbs.PreviewLoads);
+		viewModel.ApplyEditorCommand.Execute (PhotoEditorCatalog.BW);
+		Task pending = viewModel.LivePreviewTask;
+
+		thumbs.Release (2, Square (8));
+		thumbs.Release (1, null);
+		await pending;
+
+		Assert.IsNotNull (viewModel.Preview);
+		Assert.IsNotNull (viewModel.EditedPreview);
+	}
+
 	[UiTestMethod]
 	public async Task EditorPreview_EditsTheStoredPixels ()
 	{
@@ -331,5 +380,31 @@ public sealed partial class MainWindowViewModelTests
 		await viewModel.LivePreviewTask;
 
 		Assert.IsNull (viewModel.EditedPreview);
+	}
+
+	static WriteableBitmap Square (int edge)
+		=> new (new PixelSize (edge, edge), new Vector (96, 96), PixelFormat.Bgra8888, AlphaFormat.Premul);
+
+	sealed class GatedPreviewLoads : IPhotoThumbnailLoader
+	{
+		readonly List<TaskCompletionSource<Bitmap?>> gates = new ();
+
+		public int PreviewLoads => gates.Count;
+
+		public Task<Bitmap?> LoadAsync (string path, int size, CancellationToken cancellationToken)
+			=> Task.FromResult<Bitmap?> (Square (1));
+
+		public Task<Bitmap?> LoadForMeasurementAsync (string path, int size, CancellationToken cancellationToken)
+		{
+			if (size == FSpot.Avalonia.Imaging.HistogramRenderer.SourceEdge)
+				return Task.FromResult<Bitmap?> (Square (1));
+
+			var gate = new TaskCompletionSource<Bitmap?> ();
+			gates.Add (gate);
+			return gate.Task;
+		}
+
+		public void Release (int index, Bitmap? bitmap)
+			=> gates[index].SetResult (bitmap);
 	}
 }

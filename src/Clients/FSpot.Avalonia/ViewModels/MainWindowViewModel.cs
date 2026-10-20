@@ -49,6 +49,14 @@ public partial class MainWindowViewModel : ObservableObject
 	readonly ThumbnailLoads thumbnailLoads = new ();
 	readonly Dictionary<PhotoItemViewModel, int> thumbnailGeneration = new ();
 	Task previewTask = Task.CompletedTask;
+	int previewGeneration;
+	// Decodes finish on the pool. Close waits for these because it does not pump the dispatcher.
+	readonly object previewGate = new ();
+	readonly List<Task> previewDecodes = new ();
+	Bitmap? heldPreview;
+	ImageBuffer? heldPreviewSource;
+	int heldPreviewGeneration;
+	bool heldPreviewClears;
 
 	[ObservableProperty]
 	LibraryViewMode viewMode = LibraryViewMode.IconView;
@@ -683,7 +691,21 @@ public partial class MainWindowViewModel : ObservableObject
 	}
 
 	void RequestPreview ()
-		=> previewTask = UpdatePreviewAsync ();
+	{
+		// A slower load of an earlier version must not replace this one.
+		int generation = NextPreviewGeneration ();
+		if (!IsEditing || SelectedPhoto is null) {
+			previewTask = Task.CompletedTask;
+			SetPreview (null);
+			return;
+		}
+
+		var item = SelectedPhoto;
+		int size = EditorPreview.DecodeWidth (UiScale);
+		var decode = DecodePreviewAsync (generation, item, size);
+		TrackPreviewDecode (decode);
+		previewTask = PublishPreviewAsync (generation, decode);
+	}
 
 	internal Task ReloadPreviewAsync ()
 	{
@@ -692,54 +714,152 @@ public partial class MainWindowViewModel : ObservableObject
 #pragma warning restore VSTHRD003
 	}
 
-	async Task UpdatePreviewAsync ()
+	int NextPreviewGeneration ()
 	{
-		if (!IsEditing || SelectedPhoto is null) {
-			SetPreview (null);
-			return;
+		Bitmap? dropped;
+		int generation;
+		lock (previewGate) {
+			generation = ++previewGeneration;
+			dropped = heldPreview;
+			heldPreview = null;
+			heldPreviewSource = null;
+			heldPreviewClears = false;
+			heldPreviewGeneration = 0;
 		}
 
-		var item = SelectedPhoto;
-		int size = EditorPreview.DecodeWidth (UiScale);
+		// Held is the decode the screen has not taken. The bitmap already on screen is Preview.
+		if (dropped is not null && !ReferenceEquals (dropped, Preview))
+			dropped.Dispose ();
+		return generation;
+	}
+
+	void TrackPreviewDecode (Task decode)
+	{
+		lock (previewGate)
+			previewDecodes.Add (decode);
+		_ = decode.ContinueWith (
+			completed => {
+				lock (previewGate)
+					previewDecodes.Remove (completed);
+			},
+			CancellationToken.None,
+			TaskContinuationOptions.None,
+			TaskScheduler.Default);
+	}
+
+	bool PreviewGenerationIs (int generation)
+	{
+		lock (previewGate)
+			return generation == previewGeneration;
+	}
+
+	async Task DecodePreviewAsync (int generation, PhotoItemViewModel item, int size)
+	{
+		Bitmap? bitmap = null;
 		Bitmap? shown = null;
 		try {
-			// The editor and the histogram read this bitmap. The screen copy is made
-			// after that, so a display profile is not baked into the edit.
-			var bitmap = await thumbnails.LoadForMeasurementAsync (item.Path, size, CancellationToken.None);
-			if (!IsEditing || !ReferenceEquals (item, SelectedPhoto)) {
+			// The editor reads the stored pixels. The screen copy is made after that,
+			// so a display profile is not baked into the edit.
+			bitmap = await thumbnails.LoadForMeasurementAsync (item.Path, size, CancellationToken.None).ConfigureAwait (false);
+			if (!PreviewGenerationIs (generation)) {
 				bitmap?.Dispose ();
 				return;
 			}
 
 			if (bitmap is null) {
-				pendingEditorSource = null;
-				SetPreview (null);
+				OfferPreview (generation, null, null, clear: true);
 				return;
 			}
 
-			ImageBuffer stored;
-			(stored, shown) = await Task.Run (() => {
-				try {
-					var source = LivePreviewSource (bitmap);
-					return (source, DisplayColor.Present (bitmap));
-				} catch {
-					bitmap.Dispose ();
-					throw;
-				}
-			});
-			if (!IsEditing || !ReferenceEquals (item, SelectedPhoto)) {
+			var owned = bitmap;
+			bitmap = null;
+			ImageBuffer? stored;
+			(stored, shown) = await Task.Run (() => PreparePreview (generation, owned)).ConfigureAwait (false);
+			if (shown is null)
+				return;
+			if (!OfferPreview (generation, stored, shown, clear: false))
 				shown.Dispose ();
-				shown = null;
-				return;
-			}
-
-			pendingEditorSource = stored;
-			SetPreview (shown);
 			shown = null;
 		} catch (Exception ex) {
 			shown?.Dispose ();
+			bitmap?.Dispose ();
 			Logger.Log.Debug (ex, "Failed to load preview {Path}", item.Path);
 		}
+	}
+
+	(ImageBuffer? Stored, Bitmap? Shown) PreparePreview (int generation, Bitmap bitmap)
+	{
+		Bitmap? owned = bitmap;
+		try {
+			if (!PreviewGenerationIs (generation)) {
+				owned.Dispose ();
+				return (null, null);
+			}
+
+			var stored = LivePreviewSource (owned);
+			var shown = DisplayColor.Present (owned);
+			// Present disposes the loader bitmap when it returns a converted copy.
+			owned = null;
+			if (!PreviewGenerationIs (generation)) {
+				shown.Dispose ();
+				return (null, null);
+			}
+
+			return (stored, shown);
+		} catch {
+			owned?.Dispose ();
+			throw;
+		}
+	}
+
+	bool OfferPreview (int generation, ImageBuffer? stored, Bitmap? shown, bool clear)
+	{
+		Bitmap? previous;
+		lock (previewGate) {
+			if (generation != previewGeneration)
+				return false;
+			previous = heldPreview;
+			heldPreview = shown;
+			heldPreviewSource = stored;
+			heldPreviewClears = clear;
+			heldPreviewGeneration = generation;
+		}
+
+		if (previous is not null && !ReferenceEquals (previous, shown) && !ReferenceEquals (previous, Preview))
+			previous.Dispose ();
+		return true;
+	}
+
+	async Task PublishPreviewAsync (int generation, Task decode)
+	{
+#pragma warning disable VSTHRD003 // RequestPreview started this decode.
+		await decode.ConfigureAwait (true);
+#pragma warning restore VSTHRD003
+		Bitmap? shown;
+		ImageBuffer? stored;
+		bool clear;
+		lock (previewGate) {
+			if (generation != previewGeneration || heldPreviewGeneration != generation)
+				return;
+			shown = heldPreview;
+			stored = heldPreviewSource;
+			clear = heldPreviewClears;
+			heldPreview = null;
+			heldPreviewSource = null;
+			heldPreviewClears = false;
+			heldPreviewGeneration = 0;
+		}
+
+		if (shown is null) {
+			if (!clear)
+				return;
+			pendingEditorSource = null;
+			SetPreview (null);
+			return;
+		}
+
+		pendingEditorSource = stored;
+		SetPreview (shown);
 	}
 
 	void SetPreview (Bitmap? next)
@@ -791,6 +911,17 @@ public partial class MainWindowViewModel : ObservableObject
 	{
 		menuWatcher?.Dispose ();
 		menuWatcher = null;
+		// Retire the decode before dropping its bitmap. The screen publish runs later,
+		// on a dispatcher turn this close does not pump.
+		NextPreviewGeneration ();
+		livePreviewGeneration++;
+		histogramGeneration++;
+		Task[] pending;
+		lock (previewGate)
+			pending = previewDecodes.ToArray ();
+#pragma warning disable VSTHRD002 // Pool work only. It does not post back to this thread.
+		Task.WaitAll (pending);
+#pragma warning restore VSTHRD002
 		DropAllThumbnails ();
 		HidePreviewPopup ();
 		SetPreview (null);
