@@ -29,14 +29,7 @@
   </Target>
 
   <Target Name="Test" DependsOnTargets="Build">
-    <Exec Command="dotnet test &quot;$(TestSolution)&quot; --configuration $(Configuration) --no-build --filter &quot;TestCategory!=RequiresGdk&amp;TestCategory!=RequiresGtk&quot; --logger trx --results-directory TestResults" />
-  </Target>
-
-  <Target Name="InstallLinux" DependsOnTargets="Build">
-    <!-- A blank Prefix forwarded as a global property cannot be overridden by
-         LinuxDesktop.targets' artifacts/linux-desktop default. -->
-    <MSBuild Condition="'$(Prefix)' != ''" Projects="$(MSBuildThisFileDirectory)LinuxDesktop.targets" Targets="InstallLinux" Properties="Prefix=$(Prefix)" />
-    <MSBuild Condition="'$(Prefix)' == ''" Projects="$(MSBuildThisFileDirectory)LinuxDesktop.targets" Targets="InstallLinux" />
+    <Exec Command="dotnet test &quot;$(TestSolution)&quot; --configuration $(Configuration) --no-build --logger trx --results-directory TestResults" />
   </Target>
 </Project>
 

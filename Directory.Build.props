@@ -4,28 +4,20 @@
   <PropertyGroup>
     <RepoRoot>$(MSBuildThisFileDirectory)</RepoRoot>
     <OutputPath>$(RepoRoot)\bin</OutputPath>
-    <OutputExtensionPath>$(RepoRoot)\bin\Extensions</OutputExtensionPath>
   </PropertyGroup>
 
   <PropertyGroup>
-    <FSpotTargetFramework>net472</FSpotTargetFramework>
     <FSpotModernTargetFramework>net10.0</FSpotModernTargetFramework>
     <NetStandard>netstandard2.0</NetStandard>
     <LangVersion>latest</LangVersion>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <!-- Pinned because the SDK defaults AnalysisLevel only for .NETCoreApp: on net472
-         EffectiveAnalysisLevel stays empty, no AnalysisLevel globalconfig is applied at
-         all, and every CA rule runs at whatever severity its author declared. That is
-         how the SDK's analyzers surfaced 24 CA2022 the old package never reported, and
-         the next SDK could move the set again just as silently. Measured as
-         warning-neutral for F-Spot's own code at the time it was set. -->
+    <!-- Pinned so a later SDK does not silently move the CA rule set. -->
     <AnalysisLevel>10.0</AnalysisLevel>
     <AnalysisMode>Default</AnalysisMode>
     <!-- Both report zero occurrences today, which is what makes promoting them free.
-         VSTHRD100 is the reason the threading analyzers are here at all: an async void
-         GTK signal handler turns an unhandled exception into a process abort, and CI
-         builds without -warnaserror, so as a warning it would merge green. -->
+         VSTHRD100 is an error because an async void handler turns an unhandled
+         exception into a process abort, and CI builds without -warnaserror. -->
     <WarningsAsErrors>VSTHRD100;CA2007</WarningsAsErrors>
     <Deterministic>true</Deterministic>
     <!-- Lots of warning this'll be a long slow process -->
@@ -38,8 +30,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <GtkPlatformTarget>AnyCPU</GtkPlatformTarget>
-    <Platforms>$(GtkPlatformTarget)</Platforms>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 
   <!-- Assembly Info -->
@@ -55,7 +46,7 @@
        Microsoft.CodeAnalysis.NetAnalyzers is not referenced; it only warned that the
        SDK's copy was newer. The threading analyzers stay: measured against a probe of
        five async hazards, the SDK caught none and these caught four, including
-       VSTHRD100 (async void), which in a GTK signal handler crashes the process.
+       VSTHRD100 (async void), which crashes the process.
        Microsoft.VisualStudio.Threading itself is gone, since no API of it was used. -->
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers">

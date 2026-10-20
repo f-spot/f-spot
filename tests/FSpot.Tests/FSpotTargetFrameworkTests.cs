@@ -12,9 +12,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FSpot.Tests
 {
-	// FSpot.Tests and FSpot.Avalonia are net10.0. A ProjectReference to a net472-only
-	// FSpot.dll is a compatibility fallback, not a net10 build of core. The attribute
-	// on the loaded assembly is the thing a net10 client actually runs.
+	// Core is net10.0. The attribute on the loaded assembly is the build a client runs.
 	[TestClass]
 	public class FSpotTargetFrameworkTests
 	{

@@ -1,21 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>$(FSpotTargetFramework);$(FSpotModernTargetFramework)</TargetFrameworks>
+    <TargetFramework>$(FSpotModernTargetFramework)</TargetFramework>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-    <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
     <ReleaseVersion>0.9.0</ReleaseVersion>
-  </PropertyGroup>
-
-  <!-- Directory.Build.props dumps every project into $(RepoRoot)bin with no TFM
-       segment. A net10.0 FSpot.dll must not overwrite the net472 copy f-spot.exe
-       loads from there. The two TFMs also cannot share obj/$(Configuration): the
-       net10.0 reference assembly is written to obj/$(Configuration)/ref and the
-       net472 build then deletes it, so a clean Release build cannot find FSpot.dll. -->
-  <PropertyGroup Condition="'$(TargetFramework)' != ''">
     <IntermediateOutputPath>$(MSBuildThisFileDirectory)obj\$(Configuration)\$(TargetFramework)\</IntermediateOutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)' != '' AND '$(TargetFramework)' != '$(FSpotTargetFramework)'">
     <OutputPath>$(RepoRoot)artifacts/fspot/$(TargetFramework)/</OutputPath>
   </PropertyGroup>
 
@@ -24,16 +13,8 @@
     <ProjectReference Include="..\FSpot.Strings\FSpot.Strings.csproj" />
   </ItemGroup>
 
-  <!-- ZipArchive lives in the framework assembly on net472. net10.0 already has it. -->
-  <ItemGroup Condition="'$(TargetFramework)' == '$(FSpotTargetFramework)'">
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.IO.Compression.FileSystem" />
-  </ItemGroup>
-
   <ItemGroup>
-    <!-- Metapackage already includes SQLitePCLRaw.bundle_e_sqlite3. Do not pin 3.0.5:
-         that bundle depends on the SQLite package whose net471 props reject AnyCPU, which
-         FSpot (net472) still uses. -->
+    <!-- Metapackage already includes SQLitePCLRaw.bundle_e_sqlite3. -->
     <PackageReference Include="Microsoft.Data.Sqlite" />
     <PackageReference Include="lcmsNET" />
     <PackageReference Include="Newtonsoft.Json" />
@@ -51,18 +32,18 @@
   <!-- TinyIoC 1.4.0-rc1 is compiled from the package's TinyIoc.cs. That file still declares
        BinaryFormatter constructors, which net10.0 reports as SYSLIB0051. A repo editorconfig
        does not apply to a file under the NuGet cache. -->
-  <PropertyGroup Condition="'$(TargetFramework)' == '$(FSpotModernTargetFramework)'">
+  <PropertyGroup>
     <NoWarn>$(NoWarn);SYSLIB0051</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="..\..\Extensions\Exporters\FSpot.Exporters.Folder\Resources\f-spot-simple.css">
+    <EmbeddedResource Include="Gallery\f-spot-simple.css">
       <LogicalName>f-spot-simple.css</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\Extensions\Exporters\FSpot.Exporters.Folder\Resources\f-spot-simple-white.css">
+    <EmbeddedResource Include="Gallery\f-spot-simple-white.css">
       <LogicalName>f-spot-simple-white.css</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\Extensions\Exporters\FSpot.Exporters.Folder\Resources\f-spot.js">
+    <EmbeddedResource Include="Gallery\f-spot.js">
       <LogicalName>f-spot.js</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
@@ -78,9 +59,6 @@
          versioned dylib name, which only resolves if that file sits next to lcmsNET.dll. -->
     <None Include="$(RepoRoot)lib/native/osx-x64/liblcms2.2.dylib" Condition="$([MSBuild]::IsOSPlatform('OSX'))">
       <Link>liblcms2.2.dylib</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="FSpot.addins">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

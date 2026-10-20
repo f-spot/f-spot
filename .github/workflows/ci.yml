@@ -19,7 +19,7 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true
 
 jobs:
-  # F-Spot.Tests.slnf: Core, GTK (no Gdk), Avalonia, and icon rasterizer tests.
+  # F-Spot.Tests.slnf: Core, Avalonia, and icon rasterizer tests.
   test:
     name: Test (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
@@ -85,15 +85,6 @@ jobs:
         run: >
           dotnet test tests/FSpot.Tests/FSpot.Tests.csproj
           --configuration Release --no-restore
-          --filter "TestCategory!=RequiresGdk&TestCategory!=RequiresGtk"
-          --logger trx --results-directory TestResults
-
-      - name: Test FSpot.Gtk
-        if: ${{ !cancelled() }}
-        run: >
-          dotnet test tests/FSpot.Gtk.Tests/FSpot.Gtk.Tests.csproj
-          --configuration Release --no-restore
-          --filter "TestCategory!=RequiresGdk&TestCategory!=RequiresGtk"
           --logger trx --results-directory TestResults
 
       - name: Test FSpot.Avalonia

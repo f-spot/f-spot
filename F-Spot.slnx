@@ -1,6 +1,5 @@
 <Solution>
   <Folder Name="/Clients/">
-    <Project Path="src/Clients/FSpot.Gtk/FSpot.Gtk.csproj" />
     <Project Path="src/Clients/FSpot.Avalonia/FSpot.Avalonia.csproj" />
   </Folder>
   <Folder Name="/Core/">
@@ -8,43 +7,11 @@
     <Project Path="src/Core/FSpot.Resources/FSpot.Resources.csproj" />
     <Project Path="src/Core/FSpot.Strings/FSpot.Strings.csproj" />
   </Folder>
-  <Folder Name="/Extensions/Editors/">
-    <Project Path="src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Editors.Blackout.csproj" />
-    <Project Path="src/Extensions/Editors/FSpot.Editors.BW/FSpot.Editors.BW.csproj" />
-    <Project Path="src/Extensions/Editors/FSpot.Editors.Flip/FSpot.Editors.Flip.csproj" />
-    <Project Path="src/Extensions/Editors/FSpot.Editors.Pixelate/FSpot.Editors.Pixelate.csproj" />
-    <Project Path="src/Extensions/Editors/FSpot.Editors.Resize/FSpot.Editors.Resize.csproj" />
-  </Folder>
-  <Folder Name="/Extensions/Exporters/">
-    <Project Path="src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD.csproj" />
-    <Project Path="src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr.csproj" />
-    <Project Path="src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder.csproj" />
-    <Project Path="src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip.csproj" />
-  </Folder>
-  <Folder Name="/Extensions/Tools/">
-    <Project Path="src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/FSpot.Tools.ChangePhotoPath.csproj" />
-    <Project Path="src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFRaw.csproj" />
-    <Project Path="src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery.csproj" />
-    <Project Path="src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb.csproj" />
-    <Project Path="src/Extensions/Tools/FSpot.Tools.RawPlusJpeg/FSpot.Tools.RawPlusJpeg.csproj" />
-    <Project Path="src/Extensions/Tools/FSpot.Tools.RetroactiveRoll/FSpot.Tools.RetroactiveRoll.csproj" />
-  </Folder>
-  <Folder Name="/Extensions/Transitions/">
-    <Project Path="src/Extensions/Transitions/FSpot.Transitions.Cover/FSpot.Transitions.Cover.csproj" />
-    <Project Path="src/Extensions/Transitions/FSpot.Transitions.Dissolve/FSpot.Transitions.Dissolve.csproj" />
-    <Project Path="src/Extensions/Transitions/FSpot.Transitions.Push/FSpot.Transitions.Push.csproj" />
-  </Folder>
-  <Folder Name="/External/">
-    <Project Path="external/mono-addins/Mono.Addins/Mono.Addins.csproj" />
-    <Project Path="external/mono-addins/Mono.Addins.Setup/Mono.Addins.Setup.csproj" />
-    <Project Path="external/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui.csproj" />
-  </Folder>
   <Folder Name="/Tools/">
     <Project Path="tools/RasterizeIcons/RasterizeIcons.csproj" />
   </Folder>
   <Folder Name="/Tests/">
     <Project Path="tests/FSpot.Tests/FSpot.Tests.csproj" />
-    <Project Path="tests/FSpot.Gtk.Tests/FSpot.Gtk.Tests.csproj" />
     <Project Path="tests/FSpot.Avalonia.Tests/FSpot.Avalonia.Tests.csproj" />
     <Project Path="tests/RasterizeIcons.Tests/RasterizeIcons.Tests.csproj" />
   </Folder>
@@ -55,8 +22,6 @@
     <File Path="build.proj" />
     <File Path="global.json" />
     <File Path="F-Spot.Portable.slnf" />
-    <File Path="LinuxDesktop.targets" />
-    <File Path="GtkSharp.refs.targets" />
     <File Path="F-Spot.Tests.slnf" />
     <File Path="Directory.Build.props" />
     <File Path="Directory.Build.targets" />
