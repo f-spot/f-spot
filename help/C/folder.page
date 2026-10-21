@@ -1,0 +1,42 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:e="http://projectmallard.org/experimental/"
+      type="topic"
+      id="folder">
+
+  <info>
+    <link type="guide" xref="index#sharing"/>
+    <desc>Send photos to a folder</desc>
+  </info>
+
+  <title>
+    Folder Export
+  </title>
+
+  <p><app>F-Spot</app> allows you to export to a folder.  In order to do so,
+     however, you will need to have the folder export
+     <link xref="extensions">extension</link> installed and enabled.</p>
+  <p>To export selected photos to a folder:</p>
+  <steps>
+    <item>
+      <p>Select <guiseq><gui>Photo</gui><gui>Export To</gui><gui>Folder...</gui>
+      </guiseq>.</p>
+    </item>
+    <item>
+      <p>Select a folder.</p>
+    </item>
+    <item>
+      <p>Name the gallery and give it a description.</p>
+    </item>
+    <item>
+      <p>Select an export method.  <gui>Create Standalone Web Gallery</gui>
+         will create a folder with contents fit to be uploaded to a web
+         server to present pictures in a gallery.  <gui>Save the files
+         only</gui>  will only move photos to the selected folder.
+         <gui>Create gallery using "Original"</gui> will create a folder
+         with contents suitable for using with Original Photo Gallery.</p>
+    </item>
+    <item>
+      <p>Click <gui>Export</gui>.</p>
+    </item>
+  </steps>
+</page>

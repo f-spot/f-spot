@@ -1,0 +1,49 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:e="http://projectmallard.org/experimental/"
+      type="topic"
+      id="date-search">
+
+  <info>
+    <link type="guide" xref="index#searching"/>
+    <desc>Search photos by date</desc>
+  </info>
+
+  <title>
+    Search by Date
+  </title>
+
+  <p>To search by date:</p>
+  <steps>
+    <item>
+      <p>Select <guiseq><gui>Find</gui><gui>By Date</gui>
+      <gui>Set Date Range...</gui></guiseq>.</p>
+    </item>
+    <item>
+      <p>Select a time period to from which to view photos.
+         This can by done by selecting a set period, such as a week, or by
+         specifying dates.</p>
+    </item>
+    <item>
+      <p>Click <gui>Ok</gui>.</p>
+    </item>
+  </steps>
+  <p>Alternatively, you can use the timeline.  To use the timeline:</p>
+  <steps>
+    <item>
+      <p>Make sure the timeline is enabled by selecting <guiseq><gui>View</gui>
+      <gui>Components</gui></guiseq> and making sure that <gui>Timeline</gui>
+      is checked.</p>
+    </item>
+    <item>
+      <p>In the timeline, click the bar corresponding to the time period you
+         wish to look at.</p>
+    </item>
+  </steps>
+  <p>To stop searching by date:</p>
+  <steps>
+    <item>
+      <p>Select <guiseq><gui>Find</gui><gui>By Date</gui>
+      <gui>Clear Date Range</gui></guiseq>.</p>
+    </item>
+  </steps>
+</page>

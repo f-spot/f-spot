@@ -1,0 +1,72 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="tag-creation">
+  <info>
+    <link type="guide" xref="tags#tag-functions" group="create"/>
+    <desc>Creating tags to be attached to photos</desc>
+  </info>
+
+  <title>
+    Creating
+  </title>
+  <p>In order to use tags, you need to first create a set of tags which you
+     wish to use.  There are three main methods to create tags.</p>
+  <p>Method One:</p>
+  <steps>
+    <item>
+      <p>Select <guiseq><gui>Tags</gui><gui>Create New Tag...</gui></guiseq>.
+      </p>
+    </item>
+    <item>
+      <p>Select a parent tag for the new tag to appear under, such as people
+         or events.  If you wish to create a new tag without a parent, select
+         <gui>(None)</gui>.</p>
+    </item>
+    <item>
+      <p>Name the tag.</p>
+    </item>
+    <item>
+      <p>Click <gui>Create</gui></p>
+    </item>
+  </steps>
+  <p>Method Two:</p>
+  <steps>
+    <item>
+      <p>In the tags page, right click, and select <gui>Create New Tag...</gui>
+      </p>
+    </item>
+    <item>
+      <p>Select a parent tag for the new tag to appear under, such as people
+         or events.  If you wish to create a new tag without a parent, select
+         <gui>(None)</gui>.</p>
+    </item>
+    <item>
+      <p>Name the tag.</p>
+    </item>
+    <item>
+      <p>Click <gui>Create</gui></p>
+    </item>
+  </steps>
+  <p>Method three has the advantage of also <link xref="tag-attach">
+     attaching</link> the new tag to the photos selected.  To do this:</p>
+  <steps>
+    <item>
+      <p>Select the photos to which you wish to attach the new tag.</p>
+    </item>
+    <item>
+      <p>Right-click on the photos, and select <guiseq><gui>Attach Tag</gui>
+         <gui>Create New Tag...</gui></guiseq>.</p>
+    </item>
+    <item>
+      <p>Select a parent tag for the new tag to appear under, such as people
+         or events.  If you wish to create a new tag without a parent, select
+         <gui>(None)</gui>.</p>
+    </item>
+    <item>
+      <p>Name the tag.</p>
+    </item>
+    <item>
+      <p>Click <gui>Create</gui></p>
+    </item>
+  </steps>
+</page>

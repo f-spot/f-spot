@@ -1,0 +1,40 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:e="http://projectmallard.org/experimental/"
+      type="topic"
+      id="file-management">
+
+  <info>
+    <link type="guide" xref="index#basic-functions" group="management"/>
+    <desc>Manage files already imported</desc>
+  </info>
+
+  <title>
+    File Management
+  </title>
+
+  <p><app>F-Spot</app> allows for some control over the contents of your
+     catalog, that is, removing files from your catalog as well as deleting
+     files from your catalog.</p>
+  <p>To remove files from your catalog:</p>
+  <steps>
+    <item>
+      <p>Select the photos you wish to remove from the catalog.</p>
+    </item>
+    <item>
+      <p>Right-click the photos, select <gui>Remove From Catalog</gui>.
+         Alternatively, select <guiseq><gui>Edit</gui><gui>Remove From
+         Catalog</gui></guiseq> or press the Delete key on your keyboard.</p>
+    </item>
+  </steps>
+  <p>To delete photos from your computer:</p>
+  <steps>
+    <item>
+      <p>Select the photos you wish to delete.</p>
+    </item>
+    <item>
+      <p>Right-click the photos, select <gui>Delete From Drive</gui>.
+         Alternatively, select <guiseq><gui>Edit</gui><gui>Delete
+         From Drive</gui></guiseq> or press Shift+Delete on your keyboard.</p>
+    </item>
+  </steps>
+</page>

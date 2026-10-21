@@ -37,6 +37,8 @@ Avalonia client (modern .NET, including macOS):
 
 The built binary is `artifacts/fspot-avalonia/FSpot.Avalonia`.
 
+The current manual is the English Mallard pages in `help/C`. Avalonia does not show them yet. A new manual can replace that tree later. Translated pages are the `help/<locale>` catalogs.
+
 Crash reports go to Sentry unless you turn them off in Preferences. `FSPOT_SENTRY=0` (or `false`, `off`, or `no`) forces them off. Events are scrubbed of paths (including quoted paths and paths with spaces), tag names, and the text of structured fields before they are sent. A file name that is not part of a path and is not a tag is left as it is. The About window states whether reports are on. Print opens the page-setup window and prints. Send Mail prepares the selected photos and opens the mail client. Set as Background changes the desktop wallpaper on macOS, GNOME, and Windows.
 
 ![Alt](https://repobeats.axiom.co/api/embed/fade091fb5fad392ab9b7997918d611c788fabee.svg "Repobeats analytics image")
