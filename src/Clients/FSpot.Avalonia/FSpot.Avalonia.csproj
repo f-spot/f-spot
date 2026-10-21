@@ -32,6 +32,16 @@
     <PackageReference Include="Sentry.Serilog" />
     <PackageReference Include="CommunityToolkit.Mvvm" />
     <PackageReference Include="Svg.Controls.Skia.Avalonia" />
+    <!-- Direct references so the client and the icon tool share one Skia 4 / HarfBuzz 14
+         pair. Svg.Controls asks for these with an open lower bound, and Avalonia.Skia is
+         still built against SkiaSharp 3.119. -->
+    <PackageReference Include="Svg.Skia" />
+    <PackageReference Include="SkiaSharp" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux" />
+    <PackageReference Include="SkiaSharp.NativeAssets.WebAssembly" />
+    <PackageReference Include="HarfBuzzSharp" />
+    <PackageReference Include="HarfBuzzSharp.NativeAssets.Linux" />
+    <PackageReference Include="HarfBuzzSharp.NativeAssets.WebAssembly" />
   </ItemGroup>
 
   <ItemGroup>

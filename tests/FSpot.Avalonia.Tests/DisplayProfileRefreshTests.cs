@@ -36,7 +36,6 @@ public sealed class DisplayProfileRefreshTests
 		=> AvaloniaApp.Ensure ();
 
 	[UiTestMethod]
-	[DoNotParallelize]
 	public async Task Slideshow_RedecodesTheCurrentSlideWhenTheDisplayProfileChanges ()
 	{
 		int decodes = 0;
@@ -76,7 +75,6 @@ public sealed class DisplayProfileRefreshTests
 	}
 
 	[UiTestMethod]
-	[DoNotParallelize]
 	public async Task MainWindow_ReloadsTheGridHoverAndEditorWithoutRemeasuringTheHistogram ()
 	{
 		var thumbs = new CountingBitmaps ();
@@ -139,7 +137,6 @@ public sealed class DisplayProfileRefreshTests
 	}
 
 	[UiTestMethod]
-	[DoNotParallelize]
 	public async Task Import_ReloadsTheTrayAndThePreview ()
 	{
 		var thumbs = new CountingBitmaps ();
@@ -168,7 +165,6 @@ public sealed class DisplayProfileRefreshTests
 	}
 
 	[UiTestMethod]
-	[DoNotParallelize]
 	public async Task Viewer_ReloadsThePhotoAndTheFilmstrip ()
 	{
 		int decodes = 0;
@@ -204,7 +200,6 @@ public sealed class DisplayProfileRefreshTests
 	}
 
 	[UiTestMethod]
-	[DoNotParallelize]
 	public async Task AdjustTime_ReloadsTheReferenceAndTheTray ()
 	{
 		var thumbs = new CountingBitmaps ();
@@ -232,7 +227,6 @@ public sealed class DisplayProfileRefreshTests
 	}
 
 	[UiTestMethod]
-	[DoNotParallelize]
 	public async Task ChromeIcon_RebuildsOnlyAColorManagedIconThatIsOnScreen ()
 	{
 		string png = EditorIcons.UriFor ("crop")!;
@@ -265,7 +259,6 @@ public sealed class DisplayProfileRefreshTests
 	}
 
 	[UiTestMethod]
-	[DoNotParallelize]
 	public async Task TagIconDialogs_RepaintTheIconAndThePhoto ()
 	{
 		var root = new Category (null, 0, "(None)");
