@@ -178,10 +178,11 @@ public sealed class FeatureTourDialogTests
 			viewModel.SelectedPhoto = viewModel.Photos[0];
 			viewModel.SidebarTab = 2;
 			window.UpdateLayout ();
-			byte[] before = File.ReadAllBytes (paths[0]);
+			byte[] before = await File.ReadAllBytesAsync (paths[0]);
 			Press (window, AutomationIds.ToolbarRotateRight);
 			await Drain ();
-			Assert.IsFalse (before.AsSpan ().SequenceEqual (File.ReadAllBytes (paths[0])));
+			byte[] after = await File.ReadAllBytesAsync (paths[0]);
+			Assert.IsFalse (before.AsSpan ().SequenceEqual (after));
 
 			if (LcmsProbe.TryUse (PhotoEditorCatalog.Desaturate.Id)) {
 				int versions = ((Photo)viewModel.Photos[0].Photo).Versions.Count ();
@@ -531,10 +532,11 @@ public sealed class FeatureTourDialogTests
 			info.RaiseEvent (new RoutedEventArgs (Button.ClickEvent, info));
 			Assert.IsTrue (Find<Control> (slideshow, AutomationIds.SlideshowInfoOverlay).IsVisible);
 			string shown = slideshow.CurrentPath;
-			byte[] before = File.ReadAllBytes (shown);
+			byte[] before = await File.ReadAllBytesAsync (shown);
 			Press (slideshow, AutomationIds.SlideshowRotateRight);
 			await Drain ();
-			Assert.IsFalse (before.AsSpan ().SequenceEqual (File.ReadAllBytes (shown)));
+			byte[] after = await File.ReadAllBytesAsync (shown);
+			Assert.IsFalse (before.AsSpan ().SequenceEqual (after));
 			Press (slideshow, AutomationIds.SlideshowClose);
 			await Drain ();
 
@@ -642,7 +644,10 @@ public sealed class FeatureTourDialogTests
 		if (adjust is not null && viewModel.EditorSession is not null)
 			adjust (viewModel.EditorSession.Context);
 		if (viewModel.EditorSession is not null) {
+			// The preview task was started by opening the editor, on this dispatcher.
+#pragma warning disable VSTHRD003
 			await viewModel.LivePreviewTask;
+#pragma warning restore VSTHRD003
 			if (PhotoEditorSession.HasLivePreview (viewModel.EditorSession.Editor))
 				Assert.IsNotNull (viewModel.EditedPreview, editorId);
 			Assert.IsTrue (viewModel.CommitEditorCommand.CanExecute (null), editorId);

@@ -21,17 +21,8 @@ public sealed class UiTestMethodAttribute : TestMethodAttribute
 		if (Dispatcher.UIThread.CheckAccess ())
 			return base.ExecuteAsync (testMethod);
 
-		var done = new TaskCompletionSource<TestResult[]> (TaskCreationOptions.RunContinuationsAsynchronously);
-		Dispatcher.UIThread.Post (() => {
-			base.ExecuteAsync (testMethod).ContinueWith (finished => {
-				if (finished.IsCanceled)
-					done.SetCanceled ();
-				else if (finished.IsFaulted)
-					done.SetException (finished.Exception!.InnerExceptions);
-				else
-					done.SetResult (finished.Result);
-			}, CancellationToken.None, TaskContinuationOptions.None, TaskScheduler.Default);
-		});
-		return done.Task;
+		// InvokeAsync waits for the test task itself. A posted ContinueWith left that
+		// task unobserved if the continuation failed before it reported the result.
+		return Dispatcher.UIThread.InvokeAsync (() => base.ExecuteAsync (testMethod));
 	}
 }

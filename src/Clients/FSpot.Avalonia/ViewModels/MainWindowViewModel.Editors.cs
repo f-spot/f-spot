@@ -56,7 +56,10 @@ public partial class MainWindowViewModel
 			RequestHistogram (SelectedPhoto);
 	}
 
+	// Started by RequestLivePreview on the UI thread. Callers await it there.
+#pragma warning disable VSTHRD003
 	internal Task LivePreviewTask => livePreviewTask;
+#pragma warning restore VSTHRD003
 
 	// The buffer the open editor processes. The screen bitmap is a separate copy.
 	internal ImageBuffer? EditorSource => livePreviewSource ?? storedPreview;

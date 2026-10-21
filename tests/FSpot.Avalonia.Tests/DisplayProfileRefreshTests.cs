@@ -319,7 +319,10 @@ public sealed class DisplayProfileRefreshTests
 		public Task<Bitmap?> LoadAsync (string path, int size, CancellationToken cancellationToken)
 		{
 			Loads++;
+			// The test completes Gate after the load has been requested.
+#pragma warning disable VSTHRD003
 			return Gate.Task;
+#pragma warning restore VSTHRD003
 		}
 
 		public Task<Bitmap?> LoadForMeasurementAsync (string path, int size, CancellationToken cancellationToken)

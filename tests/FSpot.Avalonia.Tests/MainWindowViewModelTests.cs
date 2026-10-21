@@ -1386,7 +1386,7 @@ public sealed partial class MainWindowViewModelTests
 		string destDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-dst-" + Guid.NewGuid ().ToString ("N"));
 		Directory.CreateDirectory (sourceDir);
 		string file = Path.Combine (sourceDir, "shot.jpg");
-		File.WriteAllText (file, "photo");
+		await File.WriteAllTextAsync (file, "photo");
 		try {
 			var shell = new RecordingShell { ExportFolder = destDir, PromptResult = "trip.zip" };
 			var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
@@ -1396,12 +1396,9 @@ public sealed partial class MainWindowViewModelTests
 
 			await viewModel.ExportZipCommand.ExecuteAsync (null);
 
-			using var archive = System.IO.Compression.ZipFile.OpenRead (Path.Combine (destDir, "trip.zip"));
-			Assert.HasCount (1, archive.Entries);
-			Assert.AreEqual ("shot.jpg", archive.Entries[0].FullName);
-			using var stream = archive.Entries[0].Open ();
-			using var reader = new StreamReader (stream);
-			Assert.AreEqual ("photo", reader.ReadToEnd ());
+			(string name, string text) = ReadZipEntry (Path.Combine (destDir, "trip.zip"));
+			Assert.AreEqual ("shot.jpg", name);
+			Assert.AreEqual ("photo", text);
 		} finally {
 			Directory.Delete (sourceDir, true);
 			if (Directory.Exists (destDir))
@@ -1417,7 +1414,7 @@ public sealed partial class MainWindowViewModelTests
 		Directory.CreateDirectory (sourceDir);
 		string file = Path.Combine (sourceDir, "shot.jpg");
 		File.Copy (Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg"), file);
-		byte[] original = File.ReadAllBytes (file);
+		byte[] original = await File.ReadAllBytesAsync (file);
 		try {
 			var shell = new RecordingShell {
 				ExportFolder = destDir,
@@ -1432,7 +1429,7 @@ public sealed partial class MainWindowViewModelTests
 
 			await viewModel.ExportZipCommand.ExecuteAsync (null);
 
-			Assert.AreSequenceEqual (original, File.ReadAllBytes (file));
+			Assert.AreSequenceEqual (original, await File.ReadAllBytesAsync (file));
 			byte[] archived = ZipEntryBytes (Path.Combine (destDir, "trip.zip"), "shot.jpg");
 			Assert.AreEqual (0xFF, archived[0]);
 			Assert.AreEqual (0xD8, archived[1]);
@@ -1455,7 +1452,7 @@ public sealed partial class MainWindowViewModelTests
 		Directory.CreateDirectory (sourceDir);
 		Directory.CreateDirectory (destDir);
 		string file = Path.Combine (sourceDir, "shot.jpg");
-		File.WriteAllText (file, "photo");
+		await File.WriteAllTextAsync (file, "photo");
 		try {
 			var shell = new RecordingShell {
 				ExportFolder = destDir,
@@ -1475,6 +1472,21 @@ public sealed partial class MainWindowViewModelTests
 			Directory.Delete (sourceDir, true);
 			Directory.Delete (destDir, true);
 		}
+	}
+
+	static (string Name, string Text) ReadZipEntry (string zipPath)
+	{
+		using var archive = System.IO.Compression.ZipFile.OpenRead (zipPath);
+		var entry = archive.Entries[0];
+		using var stream = entry.Open ();
+		using var reader = new StreamReader (stream);
+		return (entry.FullName, reader.ReadToEnd ());
+	}
+
+	static string[] ZipEntryNames (string zipPath)
+	{
+		using var archive = System.IO.Compression.ZipFile.OpenRead (zipPath);
+		return archive.Entries.Select (entry => entry.FullName).ToArray ();
 	}
 
 	static byte[] ZipEntryBytes (string zipPath, string name)
@@ -1522,7 +1534,7 @@ public sealed partial class MainWindowViewModelTests
 		Directory.CreateDirectory (sourceDir);
 		Directory.CreateDirectory (destDir);
 		string file = Path.Combine (sourceDir, "shot.jpg");
-		File.WriteAllText (file, "photo");
+		await File.WriteAllTextAsync (file, "photo");
 		try {
 			var shell = new RecordingShell { ExportFolder = destDir, PromptResult = "notes.txt" };
 			var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
@@ -1549,7 +1561,7 @@ public sealed partial class MainWindowViewModelTests
 		string destDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-dst-" + Guid.NewGuid ().ToString ("N"));
 		Directory.CreateDirectory (sourceDir);
 		string file = Path.Combine (sourceDir, "shot.jpg");
-		File.WriteAllText (file, "photo");
+		await File.WriteAllTextAsync (file, "photo");
 		string escaped = Path.GetFullPath (Path.Combine (destDir, "..", "outside.zip"));
 		try {
 			var shell = new RecordingShell { ExportFolder = destDir, PromptResult = "../outside.zip" };
@@ -1579,7 +1591,7 @@ public sealed partial class MainWindowViewModelTests
 		Directory.CreateDirectory (sourceDir);
 		Directory.CreateDirectory (destDir);
 		string file = Path.Combine (sourceDir, "shot.jpg");
-		File.WriteAllText (file, "photo");
+		await File.WriteAllTextAsync (file, "photo");
 		try {
 			var shell = new RecordingShell { ExportFolder = destDir, PromptResult = "sum\0mer.zip" };
 			var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
@@ -1605,7 +1617,7 @@ public sealed partial class MainWindowViewModelTests
 		string destDir = Path.Combine (Path.GetTempPath (), "fspot-vm-zip-dst-" + Guid.NewGuid ().ToString ("N"));
 		Directory.CreateDirectory (sourceDir);
 		string file = Path.Combine (sourceDir, "shot.jpg");
-		File.WriteAllText (file, "photo");
+		await File.WriteAllTextAsync (file, "photo");
 		try {
 			var shell = new RecordingShell { ExportFolder = destDir };
 			shell.PromptAnswers.Enqueue ("notes.txt");
@@ -1618,9 +1630,7 @@ public sealed partial class MainWindowViewModelTests
 			await viewModel.ExportZipCommand.ExecuteAsync (null);
 
 			Assert.Contains (Strings.TheNameMustEndWithZip, shell.WarningMessage ?? string.Empty);
-			using var archive = System.IO.Compression.ZipFile.OpenRead (Path.Combine (destDir, "export.zip"));
-			Assert.HasCount (1, archive.Entries);
-			Assert.AreEqual ("shot.jpg", archive.Entries[0].FullName);
+			Assert.AreSequenceEqual (new[] { "shot.jpg" }, ZipEntryNames (Path.Combine (destDir, "export.zip")));
 		} finally {
 			Directory.Delete (sourceDir, true);
 			if (Directory.Exists (destDir))
@@ -1638,8 +1648,8 @@ public sealed partial class MainWindowViewModelTests
 		Directory.CreateDirectory (destDir);
 		string file = Path.Combine (sourceDir, "shot.jpg");
 		string outside = Path.Combine (sourceDir, "outside.zip");
-		File.WriteAllText (file, "photo");
-		File.WriteAllText (outside, "keep");
+		await File.WriteAllTextAsync (file, "photo");
+		await File.WriteAllTextAsync (outside, "keep");
 		File.CreateSymbolicLink (Path.Combine (destDir, "out.zip"), outside);
 		try {
 			var shell = new RecordingShell { ExportFolder = destDir, PromptResult = "out.zip" };
@@ -1650,7 +1660,7 @@ public sealed partial class MainWindowViewModelTests
 
 			await viewModel.ExportZipCommand.ExecuteAsync (null);
 
-			Assert.AreEqual ("keep", File.ReadAllText (outside));
+			Assert.AreEqual ("keep", await File.ReadAllTextAsync (outside));
 			Assert.IsNull (shell.WarningMessage);
 		} finally {
 			Directory.Delete (sourceDir, true);
@@ -3248,7 +3258,10 @@ public sealed partial class MainWindowViewModelTests
 
 			if (HoldA) {
 				EnteredA.TrySetResult (true);
+				// The test releases this load after it has seen EnteredA.
+#pragma warning disable VSTHRD003
 				return ReleaseA.Task;
+#pragma warning restore VSTHRD003
 			}
 
 			return Task.FromResult<Bitmap?> (TinyBitmap ());
