@@ -23,17 +23,13 @@ using FSpot.Utils;
 
 using Hyena;
 
-
-
-using TinyIoC;
-
 namespace FSpot.Imaging
 {
 	class ImageFileFactory : IImageFileFactory
 	{
 		#region fields
 
-		readonly TinyIoCContainer container;
+		readonly Dictionary<string, Func<SafeUri, IImageFile>> loaders = new Dictionary<string, Func<SafeUri, IImageFile>> ();
 		readonly List<string> imageTypes;
 		readonly List<string> jpegExtensions;
 		readonly List<string> rawExtensions;
@@ -46,7 +42,6 @@ namespace FSpot.Imaging
 
 		public ImageFileFactory (IFileSystem fileSystem)
 		{
-			container = new TinyIoCContainer ();
 			imageTypes = new List<string> ();
 			jpegExtensions = new List<string> ();
 			rawExtensions = new List<string> ();
@@ -155,9 +150,8 @@ namespace FSpot.Imaging
 		void RegisterMimeTypes<T> (params string[] mimeTypes)
 			where T : class, IImageFile
 		{
-			foreach (var mimeType in mimeTypes) {
-				container.Register<IImageFile, T> (mimeType).AsMultiInstance ();
-			}
+			foreach (var mimeType in mimeTypes)
+				loaders[mimeType] = Create<T> ();
 			imageTypes.AddRange (mimeTypes);
 		}
 
@@ -165,7 +159,7 @@ namespace FSpot.Imaging
 			where T : class, IImageFile
 		{
 			foreach (var extension in extensions) {
-				container.Register<IImageFile, T> (extension).AsMultiInstance ();
+				loaders[extension] = Create<T> ();
 				switch (type) {
 				case ImageType.Jpeg:
 					jpegExtensions.Add (extension);
@@ -205,24 +199,19 @@ namespace FSpot.Imaging
 			if (fileSystem.File.GetSize (uri) == 0)
 				return null;
 
-			var param = UriAsParameter (uri);
-
 			// Get loader by mime-type
 			string mime = fileSystem.File.GetMimeType (uri);
-			if (container.CanResolve<IImageFile> (mime, param))
+			if (loaders.ContainsKey (mime))
 				return mime;
 
 			// Get loader by extension
-			return container.CanResolve<IImageFile> (extension, param) ? extension : null;
+			return loaders.ContainsKey (extension) ? extension : null;
 		}
 
-		static NamedParameterOverloads UriAsParameter (SafeUri uri)
+		static Func<SafeUri, IImageFile> Create<T> ()
+			where T : class, IImageFile
 		{
-			return new NamedParameterOverloads (new Dictionary<string, object> { {
-					"uri",
-					uri
-				}
-			});
+			return uri => (IImageFile)Activator.CreateInstance (typeof (T), uri);
 		}
 
 		#endregion
@@ -236,7 +225,7 @@ namespace FSpot.Imaging
 				throw new Exception ($"Unsupported image: {uri}");
 
 			try {
-				return container.Resolve<IImageFile> (name, UriAsParameter (uri));
+				return loaders[name] (uri);
 			} catch (Exception e) {
 				Logger.Log.Debug (e, "");
 				throw;

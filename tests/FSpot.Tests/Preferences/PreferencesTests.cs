@@ -11,12 +11,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 
 using FSpot.Platform;
 using FSpot.Settings;
 using FSpot.Tests;
-
-using Newtonsoft.Json.Linq;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -30,11 +30,10 @@ namespace FSpot.Preferences.Tests
 		string previousOverride;
 		PreferenceJsonBackend jsonBackend;
 
-		JObject LoadSettings (string location)
+		JsonObject LoadSettings (string location)
 		{
-			var settingsFile = File.ReadAllText (location);
-			var o = JObject.Parse (settingsFile);
-			return (JObject)o[PreferenceJsonBackend.SettingsRoot];
+			var parsed = JsonNode.Parse (File.ReadAllText (location)) as JsonObject;
+			return parsed[PreferenceJsonBackend.SettingsRoot] as JsonObject;
 		}
 
 		[TestInitialize]
@@ -69,7 +68,7 @@ namespace FSpot.Preferences.Tests
 			jsonBackend.Set (key, v);
 			jsonBackend.SaveSettings ();
 			AssertSettingsFileWritten ();
-			Assert.AreEqual (v, LoadSettings (TestSettingsFile)[key].ToObject<string> ());
+			Assert.AreEqual (v, LoadSettings (TestSettingsFile)[key].Deserialize<string> ());
 		}
 
 		[TestMethod]
@@ -79,7 +78,7 @@ namespace FSpot.Preferences.Tests
 			jsonBackend.Set (key, true);
 			jsonBackend.SaveSettings ();
 			AssertSettingsFileWritten ();
-			Assert.IsTrue (LoadSettings (TestSettingsFile)[key].ToObject<bool> ());
+			Assert.IsTrue (LoadSettings (TestSettingsFile)[key].Deserialize<bool> ());
 		}
 
 		[TestMethod]
@@ -89,7 +88,7 @@ namespace FSpot.Preferences.Tests
 			jsonBackend.Set (key, 0.0);
 			jsonBackend.SaveSettings ();
 			AssertSettingsFileWritten ();
-			Assert.AreEqual (0.0, LoadSettings (TestSettingsFile)[key].ToObject<double> ());
+			Assert.AreEqual (0.0, LoadSettings (TestSettingsFile)[key].Deserialize<double> ());
 		}
 
 		[TestMethod]
@@ -103,7 +102,7 @@ namespace FSpot.Preferences.Tests
 			AssertSettingsFileWritten ();
 
 			var settings = LoadSettings (TestSettingsFile);
-			var result = settings[key].ToObject<List<int>> ();
+			var result = settings[key].Deserialize<List<int>> ();
 
 			Assert.AreSequenceEqual (list, result);
 		}
@@ -238,7 +237,7 @@ namespace FSpot.Preferences.Tests
 			jsonBackend.SaveSettings ();
 
 			Assert.IsFalse (File.Exists (TestSettingsFile + ".tmp"));
-			Assert.AreEqual ("kept", LoadSettings (TestSettingsFile)["RandomKey"].ToObject<string> ());
+			Assert.AreEqual ("kept", LoadSettings (TestSettingsFile)["RandomKey"].Deserialize<string> ());
 		}
 
 		[TestMethod]
@@ -313,6 +312,27 @@ namespace FSpot.Preferences.Tests
 			} finally {
 				Settings.Preferences.SettingChanged -= handler;
 			}
+		}
+
+		[TestMethod]
+		public void Get_ReadsAFileWrittenAsNestedObjects ()
+		{
+			File.WriteAllText (TestSettingsFile, $$"""
+				{
+				  "FSpotSettings": {
+				    "{{Settings.Preferences.StoragePath}}": "from-disk",
+				    "{{Settings.Preferences.Zoom}}": 1.5,
+				    "{{Settings.Preferences.ExpandedTags}}": [3, 4]
+				  }
+				}
+				""");
+			PreferenceJsonBackend.Unload ();
+
+			var backend = new PreferenceJsonBackend ();
+
+			Assert.AreEqual ("from-disk", backend.Get<string> (Settings.Preferences.StoragePath));
+			Assert.AreEqual (1.5, backend.Get<double> (Settings.Preferences.Zoom));
+			Assert.AreSequenceEqual (new[] { 3, 4 }, backend.Get<int[]> (Settings.Preferences.ExpandedTags));
 		}
 	}
 }

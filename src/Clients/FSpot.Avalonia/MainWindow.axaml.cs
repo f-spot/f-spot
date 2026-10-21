@@ -33,7 +33,8 @@ public partial class MainWindow : Window, IAvaloniaShell
 
 	internal MainWindow (Db? database, IPhotoThumbnailLoader thumbnails)
 	{
-		var viewModel = new MainWindowViewModel (database, this, thumbnails);
+		var services = App.Services;
+		var viewModel = new MainWindowViewModel (database, this, thumbnails, services?.Images, services?.Thumbnails, services?.FileSystem);
 		DataContext = viewModel;
 		InitializeComponent ();
 		MainWindowStateStore.Restore (this);
@@ -257,7 +258,8 @@ public partial class MainWindow : Window, IAvaloniaShell
 			return false;
 
 		ImportWindow? window = null;
-		var viewModel = new ImportViewModel (App.Database, this, new AvaloniaThumbnailLoader (), result => window?.Close (result));
+		var services = App.Services;
+		var viewModel = new ImportViewModel (App.Database, this, new AvaloniaThumbnailLoader (), result => window?.Close (result), services?.FileSystem, services?.Images, services?.Import);
 		if (paths.Count > 0)
 			viewModel.SeedDropped (paths);
 		window = new ImportWindow (viewModel);

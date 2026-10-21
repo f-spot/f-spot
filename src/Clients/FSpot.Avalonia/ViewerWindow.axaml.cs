@@ -51,7 +51,8 @@ public partial class ViewerWindow : Window, IViewerShell
 	{
 		this.thumbnails = thumbnails;
 		decodePhoto = decode ?? ((path, size) => DisplayColor.Present (AvaloniaPhotoDecoder.DecodeFile (path, size)));
-		viewModel = new ViewerViewModel (this, canLoad);
+		var services = App.Services;
+		viewModel = new ViewerViewModel (this, canLoad, services?.Images, services?.Thumbnails);
 		DataContext = viewModel;
 		InitializeComponent ();
 		PlatformGestures.Apply (this);

@@ -13,11 +13,10 @@
 
 using System;
 using System.IO;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 
 using FSpot.Settings;
-
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace FSpot.Platform
 {
@@ -27,13 +26,16 @@ namespace FSpot.Platform
 		internal static string PreferenceLocationOverride;
 
 		static readonly object sync_handler = new object ();
+		static readonly JsonSerializerOptions json = new JsonSerializerOptions { WriteIndented = true };
 
-		static JObject client;
+		static JsonObject document;
+		static JsonObject client;
 		static string loadedFrom;
 
 		internal static void Unload ()
 		{
 			lock (sync_handler) {
+				document = null;
 				client = null;
 				loadedFrom = null;
 			}
@@ -48,7 +50,7 @@ namespace FSpot.Platform
 		{
 		}
 
-		JObject Client {
+		JsonObject Client {
 			get {
 				lock (sync_handler) {
 					DropIfThePathChanged ();
@@ -62,6 +64,7 @@ namespace FSpot.Platform
 		void DropIfThePathChanged ()
 		{
 			if (client != null && loadedFrom != SettingsFile) {
+				document = null;
 				client = null;
 				loadedFrom = null;
 			}
@@ -74,30 +77,36 @@ namespace FSpot.Platform
 				Directory.CreateDirectory (directory);
 		}
 
-		JObject LoadSettings ()
+		JsonObject LoadSettings ()
 		{
 			loadedFrom = SettingsFile;
 			if (!File.Exists (loadedFrom) || new FileInfo (loadedFrom).Length == 0)
 				WriteEmpty (loadedFrom);
 
-			if (!TryReadRoot (loadedFrom, out JObject root)) {
+			if (!TryReadRoot (loadedFrom, out JsonObject parsed, out JsonObject root)) {
 				Quarantine (loadedFrom);
 				WriteEmpty (loadedFrom);
-				if (!TryReadRoot (loadedFrom, out root))
+				if (!TryReadRoot (loadedFrom, out parsed, out root))
 					throw new InvalidDataException (loadedFrom);
 			}
 
+			document = parsed;
 			client = root;
 			return client;
 		}
 
-		static bool TryReadRoot (string path, out JObject root)
+		static bool TryReadRoot (string path, out JsonObject parsed, out JsonObject root)
 		{
+			parsed = null;
 			root = null;
 			try {
-				var parsed = JObject.Parse (File.ReadAllText (path));
-				root = parsed[SettingsRoot] as JObject;
-				return root != null;
+				if (JsonNode.Parse (File.ReadAllText (path)) is not JsonObject document)
+					return false;
+				if (document[SettingsRoot] is not JsonObject settings)
+					return false;
+				parsed = document;
+				root = settings;
+				return true;
 			} catch (JsonException) {
 				return false;
 			}
@@ -105,11 +114,11 @@ namespace FSpot.Platform
 
 		void WriteEmpty (string path)
 		{
-			var empty = new JObject {
-				[SettingsRoot] = new JObject ()
+			var empty = new JsonObject {
+				[SettingsRoot] = new JsonObject ()
 			};
 			EnsureSettingsDirectory (path);
-			ReplaceFile (path, empty.ToString ());
+			ReplaceFile (path, empty.ToJsonString (json));
 		}
 
 		static void Quarantine (string path)
@@ -144,26 +153,25 @@ namespace FSpot.Platform
 				if (client == null)
 					LoadSettings ();
 
-				var settings = client.Root.ToString ();
 				EnsureSettingsDirectory (loadedFrom);
-				ReplaceFile (loadedFrom, settings);
+				ReplaceFile (loadedFrom, document.ToJsonString (json));
 			}
 		}
 
 		internal T Get<T> (string key)
 		{
 			lock (sync_handler) {
-				if (Client.ContainsKey (key))
-					return Client[key].ToObject<T> ();
+				if (!Client.TryGetPropertyValue (key, out JsonNode node))
+					throw new NoSuchKeyException (nameof (key));
+				if (node is null)
+					return default;
+				return node.Deserialize<T> (json);
 			}
-
-			throw new NoSuchKeyException (nameof (key));
 		}
 
 		internal void Set<T> (string key, T value)
 		{
-			// JValue cannot wrap collections.
-			var token = value == null ? JValue.CreateNull () : JToken.FromObject (value);
+			JsonNode token = value is null ? JsonNode.Parse ("null") : JsonSerializer.SerializeToNode (value, json);
 
 			lock (sync_handler) {
 				Client[key] = token;

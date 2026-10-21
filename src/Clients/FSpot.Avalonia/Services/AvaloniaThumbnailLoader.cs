@@ -14,8 +14,6 @@ using FSpot.Thumbnail;
 
 using Hyena;
 
-using TinyIoC;
-
 namespace FSpot.Avalonia.Services;
 
 interface IGridThumbnailCache
@@ -27,22 +25,23 @@ interface IGridThumbnailCache
 
 sealed class XdgThumbnailCache : IGridThumbnailCache
 {
+	readonly IThumbnailService? service;
+
+	public XdgThumbnailCache (IThumbnailService? service)
+	{
+		this.service = service;
+	}
+
 	public ImageBuffer? TryLoad (string path, int pixelSize)
 		=> Read (path, pixelSize, create: false);
 
 	public ImageBuffer? Get (string path, int pixelSize)
 		=> Read (path, pixelSize, create: true);
 
-	static ImageBuffer? Read (string path, int pixelSize, bool create)
+	ImageBuffer? Read (string path, int pixelSize, bool create)
 	{
-		if (pixelSize < 1 || pixelSize > 256)
+		if (service is null || pixelSize < 1 || pixelSize > 256)
 			return null;
-		IThumbnailService service;
-		try {
-			service = TinyIoCContainer.Current.Resolve<IThumbnailService> ();
-		} catch (Exception) {
-			return null;
-		}
 
 		var uri = SafeUri.FromPath (path);
 		var size = pixelSize <= 128 ? ThumbnailSize.Normal : ThumbnailSize.Large;
@@ -58,7 +57,7 @@ sealed class AvaloniaThumbnailLoader : IPhotoThumbnailLoader
 	readonly Func<Profile?> profile;
 
 	public AvaloniaThumbnailLoader ()
-		: this (new XdgThumbnailCache ())
+		: this (new XdgThumbnailCache (App.Services?.Thumbnails))
 	{
 	}
 

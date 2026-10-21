@@ -51,6 +51,8 @@ namespace FSpot.Database
 		}
 
 		public FSpotDatabaseConnection Database { get; private set; }
+		public IImageFileFactory Images => imageFileFactory;
+		public IThumbnailService Thumbnails => thumbnailService;
 
 		public Db (IImageFileFactory imageFileFactory, IThumbnailService thumbnailService, IUpdaterUI updaterDialog)
 		{

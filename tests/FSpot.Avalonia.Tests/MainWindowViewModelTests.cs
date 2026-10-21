@@ -366,12 +366,12 @@ public sealed partial class MainWindowViewModelTests
 		bool windows = OperatingSystem.IsWindows ();
 		bool locked = false;
 		try {
-			EnsureMergeServices ();
 			File.Copy (Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg"), originalPath);
 			string editedPath = Path.Combine (editDir, "edited.jpg");
 			File.Copy (originalPath, editedPath);
-			var images = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Imaging.IImageFileFactory> ();
-			var thumbs = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Thumbnail.IThumbnailService> ();
+			var services = CoreServices.CreateDefault ();
+			var images = services.Images;
+			var thumbs = services.Thumbnails;
 			database = new Db (images, thumbs, new MergeUpdater ());
 			database.Init (Path.Combine (catalogDir, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
 			FSpot.Settings.FSpotConfiguration.BaseDirectory = catalogDir;
@@ -430,9 +430,8 @@ public sealed partial class MainWindowViewModelTests
 		Directory.CreateDirectory (directory);
 		string path = Path.Combine (directory, "Carol Jones.jpg");
 		try {
-			EnsureMergeServices ();
 			var shell = new RecordingShell ();
-			var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+			var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails (), thumbnailService: CoreServices.CreateDefault ().Thumbnails);
 			var item = new PhotoItemViewModel (new FilePhoto (SafeUri.FromPath (path)));
 			viewModel.Photos.Add (item);
 			viewModel.SelectPhoto (item);
@@ -1248,25 +1247,10 @@ public sealed partial class MainWindowViewModelTests
 	[UiTestMethod]
 	public void ImportFromCameraCommand_WarnsWhenNoCamerasAreDetected ()
 	{
-		// Other tests register the real file system on the process container.
-		// With that in place this Mac's root volume counts as an import source
-		// and the command skips the empty-camera warning.
-		var container = TinyIoC.TinyIoCContainer.Current;
-		bool restoreFileSystem = container.Unregister<FSpot.FileSystem.IFileSystem> ();
-		try {
-			var shell = new RecordingShell ();
-			var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
-			viewModel.ImportFromCameraCommand.Execute (null);
-			Assert.AreEqual (Strings.NoCamerasDetected, shell.WarningMessage);
-		} finally {
-			if (restoreFileSystem) {
-				try {
-					FSpot.FileSystem.ModuleController.RegisterTypes (container);
-				} catch (ArgumentException) {
-					// IEnvironment is still registered; IFileSystem was put back first.
-				}
-			}
-		}
+		var shell = new RecordingShell ();
+		var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
+		viewModel.ImportFromCameraCommand.Execute (null);
+		Assert.AreEqual (Strings.NoCamerasDetected, shell.WarningMessage);
 	}
 
 	[UiTestMethod]
@@ -1738,9 +1722,9 @@ public sealed partial class MainWindowViewModelTests
 		string previousBase = FSpot.Settings.FSpotConfiguration.BaseDirectory;
 		Db? database = null;
 		try {
-			EnsureMergeServices ();
-			var images = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Imaging.IImageFileFactory> ();
-			var thumbs = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Thumbnail.IThumbnailService> ();
+			var services = CoreServices.CreateDefault ();
+			var images = services.Images;
+			var thumbs = services.Thumbnails;
 			database = new Db (images, thumbs, new MergeUpdater ());
 			database.Init (Path.Combine (root, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
 			FSpot.Settings.FSpotConfiguration.BaseDirectory = root;
@@ -1766,10 +1750,10 @@ public sealed partial class MainWindowViewModelTests
 		string previousBase = FSpot.Settings.FSpotConfiguration.BaseDirectory;
 		Db? database = null;
 		try {
-			EnsureMergeServices ();
 			string sample = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
-			var images = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Imaging.IImageFileFactory> ();
-			var thumbs = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Thumbnail.IThumbnailService> ();
+			var services = CoreServices.CreateDefault ();
+			var images = services.Images;
+			var thumbs = services.Thumbnails;
 			database = new Db (images, thumbs, new MergeUpdater ());
 			database.Init (Path.Combine (root, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
 			FSpot.Settings.FSpotConfiguration.BaseDirectory = root;
@@ -1822,10 +1806,10 @@ public sealed partial class MainWindowViewModelTests
 		string previousBase = FSpot.Settings.FSpotConfiguration.BaseDirectory;
 		Db? database = null;
 		try {
-			EnsureMergeServices ();
 			string sample = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
-			var images = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Imaging.IImageFileFactory> ();
-			var thumbs = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Thumbnail.IThumbnailService> ();
+			var services = CoreServices.CreateDefault ();
+			var images = services.Images;
+			var thumbs = services.Thumbnails;
 			database = new Db (images, thumbs, new MergeUpdater ());
 			database.Init (Path.Combine (root, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
 			FSpot.Settings.FSpotConfiguration.BaseDirectory = root;
@@ -1872,10 +1856,10 @@ public sealed partial class MainWindowViewModelTests
 		string previousBase = FSpot.Settings.FSpotConfiguration.BaseDirectory;
 		Db? database = null;
 		try {
-			EnsureMergeServices ();
 			string sample = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
-			var images = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Imaging.IImageFileFactory> ();
-			var thumbs = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Thumbnail.IThumbnailService> ();
+			var services = CoreServices.CreateDefault ();
+			var images = services.Images;
+			var thumbs = services.Thumbnails;
 			database = new Db (images, thumbs, new MergeUpdater ());
 			database.Init (Path.Combine (root, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
 			FSpot.Settings.FSpotConfiguration.BaseDirectory = root;
@@ -1964,12 +1948,12 @@ public sealed partial class MainWindowViewModelTests
 		Db? destination = null;
 		Db? source = null;
 		try {
-			EnsureMergeServices ();
 			string sample = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
 			string shot = Path.Combine (sourceDir, "shot.jpg");
 			File.Copy (sample, shot);
-			var images = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Imaging.IImageFileFactory> ();
-			var thumbs = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Thumbnail.IThumbnailService> ();
+			var services = CoreServices.CreateDefault ();
+			var images = services.Images;
+			var thumbs = services.Thumbnails;
 			destination = new Db (images, thumbs, new MergeUpdater ());
 			destination.Init (Path.Combine (destDir, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
 			source = new Db (images, thumbs, new MergeUpdater ());
@@ -2130,11 +2114,11 @@ public sealed partial class MainWindowViewModelTests
 		string previousBase = FSpot.Settings.FSpotConfiguration.BaseDirectory;
 		Db? database = null;
 		try {
-			EnsureMergeServices ();
 			string rawPath = Path.Combine (destDir, "shot.cr2");
 			File.WriteAllText (rawPath, "raw");
-			var images = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Imaging.IImageFileFactory> ();
-			var thumbs = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Thumbnail.IThumbnailService> ();
+			var services = CoreServices.CreateDefault ();
+			var images = services.Images;
+			var thumbs = services.Thumbnails;
 			database = new Db (images, thumbs, new MergeUpdater ());
 			database.Init (Path.Combine (destDir, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
 			SafeUri uri = SafeUri.FromPath (rawPath);
@@ -2213,11 +2197,11 @@ public sealed partial class MainWindowViewModelTests
 		SafeUri previousLibrary = FSpot.Settings.FSpotConfiguration.PhotoUri;
 		Db? database = null;
 		try {
-			EnsureMergeServices ();
 			string shot = Path.Combine (destDir, "shot.jpg");
 			File.WriteAllText (shot, "photo");
-			var images = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Imaging.IImageFileFactory> ();
-			var thumbs = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Thumbnail.IThumbnailService> ();
+			var services = CoreServices.CreateDefault ();
+			var images = services.Images;
+			var thumbs = services.Thumbnails;
 			database = new Db (images, thumbs, new MergeUpdater ());
 			database.Init (Path.Combine (destDir, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
 			uint roll = database.Rolls.Create (new DateTime (2019, 3, 4, 0, 0, 0, DateTimeKind.Utc)).Id;
@@ -2767,22 +2751,6 @@ public sealed partial class MainWindowViewModelTests
 		return false;
 	}
 
-	static void EnsureMergeServices ()
-	{
-		var container = TinyIoC.TinyIoCContainer.Current;
-		TryRegister (() => FSpot.FileSystem.ModuleController.RegisterTypes (container));
-		TryRegister (() => FSpot.Imaging.ModuleController.RegisterTypes (container));
-		TryRegister (() => FSpot.Thumbnail.ModuleController.RegisterTypes (container));
-	}
-
-	static void TryRegister (Action register)
-	{
-		try {
-			register ();
-		} catch (Exception ex) when (ex is TinyIoC.TinyIoCResolutionException or ArgumentException) {
-		}
-	}
-
 	static MainWindowViewModel NewViewModel ()
 		=> new (null, new NullShell (), new NullThumbnails ());
 
@@ -2831,9 +2799,9 @@ public sealed partial class MainWindowViewModelTests
 			Directory.CreateDirectory (Library);
 			previousBase = FSpot.Settings.FSpotConfiguration.BaseDirectory;
 			previousLibrary = FSpot.Settings.FSpotConfiguration.PhotoUri;
-			EnsureMergeServices ();
-			var images = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Imaging.IImageFileFactory> ();
-			var thumbs = TinyIoC.TinyIoCContainer.Current.Resolve<FSpot.Thumbnail.IThumbnailService> ();
+			var services = CoreServices.CreateDefault ();
+			var images = services.Images;
+			var thumbs = services.Thumbnails;
 			Destination = new Db (images, thumbs, new MergeUpdater ());
 			Destination.Init (Path.Combine (destDir, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
 			source = new Db (images, thumbs, new MergeUpdater ());

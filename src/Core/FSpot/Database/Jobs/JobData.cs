@@ -10,7 +10,7 @@
 
 using System;
 
-using Banshee.Kernel;
+using FSpot.Jobs;
 
 namespace FSpot.Database.Jobs
 {

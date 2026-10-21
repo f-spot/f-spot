@@ -17,7 +17,6 @@
     <!-- Metapackage already includes SQLitePCLRaw.bundle_e_sqlite3. -->
     <PackageReference Include="Microsoft.Data.Sqlite" />
     <PackageReference Include="lcmsNET" />
-    <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="System.CommandLine" />
     <PackageReference Include="Serilog" />
     <PackageReference Include="Serilog.Sinks.Console" />
@@ -26,15 +25,7 @@
     <PackageReference Include="SerilogTimings" />
     <PackageReference Include="Sentry.Serilog" />
     <PackageReference Include="TagLibSharp" />
-    <PackageReference Include="TinyIoC" />
   </ItemGroup>
-
-  <!-- TinyIoC 1.4.0-rc1 is compiled from the package's TinyIoc.cs. That file still declares
-       BinaryFormatter constructors, which net10.0 reports as SYSLIB0051. A repo editorconfig
-       does not apply to a file under the NuGet cache. -->
-  <PropertyGroup>
-    <NoWarn>$(NoWarn);SYSLIB0051</NoWarn>
-  </PropertyGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Gallery\f-spot-simple.css">
@@ -49,9 +40,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="FSpot.dll.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="lcmsNET.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

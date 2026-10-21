@@ -14,8 +14,6 @@ using System.Collections.Generic;
 
 using FSpot.Core;
 
-using Hyena;
-
 namespace FSpot.Database
 {
 	public abstract class DbStore<T> where T : DbItem
@@ -117,7 +115,7 @@ namespace FSpot.Database
 				return;
 			}
 
-			ThreadAssist.ProxyToMain (() => {
+			FSpot.MainThread.Invoke (() => {
 				evnt (this, args);
 			});
 		}

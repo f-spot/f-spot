@@ -8,6 +8,11 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System;
+using System.IO;
+
+using FSpot.FileSystem;
+
 using Hyena;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -75,6 +80,25 @@ namespace FSpot.Imaging.Tests
 			Assert.IsTrue (factory.IsJpegRawPair (jpeg, nef));
 			Assert.IsTrue (factory.IsJpegRawPair (jpeg, crw));
 			Assert.IsTrue (factory.IsJpegRawPair (jpg, nef));
+		}
+
+		[TestMethod]
+		public void Create_UsesTheExtensionWhenTheMimeTypeIsUnknown ()
+		{
+			string directory = Path.Combine (Path.GetTempPath (), "fspot-loader-" + Guid.NewGuid ().ToString ("n"));
+			Directory.CreateDirectory (directory);
+			string jpeg = Path.Combine (directory, "photo.jpg");
+			string raf = Path.Combine (directory, "photo.raf");
+			File.WriteAllBytes (jpeg, new byte[] { 1, 2, 3 });
+			File.WriteAllBytes (raf, new byte[] { 1, 2, 3 });
+			try {
+				var factory = new ImageFileFactory (new DotNetFileSystem ());
+
+				Assert.IsInstanceOfType<BaseImageFile> (factory.Create (SafeUri.FromPath (jpeg)));
+				Assert.IsInstanceOfType<RafImageFile> (factory.Create (SafeUri.FromPath (raf)));
+			} finally {
+				Directory.Delete (directory, true);
+			}
 		}
 	}
 }

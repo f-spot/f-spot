@@ -2,20 +2,15 @@
 
 using Avalonia.Threading;
 
-using Hyena;
+using FSpot;
 
 namespace FSpot.Avalonia;
 
 public static class AvaloniaMainThread
 {
-	public static void Install (Action<InvokeHandler> post)
-	{
-		if (post == null)
-			throw new ArgumentNullException (nameof (post));
-		ThreadAssist.InitializeMainThread ();
-		ThreadAssist.ProxyToMainHandler = post;
-	}
+	public static void Install (Action<Action> post)
+		=> MainThread.Install (post);
 
 	public static void InstallOnDispatcher ()
-		=> Install (handler => Dispatcher.UIThread.Post (() => handler ()));
+		=> Install (action => Dispatcher.UIThread.Post (action));
 }

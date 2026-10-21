@@ -16,8 +16,6 @@ using FSpot.Thumbnail;
 
 using Hyena;
 
-using TinyIoC;
-
 namespace FSpot.Avalonia.ViewModels;
 
 public partial class ViewerItemViewModel : ObservableObject
@@ -44,6 +42,8 @@ public partial class ViewerViewModel : ObservableObject
 {
 	readonly IViewerShell shell;
 	readonly Func<string, bool> canLoad;
+	readonly IImageFileFactory? images;
+	readonly IThumbnailService? thumbnails;
 	string? uri;
 
 	[ObservableProperty]
@@ -81,9 +81,11 @@ public partial class ViewerViewModel : ObservableObject
 	public bool SidebarVisible => ShowSidebar && !IsFullScreen;
 	public bool ToolbarVisible => ShowToolbar && !IsFullScreen;
 
-	public ViewerViewModel (IViewerShell shell, Func<string, bool>? canLoad = null)
+	public ViewerViewModel (IViewerShell shell, Func<string, bool>? canLoad = null, IImageFileFactory? images = null, IThumbnailService? thumbnails = null)
 	{
 		this.shell = shell;
+		this.images = images;
+		this.thumbnails = thumbnails;
 		this.canLoad = canLoad ?? DefaultCanLoad;
 		Items.CollectionChanged += (_, _) => OnItemsChanged ();
 	}
@@ -162,10 +164,12 @@ public partial class ViewerViewModel : ObservableObject
 		return raw.Contains ("://", StringComparison.Ordinal) ? null : Path.GetFullPath (raw);
 	}
 
-	static bool DefaultCanLoad (string path)
+	bool DefaultCanLoad (string path)
 	{
+		if (images is null)
+			return false;
 		try {
-			return TinyIoCContainer.Current.Resolve<IImageFileFactory> ().HasLoader (new SafeUri (path));
+			return images.HasLoader (new SafeUri (path));
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Cannot classify {Path}", path);
 			return false;
@@ -287,9 +291,12 @@ public partial class ViewerViewModel : ObservableObject
 		if (CurrentItem is not { } item)
 			return;
 		try {
+			if (thumbnails is null) {
+				await shell.ShowWarningAsync (Strings.ErrorWhileRotatingPhoto, "The thumbnail service is not available.");
+				return;
+			}
 			var photo = new FilePhoto (new SafeUri (item.Path));
-			var op = new RotateMultiple (new IPhoto[] { photo }, direction,
-				TinyIoCContainer.Current.Resolve<IThumbnailService> ());
+			var op = new RotateMultiple (new IPhoto[] { photo }, direction, thumbnails);
 			while (op.Step ()) { }
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Failed to rotate {Path}", item.Path);

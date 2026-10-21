@@ -14,13 +14,12 @@ using FSpot.Settings;
 
 using Hyena;
 
-using TinyIoC;
-
 namespace FSpot.Avalonia;
 
 public partial class App : Application
 {
 	public static Db? Database { get; private set; }
+	internal static ServiceGraph? Services { get; private set; }
 
 	public override void Initialize ()
 	{
@@ -58,11 +57,7 @@ public partial class App : Application
 	{
 		AvaloniaMainThread.InstallOnDispatcher ();
 
-		var container = TinyIoCContainer.Current;
-		FSpot.FileSystem.ModuleController.RegisterTypes (container);
-		FSpot.Imaging.ModuleController.RegisterTypes (container);
-		FSpot.Import.ModuleController.RegisterTypes (container);
-		FSpot.Thumbnail.ModuleController.RegisterTypes (container);
+		Services = CoreServices.CreateDefault ();
 		ImagingServices.Backend = new AvaloniaImagingBackend ();
 
 		FSpotConfiguration.PhotoUri = SafeUri.FromPath (Preferences.Get<string> (Preferences.StoragePath));
@@ -70,10 +65,7 @@ public partial class App : Application
 		if (!Directory.Exists (FSpotConfiguration.BaseDirectory))
 			Directory.CreateDirectory (FSpotConfiguration.BaseDirectory);
 
-		Database = new Db (
-			container.Resolve<IImageFileFactory> (),
-			container.Resolve<FSpot.Thumbnail.IThumbnailService> (),
-			new AvaloniaUpdaterUI ());
+		Database = new Db (Services.Images, Services.Thumbnails, new AvaloniaUpdaterUI ());
 		string path = Path.Combine (FSpotConfiguration.BaseDirectory, FSpotConfiguration.DatabaseName);
 		try {
 			Database.Init (path, true);

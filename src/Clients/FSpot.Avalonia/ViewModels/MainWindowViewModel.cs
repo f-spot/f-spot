@@ -23,6 +23,7 @@ using FSpot.Avalonia.Services;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Editors;
+using FSpot.FileSystem;
 using FSpot.Imaging;
 using FSpot.Import;
 using FSpot.Query;
@@ -36,8 +37,6 @@ using Hyena;
 
 using SkiaSharp;
 
-using TinyIoC;
-
 namespace FSpot.Avalonia.ViewModels;
 
 public partial class MainWindowViewModel : ObservableObject
@@ -45,6 +44,9 @@ public partial class MainWindowViewModel : ObservableObject
 	readonly Db? database;
 	readonly IAvaloniaShell shell;
 	readonly IPhotoThumbnailLoader thumbnails;
+	readonly IImageFileFactory? images;
+	readonly IThumbnailService? thumbnailService;
+	readonly IFileSystem? fileSystem;
 	readonly ThumbnailLease shownThumbnails = new ();
 	readonly ThumbnailLoads thumbnailLoads = new ();
 	readonly Dictionary<PhotoItemViewModel, int> thumbnailGeneration = new ();
@@ -197,11 +199,14 @@ public partial class MainWindowViewModel : ObservableObject
 	int histogramGeneration;
 	readonly List<uint> findRollIds = [];
 
-	public MainWindowViewModel (Db? database, IAvaloniaShell shell, IPhotoThumbnailLoader thumbnails)
+	public MainWindowViewModel (Db? database, IAvaloniaShell shell, IPhotoThumbnailLoader thumbnails, IImageFileFactory? images = null, IThumbnailService? thumbnailService = null, IFileSystem? fileSystem = null)
 	{
 		this.database = database;
 		this.shell = shell;
 		this.thumbnails = thumbnails;
+		this.images = images;
+		this.thumbnailService = thumbnailService;
+		this.fileSystem = fileSystem;
 		DisplaySidebar = LibraryPreferences.ShowSidebar;
 		DisplayTimeline = LibraryPreferences.ShowTimeline;
 		DisplayFilmstrip = LibraryPreferences.ShowFilmstrip;
@@ -1581,8 +1586,7 @@ public partial class MainWindowViewModel : ObservableObject
 			return shell.ShowWarningAsync (editor.Label, Strings.NoSelectionAvailable);
 
 		try {
-			var factory = TinyIoCContainer.Current.Resolve<IImageFileFactory> ();
-			PhotoEditorApply.Apply (editor, photos, new PhotoEditorContext (), factory, database?.Photos);
+			PhotoEditorApply.Apply (editor, photos, new PhotoEditorContext (), RequireImages (), database?.Photos);
 			RefreshEditedSelection ();
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Failed to apply {Editor}", editor.Id);
@@ -1629,8 +1633,7 @@ public partial class MainWindowViewModel : ObservableObject
 		var editor = EditorSession.Editor;
 		var context = EditorSession.CreateContext ();
 		try {
-			var factory = TinyIoCContainer.Current.Resolve<IImageFileFactory> ();
-			PhotoEditorApply.Apply (editor, photos, context, factory, database?.Photos);
+			PhotoEditorApply.Apply (editor, photos, context, RequireImages (), database?.Photos);
 			EditorSession = null;
 			RefreshEditedSelection ();
 		} catch (Exception ex) {
@@ -1682,16 +1685,24 @@ public partial class MainWindowViewModel : ObservableObject
 		Info.RatingValue = rating;
 	}
 
-	static bool CanLoadDroppedFile (string path)
+	bool CanLoadDroppedFile (string path)
 	{
 		try {
-			var factory = TinyIoCContainer.Current.Resolve<IImageFileFactory> ();
-			return factory.HasLoader (new SafeUri (path));
+			return CatalogImages ()?.HasLoader (new SafeUri (path)) == true;
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Cannot classify dropped file {Path}", path);
 			return false;
 		}
 	}
+
+	IImageFileFactory RequireImages ()
+		=> CatalogImages () ?? throw new InvalidOperationException ("The image factory is not available.");
+
+	IImageFileFactory? CatalogImages ()
+		=> images ?? database?.Images;
+
+	IThumbnailService? CatalogThumbnails ()
+		=> thumbnailService ?? database?.Thumbnails;
 
 	[RelayCommand]
 	Task AboutAsync ()
@@ -2390,7 +2401,11 @@ public partial class MainWindowViewModel : ObservableObject
 		if (photos.Length == 0)
 			return;
 
-		var thumbnailsService = TinyIoCContainer.Current.Resolve<IThumbnailService> ();
+		var thumbnailsService = CatalogThumbnails ();
+		if (thumbnailsService is null) {
+			_ = shell.ShowWarningAsync (Strings.ErrorWhileRotatingPhoto, "The thumbnail service is not available.");
+			return;
+		}
 		var op = new RotateMultiple (photos, direction, thumbnailsService);
 		try {
 			while (op.Step ()) { }
@@ -2651,14 +2666,10 @@ public partial class MainWindowViewModel : ObservableObject
 			return;
 		}
 
-		IImageFileFactory images;
-		IThumbnailService thumbs;
-		try {
-			images = TinyIoCContainer.Current.Resolve<IImageFileFactory> ();
-			thumbs = TinyIoCContainer.Current.Resolve<IThumbnailService> ();
-		} catch (Exception ex) {
-			Logger.Log.Debug (ex, "Failed to resolve imaging services before merging a catalog");
-			await shell.ShowWarningAsync (Strings.MergeDb, ex.Message);
+		IImageFileFactory? images = CatalogImages ();
+		IThumbnailService? thumbs = CatalogThumbnails ();
+		if (images is null || thumbs is null) {
+			await shell.ShowWarningAsync (Strings.MergeDb, "The image factory is not available.");
 			return;
 		}
 
@@ -2720,12 +2731,9 @@ public partial class MainWindowViewModel : ObservableObject
 			await shell.ShowWarningAsync (Strings.MergeRaw, ex.Message);
 			return;
 		}
-		IImageFileFactory factory;
-		try {
-			factory = TinyIoCContainer.Current.Resolve<IImageFileFactory> ();
-		} catch (Exception ex) {
-			Logger.Log.Debug (ex, "Failed to resolve the image factory before merging raw and JPEG versions");
-			await shell.ShowWarningAsync (Strings.MergeRaw, ex.Message);
+		IImageFileFactory? factory = CatalogImages ();
+		if (factory is null) {
+			await shell.ShowWarningAsync (Strings.MergeRaw, "The image factory is not available.");
 			return;
 		}
 		foreach (RawJpegPairing.Pair pair in RawJpegPairing.Find (photos, factory.IsRaw, factory.IsJpeg)) {
@@ -2757,12 +2765,9 @@ public partial class MainWindowViewModel : ObservableObject
 			return;
 		}
 
-		IImageFileFactory factory;
-		try {
-			factory = TinyIoCContainer.Current.Resolve<IImageFileFactory> ();
-		} catch (Exception ex) {
-			Logger.Log.Debug (ex, "Failed to resolve the image factory before developing photos");
-			await shell.ShowWarningAsync (title, ex.Message);
+		IImageFileFactory? factory = CatalogImages ();
+		if (factory is null) {
+			await shell.ShowWarningAsync (title, "The image factory is not available.");
 			return;
 		}
 
@@ -2827,12 +2832,7 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
 	void RefreshThumbnail ()
 	{
-		IThumbnailService? thumbs = null;
-		try {
-			thumbs = TinyIoCContainer.Current.Resolve<IThumbnailService> ();
-		} catch (Exception) {
-			// tests and hosts without a container still rebuild the preview
-		}
+		IThumbnailService? thumbs = CatalogThumbnails ();
 		if (thumbs is not null) {
 			foreach (var photo in MutationItems ().Select (item => item.Photo))
 				ThumbnailRefresh.Invalidate (thumbs, photo);
@@ -2872,10 +2872,7 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand]
 	async Task ImportFromCameraAsync ()
 	{
-		FSpot.FileSystem.IFileSystem fileSystem;
-		try {
-			fileSystem = TinyIoCContainer.Current.Resolve<FSpot.FileSystem.IFileSystem> ();
-		} catch (TinyIoC.TinyIoCResolutionException) {
+		if (fileSystem is null) {
 			await shell.ShowWarningAsync (Strings.ImportFromCamera, DeviceImport.EmptyMessage);
 			return;
 		}

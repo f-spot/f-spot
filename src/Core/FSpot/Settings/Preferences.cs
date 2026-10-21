@@ -20,11 +20,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 
 using FSpot.Platform;
 using FSpot.Resources.Lang;
-
-using Newtonsoft.Json;
 
 namespace FSpot.Settings
 {

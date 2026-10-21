@@ -208,7 +208,7 @@ namespace FSpot.Imaging
 							processed_requests.Enqueue (current_request);
 
 							if (!pending_notify_notified) {
-								ThreadAssist.ProxyToMain (HandleProcessedRequests);
+								FSpot.MainThread.Invoke (HandleProcessedRequests);
 								pending_notify_notified = true;
 							}
 

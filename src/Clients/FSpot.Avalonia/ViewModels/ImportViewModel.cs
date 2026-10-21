@@ -24,8 +24,6 @@ using FSpot.Utils;
 
 using Hyena;
 
-using TinyIoC;
-
 namespace FSpot.Avalonia.ViewModels;
 
 public partial class ImportViewModel : ObservableObject
@@ -37,6 +35,9 @@ public partial class ImportViewModel : ObservableObject
 	readonly ThumbnailLoads thumbnailLoads = new ();
 	readonly Dictionary<PhotoItemViewModel, int> thumbnailGeneration = new ();
 	readonly Action<bool> close;
+	readonly IFileSystem? fileSystem;
+	readonly IImageFileFactory? images;
+	readonly Func<IImportController>? importFactory;
 	readonly PhotoList importList = new PhotoList ();
 	CancellationTokenSource? scan;
 	Task? scanTask;
@@ -101,12 +102,15 @@ public partial class ImportViewModel : ObservableObject
 	[ObservableProperty]
 	Bitmap? preview;
 
-	public ImportViewModel (Db database, IAvaloniaShell shell, IPhotoThumbnailLoader thumbnails, Action<bool> close)
+	public ImportViewModel (Db database, IAvaloniaShell shell, IPhotoThumbnailLoader thumbnails, Action<bool> close, IFileSystem? fileSystem = null, IImageFileFactory? images = null, Func<IImportController>? import = null)
 	{
 		this.database = database;
 		this.shell = shell;
 		this.thumbnails = thumbnails;
 		this.close = close;
+		this.fileSystem = fileSystem;
+		this.images = images;
+		this.importFactory = import;
 		Preferences = new ImportPreferences (true);
 		CopyFiles = Preferences.CopyFiles;
 		RecurseSubdirectories = Preferences.RecurseSubdirectories;
@@ -124,17 +128,6 @@ public partial class ImportViewModel : ObservableObject
 	public bool CanEditRemoveOriginals => RemoveOriginalsEnabled && !IsBusy;
 	public bool IsProgressVisible => IsBusy || IsScanning;
 	public bool HasDetectedSources { get; private set; }
-
-	static bool TryResolve<T> (out T? service) where T : class
-	{
-		try {
-			service = TinyIoCContainer.Current.Resolve<T> ();
-			return service is not null;
-		} catch (TinyIoCResolutionException) {
-			service = null;
-			return false;
-		}
-	}
 
 	partial void OnIsBusyChanged (bool value)
 	{
@@ -213,9 +206,7 @@ public partial class ImportViewModel : ObservableObject
 			var chooseFolder = ImportSourceOption.ChooseFolder (Strings.ChooseFolder);
 			SourceOptions.Add (chooseFolder);
 
-			var detected = TryResolve (out IFileSystem? fileSystem) && fileSystem is not null
-				? DeviceImport.Sources (fileSystem)
-				: [];
+			var detected = fileSystem is null ? [] : DeviceImport.Sources (fileSystem);
 			HasDetectedSources = detected.Count > 0;
 			foreach (var source in detected)
 				SourceOptions.Add (ImportSourceOption.ForSource (source.Name, source.Root.LocalPath));
@@ -316,7 +307,8 @@ public partial class ImportViewModel : ObservableObject
 		});
 
 		try {
-			var importer = Importer?.Invoke () ?? TinyIoCContainer.Current.Resolve<IImportController> ();
+			var importer = Importer?.Invoke () ?? importFactory?.Invoke ()
+				?? throw new InvalidOperationException ("Import is not available.");
 			await Task.Run (() => importer.DoImport (
 				database, snapshot, tags, Preferences, progress, token), token);
 			var failed = importer.FailedImports.ToList ();
@@ -412,11 +404,10 @@ public partial class ImportViewModel : ObservableObject
 			IEnumerable<IPhoto>? photos = null;
 			if (ScanOverride is not null) {
 				photos = ScanOverride (token);
-			} else if (TryResolve (out IImageFileFactory? imageFactory) && imageFactory is not null
-				&& TryResolve (out IFileSystem? files) && files is not null) {
+			} else if ((images ?? database?.Images) is { } imageFactory && fileSystem is not null) {
 				IImportSource source = droppedPaths is { Count: > 0 }
-					? new MultiFileImportSource (droppedPaths.Select (path => new SafeUri (path)), imageFactory, files)
-					: new FileImportSource (new SafeUri (SourcePath!), imageFactory, files);
+					? new MultiFileImportSource (droppedPaths.Select (path => new SafeUri (path)), imageFactory, fileSystem)
+					: new FileImportSource (new SafeUri (SourcePath!), imageFactory, fileSystem);
 				photos = source.ScanPhotos (Preferences);
 			} else {
 				IsScanning = false;

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 
 using FSpot.Core;
+using FSpot.Database.Jobs;
 using FSpot.Imaging;
 using FSpot.Thumbnail;
 
@@ -284,6 +285,39 @@ namespace FSpot.Database.Tests
 			Assert.ThrowsExactly<InvalidOperationException> (() => database.Jobs.CreatePersistent ("not-a-job", "1"));
 
 			Assert.AreEqual (0, Count ("jobs"));
+		}
+
+		[TestMethod]
+		public void Init_Reopen_RunsAJobThatWasOnlyInTheTable ()
+		{
+			string path = Path.Combine (root, "photos.db");
+			database.Database.Execute (new DatabaseCommand (
+				"INSERT INTO jobs (job_type, job_options, run_at, job_priority) VALUES (?, ?, ?, ?)",
+				CalculateHashJob.JobName,
+				"1",
+				DateTimeUtil.FromDateTime (DateTime.Now),
+				0));
+			Assert.AreEqual (1, Count ("jobs"));
+
+			database.Dispose ();
+			database = Reopen (path);
+
+			var deadline = DateTime.UtcNow.AddSeconds (5);
+			while (DateTime.UtcNow < deadline && Count ("jobs") > 0)
+				System.Threading.Thread.Sleep (50);
+
+			Assert.AreEqual (0, Count ("jobs"));
+		}
+
+		[TestMethod]
+		public void CreatePersistent_LegacyTypeName_BuildsTheCurrentJob ()
+		{
+			var legacy = database.Jobs.CreatePersistent ("FSpot.Database.Jobs.CalculateHashJob", "1");
+			var current = database.Jobs.CreatePersistent (SyncMetadataJob.JobName, "2");
+
+			Assert.IsInstanceOfType<CalculateHashJob> (legacy);
+			Assert.IsInstanceOfType<SyncMetadataJob> (current);
+			Assert.AreEqual (2, Count ("jobs"));
 		}
 
 		Photo AddPhoto (string name)

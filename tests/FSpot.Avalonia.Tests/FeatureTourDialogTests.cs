@@ -12,6 +12,7 @@ using Avalonia.Platform;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
 
+using FSpot;
 using FSpot.Avalonia.Dialogs;
 using FSpot.Avalonia.Imaging;
 using FSpot.Avalonia.Models;
@@ -29,8 +30,6 @@ using FSpot.Thumbnail;
 using Hyena;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-using TinyIoC;
 
 namespace FSpot.Avalonia.Tests;
 
@@ -149,7 +148,7 @@ public sealed class FeatureTourDialogTests
 	public async Task Tools_RotateAndDesaturateTheBundledSample ()
 	{
 		AvaloniaApp.Ensure ();
-		EnsureEditingServices ();
+		var services = CoreServices.CreateDefault ();
 		ImagingServices.Backend = new AvaloniaImagingBackend ();
 		string root = Path.Combine (Path.GetTempPath (), "fspot-tools-" + Guid.NewGuid ().ToString ("N"));
 		Directory.CreateDirectory (root);
@@ -161,10 +160,7 @@ public sealed class FeatureTourDialogTests
 			paths.Add (dest);
 		}
 
-		var database = new Db (
-			TinyIoCContainer.Current.Resolve<IImageFileFactory> (),
-			TinyIoCContainer.Current.Resolve<IThumbnailService> (),
-			new QuietUpdater ());
+		var database = new Db (services.Images, services.Thumbnails, new QuietUpdater ());
 		database.Init (Path.Combine (root, "photos.db"), true);
 		uint roll = database.Rolls.Create ().Id;
 		foreach (string path in paths)
@@ -742,7 +738,7 @@ public sealed class FeatureTourDialogTests
 		public static CopyCatalog Open (int copies)
 		{
 			AvaloniaApp.Ensure ();
-			EnsureEditingServices ();
+			var services = CoreServices.CreateDefault ();
 			LcmsNativeLibrary.Register ();
 			ImagingServices.Backend = new AvaloniaImagingBackend ();
 			string root = Path.Combine (Path.GetTempPath (), "fspot-tour-" + Guid.NewGuid ().ToString ("N"));
@@ -754,10 +750,7 @@ public sealed class FeatureTourDialogTests
 				File.Copy (sample, paths[i]);
 			}
 
-			var database = new Db (
-				TinyIoCContainer.Current.Resolve<IImageFileFactory> (),
-				TinyIoCContainer.Current.Resolve<IThumbnailService> (),
-				new QuietUpdater ());
+			var database = new Db (services.Images, services.Thumbnails, new QuietUpdater ());
 			database.Init (Path.Combine (root, "photos.db"), true);
 			uint roll = database.Rolls.Create ().Id;
 			foreach (string path in paths)
@@ -793,28 +786,12 @@ public sealed class FeatureTourDialogTests
 		}
 	}
 
-	static void EnsureEditingServices ()
-	{
-		var container = TinyIoCContainer.Current;
-		TryRegister (() => FSpot.FileSystem.ModuleController.RegisterTypes (container));
-		TryRegister (() => FSpot.Imaging.ModuleController.RegisterTypes (container));
-		TryRegister (() => FSpot.Thumbnail.ModuleController.RegisterTypes (container));
-	}
-
 	static IEnumerable<TagNode> Walk (IEnumerable<TagNode> nodes)
 	{
 		foreach (var node in nodes) {
 			yield return node;
 			foreach (var child in Walk (node.Children))
 				yield return child;
-		}
-	}
-
-	static void TryRegister (Action register)
-	{
-		try {
-			register ();
-		} catch (Exception ex) when (ex is TinyIoCResolutionException or ArgumentException) {
 		}
 	}
 

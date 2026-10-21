@@ -12,22 +12,19 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
-
-using Banshee.Kernel;
+using System.Collections.Generic;
 
 using FSpot.Database.Jobs;
 using FSpot.Jobs;
 
 using Hyena;
 
-using TinyIoC;
-
 namespace FSpot.Database
 {
 	public class JobStore : DbStore<Job>
 	{
 		const string jobsTableName = "jobs";
-		readonly TinyIoCContainer container;
+		readonly Dictionary<string, Func<JobData, Job>> jobsByName;
 
 		internal static void CreateTable (FSpotDatabaseConnection database)
 		{
@@ -47,20 +44,18 @@ namespace FSpot.Database
 
 		Job CreateJob (string type, uint id, string options, DateTime runAt, JobPriority priority)
 		{
-			using (var childContainer = container.GetChildContainer ()) {
-				childContainer.Register (new JobData {
-					Id = id,
-					JobOptions = options,
-					JobPriority = priority,
-					RunAt = runAt,
-					Persistent = true
-				});
-				childContainer.TryResolve<Job> (type, out var job);
-				if (job == null) {
-					Logger.Log.Error ($"Unknown job type {type} ignored.");
-				}
-				return job;
+			if (!jobsByName.TryGetValue (type, out var create)) {
+				Logger.Log.Error ($"Unknown job type {type} ignored.");
+				return null;
 			}
+
+			return create (new JobData {
+				Id = id,
+				JobOptions = options,
+				JobPriority = priority,
+				RunAt = runAt,
+				Persistent = true
+			});
 		}
 
 		Job LoadItem (IDataReader reader)
@@ -77,18 +72,22 @@ namespace FSpot.Database
 		{
 			var reader = Database.Query ($"SELECT id, job_type, job_options, run_at, job_priority FROM {jobsTableName}");
 
+			// Hold the worker until every restored job is queued.
 			Scheduler.Suspend ();
-			while (reader.Read ()) {
-				Job job = LoadItem (reader);
-				if (job != null) {
-					AddToCache (job);
-					job.Finished += HandleRemoveJob;
-					Scheduler.Schedule (job, job.JobPriority);
-					job.Status = JobStatus.Scheduled;
+			try {
+				while (reader.Read ()) {
+					Job job = LoadItem (reader);
+					if (job != null) {
+						AddToCache (job);
+						job.Finished += HandleRemoveJob;
+						Scheduler.Schedule (job, job.JobPriority);
+						job.Status = JobStatus.Scheduled;
+					}
 				}
+			} finally {
+				reader.Dispose ();
+				Scheduler.Resume ();
 			}
-
-			reader.Dispose ();
 		}
 
 		public Job CreatePersistent (string job_type, string job_options)
@@ -152,21 +151,15 @@ namespace FSpot.Database
 
 		public JobStore (IDb db, bool is_new) : base (db, true)
 		{
-			// this should be replaced by a global registry as soon as
-			// extensions may provide job implementations
-			container = new TinyIoCContainer ();
-			container.Register (Db);
-			container.Register<Job, SyncMetadataJob> (SyncMetadataJob.JobName).AsMultiInstance ();
-			container.Register<Job, CalculateHashJob> (CalculateHashJob.JobName).AsMultiInstance ();
-
-			// Register legacy names of jobs as previous versions of f-spot saved the full job type
-			// name in the database which prevents refactoring of type names and namespaces.
-			// This also prevents us from intoducing a new database schema version including an
-			// upgrade.
-			container.Register<Job, SyncMetadataJob> ("FSpot.Database.Jobs.SyncMetadataJob").AsMultiInstance ();
-			container.Register<Job, SyncMetadataJob> ("FSpot.Jobs.SyncMetadataJob").AsMultiInstance ();
-			container.Register<Job, CalculateHashJob> ("FSpot.Database.Jobs.CalculateHashJob").AsMultiInstance ();
-			container.Register<Job, CalculateHashJob> ("FSpot.Jobs.CalculateHashJob").AsMultiInstance ();
+			// Older catalogs stored the full type name in jobs.job_type.
+			jobsByName = new Dictionary<string, Func<JobData, Job>> {
+				{ SyncMetadataJob.JobName, data => new SyncMetadataJob (Db, data) },
+				{ CalculateHashJob.JobName, data => new CalculateHashJob (Db, data) },
+				{ "FSpot.Database.Jobs.SyncMetadataJob", data => new SyncMetadataJob (Db, data) },
+				{ "FSpot.Jobs.SyncMetadataJob", data => new SyncMetadataJob (Db, data) },
+				{ "FSpot.Database.Jobs.CalculateHashJob", data => new CalculateHashJob (Db, data) },
+				{ "FSpot.Jobs.CalculateHashJob", data => new CalculateHashJob (Db, data) },
+			};
 
 			if (is_new || !Database.TableExists (jobsTableName)) {
 				CreateTable (Database);
