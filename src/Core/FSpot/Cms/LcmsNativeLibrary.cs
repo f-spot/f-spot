@@ -18,14 +18,13 @@ namespace FSpot.Cms
 
 		public static void Register ()
 		{
-#if NETCOREAPP
 			lock (gate) {
 				if (!registered) {
 					NativeLibrary.SetDllImportResolver (typeof (lcmsNET.Profile).Assembly, Resolve);
 					registered = true;
 				}
 			}
-#endif
+
 			// After the resolver: this is the first P/Invoke, and it has to see lcms2.
 			CmsDiagnostics.Install ();
 		}
@@ -57,7 +56,6 @@ namespace FSpot.Cms
 			return found;
 		}
 
-#if NETCOREAPP
 		static readonly object gate = new object ();
 		static bool registered;
 
@@ -75,6 +73,5 @@ namespace FSpot.Cms
 
 			return IntPtr.Zero;
 		}
-#endif
 	}
 }

@@ -107,10 +107,9 @@ namespace FSpot
 		}
 
 		// GetFullPath leaves a directory symlink in place, so a name inside the chosen
-		// folder can still point at another drive. net472 has no ResolveLinkTarget.
+		// folder can still point at another drive.
 		static string WindowsCanonical (string full)
 		{
-#if NET5_0_OR_GREATER
 			var pending = new Stack<string> ();
 			string current = full;
 			while (true) {
@@ -127,12 +126,8 @@ namespace FSpot
 				pending.Push (name);
 				current = parent;
 			}
-#else
-			return full;
-#endif
 		}
 
-#if NET5_0_OR_GREATER
 		static string WindowsFinal (string path)
 		{
 			// ResolveLinkTarget throws on a Windows drive root, and Same would then
@@ -162,7 +157,6 @@ namespace FSpot
 
 		static string TrimSeparator (string path)
 			=> path.TrimEnd (Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
-#endif
 
 		static string UnixReal (string path)
 		{

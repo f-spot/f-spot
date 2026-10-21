@@ -12,9 +12,6 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
-#if NETFRAMEWORK
-using System.Runtime.Serialization;
-#endif
 
 namespace FSpot.Platform
 {
@@ -32,11 +29,5 @@ namespace FSpot.Platform
 		public NoSuchKeyException (string key, Exception e) : base (key, e)
 		{
 		}
-
-#if NETFRAMEWORK
-		protected NoSuchKeyException (SerializationInfo info, StreamingContext context) : base (info, context)
-		{
-		}
-#endif
 	}
 }

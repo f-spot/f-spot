@@ -35,6 +35,15 @@ namespace FSpot.Imaging
 			output = process.StandardOutput.BaseStream;
 		}
 
+		internal static void AddArguments (ProcessStartInfo startInfo, string[] arguments)
+		{
+			foreach (var argument in arguments) {
+				if (argument == null)
+					throw new ArgumentException ("argv holds a null", nameof (arguments));
+				startInfo.ArgumentList.Add (argument);
+			}
+		}
+
 		public static Stream Start (string workingDirectory, string fileName, string[] arguments)
 		{
 			var startInfo = new ProcessStartInfo (fileName) {
@@ -46,15 +55,7 @@ namespace FSpot.Imaging
 				// Standard error is deliberately not redirected: a pipe nobody drains
 				// would deadlock a decoder that writes more warnings than fit in it.
 			};
-#if NET
-			foreach (var argument in arguments) {
-				if (argument == null)
-					throw new ArgumentException ("argv holds a null", nameof (arguments));
-				startInfo.ArgumentList.Add (argument);
-			}
-#else
-			startInfo.Arguments = ProcessArguments.Join (arguments);
-#endif
+			AddArguments (startInfo, arguments);
 
 			Process process;
 			try {

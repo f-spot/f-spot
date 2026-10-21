@@ -16,20 +16,8 @@ namespace FSpot
 	// A source offered by the import source picker: a mounted camera, card or
 	// disk, matching what FSpot.Gtk's ImportDialogController.ScanSources /
 	// FSpot.Import.ImportSource show in the "Import from:" combo.
-	// A plain struct rather than a record: FSpot also builds for net472, which has no IsExternalInit.
-	public readonly struct ImportSourceInfo
+	public readonly record struct ImportSourceInfo (string Name, SafeUri Root, string IconName)
 	{
-		public ImportSourceInfo (string name, SafeUri root, string iconName)
-		{
-			Name = name;
-			Root = root;
-			IconName = iconName;
-		}
-
-		public string Name { get; }
-		public SafeUri Root { get; }
-		public string IconName { get; }
-
 		public const string CameraIcon = "media-flash";
 		public const string IPodIcon = "multimedia-player";
 		public const string DriveIcon = "drive-harddisk";

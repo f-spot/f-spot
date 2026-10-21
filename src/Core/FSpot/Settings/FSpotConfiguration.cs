@@ -60,11 +60,7 @@ namespace FSpot.Settings
 
 		static string DefaultBaseDirectory ()
 		{
-#if NET
 			bool windows = OperatingSystem.IsWindows ();
-#else
-			bool windows = Environment.OSVersion.Platform == PlatformID.Win32NT;
-#endif
 			return DefaultBaseDirectory (
 				windows,
 				Environment.GetEnvironmentVariable ("XDG_CONFIG_HOME"),

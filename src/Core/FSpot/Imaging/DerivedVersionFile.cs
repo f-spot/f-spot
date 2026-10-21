@@ -54,14 +54,6 @@ namespace FSpot.Imaging
 		}
 
 		static void Replace (string temp, string destPath)
-		{
-#if NETFRAMEWORK
-			if (System.IO.File.Exists (destPath))
-				System.IO.File.Delete (destPath);
-			System.IO.File.Move (temp, destPath);
-#else
-			System.IO.File.Move (temp, destPath, overwrite: true);
-#endif
-		}
+			=> System.IO.File.Move (temp, destPath, overwrite: true);
 	}
 }
