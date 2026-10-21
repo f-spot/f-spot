@@ -151,7 +151,7 @@ public partial class ImportViewModel : ObservableObject
 	{
 		Preferences.RecurseSubdirectories = value;
 		if (!IsBusy && SourcePath is not null)
-			_ = ScanAsync ();
+			UiTasks.Forget (ScanAsync ());
 	}
 
 	partial void OnDuplicateDetectChanged (bool value)
@@ -161,7 +161,7 @@ public partial class ImportViewModel : ObservableObject
 	{
 		Preferences.MergeRawAndJpeg = value;
 		if (!IsBusy && SourcePath is not null)
-			_ = ScanAsync ();
+			UiTasks.Forget (ScanAsync ());
 	}
 
 	partial void OnRemoveOriginalsChanged (bool value)
@@ -170,7 +170,7 @@ public partial class ImportViewModel : ObservableObject
 	partial void OnSelectedPhotoChanged (PhotoItemViewModel? value)
 	{
 		if (value is not null)
-			_ = LoadPreviewAsync (value);
+			UiTasks.Forget (LoadPreviewAsync (value));
 		else
 			SetPreview (null);
 	}
@@ -192,7 +192,7 @@ public partial class ImportViewModel : ObservableObject
 		SelectedSourceOption = dropped;
 		suppressSourceSelection = false;
 
-		_ = ScanAsync ();
+		UiTasks.Forget (ScanAsync ());
 	}
 
 	// Rebuilds the "Import from:" picker: "Choose Folder...", then any
@@ -227,14 +227,14 @@ public partial class ImportViewModel : ObservableObject
 			return;
 
 		if (value.Kind == ImportSourceKind.ChooseFolder) {
-			_ = ChooseFolderAsync ();
+			UiTasks.Forget (ChooseFolderAsync ());
 			return;
 		}
 
 		droppedPaths = null;
 		SourcePath = value.Path;
 		SourceLabel = value.Label;
-		_ = ScanAsync ();
+		UiTasks.Forget (ScanAsync ());
 	}
 
 	[RelayCommand]
@@ -243,7 +243,13 @@ public partial class ImportViewModel : ObservableObject
 		if (IsBusy || importAccepted)
 			return;
 
-		string? path = await shell.PickFolderAsync (Strings.ChooseFolder);
+		string? path;
+		try {
+			path = await shell.PickFolderAsync (Strings.ChooseFolder);
+		} catch (Exception ex) {
+			Logger.Log.Error (ex, "Failed to choose an import folder");
+			return;
+		}
 		if (path is null) {
 			// Nothing was picked; fall back to whatever source was active
 			// rather than leaving "Choose Folder..." selected with no source.

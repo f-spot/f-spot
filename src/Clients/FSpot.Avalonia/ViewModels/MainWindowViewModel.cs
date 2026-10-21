@@ -52,6 +52,7 @@ public partial class MainWindowViewModel : ObservableObject
 	readonly Dictionary<PhotoItemViewModel, int> thumbnailGeneration = new ();
 	Task previewTask = Task.CompletedTask;
 	int previewGeneration;
+	CancellationTokenSource? previewDecode;
 	// Decodes finish on the pool. Close waits for these because it does not pump the dispatcher.
 	readonly object previewGate = new ();
 	readonly List<Task> previewDecodes = new ();
@@ -197,6 +198,7 @@ public partial class MainWindowViewModel : ObservableObject
 
 	readonly List<PhotoItemViewModel> catalogPhotos = [];
 	int histogramGeneration;
+	CancellationTokenSource? histogramDecode;
 	readonly List<uint> findRollIds = [];
 
 	public MainWindowViewModel (Db? database, IAvaloniaShell shell, IPhotoThumbnailLoader thumbnails, IImageFileFactory? images = null, IThumbnailService? thumbnailService = null, IFileSystem? fileSystem = null)
@@ -364,6 +366,7 @@ public partial class MainWindowViewModel : ObservableObject
 	int hoverEdge = 480;
 
 	int hoverGeneration;
+	CancellationTokenSource? hoverDecode;
 	PhotoItemViewModel? hoverItem;
 	int hoverScreenWidth;
 	int hoverScreenHeight;
@@ -553,7 +556,7 @@ public partial class MainWindowViewModel : ObservableObject
 		OnPropertyChanged (nameof (ShowPhotoGrid));
 		ClearVisibleFiltersCommand.NotifyCanExecuteChanged ();
 		NotifyFindTerms ();
-		_ = LoadThumbnailsAsync ();
+		UiTasks.Forget (LoadThumbnailsAsync ());
 	}
 
 	static uint RollIdOf (IPhoto photo)
@@ -699,6 +702,8 @@ public partial class MainWindowViewModel : ObservableObject
 	{
 		// A slower load of an earlier version must not replace this one.
 		int generation = NextPreviewGeneration ();
+		// Cancel the decode still waiting for the gate. One already inside the decoder runs out.
+		var token = RenewDecode (ref previewDecode);
 		if (!IsEditing || SelectedPhoto is null) {
 			previewTask = Task.CompletedTask;
 			SetPreview (null);
@@ -707,7 +712,7 @@ public partial class MainWindowViewModel : ObservableObject
 
 		var item = SelectedPhoto;
 		int size = EditorPreview.DecodeWidth (UiScale);
-		var decode = DecodePreviewAsync (generation, item, size);
+		var decode = DecodePreviewAsync (generation, item, size, token);
 		TrackPreviewDecode (decode);
 		previewTask = PublishPreviewAsync (generation, decode);
 	}
@@ -758,14 +763,14 @@ public partial class MainWindowViewModel : ObservableObject
 			return generation == previewGeneration;
 	}
 
-	async Task DecodePreviewAsync (int generation, PhotoItemViewModel item, int size)
+	async Task DecodePreviewAsync (int generation, PhotoItemViewModel item, int size, CancellationToken cancellationToken)
 	{
 		Bitmap? bitmap = null;
 		Bitmap? shown = null;
 		try {
 			// The editor reads the stored pixels. The screen copy is made after that,
 			// so a display profile is not baked into the edit.
-			bitmap = await thumbnails.LoadForMeasurementAsync (item.Path, size, CancellationToken.None).ConfigureAwait (false);
+			bitmap = await thumbnails.LoadForMeasurementAsync (item.Path, size, cancellationToken).ConfigureAwait (false);
 			if (!PreviewGenerationIs (generation)) {
 				bitmap?.Dispose ();
 				return;
@@ -785,6 +790,9 @@ public partial class MainWindowViewModel : ObservableObject
 			if (!OfferPreview (generation, stored, shown, clear: false))
 				shown.Dispose ();
 			shown = null;
+		} catch (OperationCanceledException) {
+			shown?.Dispose ();
+			bitmap?.Dispose ();
 		} catch (Exception ex) {
 			shown?.Dispose ();
 			bitmap?.Dispose ();
@@ -905,11 +913,12 @@ public partial class MainWindowViewModel : ObservableObject
 	void RequestHistogram (PhotoItemViewModel? item)
 	{
 		int generation = ++histogramGeneration;
+		var token = RenewDecode (ref histogramDecode);
 		if (item is null) {
 			SetHistogram (null);
 			return;
 		}
-		_ = UpdateHistogramAsync (item, generation);
+		UiTasks.Forget (UpdateHistogramAsync (item, generation, token));
 	}
 
 	internal void ReleaseDecodedImages ()
@@ -921,6 +930,10 @@ public partial class MainWindowViewModel : ObservableObject
 		NextPreviewGeneration ();
 		livePreviewGeneration++;
 		histogramGeneration++;
+		CancelDecode (ref previewDecode);
+		CancelDecode (ref histogramDecode);
+		CancelDecode (ref hoverDecode);
+		CancelDecode (ref popupDecode);
 		Task[] pending;
 		lock (previewGate)
 			pending = previewDecodes.ToArray ();
@@ -940,7 +953,7 @@ public partial class MainWindowViewModel : ObservableObject
 		ReleasedBitmap.DisposePrevious (previous, next);
 	}
 
-	async Task UpdateHistogramAsync (PhotoItemViewModel item, int generation)
+	async Task UpdateHistogramAsync (PhotoItemViewModel item, int generation, CancellationToken cancellationToken)
 	{
 		var context = SynchronizationContext.Current;
 		// A live edit histograms the editor output before the display profile.
@@ -952,7 +965,7 @@ public partial class MainWindowViewModel : ObservableObject
 
 		Bitmap? loaded = null;
 		try {
-			loaded = await thumbnails.LoadForMeasurementAsync (item.Path, HistogramRenderer.SourceEdge, CancellationToken.None);
+			loaded = await thumbnails.LoadForMeasurementAsync (item.Path, HistogramRenderer.SourceEdge, cancellationToken);
 			if (!HistogramStillCurrent (generation, item))
 				return;
 			if (loaded is null) {
@@ -975,6 +988,9 @@ public partial class MainWindowViewModel : ObservableObject
 				Apply ();
 			else
 				PostTo (context, Apply);
+		} catch (OperationCanceledException) {
+			loaded?.Dispose ();
+			loaded = null;
 		} catch (Exception ex) {
 			if (!HistogramStillCurrent (generation, item))
 				return;
@@ -1020,6 +1036,22 @@ public partial class MainWindowViewModel : ObservableObject
 #pragma warning disable VSTHRD001
 		context.Send (_ => action (), null);
 #pragma warning restore VSTHRD001
+	}
+
+	// A newer request cancels the decode still waiting for the single decode gate.
+	// The cancelled source is not disposed here. Dispose makes a waiter throw
+	// ObjectDisposedException, which is not cancellation.
+	CancellationToken RenewDecode (ref CancellationTokenSource? slot)
+	{
+		CancelDecode (ref slot);
+		slot = new CancellationTokenSource ();
+		return slot.Token;
+	}
+
+	static void CancelDecode (ref CancellationTokenSource? slot)
+	{
+		slot?.Cancel ();
+		slot = null;
 	}
 
 	bool HistogramStillCurrent (int generation, PhotoItemViewModel item)
@@ -1228,12 +1260,12 @@ public partial class MainWindowViewModel : ObservableObject
 		OnPropertyChanged (nameof (CanZoomOut));
 		ZoomInCommand.NotifyCanExecuteChanged ();
 		ZoomOutCommand.NotifyCanExecuteChanged ();
-		_ = LoadThumbnailsAsync ();
+		UiTasks.Forget (LoadThumbnailsAsync ());
 	}
 
 	partial void OnUiScaleChanged (double value)
 	{
-		_ = LoadThumbnailsAsync ();
+		UiTasks.Forget (LoadThumbnailsAsync ());
 		RequestPreview ();
 	}
 
@@ -1461,8 +1493,9 @@ public partial class MainWindowViewModel : ObservableObject
 	async Task LoadHoverAsync (PhotoItemViewModel item, int edge, int generation)
 	{
 		Bitmap? bitmap = null;
+		var token = RenewDecode (ref hoverDecode);
 		try {
-			bitmap = await thumbnails.LoadAsync (item.Path, edge, CancellationToken.None);
+			bitmap = await thumbnails.LoadAsync (item.Path, edge, token);
 			if (generation != hoverGeneration || !ShowHoverPreviewEnabled || IsEditing) {
 				bitmap?.Dispose ();
 				return;
@@ -1471,7 +1504,10 @@ public partial class MainWindowViewModel : ObservableObject
 			HoverEdge = edge;
 			HoverDetail = HoverPreview.Caption (item.Photo.Description, item.Photo.Time, item.Photo.Name);
 			SetHoverBitmap (bitmap);
+			bitmap = null;
 			ShowHoverPreview = true;
+		} catch (OperationCanceledException) {
+			bitmap?.Dispose ();
 		} catch (Exception ex) {
 			bitmap?.Dispose ();
 			Logger.Log.Debug (ex, "Failed to load the hover preview for {Path}", item.Path);
@@ -1485,6 +1521,7 @@ public partial class MainWindowViewModel : ObservableObject
 	{
 		hoverItem = null;
 		hoverGeneration++;
+		CancelDecode (ref hoverDecode);
 		ShowHoverPreview = false;
 		HoverDetail = string.Empty;
 		SetHoverBitmap (null);
@@ -2403,7 +2440,7 @@ public partial class MainWindowViewModel : ObservableObject
 
 		var thumbnailsService = CatalogThumbnails ();
 		if (thumbnailsService is null) {
-			_ = shell.ShowWarningAsync (Strings.ErrorWhileRotatingPhoto, "The thumbnail service is not available.");
+			UiTasks.Forget (shell.ShowWarningAsync (Strings.ErrorWhileRotatingPhoto, "The thumbnail service is not available."));
 			return;
 		}
 		var op = new RotateMultiple (photos, direction, thumbnailsService);
@@ -2411,12 +2448,12 @@ public partial class MainWindowViewModel : ObservableObject
 			while (op.Step ()) { }
 		} catch (RotateException ex) {
 			string name = System.IO.Path.GetFileName (ex.Path);
-			_ = shell.ShowWarningAsync (Strings.ErrorWhileRotatingPhoto,
-				string.Format (Strings.ReceivedErrorXWhileAttemptingToRotateY, ex.Message, name));
+			UiTasks.Forget (shell.ShowWarningAsync (Strings.ErrorWhileRotatingPhoto,
+				string.Format (Strings.ReceivedErrorXWhileAttemptingToRotateY, ex.Message, name)));
 			return;
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Failed to rotate selection");
-			_ = shell.ShowWarningAsync (Strings.ErrorWhileRotatingPhoto, ex.Message);
+			UiTasks.Forget (shell.ShowWarningAsync (Strings.ErrorWhileRotatingPhoto, ex.Message));
 			return;
 		}
 
@@ -2438,7 +2475,7 @@ public partial class MainWindowViewModel : ObservableObject
 			RequestHistogram (SelectedPhoto);
 		}
 
-		_ = LoadThumbnailsAsync ();
+		UiTasks.Forget (LoadThumbnailsAsync ());
 		NotifySelectionCommands ();
 	}
 
@@ -2467,7 +2504,7 @@ public partial class MainWindowViewModel : ObservableObject
 		Info.Update (photo);
 		RequestPreview ();
 		RequestHistogram (SelectedPhoto);
-		_ = LoadThumbnailsAsync ();
+		UiTasks.Forget (LoadThumbnailsAsync ());
 		NotifySelectionCommands ();
 	}
 
@@ -2899,7 +2936,7 @@ public partial class MainWindowViewModel : ObservableObject
 	{
 		if (node is null || database is null)
 			return;
-		_ = RenameTagAsync (node);
+		UiTasks.Forget (RenameTagAsync (node));
 	}
 
 	async Task RenameTagAsync (TagNode node)

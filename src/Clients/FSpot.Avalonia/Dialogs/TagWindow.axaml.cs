@@ -139,18 +139,22 @@ public partial class TagWindow : Window
 	}
 
 	void OnEditIcon (object? sender, RoutedEventArgs e)
-		=> _ = EditIconAsync ();
+		=> UiTasks.Forget (EditIconAsync ());
 
 	internal async Task EditIconAsync ()
 	{
 		if (editing is null)
 			return;
-		var dialog = new EditTagIconWindow (editing, PendingIcon);
-		await dialog.ShowDialog (this);
-		if (dialog.Result is null)
-			return;
-		PendingIcon = dialog.Result;
-		ShowIcon ();
+		try {
+			var dialog = new EditTagIconWindow (editing, PendingIcon);
+			await dialog.ShowDialog (this);
+			if (dialog.Result is null)
+				return;
+			PendingIcon = dialog.Result;
+			ShowIcon ();
+		} catch (Exception ex) {
+			Logger.Log.Error (ex, "Failed to edit the tag icon");
+		}
 	}
 
 	internal void Accept ()

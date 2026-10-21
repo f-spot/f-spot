@@ -169,7 +169,7 @@ public partial class SlideshowWindow : Window
 	}
 
 	void ShowCurrent (bool animate)
-		=> _ = ShowCurrentAsync (animate);
+		=> UiTasks.Forget (ShowCurrentAsync (animate));
 
 	async Task ShowCurrentAsync (bool animate)
 	{
@@ -305,12 +305,18 @@ public partial class SlideshowWindow : Window
 		bool showedNext = false;
 		flipTimer.Stop ();
 		try {
-			CatalogRemoval removed = await host.RemovePhotoAsync (path, deleteFromDrive);
+			CatalogRemoval removed;
+			try {
+				removed = await host.RemovePhotoAsync (path, deleteFromDrive);
+			} catch (Exception ex) {
+				Logger.Log.Error (ex, "Failed to remove {Path} from the slideshow", path);
+				return;
+			}
 			if (!IsVisible)
 				return;
 			if (!removed.LeftGrid) {
 				if (removed.Path is string surviving && sequence.Replace (path, surviving)) {
-					_ = ShowCurrentAsync (animate: false);
+					UiTasks.Forget (ShowCurrentAsync (animate: false));
 					showedNext = true;
 				}
 				return;
@@ -319,7 +325,7 @@ public partial class SlideshowWindow : Window
 				Close ();
 				return;
 			}
-			_ = ShowCurrentAsync (animate: false);
+			UiTasks.Forget (ShowCurrentAsync (animate: false));
 			showedNext = true;
 		} finally {
 			busy = false;
@@ -350,10 +356,10 @@ public partial class SlideshowWindow : Window
 			Rate (action.Rating);
 			break;
 		case FullScreenCommand.RemoveFromCatalog:
-			_ = RemoveAsync (deleteFromDrive: false);
+			UiTasks.Forget (RemoveAsync (deleteFromDrive: false));
 			break;
 		case FullScreenCommand.DeleteFromDrive:
-			_ = RemoveAsync (deleteFromDrive: true);
+			UiTasks.Forget (RemoveAsync (deleteFromDrive: true));
 			break;
 		case FullScreenCommand.Next:
 			Go (1);

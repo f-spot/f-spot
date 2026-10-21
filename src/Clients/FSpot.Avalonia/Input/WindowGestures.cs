@@ -95,7 +95,7 @@ public static class ThumbnailItems
 			return;
 		if ((uint)e.Index >= (uint)list.Items.Count || list.Items[e.Index] is not PhotoItemViewModel item)
 			return;
-		_ = viewModel.RealizeThumbnailAsync (e.Container, item);
+		UiTasks.Forget (viewModel.RealizeThumbnailAsync (e.Container, item));
 	}
 
 	static void OnClearing (object? sender, ContainerClearingEventArgs e)
@@ -314,7 +314,7 @@ public static class CellHover
 		var screen = window.Screens?.ScreenFromVisual (window)?.Bounds;
 		int width = screen?.Width ?? (int)window.Bounds.Width;
 		int height = screen?.Height ?? (int)window.Bounds.Height;
-		_ = viewModel.ShowHoverAsync (item, width, height);
+		UiTasks.Forget (viewModel.ShowHoverAsync (item, width, height));
 	}
 
 	static void OnExited (object? sender, PointerEventArgs e)

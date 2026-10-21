@@ -25,7 +25,7 @@ public partial class MainWindowViewModel : IFullScreenHost
 		}
 
 		if (paths.Count == 0) {
-			_ = shell.ShowWarningAsync (playSlideshow ? Strings.Slideshow : Strings.Fullscreen, Strings.NoSelectionAvailable);
+			UiTasks.Forget (shell.ShowWarningAsync (playSlideshow ? Strings.Slideshow : Strings.Fullscreen, Strings.NoSelectionAvailable));
 			return;
 		}
 

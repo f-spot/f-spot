@@ -70,7 +70,7 @@ public static class TagTreeInput
 			return;
 		switch (action) {
 		case TagKey.Delete:
-			_ = viewModel.DeleteHighlightedTagsAsync (highlighted);
+			UiTasks.Forget (viewModel.DeleteHighlightedTagsAsync (highlighted));
 			break;
 		case TagKey.Include:
 			viewModel.IncludeTagsInQuery (highlighted);

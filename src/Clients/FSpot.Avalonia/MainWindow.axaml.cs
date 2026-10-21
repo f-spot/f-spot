@@ -76,7 +76,7 @@ public partial class MainWindow : Window, IAvaloniaShell
 			GtkMnemonic.ApplyHotKey (ToolbarImportButton, FSpot.Resources.Lang.Strings.Import2);
 			GtkMnemonic.ApplyHotKey (EmptyImportButton, FSpot.Resources.Lang.Strings.Import2);
 			if (displayRefresh == null) {
-				displayRefresh = () => _ = viewModel.RefreshDisplayAsync ();
+				displayRefresh = () => UiTasks.Forget (viewModel.RefreshDisplayAsync ());
 				DisplayProfileWatch.Attach (displayRefresh);
 			}
 		};
@@ -309,7 +309,7 @@ public partial class MainWindow : Window, IAvaloniaShell
 		try {
 			System.Diagnostics.Process.Start (new System.Diagnostics.ProcessStartInfo (uri) { UseShellExecute = true });
 		} catch (Exception ex) {
-			_ = ShowWarningAsync (Strings.Contents, ex.Message);
+			UiTasks.Forget (ShowWarningAsync (Strings.Contents, ex.Message));
 		}
 	}
 

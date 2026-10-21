@@ -90,7 +90,7 @@ public static class CatalogDrop
 			break;
 		case CatalogDropKind.PhotoGrid:
 			if (e.DataTransfer.Contains (DragFormats.Photos))
-				_ = viewModel.MergeDroppedPhotosAsync (PhotoUnderPointer (e, control));
+				UiTasks.Forget (viewModel.MergeDroppedPhotosAsync (PhotoUnderPointer (e, control)));
 			else
 				ApplyLibrary (viewModel, e, PhotoUnderPointer (e, control));
 			e.Handled = true;
@@ -114,7 +114,7 @@ public static class CatalogDrop
 			return;
 		var paths = DroppedPaths (e.DataTransfer);
 		if (paths.Count > 0) {
-			_ = viewModel.ImportDroppedAsync (paths);
+			UiTasks.Forget (viewModel.ImportDroppedAsync (paths));
 			return;
 		}
 		viewModel.AttachDroppedTag (Read (e.DataTransfer, DragFormats.TagId), target);

@@ -66,7 +66,7 @@ public partial class MailWindow : Window
 		if (loadTray) {
 			LoadTray ();
 			if (!forceOriginal && paths.Count > 0)
-				_ = CalibrateAsync (paths[0]);
+				UiTasks.Forget (CalibrateAsync (paths[0]));
 		}
 	}
 

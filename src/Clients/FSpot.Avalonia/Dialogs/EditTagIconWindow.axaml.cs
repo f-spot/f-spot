@@ -159,10 +159,21 @@ public partial class EditTagIconWindow : Window
 	{
 		displayedPhoto = index;
 		int generation = ++choiceGeneration;
-		_ = ShowPhotoAsync (index, pending, generation);
+		var token = RenewPhotoDecode ();
+		UiTasks.Forget (ShowPhotoAsync (index, pending, generation, token));
 	}
 
-	async Task ShowPhotoAsync (int index, bool pending, int generation)
+	CancellationTokenSource? photoDecode;
+
+	CancellationToken RenewPhotoDecode ()
+	{
+		var previous = photoDecode;
+		photoDecode = new CancellationTokenSource ();
+		previous?.Cancel ();
+		return photoDecode.Token;
+	}
+
+	async Task ShowPhotoAsync (int index, bool pending, int generation, CancellationToken cancellationToken)
 	{
 		PhotoLabel.Text = string.Format (CultureInfo.CurrentCulture, Strings.PhotoXOfY, index + 1, source.PhotoPaths.Count);
 		Bitmap? bitmap = null;
@@ -173,12 +184,17 @@ public partial class EditTagIconWindow : Window
 				var decoded = AvaloniaPhotoDecoder.DecodeFile (source.PhotoPaths[index], PhotoDecodeWidth);
 				var pixels = AvaloniaImagingBackend.ToRgbBuffer (decoded);
 				return (pixels, DisplayColor.Present (decoded));
-			}, CancellationToken.None);
+			}, cancellationToken);
+			// The icon choice has its own generation. The photo stays if the user picked
+			// an icon while this decode was still waiting.
 			if (index != PhotoNumber - 1) {
 				bitmap?.Dispose ();
 				return;
 			}
 			photoBuffer = stored;
+		} catch (OperationCanceledException) {
+			bitmap?.Dispose ();
+			return;
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Failed to load {Path} for a tag icon", source.PhotoPaths[index]);
 			if (index != PhotoNumber - 1) {
@@ -214,27 +230,32 @@ public partial class EditTagIconWindow : Window
 	}
 
 	void OnFromFile (object? sender, RoutedEventArgs e)
-		=> _ = PickExternalAsync ();
+		=> UiTasks.Forget (PickExternalAsync ());
 
 	async Task PickExternalAsync ()
 	{
-		var files = await StorageProvider.OpenFilePickerAsync (new FilePickerOpenOptions {
-			Title = Strings.SelectPhotoFromFile,
-			AllowMultiple = false,
-			FileTypeFilter = [FilePickerFileTypes.ImageAll]
-		});
-		if (files.Count == 0)
-			return;
-		string? path = files[0].TryGetLocalPath ();
-		await LoadExternalAsync (path ?? files[0].Path.ToString ());
+		try {
+			var files = await StorageProvider.OpenFilePickerAsync (new FilePickerOpenOptions {
+				Title = Strings.SelectPhotoFromFile,
+				AllowMultiple = false,
+				FileTypeFilter = [FilePickerFileTypes.ImageAll]
+			});
+			if (files.Count == 0)
+				return;
+			string? path = files[0].TryGetLocalPath ();
+			await LoadExternalAsync (path ?? files[0].Path.ToString ());
+		} catch (Exception ex) {
+			Logger.Log.Error (ex, "Failed to choose a tag icon file");
+		}
 	}
 
 	internal async Task LoadExternalAsync (string path)
 	{
+		var token = RenewPhotoDecode ();
 		try {
 			using var bitmap = await DecodeGate.RunAsync (
 				() => AvaloniaPhotoDecoder.DecodeFile (path, PhotoDecodeWidth),
-				CancellationToken.None);
+				token);
 			var buffer = AvaloniaImagingBackend.ToRgbBuffer (bitmap);
 			SetPreview (new TagIconChoice (null, TagIconImage.Create (buffer, null, backend.Scale)));
 			FileName.Text = path;

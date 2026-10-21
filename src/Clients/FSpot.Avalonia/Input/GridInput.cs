@@ -129,7 +129,7 @@ public static class GridInput
 		}
 		PlacePopup (list, item);
 		var (width, height) = ScreenSize (list);
-		_ = viewModel.ShowPreviewPopupAsync (item, histogram, width, height);
+		UiTasks.Forget (viewModel.ShowPreviewPopupAsync (item, histogram, width, height));
 	}
 
 	static void PlacePopup (ListBox list, PhotoItemViewModel item)
@@ -200,7 +200,7 @@ public static class GridInput
 				else {
 					PlacePopup (list, hovered);
 					var (width, height) = ScreenSize (list);
-					_ = viewModel.ShowPreviewPopupAsync (hovered, viewModel.PreviewPopupShowsHistogram, width, height);
+					UiTasks.Forget (viewModel.ShowPreviewPopupAsync (hovered, viewModel.PreviewPopupShowsHistogram, width, height));
 				}
 			}
 		}

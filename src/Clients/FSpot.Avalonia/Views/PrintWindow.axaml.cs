@@ -115,7 +115,7 @@ public partial class PrintWindow : Window
 		if (Preview is null || CustomText is null)
 			return;
 		int generation = ++previewGeneration;
-		_ = RenderPreviewAsync (generation, new PrintRenderer (photos, Options, PageSetup, printerProfile));
+		UiTasks.Forget (RenderPreviewAsync (generation, new PrintRenderer (photos, Options, PageSetup, printerProfile)));
 	}
 
 	async Task RenderPreviewAsync (int generation, PrintRenderer renderer)
@@ -138,17 +138,21 @@ public partial class PrintWindow : Window
 	}
 
 	void OnPageSetup (object? sender, RoutedEventArgs e)
-		=> _ = PageSetupAsync ();
+		=> UiTasks.Forget (PageSetupAsync ());
 
 	async Task PageSetupAsync ()
 	{
-		var dialog = new PageSetupWindow (PageSetup);
-		await dialog.ShowDialog (this);
-		if (dialog.Result is null)
-			return;
-		PageSetup = dialog.Result;
-		RefreshPaper ();
-		RefreshPreview ();
+		try {
+			var dialog = new PageSetupWindow (PageSetup);
+			await dialog.ShowDialog (this);
+			if (dialog.Result is null)
+				return;
+			PageSetup = dialog.Result;
+			RefreshPaper ();
+			RefreshPreview ();
+		} catch (Exception ex) {
+			Logger.Log.Error (ex, "Failed to open page setup");
+		}
 	}
 
 	async Task<string> RenderPdfAsync (string path)
@@ -162,7 +166,7 @@ public partial class PrintWindow : Window
 	}
 
 	void OnPrint (object? sender, RoutedEventArgs e)
-		=> _ = PrintAsync ();
+		=> UiTasks.Forget (PrintAsync ());
 
 	async Task PrintAsync ()
 	{
@@ -194,7 +198,7 @@ public partial class PrintWindow : Window
 	}
 
 	void OnSavePdf (object? sender, RoutedEventArgs e)
-		=> _ = SavePdfAsync ();
+		=> UiTasks.Forget (SavePdfAsync ());
 
 	async Task SavePdfAsync ()
 	{

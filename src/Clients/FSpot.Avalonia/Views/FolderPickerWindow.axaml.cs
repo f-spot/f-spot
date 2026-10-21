@@ -31,9 +31,13 @@ public partial class FolderPickerWindow : Window
 
 	public async Task BrowseAsync ()
 	{
-		string? picked = await browse (Title ?? string.Empty);
-		if (!string.IsNullOrWhiteSpace (picked))
-			PathBox.Text = picked;
+		try {
+			string? picked = await browse (Title ?? string.Empty);
+			if (!string.IsNullOrWhiteSpace (picked))
+				PathBox.Text = picked;
+		} catch (Exception ex) {
+			Logger.Log.Error (ex, "Failed to browse for a folder");
+		}
 	}
 
 	void OnOk (object? sender, RoutedEventArgs e)
@@ -43,5 +47,5 @@ public partial class FolderPickerWindow : Window
 		=> Close (null);
 
 	void OnBrowse (object? sender, RoutedEventArgs e)
-		=> _ = BrowseAsync ();
+		=> UiTasks.Forget (BrowseAsync ());
 }

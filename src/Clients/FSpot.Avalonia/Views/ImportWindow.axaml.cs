@@ -23,7 +23,7 @@ public partial class ImportWindow : Window
 			ApplyUiScale ();
 			if (displayRefresh != null)
 				return;
-			displayRefresh = () => _ = viewModel.RefreshDisplayAsync ();
+			displayRefresh = () => UiTasks.Forget (viewModel.RefreshDisplayAsync ());
 			DisplayProfileWatch.Attach (displayRefresh);
 		};
 		ScalingChanged += (_, _) => ApplyUiScale ();
@@ -48,7 +48,7 @@ public partial class ImportWindow : Window
 			return;
 		if ((uint)e.Index >= (uint)list.Items.Count || list.Items[e.Index] is not PhotoItemViewModel item)
 			return;
-		_ = viewModel.RealizeThumbnailAsync (e.Container, item);
+		UiTasks.Forget (viewModel.RealizeThumbnailAsync (e.Container, item));
 	}
 
 	void OnThumbnailContainerClearing (object? sender, ContainerClearingEventArgs e)

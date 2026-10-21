@@ -3176,8 +3176,6 @@ public sealed partial class MainWindowViewModelTests
 		}
 	}
 
-	// Preview and histogram loads pass CancellationToken.None. The grid load does not.
-
 	sealed class FrozenImport : IImportController
 	{
 		readonly Action mutateDuringImport;
@@ -3209,9 +3207,10 @@ public sealed partial class MainWindowViewModelTests
 
 		public Task<Bitmap?> LoadAsync (string path, int size, CancellationToken cancellationToken)
 		{
-			// The import preview uses its own token. A missing token is a measurement.
-			// Neither of those is the grid decode this counter watches.
-			if (cancellationToken == CancellationToken.None || size == HiDpi.PixelSize (HiDpi.ImportPreviewDip, 1))
+			// An import preview or a histogram measurement is not the grid decode.
+			if (cancellationToken == CancellationToken.None
+				|| size == HiDpi.PixelSize (HiDpi.ImportPreviewDip, 1)
+				|| size == HistogramRenderer.SourceEdge)
 				return Task.FromResult<Bitmap?> (TinyBitmap ());
 			GridCalls++;
 			if (!Allow)

@@ -53,6 +53,7 @@ public partial class MainWindowViewModel
 	DateTime? timelineLimitEnd;
 	bool loupePlaced;
 	int previewPopupGeneration;
+	CancellationTokenSource? popupDecode;
 
 	public bool IsPreviewZoomed => !Imaging.ViewerZoom.IsFit (PreviewZoom);
 
@@ -259,8 +260,9 @@ public partial class MainWindowViewModel
 	{
 		Bitmap? bitmap = null;
 		Bitmap? chart = null;
+		var token = RenewDecode (ref popupDecode);
 		try {
-			bitmap = await thumbnails.LoadAsync (item.Path, edge, CancellationToken.None);
+			bitmap = await thumbnails.LoadAsync (item.Path, edge, token);
 			if (generation != previewPopupGeneration || !IsBrowsing) {
 				bitmap?.Dispose ();
 				return;
@@ -272,7 +274,12 @@ public partial class MainWindowViewModel
 			PreviewPopupEdge = edge;
 			PreviewPopupDetail = HoverPreview.Caption (item.Photo.Description, item.Photo.Time, item.Photo.Name);
 			SetPreviewPopupBitmaps (bitmap, chart);
+			bitmap = null;
+			chart = null;
 			ShowPreviewPopup = true;
+		} catch (OperationCanceledException) {
+			bitmap?.Dispose ();
+			chart?.Dispose ();
 		} catch (Exception ex) {
 			bitmap?.Dispose ();
 			chart?.Dispose ();
@@ -283,6 +290,7 @@ public partial class MainWindowViewModel
 	public void HidePreviewPopup ()
 	{
 		previewPopupGeneration++;
+		CancelDecode (ref popupDecode);
 		PreviewPopupItem = null;
 		ShowPreviewPopup = false;
 		PreviewPopupDetail = string.Empty;
@@ -324,7 +332,7 @@ public partial class MainWindowViewModel
 			name => database?.Tags.GetTagByName (name) is not null
 				|| (database is null && FlattenTags (Tags).Any (node => string.Equals (node.Tag.Name, name, StringComparison.OrdinalIgnoreCase))));
 		if (taken)
-			_ = shell.ShowWarningAsync (Strings.ErrorRenamingTag, Strings.ThisNameIsAlreadyInUse);
+			UiTasks.Forget (shell.ShowWarningAsync (Strings.ErrorRenamingTag, Strings.ThisNameIsAlreadyInUse));
 		return taken;
 	}
 

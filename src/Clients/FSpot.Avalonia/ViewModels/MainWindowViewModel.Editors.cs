@@ -114,7 +114,7 @@ public partial class MainWindowViewModel
 		if (value is null || editingCustomRatios)
 			return;
 		if (value.Kind == CropConstraintKind.AddCustom) {
-			_ = EditCustomCropRatiosAsync ();
+			UiTasks.Forget (EditCustomCropRatiosAsync ());
 			return;
 		}
 		CropSelectionRatio = CropConstraints.RatioFor (value, PreviewPixelWidth, PreviewPixelHeight);

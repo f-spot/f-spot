@@ -138,16 +138,20 @@ public partial class PreferencesWindow : Window
 		=> $"#{color.R:x2}{color.G:x2}{color.B:x2}";
 
 	void OnBrowse (object? sender, RoutedEventArgs e)
-		=> _ = BrowseAsync ();
+		=> UiTasks.Forget (BrowseAsync ());
 
 	async Task BrowseAsync ()
 	{
-		var folders = await StorageProvider.OpenFolderPickerAsync (new FolderPickerOpenOptions {
-			Title = Strings.SelectAFolder,
-			AllowMultiple = false
-		});
-		if (folders.Count > 0)
-			StoragePath.Text = folders[0].Path.LocalPath;
+		try {
+			var folders = await StorageProvider.OpenFolderPickerAsync (new FolderPickerOpenOptions {
+				Title = Strings.SelectAFolder,
+				AllowMultiple = false
+			});
+			if (folders.Count > 0)
+				StoragePath.Text = folders[0].Path.LocalPath;
+		} catch (Exception ex) {
+			Logger.Log.Error (ex, "Failed to browse for the photo folder");
+		}
 	}
 
 	void OnClose (object? sender, RoutedEventArgs e)

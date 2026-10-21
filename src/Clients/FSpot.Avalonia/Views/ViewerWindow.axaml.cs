@@ -112,9 +112,9 @@ public partial class ViewerWindow : Window, IViewerShell
 			if (e.PropertyName != nameof (ViewerItemViewModel.Revision))
 				return;
 			if (trayLease.IsHeld (item))
-				_ = LoadThumbnailAsync (item);
+				UiTasks.Forget (LoadThumbnailAsync (item));
 			if (ReferenceEquals (item, viewModel.CurrentItem))
-				_ = LoadPhotoAsync (item);
+				UiTasks.Forget (LoadPhotoAsync (item));
 		};
 	}
 
@@ -125,7 +125,7 @@ public partial class ViewerWindow : Window, IViewerShell
 		var item = viewModel.Items[e.Index];
 		trayLease.Realize (e.Container, item);
 		if (item.Thumbnail is null && !trayLoads.IsLoading (item))
-			_ = LoadThumbnailAsync (item);
+			UiTasks.Forget (LoadThumbnailAsync (item));
 	}
 
 	void OnTrayClearing (object? sender, ContainerClearingEventArgs e)
@@ -159,10 +159,10 @@ public partial class ViewerWindow : Window, IViewerShell
 
 	void RefreshForDisplayProfile ()
 	{
-		_ = LoadPhotoAsync (viewModel.CurrentItem);
+		UiTasks.Forget (LoadPhotoAsync (viewModel.CurrentItem));
 		foreach (var held in trayLease.Held) {
 			if (held is ViewerItemViewModel item)
-				_ = LoadThumbnailAsync (item);
+				UiTasks.Forget (LoadThumbnailAsync (item));
 		}
 	}
 
@@ -171,7 +171,7 @@ public partial class ViewerWindow : Window, IViewerShell
 		switch (e.PropertyName) {
 		case nameof (ViewerViewModel.CurrentItem):
 			if (!ReferenceEquals (shownItem, viewModel.CurrentItem))
-				_ = LoadPhotoAsync (viewModel.CurrentItem);
+				UiTasks.Forget (LoadPhotoAsync (viewModel.CurrentItem));
 			break;
 		case nameof (ViewerViewModel.Zoom):
 			ApplyZoom ();

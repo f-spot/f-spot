@@ -98,15 +98,19 @@ public static class PointerDrag
 		e.Pointer.Capture (null);
 		if (For (control.DataContext) is not Payload payload)
 			return;
-		_ = StartDragAsync (control, arm.Press, payload);
+		UiTasks.Forget (StartDragAsync (control, arm.Press, payload));
 	}
 
 	static async Task StartDragAsync (Control control, PointerPressedEventArgs press, Payload payload)
 	{
-		IReadOnlyList<IStorageItem> files = payload.Format == DragFormats.Photos
-			? await SelectedPhotoFilesAsync (control)
-			: Array.Empty<IStorageItem> ();
-		await DragDrop.DoDragDropAsync (press, Transfer (payload, files), DragDropEffects.Copy);
+		try {
+			IReadOnlyList<IStorageItem> files = payload.Format == DragFormats.Photos
+				? await SelectedPhotoFilesAsync (control)
+				: Array.Empty<IStorageItem> ();
+			await DragDrop.DoDragDropAsync (press, Transfer (payload, files), DragDropEffects.Copy);
+		} catch (Exception ex) {
+			Logger.Log.Error (ex, "Failed to start a drag");
+		}
 	}
 
 	/// <summary>

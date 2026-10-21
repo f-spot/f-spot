@@ -147,19 +147,24 @@ public static class QueryDrop
 		if (control.DataContext is not QueryLiteralViewModel literal || WindowCommand.Model (control) is not MainWindowViewModel viewModel)
 			return;
 
-		_ = DragLiteralAsync (press, literal, viewModel);
+		UiTasks.Forget (DragLiteralAsync (press, literal, viewModel));
 	}
 
 	static async Task DragLiteralAsync (PointerPressedEventArgs press, QueryLiteralViewModel literal, MainWindowViewModel viewModel)
 	{
 		dragging = literal;
-		var data = new DataTransfer ();
-		data.Add (DataTransferItem.Create (DragFormats.QueryLiteral, literal.AutomationId));
-		var effect = await DragDrop.DoDragDropAsync (press, data, DragDropEffects.Move);
-		// A tag dragged off the query bar and dropped nowhere is thrown away, as in GTK.
-		if (effect == DragDropEffects.None && ReferenceEquals (dragging, literal))
-			viewModel.RemoveQueryLiteralCommand.Execute (literal);
-		dragging = null;
+		try {
+			var data = new DataTransfer ();
+			data.Add (DataTransferItem.Create (DragFormats.QueryLiteral, literal.AutomationId));
+			var effect = await DragDrop.DoDragDropAsync (press, data, DragDropEffects.Move);
+			// A tag dragged off the query bar and dropped nowhere is thrown away, as in GTK.
+			if (effect == DragDropEffects.None && ReferenceEquals (dragging, literal))
+				viewModel.RemoveQueryLiteralCommand.Execute (literal);
+		} catch (Exception ex) {
+			Logger.Log.Error (ex, "Failed to drag a query term");
+		} finally {
+			dragging = null;
+		}
 	}
 
 	static void OnReleased (object? sender, PointerReleasedEventArgs e)
