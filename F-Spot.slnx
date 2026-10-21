@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Clients/">
+    <Project Path="F-Spot.csproj" />
     <Project Path="src/Clients/FSpot.Avalonia/FSpot.Avalonia.csproj" />
   </Folder>
   <Folder Name="/Core/">
@@ -19,7 +20,7 @@
     <File Path=".editorconfig" />
     <File Path=".gitattributes" />
     <File Path=".gitignore" />
-    <File Path="build.proj" />
+    <File Path="build.msbuild" />
     <File Path="global.json" />
     <File Path="F-Spot.Portable.slnf" />
     <File Path="F-Spot.Tests.slnf" />

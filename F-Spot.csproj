@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    The only project file in the repository root. `dotnet run` (including
+    `dotnet run F-Spot.slnx`) discovers it and starts the Avalonia client.
+    build.msbuild is the solution build driver and is not a project the CLI can run.
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    <RunWorkingDirectory>$(MSBuildThisFileDirectory)</RunWorkingDirectory>
+    <RunCommand Condition="$([MSBuild]::IsOSPlatform('Windows'))">$(MSBuildThisFileDirectory)artifacts\fspot-avalonia\FSpot.Avalonia.exe</RunCommand>
+    <RunCommand Condition="'$(RunCommand)' == ''">$(MSBuildThisFileDirectory)artifacts/fspot-avalonia/FSpot.Avalonia</RunCommand>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="src/Clients/FSpot.Avalonia/FSpot.Avalonia.csproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <Compile Include="src/Run/FSpotRun.cs" />
+  </ItemGroup>
+</Project>

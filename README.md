@@ -31,9 +31,11 @@ Committed `icons/*.png` are not regenerated during `dotnet build`. After you cha
 
 # Launch
 
-Avalonia client (modern .NET, including macOS):
+Avalonia client (modern .NET, including macOS), from the repository root:
 
-	dotnet run --project src/Clients/FSpot.Avalonia
+	dotnet run
+
+`dotnet run F-Spot.slnx` starts the same client. The solution name is not a project file, and `build.msbuild` is the build driver, so the root `F-Spot.csproj` is what `dotnet run` launches.
 
 The built binary is `artifacts/fspot-avalonia/FSpot.Avalonia`.
 
