@@ -132,7 +132,10 @@ public partial class EditTagIconWindow : Window
 		hasPreview |= pending;
 		PreviewSvg.Path = choice.ThemeIconName is null ? null : TagIcons.UriFor (choice.ThemeIconName);
 		PreviewSvg.IsVisible = choice.ThemeIconName is not null;
-		PreviewImage.Source = choice.Icon is null ? null : AvaloniaImagingBackend.ToBgraBitmap (DisplayColor.Apply (choice.Icon, DisplayColor.Selected ()));
+		var shown = choice.Icon is null ? null : AvaloniaImagingBackend.ToBgraBitmap (DisplayColor.Apply (choice.Icon, DisplayColor.Selected ()));
+		var previous = PreviewImage.Source as Bitmap;
+		PreviewImage.Source = shown;
+		ReleasedBitmap.DisposePrevious (previous, shown);
 		PreviewImage.IsVisible = choice.Icon is not null;
 	}
 
@@ -300,6 +303,9 @@ public partial class EditTagIconWindow : Window
 		photoDecode?.Cancel ();
 		(PhotoImage.Source as IDisposable)?.Dispose ();
 		PhotoImage.Source = null;
+		var preview = PreviewImage.Source as Bitmap;
+		PreviewImage.Source = null;
+		ReleasedBitmap.DisposePrevious (preview, null);
 		showingPhoto = true;
 		try {
 			PhotoSelection.Preview = null;

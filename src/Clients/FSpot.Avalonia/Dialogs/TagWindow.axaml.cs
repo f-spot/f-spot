@@ -3,6 +3,7 @@
 using Avalonia.Automation;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Media.Imaging;
 
 using FSpot.Avalonia.Imaging;
 using FSpot.Core;
@@ -74,10 +75,13 @@ public partial class TagWindow : Window
 			}
 		};
 		Closed += (_, _) => {
-			if (displayRefresh == null)
-				return;
-			DisplayProfileWatch.Detach (displayRefresh);
-			displayRefresh = null;
+			if (displayRefresh != null) {
+				DisplayProfileWatch.Detach (displayRefresh);
+				displayRefresh = null;
+			}
+			var icon = IconImage.Source as Bitmap;
+			IconImage.Source = null;
+			ReleasedBitmap.DisposePrevious (icon, null);
 		};
 		Update ();
 	}
@@ -125,7 +129,10 @@ public partial class TagWindow : Window
 			buffer = PendingIcon is null ? CurrentIcon () : PendingIcon.Icon;
 		IconSvg.Path = theme is null ? null : TagIcons.UriFor (theme);
 		IconSvg.IsVisible = theme is not null;
-		IconImage.Source = buffer is null ? null : AvaloniaImagingBackend.ToBgraBitmap (DisplayColor.Apply (buffer, DisplayColor.Selected ()));
+		var shown = buffer is null ? null : AvaloniaImagingBackend.ToBgraBitmap (DisplayColor.Apply (buffer, DisplayColor.Selected ()));
+		var previous = IconImage.Source as Bitmap;
+		IconImage.Source = shown;
+		ReleasedBitmap.DisposePrevious (previous, shown);
 		IconImage.IsVisible = buffer is not null;
 	}
 

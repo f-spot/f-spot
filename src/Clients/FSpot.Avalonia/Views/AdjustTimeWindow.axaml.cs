@@ -237,6 +237,8 @@ public partial class AdjustTimeWindow : Window
 		int index = ReferenceIndex;
 		string path = photos[index].Path;
 		if (string.IsNullOrEmpty (path)) {
+			if (PreviewImage.Source is Bitmap previous)
+				previous.Dispose ();
 			PreviewImage.Source = null;
 			return;
 		}

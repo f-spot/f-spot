@@ -2,6 +2,7 @@
 
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Media.Imaging;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
 
@@ -251,6 +252,27 @@ public sealed class FilterAndTagDialogWindowTests
 		Assert.AreEqual ("Mother", window.EditResult.Name);
 		Assert.AreSame (root, window.EditResult.Parent);
 		Assert.AreEqual ("emblem-people", window.EditResult.Icon?.ThemeIconName);
+	}
+
+	[UiTestMethod]
+	public void EditTagIcon_DisposesThePreviewItReplacesAndTheOneLeftAtClose ()
+	{
+		var (_, _, mom) = Tree ();
+		var first = new EditTagIconWindow (new TagIconSource (mom, []), new TagIconChoice (null, new FSpot.Imaging.ImageBuffer (1, 1, false, 3, new byte[] { 10, 20, 30 })));
+		var replaced = first.PreviewImage.Source as Bitmap;
+		Assert.IsNotNull (replaced);
+		Assert.IsGreaterThan (0, first.PredefinedList.ItemCount);
+
+		first.PredefinedList.SelectedIndex = 0;
+
+		Assert.ThrowsExactly<ObjectDisposedException> (() => _ = replaced.PixelSize);
+		first.Close ();
+
+		var second = new EditTagIconWindow (new TagIconSource (mom, []), new TagIconChoice (null, new FSpot.Imaging.ImageBuffer (1, 1, false, 3, new byte[] { 40, 50, 60 })));
+		var left = second.PreviewImage.Source as Bitmap;
+		Assert.IsNotNull (left);
+		second.Close ();
+		Assert.ThrowsExactly<ObjectDisposedException> (() => _ = left.PixelSize);
 	}
 
 	[UiTestMethod]
