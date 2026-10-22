@@ -6,6 +6,7 @@
         xmlns:vm="using:FSpot.Avalonia.ViewModels"
         xmlns:controls="using:FSpot.Avalonia.Controls"
         x:Class="FSpot.Avalonia.SlideshowWindow"
+        Icon="{x:Static auto:ChromeIcons.WindowIcon}"
         Title="{x:Static lang:Strings.Slideshow}"
         WindowState="FullScreen"
         WindowDecorations="None"

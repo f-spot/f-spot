@@ -6,8 +6,9 @@ public static class ChromeIcons
 {
 	public const string AppLogo = "avares://FSpot.Avalonia/Icons/f-spot.svg";
 
-	// Avalonia WindowIcon is a bitmap; keep the 32px PNG for the OS window slot only.
-	public const string WindowIcon = "/Icons/f-spot-32.png";
+	// Avalonia WindowIcon is a bitmap. The switcher scales this down; a 32px
+	// source is what made Alt+Tab fuzzy.
+	public const string WindowIcon = "/Icons/f-spot-256.png";
 
 	const string AvaresPrefix = "avares://FSpot.Avalonia/Icons/";
 

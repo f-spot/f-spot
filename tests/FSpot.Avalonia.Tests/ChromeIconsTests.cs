@@ -31,13 +31,28 @@ public sealed class ChromeIconsTests
 	}
 
 	[UiTestMethod]
-	public void WindowIcon_IsPngBecauseWindowIconIsABitmap ()
+	public void WindowIcon_IsTheLargePngTheSwitcherCanScale ()
 	{
 		Assert.EndsWith (".png", ChromeIcons.WindowIcon);
-		Assert.Contains ("f-spot-32.png", ChromeIcons.WindowIcon);
-		Assert.IsTrue (File.Exists (Path.Combine (RepoPaths.Root (), "icons", "f-spot-32.png")));
+		Assert.Contains ("f-spot-256.png", ChromeIcons.WindowIcon);
+		string path = Path.Combine (RepoPaths.Root (), "icons", "f-spot-256.png");
+		Assert.IsTrue (File.Exists (path));
+		var (width, height) = PngSize (path);
+		Assert.IsGreaterThanOrEqualTo (128, width);
+		Assert.AreEqual (width, height);
 		Assert.IsTrue (File.Exists (Path.Combine (IconsSrc (), "f-spot.svg")),
 			"In-app logo stays SVG even though the OS window slot is PNG.");
+	}
+
+	static (int Width, int Height) PngSize (string path)
+	{
+		using var stream = File.OpenRead (path);
+		Span<byte> header = stackalloc byte[24];
+		Assert.AreEqual (header.Length, stream.Read (header));
+		Assert.AreEqual (0x89, header[0]);
+		int width = (header[16] << 24) | (header[17] << 16) | (header[18] << 8) | header[19];
+		int height = (header[20] << 24) | (header[21] << 16) | (header[22] << 8) | header[23];
+		return (width, height);
 	}
 
 	[UiTestMethod]
