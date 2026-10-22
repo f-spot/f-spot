@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>app.f-spot.FSpot</id>
+  <metadata_license>FSFAP</metadata_license>
+  <project_license>MIT</project_license>
+  <name>F-Spot</name>
+  <summary>Manage a library of photos</summary>
+  <description>
+    <p>Import photos, then browse, tag, rate, and edit them. Edits keep the original and store a new version.</p>
+  </description>
+  <launchable type="desktop-id">app.f-spot.FSpot.desktop</launchable>
+  <url type="homepage">https://f-spot.app</url>
+  <url type="bugtracker">https://github.com/decriptor/FSpot.Avalonia/issues</url>
+  <developer id="app.f-spot">
+    <name>F-Spot</name>
+  </developer>
+  <icon type="cached" width="256" height="256">f-spot</icon>
+  <provides>
+    <mediatype>image/jpeg</mediatype>
+    <mediatype>image/png</mediatype>
+    <mediatype>image/gif</mediatype>
+    <mediatype>image/bmp</mediatype>
+    <mediatype>image/tiff</mediatype>
+  </provides>
+  <content_rating type="oars-1.1"/>
+</component>
