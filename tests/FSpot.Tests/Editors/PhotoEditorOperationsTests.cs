@@ -310,6 +310,25 @@ namespace FSpot.Tests.Editors
 			Assert.AreNotEqual (255, output.Pixels[0]);
 		}
 
+		// Flattening onto white first colour-manages a different pixel. A translucent
+		// red must come out the same grey as the opaque red, with its alpha kept.
+		[TestMethod]
+		public void Desaturate_ColourManagesATranslucentPixelLikeTheOpaqueOne ()
+		{
+			FSpot.Cms.Tests.LcmsNative.Require ();
+			var opaque = Rgb (1, 1, 200, 10, 20);
+			var translucent = new ImageBuffer (1, 1, true, 4, new byte[] { 200, 10, 20, 128 });
+
+			var fromOpaque = PhotoEditorOperations.Process (PhotoEditorCatalog.Desaturate, opaque, null, new PhotoEditorContext ());
+			var fromAlpha = PhotoEditorOperations.Process (PhotoEditorCatalog.Desaturate, translucent, null, new PhotoEditorContext ());
+
+			Assert.IsTrue (fromAlpha.HasAlpha);
+			Assert.AreEqual (128, fromAlpha.Pixels[3]);
+			Assert.AreEqual (fromOpaque.Pixels[0], fromAlpha.Pixels[0]);
+			Assert.AreEqual (fromOpaque.Pixels[1], fromAlpha.Pixels[1]);
+			Assert.AreEqual (fromOpaque.Pixels[2], fromAlpha.Pixels[2]);
+		}
+
 		[TestMethod]
 		public void Tilt_ZeroDegrees_IsUnchanged ()
 		{
