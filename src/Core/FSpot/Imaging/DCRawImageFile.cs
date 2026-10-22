@@ -11,6 +11,8 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using FSpot.Platform;
+
 using Hyena;
 
 namespace FSpot.Imaging
@@ -33,7 +35,7 @@ namespace FSpot.Imaging
 			string path = location.LocalPath;
 			string[] args = { "-h", "-w", "-c", "-t", "0", path };
 
-			return ProcessStream.Start (System.IO.Path.GetDirectoryName (path), dcraw_command, args);
+			return ProcessStream.Start (System.IO.Path.GetDirectoryName (path), ExternalTool.Resolve (dcraw_command), args);
 		}
 	}
 }

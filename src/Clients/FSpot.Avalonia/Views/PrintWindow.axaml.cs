@@ -171,6 +171,7 @@ public partial class PrintWindow : Window
 	async Task PrintAsync ()
 	{
 		IsEnabled = false;
+		TempFiles.DeleteOlderThan (Path.GetTempPath (), "f-spot-print-", TempFiles.StaleAfter);
 		string path = Path.Combine (Path.GetTempPath (), $"f-spot-print-{Guid.NewGuid ():N}.pdf");
 		try {
 			await RenderPdfAsync (path);
@@ -182,8 +183,10 @@ public partial class PrintWindow : Window
 			await MessageDialog.ShowAsync (this, Strings.Print2, string.Format (Strings.PrintFailedXMessage, ex.Message), MessageDialogKind.Error);
 		} finally {
 			IsEnabled = true;
-			// lp has copied the job into the spool by the time it exits; the Windows
-			// print verb still reads the file after Process.Start returns.
+			// lp has copied the job into the spool by the time it exits. The Windows
+			// print verb still reads the file after Process.Start returns, and Close
+			// follows that return, so the window must not delete the PDF. The next
+			// print reaps a copy that is already a day old.
 			if (SystemPrinter.UsesCups)
 				TryDelete (path);
 		}

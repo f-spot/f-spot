@@ -3,6 +3,8 @@
 using System.Diagnostics;
 using System.Text;
 
+using FSpot.Platform;
+
 namespace FSpot.Avalonia.Mail;
 
 // How SendEmail.HandleResponse starts the mail client: a known composer command
@@ -27,10 +29,10 @@ public static class MailLauncher
 		case "icedove %s":
 		case "mozilla-thunderbird %s":
 			return new MailLaunch (command[..command.IndexOf (' ')],
-				["-compose", $"subject={subject},attachment='{string.Join (",", attachments)}'"], null);
+				["-compose", ComposeFields (subject, attachments)], null);
 		case "seamonkey -mail -compose %s":
 			return new MailLaunch ("seamonkey",
-				["-mail", "-compose", $"subject={subject},attachment='{string.Join (",", attachments)}'"], null);
+				["-mail", "-compose", ComposeFields (subject, attachments)], null);
 		case "kmail %s": {
 				var args = new List<string> { "--composer", "--subject", subject };
 				foreach (string file in attachments) {
@@ -51,6 +53,32 @@ public static class MailLauncher
 		return new MailLaunch (null, [], "mailto:?subject=" + Uri.EscapeDataString (subject) + AttachQuery (attachments));
 	}
 
+	// A quote or a comma is syntax in Thunderbird's compose string. A photo named
+	// a.jpg',body=pwned would add a body field. The attachment is renamed before this.
+	static string ComposeFields (string subject, IReadOnlyList<string> attachments)
+	{
+		foreach (string file in attachments) {
+			if (file.IndexOfAny (['\'', ',', '\r', '\n']) >= 0)
+				throw new ArgumentException ("An attachment path cannot contain a comma or a quote.", nameof (attachments));
+		}
+		return $"subject={SanitizeComposeField (subject)},attachment='{string.Join (",", attachments)}'";
+	}
+
+	// A comma or a quote in the subject is the same syntax as in an attachment name.
+	// The English subject has neither. A translation might. Replacing them keeps the
+	// message one subject field instead of failing the send.
+	static string SanitizeComposeField (string value)
+	{
+		var buffer = new StringBuilder (value.Length);
+		foreach (char c in value) {
+			if (c is '\'' or ',' or '\r' or '\n')
+				buffer.Append ('_');
+			else
+				buffer.Append (c);
+		}
+		return buffer.ToString ();
+	}
+
 	static string AttachQuery (IReadOnlyList<string> attachments)
 	{
 		var query = new StringBuilder ();
@@ -59,17 +87,25 @@ public static class MailLauncher
 		return query.ToString ();
 	}
 
+	internal static Action<ProcessStartInfo> StartProcess = DefaultStart;
+
 	public static void Start (MailLaunch launch)
 	{
 		if (launch.FileName is not null) {
-			var info = new ProcessStartInfo (launch.FileName) { UseShellExecute = false };
+			string file = ExternalTool.Resolve (launch.FileName);
+			var info = new ProcessStartInfo (file) { UseShellExecute = false };
 			foreach (string arg in launch.Arguments)
 				info.ArgumentList.Add (arg);
-			using var _ = Process.Start (info) ?? throw new InvalidOperationException ($"{launch.FileName} did not start");
+			StartProcess (info);
 		} else if (launch.Uri is not null) {
 			using var _ = Process.Start (new ProcessStartInfo (launch.Uri) { UseShellExecute = true });
 		}
 		if (launch.RevealFolder is not null)
 			using (Process.Start (new ProcessStartInfo (launch.RevealFolder) { UseShellExecute = true })) { }
+	}
+
+	static void DefaultStart (ProcessStartInfo info)
+	{
+		using var process = Process.Start (info) ?? throw new InvalidOperationException ($"{info.FileName} did not start");
 	}
 }

@@ -1,9 +1,12 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System.Diagnostics;
+
 using Avalonia.Threading;
 
 using FSpot.Avalonia.Imaging;
 using FSpot.Avalonia.Mail;
+using FSpot.Platform;
 using FSpot.Resources.Lang;
 using FSpot.Settings;
 
@@ -115,6 +118,46 @@ public sealed class MailLauncherTests
 		Assert.AreEqual ("mailto:?subject=S", launch.Uri);
 		Assert.AreEqual ("/tmp/m", launch.RevealFolder);
 	}
+
+	[TestMethod]
+	public void Start_UsesTheAbsolutePathOfTheTool ()
+	{
+		string root = Path.Combine (Path.GetTempPath (), "fspot-mail-tool-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (root);
+		string tool = Path.Combine (root, ExternalTool.FileNameFor ("thunderbird", OperatingSystem.IsWindows ()));
+		File.WriteAllText (tool, "tool");
+		var previousSearch = ExternalTool.SearchDirectories;
+		var previousStart = MailLauncher.StartProcess;
+		try {
+			ExternalTool.SearchDirectories = _ => new[] { root };
+			ProcessStartInfo? seen = null;
+			MailLauncher.StartProcess = info => seen = info;
+
+			MailLauncher.Start (new MailLaunch ("thunderbird", ["-compose", "subject=S,attachment='/tmp/a.jpg'"], null));
+
+			Assert.IsNotNull (seen);
+			Assert.AreEqual (Path.GetFullPath (tool), seen.FileName);
+		} finally {
+			ExternalTool.SearchDirectories = previousSearch;
+			MailLauncher.StartProcess = previousStart;
+			Directory.Delete (root, true);
+		}
+	}
+
+	[UiTestMethod]
+	public void Thunderbird_RejectsAFileNameThatWouldAddAComposeField ()
+	{
+		string[] hostile = ["/tmp/m/a.jpg',body=pwned"];
+		Assert.ThrowsExactly<ArgumentException> (() => MailLauncher.Build ("thunderbird %s", "My Photos", hostile, isMac: false, isWindows: false));
+		Assert.ThrowsExactly<ArgumentException> (() => MailLauncher.Build ("seamonkey -mail -compose %s", "My Photos", hostile, isMac: false, isWindows: false));
+	}
+
+	[UiTestMethod]
+	public void Thunderbird_ACommaOrQuoteInTheSubjectDoesNotAddAComposeField ()
+	{
+		var launch = MailLauncher.Build ("thunderbird %s", "Hello, it's mine", Files, isMac: false, isWindows: false);
+		Assert.AreEqual ("subject=Hello_ it_s mine,attachment='/tmp/m/a.jpg,/tmp/m/b.jpg'", launch.Arguments[1]);
+	}
 }
 
 [TestClass]
@@ -162,6 +205,53 @@ public sealed class MailAttachmentsTests
 
 		Assert.AreSequenceEqual (File.ReadAllBytes (source), File.ReadAllBytes (original));
 		Assert.AreSequenceEqual (File.ReadAllBytes (source), File.ReadAllBytes (small));
+	}
+
+	[TestMethod]
+	public void CreateTempDirectory_IsOwnerOnlyAndLeavesFoldersItDidNotCreate ()
+	{
+		string stale = Path.Combine (Path.GetTempPath (), "f-spot-mail-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (stale);
+		Directory.SetLastWriteTimeUtc (stale, DateTime.UtcNow.AddDays (-2));
+		string created = MailAttachments.CreateTempDirectory ();
+		try {
+			Assert.IsTrue (Directory.Exists (stale));
+			if (!OperatingSystem.IsWindows ()) {
+				UnixFileMode mode = File.GetUnixFileMode (created);
+				Assert.IsTrue (mode.HasFlag (UnixFileMode.UserRead));
+				Assert.IsTrue (mode.HasFlag (UnixFileMode.UserWrite));
+				Assert.IsTrue (mode.HasFlag (UnixFileMode.UserExecute));
+				Assert.IsFalse (mode.HasFlag (UnixFileMode.GroupRead));
+				Assert.IsFalse (mode.HasFlag (UnixFileMode.OtherRead));
+				Assert.IsFalse (mode.HasFlag (UnixFileMode.OtherWrite));
+				Assert.IsFalse (mode.HasFlag (UnixFileMode.OtherExecute));
+			}
+			TempFiles.DeleteOwned ();
+			Assert.IsFalse (Directory.Exists (created));
+			Assert.IsTrue (Directory.Exists (stale));
+		} finally {
+			if (Directory.Exists (stale))
+				Directory.Delete (stale, true);
+			if (Directory.Exists (created))
+				Directory.Delete (created, true);
+		}
+	}
+
+	[UiTestMethod]
+	public void Prepare_RenamesAFileThatWouldBreakTheComposeCommand ()
+	{
+		string jpeg = PrintRendererTests.WriteJpeg (directory, "shot.jpg", 40, 20, SKColors.Green);
+		string hostile = Path.Combine (directory, "a.jpg',body=x.jpg");
+		File.Move (jpeg, hostile);
+		string mail = Path.Combine (directory, "mail");
+		Directory.CreateDirectory (mail);
+
+		string prepared = MailAttachments.Prepare (hostile, 0, mail);
+
+		string name = Path.GetFileName (prepared);
+		Assert.IsFalse (name.Contains ('\''));
+		Assert.IsFalse (name.Contains (','));
+		Assert.IsTrue (File.Exists (prepared));
 	}
 }
 

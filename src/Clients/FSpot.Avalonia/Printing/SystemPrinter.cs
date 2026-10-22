@@ -2,6 +2,8 @@
 
 using System.Diagnostics;
 
+using FSpot.Platform;
+
 namespace FSpot.Avalonia.Printing;
 
 // Hands a rendered PDF to the operating system's print spooler. macOS and Linux go
@@ -61,7 +63,7 @@ public static class SystemPrinter
 	public static async Task PrintAsync (string pdfPath, string? printer, int copies, string? media, string title)
 	{
 		if (UsesCups) {
-			var info = new ProcessStartInfo ("lp") {
+			var info = new ProcessStartInfo (ExternalTool.Resolve ("lp")) {
 				RedirectStandardError = true,
 				RedirectStandardOutput = true,
 				UseShellExecute = false,
@@ -89,6 +91,7 @@ public static class SystemPrinter
 	static string? Run (string file, IReadOnlyList<string> args)
 	{
 		try {
+			file = ExternalTool.Resolve (file);
 			var info = new ProcessStartInfo (file) {
 				RedirectStandardOutput = true,
 				RedirectStandardError = true,
@@ -102,7 +105,7 @@ public static class SystemPrinter
 			string output = process.StandardOutput.ReadToEnd ();
 			process.WaitForExit (5000);
 			return output;
-		} catch (Exception e) when (e is System.ComponentModel.Win32Exception or InvalidOperationException) {
+		} catch (Exception e) when (e is System.ComponentModel.Win32Exception or InvalidOperationException or FileNotFoundException) {
 			return null;
 		}
 	}
