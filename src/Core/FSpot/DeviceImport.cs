@@ -61,10 +61,13 @@ namespace FSpot
 
 		internal static ImportSourceInfo Describe (DriveInfo drive, IFileSystem fileSystem)
 		{
-			string label = string.IsNullOrEmpty (drive.VolumeLabel) ? "Local Disk" : drive.VolumeLabel;
+			string label = VolumeLabel (drive.VolumeLabel);
 			var root = new SafeUri (drive.RootDirectory.FullName);
 			return Describe (root, $"{label} ({drive.Name})", fileSystem);
 		}
+
+		internal static string VolumeLabel (string label)
+			=> string.IsNullOrEmpty (label) ? Strings.LocalDisk : label;
 
 		internal static ImportSourceInfo Describe (SafeUri root, string name, IFileSystem fileSystem)
 			=> new (name, root, IconFor (root, fileSystem));

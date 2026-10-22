@@ -1,5 +1,6 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using FSpot.Resources.Lang;
 using FSpot.Utils;
 
 using Hyena;
@@ -63,6 +64,15 @@ namespace FSpot.Tests
 			fileSystem.SetDirectory (root.Append ("DCIM"));
 
 			Assert.AreEqual (ImportSourceInfo.IPodIcon, DeviceImport.IconFor (root, fileSystem));
+		}
+
+		[TestMethod]
+		public void VolumeLabel_UsesLocalDiskWhenTheDriveHasNoLabel ()
+		{
+			Assert.AreEqual ("Local Disk", Strings.LocalDisk);
+			Assert.AreEqual (Strings.LocalDisk, DeviceImport.VolumeLabel (null));
+			Assert.AreEqual (Strings.LocalDisk, DeviceImport.VolumeLabel (""));
+			Assert.AreEqual ("EOS_DIGITAL", DeviceImport.VolumeLabel ("EOS_DIGITAL"));
 		}
 
 		[TestMethod]

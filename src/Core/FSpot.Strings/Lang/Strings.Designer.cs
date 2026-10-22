@@ -1972,6 +1972,15 @@ namespace FSpot.Resources.Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Local Disk.
+        /// </summary>
+        public static string LocalDisk {
+            get {
+                return ResourceManager.GetString("LocalDisk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logging into {0}.
         /// </summary>
         public static string LoggingIntoX {
