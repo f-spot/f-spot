@@ -1576,10 +1576,6 @@ public partial class MainWindowViewModel : ObservableObject
 	void Quit ()
 		=> shell.Quit ();
 
-	[RelayCommand]
-	Task NotYetAsync ()
-		=> shell.ShowWarningAsync (WindowTitle, Strings.ThisFeatureIsNotYetAvailable);
-
 	[RelayCommand (CanExecute = nameof (CanSharpenOrLoupe))]
 	void ToggleLoupe ()
 		=> IsLoupeVisible = !IsLoupeVisible;

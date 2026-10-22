@@ -2739,17 +2739,6 @@ public sealed partial class MainWindowViewModelTests
 		Assert.AreSame (folder, viewModel.ActiveFolderFilter);
 	}
 
-	[UiTestMethod]
-	public void NotYet_ShowsTheUnavailableWarning ()
-	{
-		var shell = new RecordingShell ();
-		var viewModel = new MainWindowViewModel (null, shell, new NullThumbnails ());
-
-		viewModel.NotYetCommand.Execute (null);
-
-		Assert.AreEqual (Strings.ThisFeatureIsNotYetAvailable, shell.WarningMessage);
-	}
-
 	static bool HasTag (IEnumerable<TagNode> nodes, string name)
 	{
 		foreach (TagNode node in nodes) {

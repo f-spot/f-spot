@@ -1,5 +1,6 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using FSpot;
 using FSpot.Core;
 
 namespace FSpot.Avalonia.Dialogs;
@@ -26,31 +27,13 @@ public sealed class TagMergePlan
 
 	public static TagMergePlan? For (IReadOnlyList<Tag> selected)
 	{
-		if (selected.Count < 2)
+		if (selected == null || selected.Count < 2)
 			return null;
-		var all = new List<Tag> (selected.Count);
-		foreach (var tag in selected) {
-			if (all.Contains (tag))
-				continue;
-			all.Add (tag);
-			(tag as Category)?.AddDescendentsTo (all);
+		try {
+			TagMerge plan = TagMerge.Plan (selected);
+			return new TagMergePlan (plan.Survivor, plan.Merged);
+		} catch (ArgumentException) {
+			return null;
 		}
-		all = all.Distinct ().ToList ();
-		if (all.Count < 2)
-			return null;
-		// GTK sorted with TagRemoveComparer, which only orders ancestor pairs and so is not a
-		// total order. Ordering deepest first (stable) keeps every child ahead of its
-		// ancestors and guarantees the last tag is not a descendant of any other.
-		all = all.OrderByDescending (Depth).ToList ();
-		var survivor = all[^1];
-		return new TagMergePlan (survivor, all.Take (all.Count - 1).ToList ());
-	}
-
-	static int Depth (Tag tag)
-	{
-		int depth = 0;
-		for (var parent = tag.Category; parent is not null; parent = parent.Category)
-			depth++;
-		return depth;
 	}
 }
