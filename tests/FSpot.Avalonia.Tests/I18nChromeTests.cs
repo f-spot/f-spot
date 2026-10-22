@@ -93,6 +93,17 @@ public sealed class I18nChromeTests
 		Assert.DoesNotContain ("{0}", about.Version);
 	}
 
+	[UiTestMethod]
+	public void AboutViewModel_NamesTheLicenceAndTheRuntime ()
+	{
+		var about = new AboutViewModel ();
+		var avalonia = typeof (global::Avalonia.Application).Assembly.GetName ().Version;
+
+		Assert.AreEqual ("MIT License", about.Licence);
+		Assert.Contains ($"Avalonia {avalonia!.Major}.{avalonia.Minor}", about.Runtime);
+		Assert.Contains (System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription, about.Runtime);
+	}
+
 	[TestMethod]
 	public void AboutViewModel_SaysWhenCrashReportsAreOff ()
 	{

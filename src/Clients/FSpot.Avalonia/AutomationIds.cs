@@ -163,6 +163,8 @@ public static class AutomationIds
 
 	public const string AboutLogo = "About.Logo";
 	public const string AboutVersion = "About.Version";
+	public const string AboutLicence = "About.Licence";
+	public const string AboutRuntime = "About.Runtime";
 	public const string AboutTelemetry = "About.Telemetry";
 	public const string AboutDescription = "About.Description";
 	public const string AboutClose = "About.Close";

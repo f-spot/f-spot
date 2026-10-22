@@ -21,6 +21,10 @@
 		<TextBlock FontSize="22" FontWeight="SemiBold" Text="{x:Static lang:Strings.FSpot}" />
 		<TextBlock Text="{Binding Version}"
 		           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutVersion}" />
+		<TextBlock Text="{Binding Licence}"
+		           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutLicence}" />
+		<TextBlock Text="{Binding Runtime}" TextWrapping="Wrap"
+		           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutRuntime}" />
 		<TextBlock Text="{Binding Telemetry}" TextWrapping="Wrap"
 		           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.AboutTelemetry}" />
 		<TextBlock Text="{x:Static lang:Strings.FSpotHomeUrl}" />
