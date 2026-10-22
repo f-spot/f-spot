@@ -1,6 +1,6 @@
 # F-Spot Photo Manager
 
-No website currently. PLEASE DO NOT VISIT THE OLD WEBSITE
+The project site is <https://f-spot.app>. Help in the application opens that site. Do not use the old website.
 
 # Build status
 

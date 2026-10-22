@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 using Avalonia;
 using Avalonia.Svg.Skia;
 using Avalonia.Threading;
@@ -12,6 +14,11 @@ namespace FSpot.Avalonia;
 
 static class Program
 {
+	// Avalonia reads this when its assembly loads. Set it before Main touches Avalonia.
+	[ModuleInitializer]
+	internal static void OptOutOfAvaloniaTelemetry ()
+		=> Environment.SetEnvironmentVariable ("AVALONIA_TELEMETRY_OPTOUT", "1");
+
 	[STAThread]
 	public static int Main (string[] args)
 	{
