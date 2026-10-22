@@ -159,21 +159,26 @@ public partial class EditTagIconWindow : Window
 	{
 		displayedPhoto = index;
 		int generation = ++choiceGeneration;
-		var token = RenewPhotoDecode ();
-		UiTasks.Forget (ShowPhotoAsync (index, pending, generation, token));
+		var source = RenewPhotoDecode ();
+		UiTasks.Forget (ShowPhotoAsync (index, pending, generation, source));
 	}
 
 	CancellationTokenSource? photoDecode;
 
-	CancellationToken RenewPhotoDecode ()
+	CancellationTokenSource RenewPhotoDecode ()
+		=> CancelSlot.Renew (ref photoDecode);
+
+	async Task ShowPhotoAsync (int index, bool pending, int generation, CancellationTokenSource source)
 	{
-		var previous = photoDecode;
-		photoDecode = new CancellationTokenSource ();
-		previous?.Cancel ();
-		return photoDecode.Token;
+		var cancellationToken = source.Token;
+		try {
+			await ShowPhotoCoreAsync (index, pending, generation, cancellationToken);
+		} finally {
+			CancelSlot.Finish (ref photoDecode, source);
+		}
 	}
 
-	async Task ShowPhotoAsync (int index, bool pending, int generation, CancellationToken cancellationToken)
+	async Task ShowPhotoCoreAsync (int index, bool pending, int generation, CancellationToken cancellationToken)
 	{
 		PhotoLabel.Text = string.Format (CultureInfo.CurrentCulture, Strings.PhotoXOfY, index + 1, source.PhotoPaths.Count);
 		Bitmap? bitmap = null;
@@ -251,11 +256,11 @@ public partial class EditTagIconWindow : Window
 
 	internal async Task LoadExternalAsync (string path)
 	{
-		var token = RenewPhotoDecode ();
+		var source = RenewPhotoDecode ();
 		try {
 			using var bitmap = await DecodeGate.RunAsync (
 				() => AvaloniaPhotoDecoder.DecodeFile (path, PhotoDecodeWidth),
-				token);
+				source.Token);
 			var buffer = AvaloniaImagingBackend.ToRgbBuffer (bitmap);
 			SetPreview (new TagIconChoice (null, TagIconImage.Create (buffer, null, backend.Scale)));
 			FileName.Text = path;
@@ -263,6 +268,8 @@ public partial class EditTagIconWindow : Window
 			await MessageDialog.ShowAsync (this, Strings.UnableToLoadImage,
 				string.Format (CultureInfo.CurrentCulture, Strings.UnableToLoadXAsIconForTheTag, path),
 				MessageDialogKind.Error);
+		} finally {
+			CancelSlot.Finish (ref photoDecode, source);
 		}
 	}
 
@@ -290,6 +297,7 @@ public partial class EditTagIconWindow : Window
 
 	protected override void OnClosed (EventArgs e)
 	{
+		photoDecode?.Cancel ();
 		(PhotoImage.Source as IDisposable)?.Dispose ();
 		PhotoImage.Source = null;
 		showingPhoto = true;

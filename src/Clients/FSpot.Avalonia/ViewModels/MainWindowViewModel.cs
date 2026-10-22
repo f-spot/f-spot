@@ -653,7 +653,8 @@ public partial class MainWindowViewModel : ObservableObject
 			return;
 
 		int generation = NextThumbnailGeneration (item);
-		var token = thumbnailLoads.Begin (item);
+		var source = thumbnailLoads.Begin (item);
+		var token = source.Token;
 		int size = HiDpi.PixelSize (Zoom, UiScale);
 		Bitmap? bitmap = null;
 		try {
@@ -674,6 +675,8 @@ public partial class MainWindowViewModel : ObservableObject
 			Logger.Log.Debug (ex, "Failed to decode thumbnail for {Path}", item.Path);
 			DropThumbnailGeneration (item, generation);
 			thumbnailLoads.EndIfCurrent (item, token);
+		} finally {
+			thumbnailLoads.Finish (source);
 		}
 	}
 
@@ -703,16 +706,17 @@ public partial class MainWindowViewModel : ObservableObject
 		// A slower load of an earlier version must not replace this one.
 		int generation = NextPreviewGeneration ();
 		// Cancel the decode still waiting for the gate. One already inside the decoder runs out.
-		var token = RenewDecode (ref previewDecode);
+		var source = RenewDecode (ref previewDecode);
 		if (!IsEditing || SelectedPhoto is null) {
 			previewTask = Task.CompletedTask;
 			SetPreview (null);
+			CancelSlot.Finish (ref previewDecode, source);
 			return;
 		}
 
 		var item = SelectedPhoto;
 		int size = EditorPreview.DecodeWidth (UiScale);
-		var decode = DecodePreviewAsync (generation, item, size, token);
+		var decode = DecodePreviewAsync (generation, item, size, source);
 		TrackPreviewDecode (decode);
 		previewTask = PublishPreviewAsync (generation, decode);
 	}
@@ -763,8 +767,9 @@ public partial class MainWindowViewModel : ObservableObject
 			return generation == previewGeneration;
 	}
 
-	async Task DecodePreviewAsync (int generation, PhotoItemViewModel item, int size, CancellationToken cancellationToken)
+	async Task DecodePreviewAsync (int generation, PhotoItemViewModel item, int size, CancellationTokenSource source)
 	{
+		var cancellationToken = source.Token;
 		Bitmap? bitmap = null;
 		Bitmap? shown = null;
 		try {
@@ -797,6 +802,8 @@ public partial class MainWindowViewModel : ObservableObject
 			shown?.Dispose ();
 			bitmap?.Dispose ();
 			Logger.Log.Debug (ex, "Failed to load preview {Path}", item.Path);
+		} finally {
+			CancelSlot.Finish (ref previewDecode, source);
 		}
 	}
 
@@ -913,12 +920,13 @@ public partial class MainWindowViewModel : ObservableObject
 	void RequestHistogram (PhotoItemViewModel? item)
 	{
 		int generation = ++histogramGeneration;
-		var token = RenewDecode (ref histogramDecode);
+		var source = RenewDecode (ref histogramDecode);
 		if (item is null) {
 			SetHistogram (null);
+			CancelSlot.Finish (ref histogramDecode, source);
 			return;
 		}
-		UiTasks.Forget (UpdateHistogramAsync (item, generation, token));
+		UiTasks.Forget (UpdateHistogramAsync (item, generation, source));
 	}
 
 	internal void ReleaseDecodedImages ()
@@ -953,7 +961,17 @@ public partial class MainWindowViewModel : ObservableObject
 		ReleasedBitmap.DisposePrevious (previous, next);
 	}
 
-	async Task UpdateHistogramAsync (PhotoItemViewModel item, int generation, CancellationToken cancellationToken)
+	async Task UpdateHistogramAsync (PhotoItemViewModel item, int generation, CancellationTokenSource source)
+	{
+		var cancellationToken = source.Token;
+		try {
+			await UpdateHistogramCoreAsync (item, generation, cancellationToken);
+		} finally {
+			CancelSlot.Finish (ref histogramDecode, source);
+		}
+	}
+
+	async Task UpdateHistogramCoreAsync (PhotoItemViewModel item, int generation, CancellationToken cancellationToken)
 	{
 		var context = SynchronizationContext.Current;
 		// A live edit histograms the editor output before the display profile.
@@ -1039,14 +1057,9 @@ public partial class MainWindowViewModel : ObservableObject
 	}
 
 	// A newer request cancels the decode still waiting for the single decode gate.
-	// The cancelled source is not disposed here. Dispose makes a waiter throw
-	// ObjectDisposedException, which is not cancellation.
-	CancellationToken RenewDecode (ref CancellationTokenSource? slot)
-	{
-		CancelDecode (ref slot);
-		slot = new CancellationTokenSource ();
-		return slot.Token;
-	}
+	// The cancelled source is disposed by the task that awaited it.
+	CancellationTokenSource RenewDecode (ref CancellationTokenSource? slot)
+		=> CancelSlot.Renew (ref slot);
 
 	static void CancelDecode (ref CancellationTokenSource? slot)
 	{
@@ -1493,7 +1506,8 @@ public partial class MainWindowViewModel : ObservableObject
 	async Task LoadHoverAsync (PhotoItemViewModel item, int edge, int generation)
 	{
 		Bitmap? bitmap = null;
-		var token = RenewDecode (ref hoverDecode);
+		var source = RenewDecode (ref hoverDecode);
+		var token = source.Token;
 		try {
 			bitmap = await thumbnails.LoadAsync (item.Path, edge, token);
 			if (generation != hoverGeneration || !ShowHoverPreviewEnabled || IsEditing) {
@@ -1511,6 +1525,8 @@ public partial class MainWindowViewModel : ObservableObject
 		} catch (Exception ex) {
 			bitmap?.Dispose ();
 			Logger.Log.Debug (ex, "Failed to load the hover preview for {Path}", item.Path);
+		} finally {
+			CancelSlot.Finish (ref hoverDecode, source);
 		}
 	}
 

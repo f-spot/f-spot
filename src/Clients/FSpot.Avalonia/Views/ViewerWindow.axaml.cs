@@ -94,7 +94,8 @@ public partial class ViewerWindow : Window, IViewerShell
 			ViewerSettings.Changed -= OnViewerSettingsChanged;
 			closing.Cancel ();
 			photoDecode?.Cancel ();
-			photoDecode?.Dispose ();
+			if (photoDecode is null)
+				closing.Dispose ();
 			trayLoads.EndAll ();
 			ShowPhoto (null);
 		};
@@ -140,7 +141,8 @@ public partial class ViewerWindow : Window, IViewerShell
 
 	async Task LoadThumbnailAsync (ViewerItemViewModel item)
 	{
-		var token = trayLoads.Begin (item);
+		var source = trayLoads.Begin (item);
+		var token = source.Token;
 		try {
 			var bitmap = await thumbnails.LoadAsync (item.Path, TrayThumbnailSize, token);
 			if (token.IsCancellationRequested || !trayLease.IsHeld (item)) {
@@ -154,6 +156,8 @@ public partial class ViewerWindow : Window, IViewerShell
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Cannot load a tray thumbnail for {Path}", item.Path);
 			trayLoads.EndIfCurrent (item, token);
+		} finally {
+			trayLoads.Finish (source);
 		}
 	}
 
@@ -190,40 +194,40 @@ public partial class ViewerWindow : Window, IViewerShell
 	{
 		shownItem = item;
 		int load = ++photoLoad;
-		var token = RenewPhotoDecode ();
-		if (item is null) {
-			ShowPhoto (null);
-			return;
-		}
-
-		Bitmap? next = null;
+		var source = RenewPhotoDecode ();
 		try {
-			next = await DecodeGate.RunAsync (() => decodePhoto (item.Path, EditorPreview.MaxPixels), token);
-		} catch (OperationCanceledException) {
-			return;
-		} catch (Exception ex) {
-			Logger.Log.Debug (ex, "Cannot load {Path}", item.Path);
-		}
+			if (item is null) {
+				ShowPhoto (null);
+				return;
+			}
 
-		if (load != photoLoad || closing.IsCancellationRequested) {
-			next?.Dispose ();
-			return;
+			Bitmap? next = null;
+			try {
+				next = await DecodeGate.RunAsync (() => decodePhoto (item.Path, EditorPreview.MaxPixels), source.Token);
+			} catch (OperationCanceledException) {
+				return;
+			} catch (Exception ex) {
+				Logger.Log.Debug (ex, "Cannot load {Path}", item.Path);
+			}
+
+			if (load != photoLoad || closing.IsCancellationRequested) {
+				next?.Dispose ();
+				return;
+			}
+			ShowPhoto (next);
+			viewModel.ResetZoom (FitZoom ());
+			ApplyZoom ();
+		} finally {
+			CancelSlot.Finish (ref photoDecode, source);
+			if (closing.IsCancellationRequested && photoDecode is null)
+				closing.Dispose ();
 		}
-		ShowPhoto (next);
-		viewModel.ResetZoom (FitZoom ());
-		ApplyZoom ();
 	}
 
 	// The previous photo is still waiting on the one decode gate. Cancelling it before this
 	// method awaits means that wait never starts the decode.
-	CancellationToken RenewPhotoDecode ()
-	{
-		var previous = photoDecode;
-		photoDecode = CancellationTokenSource.CreateLinkedTokenSource (closing.Token);
-		previous?.Cancel ();
-		previous?.Dispose ();
-		return photoDecode.Token;
-	}
+	CancellationTokenSource RenewPhotoDecode ()
+		=> CancelSlot.RenewLinked (ref photoDecode, closing.Token);
 
 	void ShowPhoto (Bitmap? next)
 	{

@@ -41,7 +41,7 @@ public partial class SlideshowWindow : Window
 	Bitmap? previousSlide;
 	int slideLoad;
 	bool slidePending;
-	CancellationTokenSource slideDecode = new ();
+	CancellationTokenSource? slideDecode;
 	bool playing;
 	bool busy;
 	SlideshowTransitionKind transition = SlideshowTransition.All[0];
@@ -100,7 +100,7 @@ public partial class SlideshowWindow : Window
 				displayRefresh = null;
 			}
 			slideLoad++;
-			slideDecode.Cancel ();
+			slideDecode?.Cancel ();
 			flipTimer.Stop ();
 			animationTimer.Stop ();
 			cursorTimer.Stop ();
@@ -175,17 +175,18 @@ public partial class SlideshowWindow : Window
 	{
 		string path = sequence.Current;
 		int generation = ++slideLoad;
-		var token = RenewSlideDecode ();
+		var source = RenewSlideDecode ();
 		slidePending = true;
 		flipTimer.Stop ();
 		Bitmap? next;
 		try {
-			next = await DecodeGate.RunAsync (
-				() => decodeSlide (path, EditorPreview.MaxPixels),
-				token);
-		} catch {
-			next = null;
-		}
+			try {
+				next = await DecodeGate.RunAsync (
+					() => decodeSlide (path, EditorPreview.MaxPixels),
+					source.Token);
+			} catch {
+				next = null;
+			}
 
 		if (generation != slideLoad) {
 			next?.Dispose ();
@@ -215,18 +216,15 @@ public partial class SlideshowWindow : Window
 		}
 
 		UpdateInfo ();
+		} finally {
+			CancelSlot.Finish (ref slideDecode, source);
+		}
 	}
 
 	// The previous slide is still waiting on the one decode gate. Cancelling it means
-	// that wait never starts the decode.
-	CancellationToken RenewSlideDecode ()
-	{
-		var previous = slideDecode;
-		slideDecode = new CancellationTokenSource ();
-		previous.Cancel ();
-		previous.Dispose ();
-		return slideDecode.Token;
-	}
+	// that wait never starts the decode. The waiting slide disposes its own source.
+	CancellationTokenSource RenewSlideDecode ()
+		=> CancelSlot.Renew (ref slideDecode);
 
 	void StepAnimation ()
 	{

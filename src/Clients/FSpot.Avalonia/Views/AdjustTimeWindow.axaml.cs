@@ -214,13 +214,13 @@ public partial class AdjustTimeWindow : Window
 	void UpdateOkEnabled ()
 		=> OkButton.IsEnabled = SpaceAll.IsChecked != true || TryParseHours (SpacingBox.Text, out _);
 
-	CancellationTokenSource loads = new ();
+	readonly SharedCancel loads = new ();
 
 	void ReleaseDecodedImages ()
 	{
 		released = true;
 		previewGeneration++;
-		loads.Cancel ();
+		loads.Release ();
 		if (PreviewImage.Source is Bitmap preview) {
 			PreviewImage.Source = null;
 			preview.Dispose ();
@@ -240,8 +240,9 @@ public partial class AdjustTimeWindow : Window
 			PreviewImage.Source = null;
 			return;
 		}
+		var token = loads.Enter ();
 		try {
-			var bitmap = await thumbnails.LoadAsync (path, HiDpi.PixelSize (HiDpi.AdjustTimePreviewDip, uiScale), loads.Token);
+			var bitmap = await thumbnails.LoadAsync (path, HiDpi.PixelSize (HiDpi.AdjustTimePreviewDip, uiScale), token);
 			if (released || generation != previewGeneration)
 				bitmap?.Dispose ();
 			else {
@@ -252,6 +253,8 @@ public partial class AdjustTimeWindow : Window
 		} catch (OperationCanceledException) {
 		} catch (Exception ex) {
 			Logger.Log.Debug (ex, "Failed to preview the Adjust Time reference photo {Path}", path);
+		} finally {
+			loads.Leave ();
 		}
 	}
 
@@ -261,8 +264,9 @@ public partial class AdjustTimeWindow : Window
 		foreach (var item in trayItems) {
 			if (string.IsNullOrEmpty (item.Path))
 				continue;
+			var token = loads.Enter ();
 			try {
-				var bitmap = await thumbnails.LoadAsync (item.Path, size, loads.Token);
+				var bitmap = await thumbnails.LoadAsync (item.Path, size, token);
 				if (released) {
 					bitmap?.Dispose ();
 					continue;
@@ -272,6 +276,8 @@ public partial class AdjustTimeWindow : Window
 			} catch (OperationCanceledException) {
 			} catch (Exception ex) {
 				Logger.Log.Debug (ex, "Failed to thumbnail the Adjust Time tray photo {Path}", item.Path);
+			} finally {
+				loads.Leave ();
 			}
 		}
 	}

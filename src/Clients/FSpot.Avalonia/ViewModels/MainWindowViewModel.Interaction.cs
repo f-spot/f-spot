@@ -260,7 +260,8 @@ public partial class MainWindowViewModel
 	{
 		Bitmap? bitmap = null;
 		Bitmap? chart = null;
-		var token = RenewDecode (ref popupDecode);
+		var source = RenewDecode (ref popupDecode);
+		var token = source.Token;
 		try {
 			bitmap = await thumbnails.LoadAsync (item.Path, edge, token);
 			if (generation != previewPopupGeneration || !IsBrowsing) {
@@ -284,6 +285,8 @@ public partial class MainWindowViewModel
 			bitmap?.Dispose ();
 			chart?.Dispose ();
 			Logger.Log.Debug (ex, "Failed to load the preview popup for {Path}", item.Path);
+		} finally {
+			CancelSlot.Finish (ref popupDecode, source);
 		}
 	}
 

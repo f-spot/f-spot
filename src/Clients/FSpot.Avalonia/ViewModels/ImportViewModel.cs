@@ -42,7 +42,7 @@ public partial class ImportViewModel : ObservableObject
 	CancellationTokenSource? scan;
 	Task? scanTask;
 	CancellationTokenSource? import;
-	CancellationTokenSource previewLoad = new ();
+	CancellationTokenSource? previewLoad;
 	bool importAccepted;
 	IReadOnlyList<string>? droppedPaths;
 	bool closed;
@@ -348,7 +348,7 @@ public partial class ImportViewModel : ObservableObject
 	}
 
 	void CancelPreview ()
-		=> previewLoad.Cancel ();
+		=> previewLoad?.Cancel ();
 
 	void Finish (bool reload)
 	{
@@ -508,7 +508,8 @@ public partial class ImportViewModel : ObservableObject
 	async Task LoadThumbnailAsync (PhotoItemViewModel item)
 	{
 		int generation = NextGeneration (item);
-		var token = thumbnailLoads.Begin (item);
+		var source = thumbnailLoads.Begin (item);
+		var token = source.Token;
 		Bitmap? bitmap = null;
 		try {
 			bitmap = await thumbnails.LoadAsync (item.Path, HiDpi.PixelSize (HiDpi.ImportListDip, UiScale), token);
@@ -527,6 +528,8 @@ public partial class ImportViewModel : ObservableObject
 			if (thumbnailGeneration.TryGetValue (item, out int current) && current == generation)
 				thumbnailGeneration.Remove (item);
 			thumbnailLoads.EndIfCurrent (item, token);
+		} finally {
+			thumbnailLoads.Finish (source);
 		}
 	}
 
@@ -543,9 +546,7 @@ public partial class ImportViewModel : ObservableObject
 
 	async Task LoadPreviewAsync (PhotoItemViewModel item)
 	{
-		CancelPreview ();
-		var load = new CancellationTokenSource ();
-		previewLoad = load;
+		var load = CancelSlot.Renew (ref previewLoad);
 		Bitmap? bitmap = null;
 		try {
 			bitmap = await thumbnails.LoadAsync (item.Path, HiDpi.PixelSize (HiDpi.ImportPreviewDip, UiScale), load.Token);
@@ -560,6 +561,8 @@ public partial class ImportViewModel : ObservableObject
 		} catch (Exception ex) {
 			bitmap?.Dispose ();
 			Logger.Log.Debug (ex, "Failed to load import preview {Path}", item.Path);
+		} finally {
+			CancelSlot.Finish (ref previewLoad, load);
 		}
 	}
 
