@@ -132,8 +132,9 @@ namespace FSpot
 			// named "--slideshow"; the unrecognised-option filter below would otherwise
 			// throw it away for looking like an option.
 			int terminator = Array.IndexOf (args, "--");
-			string[] toParse = DropBooleanValues (
-				terminator < 0 ? args : args.Take (terminator).ToArray (), booleans);
+			string[] toParse = KeepFollowingOptions (DropBooleanValues (
+				terminator < 0 ? args : args.Take (terminator).ToArray (), booleans),
+				new[] { basedir, photodir, import }, out var missingValues);
 			string[] operands = terminator < 0
 				? Array.Empty<string> ()
 				: args.Skip (terminator + 1).ToArray ();
@@ -157,9 +158,9 @@ namespace FSpot
 				View = IsPresent (result, view),
 				Debug = IsPresent (result, debug),
 				DebugSql = IsPresent (result, debugSql),
-				BaseDir = ValueOf (result, basedir),
-				PhotoDir = ValueOf (result, photodir),
-				Import = ValueOf (result, import),
+				BaseDir = MissingOrValue (result, basedir, missingValues),
+				PhotoDir = MissingOrValue (result, photodir, missingValues),
+				Import = MissingOrValue (result, import, missingValues),
 				Files = positional.Where (t => !LooksLikeAnOption (t)).Concat (operands).ToList (),
 				InvalidHelpArguments = unrecognised
 					.Where (t => Name (t).StartsWith ("help", StringComparison.OrdinalIgnoreCase))
@@ -208,6 +209,55 @@ namespace FSpot
 			return found == null
 				? new List<string> ()
 				: found.Tokens.Select (t => t.Value).ToList ();
+		}
+
+		// "--basedir --view" and "--basedir= --view" must not store the catalog directory
+		// as "--view". System.CommandLine takes the next token as the value even when
+		// that token is another option, and an equals sign with nothing after it does
+		// the same. The empty option is left out of the parse and remembered as empty,
+		// and the following option is parsed on its own. A later real value still wins.
+		static string[] KeepFollowingOptions (string[] args, Option<string>[] valued, out HashSet<string> missing)
+		{
+			var canonical = new Dictionary<string, string> (StringComparer.Ordinal);
+			foreach (var option in valued) {
+				canonical[option.Name] = option.Name;
+				foreach (string alias in option.Aliases)
+					canonical[alias] = option.Name;
+			}
+
+			missing = new HashSet<string> (StringComparer.Ordinal);
+			var output = new List<string> (args.Length);
+			for (int i = 0; i < args.Length; i++) {
+				string token = args[i];
+				if (i + 1 < args.Length
+					&& args[i + 1].StartsWith ("--", StringComparison.Ordinal)
+					&& TryOptionWithoutValue (token, canonical, out string name)) {
+					missing.Add (name);
+					continue;
+				}
+				output.Add (token);
+			}
+			return output.ToArray ();
+		}
+
+		static bool TryOptionWithoutValue (string token, Dictionary<string, string> canonical, out string name)
+		{
+			if (canonical.TryGetValue (token, out name))
+				return true;
+			int eq = token.IndexOf ('=');
+			if (eq > 0 && eq == token.Length - 1
+				&& canonical.TryGetValue (token.Substring (0, eq), out name))
+				return true;
+			name = null;
+			return false;
+		}
+
+		static string MissingOrValue (ParseResult result, Option<string> option, HashSet<string> missing)
+		{
+			string value = ValueOf (result, option);
+			if (value == null && missing.Contains (option.Name))
+				return string.Empty;
+			return value;
 		}
 
 		// Rewrites "--debug=anything" to "--debug". A boolean option cannot convert an

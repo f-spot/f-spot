@@ -37,9 +37,12 @@ public partial class App : Application
 
 	public override void OnFrameworkInitializationCompleted ()
 	{
+		var desktop = ApplicationLifetime as IClassicDesktopStyleApplicationLifetime;
+		if (desktop != null)
+			ApplyCommandLine (desktop.Args ?? Array.Empty<string> ());
 		InitializeCore ();
 
-		if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop) {
+		if (desktop != null) {
 			if (ViewerLaunch.Paths (desktop.Args) is { } viewPaths) {
 				desktop.ShutdownMode = ShutdownMode.OnLastWindowClose;
 				desktop.MainWindow = new ViewerWindow (viewPaths);
@@ -51,6 +54,14 @@ public partial class App : Application
 		}
 
 		base.OnFrameworkInitializationCompleted ();
+	}
+
+	static void ApplyCommandLine (string[] args)
+	{
+		var options = CommandLineOptions.Parse (args ?? Array.Empty<string> ());
+		CommandLineOptions.Current = options;
+		if (!FSpotConfiguration.TryApplyBaseDirectory (options))
+			Logger.Log.Error ("f-spot: -basedir option takes one argument");
 	}
 
 	static void InitializeCore ()

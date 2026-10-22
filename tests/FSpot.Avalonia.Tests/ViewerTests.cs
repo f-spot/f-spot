@@ -371,6 +371,17 @@ public sealed class ViewerLaunchTests
 	}
 
 	[UiTestMethod]
+	public void Paths_KeepsViewWhenBasedirHasNoValue ()
+	{
+		foreach (string basedir in new[] { "--basedir", "--basedir=" }) {
+			var paths = ViewerLaunch.Paths (new[] { basedir, "--view", "/tmp/a.jpg" });
+
+			Assert.IsNotNull (paths);
+			Assert.AreSequenceEqual (new[] { "/tmp/a.jpg" }, paths.ToArray ());
+		}
+	}
+
+	[UiTestMethod]
 	public void Paths_IsNullWithoutViewOrWithoutFiles ()
 	{
 		Assert.IsNull (ViewerLaunch.Paths (Array.Empty<string> ()));

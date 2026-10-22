@@ -380,20 +380,28 @@ namespace FSpot.Tests.CommandLine
 			Assert.IsTrue (options.WantsAnyHelp);
 		}
 
-		// Pre-existing and unchanged by the rewrite, pinned because it is a footgun that
-		// looks like a regression: a value-taking option whose value is missing eats the
-		// following option. FSpotConfiguration.BaseDirectory becomes the literal
-		// "--view", and view mode is silently dropped. Hyena's FixArgs did the same --
-		// "--basedir=" + args[++i], unconditional -- so old and new agree. Tracked
-		// separately rather than changed here.
+		// A missing value must not swallow the next option. "--basedir --view a.jpg"
+		// used to store the catalog directory as the literal "--view" and drop view mode.
 		[TestMethod]
-		public void ValueTakingOption_StillEatsAFollowingOption ()
+		[DataRow ("--basedir", "--view")]
+		[DataRow ("--basedir=", "--view")]
+		[DataRow ("-basedir=", "--view")]
+		[DataRow ("-b=", "--view")]
+		[DataRow ("--photodir", "--slideshow")]
+		[DataRow ("--import", "--debug")]
+		[DataRow ("-basedir", "--view")]
+		public void ValueTakingOption_DoesNotEatAFollowingOption (string option, string following)
 		{
-			var options = Parse ("--basedir", "--view", "a.jpg");
+			var options = Parse (option, following, "a.jpg");
 
-			Assert.AreEqual ("--view", options.BaseDir);
-			Assert.IsFalse (options.View);
+			Assert.AreEqual (string.Empty, options.BaseDir ?? options.PhotoDir ?? options.Import);
 			Assert.AreSequenceEqual (new[] { "a.jpg" }, options.Files.ToArray ());
+			if (following == "--view")
+				Assert.IsTrue (options.View);
+			if (following == "--slideshow")
+				Assert.IsTrue (options.Slideshow);
+			if (following == "--debug")
+				Assert.IsTrue (options.Debug);
 		}
 
 		// The twin of BooleanOptionWithANonBooleanValue_DoesNotBecomeAFile, missed when
