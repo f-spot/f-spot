@@ -50,7 +50,10 @@ public partial class App : Application
 				desktop.ShutdownMode = ShutdownMode.OnMainWindowClose;
 				desktop.MainWindow = new MainWindow (Database);
 			}
-			desktop.Exit += (_, _) => Database?.Dispose ();
+			desktop.Exit += (_, _) => {
+				ImageLoaderThread.CleanAll ();
+				Database?.Dispose ();
+			};
 		}
 
 		base.OnFrameworkInitializationCompleted ();

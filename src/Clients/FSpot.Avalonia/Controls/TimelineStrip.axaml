@@ -13,11 +13,15 @@
 	        AutomationProperties.Name="{x:Static lang:Strings.Timeline}">
 		<!-- Arrow columns and the handle row match TimelineLayout.ArrowWidth and HandleHeight. -->
 		<Grid ColumnDefinitions="16,*,16" RowDefinitions="*,14">
-			<RepeatButton x:Name="ScrollLeft" Classes="timeline-scroll" Content="◀"
+			<RepeatButton x:Name="ScrollLeft" Classes="timeline-scroll" Padding="0"
 			              VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
 			              Delay="160" Interval="40" Click="OnScrollLeft"
 			              AutomationProperties.Name="{x:Static lang:Strings.Previous}"
-			              ToolTip.Tip="{x:Static lang:Strings.Previous}" />
+			              ToolTip.Tip="{x:Static lang:Strings.Previous}">
+				<Path Width="8" Height="10" Stretch="Uniform" StrokeThickness="1.6"
+				      Stroke="{DynamicResource SystemControlForegroundBaseHighBrush}"
+				      Data="M 7,1 L 1,5 L 7,9" />
+			</RepeatButton>
 			<ScrollViewer x:Name="Scroller" Grid.Column="1" Grid.RowSpan="2"
 			              HorizontalScrollBarVisibility="Hidden"
 			              VerticalScrollBarVisibility="Disabled">
@@ -27,11 +31,15 @@
 				                        RangeCommand="{Binding #Root.RangeCommand}"
 				                        LimitsCommand="{Binding #Root.LimitsCommand}" />
 			</ScrollViewer>
-			<RepeatButton x:Name="ScrollRight" Grid.Column="2" Classes="timeline-scroll" Content="▶"
+			<RepeatButton x:Name="ScrollRight" Grid.Column="2" Classes="timeline-scroll" Padding="0"
 			              VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
 			              Delay="160" Interval="40" Click="OnScrollRight"
 			              AutomationProperties.Name="{x:Static lang:Strings.Next}"
-			              ToolTip.Tip="{x:Static lang:Strings.Next}" />
+			              ToolTip.Tip="{x:Static lang:Strings.Next}">
+				<Path Width="8" Height="10" Stretch="Uniform" StrokeThickness="1.6"
+				      Stroke="{DynamicResource SystemControlForegroundBaseHighBrush}"
+				      Data="M 1,1 L 7,5 L 1,9" />
+			</RepeatButton>
 		</Grid>
 	</Border>
 </UserControl>

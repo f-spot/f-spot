@@ -183,6 +183,20 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
+	public void Editing_ShowsTheCachedThumbnailWhileThePhotoDecodes ()
+	{
+		AvaloniaApp.Ensure ();
+		var thumbs = new GatedPreviewLoads { Cached = Square (16) };
+		var viewModel = new MainWindowViewModel (null, new RecordingShell (), thumbs);
+		viewModel.SeedCatalog (new StubPhoto ("/stored.jpg"));
+		viewModel.ViewMode = LibraryViewMode.PhotoView;
+
+		Assert.IsNotNull (viewModel.Preview);
+		Assert.AreEqual (16, viewModel.Preview.PixelSize.Width);
+		Assert.IsNull (viewModel.EditorSource);
+	}
+
+	[UiTestMethod]
 	public async Task EditorPreview_EditsTheStoredPixels ()
 	{
 		AvaloniaApp.Ensure ();
@@ -390,6 +404,11 @@ public sealed partial class MainWindowViewModelTests
 		readonly List<TaskCompletionSource<Bitmap?>> gates = new ();
 
 		public int PreviewLoads => gates.Count;
+
+		public Bitmap? Cached { get; set; }
+
+		public Bitmap? TryCopyCached (string path, int size)
+			=> Cached;
 
 		public Task<Bitmap?> LoadAsync (string path, int size, CancellationToken cancellationToken)
 			=> Task.FromResult<Bitmap?> (Square (1));

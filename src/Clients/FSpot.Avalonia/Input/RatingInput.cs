@@ -27,6 +27,8 @@ public static class RatingInput
 				return;
 			control.AddHandler (InputElement.KeyDownEvent, OnKeyDown, RoutingStrategies.Tunnel);
 			control.AddHandler (InputElement.PointerWheelChangedEvent, OnWheel);
+			control.AddHandler (InputElement.PointerMovedEvent, OnPointerMoved, RoutingStrategies.Tunnel);
+			control.AddHandler (InputElement.PointerExitedEvent, OnPointerExited, RoutingStrategies.Tunnel);
 		});
 
 	public static void SetEnable (Control element, bool value) => element.SetValue (EnableProperty, value);
@@ -49,6 +51,38 @@ public static class RatingInput
 			e.Handled = true;
 		}
 	}
+
+	static void OnPointerMoved (object? sender, PointerEventArgs e)
+	{
+		if (sender is not Control control || WindowCommand.Model (control) is not MainWindowViewModel viewModel)
+			return;
+		viewModel.Info.PreviewStars (StarUnder (control, e.GetPosition (control)));
+	}
+
+	static void OnPointerExited (object? sender, PointerEventArgs e)
+	{
+		if (sender is not Control control || WindowCommand.Model (control) is not MainWindowViewModel viewModel)
+			return;
+		viewModel.Info.PreviewStars (null);
+	}
+
+	static uint? StarUnder (Control root, Point point)
+	{
+		var hit = root.InputHitTest (point) as StyledElement;
+		while (hit is not null && !ReferenceEquals (hit, root)) {
+			if (hit is Button button && RatingOf (button.CommandParameter) is uint rating)
+				return rating;
+			hit = hit.Parent as StyledElement;
+		}
+		return null;
+	}
+
+	static uint? RatingOf (object? parameter)
+		=> parameter switch {
+			uint value when value is > 0 and <= 5 => value,
+			int value when value is > 0 and <= 5 => (uint)value,
+			_ => null
+		};
 
 	static void OnWheel (object? sender, PointerWheelEventArgs e)
 	{

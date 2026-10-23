@@ -42,14 +42,50 @@ public sealed partial class MainWindowViewModelTests
 	public TestContext TestContext { get; set; } = null!;
 
 	[UiTestMethod]
-	public void TileSize_FollowsZoom ()
+	public void Editing_StatusSliderZoomsThePhoto ()
 	{
 		var viewModel = NewViewModel ();
-		viewModel.Zoom = 96;
-		Assert.AreEqual (96, viewModel.TileSize);
-		Assert.AreEqual (96 + 24, viewModel.FilmstripPaneHeight);
-		viewModel.Zoom = 160;
-		Assert.AreEqual (160, viewModel.TileSize);
+		viewModel.Zoom = 128;
+		viewModel.ViewMode = FSpot.Core.LibraryViewMode.PhotoView;
+
+		viewModel.ZoomControl = Imaging.ViewerZoom.Normalize (2);
+
+		Assert.AreEqual (2, viewModel.PreviewZoom, 1e-6);
+		Assert.AreEqual (128, viewModel.Zoom);
+
+		viewModel.ZoomInCommand.Execute (null);
+		Assert.IsGreaterThan (2, viewModel.PreviewZoom);
+		Assert.AreEqual (128, viewModel.Zoom);
+	}
+
+	[UiTestMethod]
+	public void Browsing_StatusSliderSetsTheThumbnailSize ()
+	{
+		var viewModel = NewViewModel ();
+
+		viewModel.ZoomControl = (160 - 64) / (256d - 64);
+
+		Assert.AreEqual (160, viewModel.Zoom, 0.01);
+	}
+
+	[UiTestMethod]
+	public void TileSize_FollowsZoom ()
+	{
+		int filmstrip = FSpot.Settings.Preferences.Get<int> (FSpot.Settings.Preferences.FilmstripOrientation);
+		var viewModel = NewViewModel ();
+		try {
+			viewModel.Zoom = 96;
+			Assert.AreEqual (96, viewModel.TileSize);
+			Assert.AreEqual (96 + 24, viewModel.FilmstripPaneHeight);
+			if (viewModel.FilmstripOnSide)
+				viewModel.ToggleFilmstripSideCommand.Execute (null);
+			Assert.AreEqual (MainWindowViewModel.FilmstripItem, viewModel.FilmstripSpan);
+			Assert.AreEqual (global::Avalonia.Controls.Primitives.ScrollBarVisibility.Disabled, viewModel.FilmstripVerticalScroll);
+			viewModel.Zoom = 160;
+			Assert.AreEqual (160, viewModel.TileSize);
+		} finally {
+			FSpot.Settings.Preferences.Set (FSpot.Settings.Preferences.FilmstripOrientation, filmstrip);
+		}
 	}
 
 	[UiTestMethod]
@@ -145,7 +181,7 @@ public sealed partial class MainWindowViewModelTests
 
 	[UiTestMethod]
 	[DoNotParallelize]
-	public async Task ScrollingPastAPhoto_DisposesItsThumbnail ()
+	public async Task ScrollingPastAPhoto_KeepsItsThumbnailForTheNextPass ()
 	{
 		AvaloniaApp.Ensure ();
 		var thumbs = new BitmapThumbnails ();
@@ -155,11 +191,71 @@ public sealed partial class MainWindowViewModelTests
 		await viewModel.RealizeThumbnailAsync (container, viewModel.Photos[0]);
 		var thumbnail = viewModel.Photos[0].Thumbnail;
 		Assert.IsNotNull (thumbnail);
+		int decodes = thumbs.Sizes.Count;
 
 		viewModel.ReleaseThumbnail (container);
+		await viewModel.RealizeThumbnailAsync (new object (), viewModel.Photos[0]);
 
-		Assert.IsNull (viewModel.Photos[0].Thumbnail);
-		Assert.ThrowsExactly<ObjectDisposedException> (() => _ = thumbnail.PixelSize);
+		Assert.AreSame (thumbnail, viewModel.Photos[0].Thumbnail);
+		Assert.IsGreaterThan (0, thumbnail.PixelSize.Width);
+		Assert.HasCount (decodes, thumbs.Sizes);
+	}
+
+	[UiTestMethod]
+	[DoNotParallelize]
+	public async Task AKeptThumbnailReloadsWhenTheTileSizeChanges ()
+	{
+		AvaloniaApp.Ensure ();
+		var thumbs = new BitmapThumbnails ();
+		var viewModel = new MainWindowViewModel (null, new RecordingShell (), thumbs) {
+			Zoom = 128,
+			UiScale = 1
+		};
+		viewModel.SeedCatalog (new StubPhoto ("/a.jpg"));
+		var container = new object ();
+		await viewModel.RealizeThumbnailAsync (container, viewModel.Photos[0]);
+		viewModel.ReleaseThumbnail (container);
+		int decodes = thumbs.Sizes.Count;
+
+		viewModel.Zoom = 160;
+		await viewModel.RealizeThumbnailAsync (new object (), viewModel.Photos[0]);
+
+		Assert.HasCount (decodes + 1, thumbs.Sizes);
+		Assert.AreEqual (160, thumbs.Sizes[^1]);
+	}
+
+	[UiTestMethod]
+	[DoNotParallelize]
+	public async Task ANewGridCell_ReusesTheDecodedThumbnailAfterTheFileIsGone ()
+	{
+		AvaloniaApp.Ensure ();
+		string source = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
+		string path = Path.Combine (Path.GetTempPath (), Guid.NewGuid ().ToString ("N") + ".jpg");
+		File.Copy (source, path);
+		var viewModel = new MainWindowViewModel (null, new RecordingShell (), new AvaloniaThumbnailLoader ()) {
+			Zoom = 128,
+			UiScale = 1
+		};
+		viewModel.SeedCatalog (new StubPhoto (path));
+		var shown = viewModel.Photos[0];
+		var container = new object ();
+
+		try {
+			await viewModel.RealizeThumbnailAsync (container, shown);
+			Assert.IsNotNull (shown.Thumbnail);
+			viewModel.ReleaseThumbnail (container);
+			File.Delete (path);
+
+			var again = new PhotoItemViewModel (shown.Photo);
+			await viewModel.RealizeThumbnailAsync (new object (), again);
+
+			Assert.IsNotNull (again.Thumbnail);
+			Assert.IsGreaterThan (0, again.Thumbnail.PixelSize.Width);
+		} finally {
+			viewModel.ReleaseDecodedImages ();
+			if (File.Exists (path))
+				File.Delete (path);
+		}
 	}
 
 	[UiTestMethod]
@@ -186,6 +282,26 @@ public sealed partial class MainWindowViewModelTests
 		viewModel.ReleaseThumbnail (stillShown);
 		Assert.IsTrue (firstToken.IsCancellationRequested);
 		Assert.IsFalse (secondToken.IsCancellationRequested);
+	}
+
+	[UiTestMethod]
+	public async Task ShowingTheSamePhotoAgainKeepsTheDecodeAlreadyRunning ()
+	{
+		var thumbs = new WaitingThumbnails ();
+		var viewModel = new MainWindowViewModel (null, new RecordingShell (), thumbs);
+		viewModel.SeedCatalog (new StubPhoto ("/a.jpg"));
+		var grid = new object ();
+		var started = viewModel.RealizeThumbnailAsync (grid, viewModel.Photos[0]);
+
+		viewModel.ReleaseThumbnail (grid);
+		var again = viewModel.RealizeThumbnailAsync (new object (), viewModel.Photos[0]);
+
+		Assert.AreEqual (1, thumbs.Calls);
+		Assert.IsFalse (thumbs.Token.IsCancellationRequested);
+		thumbs.Complete (new WriteableBitmap (new PixelSize (4, 4), new global::Avalonia.Vector (96, 96), PixelFormat.Bgra8888, AlphaFormat.Premul));
+		await started;
+		await again;
+		Assert.IsNotNull (viewModel.Photos[0].Thumbnail);
 	}
 
 	[UiTestMethod]
@@ -254,6 +370,28 @@ public sealed partial class MainWindowViewModelTests
 		viewModel.ReleaseThumbnail (stillShown);
 		Assert.IsTrue (firstToken.IsCancellationRequested);
 		Assert.IsFalse (secondToken.IsCancellationRequested);
+	}
+
+	[UiTestMethod]
+	[DoNotParallelize]
+	public async Task ScrollingPastAnImportRow_KeepsItsThumbnail ()
+	{
+		AvaloniaApp.Ensure ();
+		var thumbs = new BitmapThumbnails ();
+		var viewModel = new ImportViewModel (null!, new RecordingShell (), thumbs, static _ => { });
+		viewModel.AddPendingPhoto (new PhotoItemViewModel (new StubPhoto ("/import/a.jpg")));
+		var container = new object ();
+		await viewModel.RealizeThumbnailAsync (container, viewModel.Photos[0]);
+		var thumbnail = viewModel.Photos[0].Thumbnail;
+		Assert.IsNotNull (thumbnail);
+		int decodes = thumbs.Sizes.Count;
+
+		viewModel.ReleaseThumbnail (container);
+		await viewModel.RealizeThumbnailAsync (new object (), viewModel.Photos[0]);
+
+		Assert.AreSame (thumbnail, viewModel.Photos[0].Thumbnail);
+		Assert.IsGreaterThan (0, thumbnail.PixelSize.Width);
+		Assert.HasCount (decodes, thumbs.Sizes);
 	}
 
 	[UiTestMethod]
@@ -611,7 +749,7 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
-	public async Task ReloadThumbnails_ReleasedCellIsLoadedAgainWhenItComesBack ()
+	public async Task ReloadThumbnails_LeavesAReleasedThumbnailForWhenItComesBack ()
 	{
 		var thumbs = new HoldAThenCount ();
 		var viewModel = new MainWindowViewModel (null, new RecordingShell (), thumbs);
@@ -620,6 +758,8 @@ public sealed partial class MainWindowViewModelTests
 		await viewModel.RealizeThumbnailAsync (new object (), viewModel.Photos[0]);
 		await viewModel.RealizeThumbnailAsync (bContainer, viewModel.Photos[1]);
 		Assert.AreEqual (1, thumbs.BLoads);
+		var thumbnail = viewModel.Photos[1].Thumbnail;
+		Assert.IsNotNull (thumbnail);
 
 		thumbs.HoldA = true;
 		Task reload = viewModel.ReloadThumbnailsAsync ();
@@ -628,11 +768,11 @@ public sealed partial class MainWindowViewModelTests
 		thumbs.ReleaseA.SetResult (TinyBitmap ());
 		await reload.WaitAsync (TestContext.CancellationToken);
 
-		Assert.IsNull (viewModel.Photos[1].Thumbnail);
+		Assert.AreSame (thumbnail, viewModel.Photos[1].Thumbnail);
 		Assert.AreEqual (1, thumbs.BLoads);
 		await viewModel.RealizeThumbnailAsync (new object (), viewModel.Photos[1]);
-		Assert.AreEqual (2, thumbs.BLoads);
-		Assert.IsNotNull (viewModel.Photos[1].Thumbnail);
+		Assert.AreEqual (1, thumbs.BLoads);
+		Assert.AreSame (thumbnail, viewModel.Photos[1].Thumbnail);
 	}
 
 	[UiTestMethod]
@@ -1203,6 +1343,65 @@ public sealed partial class MainWindowViewModelTests
 	}
 
 	[UiTestMethod]
+	public void Status_PutsASpaceBeforeTheSelectionCount ()
+	{
+		var viewModel = NewViewModel ();
+		viewModel.SeedCatalog (new StubPhoto ("/a.jpg"), new StubPhoto ("/b.jpg"));
+		viewModel.SelectPhoto (viewModel.Photos[1]);
+
+		Assert.Contains ("(1 selected)", viewModel.StatusText);
+		Assert.DoesNotContain ("photos(", viewModel.StatusText);
+	}
+
+	[UiTestMethod]
+	public void Timeline_OmitsEmptyMonthsAndLabelsEachYear ()
+	{
+		var viewModel = NewViewModel ();
+		viewModel.SeedCatalog (
+			new StubPhoto ("/dec.jpg", new DateTime (2025, 12, 25)),
+			new StubPhoto ("/feb.jpg", new DateTime (2026, 2, 1)));
+
+		Assert.HasCount (2, viewModel.TimelineBuckets);
+		Assert.AreEqual ("2025", viewModel.TimelineBuckets[0].YearLabel);
+		Assert.AreEqual ("2026", viewModel.TimelineBuckets[1].YearLabel);
+		Assert.IsGreaterThan (0, viewModel.TimelineBuckets[0].Count);
+		Assert.IsGreaterThan (0, viewModel.TimelineBuckets[1].Count);
+	}
+
+	[TestMethod]
+	public void StarHover_FillsEveryStarUpToThePointer ()
+	{
+		var info = new PhotoInfoViewModel ();
+		info.PreviewStars (3);
+
+		Assert.AreEqual ("★", info.StarButtons[0].Glyph);
+		Assert.AreEqual ("★", info.StarButtons[1].Glyph);
+		Assert.AreEqual ("★", info.StarButtons[2].Glyph);
+		Assert.AreEqual ("☆", info.StarButtons[3].Glyph);
+		Assert.AreEqual ("☆", info.StarButtons[4].Glyph);
+
+		info.PreviewStars (null);
+		Assert.AreEqual ("☆", info.StarButtons[0].Glyph);
+	}
+
+	[UiTestMethod]
+	public async Task ChoosingTheFolderRowOpensThePickerAndCanBeChosenAgain ()
+	{
+		AvaloniaApp.Ensure ();
+		var shell = new CountingFolderShell ();
+		var viewModel = new ImportViewModel (null!, shell, new CountingThumbnails (), static _ => { });
+		Assert.IsNull (viewModel.SelectedSourceOption);
+
+		var choose = viewModel.SourceOptions.Single (option => option.Kind == ImportSourceKind.ChooseFolder);
+		viewModel.SelectedSourceOption = choose;
+		await PumpUntil (() => shell.FolderPrompts == 1);
+		Assert.IsNull (viewModel.SelectedSourceOption);
+
+		viewModel.SelectedSourceOption = choose;
+		await PumpUntil (() => shell.FolderPrompts == 2);
+	}
+
+	[UiTestMethod]
 	public void TimelineBucketToolTip_UsesTheMonthCountFormat ()
 	{
 		var viewModel = NewViewModel ();
@@ -1220,7 +1419,7 @@ public sealed partial class MainWindowViewModelTests
 			new StubPhoto ("/mar.jpg", new DateTime (2026, 3, 10)),
 			new StubPhoto ("/jun.jpg", new DateTime (2026, 6, 10)));
 
-		viewModel.SetTimelineRangeCommand.Execute ((0, 2));
+		viewModel.SetTimelineRangeCommand.Execute ((0, 1));
 
 		Assert.HasCount (2, viewModel.Photos);
 		Assert.DoesNotContain ("jun.jpg", viewModel.Photos.Select (item => item.Caption).ToList ());
@@ -2029,8 +2228,9 @@ public sealed partial class MainWindowViewModelTests
 
 			viewModel.SelectInvertCommand.Execute (null);
 
-			Assert.AreEqual (250, viewModel.SelectionCount);
-			Assert.HasCount (1, viewModel.Photos.Realized.ToList ());
+			Assert.AreEqual (249, viewModel.SelectionCount);
+			Assert.IsFalse (viewModel.Photos[0].Selected);
+			Assert.IsLessThan (10, viewModel.Photos.Realized.Count ());
 		});
 	}
 
@@ -2375,6 +2575,38 @@ public sealed partial class MainWindowViewModelTests
 			viewModel.RotateLeftCommand.Execute (null);
 
 			Assert.HasCount (1, viewModel.Photos.Realized.ToList ());
+		});
+	}
+
+	[UiTestMethod]
+	public void LoadCatalog_SelectsTheFirstPhoto ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			database.Photos.CreateFrom (new StubPhoto ("/photos/a.jpg", new DateTime (2020, 1, 3)), true, roll);
+			database.Photos.CreateFrom (new StubPhoto ("/photos/b.jpg", new DateTime (2020, 1, 2)), true, roll);
+			viewModel.LoadCatalog ();
+
+			Assert.AreEqual (1, viewModel.SelectionCount);
+			Assert.IsTrue (viewModel.Photos[0].Selected);
+			Assert.IsFalse (viewModel.Photos[1].Selected);
+		});
+	}
+
+	[UiTestMethod]
+	public void ToggleTimeline_ShowsTheStripWhileBrowsing ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			database.Photos.CreateFrom (new StubPhoto ("/photos/a.jpg", new DateTime (2020, 1, 3)), true, roll);
+			viewModel.LoadCatalog ();
+			viewModel.DisplayTimeline = false;
+
+			viewModel.ToggleTimelineCommand.Execute (null);
+
+			Assert.IsTrue (viewModel.DisplayTimeline);
+			Assert.IsTrue (viewModel.ShowTimeline);
+			Assert.IsTrue (viewModel.CanUseTimeline);
 		});
 	}
 
@@ -3443,6 +3675,17 @@ public sealed partial class MainWindowViewModelTests
 		public void Destroy () { }
 	}
 
+	sealed class CountingFolderShell : NullShell
+	{
+		public int FolderPrompts { get; private set; }
+
+		public override Task<string?> PickFolderAsync (string title)
+		{
+			FolderPrompts++;
+			return Task.FromResult<string?> (null);
+		}
+	}
+
 	internal class NullShell : IAvaloniaShell
 	{
 		public virtual void Close () { }
@@ -3656,6 +3899,28 @@ public sealed partial class MainWindowViewModelTests
 			Calls++;
 			return Task.FromResult<Bitmap?> (null);
 		}
+	}
+
+	sealed class WaitingThumbnails : IPhotoThumbnailLoader
+	{
+		readonly TaskCompletionSource<Bitmap?> gate = new ();
+
+		public int Calls { get; private set; }
+
+		public CancellationToken Token { get; private set; }
+
+		public Task<Bitmap?> LoadAsync (string path, int size, CancellationToken cancellationToken)
+		{
+			Calls++;
+			Token = cancellationToken;
+			return gate.Task;
+		}
+
+		public Task<Bitmap?> LoadForMeasurementAsync (string path, int size, CancellationToken cancellationToken)
+			=> Task.FromResult<Bitmap?> (null);
+
+		public void Complete (Bitmap? bitmap)
+			=> gate.SetResult (bitmap);
 	}
 
 	internal sealed class TokenThumbnails : IPhotoThumbnailLoader

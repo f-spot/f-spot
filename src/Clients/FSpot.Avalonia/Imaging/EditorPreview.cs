@@ -14,6 +14,16 @@ public static class EditorPreview
 	public const double Dip = 1600;
 	public const int MaxPixels = 4096;
 
+	// The editor pane on a retina screen is covered by 2048 pixels. Decoding the
+	// full 1600dip times the scale, then converting every pixel, is what made
+	// opening a photo wait.
+	public const int OpenEdge = 2048;
+
 	public static int DecodeWidth (double uiScale)
-		=> Math.Min (MaxPixels, HiDpi.PixelSize (Dip, uiScale));
+	{
+		int scaled = HiDpi.PixelSize (Dip, uiScale);
+		if (scaled < Dip)
+			scaled = (int)Dip;
+		return Math.Min (OpenEdge, scaled);
+	}
 }

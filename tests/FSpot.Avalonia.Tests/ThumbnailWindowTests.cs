@@ -68,8 +68,8 @@ public sealed class ThumbnailWindowTests
 	public void EditorPreview_CapsTheDecodeWidth ()
 	{
 		Assert.AreEqual (1600, EditorPreview.DecodeWidth (1));
-		Assert.AreEqual (3200, EditorPreview.DecodeWidth (2));
-		Assert.AreEqual (EditorPreview.MaxPixels, EditorPreview.DecodeWidth (3));
+		Assert.AreEqual (EditorPreview.OpenEdge, EditorPreview.DecodeWidth (2));
+		Assert.AreEqual (EditorPreview.OpenEdge, EditorPreview.DecodeWidth (3));
 		Assert.AreEqual (1600, EditorPreview.DecodeWidth (0));
 	}
 

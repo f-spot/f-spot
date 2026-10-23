@@ -288,6 +288,22 @@ public sealed class WindowChromeAccessTests
 	}
 
 	[UiTestMethod]
+	public void PickFolder_UsesTheOpenDialogAsItsOwner ()
+	{
+		AvaloniaApp.Ensure ();
+		var main = new MainWindow (null, new NullThumbnails ()) { Width = 400, Height = 300 };
+		var dialog = new Window { Width = 200, Height = 120, Title = "Import" };
+		main.Show ();
+		try {
+			dialog.Show (main);
+			Assert.AreSame (dialog, main.DialogOwner ());
+		} finally {
+			dialog.Close ();
+			main.Close ();
+		}
+	}
+
+	[UiTestMethod]
 	public async Task FolderPicker_IsInTheAutomationTreeAndReturnsTheTypedPath ()
 	{
 		AvaloniaApp.Ensure ();

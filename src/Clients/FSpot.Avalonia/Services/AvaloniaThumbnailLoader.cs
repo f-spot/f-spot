@@ -53,7 +53,7 @@ sealed class XdgThumbnailCache : IGridThumbnailCache
 
 sealed class AvaloniaThumbnailLoader : IPhotoThumbnailLoader
 {
-	readonly IGridThumbnailCache cache;
+	readonly ThumbnailMemory memory = new ();
 	readonly Func<Profile?> profile;
 
 	public AvaloniaThumbnailLoader ()
@@ -68,7 +68,8 @@ sealed class AvaloniaThumbnailLoader : IPhotoThumbnailLoader
 
 	internal AvaloniaThumbnailLoader (IGridThumbnailCache cache, Func<Profile?> profile)
 	{
-		this.cache = cache;
+		// The disk thumbnail is not painted. A stored hit kept the old blue pixels.
+		_ = cache;
 		this.profile = profile;
 	}
 
@@ -78,8 +79,20 @@ sealed class AvaloniaThumbnailLoader : IPhotoThumbnailLoader
 	public Task<Bitmap?> LoadForMeasurementAsync (string path, int size, CancellationToken cancellationToken)
 		=> LoadCoreAsync (path, size, colorManage: false, cancellationToken);
 
+	public Bitmap? TryCopyCached (string path, int size)
+		=> memory.Copy (path, size, color: true);
+
+	public void Invalidate (string? path = null)
+		=> memory.Invalidate (path);
+
 	async Task<Bitmap?> LoadCoreAsync (string path, int size, bool colorManage, CancellationToken cancellationToken)
 	{
+		// A cell that scrolls back paints the copy it already decoded, even when the
+		// file has since been removed. The check is before the disk so a miss still
+		// notices a missing photo.
+		if (memory.Copy (path, size, colorManage) is Bitmap cached)
+			return cached;
+
 		if (!File.Exists (path))
 			return null;
 
@@ -87,24 +100,20 @@ sealed class AvaloniaThumbnailLoader : IPhotoThumbnailLoader
 		// Both the cache read and the miss run inside the gate so a grid scroll cannot
 		// start them on the UI thread beside a full-size decode.
 		return await DecodeGate.RunAsync (() => {
+			if (memory.Copy (path, size, colorManage) is Bitmap raced)
+				return raced;
+
 			// A measurement reads the stored pixels. The screen asks for the profile
 			// and converts a copy, so the shared thumbnail cache stays unmanaged.
 			var destination = colorManage ? profile () : null;
-			if (size >= 1 && size <= 256) {
-				if (cache.TryLoad (path, size) is ImageBuffer stored)
-					return Show (stored, destination);
-				if (cache.Get (path, size) is ImageBuffer created)
-					return Show (created, destination);
-			}
-
+			// The on-disk thumbnail was written by the older reader and is blue.
+			// A hit never replaced it, so the grid decodes the file at this size.
 			var bitmap = AvaloniaPhotoDecoder.DecodeFile (path, size);
-			return DisplayColor.Present (bitmap, destination);
+			Bitmap shown = DisplayColor.Present (bitmap, destination);
+
+			memory.Remember (path, size, colorManage, shown);
+			return shown;
 		}, cancellationToken).ConfigureAwait (false);
 	}
 
-	static Bitmap Show (ImageBuffer buffer, Profile? destination)
-	{
-		buffer = DisplayColor.Apply (buffer, destination);
-		return AvaloniaImagingBackend.ToBgraBitmap (buffer);
-	}
 }

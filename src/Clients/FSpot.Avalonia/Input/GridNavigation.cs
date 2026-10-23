@@ -72,7 +72,7 @@ public static class GridNavigation
 		int old = Clamp (focus, count);
 		int next = old;
 		var action = GridKeyAction.Move;
-		var selected = new CompactSelection (allSelected, picked);
+		var selected = new CompactSelection (allSelected, picked ?? Empty);
 
 		switch (key) {
 		case Key.Down:

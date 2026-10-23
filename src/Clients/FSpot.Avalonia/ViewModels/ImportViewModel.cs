@@ -215,7 +215,9 @@ public partial class ImportViewModel : ObservableObject
 				SourceOptions.Add (history);
 
 			OnPropertyChanged (nameof (HasDetectedSources));
-			SelectedSourceOption = toSelect ?? chooseFolder;
+			// Leave "Choose Folder..." unselected. A combo does not raise a change
+			// when the row that is already selected is chosen again.
+			SelectedSourceOption = toSelect is { Kind: ImportSourceKind.Source } ? toSelect : null;
 		} finally {
 			suppressSourceSelection = false;
 		}
@@ -227,6 +229,9 @@ public partial class ImportViewModel : ObservableObject
 			return;
 
 		if (value.Kind == ImportSourceKind.ChooseFolder) {
+			suppressSourceSelection = true;
+			SelectedSourceOption = null;
+			suppressSourceSelection = false;
 			UiTasks.Forget (ChooseFolderAsync ());
 			return;
 		}
@@ -251,9 +256,12 @@ public partial class ImportViewModel : ObservableObject
 			return;
 		}
 		if (path is null) {
-			// Nothing was picked; fall back to whatever source was active
-			// rather than leaving "Choose Folder..." selected with no source.
-			RefreshSourceOptions (SourceOptions.FirstOrDefault (option => option.Path == SourcePath));
+			// Nothing was picked. Restore the folder that was already scanned.
+			// A null path matches "Choose Folder..." and would stick the combo there.
+			ImportSourceOption? previous = SourcePath is null
+				? null
+				: SourceOptions.FirstOrDefault (option => option.Kind == ImportSourceKind.Source && option.Path == SourcePath);
+			RefreshSourceOptions (previous);
 			return;
 		}
 
@@ -502,6 +510,9 @@ public partial class ImportViewModel : ObservableObject
 			return;
 		thumbnailGeneration.Remove (item);
 		thumbnailLoads.End (item);
+		// Same as the library grid: a thumbnail that already painted stays put.
+		if (item.Thumbnail is not null)
+			return;
 		ReplaceThumbnail (item, null);
 	}
 

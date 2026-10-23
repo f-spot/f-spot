@@ -131,24 +131,32 @@ sealed class AvaloniaImagingBackend : IImagingBackend
 	{
 		int width = bitmap.PixelSize.Width;
 		int height = bitmap.PixelSize.Height;
+		if (width < 1 || height < 1)
+			return new ImageBuffer (Math.Max (width, 0), Math.Max (height, 0), false, 0, Array.Empty<byte> ());
+
 		int srcStride = width * 4;
-		var bgra = new byte[srcStride * height];
+		var copied = new byte[srcStride * height];
 		unsafe {
-			fixed (byte* pointer = bgra)
-				bitmap.CopyPixels (new global::Avalonia.PixelRect (0, 0, width, height), (nint)pointer, bgra.Length, srcStride);
+			fixed (byte* pointer = copied)
+				bitmap.CopyPixels (new global::Avalonia.PixelRect (0, 0, width, height), (nint)pointer, copied.Length, srcStride);
 		}
 
+		// Same layout as the display conversion. A decoded photo is Rgba8888, so
+		// reading it as Bgra stores blue in the red channel.
+		// Channel order only. Opaque pixels are unchanged, and the editor reads the
+		// stored values rather than a second unpremultiply.
+		var straight = DisplayColor.ToStraightRgba (copied, width, height, bitmap.Format, global::Avalonia.Platform.AlphaFormat.Unpremul);
 		int dstStride = width * 3;
 		var rgb = new byte[dstStride * height];
 		for (int y = 0; y < height; y++) {
-			int srcRow = y * srcStride;
+			int srcRow = y * straight.Rowstride;
 			int dstRow = y * dstStride;
 			for (int x = 0; x < width; x++) {
 				int src = srcRow + x * 4;
 				int dst = dstRow + x * 3;
-				rgb[dst] = bgra[src + 2];
-				rgb[dst + 1] = bgra[src + 1];
-				rgb[dst + 2] = bgra[src];
+				rgb[dst] = straight.Pixels[src];
+				rgb[dst + 1] = straight.Pixels[src + 1];
+				rgb[dst + 2] = straight.Pixels[src + 2];
 			}
 		}
 

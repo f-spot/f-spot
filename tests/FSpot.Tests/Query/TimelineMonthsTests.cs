@@ -57,7 +57,7 @@ namespace FSpot.Query.Tests
 		}
 
 		[TestMethod]
-		public void Span_FillsEveryMonthBetweenTheFirstAndLastPhoto ()
+		public void Span_OmitsMonthsThatHaveNoPhotos ()
 		{
 			var photos = new[] {
 				Photo (new DateTime (2026, 1, 15)),
@@ -67,14 +67,12 @@ namespace FSpot.Query.Tests
 
 			var buckets = TimelineMonths.Span (photos);
 
-			Assert.HasCount (12, buckets);
+			Assert.HasCount (2, buckets);
 			Assert.AreEqual (new DateTime (2026, 1, 1), buckets[0].Start);
 			Assert.AreEqual (2, buckets[0].Count);
-			Assert.AreEqual (0, buckets[1].Count);
-			Assert.AreEqual (new DateTime (2026, 6, 1), buckets[5].Start);
-			Assert.AreEqual (0, buckets[5].Count);
-			Assert.AreEqual (new DateTime (2026, 12, 1), buckets[11].Start);
-			Assert.AreEqual (1, buckets[11].Count);
+			Assert.AreEqual (new DateTime (2026, 12, 1), buckets[1].Start);
+			Assert.AreEqual (1, buckets[1].Count);
+			Assert.IsFalse (buckets.Any (bucket => bucket.Count == 0));
 		}
 
 		[TestMethod]
@@ -85,13 +83,11 @@ namespace FSpot.Query.Tests
 				Photo (new DateTime (2026, 2, 1))
 			});
 
-			Assert.HasCount (3, buckets);
+			Assert.HasCount (2, buckets);
 			Assert.AreEqual (new DateTime (2025, 12, 1), buckets[0].Start);
 			Assert.AreEqual (1, buckets[0].Count);
-			Assert.AreEqual (new DateTime (2026, 1, 1), buckets[1].Start);
-			Assert.AreEqual (0, buckets[1].Count);
-			Assert.AreEqual (new DateTime (2026, 2, 1), buckets[2].Start);
-			Assert.AreEqual (1, buckets[2].Count);
+			Assert.AreEqual (new DateTime (2026, 2, 1), buckets[1].Start);
+			Assert.AreEqual (1, buckets[1].Count);
 		}
 
 		[TestMethod]
@@ -102,11 +98,11 @@ namespace FSpot.Query.Tests
 				Photo (new DateTime (2026, 6, 1))
 			});
 
-			var span = TimelineMonths.InclusiveRange (months, 1, 3);
-			Assert.AreEqual (new DateTime (2026, 2, 1), span.Start);
-			Assert.AreEqual (new DateTime (2026, 5, 1), span.End);
+			var span = TimelineMonths.InclusiveRange (months, 0, 1);
+			Assert.AreEqual (new DateTime (2026, 1, 1), span.Start);
+			Assert.AreEqual (new DateTime (2026, 7, 1), span.End);
 
-			var swapped = TimelineMonths.InclusiveRange (months, 3, 1);
+			var swapped = TimelineMonths.InclusiveRange (months, 1, 0);
 			Assert.AreEqual (span.Start, swapped.Start);
 			Assert.AreEqual (span.End, swapped.End);
 		}

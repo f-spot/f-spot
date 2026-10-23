@@ -69,8 +69,26 @@ public partial class PhotoInfoViewModel : ObservableObject
 	public event Action<string>? DescriptionChosen;
 
 	public IReadOnlyList<uint> RatingChoices { get; } = [0, 1, 2, 3, 4, 5];
-	public IReadOnlyList<InfoStar> StarButtons
-		=> Enumerable.Range (1, 5).Select (index => new InfoStar ((uint)index, index <= RatingValue)).ToList ();
+
+	uint? starPreview;
+
+	public IReadOnlyList<InfoStar> StarButtons {
+		get {
+			int shown = starPreview is uint preview ? (int)preview : (int)RatingValue;
+			if (shown > 5)
+				shown = 5;
+			return Enumerable.Range (1, 5).Select (index => new InfoStar ((uint)index, index <= shown)).ToList ();
+		}
+	}
+
+	public void PreviewStars (uint? rating)
+	{
+		uint? next = rating is > 0 and <= 5 ? rating : null;
+		if (starPreview == next)
+			return;
+		starPreview = next;
+		OnPropertyChanged (nameof (StarButtons));
+	}
 
 	public event Action<string>? VersionChosen;
 	public event Action<uint>? RatingChosen;
@@ -129,7 +147,10 @@ public partial class PhotoInfoViewModel : ObservableObject
 
 	[RelayCommand]
 	void SetStar (uint rating)
-		=> RatingValue = RatingValue == rating ? 0 : rating;
+	{
+		starPreview = null;
+		RatingValue = RatingValue == rating ? 0 : rating;
+	}
 
 	partial void OnRatingValueChanged (uint value)
 	{

@@ -90,6 +90,32 @@ public sealed class TimelineStripTests
 		Assert.AreEqual (255, ink.A);
 	}
 
+	[UiTestMethod]
+	public void Hover_NamesTheMonthAndTheYearOnEveryMonth ()
+	{
+		AvaloniaApp.Ensure ();
+		var buckets = Months (14);
+		var (strip, window) = Shown (buckets, 800);
+		var scale = strip.GetVisualDescendants ().OfType<TimelineScale> ().Single ();
+
+		window.MouseMove (At (strip, window, 5));
+		string june = scale.HoverCaption ?? "";
+		Assert.Contains ("2024", june);
+		Assert.Contains (buckets[5].Start.ToString ("MMMM"), june);
+		Assert.AreNotEqual (buckets[5].MonthLabel, june);
+
+		window.MouseMove (At (strip, window, 0));
+		string january = scale.HoverCaption ?? "";
+		Assert.Contains ("2024", january);
+		Assert.Contains (buckets[0].Start.ToString ("MMMM"), january);
+		Assert.AreNotEqual (june, january);
+
+		window.MouseMove (At (strip, window, 13));
+		string february = scale.HoverCaption ?? "";
+		Assert.Contains ("2025", february);
+		Assert.Contains (buckets[13].Start.ToString ("MMMM"), february);
+	}
+
 	TimelineScale ShownScale (ThemeVariant theme)
 	{
 		var scale = new TimelineScale { Items = Months (3), Width = 300, Height = 48 };
@@ -382,7 +408,13 @@ public sealed class TimelineStripTests
 	}
 
 	static Button Arrow (TimelineStrip strip, string content)
-		=> strip.GetVisualDescendants ().OfType<Button> ().Single (button => Equals (button.Content, content));
+	{
+		string name = content == "▶"
+			? FSpot.Resources.Lang.Strings.Next
+			: FSpot.Resources.Lang.Strings.Previous;
+		return strip.GetVisualDescendants ().OfType<Button> ()
+			.Single (button => global::Avalonia.Automation.AutomationProperties.GetName (button) == name);
+	}
 
 	static void Click (Window window, Button button)
 	{

@@ -43,20 +43,7 @@ namespace FSpot.Query
 				.OrderBy (group => group.Key)
 				.Select (group => new TimelineMonth (group.Key, group.Key.AddMonths (1), group.Count ()))
 				.ToList ();
-			if (grouped.Count == 0)
-				return grouped;
-
-			var counts = new Dictionary<DateTime, int> (grouped.Count);
-			foreach (var month in grouped)
-				counts[month.Start] = month.Count;
-
-			var filled = new List<TimelineMonth> ();
-			for (var start = grouped[0].Start; start <= grouped[grouped.Count - 1].Start; start = start.AddMonths (1)) {
-				counts.TryGetValue (start, out int count);
-				filled.Add (new TimelineMonth (start, start.AddMonths (1), count));
-			}
-
-			return filled;
+			return grouped;
 		}
 
 		public static TimelineMonth InclusiveRange (IReadOnlyList<TimelineMonth> months, int minIndex, int maxIndex)

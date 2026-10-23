@@ -287,6 +287,12 @@ public class UniformVirtualizingWrapPanel : VirtualizingPanel, ILogicalScrollabl
 			this.photo = photo;
 			row.PropertyChanged += OnRowPropertyChanged;
 			photo.PropertyChanged += OnPhotoChanged;
+			pushing = true;
+			try {
+				row.IsSelected = photo.Selected;
+			} finally {
+				pushing = false;
+			}
 			live = true;
 		}
 

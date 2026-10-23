@@ -3,6 +3,7 @@
              xmlns:sys="using:System"
              xmlns:lang="using:FSpot.Resources.Lang"
              xmlns:utils="using:FSpot.Utils"
+             xmlns:vm="using:FSpot.Avalonia.ViewModels"
              x:Class="FSpot.Avalonia.App"
              Name="{x:Static lang:Strings.FSpot}"
              RequestedThemeVariant="Default">
@@ -72,6 +73,25 @@
 		<Style Selector="ListBoxItem:focus">
 			<Setter Property="BorderBrush" Value="{DynamicResource SystemAccentColor}" />
 			<Setter Property="BorderThickness" Value="2" />
+		</Style>
+		<!-- The photo grid's own 1px outline is the selection. This focus ring would
+		     stack a second, heavier box on the thumbnail. -->
+		<Style Selector="ListBox.photo-grid ListBoxItem:focus, ListBox.photo-grid ListBoxItem:focus-within, ListBox.photo-grid ListBoxItem:selected">
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="BorderBrush" Value="Transparent" />
+		</Style>
+		<!-- The filmstrip reserves FilmstripFrame on every cell. This keeps the app focus
+		     border from growing only the selected thumbnail after the row has been measured. -->
+		<Style Selector="ListBox.filmstrip ListBoxItem">
+			<Setter Property="Padding" Value="0" />
+			<Setter Property="MinHeight" Value="0" />
+			<Setter Property="MinWidth" Value="0" />
+			<Setter Property="BorderThickness" Value="{x:Static vm:MainWindowViewModel.FilmstripFrame}" />
+			<Setter Property="FocusAdorner" Value="{x:Null}" />
+		</Style>
+		<Style Selector="ListBox.filmstrip ListBoxItem:focus, ListBox.filmstrip ListBoxItem:focus-within, ListBox.filmstrip ListBoxItem:selected">
+			<Setter Property="BorderThickness" Value="{x:Static vm:MainWindowViewModel.FilmstripFrame}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource SystemAccentColor}" />
 		</Style>
 		<Style Selector=".timeline-month:focus Border">
 			<Setter Property="BorderBrush" Value="{DynamicResource SystemAccentColor}" />

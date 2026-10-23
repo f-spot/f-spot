@@ -50,6 +50,8 @@ public partial class MainWindowViewModel : ObservableObject
 	readonly ThumbnailLease shownThumbnails = new ();
 	readonly ThumbnailLoads thumbnailLoads = new ();
 	readonly Dictionary<PhotoItemViewModel, int> thumbnailGeneration = new ();
+	readonly Dictionary<PhotoItemViewModel, int> thumbnailPixels = new ();
+	readonly Dictionary<PhotoItemViewModel, int> loadingPixels = new ();
 	Task previewTask = Task.CompletedTask;
 	int previewGeneration;
 	CancellationTokenSource? previewDecode;
@@ -233,6 +235,7 @@ public partial class MainWindowViewModel : ObservableObject
 		Photos.IsIndexSelected = IndexIsSelected;
 		// Select All marks every row. Keeping those view models would retain the whole library.
 		Photos.KeepRealized = item => ReferenceEquals (item, SelectedPhoto) || (!allSelected && item.Selected);
+		Photos.Discarded = DropDiscardedThumbnail;
 		WatchMenuExtensions ();
 	}
 
@@ -270,7 +273,7 @@ public partial class MainWindowViewModel : ObservableObject
 		=> OnPropertyChanged (nameof (SidebarLength));
 
 	public LibraryItems Photos { get; } = new ();
-	PhotoQuery libraryQuery;
+	PhotoQuery? libraryQuery;
 	bool seededCatalog;
 	// Paged selection is a set of indexes. allSelected with an empty set means every row;
 	// with entries, those indexes are excluded. Otherwise the set is the rows that are selected.
@@ -343,11 +346,21 @@ public partial class MainWindowViewModel : ObservableObject
 	public double GridCellWidth => TileSize + 8;
 	public double GridCellHeight => TileSize + 96;
 	public double FilmstripPaneHeight => Zoom + 24;
+	public const double FilmstripThumb = 72;
+	// The focus border is reserved on every thumbnail. Adding it only to the selected
+	// item made that cell taller and the strip started scrolling on the wrong axis.
+	public const double FilmstripBorder = 2;
+	public static readonly global::Avalonia.Thickness FilmstripFrame = new (FilmstripBorder);
+	public const double FilmstripItem = FilmstripThumb + FilmstripBorder * 2;
 	public bool FilmstripOnSide { get; private set; }
 	public global::Avalonia.Controls.Dock FilmstripEdge => FilmstripOnSide ? global::Avalonia.Controls.Dock.Right : global::Avalonia.Controls.Dock.Top;
 	public global::Avalonia.Layout.Orientation FilmstripFlow => FilmstripOnSide ? global::Avalonia.Layout.Orientation.Vertical : global::Avalonia.Layout.Orientation.Horizontal;
-	public double FilmstripBreadth => FilmstripOnSide ? 96 : double.NaN;
-	public double FilmstripSpan => FilmstripOnSide ? double.NaN : 84;
+	public double FilmstripBreadth => FilmstripOnSide ? FilmstripItem : double.NaN;
+	public double FilmstripSpan => FilmstripOnSide ? double.NaN : FilmstripItem;
+	public global::Avalonia.Controls.Primitives.ScrollBarVisibility FilmstripHorizontalScroll =>
+		FilmstripOnSide ? global::Avalonia.Controls.Primitives.ScrollBarVisibility.Disabled : global::Avalonia.Controls.Primitives.ScrollBarVisibility.Auto;
+	public global::Avalonia.Controls.Primitives.ScrollBarVisibility FilmstripVerticalScroll =>
+		FilmstripOnSide ? global::Avalonia.Controls.Primitives.ScrollBarVisibility.Auto : global::Avalonia.Controls.Primitives.ScrollBarVisibility.Disabled;
 	public bool TagIconsVisible => TagIconEdge > 0;
 	public double TagIconEdge => (int)Tag.TagIconSize;
 
@@ -494,6 +507,10 @@ public partial class MainWindowViewModel : ObservableObject
 		} else {
 			SelectedPhoto = libraryQuery.Count > 0 ? Photos[0] : null;
 		}
+		// Show the opened row as selected. Leave the index set empty so a later
+		// click or invert still starts from this one photo, not from Select All.
+		if (SelectedPhoto is not null)
+			SelectedPhoto.Selected = true;
 		UpdateStatus ();
 		OnPropertyChanged (nameof (ShowEmptyLibrary));
 		OnPropertyChanged (nameof (ShowNoMatches));
@@ -613,12 +630,16 @@ public partial class MainWindowViewModel : ObservableObject
 		if (resetLimits)
 			ClearTimelineLimits ();
 		var next = new List<TimelineBucket> (months.Count);
+		int labeledYear = 0;
 		foreach (var month in months) {
+			string? year = null;
+			if (month.Count > 0 && month.Start.Year != labeledYear) {
+				year = month.Start.Year.ToString ();
+				labeledYear = month.Start.Year;
+			}
 			next.Add (new TimelineBucket {
 				MonthLabel = month.Start.ToString ("MMM"),
-				YearLabel = month.Start.Month == 1 || month.Start == months[0].Start
-					? month.Start.Year.ToString ()
-					: null,
+				YearLabel = year,
 				Start = month.Start,
 				End = month.End,
 				Count = month.Count,
@@ -748,8 +769,18 @@ public partial class MainWindowViewModel : ObservableObject
 	internal Task RealizeThumbnailAsync (object container, PhotoItemViewModel item)
 	{
 		shownThumbnails.Realize (container, item);
-		if (item.Thumbnail is not null || thumbnailGeneration.ContainsKey (item))
+		int size = HiDpi.PixelSize (Zoom, UiScale);
+		// The item still has the bitmap from the last time this cell was shown.
+		if (item.Thumbnail is not null && thumbnailPixels.TryGetValue (item, out int have) && have == size)
 			return Task.CompletedTask;
+		// A decode for this size is already running. A second prepare waits for it.
+		if (thumbnailGeneration.ContainsKey (item) && loadingPixels.TryGetValue (item, out int loading) && loading == size)
+			return Task.CompletedTask;
+		if (thumbnails.TryCopyCached (item.Path, size) is Bitmap cached) {
+			ReplaceThumbnail (item, cached, size);
+			return Task.CompletedTask;
+		}
+
 		return LoadOneAsync (item);
 	}
 
@@ -757,17 +788,36 @@ public partial class MainWindowViewModel : ObservableObject
 	{
 		if (shownThumbnails.Release (container) is not PhotoItemViewModel item)
 			return;
+		// The grid hides and the filmstrip shows this photo in one pass. Cancelling a
+		// decode that has not reached the gate yet made that photo start over at the back.
+		if (item.Thumbnail is null && thumbnailLoads.IsWaiting (item))
+			return;
 		thumbnailGeneration.Remove (item);
+		loadingPixels.Remove (item);
+		thumbnailLoads.End (item);
+		if (item.Thumbnail is not null)
+			return;
+		ReplaceThumbnail (item, null);
+	}
+
+	void DropDiscardedThumbnail (PhotoItemViewModel item)
+	{
+		thumbnailGeneration.Remove (item);
+		loadingPixels.Remove (item);
+		thumbnailPixels.Remove (item);
 		thumbnailLoads.End (item);
 		ReplaceThumbnail (item, null);
 	}
 
 	void DropAllThumbnails ()
 	{
+		thumbnails.Invalidate ();
 		thumbnailLoads.EndAll ();
 		var extras = shownThumbnails.Held.OfType<PhotoItemViewModel> ().ToArray ();
 		shownThumbnails.Clear ();
 		thumbnailGeneration.Clear ();
+		loadingPixels.Clear ();
+		thumbnailPixels.Clear ();
 		ClearHover ();
 		foreach (var item in Photos.Realized)
 			ReplaceThumbnail (item, null);
@@ -795,10 +845,11 @@ public partial class MainWindowViewModel : ObservableObject
 		if (!shownThumbnails.IsHeld (item))
 			return;
 
+		int size = HiDpi.PixelSize (Zoom, UiScale);
 		int generation = NextThumbnailGeneration (item);
+		loadingPixels[item] = size;
 		var source = thumbnailLoads.Begin (item);
 		var token = source.Token;
-		int size = HiDpi.PixelSize (Zoom, UiScale);
 		Bitmap? bitmap = null;
 		try {
 			bitmap = await thumbnails.LoadAsync (item.Path, size, token);
@@ -809,7 +860,7 @@ public partial class MainWindowViewModel : ObservableObject
 				return;
 			}
 
-			ReplaceThumbnail (item, bitmap);
+			ReplaceThumbnail (item, bitmap, size);
 		} catch (OperationCanceledException) {
 			bitmap?.Dispose ();
 			throw;
@@ -825,8 +876,10 @@ public partial class MainWindowViewModel : ObservableObject
 
 	void DropThumbnailGeneration (PhotoItemViewModel item, int generation)
 	{
-		if (thumbnailGeneration.TryGetValue (item, out int current) && current == generation)
+		if (thumbnailGeneration.TryGetValue (item, out int current) && current == generation) {
 			thumbnailGeneration.Remove (item);
+			loadingPixels.Remove (item);
+		}
 	}
 
 	int NextThumbnailGeneration (PhotoItemViewModel item)
@@ -837,10 +890,14 @@ public partial class MainWindowViewModel : ObservableObject
 		return generation;
 	}
 
-	void ReplaceThumbnail (PhotoItemViewModel item, Bitmap? bitmap)
+	void ReplaceThumbnail (PhotoItemViewModel item, Bitmap? bitmap, int size = 0)
 	{
 		var previous = item.Thumbnail;
 		item.Thumbnail = bitmap;
+		if (bitmap is null)
+			thumbnailPixels.Remove (item);
+		else
+			thumbnailPixels[item] = size;
 		ReleasedBitmap.DisposePrevious (previous, bitmap);
 	}
 
@@ -859,6 +916,10 @@ public partial class MainWindowViewModel : ObservableObject
 
 		var item = SelectedPhoto;
 		int size = EditorPreview.DecodeWidth (UiScale);
+		// The grid thumbnail is already decoded. Show it until the editor-sized frame arrives.
+		// It is not the editor source; that is published with the file decode.
+		if (thumbnails.TryCopyCached (item.Path, HiDpi.PixelSize (Zoom, UiScale)) is Bitmap quick)
+			SetPreview (quick);
 		var decode = DecodePreviewAsync (generation, item, size, source);
 		TrackPreviewDecode (decode);
 		previewTask = PublishPreviewAsync (generation, decode);
@@ -1055,7 +1116,7 @@ public partial class MainWindowViewModel : ObservableObject
 		else
 			text = string.Format (shown <= 1 ? Strings.XPhotoOutOfY : Strings.XPhotosOutOfY, shown, total);
 		if (selected > 0)
-			text += string.Format (Strings.XSelected, selected);
+			text += " " + string.Format (Strings.XSelected, selected);
 		StatusText = text;
 		WindowTitle = $"{Strings.FSpot} — {string.Format (shown <= 1 ? Strings.XPhoto : Strings.XPhotos, shown)}";
 	}
@@ -1253,8 +1314,11 @@ public partial class MainWindowViewModel : ObservableObject
 	{
 		if (IndexSelectionActive)
 			return allSelected ? Photos.Count - picked.Count : picked.Count;
+		// A paged library must not be walked. Realized rows are the ones on screen.
+		// A seeded list is already in memory, and its selection lives on those rows.
+		var rows = Photos.IsPaged ? Photos.Realized : Photos;
 		int selected = 0;
-		foreach (PhotoItemViewModel item in Photos.Realized)
+		foreach (PhotoItemViewModel item in rows)
 			if (item.Selected)
 				selected++;
 		return selected;
@@ -1392,10 +1456,16 @@ public partial class MainWindowViewModel : ObservableObject
 		OnPropertyChanged (nameof (CanUseTimeline));
 		OnPropertyChanged (nameof (CanUseFilmstrip));
 		OnPropertyChanged (nameof (CanSharpenOrLoupe));
+		OnPropertyChanged (nameof (ZoomControl));
+		OnPropertyChanged (nameof (CanZoomIn));
+		OnPropertyChanged (nameof (CanZoomOut));
+		ZoomInCommand.NotifyCanExecuteChanged ();
+		ZoomOutCommand.NotifyCanExecuteChanged ();
 		PreviousCommand.NotifyCanExecuteChanged ();
 		NextCommand.NotifyCanExecuteChanged ();
 		SharpenCommand.NotifyCanExecuteChanged ();
 		ToggleLoupeCommand.NotifyCanExecuteChanged ();
+		ToggleTimelineCommand.NotifyCanExecuteChanged ();
 	}
 
 	partial void OnViewModeChanged (LibraryViewMode value)
@@ -1518,6 +1588,8 @@ public partial class MainWindowViewModel : ObservableObject
 		OnPropertyChanged (nameof (FilmstripPaneHeight));
 		OnPropertyChanged (nameof (CanZoomIn));
 		OnPropertyChanged (nameof (CanZoomOut));
+		if (!IsEditing)
+			OnPropertyChanged (nameof (ZoomControl));
 		ZoomInCommand.NotifyCanExecuteChanged ();
 		ZoomOutCommand.NotifyCanExecuteChanged ();
 		UiTasks.Forget (LoadThumbnailsAsync ());
@@ -1536,6 +1608,10 @@ public partial class MainWindowViewModel : ObservableObject
 	// The histogram keeps the measurement it already drew.
 	internal async Task RefreshDisplayAsync ()
 	{
+		// The cached copies were converted for the previous display profile.
+		// Forgetting the recorded size makes a cell that is not on screen reload too.
+		thumbnails.Invalidate ();
+		thumbnailPixels.Clear ();
 		await LoadThumbnailsAsync ();
 		if (hoverItem is { } item && ShowHoverPreview && !IsEditing)
 			await ShowHoverAsync (item, hoverScreenWidth, hoverScreenHeight);
@@ -1567,9 +1643,12 @@ public partial class MainWindowViewModel : ObservableObject
 		}
 
 		if (!additive) {
+			item.Selected = true;
 			foreach (PhotoItemViewModel photo in Photos.Realized)
-				photo.Selected = ReferenceEquals (photo, item);
+				if (!ReferenceEquals (photo, item))
+					photo.Selected = false;
 			SelectedPhoto = item;
+			UpdateStatus ();
 			return;
 		}
 
@@ -1747,16 +1826,26 @@ public partial class MainWindowViewModel : ObservableObject
 		NotifySelectionCommands ();
 	}
 
-	public bool CanZoomIn => Zoom < 256;
-	public bool CanZoomOut => Zoom > 64;
+	public bool CanZoomIn => IsEditing ? PreviewZoom < Imaging.ViewerZoom.Max : Zoom < 256;
+	public bool CanZoomOut => IsEditing ? PreviewZoom > Imaging.ViewerZoom.Min : Zoom > 64;
 
 	[RelayCommand (CanExecute = nameof (CanZoomIn))]
 	void ZoomIn ()
-		=> Zoom = Math.Min (256, Zoom + 16);
+	{
+		if (IsEditing)
+			PreviewZoom = Imaging.ViewerZoom.Clamp (PreviewZoom * Imaging.ViewerZoom.Step);
+		else
+			Zoom = Math.Min (256, Zoom + 16);
+	}
 
 	[RelayCommand (CanExecute = nameof (CanZoomOut))]
 	void ZoomOut ()
-		=> Zoom = Math.Max (64, Zoom - 16);
+	{
+		if (IsEditing)
+			PreviewZoom = Imaging.ViewerZoom.Clamp (PreviewZoom / Imaging.ViewerZoom.Step);
+		else
+			Zoom = Math.Max (64, Zoom - 16);
+	}
 
 	[RelayCommand]
 	void ToggleFilmstripSide ()
@@ -1769,6 +1858,8 @@ public partial class MainWindowViewModel : ObservableObject
 		OnPropertyChanged (nameof (FilmstripFlow));
 		OnPropertyChanged (nameof (FilmstripOnSide));
 		OnPropertyChanged (nameof (FilmstripHorizontal));
+		OnPropertyChanged (nameof (FilmstripHorizontalScroll));
+		OnPropertyChanged (nameof (FilmstripVerticalScroll));
 	}
 
 	[RelayCommand]
@@ -2522,6 +2613,10 @@ public partial class MainWindowViewModel : ObservableObject
 	void ToggleSidebar ()
 		=> DisplaySidebar = !DisplaySidebar;
 
+	[RelayCommand (CanExecute = nameof (CanUseTimeline))]
+	void ToggleTimeline ()
+		=> DisplayTimeline = !DisplayTimeline;
+
 	[RelayCommand]
 	void SelectTimeline (TimelineBucket? bucket)
 	{
@@ -2626,8 +2721,8 @@ public partial class MainWindowViewModel : ObservableObject
 
 	bool EntirePagedSelection (out PhotoQuery query)
 	{
-		query = libraryQuery;
-		return Photos.IsPaged && allSelected && libraryQuery is not null && database is not null;
+		query = libraryQuery!;
+		return libraryQuery is not null && Photos.IsPaged && allSelected && database is not null;
 	}
 
 	void AttachTagToCurrentSelection (Tag tag)
@@ -2989,6 +3084,7 @@ public partial class MainWindowViewModel : ObservableObject
 			? Photos.Realized.Where (item => item.Selected || ReferenceEquals (item, SelectedPhoto))
 			: MutationItems ();
 		foreach (var item in items) {
+			thumbnails.Invalidate (item.Path);
 			ReplaceThumbnail (item, null);
 			thumbnailGeneration.Remove (item);
 			thumbnailLoads.End (item);

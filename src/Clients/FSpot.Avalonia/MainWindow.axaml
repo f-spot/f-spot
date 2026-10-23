@@ -122,7 +122,8 @@
 									                Command="{Binding ToggleSidebarCommand}"
 									                Gesture="F9" />
 									<NativeMenuItem Header="{x:Static lang:Strings.Timeline}" ToggleType="CheckBox"
-									                IsChecked="{Binding DisplayTimeline}"
+									                IsChecked="{Binding DisplayTimeline, Mode=OneWay}"
+									                Command="{Binding ToggleTimelineCommand}"
 									                IsEnabled="{Binding CanUseTimeline}" />
 									<NativeMenuItem Header="{x:Static lang:Strings.Filmstrip}" ToggleType="CheckBox"
 									                IsChecked="{Binding DisplayFilmstrip}"
@@ -346,9 +347,9 @@
 			<StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
 				<svg:Svg Width="14" Height="14" Path="avares://FSpot.Avalonia/Icons/view-far-22.svg" />
 				<Slider Classes="zoom" Width="120" Height="16"
-				        Minimum="64"
-				        Maximum="256"
-				        Value="{Binding Zoom}"
+				        Minimum="0"
+				        Maximum="1"
+				        Value="{Binding ZoomControl}"
 				        VerticalAlignment="Center"
 				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ZoomSlider}"
 				        AutomationProperties.Name="{x:Static lang:Strings.ThumbnailSize}" />
@@ -923,20 +924,48 @@
 							          CommandParameter="Vertical" />
 						</ContextMenu>
 					</Border.ContextMenu>
-					<ListBox ItemsSource="{Binding Photos}"
+					<ListBox Classes="filmstrip"
+					         ItemsSource="{Binding Photos}"
 					         SelectedItem="{Binding SelectedPhoto}"
+					         Padding="0"
+					         BorderThickness="0"
+					         Background="Transparent"
 					         KeyboardNavigation.TabIndex="3"
+					         ScrollViewer.HorizontalScrollBarVisibility="{Binding FilmstripHorizontalScroll}"
+					         ScrollViewer.VerticalScrollBarVisibility="{Binding FilmstripVerticalScroll}"
 					         input:FilmstripPick.Enable="True"
 					         input:ThumbnailItems.Enable="True"
 					         AutomationProperties.Name="{x:Static lang:Strings.Filmstrip}">
+						<ListBox.Styles>
+							<Style Selector="ListBoxItem">
+								<Setter Property="Padding" Value="0" />
+								<Setter Property="MinHeight" Value="0" />
+								<Setter Property="MinWidth" Value="0" />
+								<Setter Property="BorderThickness" Value="{x:Static vm:MainWindowViewModel.FilmstripFrame}" />
+								<Setter Property="BorderBrush" Value="Transparent" />
+								<Setter Property="FocusAdorner" Value="{x:Null}" />
+							</Style>
+							<Style Selector="ListBoxItem:focus, ListBoxItem:focus-within, ListBoxItem:selected">
+								<Setter Property="BorderThickness" Value="{x:Static vm:MainWindowViewModel.FilmstripFrame}" />
+								<Setter Property="BorderBrush" Value="{DynamicResource SystemAccentColor}" />
+							</Style>
+						</ListBox.Styles>
 						<ListBox.ItemsPanel>
 							<ItemsPanelTemplate>
 								<VirtualizingStackPanel Orientation="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).FilmstripFlow}" />
 							</ItemsPanelTemplate>
 						</ListBox.ItemsPanel>
+						<ListBox.ItemContainerTheme>
+							<ControlTheme TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+								<Setter Property="Padding" Value="0" />
+								<Setter Property="MinHeight" Value="0" />
+								<Setter Property="MinWidth" Value="0" />
+							</ControlTheme>
+						</ListBox.ItemContainerTheme>
 						<ListBox.ItemTemplate>
 							<DataTemplate DataType="vm:PhotoItemViewModel">
-								<Image Width="72" Height="72"
+								<Image Width="{x:Static vm:MainWindowViewModel.FilmstripThumb}"
+								       Height="{x:Static vm:MainWindowViewModel.FilmstripThumb}"
 								       Stretch="UniformToFill" Source="{Binding Thumbnail}"
 								       AutomationProperties.AutomationId="{Binding AutomationId}"
 								       AutomationProperties.Name="{Binding Caption}" />
@@ -1001,7 +1030,7 @@
 						<TextBlock Text="{x:Static lang:Strings.NoMatchingPhotosFound}" FontSize="16" HorizontalAlignment="Center" />
 						<Button Content="{x:Static lang:Strings.RemoveFromSearch}" Command="{Binding ClearVisibleFiltersCommand}" HorizontalAlignment="Center" />
 					</StackPanel>
-					<ListBox IsVisible="{Binding ShowPhotoGrid}"
+					<ListBox Classes="photo-grid" IsVisible="{Binding ShowPhotoGrid}"
 					         ItemsSource="{Binding Photos}"
 					         SelectedItem="{Binding SelectedPhoto}"
 					         SelectionMode="Multiple"
@@ -1028,6 +1057,19 @@
 							<ControlTheme TargetType="ListBoxItem" x:DataType="vm:PhotoItemViewModel"
 							              BasedOn="{StaticResource {x:Type ListBoxItem}}">
 								<Setter Property="Padding" Value="0" />
+								<Setter Property="FocusAdorner" Value="{x:Null}" />
+								<Style Selector="^:selected /template/ ContentPresenter#PART_ContentPresenter">
+									<Setter Property="Background" Value="Transparent" />
+								</Style>
+								<Style Selector="^:selected:not(:focus) /template/ ContentPresenter#PART_ContentPresenter">
+									<Setter Property="Background" Value="Transparent" />
+								</Style>
+								<Style Selector="^:selected:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+									<Setter Property="Background" Value="Transparent" />
+								</Style>
+								<Style Selector="^:selected:pressed /template/ ContentPresenter#PART_ContentPresenter">
+									<Setter Property="Background" Value="Transparent" />
+								</Style>
 							</ControlTheme>
 						</ListBox.ItemContainerTheme>
 						<ListBox.ItemTemplate>
@@ -1042,7 +1084,14 @@
 								        AutomationProperties.Name="{Binding Caption}">
 									<Border.Styles>
 										<Style Selector="Border.selected">
-											<Setter Property="Background" Value="{DynamicResource SystemAccentColorLight2}" />
+											<Style.Resources>
+												<SolidColorBrush x:Key="PhotoSelectionBrush"
+												                 Color="{DynamicResource SystemAccentColor}"
+												                 Opacity="{x:Static controls:PhotoTileChrome.SelectionOpacity}" />
+											</Style.Resources>
+											<Setter Property="Background" Value="Transparent" />
+											<Setter Property="BorderBrush" Value="{StaticResource PhotoSelectionBrush}" />
+											<Setter Property="BorderThickness" Value="{x:Static controls:PhotoTileChrome.SelectionFrame}" />
 										</Style>
 									</Border.Styles>
 									<StackPanel>

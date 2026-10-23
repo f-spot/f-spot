@@ -70,6 +70,12 @@ static class HistogramRenderer
 				source.CopyPixels (new global::Avalonia.PixelRect (0, 0, width, height), (nint)pointer, pixels.Length, stride);
 		}
 
+		// CountBgra reads byte 0 as blue. A decoded photo is Rgba8888.
+		if (source.Format == PixelFormat.Rgba8888) {
+			for (int i = 0; i < pixels.Length; i += 4)
+				(pixels[i], pixels[i + 2]) = (pixels[i + 2], pixels[i]);
+		}
+
 		return pixels;
 	}
 

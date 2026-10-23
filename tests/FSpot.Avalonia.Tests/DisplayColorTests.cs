@@ -1,5 +1,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using Avalonia.Platform;
+
 using FSpot.Avalonia.Imaging;
 using FSpot.Cms;
 using FSpot.Imaging;
@@ -16,6 +18,43 @@ public sealed class DisplayColorTests
 	{
 		if (!LcmsProbe.IsAvailable ())
 			Assert.Inconclusive ("liblcms2 is not available on this machine");
+	}
+
+	[TestMethod]
+	public void ToStraightRgba_KeepsRedThatWasStoredAsRgba ()
+	{
+		var copied = new byte[] { 255, 0, 0, 255 };
+
+		var straight = DisplayColor.ToStraightRgba (copied, 1, 1, PixelFormat.Rgba8888, AlphaFormat.Unpremul);
+
+		Assert.AreEqual (255, straight.Pixels[0]);
+		Assert.AreEqual (0, straight.Pixels[1]);
+		Assert.AreEqual (0, straight.Pixels[2]);
+		Assert.AreEqual (255, straight.Pixels[3]);
+	}
+
+	[TestMethod]
+	public void ToStraightRgba_SwapsRedThatWasStoredAsBgra ()
+	{
+		var copied = new byte[] { 0, 0, 255, 255 };
+
+		var straight = DisplayColor.ToStraightRgba (copied, 1, 1, PixelFormat.Bgra8888, AlphaFormat.Unpremul);
+
+		Assert.AreEqual (255, straight.Pixels[0]);
+		Assert.AreEqual (0, straight.Pixels[1]);
+		Assert.AreEqual (0, straight.Pixels[2]);
+	}
+
+	[TestMethod]
+	public void ToStraightRgba_UnpremultipliesAnRgbaPixel ()
+	{
+		var copied = new byte[] { 128, 0, 0, 128 };
+
+		var straight = DisplayColor.ToStraightRgba (copied, 1, 1, PixelFormat.Rgba8888, AlphaFormat.Premul);
+
+		Assert.AreEqual (255, straight.Pixels[0]);
+		Assert.AreEqual (0, straight.Pixels[2]);
+		Assert.AreEqual (128, straight.Pixels[3]);
 	}
 
 	[TestMethod]

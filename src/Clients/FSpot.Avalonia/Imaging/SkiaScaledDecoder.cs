@@ -10,6 +10,11 @@ namespace FSpot.Avalonia.Imaging;
 // never upscales, and refuses a bitmap whose pixel count would be huge.
 static class SkiaScaledDecoder
 {
+	// One JPEG eighth below the request is the next coarser sample. Closer than that
+	// is not worth a second decode of the original.
+	internal static bool SampleIsCoarse (int decodedLongEdge, int wantedLongEdge)
+		=> wantedLongEdge > 0 && decodedLongEdge > 0 && decodedLongEdge * 8 < wantedLongEdge * 7;
+
 	internal static float BoxScale (int width, int height, int? boxEdge)
 	{
 		if (boxEdge is not int edge || edge <= 0 || width <= 0 || height <= 0)
@@ -35,10 +40,11 @@ static class SkiaScaledDecoder
 
 		var alpha = info.AlphaType == SKAlphaType.Opaque ? SKAlphaType.Opaque : SKAlphaType.Premul;
 		var bitmap = DecodeAt (codec, target.Width, target.Height, alpha);
-		// JPEG only scales by eighths. When that lands well below the box, decode the
-		// original and shrink — but never when the original itself is over the cap.
+		// JPEG only scales by eighths. A sample within one eighth of the box is kept:
+		// 2000px for a 2048 request must not decode the whole 12 megapixel frame.
 		int wanted = boxEdge is int edge && edge > 0 ? Math.Min (edge, Math.Max (info.Width, info.Height)) : 0;
-		bool coarse = bitmap is not null && wanted > 0 && Math.Max (bitmap.Width, bitmap.Height) < wanted;
+		int decodedEdge = bitmap is null ? 0 : Math.Max (bitmap.Width, bitmap.Height);
+		bool coarse = SampleIsCoarse (decodedEdge, wanted);
 		if ((bitmap is null || coarse) && !ExceedsCap (info.Width, info.Height)
 			&& (target.Width != info.Width || target.Height != info.Height)) {
 			bitmap?.Dispose ();
@@ -47,8 +53,9 @@ static class SkiaScaledDecoder
 		if (bitmap is null)
 			return null;
 
-		if (boxEdge is int limit && limit > 0 && (bitmap.Width > limit || bitmap.Height > limit))
-			bitmap = Shrink (bitmap, limit);
+		if (boxEdge is int limit && limit > 0 && bitmap is not null
+			&& Math.Max (bitmap.Width, bitmap.Height) != Math.Min (limit, Math.Max (info.Width, info.Height)))
+			bitmap = FitBox (bitmap, Math.Min (limit, Math.Max (info.Width, info.Height)));
 		return bitmap;
 	}
 
@@ -63,10 +70,10 @@ static class SkiaScaledDecoder
 		return null;
 	}
 
-	static SKBitmap Shrink (SKBitmap bitmap, int maxEdge)
+	static SKBitmap FitBox (SKBitmap bitmap, int maxEdge)
 	{
 		int longest = Math.Max (bitmap.Width, bitmap.Height);
-		if (maxEdge <= 0 || longest <= maxEdge)
+		if (maxEdge <= 0 || longest == maxEdge)
 			return bitmap;
 		double scale = (double)maxEdge / longest;
 		var size = new SKImageInfo (Math.Max (1, (int)Math.Round (bitmap.Width * scale)),

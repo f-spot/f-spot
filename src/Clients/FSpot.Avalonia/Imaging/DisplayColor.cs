@@ -60,12 +60,32 @@ static class DisplayColor
 			return bitmap;
 
 		int stride = width * 4;
-		var bgra = new byte[stride * height];
+		var copied = new byte[stride * height];
 		unsafe {
-			fixed (byte* pointer = bgra)
-				bitmap.CopyPixels (new global::Avalonia.PixelRect (0, 0, width, height), (nint)pointer, bgra.Length, stride);
+			fixed (byte* pointer = copied)
+				bitmap.CopyPixels (new global::Avalonia.PixelRect (0, 0, width, height), (nint)pointer, copied.Length, stride);
 		}
 
+		// Skia decodes as Rgba8888. Treating those bytes as Bgra swaps red and blue,
+		// which is the blue cast on a color-managed thumbnail.
+		var straight = ToStraightRgba (copied, width, height, bitmap.Format, bitmap.AlphaFormat);
+		var converted = Convert (straight, destination);
+		return converted == null ? bitmap : AvaloniaImagingBackend.ToBgraBitmap (converted);
+	}
+
+	internal static ImageBuffer ToStraightRgba (byte[] copied, int width, int height,
+		global::Avalonia.Platform.PixelFormat? format, global::Avalonia.Platform.AlphaFormat? alpha)
+	{
+		byte[] rgba = format == global::Avalonia.Platform.PixelFormat.Bgra8888
+			? SwapRedAndBlue (copied)
+			: (byte[])copied.Clone ();
+		if (alpha == global::Avalonia.Platform.AlphaFormat.Premul)
+			StraightAlpha.UnpremultiplyRgba (rgba);
+		return new ImageBuffer (width, height, true, width * 4, rgba);
+	}
+
+	static byte[] SwapRedAndBlue (byte[] bgra)
+	{
 		var rgba = new byte[bgra.Length];
 		for (int i = 0; i < bgra.Length; i += 4) {
 			rgba[i] = bgra[i + 2];
@@ -74,12 +94,7 @@ static class DisplayColor
 			rgba[i + 3] = bgra[i + 3];
 		}
 
-		// A reloaded photo is premul. lcms has to see the straight RGB.
-		if (bitmap.AlphaFormat == global::Avalonia.Platform.AlphaFormat.Premul)
-			StraightAlpha.UnpremultiplyRgba (rgba);
-
-		var converted = Convert (new ImageBuffer (width, height, true, stride, rgba), destination);
-		return converted == null ? bitmap : AvaloniaImagingBackend.ToBgraBitmap (converted);
+		return rgba;
 	}
 
 	static ImageBuffer? Convert (ImageBuffer buffer, Profile destination)

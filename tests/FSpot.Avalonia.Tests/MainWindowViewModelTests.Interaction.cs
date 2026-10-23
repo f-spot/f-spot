@@ -40,7 +40,7 @@ public sealed partial class MainWindowViewModelTests
 			new StubPhoto ("/jun.jpg", new DateTime (2026, 6, 10)));
 		int last = viewModel.TimelineBuckets.Count - 1;
 
-		viewModel.SetTimelineLimitsCommand.Execute ((2, last));
+		viewModel.SetTimelineLimitsCommand.Execute ((1, last));
 
 		Assert.HasCount (2, viewModel.Photos);
 		Assert.DoesNotContain ("jan.jpg", viewModel.Photos.Select (item => item.Caption).ToList ());

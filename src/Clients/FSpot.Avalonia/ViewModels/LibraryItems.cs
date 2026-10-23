@@ -14,9 +14,9 @@ public sealed class LibraryItems : IList, IReadOnlyList<PhotoItemViewModel>, INo
 {
 	readonly List<PhotoItemViewModel> manual = new ();
 	readonly Dictionary<int, PhotoItemViewModel> realized = new ();
-	PhotoQuery query;
+	PhotoQuery? query;
 
-	public event NotifyCollectionChangedEventHandler CollectionChanged;
+	public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
 	// The grid asks for a row. The view model says whether that index is selected
 	// without this list walking the catalog to find out.
@@ -24,6 +24,9 @@ public sealed class LibraryItems : IList, IReadOnlyList<PhotoItemViewModel>, INo
 
 	// A row the person selected, or the current photo, stays built when the window moves.
 	public Func<PhotoItemViewModel, bool>? KeepRealized { get; set; }
+
+	// The grid dropped this row. The view model disposes the bitmap the cell was showing.
+	public Action<PhotoItemViewModel>? Discarded { get; set; }
 
 	public bool IsPaged => query != null;
 
@@ -50,14 +53,14 @@ public sealed class LibraryItems : IList, IReadOnlyList<PhotoItemViewModel>, INo
 	{
 		query = source ?? throw new ArgumentNullException (nameof (source));
 		manual.Clear ();
-		realized.Clear ();
+		DropRealized ();
 		RaiseReset ();
 	}
 
 	public void Show (IReadOnlyList<PhotoItemViewModel> items)
 	{
 		query = null;
-		realized.Clear ();
+		DropRealized ();
 		manual.Clear ();
 		manual.AddRange (items);
 		RaiseReset ();
@@ -77,7 +80,7 @@ public sealed class LibraryItems : IList, IReadOnlyList<PhotoItemViewModel>, INo
 		get {
 			if (query == null)
 				return manual[index];
-			if (!realized.TryGetValue (index, out PhotoItemViewModel item)) {
+			if (!realized.TryGetValue (index, out PhotoItemViewModel? item)) {
 				item = new PhotoItemViewModel ((Photo)query[index]);
 				if (IsIndexSelected != null)
 					item.Selected = IsIndexSelected (index);
@@ -114,8 +117,23 @@ public sealed class LibraryItems : IList, IReadOnlyList<PhotoItemViewModel>, INo
 				continue;
 			drop.Add (key);
 		}
-		foreach (int key in drop)
+		foreach (int key in drop) {
+			PhotoItemViewModel item = realized[key];
 			realized.Remove (key);
+			Discarded?.Invoke (item);
+		}
+	}
+
+	void DropRealized ()
+	{
+		if (realized.Count == 0)
+			return;
+		var gone = new List<PhotoItemViewModel> (realized.Values);
+		realized.Clear ();
+		if (Discarded is null)
+			return;
+		foreach (PhotoItemViewModel item in gone)
+			Discarded (item);
 	}
 
 	public int IndexOf (PhotoItemViewModel item)
@@ -142,28 +160,28 @@ public sealed class LibraryItems : IList, IReadOnlyList<PhotoItemViewModel>, INo
 	{
 		query = null;
 		manual.Clear ();
-		realized.Clear ();
+		DropRealized ();
 		RaiseReset ();
 	}
 
 	void RaiseReset ()
 		=> CollectionChanged?.Invoke (this, new NotifyCollectionChangedEventArgs (NotifyCollectionChangedAction.Reset));
 
-	int IList.Add (object value)
+	int IList.Add (object? value)
 	{
-		Add ((PhotoItemViewModel)value);
+		Add ((PhotoItemViewModel)value!);
 		return Count - 1;
 	}
 
-	bool IList.Contains (object value) => value is PhotoItemViewModel item && Contains (item);
-	int IList.IndexOf (object value) => value is PhotoItemViewModel item ? IndexOf (item) : -1;
-	void IList.Insert (int index, object value) => throw new NotSupportedException ();
-	void IList.Remove (object value) => throw new NotSupportedException ();
+	bool IList.Contains (object? value) => value is PhotoItemViewModel item && Contains (item);
+	int IList.IndexOf (object? value) => value is PhotoItemViewModel item ? IndexOf (item) : -1;
+	void IList.Insert (int index, object? value) => throw new NotSupportedException ();
+	void IList.Remove (object? value) => throw new NotSupportedException ();
 	void IList.RemoveAt (int index) => throw new NotSupportedException ();
 	void IList.Clear () => Clear ();
 	bool IList.IsFixedSize => false;
 	bool IList.IsReadOnly => false;
-	object IList.this[int index] {
+	object? IList.this[int index] {
 		get => this[index];
 		set => throw new NotSupportedException ();
 	}

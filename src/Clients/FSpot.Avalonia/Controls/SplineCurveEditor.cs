@@ -98,7 +98,7 @@ public class SplineCurveEditor : Control
 		if (width < 2 || height < 2)
 			return;
 
-		var ink = Brush ("SystemControlForegroundBaseHighBrush", Brushes.Black);
+		var ink = new SolidColorBrush (ThemeInk.Foreground (this));
 		var grid = Brush ("SystemControlForegroundBaseMediumBrush", Brushes.Gray);
 		var pen = new Pen (ink, 1);
 		var gridPen = new Pen (grid, 1);

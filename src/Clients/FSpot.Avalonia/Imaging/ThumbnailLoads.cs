@@ -23,6 +23,9 @@ sealed class ThumbnailLoads
 	public bool IsLoading (object item)
 		=> items.ContainsKey (item);
 
+	public bool IsWaiting (object item)
+		=> items.TryGetValue (item, out var source) && waiting.Contains (source);
+
 	public CancellationTokenSource Begin (object item)
 	{
 		End (item);

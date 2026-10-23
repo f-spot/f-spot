@@ -5,6 +5,7 @@
         xmlns:auto="using:FSpot.Avalonia"
         xmlns:lang="using:FSpot.Resources.Lang"
         xmlns:primitives="using:Avalonia.Controls.Primitives"
+        xmlns:converters="using:Avalonia.Data.Converters"
         x:Class="FSpot.Avalonia.ImportWindow"
         x:DataType="vm:ImportViewModel"
         Title="{x:Static lang:Strings.Import}"
@@ -133,12 +134,17 @@
 				</ListBox.ItemTemplate>
 			</ListBox>
 			<GridSplitter Grid.Column="1" Classes="hairline" ResizeDirection="Columns" />
-			<Image Grid.Column="2"
-			       Margin="8"
-			       Stretch="Uniform"
-			       Source="{Binding Preview}"
-			       AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportPreview}"
-			       AutomationProperties.Name="{x:Static lang:Strings.ImportPreview}" />
+			<Panel Grid.Column="2">
+				<Image Margin="8"
+				       Stretch="Uniform"
+				       Source="{Binding Preview}"
+				       AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ImportPreview}"
+				       AutomationProperties.Name="{x:Static lang:Strings.ImportPreview}" />
+				<TextBlock Text="{x:Static lang:Strings.ChooseFolder}"
+				           HorizontalAlignment="Center" VerticalAlignment="Center"
+				           TextAlignment="Center" TextWrapping="Wrap" Margin="24" Opacity="0.7"
+				           IsVisible="{Binding Preview, Converter={x:Static converters:ObjectConverters.IsNull}}" />
+			</Panel>
 		</Grid>
 	</DockPanel>
 </Window>

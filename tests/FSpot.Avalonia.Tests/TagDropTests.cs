@@ -72,6 +72,7 @@ public sealed class TagDropTests
 	public void AttachDroppedTag_WithNoTargetAndNoSelection_DoesNothing ()
 	{
 		using var catalog = Catalog.Open ();
+		catalog.ViewModel.SelectNoneCommand.Execute (null);
 
 		catalog.ViewModel.AttachDroppedTag (catalog.Tag.Id.ToString (), null);
 
@@ -336,7 +337,7 @@ public sealed class TagDropTests
 	public void DragOutPaths_ListsTheSelectedPhotoFiles ()
 	{
 		using var catalog = Catalog.Open ();
-		catalog.ViewModel.Photos.Single (photo => photo.Caption == "b.jpg").Selected = true;
+		catalog.ViewModel.SelectPhoto (catalog.ViewModel.Photos.Single (photo => photo.Caption == "b.jpg"));
 
 		var paths = catalog.ViewModel.DragOutPaths ();
 

@@ -6,6 +6,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
+using Avalonia;
 using Avalonia.Media.Imaging;
 
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -174,10 +175,20 @@ public partial class MainWindowViewModel
 
 	static ImageBuffer LivePreviewSource (Bitmap source)
 	{
-		var buffer = AvaloniaImagingBackend.ToRgbBuffer (source);
-		if (Math.Max (buffer.Width, buffer.Height) <= LivePreviewMaxEdge)
-			return buffer;
-		return new AvaloniaImagingBackend ().ScaleToMaxSize (buffer, LivePreviewMaxEdge, LivePreviewMaxEdge, upscale: false);
+		int width = source.PixelSize.Width;
+		int height = source.PixelSize.Height;
+		int edge = Math.Max (width, height);
+		if (edge <= LivePreviewMaxEdge)
+			return AvaloniaImagingBackend.ToRgbBuffer (source);
+
+		// Shrink with Skia first. Walking every pixel of the screen bitmap and
+		// scaling afterwards is the slow part of opening an editor.
+		double scale = (double)LivePreviewMaxEdge / edge;
+		var size = new PixelSize (
+			Math.Max (1, (int)Math.Round (width * scale)),
+			Math.Max (1, (int)Math.Round (height * scale)));
+		using var smaller = source.CreateScaledBitmap (size);
+		return AvaloniaImagingBackend.ToRgbBuffer (smaller);
 	}
 
 	async Task RunLivePreviewAsync ()

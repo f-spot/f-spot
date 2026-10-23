@@ -273,7 +273,20 @@ public partial class MainWindow : Window, IAvaloniaShell
 		=> MessageDialog.ConfirmAsync (this, title, message, okCaption);
 
 	public Task<string?> PickFolderAsync (string title)
-		=> new FolderPickerWindow (title, BrowseFolderAsync).ShowDialog<string?> (this);
+	{
+		// A folder picker owned by the main window opens behind the import dialog.
+		Window owner = DialogOwner ();
+		return new FolderPickerWindow (title, prompt => BrowseFolderAsync (owner, prompt)).ShowDialog<string?> (owner);
+	}
+
+	internal Window DialogOwner ()
+	{
+		for (int i = OwnedWindows.Count - 1; i >= 0; i--) {
+			if (OwnedWindows[i] is Window dialog && dialog.IsVisible)
+				return dialog;
+		}
+		return this;
+	}
 
 	public async Task<IReadOnlyList<string>> PickFilesAsync (string title, bool allowMultiple)
 	{
@@ -284,9 +297,9 @@ public partial class MainWindow : Window, IAvaloniaShell
 		return files.Select (file => file.TryGetLocalPath ()).OfType<string> ().ToList ();
 	}
 
-	async Task<string?> BrowseFolderAsync (string title)
+	async Task<string?> BrowseFolderAsync (Window owner, string title)
 	{
-		var folders = await StorageProvider.OpenFolderPickerAsync (new FolderPickerOpenOptions {
+		var folders = await owner.StorageProvider.OpenFolderPickerAsync (new FolderPickerOpenOptions {
 			Title = title,
 			AllowMultiple = false
 		});

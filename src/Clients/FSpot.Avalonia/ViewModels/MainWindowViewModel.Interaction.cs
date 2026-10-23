@@ -65,7 +65,35 @@ public partial class MainWindowViewModel
 		=> Preferences.Set (Preferences.ViewerShawFilenames, value);
 
 	partial void OnPreviewZoomChanged (double value)
-		=> OnPropertyChanged (nameof (IsPreviewZoomed));
+	{
+		OnPropertyChanged (nameof (IsPreviewZoomed));
+		if (!IsEditing)
+			return;
+		OnPropertyChanged (nameof (ZoomControl));
+		OnPropertyChanged (nameof (CanZoomIn));
+		OnPropertyChanged (nameof (CanZoomOut));
+		ZoomInCommand.NotifyCanExecuteChanged ();
+		ZoomOutCommand.NotifyCanExecuteChanged ();
+	}
+
+	// The status-bar slider is thumbnail size while browsing and the photo zoom while editing.
+	public double ZoomControl {
+		get => IsEditing
+			? Imaging.ViewerZoom.Normalize (PreviewZoom)
+			: ThumbnailZoomPosition (Zoom);
+		set {
+			if (IsEditing)
+				PreviewZoom = Imaging.ViewerZoom.FromNormalized (value);
+			else
+				Zoom = ThumbnailZoomFromPosition (value);
+		}
+	}
+
+	static double ThumbnailZoomPosition (double zoom)
+		=> (Math.Clamp (zoom, 64, 256) - 64) / (256 - 64);
+
+	static double ThumbnailZoomFromPosition (double position)
+		=> Math.Clamp (64 + Math.Clamp (position, 0, 1) * (256 - 64), 64, 256);
 
 	/// <summary>
 	/// GTK <c>GroupSelector.UpdateLimits</c> → <c>TimeAdaptor.SetLimits</c>: the min and max
@@ -154,7 +182,7 @@ public partial class MainWindowViewModel
 		FinishGridSelection (focus, selection);
 	}
 
-	void FinishGridSelection (int focus, IReadOnlySet<int> selection = null)
+	void FinishGridSelection (int focus, IReadOnlySet<int>? selection = null)
 	{
 		if (Photos.Count == 0)
 			return;
@@ -165,7 +193,7 @@ public partial class MainWindowViewModel
 		if (Photos.IsPaged) {
 			ApplyRealizedSelectionFlags ();
 			Photos.TrimAround (focus);
-		} else {
+		} else if (selection is not null) {
 			foreach (var (index, item) in Photos.Indexed ())
 				item.Selected = selection.Contains (index);
 			foreach (int index in selection) {

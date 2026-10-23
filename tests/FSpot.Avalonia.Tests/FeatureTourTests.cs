@@ -80,9 +80,9 @@ public sealed class FeatureTourTests
 			AssertDisposed (preview);
 
 			var zoom = Find<Slider> (window, AutomationIds.ZoomSlider);
-			double zoomed = zoom.Value > zoom.Minimum + 1 ? zoom.Minimum : zoom.Maximum;
+			double zoomed = zoom.Value > zoom.Minimum + 0.5 ? zoom.Minimum : zoom.Maximum;
 			zoom.Value = zoomed;
-			Assert.AreEqual (zoomed, viewModel.Zoom);
+			Assert.AreEqual (64 + zoomed * (256 - 64), viewModel.Zoom, 0.01);
 
 			window.Close ();
 			AssertDisposed (histogram);

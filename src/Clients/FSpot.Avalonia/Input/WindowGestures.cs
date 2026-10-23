@@ -121,6 +121,7 @@ public static class FilmstripPick
 			list.AddHandler (InputElement.PointerReleasedEvent, OnReleased);
 			list.AddHandler (InputElement.KeyDownEvent, OnKeyDown);
 			list.AddHandler (InputElement.KeyUpEvent, OnKeyUp);
+			list.AddHandler (InputElement.PointerWheelChangedEvent, OnWheel, RoutingStrategies.Tunnel);
 			list.SelectionChanged += OnSelectionChanged;
 		});
 
@@ -142,6 +143,35 @@ public static class FilmstripPick
 	{
 		if (sender is ListBox list)
 			list.SetValue (ChoosingProperty, choosing);
+	}
+
+	static void OnWheel (object? sender, PointerWheelEventArgs e)
+	{
+		if (sender is not ListBox list || WindowCommand.Model (list) is not MainWindowViewModel viewModel)
+			return;
+		if (e.Delta.X == 0 && e.Delta.Y == 0)
+			return;
+		// The wheel's vertical notch moves the horizontal strip. A side strip already
+		// follows that notch, so it is left to the list.
+		if (viewModel.FilmstripOnSide)
+			return;
+		var scroller = list.GetVisualDescendants ().OfType<ScrollViewer> ().FirstOrDefault ();
+		if (scroller is null)
+			return;
+		var next = WheelOffset (scroller.Offset, scroller.Extent, scroller.Viewport, e.Delta);
+		if (next == scroller.Offset)
+			return;
+		scroller.Offset = next;
+		e.Handled = true;
+	}
+
+	// Avalonia 12 lays this strip out in pixels. VirtualizingStackPanel is not a logical scroller,
+	// so one wheel notch moves one thumbnail, and a sideways notch uses the same sign as the scroll viewer.
+	internal static Vector WheelOffset (Vector offset, Size extent, Size viewport, Vector delta)
+	{
+		double notch = Math.Abs (delta.X) > Math.Abs (delta.Y) ? delta.X : delta.Y;
+		double max = Math.Max (0, extent.Width - viewport.Width);
+		return new Vector (Math.Clamp (offset.X - notch * MainWindowViewModel.FilmstripItem, 0, max), offset.Y);
 	}
 
 	static void OnSelectionChanged (object? sender, SelectionChangedEventArgs e)
@@ -169,6 +199,7 @@ public static class PreviewPointer
 			image.AddHandler (InputElement.PointerPressedEvent, OnPressed);
 			image.AddHandler (InputElement.PointerReleasedEvent, OnReleased);
 			image.AddHandler (InputElement.PointerWheelChangedEvent, OnWheel);
+			image.AddHandler (InputElement.PointerTouchPadGestureMagnifyEvent, OnMagnify);
 		});
 
 	public static void SetEnable (Control element, bool value) => element.SetValue (EnableProperty, value);
@@ -223,7 +254,24 @@ public static class PreviewPointer
 	{
 		if (sender is not Control image || WindowCommand.Model (image) is not MainWindowViewModel viewModel)
 			return;
-		viewModel.ZoomPreviewCommand.Execute (e.Delta.Y > 0 ? 1.1 : 0.9);
+		double factor = Imaging.ViewerZoom.WheelFactor (e.Delta.Y);
+		if (factor == 1)
+			return;
+		viewModel.ZoomPreviewCommand.Execute (factor);
+		e.Handled = true;
+	}
+
+	// macOS trackpad pinch. Fingers apart is a positive magnification; the wheel
+	// only reports the zoom-out direction, so pinch-in never arrived.
+	static void OnMagnify (object? sender, PointerDeltaEventArgs e)
+	{
+		if (sender is not Control image || WindowCommand.Model (image) is not MainWindowViewModel viewModel)
+			return;
+		double delta = e.Delta.X != 0 ? e.Delta.X : e.Delta.Y;
+		double factor = Imaging.ViewerZoom.MagnifyFactor (delta);
+		if (factor == 1)
+			return;
+		viewModel.ZoomPreviewCommand.Execute (factor);
 		e.Handled = true;
 	}
 }

@@ -25,6 +25,22 @@ public sealed class AvaloniaPhotoDecoderTests
 	static void EnsureAvalonia ()
 		=> AvaloniaApp.Ensure ();
 
+	[TestMethod]
+	public void SampleNearTheBox_IsNotDecodedAgainAtFullSize ()
+	{
+		Assert.IsFalse (SkiaScaledDecoder.SampleIsCoarse (2000, 2048));
+		Assert.IsTrue (SkiaScaledDecoder.SampleIsCoarse (1500, 2048));
+	}
+
+	[TestMethod]
+	public void TrackpadPinch_ZoomsInAndAZeroWheelDoesNotZoomOut ()
+	{
+		Assert.IsGreaterThan (1, Imaging.ViewerZoom.MagnifyFactor (0.05));
+		Assert.IsLessThan (1, Imaging.ViewerZoom.MagnifyFactor (-0.05));
+		Assert.AreEqual (1, Imaging.ViewerZoom.WheelFactor (0));
+		Assert.AreEqual (Imaging.ViewerZoom.Step, Imaging.ViewerZoom.WheelFactor (1));
+	}
+
 	[UiTestMethod]
 	public void ReadOrientation_ReturnsTheExifTagRotateWrites ()
 	{
@@ -98,6 +114,30 @@ public sealed class AvaloniaPhotoDecoderTests
 	}
 
 	[UiTestMethod]
+	public void ToRgbBuffer_ReadsRgbaRedAsRed ()
+	{
+		EnsureAvalonia ();
+		using var bitmap = new LaidOutBitmap (PixelFormat.Rgba8888, 255, 0, 0, 255);
+		var rgb = AvaloniaImagingBackend.ToRgbBuffer (bitmap);
+
+		Assert.AreEqual (255, rgb.Pixels[0]);
+		Assert.AreEqual (0, rgb.Pixels[1]);
+		Assert.AreEqual (0, rgb.Pixels[2]);
+	}
+
+	[UiTestMethod]
+	public void ToRgbBuffer_ReadsBgraRedAsRed ()
+	{
+		EnsureAvalonia ();
+		using var bitmap = new LaidOutBitmap (PixelFormat.Bgra8888, 0, 0, 255, 255);
+		var rgb = AvaloniaImagingBackend.ToRgbBuffer (bitmap);
+
+		Assert.AreEqual (255, rgb.Pixels[0]);
+		Assert.AreEqual (0, rgb.Pixels[1]);
+		Assert.AreEqual (0, rgb.Pixels[2]);
+	}
+
+	[UiTestMethod]
 	public void DecodeFile_AppliesTheExifOrientationTag ()
 	{
 		EnsureAvalonia ();
@@ -113,6 +153,41 @@ public sealed class AvaloniaPhotoDecoderTests
 			Assert.AreEqual (original.PixelSize.Width, rotated.PixelSize.Height);
 		} finally {
 			System.IO.File.Delete (path);
+		}
+	}
+
+	sealed class LaidOutBitmap : Bitmap
+	{
+		readonly byte[] pixel;
+		readonly PixelFormat layout;
+
+		public LaidOutBitmap (PixelFormat layout, byte b0, byte b1, byte b2, byte b3)
+			: base (EmptyPng ())
+		{
+			this.layout = layout;
+			pixel = new[] { b0, b1, b2, b3 };
+		}
+
+		public override PixelFormat? Format => layout;
+
+		public override AlphaFormat? AlphaFormat => global::Avalonia.Platform.AlphaFormat.Unpremul;
+
+		public override void CopyPixels (global::Avalonia.PixelRect sourceRect, nint buffer, int bufferSize, int stride)
+		{
+			System.Runtime.InteropServices.Marshal.Copy (pixel, 0, buffer, pixel.Length);
+		}
+
+		static System.IO.Stream EmptyPng ()
+		{
+			var info = new SKImageInfo (1, 1, SKColorType.Rgba8888, SKAlphaType.Opaque);
+			using var bitmap = new SKBitmap (info);
+			bitmap.Erase (SKColors.Black);
+			using var image = SKImage.FromBitmap (bitmap);
+			using SKData? data = image.Encode (SKEncodedImageFormat.Png, 100);
+			var stream = new System.IO.MemoryStream ();
+			data!.SaveTo (stream);
+			stream.Position = 0;
+			return stream;
 		}
 	}
 

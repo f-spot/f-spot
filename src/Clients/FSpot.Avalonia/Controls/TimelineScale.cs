@@ -40,6 +40,7 @@ public class TimelineScale : Control
 	double columnWidth = TimelineChrome.MinHitPx;
 	double arrangedViewport;
 	int? pressIndex;
+	int hoverIndex = -1;
 	int announcedIndex = -1;
 	int? followIndex;
 	int? previewFrom;
@@ -78,6 +79,8 @@ public class TimelineScale : Control
 	}
 
 	public double ColumnWidth => columnWidth;
+
+	public string? HoverCaption { get; private set; }
 
 	public (int Min, int Max) Limits => (minLimit, maxLimit);
 
@@ -210,14 +213,21 @@ public class TimelineScale : Control
 		DrawLimit (context, TimelineLimit.Max, baseline + chrome.Handle, label, plot);
 
 		for (int i = 0; i < buckets.Count; i++) {
-			double tick = string.IsNullOrEmpty (buckets[i].YearLabel) ? 3 : 5;
+			bool hovering = i == hoverIndex && !string.IsNullOrEmpty (HoverCaption);
+			double tick = hovering || !string.IsNullOrEmpty (buckets[i].YearLabel) ? 5 : 3;
 			double tickX = Math.Floor (i * columnWidth);
 			context.FillRectangle (muted, new Rect (tickX, 1, 1, tick), 0);
-			if (string.IsNullOrEmpty (buckets[i].YearLabel))
+			string? caption = hovering ? HoverCaption : buckets[i].YearLabel;
+			if (string.IsNullOrEmpty (caption))
 				continue;
-			var text = new FormattedText (buckets[i].YearLabel!, CultureInfo.CurrentCulture, FlowDirection.LeftToRight,
+			var text = new FormattedText (caption, CultureInfo.CurrentCulture, FlowDirection.LeftToRight,
 				new Typeface (FontFamily.Default), 9, label);
-			context.DrawText (text, new Point (tickX + 3, 0));
+			double x = tickX + 3;
+			// Keep the hovered "Month Year" fully inside the strip. A column at the
+			// right edge would otherwise clip the year off the label.
+			if (hovering && x + text.Width > Bounds.Width - 4)
+				x = Math.Max (4, Bounds.Width - text.Width - 4);
+			context.DrawText (text, new Point (x, 0));
 		}
 	}
 
@@ -285,8 +295,8 @@ public class TimelineScale : Control
 			&& TimelineLimits.HitTest (position.X, minLimit, maxLimit, columnWidth) != TimelineLimit.None;
 		Cursor = overLimit ? new Cursor (StandardCursorType.SizeWestEast) : null;
 		int index = IndexAt (position);
-		if (index >= 0)
-			ToolTip.SetTip (this, buckets[index].ToolTip);
+		if (index >= 0 && index != hoverIndex)
+			ShowHover (index);
 		if (pressIndex is null || index < 0 || !MovedFarEnough (e))
 			return;
 		if (shiftRange) {
@@ -298,6 +308,24 @@ public class TimelineScale : Control
 		if (!glassDrag || index == followIndex)
 			return;
 		followIndex = index;
+		InvalidateVisual ();
+	}
+
+	protected override void OnPointerExited (PointerEventArgs e)
+	{
+		base.OnPointerExited (e);
+		if (hoverIndex < 0)
+			return;
+		hoverIndex = -1;
+		HoverCaption = null;
+		InvalidateVisual ();
+	}
+
+	void ShowHover (int index)
+	{
+		hoverIndex = index;
+		HoverCaption = buckets[index].ToolTip;
+		ToolTip.SetTip (this, HoverCaption);
 		InvalidateVisual ();
 	}
 

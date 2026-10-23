@@ -53,7 +53,7 @@ public sealed class ThumbnailCacheTests
 	}
 
 	[UiTestMethod]
-	public async Task AGridThumbnailComesFromTheStoredThumbnail ()
+	public async Task AStaleStoredThumbnailIsNotPaintedWhenTheFileCannotBeDecoded ()
 	{
 		AvaloniaApp.Ensure ();
 		string path = Path.Combine (Path.GetTempPath (), Guid.NewGuid ().ToString ("N") + ".jpg");
@@ -62,15 +62,109 @@ public sealed class ThumbnailCacheTests
 		var loader = new AvaloniaThumbnailLoader (cache);
 
 		try {
-			Bitmap? bitmap = await loader.LoadAsync (path, 256, TestContext.CancellationToken);
-			Assert.IsNotNull (bitmap);
-			Assert.AreEqual (2, bitmap.PixelSize.Width);
-			Assert.AreEqual (1, cache.Loads);
+			Bitmap? bitmap = null;
+			try {
+				bitmap = await loader.LoadAsync (path, 256, TestContext.CancellationToken);
+			} catch (InvalidDataException) {
+			}
+			Assert.IsNull (bitmap);
+			Assert.AreEqual (0, cache.Loads);
 			Assert.AreEqual (0, cache.Creates);
-			bitmap.Dispose ();
 		} finally {
 			File.Delete (path);
 		}
+	}
+
+	[UiTestMethod]
+	public async Task ADecodedGridThumbnailIsReusedAfterTheFileIsGone ()
+	{
+		AvaloniaApp.Ensure ();
+		string source = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
+		string path = Path.Combine (Path.GetTempPath (), Guid.NewGuid ().ToString ("N") + ".jpg");
+		File.Copy (source, path);
+		var cache = new MissCache ();
+		var loader = new AvaloniaThumbnailLoader (cache);
+
+		try {
+			using Bitmap? first = await loader.LoadAsync (path, 128, TestContext.CancellationToken);
+			Assert.IsNotNull (first);
+			File.Delete (path);
+
+			using Bitmap? second = await loader.LoadAsync (path, 128, TestContext.CancellationToken);
+
+			Assert.IsNotNull (second);
+			Assert.AreEqual (0, cache.Loads);
+			Assert.AreEqual (0, cache.Creates);
+			Assert.IsGreaterThan (0, second.PixelSize.Width);
+		} finally {
+			loader.Invalidate ();
+			if (File.Exists (path))
+				File.Delete (path);
+		}
+	}
+
+	[UiTestMethod]
+	public async Task InvalidatingDropsTheCachedThumbnail ()
+	{
+		AvaloniaApp.Ensure ();
+		string source = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
+		string path = Path.Combine (Path.GetTempPath (), Guid.NewGuid ().ToString ("N") + ".jpg");
+		File.Copy (source, path);
+		var loader = new AvaloniaThumbnailLoader (new MissCache ());
+
+		try {
+			using Bitmap? first = await loader.LoadAsync (path, 128, TestContext.CancellationToken);
+			Assert.IsNotNull (first);
+			loader.Invalidate ();
+			File.Delete (path);
+
+			using Bitmap? second = await loader.LoadAsync (path, 128, TestContext.CancellationToken);
+			Assert.IsNull (second);
+		} finally {
+			loader.Invalidate ();
+			if (File.Exists (path))
+				File.Delete (path);
+		}
+	}
+
+	[UiTestMethod]
+	public async Task AnEditorSizedDecodeIsNotKeptAfterTheFileIsGone ()
+	{
+		AvaloniaApp.Ensure ();
+		string source = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
+		string path = Path.Combine (Path.GetTempPath (), Guid.NewGuid ().ToString ("N") + ".jpg");
+		File.Copy (source, path);
+		var loader = new AvaloniaThumbnailLoader (new MissCache ());
+
+		try {
+			using Bitmap? first = await loader.LoadAsync (path, 1600, TestContext.CancellationToken);
+			Assert.IsNotNull (first);
+			File.Delete (path);
+
+			using Bitmap? second = await loader.LoadAsync (path, 1600, TestContext.CancellationToken);
+			Assert.IsNull (second);
+		} finally {
+			loader.Invalidate ();
+			if (File.Exists (path))
+				File.Delete (path);
+		}
+	}
+
+	[UiTestMethod]
+	public async Task ACacheMissDecodesTheGridSizeWithoutBuildingAFullThumbnail ()
+	{
+		AvaloniaApp.Ensure ();
+		string path = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
+		var cache = new MissCache ();
+		var loader = new AvaloniaThumbnailLoader (cache);
+
+		using var bitmap = await loader.LoadAsync (path, 128, TestContext.CancellationToken);
+
+		Assert.IsNotNull (bitmap);
+		Assert.AreEqual (0, cache.Loads);
+		Assert.AreEqual (0, cache.Creates);
+		Assert.IsLessThanOrEqualTo (128, bitmap.PixelSize.Width);
+		Assert.IsLessThanOrEqualTo (128, bitmap.PixelSize.Height);
 	}
 
 	[UiTestMethod]
@@ -96,35 +190,28 @@ public sealed class ThumbnailCacheTests
 			Assert.Inconclusive ("liblcms2 is not available on this machine");
 
 		AvaloniaApp.Ensure ();
-		string path = Path.Combine (Path.GetTempPath (), Guid.NewGuid ().ToString ("N") + ".jpg");
-		await File.WriteAllBytesAsync (path, [], TestContext.CancellationToken);
-		var pixels = new byte[] { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120 };
-		var stored = new ImageBuffer (2, 2, false, 6, pixels);
+		string path = Path.Combine (AppContext.BaseDirectory, "taglib-sample.jpg");
+		var stale = new ImageBuffer (2, 2, false, 6, new byte[] { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120 });
+		var cache = new CountingCache (stale);
 		int selects = 0;
 		using var destination = Profile.CreateAlternateRgb ();
-		var loader = new AvaloniaThumbnailLoader (new CountingCache (stored), () => {
+		var loader = new AvaloniaThumbnailLoader (cache, () => {
 			selects++;
 			return destination;
 		});
 
-		try {
-			using var shown = await loader.LoadAsync (path, 128, TestContext.CancellationToken);
-			Assert.IsNotNull (shown);
-			Assert.AreEqual (1, selects);
-			Assert.AreEqual (10, stored.Pixels[0]);
-			Assert.AreEqual (20, stored.Pixels[1]);
-			Assert.AreEqual (30, stored.Pixels[2]);
+		using var shown = await loader.LoadAsync (path, 128, TestContext.CancellationToken);
+		Assert.IsNotNull (shown);
+		Assert.AreEqual (1, selects);
+		Assert.AreEqual (0, cache.Loads);
+		Assert.AreEqual (10, stale.Pixels[0]);
+		Assert.AreNotEqual (2, shown.PixelSize.Width);
 
-			selects = 0;
-			using var measured = await loader.LoadForMeasurementAsync (path, 128, TestContext.CancellationToken);
-			Assert.IsNotNull (measured);
-			Assert.AreEqual (0, selects);
-			Assert.AreEqual (10, stored.Pixels[0]);
-			Assert.AreEqual (20, stored.Pixels[1]);
-			Assert.AreEqual (30, stored.Pixels[2]);
-		} finally {
-			File.Delete (path);
-		}
+		selects = 0;
+		using var measured = await loader.LoadForMeasurementAsync (path, 128, TestContext.CancellationToken);
+		Assert.IsNotNull (measured);
+		Assert.AreEqual (0, selects);
+		Assert.AreEqual (0, cache.Loads);
 	}
 
 	sealed class CountingCache : IGridThumbnailCache
@@ -147,6 +234,25 @@ public sealed class ThumbnailCacheTests
 		{
 			Creates++;
 			return stored;
+		}
+	}
+
+	sealed class MissCache : IGridThumbnailCache
+	{
+		public int Loads { get; private set; }
+
+		public int Creates { get; private set; }
+
+		public ImageBuffer? TryLoad (string path, int pixelSize)
+		{
+			Loads++;
+			return null;
+		}
+
+		public ImageBuffer? Get (string path, int pixelSize)
+		{
+			Creates++;
+			return null;
 		}
 	}
 

@@ -74,7 +74,12 @@ namespace FSpot.Imaging
 			}
 
 			should_cancel = false;
-			worker_thread = new Thread (new ThreadStart (WorkerThread));
+			// Quit waits for foreground threads. This one sits in Monitor.Wait after the
+			// last request, so it has to be a background thread or the process never exits.
+			worker_thread = new Thread (new ThreadStart (WorkerThread)) {
+				IsBackground = true,
+				Name = "FSpot Thumbnail Loader"
+			};
 			worker_thread.Start ();
 		}
 

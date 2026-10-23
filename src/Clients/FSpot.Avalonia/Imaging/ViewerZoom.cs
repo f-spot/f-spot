@@ -41,6 +41,33 @@ public static class ViewerZoom
 	public static double Clamp (double zoom)
 		=> Math.Clamp (zoom, Min, Max);
 
+	public static double Normalize (double zoom)
+		=> (Clamp (zoom) - Min) / (Max - Min);
+
+	public static double FromNormalized (double position)
+		=> Clamp (Min + Math.Clamp (position, 0, 1) * (Max - Min));
+
+	// A mouse notch is about ±1. A trackpad pinch is a small magnification delta.
+	// A zero wheel delta is not a zoom-out.
+	public static double WheelFactor (double deltaY)
+	{
+		if (deltaY == 0 || double.IsNaN (deltaY))
+			return 1;
+		return deltaY > 0 ? Step : 1 / Step;
+	}
+
+	public static double MagnifyFactor (double delta)
+	{
+		if (delta == 0 || double.IsNaN (delta))
+			return 1;
+		double factor = 1 + delta;
+		if (factor < 0.5)
+			factor = 0.5;
+		if (factor > 1.5)
+			factor = 1.5;
+		return factor;
+	}
+
 	/// <summary>
 	/// The pan that keeps the view point under (<paramref name="anchorX"/>, <paramref name="anchorY"/>)
 	/// fixed while the zoom changes. The render transform scales around the view centre.
