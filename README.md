@@ -2,11 +2,15 @@
 
 The project site is <https://f-spot.app>. Help in the application opens that site. Do not use the old website.
 
+The port from the GTK client is written up in [MIGRATION.md](MIGRATION.md).
+
 # Build status
 
-[![CI](https://github.com/decriptor/FSpot.Avalonia/actions/workflows/ci.yml/badge.svg)](https://github.com/decriptor/FSpot.Avalonia/actions/workflows/ci.yml)
+[![CI](https://github.com/f-spot/f-spot/actions/workflows/ci.yml/badge.svg)](https://github.com/f-spot/f-spot/actions/workflows/ci.yml)
 
 GitHub Actions (`CI`) restores and builds `F-Spot.slnx` on Ubuntu, macOS, and Windows for pushes and pull requests to `main` and `modernize`. The test job runs `FSpot.Tests`, `FSpot.Avalonia.Tests`, and `RasterizeIcons.Tests`.
+
+Any git tag publishes self-contained Windows, macOS, and Linux builds and attaches them to that tag's GitHub Release. Branch builds do not publish. See [MIGRATION.md](MIGRATION.md).
 
 # Requirements
 
