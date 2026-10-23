@@ -1,0 +1,90 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - '**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  AVALONIA_TELEMETRY_OPTOUT: 1
+
+jobs:
+  publish:
+    name: Publish (${{ matrix.rid }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            rid: linux-x64
+          - os: macos-latest
+            rid: osx-arm64
+          - os: windows-latest
+            rid: win-x64
+
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
+        with:
+          global-json-file: global.json
+
+      - name: Publish
+        shell: bash
+        run: dotnet publish src/Clients/FSpot.Avalonia/FSpot.Avalonia.csproj --configuration Release --runtime ${{ matrix.rid }} --self-contained true --output publish/${{ matrix.rid }}
+
+      - name: Zip
+        shell: bash
+        run: tar -a -cf "F-Spot-${{ matrix.rid }}.zip" -C "publish/${{ matrix.rid }}" .
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: F-Spot-${{ matrix.rid }}
+          path: F-Spot-${{ matrix.rid }}.zip
+          if-no-files-found: error
+
+  release:
+    name: GitHub Release
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          path: dist
+          pattern: F-Spot-*
+          merge-multiple: true
+
+      - name: Attach builds to the tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="${GITHUB_REF_NAME}"
+          repo="${GITHUB_REPOSITORY}"
+          notes="$(printf '%s\n\n%s\n' \
+            "Self-contained Avalonia builds for Windows (win-x64), macOS (osx-arm64), and Linux (linux-x64)." \
+            "Migration notes: https://github.com/${repo}/blob/${tag}/MIGRATION.md")"
+          shopt -s nullglob
+          files=(dist/*.zip)
+          if [ "${#files[@]}" -ne 3 ]; then
+            echo "expected 3 zips, found ${#files[@]}" >&2
+            exit 1
+          fi
+          if gh release view "$tag" --repo "$repo" >/dev/null 2>&1; then
+            gh release upload "$tag" "${files[@]}" --repo "$repo" --clobber
+          else
+            gh release create "$tag" "${files[@]}" --repo "$repo" --title "F-Spot ${tag}" --notes "$notes"
+          fi
