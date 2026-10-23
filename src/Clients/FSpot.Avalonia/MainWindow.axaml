@@ -252,7 +252,7 @@
 		        BorderThickness="0,0,0,1">
 			<Grid ColumnDefinitions="Auto,*,Auto">
 				<StackPanel Orientation="Horizontal" Spacing="4">
-					<Button x:Name="ToolbarImportButton" Classes="tool" ToolTip.Tip="{x:Static lang:Strings.ImportNewPhotos}" Command="{Binding ImportCommand}"
+					<Button x:Name="ToolbarImportButton" Classes="tool" MinWidth="240" Padding="16,4" ToolTip.Tip="{x:Static lang:Strings.ImportNewPhotos}" Command="{Binding ImportCommand}"
 					        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ToolbarImport}"
 					        AutomationProperties.Name="{x:Static lang:Strings.Import}">
 						<StackPanel Orientation="Horizontal" Spacing="6">
@@ -309,7 +309,7 @@
 					</Button>
 				</StackPanel>
 				<StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" IsVisible="{Binding IsEditing}">
-					<TextBlock Text="{Binding CountText}" VerticalAlignment="Center"
+					<TextBlock Text="{Binding CountText}" FlowDirection="LeftToRight" VerticalAlignment="Center"
 					           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ToolbarPhotoIndex}"
 					           AutomationProperties.Name="{Binding CountText}" />
 					<Button Classes="tool" ToolTip.Tip="{x:Static lang:Strings.PreviousPhoto}" Command="{Binding PreviousCommand}" Content="◀"
@@ -404,13 +404,31 @@
 					<Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Margin="2,4">
 						<TextBlock Grid.Row="0" Classes="info-label" Text="{x:Static lang:Strings.Name}" />
 						<TextBlock Grid.Row="0" Grid.Column="1" Classes="info-value" Text="{Binding Info.Name}"
+						           FlowDirection="LeftToRight"
 						           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarInfoName}" />
 						<TextBlock Grid.Row="1" Classes="info-label" Text="{x:Static lang:Strings.Version}" />
 						<ComboBox Grid.Row="1" Grid.Column="1" FontSize="11"
 						          ItemsSource="{Binding Info.Versions}"
 						          SelectedItem="{Binding Info.SelectedVersion}"
 						          AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarInfoVersion}"
-						          AutomationProperties.Name="{x:Static lang:Strings.Version}" />
+						          AutomationProperties.Name="{x:Static lang:Strings.Version}">
+							<ComboBox.FlowDirection>
+								<MultiBinding Converter="{x:Static auto:LtrIsolate.VersionFlow}">
+									<Binding Path="Info.SelectedVersion" />
+									<Binding Path="$parent[Window].FlowDirection" />
+								</MultiBinding>
+							</ComboBox.FlowDirection>
+							<ComboBox.ItemTemplate>
+								<DataTemplate>
+									<Panel>
+										<TextBlock Text="{Binding}" FlowDirection="LeftToRight"
+										           IsVisible="{Binding Converter={x:Static auto:LtrIsolate.ShowFilename}}" />
+										<TextBlock Text="{Binding}"
+										           IsVisible="{Binding Converter={x:Static auto:LtrIsolate.ShowOther}}" />
+									</Panel>
+								</DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>
 						<TextBlock Grid.Row="2" Classes="info-label" Text="{x:Static lang:Strings.Date}"
 						           IsVisible="{Binding InfoVisibility.Date}" />
 						<TextBlock Grid.Row="2" Grid.Column="1" Classes="info-value info-date" Text="{Binding Info.Date}"
@@ -420,16 +438,19 @@
 						<TextBlock Grid.Row="3" Classes="info-label" Text="{x:Static lang:Strings.Size}"
 						           IsVisible="{Binding InfoVisibility.Size}" />
 						<TextBlock Grid.Row="3" Grid.Column="1" Classes="info-value" Text="{Binding Info.Size}"
+						           FlowDirection="LeftToRight"
 						           IsVisible="{Binding InfoVisibility.Size}"
 						           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarInfoSize}" />
 						<TextBlock Grid.Row="4" Classes="info-label" Text="{x:Static lang:Strings.Exposure}"
 						           IsVisible="{Binding InfoVisibility.Exposure}" />
 						<TextBlock Grid.Row="4" Grid.Column="1" Classes="info-value" Text="{Binding Info.Exposure}"
+						           FlowDirection="LeftToRight"
 						           IsVisible="{Binding InfoVisibility.Exposure}"
 						           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarInfoExposure}" />
 						<TextBlock Grid.Row="5" Classes="info-label" Text="{x:Static lang:Strings.FocalLength}"
 						           IsVisible="{Binding InfoVisibility.FocalLength}" />
 						<TextBlock Grid.Row="5" Grid.Column="1" Classes="info-value" Text="{Binding Info.FocalLength}"
+						           FlowDirection="LeftToRight"
 						           IsVisible="{Binding InfoVisibility.FocalLength}"
 						           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.SidebarInfoFocalLength}" />
 						<TextBlock Grid.Row="6" Classes="info-label" Text="{x:Static lang:Strings.Camera}"
@@ -587,31 +608,31 @@
 					           IsVisible="{Binding EditorSession.Hint, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
 					           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorHint}" />
 					<StackPanel Spacing="6" IsVisible="{Binding ShowColorSettings}">
-						<TextBlock Text="{x:Static lang:Strings.Exposure}" FontSize="11" />
+						<primitives:AccessText Text="{x:Static lang:Strings.Exposure}" FontSize="11" TextWrapping="Wrap" />
 						<Slider Minimum="-4" Maximum="4" Value="{Binding EditorSession.Context.ColorExposure}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorColorExposure}"
 						        AutomationProperties.Name="{x:Static lang:Strings.Exposure}" />
-						<TextBlock Text="{x:Static lang:Strings.Saturation}" FontSize="11" />
+						<primitives:AccessText Text="{x:Static lang:Strings.Saturation}" FontSize="11" TextWrapping="Wrap" />
 						<Slider Minimum="-100" Maximum="100" Value="{Binding EditorSession.Context.ColorSaturation}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorColorSaturation}"
 						        AutomationProperties.Name="{x:Static lang:Strings.Saturation}" />
-						<TextBlock Text="{x:Static lang:Strings.Brightness}" FontSize="11" />
+						<primitives:AccessText Text="{x:Static lang:Strings.Brightness}" FontSize="11" TextWrapping="Wrap" />
 						<Slider Minimum="-100" Maximum="100" Value="{Binding EditorSession.Context.ColorBrightness}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorColorBrightness}"
 						        AutomationProperties.Name="{x:Static lang:Strings.Brightness}" />
-						<TextBlock Text="{x:Static lang:Strings.Hue}" FontSize="11" />
+						<primitives:AccessText Text="{x:Static lang:Strings.Hue}" FontSize="11" TextWrapping="Wrap" />
 						<Slider Minimum="-180" Maximum="180" Value="{Binding EditorSession.Context.ColorHue}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorColorHue}"
 						        AutomationProperties.Name="{x:Static lang:Strings.Hue}" />
-						<TextBlock Text="{x:Static lang:Strings.Contrast}" FontSize="11" />
+						<primitives:AccessText Text="{x:Static lang:Strings.Contrast}" FontSize="11" TextWrapping="Wrap" />
 						<Slider Minimum="-1" Maximum="1" Value="{Binding EditorSession.Context.ColorContrast}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorColorContrast}"
 						        AutomationProperties.Name="{x:Static lang:Strings.Contrast}" />
-						<TextBlock Text="{x:Static lang:Strings.Temp}" FontSize="11" />
+						<primitives:AccessText Text="{x:Static lang:Strings.Temp}" FontSize="11" TextWrapping="Wrap" />
 						<Slider Minimum="1000" Maximum="25000" Value="{Binding EditorSession.Context.ColorTemperature}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorColorTemperature}"
 						        AutomationProperties.Name="{x:Static lang:Strings.Temp}" />
-						<TextBlock Text="{x:Static lang:Strings.Tint}" FontSize="11" />
+						<primitives:AccessText Text="{x:Static lang:Strings.Tint}" FontSize="11" TextWrapping="Wrap" />
 						<Slider Minimum="-150" Maximum="150" Value="{Binding EditorSession.Context.ColorTint}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorColorTint}"
 						        AutomationProperties.Name="{x:Static lang:Strings.Tint}" />
@@ -630,15 +651,15 @@
 						</ComboBox.ItemTemplate>
 					</ComboBox>
 					<StackPanel Spacing="6" IsVisible="{Binding ShowBwSettings}">
-						<TextBlock Text="{x:Static lang:Strings.Red}" FontSize="11" />
+						<primitives:AccessText Text="{x:Static lang:Strings.Red}" FontSize="11" TextWrapping="Wrap" />
 						<Slider Minimum="0" Maximum="100" Value="{Binding EditorSession.Context.BwRed}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorBwRed}"
 						        AutomationProperties.Name="{x:Static lang:Strings.Red}" />
-						<TextBlock Text="{x:Static lang:Strings.Green}" FontSize="11" />
+						<primitives:AccessText Text="{x:Static lang:Strings.Green}" FontSize="11" TextWrapping="Wrap" />
 						<Slider Minimum="0" Maximum="100" Value="{Binding EditorSession.Context.BwGreen}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorBwGreen}"
 						        AutomationProperties.Name="{x:Static lang:Strings.Green}" />
-						<TextBlock Text="{x:Static lang:Strings.Blue}" FontSize="11" />
+						<primitives:AccessText Text="{x:Static lang:Strings.Blue}" FontSize="11" TextWrapping="Wrap" />
 						<Slider Minimum="0" Maximum="100" Value="{Binding EditorSession.Context.BwBlue}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorBwBlue}"
 						        AutomationProperties.Name="{x:Static lang:Strings.Blue}" />
@@ -648,14 +669,18 @@
 						                            AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorBwCurve}"
 						                            AutomationProperties.Name="{x:Static lang:Strings.ConvertToBW}" />
 					</StackPanel>
-					<NumericUpDown IsVisible="{Binding ShowResizeSettings}"
-					               Minimum="128"
-					               Increment="10"
-					               Value="{Binding EditorSession.Context.ResizeMaxEdge}"
-					               AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorResizeMaxEdge}"
-					               AutomationProperties.Name="{x:Static lang:Strings.Resize}" />
+					<StackPanel Spacing="6" IsVisible="{Binding ShowResizeSettings}">
+						<primitives:AccessText Text="{x:Static lang:Strings.Resize}" FontSize="11" TextWrapping="Wrap" />
+						<NumericUpDown Minimum="128"
+						               Increment="10"
+						               MinWidth="0"
+						               HorizontalAlignment="Stretch"
+						               Value="{Binding EditorSession.Context.ResizeMaxEdge}"
+						               AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorResizeMaxEdge}"
+						               AutomationProperties.Name="{x:Static lang:Strings.Resize}" />
+					</StackPanel>
 					<StackPanel Spacing="6" IsVisible="{Binding ShowTiltSettings}">
-						<TextBlock Text="{x:Static lang:Strings.AdjustTheAngleOfTheImageToStraightenTheHorizon}" FontSize="11" TextWrapping="Wrap" />
+						<primitives:AccessText Text="{x:Static lang:Strings.AdjustTheAngleOfTheImageToStraightenTheHorizon}" FontSize="11" TextWrapping="Wrap" />
 						<Slider Minimum="-45" Maximum="45"
 						        SmallChange="1" TickFrequency="1" IsSnapToTickEnabled="True"
 						        Value="{Binding EditorSession.Context.TiltDegrees}"
@@ -663,7 +688,7 @@
 						        AutomationProperties.Name="{x:Static lang:Strings.Straighten}" />
 					</StackPanel>
 					<StackPanel Spacing="6" IsVisible="{Binding ShowSoftFocusSettings}">
-						<TextBlock Text="{x:Static lang:Strings.RadiusColon}" FontSize="11" />
+						<primitives:AccessText Text="{x:Static lang:Strings.RadiusColon}" FontSize="11" TextWrapping="Wrap" />
 						<Slider Minimum="0" Maximum="1"
 						        SmallChange="0.01" TickFrequency="0.01" IsSnapToTickEnabled="True"
 						        Value="{Binding EditorSession.Context.SoftFocusRadius}"
@@ -671,15 +696,15 @@
 						        AutomationProperties.Name="{x:Static lang:Strings.SoftFocus}" />
 					</StackPanel>
 					<StackPanel Spacing="6" IsVisible="{Binding ShowSharpenSettings}">
-						<TextBlock Text="{x:Static lang:Strings.AmountColon}" FontSize="11" />
+						<primitives:AccessText Text="{x:Static lang:Strings.AmountColon}" FontSize="11" TextWrapping="Wrap" />
 						<Slider Minimum="0" Maximum="100" Value="{Binding EditorSession.Context.SharpenAmount}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorSharpenAmount}"
 						        AutomationProperties.Name="{x:Static lang:Strings.AmountColon}" />
-						<TextBlock Text="{x:Static lang:Strings.RadiusColon}" FontSize="11" />
+						<primitives:AccessText Text="{x:Static lang:Strings.RadiusColon}" FontSize="11" TextWrapping="Wrap" />
 						<Slider Minimum="1" Maximum="50" Value="{Binding EditorSession.Context.SharpenRadius}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorSharpenRadius}"
 						        AutomationProperties.Name="{x:Static lang:Strings.RadiusColon}" />
-						<TextBlock Text="{x:Static lang:Strings.ThresholdColon}" FontSize="11" />
+						<primitives:AccessText Text="{x:Static lang:Strings.ThresholdColon}" FontSize="11" TextWrapping="Wrap" />
 						<Slider Minimum="0" Maximum="50" Value="{Binding EditorSession.Context.SharpenThreshold}"
 						        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.EditorSharpenThreshold}"
 						        AutomationProperties.Name="{x:Static lang:Strings.ThresholdColon}" />
@@ -702,17 +727,8 @@
 			              IsVisible="{Binding DisplaySidebar}"
 			              AutomationProperties.Name="{x:Static lang:Strings.ResizeSidebar}" />
 
-			<DockPanel Grid.Column="2">
-				<Grid DockPanel.Dock="Bottom" IsVisible="{Binding IsTagTypingOpen}" Margin="8,4" ColumnDefinitions="Auto,*,Auto">
-					<TextBlock Text="{x:Static lang:Strings.TagsColon}" VerticalAlignment="Center" Margin="0,0,8,0" />
-					<TextBox x:Name="TagTypingBox" Grid.Column="1" Text="{Binding TagTypingText}"
-					         input:EnterCommand.Command="{Binding ApplyTypedTagsCommand}"
-					         input:TagCompletionInput.Enable="True"
-					         AutomationProperties.Name="{x:Static lang:Strings.Tags}" />
-					<Button Grid.Column="2" Content="×" Margin="8,0,0,0" Command="{Binding HideTagTypingCommand}"
-					        AutomationProperties.Name="{x:Static lang:Strings.Close}" />
-				</Grid>
-				<controls:TimelineStrip DockPanel.Dock="Top"
+			<Grid Grid.Column="2" RowDefinitions="Auto,Auto,Auto,*">
+				<controls:TimelineStrip Grid.Row="0"
 				                        Margin="0"
 				                        IsVisible="{Binding ShowTimeline}"
 				                        Items="{Binding TimelineBuckets}"
@@ -721,7 +737,8 @@
 				                        LimitsCommand="{Binding SetTimelineLimitsCommand}"
 				                        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.Timeline}"
 				                        AutomationProperties.Name="{x:Static lang:Strings.Timeline}" />
-				<Grid DockPanel.Dock="Top" IsVisible="{Binding IsFindBarVisible}" Margin="8,2,8,4" ColumnDefinitions="Auto,*,Auto"
+				<Grid Grid.Row="1" IsVisible="{Binding IsFindBarVisible}" Margin="8,2,8,4" ColumnDefinitions="Auto,*,Auto"
+				      Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}"
 				      DragDrop.AllowDrop="True"
 				      input:CatalogDrop.Kind="FindBar"
 				      AutomationProperties.AutomationId="{x:Static auto:AutomationIds.FindBar}"
@@ -741,7 +758,7 @@
 					           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.FindBarNoMatches}"
 					           AutomationProperties.Name="{x:Static lang:Strings.NoMatchingPhotosFound}" />
 				</Grid>
-				<Border DockPanel.Dock="Top" Classes="query-bar" IsVisible="{Binding HasLibraryFilter}"
+				<Border Grid.Row="2" Classes="query-bar" IsVisible="{Binding HasLibraryFilter}"
 				        DragDrop.AllowDrop="True"
 				        input:QueryDrop.Target="Bar"
 				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.QueryBar}"
@@ -873,6 +890,16 @@
 						</StackPanel>
 					</Grid>
 				</Border>
+				<DockPanel Grid.Row="3">
+				<Grid DockPanel.Dock="Bottom" IsVisible="{Binding IsTagTypingOpen}" Margin="8,4" ColumnDefinitions="Auto,*,Auto">
+					<TextBlock Text="{x:Static lang:Strings.TagsColon}" VerticalAlignment="Center" Margin="0,0,8,0" />
+					<TextBox x:Name="TagTypingBox" Grid.Column="1" Text="{Binding TagTypingText}"
+					         input:EnterCommand.Command="{Binding ApplyTypedTagsCommand}"
+					         input:TagCompletionInput.Enable="True"
+					         AutomationProperties.Name="{x:Static lang:Strings.Tags}" />
+					<Button Grid.Column="2" Content="×" Margin="8,0,0,0" Command="{Binding HideTagTypingCommand}"
+					        AutomationProperties.Name="{x:Static lang:Strings.Close}" />
+				</Grid>
 				<Border DockPanel.Dock="{Binding FilmstripEdge}"
 				        Height="{Binding FilmstripSpan}"
 				        Width="{Binding FilmstripBreadth}"
@@ -954,7 +981,8 @@
 						</ItemsControl>
 					</Grid>
 				</Border>
-				<Panel DragDrop.AllowDrop="True"
+				<Panel ClipToBounds="True"
+				       DragDrop.AllowDrop="True"
 				       input:CatalogDrop.Kind="Library">
 					<StackPanel IsVisible="{Binding ShowEmptyLibrary}"
 					            HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="12"
@@ -1020,7 +1048,7 @@
 									<StackPanel>
 										<Image Height="{Binding $parent[ListBox].((vm:MainWindowViewModel)DataContext).TileSize}"
 										       Stretch="Uniform" Source="{Binding Thumbnail}" />
-										<TextBlock Text="{Binding Caption}" TextAlignment="Center" TextTrimming="CharacterEllipsis" Margin="0,4,0,0"
+										<TextBlock Text="{Binding Caption}" FlowDirection="LeftToRight" TextAlignment="Center" TextTrimming="CharacterEllipsis" Margin="0,4,0,0"
 										           IsVisible="{Binding $parent[ListBox].((vm:MainWindowViewModel)DataContext).DisplayFilenames}" />
 										<TextBlock Text="{Binding DateCaption}" TextAlignment="Center" FontSize="11" Opacity="0.7"
 										           IsVisible="{Binding $parent[ListBox].((vm:MainWindowViewModel)DataContext).DisplayDates}" />
@@ -1034,6 +1062,7 @@
 						</ListBox.ItemTemplate>
 					</ListBox>
 					<Panel IsVisible="{Binding IsEditing}"
+					       ClipToBounds="True"
 					       Focusable="True"
 					       Background="Transparent"
 					       DragDrop.AllowDrop="True"
@@ -1081,6 +1110,7 @@
 					</Panel>
 				</Panel>
 			</DockPanel>
+			</Grid>
 		</Grid>
 		<Popup x:Name="HoverPopup" IsOpen="{Binding ShowHoverPreview}" Placement="Right" HorizontalOffset="8"
 		       IsHitTestVisible="False" IsLightDismissEnabled="False">

@@ -24,7 +24,7 @@ internal sealed class StubVersion : IPhotoVersion
 		Filename = Path.GetFileName (path);
 	}
 
-	public string Name => "Original";
+	public string Name { get; set; } = "Original";
 	public bool IsProtected => true;
 	public SafeUri BaseUri { get; }
 	public string Filename { get; }
