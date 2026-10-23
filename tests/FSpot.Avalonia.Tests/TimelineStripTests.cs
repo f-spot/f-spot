@@ -6,6 +6,8 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Headless;
 using Avalonia.Input;
+using Avalonia.Media;
+using Avalonia.Styling;
 using Avalonia.VisualTree;
 
 using FSpot.Avalonia.Controls;
@@ -21,6 +23,98 @@ namespace FSpot.Avalonia.Tests;
 public sealed class TimelineStripTests
 {
 	readonly List<Window> windows = [];
+
+	[UiTestMethod]
+	public void DarkTheme_YearInk_IsLightOnTheGrayChrome ()
+	{
+		AvaloniaApp.Ensure ();
+		var scale = ShownScale (ThemeVariant.Dark);
+
+		var ink = ThemeInk.Foreground (scale);
+		var chrome = ThemeInk.Chrome (scale);
+		Assert.IsGreaterThan (0.62, Luminance (ink), ink.ToString ());
+		Assert.IsLessThan (0.55, Luminance (chrome), chrome.ToString ());
+	}
+
+	[UiTestMethod]
+	public void LightTheme_YearInk_IsDarkOnTheChrome ()
+	{
+		AvaloniaApp.Ensure ();
+		var scale = ShownScale (ThemeVariant.Light);
+
+		var ink = ThemeInk.Foreground (scale);
+		Assert.IsLessThan (0.35, Luminance (ink), ink.ToString ());
+		Assert.AreEqual (255, ink.A);
+	}
+
+	[UiTestMethod]
+	public void LightTheme_YearInk_StaysDarkWhenBaseHighIsFaint ()
+	{
+		AvaloniaApp.Ensure ();
+		var scale = ShownScale (ThemeVariant.Light);
+		// Fluent's light base-high is black. A build that hands back a light gray, or a
+		// translucent black that paints as gray, must not become the year caption.
+		scale.Resources["SystemBaseHighColor"] = Color.Parse ("#FFD6D6D6");
+		var faint = ThemeInk.Foreground (scale);
+		Assert.IsLessThan (0.35, Luminance (faint), faint.ToString ());
+
+		scale.Resources["SystemBaseHighColor"] = Color.FromArgb (0x55, 0, 0, 0);
+		var washed = ThemeInk.Foreground (scale);
+		Assert.IsLessThan (0.35, Luminance (washed), washed.ToString ());
+		Assert.AreEqual (255, washed.A);
+	}
+
+	[UiTestMethod]
+	public void LightTrack_YearInk_StaysDarkWhenTheVariantWouldAcceptBaseHigh ()
+	{
+		AvaloniaApp.Ensure ();
+		// Not Light and not Dark, so a luminance check that only special-cases those two
+		// keeps the faint base-high color. The track is still the light chrome.
+		var scale = ShownScale (new ThemeVariant ("Paper", null));
+		scale.Resources["SystemBaseHighColor"] = Color.Parse ("#FFD6D6D6");
+		scale.Resources["SystemControlBackgroundChromeMediumLowBrush"] = new SolidColorBrush (Color.Parse ("#FFF2F2F2"));
+
+		var ink = ThemeInk.Foreground (scale);
+		Assert.IsLessThan (0.35, Luminance (ink), ink.ToString ());
+	}
+
+	[UiTestMethod]
+	public void DarkTheme_YearInk_StaysLightWhenBaseHighIsDim ()
+	{
+		AvaloniaApp.Ensure ();
+		var scale = ShownScale (ThemeVariant.Dark);
+		scale.Resources["SystemBaseHighColor"] = Color.Parse ("#FF3A3A3A");
+
+		var ink = ThemeInk.Foreground (scale);
+		Assert.IsGreaterThan (0.62, Luminance (ink), ink.ToString ());
+		Assert.AreEqual (255, ink.A);
+	}
+
+	TimelineScale ShownScale (ThemeVariant theme)
+	{
+		var scale = new TimelineScale { Items = Months (3), Width = 300, Height = 48 };
+		var window = new Window {
+			Width = 340,
+			Height = 90,
+			Content = scale,
+			RequestedThemeVariant = theme
+		};
+		windows.Add (window);
+		window.Show ();
+		window.UpdateLayout ();
+		return scale;
+	}
+
+	// Alpha is painted on the theme paper. A translucent black caption is gray on a light track.
+	static double Luminance (Color color)
+	{
+		double alpha = color.A / 255.0;
+		double paper = 255;
+		double r = color.R * alpha + paper * (1 - alpha);
+		double g = color.G * alpha + paper * (1 - alpha);
+		double b = color.B * alpha + paper * (1 - alpha);
+		return (r + g + b) / (3.0 * 255);
+	}
 
 	[UiTestMethod]
 	public void ShiftDrag_FromFirstMonthToThird_ExecutesInclusiveRange ()

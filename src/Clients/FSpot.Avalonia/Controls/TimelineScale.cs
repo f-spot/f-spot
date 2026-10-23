@@ -170,7 +170,7 @@ public class TimelineScale : Control
 		var chrome = TimelineLayout.Split (Bounds.Height > 1 ? Bounds.Height : TimelineLayout.StripHeight);
 		var accent = Brush ("SystemAccentColor", Brushes.DodgerBlue);
 		var muted = Brush ("SystemControlForegroundBaseMediumBrush", Brushes.Gray);
-		var label = Brush ("SystemControlForegroundBaseHighBrush", Brushes.Black);
+		var label = new SolidColorBrush (ThemeInk.Foreground (this));
 		var plot = Brush ("SystemControlBackgroundChromeMediumLowBrush", Brushes.Transparent);
 		double baseline = chrome.Legend + chrome.Bars;
 		double plotWidth = Math.Max (Bounds.Width, buckets.Count * columnWidth);
