@@ -3296,7 +3296,7 @@ namespace FSpot.Resources.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sephia Tone.
+        ///   Looks up a localized string similar to Send _Mail....
         /// </summary>
         public static string SendMail {
             get {
@@ -3304,6 +3304,9 @@ namespace FSpot.Resources.Lang {
             }
         }
 
+        /// <summary>
+        ///   Looks up a localized string similar to Sepia Tone.
+        /// </summary>
         public static string SepiaTone {
             get {
                 return ResourceManager.GetString("SepiaTone", resourceCulture);
