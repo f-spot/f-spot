@@ -81,6 +81,25 @@ public sealed class TimelineStripTests
 	}
 
 	[UiTestMethod]
+	public void Scale_KeepsLimitsWhenTheSameMonthsArriveTogether ()
+	{
+		AvaloniaApp.Ensure ();
+		var items = new TimelineBucketCollection ();
+		foreach (var month in Months (4))
+			items.Add (month);
+		var scale = new TimelineScale { Items = items, Width = 400, Height = 48 };
+		var window = new Window { Width = 420, Height = 80, Content = scale };
+		windows.Add (window);
+		window.Show ();
+		window.UpdateLayout ();
+		scale.ApplyRange (1, 2);
+
+		items.ReplaceAll (Months (4));
+
+		Assert.AreEqual ((1, 2), scale.Limits);
+	}
+
+	[UiTestMethod]
 	public void Months_StretchAndStayAddressable ()
 	{
 		AvaloniaApp.Ensure ();

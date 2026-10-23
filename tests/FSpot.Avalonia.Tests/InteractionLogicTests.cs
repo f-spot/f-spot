@@ -111,6 +111,24 @@ public sealed class GridNavigationTests
 	}
 
 	[UiTestMethod]
+	public void ArrowFromSelectAllDoesNotNeedEveryIndex ()
+	{
+		var result = GridNavigation.Apply (Key.Right, KeyModifiers.None, 0, 4, 2, 100000, allSelected: true, picked: None);
+		Assert.IsFalse (result.AllSelected);
+		Assert.AreSequenceEqual (new[] { 1 }, result.Selection.Order ().ToArray ());
+	}
+
+	[UiTestMethod]
+	public void ShiftRightFromSelectAllKeepsEveryOtherIndex ()
+	{
+		var result = GridNavigation.Apply (Key.Right, KeyModifiers.Shift, 0, 4, 2, 100000, allSelected: true, picked: None);
+		Assert.IsTrue (result.AllSelected);
+		Assert.DoesNotContain (1, result.Excluded);
+		Assert.Contains (0, result.Excluded);
+		Assert.HasCount (1, result.Excluded);
+	}
+
+	[UiTestMethod]
 	public void OtherKeysAndEmptyGridsDoNothing ()
 	{
 		Assert.AreEqual (GridKeyAction.None, Press (Key.A, 3).Action);

@@ -105,11 +105,17 @@ public partial class MainWindowViewModel
 
 	public IReadOnlySet<int> SelectedIndices ()
 	{
-		var selected = new HashSet<int> ();
-		for (int i = 0; i < Photos.Count; i++) {
-			if (Photos[i].Selected)
-				selected.Add (i);
+		if (IndexSelectionActive) {
+			var indexes = new HashSet<int> ();
+			foreach (int index in SelectedIndexList ())
+				indexes.Add (index);
+			return indexes;
 		}
+
+		var selected = new HashSet<int> ();
+		foreach (var (index, item) in Photos.Indexed ())
+			if (item.Selected)
+				selected.Add (index);
 		return selected;
 	}
 
@@ -118,7 +124,37 @@ public partial class MainWindowViewModel
 	/// the current photo. The current photo is set first so the list's own single-item sync
 	/// cannot undo the flags written after it.
 	/// </summary>
+	internal bool TryGetIndexSelection (out bool all, out IReadOnlySet<int> ids)
+	{
+		all = allSelected;
+		ids = picked;
+		return Photos.IsPaged && (allSelected || picked.Count > 0);
+	}
+
+	public void ApplyNavigation (GridKeyResult result)
+	{
+		if (Photos.IsPaged && result.AllSelected) {
+			allSelected = true;
+			picked.Clear ();
+			foreach (int index in result.Excluded)
+				if ((uint)index < (uint)Photos.Count)
+					picked.Add (index);
+			FinishGridSelection (result.Focus);
+			return;
+		}
+		ApplyGridSelection (result.Selection, result.Focus);
+	}
+
 	public void ApplyGridSelection (IReadOnlySet<int> selection, int focus)
+	{
+		if (Photos.Count == 0)
+			return;
+		if (Photos.IsPaged)
+			ReplacePagedSelection (selection);
+		FinishGridSelection (focus, selection);
+	}
+
+	void FinishGridSelection (int focus, IReadOnlySet<int> selection = null)
 	{
 		if (Photos.Count == 0)
 			return;
@@ -126,8 +162,18 @@ public partial class MainWindowViewModel
 		var focused = Photos[focus];
 		bool changed = !ReferenceEquals (SelectedPhoto, focused);
 		SelectedPhoto = focused;
-		for (int i = 0; i < Photos.Count; i++)
-			Photos[i].Selected = selection.Contains (i);
+		if (Photos.IsPaged) {
+			ApplyRealizedSelectionFlags ();
+			Photos.TrimAround (focus);
+		} else {
+			foreach (var (index, item) in Photos.Indexed ())
+				item.Selected = selection.Contains (index);
+			foreach (int index in selection) {
+				if ((uint)index >= (uint)Photos.Count)
+					continue;
+				Photos[index].Selected = true;
+			}
+		}
 		if (!changed) {
 			UpdateStatus ();
 			NotifySelectionCommands ();

@@ -12,13 +12,7 @@ public partial class MainWindowViewModel
 	/// applications as files (GTK's icon view offers the selection as a uri list).
 	/// </summary>
 	public IReadOnlyList<string> DragOutPaths ()
-		=> MutationItems ()
-			.Select (item => item.Photo.DefaultVersion?.Uri)
-			.Where (uri => uri is not null && uri.Scheme == Uri.UriSchemeFile)
-			.Select (uri => uri!.LocalPath)
-			.Where (path => !string.IsNullOrEmpty (path))
-			.Distinct ()
-			.ToList ();
+		=> SelectionPaths ().Distinct ().ToList ();
 
 	/// <summary>
 	/// The selected photos dropped onto <paramref name="target"/> become versions of it after the
@@ -28,10 +22,8 @@ public partial class MainWindowViewModel
 	{
 		if (database is null || target is null || target.Selected || target.Photo is not Photo parent)
 			return;
-		var photos = MutationItems ()
-			.Where (item => !ReferenceEquals (item, target))
-			.Select (item => item.Photo)
-			.OfType<Photo> ()
+		var photos = CollectSelectedPhotos ()
+			.Where (photo => !ReferenceEquals (photo, parent))
 			.ToArray ();
 		if (photos.Length == 0)
 			return;
@@ -60,7 +52,7 @@ public partial class MainWindowViewModel
 		var node = FindTagNodeById (Tags, id);
 		if (node is null)
 			return;
-		AttachTagToItems (node.Tag, MutationItems ());
+		AttachTagToCurrentSelection (node.Tag);
 	}
 
 	/// <summary>

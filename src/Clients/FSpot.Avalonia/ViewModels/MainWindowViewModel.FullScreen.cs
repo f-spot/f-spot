@@ -4,6 +4,8 @@ using FSpot.Avalonia.Services;
 using FSpot.Core;
 using FSpot.Resources.Lang;
 
+using Hyena;
+
 namespace FSpot.Avalonia.ViewModels;
 
 public partial class MainWindowViewModel : IFullScreenHost
@@ -13,15 +15,33 @@ public partial class MainWindowViewModel : IFullScreenHost
 	/// </summary>
 	void ShowFullScreen (bool playSlideshow)
 	{
-		var paths = new List<string> ();
-		int start = 0;
-		foreach (var item in Photos) {
-			string? path = PathOf (item);
-			if (path is null)
-				continue;
-			if (ReferenceEquals (item, SelectedPhoto))
-				start = paths.Count;
-			paths.Add (path);
+		List<string> paths;
+		int start;
+		if (Photos.IsPaged && libraryQuery is not null) {
+			var aligned = libraryQuery.DefaultVersionPaths ();
+			int selectedIndex = -1;
+			if (SelectedPhoto?.Photo is Photo photo)
+				selectedIndex = libraryQuery.IndexOf (photo);
+			paths = new List<string> ();
+			start = 0;
+			for (int i = 0; i < aligned.Count; i++) {
+				if (string.IsNullOrEmpty (aligned[i]))
+					continue;
+				if (i == selectedIndex)
+					start = paths.Count;
+				paths.Add (aligned[i]);
+			}
+		} else {
+			paths = new List<string> ();
+			start = 0;
+			foreach (var item in Photos) {
+				string? path = PathOf (item);
+				if (path is null)
+					continue;
+				if (ReferenceEquals (item, SelectedPhoto))
+					start = paths.Count;
+				paths.Add (path);
+			}
 		}
 
 		if (paths.Count == 0) {
@@ -42,7 +62,20 @@ public partial class MainWindowViewModel : IFullScreenHost
 	}
 
 	PhotoItemViewModel? ItemAt (string path)
-		=> Photos.FirstOrDefault (item => Matches (item, path));
+	{
+		if (!Photos.IsPaged || libraryQuery is null || database is null)
+			return Photos.FirstOrDefault (item => Matches (item, path));
+
+		foreach (PhotoItemViewModel item in Photos.Realized)
+			if (Matches (item, path))
+				return item;
+
+		Photo found = database.Photos.GetByUri (SafeUri.FromPath (path));
+		if (found is null)
+			return null;
+		int index = libraryQuery.IndexOf (found);
+		return index >= 0 ? Photos[index] : null;
+	}
 
 	static bool Matches (PhotoItemViewModel item, string path)
 	{
@@ -99,7 +132,14 @@ public partial class MainWindowViewModel : IFullScreenHost
 		// The edited file can disappear while the original stays. The photo is still
 		// in the grid, and the show has to follow the version that survived.
 		if (id is uint photoId) {
-			PhotoItemViewModel? kept = Photos.FirstOrDefault (candidate => candidate.Photo is Photo photo && photo.Id == photoId);
+			PhotoItemViewModel? kept = null;
+			if (Photos.IsPaged && libraryQuery is not null && database is not null) {
+				int index = libraryQuery.IndexOf (database.Photos.Get (photoId));
+				if (index >= 0)
+					kept = Photos[index];
+			} else {
+				kept = Photos.FirstOrDefault (candidate => candidate.Photo is Photo photo && photo.Id == photoId);
+			}
 			if (kept is null)
 				return CatalogRemoval.Gone;
 			string? surviving = PathOf (kept);

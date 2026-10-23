@@ -100,6 +100,15 @@ namespace FSpot.Database.Tests
 			CheckTableExistance (db, "photos");
 			CheckTableExistance (db, "rolls");
 			CheckTableExistance (db, "tags");
+			CheckIndex (db, "idx_photo_tags_tag");
+			CheckIndex (db, "idx_photos_time_desc");
+			CheckIndex (db, "idx_photos_time_asc");
+		}
+
+		void CheckIndex (FSpotDatabaseConnection db, string name)
+		{
+			string found = db.Query<string> ("SELECT name FROM sqlite_master WHERE type = 'index' AND name = ?", name);
+			Assert.AreEqual (name, found);
 		}
 
 		void CheckTableExistance (FSpotDatabaseConnection db, string name)

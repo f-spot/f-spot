@@ -82,8 +82,13 @@ public partial class MainWindowViewModel
 
 	public IReadOnlyList<InfoStar> PopupStars {
 		get {
-			var photos = MutationItems ().Select (item => item.Photo).ToList ();
-			uint rating = photos.Count > 0 && photos.All (photo => photo.Rating == photos[0].Rating) ? photos[0].Rating : 0;
+			uint rating = 0;
+			if (EntirePagedSelection (out PhotoQuery query)) {
+				rating = query.UniformRating (picked) ?? 0;
+			} else {
+				var photos = MutationItems ().Select (item => item.Photo).ToList ();
+				rating = photos.Count > 0 && photos.All (photo => photo.Rating == photos[0].Rating) ? photos[0].Rating : 0;
+			}
 			return Enumerable.Range (1, 5).Select (index => new InfoStar ((uint)index, index <= rating)).ToList ();
 		}
 	}
@@ -167,10 +172,18 @@ public partial class MainWindowViewModel
 	internal IReadOnlyList<MenuEntry> BuildRemoveTagMenu ()
 	{
 		var tags = new List<Tag> ();
-		foreach (var photo in MutationItems ().Select (item => item.Photo)) {
-			foreach (var tag in photo.Tags ?? []) {
+		if (Photos.IsPaged && allSelected && libraryQuery is not null && database is not null) {
+			foreach (uint id in libraryQuery.TagIds (picked)) {
+				Tag tag = database.Tags.Get (id);
 				if (tag is not null && tags.All (existing => existing.Id != tag.Id))
 					tags.Add (tag);
+			}
+		} else {
+			foreach (var photo in MutationItems ().Select (item => item.Photo)) {
+				foreach (var tag in photo.Tags ?? []) {
+					if (tag is not null && tags.All (existing => existing.Id != tag.Id))
+						tags.Add (tag);
+				}
 			}
 		}
 		if (tags.Count == 0)
@@ -203,7 +216,7 @@ public partial class MainWindowViewModel
 
 	internal IReadOnlyList<MenuEntry> BuildOpenWithMenu ()
 	{
-		var paths = PhotoFileActions.SelectedPaths (MutationItems ().Select (item => item.Photo));
+		var paths = SelectionPaths ();
 		IReadOnlyList<OpenWithApp> apps = [];
 		if (paths.Count > 0) {
 			try {
@@ -226,7 +239,7 @@ public partial class MainWindowViewModel
 	List<MenuEntry> ContributionEntries (MenuExtensionPoint point, bool separated)
 	{
 		var entries = new List<MenuEntry> ();
-		var photos = MutationItems ().Select (item => item.Photo).ToList ();
+		IReadOnlyList<IPhoto> photos = SelectionPhotos ();
 		foreach (var contribution in MenuExtensions.For (point)) {
 			if (separated && entries.Count == 0)
 				entries.Add (MenuEntry.Separator);
@@ -247,7 +260,7 @@ public partial class MainWindowViewModel
 	void AttachTagToSelection (TagNode? node)
 	{
 		if (node is not null)
-			AttachTagToItems (node.Tag, MutationItems ());
+			AttachTagToCurrentSelection (node.Tag);
 	}
 
 	[RelayCommand]
@@ -261,7 +274,7 @@ public partial class MainWindowViewModel
 		var parent = SelectedTag?.Tag as Category ?? SelectedTag?.Tag.Category ?? database.Tags.RootCategory;
 		var tag = database.Tags.GetTagByName (name.Trim ()) ?? database.Tags.CreateCategory (parent, name.Trim (), true);
 		ReloadTags ();
-		AttachTagToItems (tag, MutationItems ());
+		AttachTagToCurrentSelection (tag);
 	}
 
 	[RelayCommand]
@@ -269,13 +282,7 @@ public partial class MainWindowViewModel
 	{
 		if (tag is null)
 			return;
-		var photos = SelectedCatalogPhotos ().ToArray ();
-		if (photos.Length == 0)
-			return;
-		foreach (var photo in photos)
-			photo.RemoveTag (tag);
-		database?.Photos.Commit (photos);
-		RefreshSelectedCaptions (photos);
+		RemoveTagFromCurrentSelection (tag);
 	}
 
 	[RelayCommand]
@@ -394,10 +401,33 @@ public partial class MainWindowViewModel
 	[RelayCommand]
 	void RateSelection (uint rating)
 	{
+		uint value = Math.Min (rating, 5);
+		if (EntirePagedSelection (out PhotoQuery query)) {
+			if (CountSelected () == 0)
+				return;
+			if (query.UniformRating (picked) == value)
+				value = 0;
+			query.SetRating (value, picked);
+			if (database is null)
+				return;
+			database.Photos.ForgetCached ();
+			query.DropCachedPages ();
+			var shown = new List<Photo> ();
+			foreach (var (index, item) in Photos.Indexed ()) {
+				if (!IndexIsSelected (index) || item.Photo is not Photo photo)
+					continue;
+				photo.Rating = value;
+				photo.Changes = null;
+				shown.Add (photo);
+			}
+			RefreshSelectedCaptions (shown);
+			RefreshPhotoPopup ();
+			return;
+		}
+
 		var photos = SelectedCatalogPhotos ().ToArray ();
 		if (photos.Length == 0)
 			return;
-		uint value = Math.Min (rating, 5);
 		if (photos.All (photo => photo.Rating == value))
 			value = 0;
 		foreach (var photo in photos)
@@ -412,7 +442,7 @@ public partial class MainWindowViewModel
 	{
 		if (app is null)
 			return;
-		var paths = PhotoFileActions.SelectedPaths (MutationItems ().Select (item => item.Photo));
+		var paths = SelectionPaths ();
 		if (paths.Count == 0)
 			return;
 		try {
@@ -428,7 +458,7 @@ public partial class MainWindowViewModel
 	{
 		if (contribution is null)
 			return;
-		var photos = MutationItems ().Select (item => item.Photo).ToList ();
+		IReadOnlyList<IPhoto> photos = SelectionPhotos ();
 		try {
 			await contribution.Run (photos);
 		} catch (Exception ex) {

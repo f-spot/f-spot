@@ -25,8 +25,10 @@ namespace FSpot.Query
 
 		public string SqlClause ()
 		{
-			// filenames must always appear in alphabetical order if times are the same
-			return string.Format (" time {0}, filename ASC ", Asc ? "ASC" : "DESC");
+			// Filename breaks a shared time. Id breaks a shared filename, and its
+			// direction matches time so one index can walk the order.
+			string direction = Asc ? "ASC" : "DESC";
+			return string.Format (" time {0}, filename ASC, id {0} ", direction);
 		}
 	}
 }

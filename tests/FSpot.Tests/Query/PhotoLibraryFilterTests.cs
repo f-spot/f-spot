@@ -88,6 +88,16 @@ namespace FSpot.Query.Tests
 		}
 
 		[TestMethod]
+		public void MatchesRange_CanIncludeTheEndSecond ()
+		{
+			var end = new DateTime (2026, 1, 10, 23, 59, 59);
+			var photo = Photo ("end.jpg", null, end);
+
+			Assert.IsTrue (PhotoLibraryFilter.MatchesRange (photo, end.Date, end, excludeEnd: false));
+			Assert.IsFalse (PhotoLibraryFilter.MatchesRange (photo, end.Date, end));
+		}
+
+		[TestMethod]
 		public void MatchesTags_Or_AcceptsAPhotoWithAnyListedTag ()
 		{
 			var vacation = new Tag (null, 1, "Vacation");

@@ -34,8 +34,15 @@ namespace FSpot.Query
 		}
 
 		public static IReadOnlyList<TimelineMonth> Span (IEnumerable<IPhoto> photos)
+			=> Span (photos.Select (photo => photo.Time));
+
+		public static IReadOnlyList<TimelineMonth> Span (IEnumerable<DateTime> times)
 		{
-			var grouped = Group (photos);
+			var grouped = times
+				.GroupBy (time => new DateTime (time.Year, time.Month, 1))
+				.OrderBy (group => group.Key)
+				.Select (group => new TimelineMonth (group.Key, group.Key.AddMonths (1), group.Count ()))
+				.ToList ();
 			if (grouped.Count == 0)
 				return grouped;
 

@@ -1,6 +1,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 using FSpot.Core;
@@ -34,6 +35,90 @@ namespace FSpot.Query.Tests
 			if (database != null && File.Exists (database))
 				File.Delete (database);
 			HiddenTag.Tag = null;
+		}
+
+		[TestMethod]
+		public void SameTimeAndFilename_OrdersByIdDescending ()
+		{
+			WithStore (store => {
+				var time = new DateTime (2020, 1, 1);
+				store.CreateFrom (Named ("/a/same.jpg", time), true, 1);
+				store.CreateFrom (Named ("/b/same.jpg", time), true, 1);
+				var query = new PhotoQuery (store);
+
+				Assert.IsGreaterThan (((Photo)query[1]).Id, ((Photo)query[0]).Id);
+			});
+		}
+
+		[TestMethod]
+		public void APagePastTheFirstHundred_ReturnsThatPhoto ()
+		{
+			WithStore (store => {
+				var time = new DateTime (2020, 3, 1);
+				for (int i = 0; i < 250; i++)
+					store.CreateFrom (Named ($"/photos/p{i:000}.jpg", time), true, 1);
+				var query = new PhotoQuery (store);
+
+				Assert.AreEqual ("p000.jpg", query[0].Name);
+				Assert.AreEqual ("p100.jpg", query[100].Name);
+				Assert.AreEqual ("p249.jpg", query[249].Name);
+				Assert.AreEqual (2, query.CachedPageCount);
+			});
+		}
+
+		[TestMethod]
+		public void JumpingTwoPages_DropsThePageLeftBehind ()
+		{
+			WithStore (store => {
+				var time = new DateTime (2020, 3, 1);
+				for (int i = 0; i < 250; i++)
+					store.CreateFrom (Named ($"/photos/p{i:000}.jpg", time), true, 1);
+				var query = new PhotoQuery (store);
+
+				_ = query[0];
+				_ = query[200];
+
+				Assert.AreEqual (1, query.CachedPageCount);
+				Assert.AreEqual ("p200.jpg", query[200].Name);
+			});
+		}
+
+		[TestMethod]
+		public void LookupItem_UsesTheOrderedIdList ()
+		{
+			WithStore (store => {
+				store.CreateFrom (Named ("/photos/jan.jpg", new DateTime (2020, 1, 15)), true, 1);
+				store.CreateFrom (Named ("/photos/jun.jpg", new DateTime (2020, 6, 15)), true, 1);
+				var query = new PhotoQuery (store);
+
+				int index = query.LookupItem (new DateTime (2020, 6, 15));
+
+				Assert.AreEqual ("jun.jpg", query[index].Name);
+			});
+		}
+
+		[TestMethod]
+		public void NewStore_IndexesTheLibraryOrderAndTagLookup ()
+		{
+			WithStore (store => {
+				var names = new List<string> ();
+				using var peek = new FSpotDatabaseConnection (database);
+				using (var reader = peek.Query ("SELECT name FROM sqlite_master WHERE type = 'index'")) {
+					while (reader.Read ())
+						names.Add (reader["name"].ToString ());
+				}
+
+				Assert.Contains ("idx_photo_tags_tag", names);
+				Assert.Contains ("idx_photos_time_desc", names);
+				Assert.Contains ("idx_photos_time_asc", names);
+			});
+		}
+
+		[TestMethod]
+		public void PageClause_UsesTheOrderedRowId ()
+		{
+			Assert.AreEqual (" WHERE ids.rowid >= 201 AND ids.rowid < 301", PhotoStore.PageClause (200, 100));
+			Assert.AreEqual ("", PhotoStore.PageClause (0, -1));
 		}
 
 		[TestMethod]

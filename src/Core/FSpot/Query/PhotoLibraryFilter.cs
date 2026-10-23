@@ -18,7 +18,7 @@ namespace FSpot.Query
 				return true;
 			if (!MatchesText (photo, find.Text))
 				return false;
-			if (!MatchesRange (photo, find.Start, find.End))
+			if (!MatchesRange (photo, find.Start, find.End, find.ExcludeEnd))
 				return false;
 			if (!MatchesTags (photo, find.Tags, find.RequireAllTags))
 				return false;
@@ -121,10 +121,13 @@ namespace FSpot.Query
 		}
 
 		public static bool MatchesRange (IPhoto photo, DateTime? start, DateTime? end)
+			=> MatchesRange (photo, start, end, true);
+
+		public static bool MatchesRange (IPhoto photo, DateTime? start, DateTime? end, bool excludeEnd)
 		{
 			if (start is DateTime rangeStart && photo.Time < rangeStart)
 				return false;
-			if (end is DateTime rangeEnd && photo.Time >= rangeEnd)
+			if (end is DateTime rangeEnd && (excludeEnd ? photo.Time >= rangeEnd : photo.Time > rangeEnd))
 				return false;
 			return true;
 		}

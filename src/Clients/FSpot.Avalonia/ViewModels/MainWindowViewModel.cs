@@ -230,6 +230,9 @@ public partial class MainWindowViewModel : ObservableObject
 		Info.VersionChosen += ApplyVersion;
 		Info.RatingChosen += ApplyRating;
 		Info.DescriptionChosen += ApplyDescription;
+		Photos.IsIndexSelected = IndexIsSelected;
+		// Select All marks every row. Keeping those view models would retain the whole library.
+		Photos.KeepRealized = item => ReferenceEquals (item, SelectedPhoto) || (!allSelected && item.Selected);
 		WatchMenuExtensions ();
 	}
 
@@ -266,10 +269,17 @@ public partial class MainWindowViewModel : ObservableObject
 	partial void OnDisplaySidebarChanged (bool value)
 		=> OnPropertyChanged (nameof (SidebarLength));
 
-	public ObservableCollection<PhotoItemViewModel> Photos { get; } = [];
+	public LibraryItems Photos { get; } = new ();
+	PhotoQuery libraryQuery;
+	bool seededCatalog;
+	// Paged selection is a set of indexes. allSelected with an empty set means every row;
+	// with entries, those indexes are excluded. Otherwise the set is the rows that are selected.
+	bool allSelected;
+	readonly HashSet<int> picked = new ();
 	public ObservableCollection<TagNode> Tags { get; } = [];
 	public ObservableCollection<FolderNode> Folders { get; } = [];
-	public ObservableCollection<TimelineBucket> TimelineBuckets { get; } = [];
+	readonly TimelineBucketCollection timelineBuckets = new ();
+	public ObservableCollection<TimelineBucket> TimelineBuckets => timelineBuckets;
 	public PhotoInfoViewModel Info { get; } = new ();
 
 	public bool IsBrowsing => ViewMode == LibraryViewMode.IconView;
@@ -313,12 +323,12 @@ public partial class MainWindowViewModel : ObservableObject
 	public bool ShowFindBarNoMatches => ShowNoMatches && IsFindBarVisible;
 	public ObservableCollection<TagNode> FindTags { get; } = [];
 	public bool ShowEmptyLibrary =>
-		database is not null && IsBrowsing && catalogPhotos.Count == 0
+		database is not null && IsBrowsing && CatalogCount == 0
 		&& !HasLibraryFilter && string.IsNullOrWhiteSpace (FindText) && SelectedTimeline is null
 		&& timelineRangeStart is null && timelineLimitStart is null;
 	public bool ShowNoMatches =>
 		IsBrowsing && Photos.Count == 0 && !ShowEmptyLibrary
-		&& (catalogPhotos.Count > 0 || HasLibraryFilter || !string.IsNullOrWhiteSpace (FindText)
+		&& (CatalogCount > 0 || HasLibraryFilter || !string.IsNullOrWhiteSpace (FindText)
 			|| SelectedTimeline is not null || timelineRangeStart is not null || timelineLimitStart is not null);
 	public bool ShowPhotoGrid => IsBrowsing && Photos.Count > 0;
 	public bool IsTagsPage => SidebarTab == 0;
@@ -422,7 +432,7 @@ public partial class MainWindowViewModel : ObservableObject
 		var selected = SelectedFolder?.Uri;
 		Folders.Clear ();
 		foreach (var node in FolderTree.Build (database.Photos.ListFolderCounts ()))
-			Folders.Add (new FolderNode (node, true, catalogPhotos.Count));
+			Folders.Add (new FolderNode (node, true, CatalogCount));
 
 		SelectedFolder = selected is null ? null : FindFolderNode (Folders, selected);
 	}
@@ -441,53 +451,170 @@ public partial class MainWindowViewModel : ObservableObject
 	}
 
 	void ReloadPhotos ()
+		=> ReloadPhotos (true);
+
+	void ReloadPhotos (bool resetLimits)
 	{
+		resetTimelineLimits = resetLimits;
 		if (database is null) {
 			ApplyLocalFilters ();
 			NotifyFilterBar ();
 			return;
 		}
 
+		var grid = BrowseConditions (includeTimeline: true);
+		var strip = BrowseConditions (includeTimeline: false);
+		// ReloadWith adds the untagged term for the grid. The strip query does not go through it.
+		if (FindUntagged)
+			strip.Add (new UntaggedCondition ());
+
+		DropAllThumbnails ();
+		seededCatalog = false;
+		ClearIndexSelection ();
+		libraryQuery ??= new PhotoQuery (database.Photos);
+		libraryQuery.ReloadWith (FindUntagged, [.. grid]);
+
+		if (HasInMemoryMatcher ()) {
+			catalogPhotos.Clear ();
+			for (int i = 0; i < libraryQuery.Count; i++)
+				catalogPhotos.Add (new PhotoItemViewModel ((Photo)libraryQuery[i]));
+			RebuildTimeline ();
+			FilterVisible (catalogPhotos);
+			return;
+		}
+
+		catalogPhotos.Clear ();
+		Photos.Show (libraryQuery);
+		// The strip stays the whole filtered catalog. The grid query already applied the month.
+		RebuildTimeline (TimelineMonths.Span (database.Photos.Times ([.. strip])), resetTimelineLimits);
+		uint? selectedId = SelectedPhoto?.Photo is Photo selected ? selected.Id : null;
+		if (selectedId is uint keptId) {
+			int index = libraryQuery.IndexOf (database.Photos.Get (keptId));
+			SelectedPhoto = index >= 0 ? Photos[index] : libraryQuery.Count > 0 ? Photos[0] : null;
+		} else {
+			SelectedPhoto = libraryQuery.Count > 0 ? Photos[0] : null;
+		}
+		UpdateStatus ();
+		OnPropertyChanged (nameof (ShowEmptyLibrary));
+		OnPropertyChanged (nameof (ShowNoMatches));
+		OnPropertyChanged (nameof (ShowQueryBarNoMatches));
+		OnPropertyChanged (nameof (ShowFindBarNoMatches));
+		OnPropertyChanged (nameof (ShowPhotoGrid));
+		ClearVisibleFiltersCommand.NotifyCanExecuteChanged ();
+		NotifyFindTerms ();
+		UiTasks.Forget (LoadThumbnailsAsync ());
+	}
+
+	bool resetTimelineLimits = true;
+
+	List<IQueryCondition> BrowseConditions (bool includeTimeline)
+	{
 		var conditions = new List<IQueryCondition> {
 			ReverseOrder ? OrderByTime.OrderByTimeAsc : OrderByTime.OrderByTimeDesc
 		};
-		if (ActiveTagFilter is not null)
-			conditions.Add (new TagTerm (ActiveTagFilter.Tag));
+		AddTagCondition (conditions);
 		if (ActiveFolderFilter is not null)
 			conditions.Add (new FolderSet { Folders = new[] { ActiveFolderFilter.Uri } });
-		if (FindUntagged)
-			conditions.Add (new UntaggedCondition ());
 		if (FindMinRating is uint minRating)
 			conditions.Add (new RatingRange (minRating, FindMaxRating ?? 5));
-		if (FindStart is DateTime start && FindEnd is DateTime end)
-			conditions.Add (new DateRange (start, end));
+		if (includeTimeline)
+			AddGridDate (conditions);
+		else if (FindStart is DateTime findStart && FindEnd is DateTime findEnd)
+			conditions.Add (new DateRange (findStart, findEnd));
 		if (findRollIds.Count > 0) {
 			var rolls = new List<Roll> ();
 			foreach (uint id in findRollIds)
 				rolls.Add (new Roll (id, 0));
 			conditions.Add (new RollSet (rolls));
 		}
-
-		DropAllThumbnails ();
-		catalogPhotos.Clear ();
-		foreach (var photo in database.Photos.Query ([.. conditions]))
-			catalogPhotos.Add (new PhotoItemViewModel (photo));
-
-		RebuildTimeline ();
-		ApplyLocalFilters ();
+		return conditions;
 	}
 
+	void AddGridDate (List<IQueryCondition> conditions)
+	{
+		if (TryGridRange (out DateTime start, out DateTime end, out bool excludeEnd))
+			conditions.Add (new DateRange (start, end, excludeEnd));
+	}
+
+	// A month or a limit handle ends on the next boundary, so that end is exclusive.
+	// A find preset ends at 23:59:59 and stays inclusive. The earlier of the two wins.
+	bool TryGridRange (out DateTime start, out DateTime end, out bool excludeEnd)
+	{
+		start = default;
+		end = default;
+		excludeEnd = false;
+
+		// A month click and a limit drag both narrow a find. Neither one discards it.
+		DateTime? rangeStart = timelineRangeStart ?? SelectedTimeline?.Start;
+		DateTime? rangeEnd = timelineRangeEnd ?? SelectedTimeline?.End;
+		DateTime? chosenStart = rangeStart ?? FindStart;
+		DateTime? chosenEnd = rangeEnd ?? FindEnd;
+		bool endExclusive = rangeEnd is not null;
+
+		if (rangeStart is DateTime timelineStart && FindStart is DateTime findStart)
+			chosenStart = timelineStart > findStart ? timelineStart : findStart;
+		if (rangeEnd is DateTime timelineEnd && FindEnd is DateTime findEnd) {
+			if (timelineEnd < findEnd) {
+				chosenEnd = timelineEnd;
+				endExclusive = true;
+			} else {
+				chosenEnd = findEnd;
+				endExclusive = false;
+			}
+		} else if (rangeEnd is null) {
+			endExclusive = false;
+		}
+
+		DateTime? beforeEnd = chosenEnd;
+		(chosenStart, chosenEnd) = ApplyTimelineLimits (chosenStart, chosenEnd);
+		if (timelineLimitEnd is DateTime limitEnd && chosenEnd == limitEnd && (beforeEnd is null || !(beforeEnd < limitEnd)))
+			endExclusive = true;
+
+		if (chosenStart is not DateTime filteredStart || chosenEnd is not DateTime filteredEnd)
+			return false;
+		start = filteredStart;
+		end = filteredEnd;
+		excludeEnd = endExclusive;
+		return true;
+	}
+
+	void AddTagCondition (List<IQueryCondition> conditions)
+	{
+		var tags = new List<Tag> ();
+		if (ActiveTagFilter is not null)
+			tags.Add (ActiveTagFilter.Tag);
+		foreach (TagNode node in FindTags) {
+			if (tags.All (tag => tag.Id != node.Tag.Id))
+				tags.Add (node.Tag);
+		}
+		if (tags.Count == 1)
+			conditions.Add (new TagTerm (tags[0]));
+		else if (tags.Count > 1)
+			conditions.Add (FindMatchAllTags
+				? new AndOperator (tags.Select (tag => (LogicalTerm)new TagTerm (tag)).ToArray ())
+				: new OrOperator (tags.Select (tag => (LogicalTerm)new TagTerm (tag)).ToArray ()));
+	}
+
+	bool HasInMemoryMatcher ()
+		=> findExpression is not null && !string.IsNullOrWhiteSpace (FindText)
+			|| HasTagQuery
+			|| HasTermQuery;
+
 	void RebuildTimeline ()
+		=> RebuildTimeline (TimelineMonths.Span (catalogPhotos.Select (photo => photo.Photo)), resetTimelineLimits);
+
+	void RebuildTimeline (IReadOnlyList<TimelineMonth> months, bool resetLimits)
 	{
 		var selectedStart = SelectedTimeline?.Start;
-		var months = TimelineMonths.Span (catalogPhotos.Select (photo => photo.Photo));
 		int maxCount = Math.Max (1, months.Count == 0 ? 1 : months.Max (month => month.Count));
 
-		// The strip rebuilds its months here, and its limit handles go back to the whole range with them.
-		ClearTimelineLimits ();
-		TimelineBuckets.Clear ();
+		// Rebuilding the strip after the catalog changes drops the limit handles.
+		// A timeline drag keeps them and only narrows the query.
+		if (resetLimits)
+			ClearTimelineLimits ();
+		var next = new List<TimelineBucket> (months.Count);
 		foreach (var month in months) {
-			TimelineBuckets.Add (new TimelineBucket {
+			next.Add (new TimelineBucket {
 				MonthLabel = month.Start.ToString ("MMM"),
 				YearLabel = month.Start.Month == 1 || month.Start == months[0].Start
 					? month.Start.Year.ToString ()
@@ -499,6 +626,8 @@ public partial class MainWindowViewModel : ObservableObject
 				Selected = selectedStart == month.Start
 			});
 		}
+		// One reset, so a limit drag is not told the month count changed on every bucket.
+		timelineBuckets.ReplaceAll (next);
 
 		if (SelectedTimeline is not null && TimelineBuckets.All (bucket => bucket.Start != SelectedTimeline.Start))
 			SelectedTimeline = null;
@@ -507,13 +636,22 @@ public partial class MainWindowViewModel : ObservableObject
 
 	void ApplyLocalFilters ()
 	{
-		DateTime? start = timelineRangeStart ?? SelectedTimeline?.Start ?? FindStart;
-		DateTime? end = timelineRangeEnd ?? SelectedTimeline?.End ?? FindEnd;
-		if (timelineRangeStart is DateTime rangeStart && FindStart is DateTime findStart)
-			start = rangeStart > findStart ? rangeStart : findStart;
-		if (timelineRangeEnd is DateTime rangeEnd && FindEnd is DateTime findEnd)
-			end = rangeEnd < findEnd ? rangeEnd : findEnd;
-		(start, end) = ApplyTimelineLimits (start, end);
+		if (!seededCatalog && database is not null) {
+			ReloadPhotos (false);
+			return;
+		}
+		FilterVisible (catalogPhotos);
+	}
+
+	void FilterVisible (List<PhotoItemViewModel> source)
+	{
+		DateTime? start = null;
+		DateTime? end = null;
+		bool excludeEnd = true;
+		if (TryGridRange (out DateTime rangedStart, out DateTime rangedEnd, out excludeEnd)) {
+			start = rangedStart;
+			end = rangedEnd;
+		}
 
 		var tags = new List<Tag> ();
 		if (ActiveTagFilter is not null)
@@ -532,17 +670,16 @@ public partial class MainWindowViewModel : ObservableObject
 			MaxRating = FindMaxRating,
 			Start = start,
 			End = end,
+			ExcludeEnd = excludeEnd,
 			RollIds = findRollIds,
 			TagQuery = TermQuery
 		};
-		var visible = catalogPhotos
+		var visible = source
 			.Where (item => PhotoLibraryFilter.Matches (item.Photo, find, RollIdOf (item.Photo)))
 			.ToList ();
 
 		DropAllThumbnails ();
-		Photos.Clear ();
-		foreach (var item in visible)
-			Photos.Add (item);
+		Photos.Show (visible);
 
 		PhotoItemViewModel? current = SelectedPhoto is not null && visible.Contains (SelectedPhoto) && SelectedPhoto.Selected
 			? SelectedPhoto
@@ -573,11 +710,15 @@ public partial class MainWindowViewModel : ObservableObject
 		}
 	}
 
-	internal int CatalogCount => catalogPhotos.Count;
+	internal int CatalogCount => Photos.IsPaged && libraryQuery is not null ? libraryQuery.Count : catalogPhotos.Count;
+
+	internal int SelectionCount => CountSelected ();
 
 	internal void SeedCatalog (params IPhoto[] photos)
 	{
 		DropAllThumbnails ();
+		seededCatalog = true;
+		libraryQuery = null;
 		catalogPhotos.Clear ();
 		foreach (var photo in photos)
 			catalogPhotos.Add (new PhotoItemViewModel (photo));
@@ -628,6 +769,8 @@ public partial class MainWindowViewModel : ObservableObject
 		shownThumbnails.Clear ();
 		thumbnailGeneration.Clear ();
 		ClearHover ();
+		foreach (var item in Photos.Realized)
+			ReplaceThumbnail (item, null);
 		foreach (var item in catalogPhotos)
 			ReplaceThumbnail (item, null);
 		foreach (var item in extras)
@@ -905,7 +1048,7 @@ public partial class MainWindowViewModel : ObservableObject
 	{
 		int shown = Photos.Count;
 		int total = database?.Photos.TotalPhotos ?? 0;
-		int selected = Photos.Count (item => item.Selected);
+		int selected = CountSelected ();
 		string text;
 		if (shown == total)
 			text = string.Format (shown <= 1 ? Strings.XPhoto : Strings.XPhotos, shown);
@@ -1081,14 +1224,118 @@ public partial class MainWindowViewModel : ObservableObject
 
 	IReadOnlyList<PhotoItemViewModel> MutationItems ()
 	{
-		var selected = Photos.Where (item => item.Selected).ToList ();
+		if (IndexSelectionActive)
+			return ItemsAt (SelectedIndexList ());
+		var selected = SelectedItems ();
 		if (selected.Count > 0)
 			return selected;
 		return SelectedPhoto is not null ? new[] { SelectedPhoto } : Array.Empty<PhotoItemViewModel> ();
 	}
 
+	// Selection lives on the view models the grid has built. Walking Photos would load every row.
+	List<PhotoItemViewModel> SelectedItems ()
+	{
+		if (IndexSelectionActive)
+			return ItemsAt (SelectedIndexList ());
+		var selected = new List<PhotoItemViewModel> ();
+		foreach (PhotoItemViewModel item in Photos.Realized)
+			if (item.Selected)
+				selected.Add (item);
+		return selected;
+	}
+
+	bool IndexSelectionActive => Photos.IsPaged && (allSelected || picked.Count > 0);
+
+	bool IndexIsSelected (int index)
+		=> allSelected ? !picked.Contains (index) : picked.Contains (index);
+
+	int CountSelected ()
+	{
+		if (IndexSelectionActive)
+			return allSelected ? Photos.Count - picked.Count : picked.Count;
+		int selected = 0;
+		foreach (PhotoItemViewModel item in Photos.Realized)
+			if (item.Selected)
+				selected++;
+		return selected;
+	}
+
+	void ClearIndexSelection ()
+	{
+		allSelected = false;
+		picked.Clear ();
+	}
+
+	void ApplyRealizedSelectionFlags ()
+	{
+		foreach (var (index, item) in Photos.Indexed ())
+			item.Selected = IndexIsSelected (index);
+	}
+
+	List<int> SelectedIndexList ()
+	{
+		if (allSelected) {
+			var indexes = new List<int> ();
+			for (int i = 0; i < Photos.Count; i++)
+				if (!picked.Contains (i))
+					indexes.Add (i);
+			return indexes;
+		}
+
+		var chosen = new List<int> (picked);
+		chosen.Sort ();
+		return chosen;
+	}
+
+	List<PhotoItemViewModel> ItemsAt (List<int> indexes)
+	{
+		var items = new List<PhotoItemViewModel> (indexes.Count);
+		foreach (int index in indexes) {
+			if ((uint)index >= (uint)Photos.Count)
+				continue;
+			items.Add (Photos[index]);
+		}
+		return items;
+	}
+
+	int FirstSelectedIndex ()
+	{
+		if (!allSelected) {
+			int best = -1;
+			foreach (int index in picked)
+				if (best < 0 || index < best)
+					best = index;
+			return best;
+		}
+
+		for (int i = 0; i < Photos.Count; i++)
+			if (!picked.Contains (i))
+				return i;
+		return -1;
+	}
+
+	void ReplacePagedSelection (IReadOnlySet<int> selection)
+	{
+		if (selection.Count == Photos.Count && Photos.Count > 0) {
+			allSelected = true;
+			picked.Clear ();
+			return;
+		}
+
+		allSelected = false;
+		picked.Clear ();
+		foreach (int index in selection) {
+			if ((uint)index < (uint)Photos.Count)
+				picked.Add (index);
+		}
+	}
+
 	IEnumerable<Photo> SelectedCatalogPhotos ()
-		=> MutationItems ().Select (item => item.Photo).OfType<Photo> ();
+	{
+		if (Photos.IsPaged && allSelected && libraryQuery is not null && database is not null)
+			return CollectSelectedPhotos ();
+		return MutationItems ().Select (item => item.Photo).OfType<Photo> ();
+	}
 
 	void NotifySelectionCommands ()
 	{
@@ -1314,17 +1561,22 @@ public partial class MainWindowViewModel : ObservableObject
 		if (item is null)
 			return;
 
+		if (Photos.IsPaged) {
+			SelectPagedPhoto (item, additive);
+			return;
+		}
+
 		if (!additive) {
-			foreach (var photo in Photos)
+			foreach (PhotoItemViewModel photo in Photos.Realized)
 				photo.Selected = ReferenceEquals (photo, item);
 			SelectedPhoto = item;
 			return;
 		}
 
-		if (item.Selected && Photos.Count (photo => photo.Selected) > 1) {
+		if (item.Selected && SelectedItems ().Count > 1) {
 			item.Selected = false;
 			if (ReferenceEquals (SelectedPhoto, item))
-				SelectedPhoto = Photos.FirstOrDefault (photo => photo.Selected);
+				SelectedPhoto = SelectedItems ().FirstOrDefault ();
 			else {
 				UpdateStatus ();
 				NotifySelectionCommands ();
@@ -1335,6 +1587,56 @@ public partial class MainWindowViewModel : ObservableObject
 
 		item.Selected = true;
 		SelectedPhoto = item;
+	}
+
+	void SelectPagedPhoto (PhotoItemViewModel item, bool additive)
+	{
+		int index = Photos.IndexOf (item);
+		if (!additive) {
+			allSelected = false;
+			picked.Clear ();
+			if (index >= 0)
+				picked.Add (index);
+			// The indexer already ran while the previous photo was still current.
+			// Move the current photo, then drop rows outside its page.
+			bool changed = !ReferenceEquals (SelectedPhoto, item);
+			SelectedPhoto = item;
+			ApplyRealizedSelectionFlags ();
+			if (index >= 0)
+				Photos.TrimAround (index);
+			if (!changed) {
+				UpdateStatus ();
+				NotifySelectionCommands ();
+			}
+			return;
+		}
+
+		bool selected = index >= 0 && IndexIsSelected (index);
+		if (selected && CountSelected () > 1) {
+			if (allSelected)
+				picked.Add (index);
+			else
+				picked.Remove (index);
+			if (ReferenceEquals (SelectedPhoto, item)) {
+				int next = FirstSelectedIndex ();
+				SelectedPhoto = next >= 0 ? Photos[next] : null;
+			}
+			ApplyRealizedSelectionFlags ();
+			UpdateStatus ();
+			NotifySelectionCommands ();
+			return;
+		}
+
+		if (index >= 0) {
+			if (allSelected)
+				picked.Remove (index);
+			else
+				picked.Add (index);
+		}
+		SelectedPhoto = item;
+		ApplyRealizedSelectionFlags ();
+		if (index >= 0)
+			Photos.TrimAround (index);
 	}
 
 	[RelayCommand]
@@ -1374,6 +1676,19 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand]
 	void SelectAll ()
 	{
+		if (Photos.IsPaged) {
+			allSelected = true;
+			picked.Clear ();
+			ApplyRealizedSelectionFlags ();
+			if (SelectedPhoto is null && Photos.Count > 0)
+				SelectedPhoto = Photos[0];
+			else {
+				UpdateStatus ();
+				NotifySelectionCommands ();
+			}
+			return;
+		}
+
 		foreach (var item in Photos)
 			item.Selected = true;
 		if (SelectedPhoto is null)
@@ -1387,7 +1702,8 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand (CanExecute = nameof (HasPhotoSelection))]
 	void SelectNone ()
 	{
-		foreach (var item in Photos)
+		ClearIndexSelection ();
+		foreach (PhotoItemViewModel item in Photos.Realized)
 			item.Selected = false;
 		SelectedPhoto = null;
 	}
@@ -1395,6 +1711,29 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand]
 	void SelectInvert ()
 	{
+		if (Photos.IsPaged) {
+			if (!allSelected && picked.Count == 0) {
+				foreach (var (index, item) in Photos.Indexed ())
+					if (item.Selected)
+						picked.Add (index);
+			}
+			allSelected = !allSelected;
+			int focus = SelectedPhoto is null ? -1 : Photos.IndexOf (SelectedPhoto);
+			if (focus < 0 || !IndexIsSelected (focus)) {
+				int next = FirstSelectedIndex ();
+				SelectedPhoto = next >= 0 ? Photos[next] : null;
+			}
+			ApplyRealizedSelectionFlags ();
+			if (SelectedPhoto is null) {
+				Info.Clear ();
+				RequestHistogram (null);
+				RequestPreview ();
+			}
+			UpdateStatus ();
+			NotifySelectionCommands ();
+			return;
+		}
+
 		foreach (var item in Photos)
 			item.Selected = !item.Selected;
 		SelectedPhoto = Photos.FirstOrDefault (item => item.Selected);
@@ -1455,7 +1794,7 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand]
 	void OpenTagTyping ()
 	{
-		if (SelectedPhoto is null && !Photos.Any (photo => photo.Selected))
+		if (SelectedPhoto is null && SelectedItems ().Count == 0)
 			return;
 		IsTagTypingOpen = true;
 	}
@@ -1472,7 +1811,7 @@ public partial class MainWindowViewModel : ObservableObject
 		var names = TagTyping.Names (TagTypingText);
 		if (names.Count == 0)
 			return;
-		var photos = Photos.Where (item => item.Selected).Select (item => item.Photo).OfType<Photo> ().ToArray ();
+		var photos = SelectedItems ().Select (item => item.Photo).OfType<Photo> ().ToArray ();
 		if (photos.Length == 0 && SelectedPhoto?.Photo is Photo selected)
 			photos = new[] { selected };
 		if (photos.Length == 0)
@@ -1483,8 +1822,9 @@ public partial class MainWindowViewModel : ObservableObject
 				photo.AddTag (tag);
 		}
 		database.Photos.Commit (photos);
-		foreach (var item in Photos.Where (item => item.Photo is Photo photo && photos.Contains (photo)))
-			item.RefreshCaptions ();
+		foreach (PhotoItemViewModel item in Photos.Realized)
+			if (item.Photo is Photo photo && photos.Contains (photo))
+				item.RefreshCaptions ();
 		if (SelectedPhoto is not null)
 			Info.Update (SelectedPhoto.Photo);
 		TagTypingText = string.Empty;
@@ -1950,7 +2290,7 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand (CanExecute = nameof (HasPhotoSelection))]
 	async Task ExportAsync ()
 	{
-		var paths = PhotoFileActions.SelectedPaths (MutationItems ().Select (item => item.Photo));
+		var paths = SelectionPaths ();
 		if (paths.Count == 0) {
 			await shell.ShowWarningAsync (Strings.Export, Strings.NoSelectionAvailable);
 			return;
@@ -1969,7 +2309,7 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand (CanExecute = nameof (HasPhotoSelection))]
 	async Task ExportZipAsync ()
 	{
-		var paths = PhotoFileActions.SelectedPaths (MutationItems ().Select (item => item.Photo));
+		var paths = SelectionPaths ();
 		if (paths.Count == 0) {
 			await shell.ShowWarningAsync (Strings.Export, Strings.NoSelectionAvailable);
 			return;
@@ -2004,7 +2344,7 @@ public partial class MainWindowViewModel : ObservableObject
 	async Task ExportGalleryAsync ()
 	{
 		var photos = new List<HtmlGalleryPhoto> ();
-		foreach (IPhoto photo in MutationItems ().Select (item => item.Photo)) {
+		foreach (IPhoto photo in SelectionPhotos ()) {
 			if (photo == null)
 				continue;
 			string? path = photo.DefaultVersion?.Uri?.LocalPath;
@@ -2107,7 +2447,7 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
 	async Task CopyAsync ()
 	{
-		var paths = PhotoFileActions.SelectedPaths (MutationItems ().Select (item => item.Photo));
+		var paths = SelectionPaths ();
 		if (paths.Count == 0) {
 			await shell.ShowWarningAsync (Strings.Copy, Strings.NoSelectionAvailable);
 			return;
@@ -2127,7 +2467,7 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand (CanExecute = nameof (HasSinglePhoto))]
 	async Task SetAsBackgroundAsync ()
 	{
-		var paths = PhotoFileActions.SelectedPaths (MutationItems ().Select (item => item.Photo));
+		var paths = SelectionPaths ();
 		if (paths.Count == 0) {
 			await shell.ShowWarningAsync (Strings.SetAsBackground, Strings.NoSelectionAvailable);
 			return;
@@ -2142,7 +2482,7 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand (CanExecute = nameof (HasPhotoSelection))]
 	async Task PrintAsync ()
 	{
-		var photos = MutationItems ().Select (item => item.Photo).ToList ();
+		var photos = SelectionPhotos ();
 		if (PhotoFileActions.SelectedPaths (photos).Count == 0) {
 			await shell.ShowWarningAsync (Strings.Print, Strings.NoSelectionAvailable);
 			return;
@@ -2154,7 +2494,7 @@ public partial class MainWindowViewModel : ObservableObject
 	[RelayCommand (CanExecute = nameof (HasPhotoSelection))]
 	async Task MailAsync ()
 	{
-		var paths = PhotoFileActions.SelectedPaths (MutationItems ().Select (item => item.Photo));
+		var paths = SelectionPaths ();
 		if (paths.Count == 0) {
 			await shell.ShowWarningAsync (Strings.SendMail, Strings.NoSelectionAvailable);
 			return;
@@ -2189,7 +2529,7 @@ public partial class MainWindowViewModel : ObservableObject
 			return;
 		timelineRangeStart = null;
 		timelineRangeEnd = null;
-		SelectedTimeline = ReferenceEquals (SelectedTimeline, bucket) ? null : bucket;
+		SelectedTimeline = SelectedTimeline is not null && SelectedTimeline.Start == bucket.Start ? null : bucket;
 	}
 
 	[RelayCommand]
@@ -2274,14 +2614,123 @@ public partial class MainWindowViewModel : ObservableObject
 		var node = FindTagNodeById (Tags, id);
 		if (node is null)
 			return;
-		AttachTagToItems (node.Tag, PhotoDropTargets.ForTagDrop (dropTarget, Photos));
+		AttachTagToItems (node.Tag, PhotoDropTargets.ForTagDrop (dropTarget, Photos.Realized));
 	}
 
 	public void AttachSelectionToTag (TagNode? node)
 	{
 		if (node is null)
 			return;
-		AttachTagToItems (node.Tag, Photos.Where (photo => photo.Selected).ToList ());
+		AttachTagToCurrentSelection (node.Tag);
+	}
+
+	bool EntirePagedSelection (out PhotoQuery query)
+	{
+		query = libraryQuery;
+		return Photos.IsPaged && allSelected && libraryQuery is not null && database is not null;
+	}
+
+	void AttachTagToCurrentSelection (Tag tag)
+	{
+		if (EntirePagedSelection (out PhotoQuery query)) {
+			query.AddTagToResults (tag.Id, picked);
+			RememberTagOnRealized (tag, add: true);
+			return;
+		}
+		AttachTagToItems (tag, SelectedItems ());
+	}
+
+	void RemoveTagFromCurrentSelection (Tag tag)
+	{
+		if (database is null)
+			return;
+		if (EntirePagedSelection (out PhotoQuery query)) {
+			if (CountSelected () == 0)
+				return;
+			query.RemoveTagFromResults (tag.Id, picked);
+			RememberTagOnRealized (tag, add: false);
+			return;
+		}
+
+		var photos = SelectedCatalogPhotos ().ToArray ();
+		if (photos.Length == 0)
+			return;
+		foreach (var photo in photos)
+			photo.RemoveTag (tag);
+		database.Photos.Commit (photos);
+		RefreshSelectedCaptions (photos);
+	}
+
+	IReadOnlyList<string> SelectionPaths ()
+	{
+		if (EntirePagedSelection (out PhotoQuery query)) {
+			IReadOnlyList<string> aligned = query.DefaultVersionPaths ();
+			var paths = new List<string> ();
+			for (int i = 0; i < aligned.Count; i++) {
+				if (picked.Contains (i) || string.IsNullOrEmpty (aligned[i]))
+					continue;
+				paths.Add (aligned[i]);
+			}
+			return paths;
+		}
+		return PhotoFileActions.SelectedPaths (MutationItems ().Select (item => item.Photo));
+	}
+
+	IReadOnlyList<IPhoto> SelectionPhotos ()
+	{
+		if (EntirePagedSelection (out _))
+			return CollectSelectedPhotos ();
+		return MutationItems ().Select (item => item.Photo).ToList ();
+	}
+
+	List<Photo> CollectSelectedPhotos ()
+	{
+		if (EntirePagedSelection (out PhotoQuery query)) {
+			var photos = new List<Photo> ();
+			query.VisitPages ((offset, page) => {
+				for (int i = 0; i < page.Length; i++) {
+					if (!picked.Contains (offset + i))
+						photos.Add (page[i]);
+				}
+			});
+			return photos;
+		}
+		return MutationItems ().Select (item => item.Photo).OfType<Photo> ().ToList ();
+	}
+
+	void VisitSelectedPhotos (Action<Photo> visit)
+	{
+		if (EntirePagedSelection (out PhotoQuery query)) {
+			query.VisitPages ((offset, page) => {
+				for (int i = 0; i < page.Length; i++) {
+					if (!picked.Contains (offset + i))
+						visit (page[i]);
+				}
+			});
+			return;
+		}
+		foreach (Photo photo in SelectedCatalogPhotos ())
+			visit (photo);
+	}
+
+	void RememberTagOnRealized (Tag tag, bool add)
+	{
+		if (database is null || libraryQuery is null)
+			return;
+		database.Photos.ForgetCached ();
+		libraryQuery.DropCachedPages ();
+		var changed = new List<Photo> ();
+		foreach (var (index, item) in Photos.Indexed ()) {
+			if (!IndexIsSelected (index) || item.Photo is not Photo photo)
+				continue;
+			if (add)
+				photo.AddTag (tag);
+			else
+				photo.RemoveTag (tag);
+			photo.Changes = null;
+			changed.Add (photo);
+		}
+		RefreshSelectedCaptions (changed);
 	}
 
 	void AttachTagToItems (Tag tag, IReadOnlyList<PhotoItemViewModel> items)
@@ -2318,7 +2767,7 @@ public partial class MainWindowViewModel : ObservableObject
 		var target = node ?? SelectedTag;
 		if (target is null)
 			return;
-		AttachTagToItems (target.Tag, Photos.Where (photo => photo.Selected).ToList ());
+		AttachTagToCurrentSelection (target.Tag);
 	}
 
 	[RelayCommand (CanExecute = nameof (CanAttachTag))]
@@ -2328,24 +2777,31 @@ public partial class MainWindowViewModel : ObservableObject
 		if (database is null || target is null)
 			return;
 
-		var photos = SelectedCatalogPhotos ().ToArray ();
-		if (photos.Length == 0)
-			return;
-
-		foreach (var photo in photos)
-			photo.RemoveTag (target.Tag);
-		database.Photos.Commit (photos);
-		RefreshSelectedCaptions (photos);
+		RemoveTagFromCurrentSelection (target.Tag);
 	}
 
 	bool CanAttachTag (TagNode? node)
-		=> (node ?? SelectedTag) is not null && SelectedCatalogPhotos ().Any ();
+		=> (node ?? SelectedTag) is not null && (IndexSelectionActive ? CountSelected () > 0 : SelectedCatalogPhotos ().Any ());
 
 	[RelayCommand (CanExecute = nameof (CanMutateSelection))]
 	async Task RemoveFromCatalogAsync ()
 	{
 		if (database is null)
 			return;
+
+		if (EntirePagedSelection (out PhotoQuery query)) {
+			int count = CountSelected ();
+			if (count == 0)
+				return;
+			string everyHeader = count <= 1
+				? Strings.RemoveTheSelectedPhotoFromFSpot
+				: string.Format (Strings.RemoveTheXSelectedPhotosFromFSpot, count);
+			if (!await shell.ConfirmAsync (everyHeader, Strings.IfYouRemovePhotosFromFSpotCatalogAllTagInfoLost, Strings.Remove))
+				return;
+			query.RemoveResults (picked);
+			ReloadPhotos ();
+			return;
+		}
 
 		var photos = SelectedCatalogPhotos ().ToArray ();
 		if (photos.Length == 0)
@@ -2366,6 +2822,52 @@ public partial class MainWindowViewModel : ObservableObject
 	{
 		if (database is null)
 			return;
+
+		if (EntirePagedSelection (out PhotoQuery query)) {
+			int count = CountSelected ();
+			if (count == 0)
+				return;
+			string everyHeader = count <= 1
+				? Strings.DeleteTheSelectedPhotoPermanently
+				: string.Format (Strings.DeleteTheXSelectedPhotosPermanently, count);
+			string everyBody = count <= 1
+				? Strings.ThisDeletesAllVersionsOfTheSelectedPhotoFromYourDrive
+				: Strings.ThisDeletesAllVersionsOfTheSelectedPhotosFromYourDrive;
+			if (!await shell.ConfirmAsync (everyHeader, everyBody, Strings.Delete))
+				return;
+
+			var pageFailures = new List<string> ();
+			query.VisitPages ((offset, page) => {
+				var removed = new List<Photo> ();
+				for (int i = 0; i < page.Length; i++) {
+					if (picked.Contains (offset + i))
+						continue;
+					Photo photo = page[i];
+					string name = PhotoDriveDelete.DisplayName (photo);
+					try {
+						var versionFailures = PhotoDriveDelete.TryDeleteAllVersions (photo);
+						if (versionFailures.Count > 0) {
+							foreach (var failure in versionFailures) {
+								Logger.Log.Error (failure.Exception, "Failed to delete a version of {Name}", name);
+								pageFailures.Add (FormatDeleteFailure (failure.Exception, failure.Path));
+							}
+							database.Photos.Commit (photo);
+						} else {
+							removed.Add (photo);
+						}
+					} catch (Exception ex) {
+						Logger.Log.Error (ex, "Failed to delete {Name}", name);
+						pageFailures.Add (FormatDeleteFailure (ex, name));
+					}
+				}
+				if (removed.Count > 0)
+					database.Photos.Remove (removed.ToArray ());
+			});
+			ReloadPhotos ();
+			if (pageFailures.Count > 0)
+				await shell.ShowWarningAsync (Strings.ErrorDeletingPicture, string.Join (Environment.NewLine + Environment.NewLine, pageFailures));
+			return;
+		}
 
 		var photos = SelectedCatalogPhotos ().ToArray ();
 		if (photos.Length == 0)
@@ -2419,8 +2921,8 @@ public partial class MainWindowViewModel : ObservableObject
 		return string.Format (Strings.AnErrorOfTypeXOccurredWhileDeletingTheFile, ex.GetType (), path, Environment.NewLine);
 	}
 
-	public bool HasPhotoSelection => MutationItems ().Any ();
-	public bool HasSinglePhoto => MutationItems ().Count == 1;
+	public bool HasPhotoSelection => IndexSelectionActive ? CountSelected () > 0 : MutationItems ().Any ();
+	public bool HasSinglePhoto => IndexSelectionActive ? CountSelected () == 1 : MutationItems ().Count == 1;
 	public bool CanOpenVersionMenu => HasSinglePhoto;
 	public bool CanExport => HasPhotoSelection;
 	public bool CanSharpenOrLoupe => HasSinglePhoto && IsEditing;
@@ -2428,6 +2930,15 @@ public partial class MainWindowViewModel : ObservableObject
 	public bool CanModifyCurrentVersion
 	{
 		get {
+			if (IndexSelectionActive) {
+				if (CountSelected () != 1)
+					return false;
+				int index = FirstSelectedIndex ();
+				if (index < 0)
+					return false;
+				return Photos[index].Photo is Photo current && current.DefaultVersionId != Photo.OriginalVersionId;
+			}
+
 			var items = MutationItems ();
 			return items.Count == 1 && items[0].Photo is Photo photo && photo.DefaultVersionId != Photo.OriginalVersionId;
 		}
@@ -2446,8 +2957,8 @@ public partial class MainWindowViewModel : ObservableObject
 
 	void RotateSelection (RotateDirection direction)
 	{
-		var photos = MutationItems ().Select (item => item.Photo).ToArray ();
-		if (photos.Length == 0)
+		IReadOnlyList<IPhoto> photos = SelectionPhotos ();
+		if (photos.Count == 0)
 			return;
 
 		var thumbnailsService = CatalogThumbnails ();
@@ -2455,7 +2966,7 @@ public partial class MainWindowViewModel : ObservableObject
 			UiTasks.Forget (shell.ShowWarningAsync (Strings.ErrorWhileRotatingPhoto, "The thumbnail service is not available."));
 			return;
 		}
-		var op = new RotateMultiple (photos, direction, thumbnailsService);
+		var op = new RotateMultiple (photos.ToArray (), direction, thumbnailsService);
 		try {
 			while (op.Step ()) { }
 		} catch (RotateException ex) {
@@ -2474,7 +2985,10 @@ public partial class MainWindowViewModel : ObservableObject
 
 	void RefreshEditedSelection ()
 	{
-		foreach (var item in MutationItems ()) {
+		IEnumerable<PhotoItemViewModel> items = Photos.IsPaged && allSelected
+			? Photos.Realized.Where (item => item.Selected || ReferenceEquals (item, SelectedPhoto))
+			: MutationItems ();
+		foreach (var item in items) {
 			ReplaceThumbnail (item, null);
 			thumbnailGeneration.Remove (item);
 			thumbnailLoads.End (item);
@@ -2494,7 +3008,9 @@ public partial class MainWindowViewModel : ObservableObject
 	void RefreshSelectedCaptions (IEnumerable<Photo> photos)
 	{
 		var ids = photos.Select (photo => photo.Id).ToHashSet ();
-		foreach (var item in Photos.Where (item => item.Photo is Photo photo && ids.Contains (photo.Id))) {
+		foreach (PhotoItemViewModel item in Photos.Realized) {
+			if (item.Photo is not Photo photo || !ids.Contains (photo.Id))
+				continue;
 			item.RefreshCaptions ();
 			if (ReferenceEquals (item, SelectedPhoto))
 				Info.Update (item.Photo);
@@ -2882,10 +3398,8 @@ public partial class MainWindowViewModel : ObservableObject
 	void RefreshThumbnail ()
 	{
 		IThumbnailService? thumbs = CatalogThumbnails ();
-		if (thumbs is not null) {
-			foreach (var photo in MutationItems ().Select (item => item.Photo))
-				ThumbnailRefresh.Invalidate (thumbs, photo);
-		}
+		if (thumbs is not null)
+			VisitSelectedPhotos (photo => ThumbnailRefresh.Invalidate (thumbs, photo));
 		RefreshEditedSelection ();
 	}
 

@@ -17,6 +17,9 @@ namespace FSpot.Query
 		public uint? MaxRating { get; set; }
 		public DateTime? Start { get; set; }
 		public DateTime? End { get; set; }
+
+		// A month ends on the next midnight. A find preset ends at 23:59:59 and includes that second.
+		public bool ExcludeEnd { get; set; } = true;
 		public IReadOnlyList<uint> RollIds { get; set; } = Array.Empty<uint> ();
 		public IReadOnlyList<IPhotoMatcher> Matchers { get; set; } = Array.Empty<IPhotoMatcher> ();
 		public TagTermQuery TagQuery { get; set; }

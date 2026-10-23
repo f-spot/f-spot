@@ -700,6 +700,12 @@ namespace FSpot.Database
 				Execute ("CREATE INDEX idx_photo_versions_import_md5 ON photo_versions(import_md5)");
 
 			}, true);
+
+			AddUpdate (new Version (18, 1), delegate () {
+				Execute ("CREATE INDEX IF NOT EXISTS idx_photo_tags_tag ON photo_tags(tag_id)");
+				Execute ("CREATE INDEX IF NOT EXISTS idx_photos_time_desc ON photos(time DESC, filename ASC, id DESC)");
+				Execute ("CREATE INDEX IF NOT EXISTS idx_photos_time_asc ON photos(time ASC, filename ASC, id ASC)");
+			});
 		}
 
 		const string meta_db_version_string = "F-Spot Database Version";

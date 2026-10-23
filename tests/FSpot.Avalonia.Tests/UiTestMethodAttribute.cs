@@ -2,6 +2,8 @@
 
 using Avalonia.Threading;
 
+using FSpot.Avalonia;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FSpot.Avalonia.Tests;
@@ -19,10 +21,18 @@ public sealed class UiTestMethodAttribute : TestMethodAttribute
 	{
 		AvaloniaApp.Ensure ();
 		if (Dispatcher.UIThread.CheckAccess ())
-			return base.ExecuteAsync (testMethod);
+			return RunAsync (testMethod);
 
 		// InvokeAsync waits for the test task itself. A posted ContinueWith left that
 		// task unobserved if the continuation failed before it reported the result.
-		return Dispatcher.UIThread.InvokeAsync (() => base.ExecuteAsync (testMethod));
+		return Dispatcher.UIThread.InvokeAsync (() => RunAsync (testMethod));
+	}
+
+	// App.InitializeCore installs this before the window loads a catalog. These tests
+	// never start App, and LoadCatalog's PhotoQuery delivers commits through MainThread.
+	Task<TestResult[]> RunAsync (ITestMethod testMethod)
+	{
+		AvaloniaMainThread.InstallOnDispatcher ();
+		return base.ExecuteAsync (testMethod);
 	}
 }

@@ -54,6 +54,7 @@ public static class GridInput
 		public KeyModifiers PressModifiers;
 		public bool Banding;
 		public IReadOnlySet<int> Initial = new HashSet<int> ();
+		public bool InitialAll;
 		public Point Pointer;
 		public RubberBandAdorner? Adorner;
 		public DispatcherTimer? ScrollTimer;
@@ -78,12 +79,15 @@ public static class GridInput
 			return;
 		var panel = list.ItemsPanelRoot as UniformVirtualizingWrapPanel;
 		int focus = FocusIndex (list, viewModel, focused);
-		var result = GridNavigation.Apply (e.Key, e.KeyModifiers, focus,
-			panel?.Columns ?? 1, panel?.VisibleRows ?? 1, viewModel.Photos.Count, viewModel.SelectedIndices ());
+		GridKeyResult result = viewModel.TryGetIndexSelection (out bool allSelected, out IReadOnlySet<int> picked)
+			? GridNavigation.Apply (e.Key, e.KeyModifiers, focus,
+				panel?.Columns ?? 1, panel?.VisibleRows ?? 1, viewModel.Photos.Count, allSelected, picked)
+			: GridNavigation.Apply (e.Key, e.KeyModifiers, focus,
+				panel?.Columns ?? 1, panel?.VisibleRows ?? 1, viewModel.Photos.Count, viewModel.SelectedIndices ());
 		if (result.Action == GridKeyAction.None)
 			return;
 
-		viewModel.ApplyGridSelection (result.Selection, result.Focus);
+		viewModel.ApplyNavigation (result);
 		FocusCell (list, result.Focus);
 		if (result.Action == GridKeyAction.Open)
 			viewModel.OpenPhotoCommand.Execute (viewModel.Photos[result.Focus]);
@@ -250,9 +254,14 @@ public static class GridInput
 			return;
 		state.Banding = true;
 		// GTK: Ctrl toggles and Shift keeps the selection; otherwise the band starts from nothing.
-		state.Initial = (state.PressModifiers & (KeyModifiers.Shift | KeyModifiers.Control | KeyModifiers.Meta)) == 0
-			? new HashSet<int> ()
-			: viewModel.SelectedIndices ();
+		state.InitialAll = false;
+		if ((state.PressModifiers & (KeyModifiers.Shift | KeyModifiers.Control | KeyModifiers.Meta)) == 0)
+			state.Initial = new HashSet<int> ();
+		else if (viewModel.TryGetIndexSelection (out bool allSelected, out IReadOnlySet<int> picked) && allSelected) {
+			state.InitialAll = true;
+			state.Initial = new HashSet<int> (picked);
+		} else
+			state.Initial = viewModel.SelectedIndices ();
 		pointer.Capture (list);
 		if (AdornerLayer.GetAdornerLayer (panel) is AdornerLayer layer) {
 			state.Adorner = new RubberBandAdorner ();
@@ -270,8 +279,13 @@ public static class GridInput
 			state.Adorner.Band = band.Translate (new Vector (0, -panel.Offset.Y));
 		var cells = GridGeometry.CellsInRect (band, panel.CellWidth, panel.CellHeight, panel.Columns, viewModel.Photos.Count);
 		bool toggle = (state.PressModifiers & (KeyModifiers.Control | KeyModifiers.Meta)) != 0;
-		var selection = GridGeometry.BandSelection (state.Initial, cells, toggle);
 		int focus = cells.Count > 0 ? cells[0] : viewModel.SelectedPhoto is null ? -1 : viewModel.Photos.IndexOf (viewModel.SelectedPhoto);
+		if (state.InitialAll) {
+			int bandFocus = focus < 0 ? 0 : focus;
+			viewModel.ApplyNavigation (GridNavigation.Band (state.Initial, cells, toggle, bandFocus));
+			return;
+		}
+		var selection = GridGeometry.BandSelection (state.Initial, cells, toggle);
 		if (focus < 0)
 			focus = selection.Count > 0 ? selection.Min () : 0;
 		if (!selection.SetEquals (viewModel.SelectedIndices ()) || cells.Count > 0)

@@ -55,8 +55,12 @@ namespace FSpot.Database
 			using (var reader = Database.Query (
 				"SELECT base_uri, COUNT(*) AS count FROM photos GROUP BY base_uri ORDER BY base_uri ASC")) {
 				while (reader.Read ()) {
+					string directory = reader["base_uri"]?.ToString ();
+					// A version with no directory is not a folder. Skip it instead of throwing.
+					if (string.IsNullOrEmpty (directory))
+						continue;
 					folders.Add (new FolderCount (
-						new SafeUri (reader["base_uri"].ToString (), true),
+						new SafeUri (directory, true),
 						Convert.ToInt32 (reader["count"])));
 				}
 			}
@@ -114,6 +118,9 @@ namespace FSpot.Database
 			Database.Execute ("CREATE INDEX idx_photo_versions_id ON photo_versions(photo_id)");
 			Database.Execute ("CREATE INDEX idx_photo_versions_import_md5 ON photo_versions(import_md5)");
 			Database.Execute ("CREATE INDEX idx_photos_roll_id ON photos(roll_id)");
+			Database.Execute ("CREATE INDEX idx_photo_tags_tag ON photo_tags(tag_id)");
+			Database.Execute ("CREATE INDEX idx_photos_time_desc ON photos(time DESC, filename ASC, id DESC)");
+			Database.Execute ("CREATE INDEX idx_photos_time_asc ON photos(time ASC, filename ASC, id ASC)");
 		}
 
 		public bool HasDuplicate (IPhoto item)
@@ -239,8 +246,8 @@ namespace FSpot.Database
 				while (reader.Read ()) {
 					uint version_id = Convert.ToUInt32 (reader["version_id"]);
 					string name = reader["name"]?.ToString ();
-					var base_uri = new SafeUri (reader["base_uri"].ToString (), true);
-					var filename = reader["filename"].ToString ();
+					string filename = reader["filename"]?.ToString () ?? "";
+					SafeUri base_uri = DirectoryOrRoot (reader["base_uri"]);
 					string import_md5 = reader["import_md5"]?.ToString ();
 					bool is_protected = Convert.ToBoolean (reader["protected"]);
 
@@ -277,8 +284,8 @@ namespace FSpot.Database
 					if (reader["version_id"] != null) {
 						uint version_id = Convert.ToUInt32 (reader["version_id"]);
 						string name = reader["name"]?.ToString ();
-						var base_uri = new SafeUri (reader["base_uri"].ToString (), true);
-						var filename = reader["filename"].ToString ();
+						string filename = reader["filename"]?.ToString () ?? "";
+						SafeUri base_uri = DirectoryOrRoot (reader["base_uri"]);
 						string import_md5 = reader["import_md5"]?.ToString ();
 						bool is_protected = Convert.ToBoolean (reader["protected"]);
 
@@ -313,6 +320,105 @@ namespace FSpot.Database
 
 		internal void ForgetCached ()
 		{
+			ClearCache ();
+		}
+
+		// The stand-in exists only so a photo with no directory can be loaded. A save writes the empty directory back.
+		static string StoredBaseUri (SafeUri uri)
+			=> uri == null || uri.Scheme == "missing" ? "" : uri.ToString ();
+
+		// An empty directory is not a filesystem root. A file URI would aim a later delete at /filename.
+		static SafeUri DirectoryOrRoot (object raw)
+		{
+			string text = raw?.ToString ();
+			if (string.IsNullOrEmpty (text))
+				return new SafeUri ("missing:///", true);
+			return new SafeUri (text, true);
+		}
+
+		static string ExcludingRows (IReadOnlyCollection<int> excludedIndexes)
+		{
+			if (excludedIndexes == null || excludedIndexes.Count == 0)
+				return "";
+			var rows = new StringBuilder ();
+			bool any = false;
+			foreach (int index in excludedIndexes) {
+				if (index < 0)
+					continue;
+				if (any)
+					rows.Append (',');
+				rows.Append (index + 1);
+				any = true;
+			}
+			if (!any)
+				return "";
+			return " WHERE ids.rowid NOT IN (" + rows + ")";
+		}
+
+		internal void SetRatingOnQuery (string idTable, uint rating, IReadOnlyCollection<int> excludedIndexes)
+		{
+			Database.Execute (new DatabaseCommand (
+				"UPDATE photos SET rating = ? WHERE id IN (SELECT ids.id FROM " + idTable + " AS ids" +
+				ExcludingRows (excludedIndexes) + ")",
+				rating.ToString ()));
+		}
+
+		internal uint? UniformRating (string idTable, IReadOnlyCollection<int> excludedIndexes)
+		{
+			using var reader = Database.Query (
+				"SELECT MIN(photos.rating) AS low, MAX(photos.rating) AS high, COUNT(*) AS count FROM " +
+				idTable + " AS ids JOIN photos ON photos.id = ids.id" + ExcludingRows (excludedIndexes));
+			if (!reader.Read () || Convert.ToInt32 (reader["count"]) == 0)
+				return null;
+			object low = reader["low"];
+			object high = reader["high"];
+			if (low == null || high == null || low is DBNull || high is DBNull)
+				return null;
+			if (Convert.ToInt64 (low) != Convert.ToInt64 (high))
+				return null;
+			return (uint)Convert.ToInt64 (low);
+		}
+
+		internal void AddTagToQuery (string idTable, uint tagId, IReadOnlyCollection<int> excludedIndexes)
+		{
+			Database.Execute (new DatabaseCommand (
+				"INSERT OR IGNORE INTO photo_tags (photo_id, tag_id) " +
+				"SELECT ids.id, ? FROM " + idTable + " AS ids" + ExcludingRows (excludedIndexes),
+				tagId));
+		}
+
+		internal void RemoveTagFromQuery (string idTable, uint tagId, IReadOnlyCollection<int> excludedIndexes)
+		{
+			Database.Execute (new DatabaseCommand (
+				"DELETE FROM photo_tags WHERE tag_id = ? AND photo_id IN (SELECT ids.id FROM " +
+				idTable + " AS ids" + ExcludingRows (excludedIndexes) + ")",
+				tagId));
+		}
+
+		internal List<uint> TagIdsInQuery (string idTable, IReadOnlyCollection<int> excludedIndexes)
+		{
+			var ids = new List<uint> ();
+			using var reader = Database.Query (
+				"SELECT DISTINCT photo_tags.tag_id FROM photo_tags JOIN " + idTable +
+				" AS ids ON ids.id = photo_tags.photo_id" + ExcludingRows (excludedIndexes));
+			while (reader.Read ())
+				ids.Add (Convert.ToUInt32 (reader[0]));
+			return ids;
+		}
+
+		internal void RemoveFromQuery (string idTable, IReadOnlyCollection<int> excludedIndexes)
+		{
+			string ids = "SELECT ids.id FROM " + idTable + " AS ids" + ExcludingRows (excludedIndexes);
+			bool useTransactions = !Database.InTransaction;
+			if (useTransactions)
+				Database.BeginTransaction ();
+			Database.Execute ("DELETE FROM photo_tags WHERE photo_id IN (" + ids + ")");
+			Database.Execute ("DELETE FROM photo_versions WHERE photo_id IN (" + ids + ")");
+			if (Database.TableExists ("exports"))
+				Database.Execute ("DELETE FROM exports WHERE image_id IN (" + ids + ")");
+			Database.Execute ("DELETE FROM photos WHERE id IN (" + ids + ")");
+			if (useTransactions)
+				Database.CommitTransaction ();
 			ClearCache ();
 		}
 
@@ -352,15 +458,20 @@ namespace FSpot.Database
 
 			var base_uri = uri.GetBaseUri ();
 			var filename = uri.GetFilename ();
+			// Catalogs store the directory with or without a trailing slash.
+			string directory = base_uri.ToString ();
+			string alternate = directory.EndsWith ("/", StringComparison.Ordinal)
+				? directory.Substring (0, directory.Length - 1)
+				: directory + "/";
 
 			using (var reader = Database.Query (new DatabaseCommand (
 				"SELECT id, time, description, roll_id, default_version_id, rating " +
 				" FROM photos " +
 				" LEFT JOIN photo_versions AS pv ON photos.id = pv.photo_id" +
-				" WHERE (photos.base_uri = ? AND photos.filename = ?)" +
-				" OR (pv.base_uri = ? AND pv.filename = ?)",
-				base_uri.ToString (), filename,
-				base_uri.ToString (), filename))) {
+				" WHERE ((photos.base_uri = ? OR photos.base_uri = ?) AND photos.filename = ?)" +
+				" OR ((pv.base_uri = ? OR pv.base_uri = ?) AND pv.filename = ?)",
+				directory, alternate, filename,
+				directory, alternate, filename))) {
 
 				if (reader.Read ()) {
 					photo = new Photo (imageFileFactory, thumbnailService, Convert.ToUInt32 (reader["id"]),
@@ -477,7 +588,7 @@ namespace FSpot.Database
 						photo.Description,
 						photo.DefaultVersionId,
 						DateTimeUtil.FromDateTime (photo.Time),
-						photo.VersionUri (Photo.OriginalVersionId).GetBaseUri ().ToString (),
+						StoredBaseUri (photo.VersionUri (Photo.OriginalVersionId).GetBaseUri ()),
 						photo.VersionUri (Photo.OriginalVersionId).GetFilename (),
 						$"{photo.Rating}",
 						photo.Id
@@ -522,7 +633,7 @@ namespace FSpot.Database
 						"base_uri = ?, filename = ?, protected = ?, import_md5 = ? " +
 						"WHERE photo_id = ? AND version_id = ?",
 						version.Name,
-						version.BaseUri.ToString (),
+						StoredBaseUri (version.BaseUri),
 						version.Filename,
 						version.IsProtected,
 						(version.ImportMD5 != string.Empty ? version.ImportMD5 : null),
@@ -591,12 +702,16 @@ namespace FSpot.Database
 
 		public int IndexOf (string tableName, DateTime time, bool asc)
 		{
+			// The query table stores ordered ids. The time lives on photos.
+			string direction = asc ? "ASC" : "DESC";
+			string comparison = asc ? ">=" : "<=";
 			string query = string.Format (
-				"SELECT ROWID AS row_id FROM {0} WHERE time {2} {1} ORDER BY time {3} LIMIT 1",
+				"SELECT {0}.ROWID AS row_id FROM {0} JOIN photos ON photos.id = {0}.id " +
+				"WHERE photos.time {1} {2} ORDER BY photos.time {3}, photos.filename ASC, photos.id {3} LIMIT 1",
 				tableName,
+				comparison,
 				DateTimeUtil.FromDateTime (time),
-				asc ? ">=" : "<=",
-				asc ? "ASC" : "DESC");
+				direction);
 			return IndexOf (query);
 		}
 
@@ -673,8 +788,14 @@ namespace FSpot.Database
 
 		// Queries.
 		public static string BuildQuery (params IQueryCondition[] conditions)
+			=> "SELECT * " + BuildQueryBody (conditions);
+
+		public static string BuildIdQuery (params IQueryCondition[] conditions)
+			=> "SELECT photos.id " + BuildQueryBody (conditions);
+
+		static string BuildQueryBody (params IQueryCondition[] conditions)
 		{
-			var query_builder = new StringBuilder ("SELECT * FROM photos ");
+			var query_builder = new StringBuilder ("FROM photos ");
 
 			bool where_added = false;
 			bool hidden_contained = false;
@@ -734,7 +855,7 @@ namespace FSpot.Database
 
 		public void QueryToTemp (string tempTable, params IQueryCondition[] conditions)
 		{
-			QueryToTemp (tempTable, BuildQuery (conditions));
+			QueryToTemp (tempTable, BuildIdQuery (conditions));
 		}
 
 		public void QueryToTemp (string tempTable, string query)
@@ -755,9 +876,63 @@ namespace FSpot.Database
 			return QueryFromTemp (tempTable, 0, -1);
 		}
 
+		public List<DateTime> TimesOf (string idTable)
+		{
+			var times = new List<DateTime> ();
+			using var reader = Database.Query (
+				$"SELECT photos.time FROM {idTable} AS ids JOIN photos ON photos.id = ids.id ORDER BY ids.rowid");
+			while (reader.Read ())
+				times.Add (DateTimeUtil.ToDateTime (Convert.ToInt64 (reader[0])));
+			return times;
+		}
+
+		public List<DateTime> Times (params IQueryCondition[] conditions)
+		{
+			var times = new List<DateTime> ();
+			using var reader = Database.Query ("SELECT photos.time " + BuildQueryBody (conditions));
+			while (reader.Read ())
+				times.Add (DateTimeUtil.ToDateTime (Convert.ToInt64 (reader[0])));
+			return times;
+		}
+
+		public List<string> DefaultVersionPaths (string idTable)
+		{
+			var paths = new List<string> ();
+			using var reader = Database.Query (
+				"SELECT versions.base_uri, versions.filename " +
+				$"FROM {idTable} AS ids JOIN photos ON photos.id = ids.id " +
+				"JOIN photo_versions AS versions ON versions.photo_id = photos.id AND versions.version_id = photos.default_version_id " +
+				"ORDER BY ids.rowid");
+			while (reader.Read ()) {
+				string baseUri = reader[0]?.ToString ();
+				string filename = reader[1]?.ToString () ?? "";
+				if (string.IsNullOrEmpty (baseUri)) {
+					// Keep one slot per row so the caller's index still addresses this photo.
+					paths.Add ("");
+					continue;
+				}
+				SafeUri uri = new SafeUri (baseUri, true).Append (filename);
+				string local = uri.LocalPath;
+				paths.Add (!string.IsNullOrEmpty (local) ? local : uri.AbsolutePath);
+			}
+			return paths;
+		}
+
+		internal static string PageClause (int offset, int limit)
+		{
+			if (limit < 0)
+				return "";
+			// rowid on a freshly filled id table is the ordered position, starting at 1.
+			return $" WHERE ids.rowid >= {offset + 1} AND ids.rowid < {offset + 1 + limit}";
+		}
+
 		public Photo[] QueryFromTemp (string tempTable, int offset, int limit)
 		{
-			return Query ($"SELECT * FROM {tempTable} LIMIT {limit} OFFSET {offset}");
+			// A range on that rowid does not walk the rows a deep OFFSET would skip.
+			string bounds = PageClause (offset, limit);
+			return Query (
+				"SELECT photos.id, photos.time, photos.description, photos.roll_id, photos.default_version_id, photos.rating " +
+				$"FROM {tempTable} AS ids JOIN photos ON photos.id = ids.id{bounds} ORDER BY ids.rowid");
 		}
 
 		public Photo[] Query (string query)

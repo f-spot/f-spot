@@ -8,13 +8,14 @@ public static class PhotoDropTargets
 {
 	public static IReadOnlyList<PhotoItemViewModel> ForTagDrop (
 		PhotoItemViewModel? dropTarget,
-		IReadOnlyList<PhotoItemViewModel> photos)
+		IEnumerable<PhotoItemViewModel> photos)
 	{
-		if (photos is null || photos.Count == 0)
+		var items = photos?.ToList () ?? new List<PhotoItemViewModel> ();
+		if (items.Count == 0)
 			return Array.Empty<PhotoItemViewModel> ();
 
 		if (dropTarget is null || dropTarget.Selected)
-			return photos.Where (photo => photo.Selected).ToList ();
+			return items.Where (photo => photo.Selected).ToList ();
 
 		return new[] { dropTarget };
 	}

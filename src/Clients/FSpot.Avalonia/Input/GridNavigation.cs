@@ -19,7 +19,14 @@ public enum GridKeyAction
 /// The outcome of one key press in the photo grid: where the focus cell goes and
 /// which cells are selected afterwards.
 /// </summary>
-public readonly record struct GridKeyResult (GridKeyAction Action, int Focus, IReadOnlySet<int> Selection);
+public readonly record struct GridKeyResult (GridKeyAction Action, int Focus, IReadOnlySet<int> Selection)
+{
+	public bool AllSelected { get; init; }
+
+	public IReadOnlySet<int> Excluded { get; init; } = EmptyExcluded;
+
+	static readonly IReadOnlySet<int> EmptyExcluded = new HashSet<int> ();
+}
 
 /// <summary>
 /// GTK <c>SelectionCollectionGridView.OnKeyPressEvent</c>: h/j/k/l and the arrows,
@@ -35,8 +42,26 @@ public static class GridNavigation
 
 	public static GridKeyResult Apply (Key key, KeyModifiers modifiers, int focus, int columns, int rows, int count,
 		IReadOnlySet<int> selection, Func<int, int, int>? random = null)
+		=> Apply (key, modifiers, focus, columns, rows, count, allSelected: false, picked: selection, random: random);
+
+	public static GridKeyResult Band (IReadOnlySet<int> excluded, IReadOnlyList<int> cells, bool toggle, int focus)
 	{
-		var unchanged = new GridKeyResult (GridKeyAction.None, focus, selection);
+		var selected = new CompactSelection (true, excluded);
+		if (cells != null) {
+			foreach (int cell in cells) {
+				if (!toggle)
+					selected.Add (cell);
+				else if (!selected.Remove (cell))
+					selected.Add (cell);
+			}
+		}
+		return selected.ToResult (GridKeyAction.Move, focus);
+	}
+
+	public static GridKeyResult Apply (Key key, KeyModifiers modifiers, int focus, int columns, int rows, int count,
+		bool allSelected, IReadOnlySet<int> picked, Func<int, int, int>? random = null)
+	{
+		var unchanged = new GridKeyResult (GridKeyAction.None, focus, picked ?? Empty);
 		if (count <= 0 || (modifiers & KeyModifiers.Alt) != 0 || !Handles (key))
 			return unchanged;
 
@@ -47,7 +72,7 @@ public static class GridNavigation
 		int old = Clamp (focus, count);
 		int next = old;
 		var action = GridKeyAction.Move;
-		var selected = new HashSet<int> (selection);
+		var selected = new CompactSelection (allSelected, picked);
 
 		switch (key) {
 		case Key.Down:
@@ -95,32 +120,84 @@ public static class GridNavigation
 		next = Clamp (next, count);
 		if (shift) {
 			if (old != next && selected.Contains (old) && selected.Contains (next))
-				RemoveRangeExceptStart (selected, next, old);
+				selected.RemoveRangeExceptStart (next, old);
 			else
-				AddRange (selected, old, next);
+				selected.AddRange (old, next);
 		} else if (!control) {
-			selected.Clear ();
-			selected.Add (next);
+			selected.ClearTo (next);
 		}
 
-		return new GridKeyResult (action, next, selected);
+		return selected.ToResult (action, next);
 	}
+
+	static readonly HashSet<int> Empty = new ();
 
 	static int Clamp (int value, int count)
 		=> Math.Min (Math.Max (value, 0), count - 1);
 
-	static void AddRange (HashSet<int> selected, int start, int end)
+	sealed class CompactSelection
 	{
-		for (int i = Math.Min (start, end); i <= Math.Max (start, end); i++)
-			selected.Add (i);
-	}
+		public bool All;
+		public readonly HashSet<int> Ids = new ();
 
-	// GTK SelectionCollection.Remove (start, end): the range without its start entry.
-	static void RemoveRangeExceptStart (HashSet<int> selected, int start, int end)
-	{
-		int first = Math.Min (start + 1, end);
-		int last = Math.Max (start - 1, end);
-		for (int i = first; i <= last; i++)
-			selected.Remove (i);
+		public CompactSelection (bool all, IReadOnlySet<int> ids)
+		{
+			All = all;
+			if (ids == null)
+				return;
+			foreach (int id in ids)
+				Ids.Add (id);
+		}
+
+		public bool Contains (int index)
+			=> All ? !Ids.Contains (index) : Ids.Contains (index);
+
+		public void Add (int index)
+		{
+			if (All)
+				Ids.Remove (index);
+			else
+				Ids.Add (index);
+		}
+
+		public bool Remove (int index)
+		{
+			if (!Contains (index))
+				return false;
+			if (All)
+				Ids.Add (index);
+			else
+				Ids.Remove (index);
+			return true;
+		}
+
+		public void ClearTo (int index)
+		{
+			All = false;
+			Ids.Clear ();
+			Ids.Add (index);
+		}
+
+		public void AddRange (int start, int end)
+		{
+			for (int i = Math.Min (start, end); i <= Math.Max (start, end); i++)
+				Add (i);
+		}
+
+		// GTK SelectionCollection.Remove (start, end): the range without its start entry.
+		public void RemoveRangeExceptStart (int start, int end)
+		{
+			int first = Math.Min (start + 1, end);
+			int last = Math.Max (start - 1, end);
+			for (int i = first; i <= last; i++)
+				Remove (i);
+		}
+
+		public GridKeyResult ToResult (GridKeyAction action, int focus)
+		{
+			if (!All)
+				return new GridKeyResult (action, focus, Ids);
+			return new GridKeyResult (action, focus, Empty) { AllSelected = true, Excluded = Ids };
+		}
 	}
 }

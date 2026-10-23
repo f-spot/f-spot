@@ -78,6 +78,28 @@ namespace FSpot.Database.Tests
 		}
 
 		[TestMethod]
+		public void GetByUri_FindsADirectoryStoredWithATrailingSlash ()
+		{
+			using var databaseConnection = new FSpotDatabaseConnection (database);
+			var dbMock = new Mock<IDb> ();
+			dbMock.Setup (m => m.Database).Returns (databaseConnection);
+			var store = new PhotoStore (null, null, dbMock.Object, true);
+			var version = new Mock<IPhotoVersion> ();
+			var directory = new SafeUri ("file:///tmp/database/", true);
+			version.Setup (v => v.BaseUri).Returns (directory);
+			version.Setup (v => v.Filename).Returns ("sample.jpg");
+			version.Setup (v => v.Name).Returns ("Original");
+			var photo = new Mock<IPhoto> ();
+			photo.Setup (p => p.DefaultVersion).Returns (version.Object);
+			photo.Setup (p => p.Versions).Returns (new[] { version.Object });
+			photo.Setup (p => p.Time).Returns (new DateTime (2020, 1, 2));
+			store.CreateFrom (photo.Object, true, 1);
+
+			string path = directory.Append ("sample.jpg").LocalPath;
+			Assert.IsNotNull (store.GetByUri (SafeUri.FromPath (path)));
+		}
+
+		[TestMethod]
 		public void CreateFromWithVersionIgnored ()
 		{
 			using (var databaseConnection = new FSpotDatabaseConnection (database)) {
@@ -158,6 +180,73 @@ namespace FSpot.Database.Tests
 				Assert.AreEqual (2, folders[0].Count);
 				Assert.AreEqual (new SafeUri ("file:///photos/2020/06/", true), folders[1].Uri);
 				Assert.AreEqual (1, folders[1].Count);
+			}
+		}
+
+		[TestMethod]
+		public void Commit_KeepsAnEmptyDirectoryEmpty ()
+		{
+			using (var databaseConnection = new FSpotDatabaseConnection (database)) {
+				var dbMock = new Mock<IDb> ();
+				dbMock.Setup (m => m.Database).Returns (databaseConnection);
+				var store = new PhotoStore (null, null, dbMock.Object, true);
+				Photo created = store.CreateFrom (PhotoInFolder ("file:///photos/2020/01/", "a.jpg"), true, 1);
+				databaseConnection.Execute ("UPDATE photos SET base_uri = '' WHERE id = " + created.Id);
+				databaseConnection.Execute ("UPDATE photo_versions SET base_uri = '' WHERE photo_id = " + created.Id);
+				store.ForgetCached ();
+				Photo loaded = store.Get (created.Id);
+
+				loaded.Rating = 3;
+				loaded.Description = "kept";
+				store.Commit (loaded);
+
+				Assert.AreEqual ("", StoredDirectory (databaseConnection, "photos", created.Id));
+				Assert.AreEqual ("", StoredDirectory (databaseConnection, "photo_versions", created.Id));
+			}
+		}
+
+		static string StoredDirectory (FSpotDatabaseConnection connection, string table, uint id)
+		{
+			string column = table == "photos" ? "id" : "photo_id";
+			using var reader = connection.Query ("SELECT base_uri FROM " + table + " WHERE " + column + " = " + id);
+			reader.Read ();
+			return reader["base_uri"]?.ToString () ?? "";
+		}
+
+		[TestMethod]
+		public void Get_LoadsAPhotoWhoseDirectoryIsEmpty ()
+		{
+			using (var databaseConnection = new FSpotDatabaseConnection (database)) {
+				var dbMock = new Mock<IDb> ();
+				dbMock.Setup (m => m.Database).Returns (databaseConnection);
+				var store = new PhotoStore (null, null, dbMock.Object, true);
+				Photo created = store.CreateFrom (PhotoInFolder ("file:///photos/2020/01/", "a.jpg"), true, 1);
+				databaseConnection.Execute ("UPDATE photos SET base_uri = '' WHERE id = " + created.Id);
+				databaseConnection.Execute ("UPDATE photo_versions SET base_uri = '' WHERE photo_id = " + created.Id);
+				store.ForgetCached ();
+
+				Photo loaded = store.Get (created.Id);
+
+				Assert.AreEqual ("a.jpg", loaded.Name);
+			}
+		}
+
+		[TestMethod]
+		public void ListFolderCounts_SkipsAnEmptyDirectory ()
+		{
+			using (var databaseConnection = new FSpotDatabaseConnection (database)) {
+				var dbMock = new Mock<IDb> ();
+				dbMock.Setup (m => m.Database).Returns (databaseConnection);
+				var store = new PhotoStore (null, null, dbMock.Object, true);
+				store.CreateFrom (PhotoInFolder ("file:///photos/2020/01/", "a.jpg"), true, 1);
+				Photo empty = store.CreateFrom (PhotoInFolder ("file:///photos/2020/01/", "gone.jpg"), true, 1);
+				databaseConnection.Execute ("UPDATE photos SET base_uri = '' WHERE id = " + empty.Id);
+				databaseConnection.Execute ("UPDATE photo_versions SET base_uri = '' WHERE photo_id = " + empty.Id);
+
+				var folders = store.ListFolderCounts ();
+
+				Assert.HasCount (1, folders);
+				Assert.AreEqual (1, folders[0].Count);
 			}
 		}
 

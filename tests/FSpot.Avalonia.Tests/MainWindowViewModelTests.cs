@@ -14,6 +14,7 @@ using Avalonia.VisualTree;
 
 using FSpot.Avalonia.Imaging;
 
+using FSpot.Avalonia.Controls;
 using FSpot.Avalonia.Dialogs;
 using FSpot.Avalonia.Input;
 
@@ -1913,6 +1914,578 @@ public sealed partial class MainWindowViewModelTests
 		}
 	}
 
+	[UiTestMethod]
+	public void LoadCatalog_RealizesTheFocusedPhotoOnly ()
+	{
+		string root = Path.Combine (Path.GetTempPath (), "fspot-vm-page-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (root);
+		string previousBase = FSpot.Settings.FSpotConfiguration.BaseDirectory;
+		Db? database = null;
+		try {
+			var services = CoreServices.CreateDefault ();
+			database = new Db (services.Images, services.Thumbnails, new MergeUpdater ());
+			database.Init (Path.Combine (root, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = root;
+			uint roll = database.Rolls.Create ().Id;
+			var time = new DateTime (2020, 3, 1, 0, 0, 0, DateTimeKind.Utc);
+			for (int i = 0; i < 250; i++)
+				database.Photos.CreateFrom (new StubPhoto ($"/photos/p{i:000}.jpg", time), true, roll);
+
+			var viewModel = new MainWindowViewModel (database, new RecordingShell (), new NullThumbnails ());
+			viewModel.LoadCatalog ();
+
+			Assert.AreEqual (250, viewModel.Photos.Count);
+			Assert.AreSame (viewModel.Photos[0], viewModel.SelectedPhoto);
+			Assert.HasCount (1, viewModel.Photos.Realized.ToList ());
+
+			var first = viewModel.Photos[0];
+			viewModel.SelectPhoto (viewModel.Photos[249]);
+
+			Assert.AreSame (viewModel.Photos[249], viewModel.SelectedPhoto);
+			Assert.IsTrue (viewModel.Photos[249].Selected);
+			Assert.HasCount (1, viewModel.Photos.Realized.ToList ());
+
+			var again = viewModel.Photos[0];
+			Assert.AreNotSame (first, again);
+			Assert.IsFalse (again.Selected);
+			Assert.IsTrue (viewModel.Photos[249].Selected);
+		} finally {
+			database?.Dispose ();
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = previousBase;
+			if (Directory.Exists (root))
+				Directory.Delete (root, true);
+		}
+	}
+
+	[UiTestMethod]
+	public void SelectTimeline_KeepsTheOtherMonthsAndClearsOnTheSecondClick ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			database.Photos.CreateFrom (new StubPhoto ("/photos/jan.jpg", new DateTime (2020, 1, 15, 0, 0, 0, DateTimeKind.Utc)), true, roll);
+			database.Photos.CreateFrom (new StubPhoto ("/photos/jun.jpg", new DateTime (2020, 6, 15, 0, 0, 0, DateTimeKind.Utc)), true, roll);
+			viewModel.LoadCatalog ();
+			TimelineBucket january = viewModel.TimelineBuckets.Single (bucket => bucket.Start.Month == 1 && bucket.Count > 0);
+			Assert.IsNotNull (viewModel.TimelineBuckets.FirstOrDefault (bucket => bucket.Start.Month == 6 && bucket.Count > 0));
+
+			viewModel.SelectTimelineCommand.Execute (january);
+
+			Assert.HasCount (1, viewModel.Photos);
+			Assert.AreEqual ("jan.jpg", viewModel.Photos[0].Caption);
+			Assert.IsNotNull (viewModel.TimelineBuckets.FirstOrDefault (bucket => bucket.Start.Month == 6 && bucket.Count > 0));
+			TimelineBucket shownJanuary = viewModel.TimelineBuckets.Single (bucket => bucket.Start.Month == 1 && bucket.Count > 0);
+
+			viewModel.SelectTimelineCommand.Execute (shownJanuary);
+
+			Assert.IsNull (viewModel.SelectedTimeline);
+			Assert.HasCount (2, viewModel.Photos);
+		});
+	}
+
+	[UiTestMethod]
+	public void SelectTimeline_ExcludesAPhotoAtTheNextMonthsMidnight ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			database.Photos.CreateFrom (new StubPhoto ("/photos/mid.jpg", new DateTime (2020, 1, 15, 0, 0, 0, DateTimeKind.Utc)), true, roll);
+			database.Photos.CreateFrom (new StubPhoto ("/photos/boundary.jpg", new DateTime (2020, 2, 1, 0, 0, 0, DateTimeKind.Utc)), true, roll);
+			viewModel.LoadCatalog ();
+			TimelineBucket january = viewModel.TimelineBuckets.Single (bucket => bucket.Start.Month == 1 && bucket.Count > 0);
+
+			viewModel.SelectTimelineCommand.Execute (january);
+
+			Assert.HasCount (1, viewModel.Photos);
+			Assert.AreEqual ("mid.jpg", viewModel.Photos[0].Caption);
+		});
+	}
+
+	[UiTestMethod]
+	public void SelectAll_OnAPagedLibraryDoesNotRealizeEveryRow ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			var time = new DateTime (2020, 3, 1, 0, 0, 0, DateTimeKind.Utc);
+			for (int i = 0; i < 250; i++)
+				database.Photos.CreateFrom (new StubPhoto ($"/photos/p{i:000}.jpg", time), true, roll);
+			viewModel.LoadCatalog ();
+
+			viewModel.SelectAllCommand.Execute (null);
+
+			Assert.AreEqual (250, viewModel.SelectionCount);
+			Assert.HasCount (1, viewModel.Photos.Realized.ToList ());
+			Assert.IsTrue (viewModel.Photos[0].Selected);
+		});
+	}
+
+	[UiTestMethod]
+	public void SelectInvert_OnAPagedLibraryDoesNotRealizeEveryRow ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			var time = new DateTime (2020, 3, 1, 0, 0, 0, DateTimeKind.Utc);
+			for (int i = 0; i < 250; i++)
+				database.Photos.CreateFrom (new StubPhoto ($"/photos/p{i:000}.jpg", time), true, roll);
+			viewModel.LoadCatalog ();
+
+			viewModel.SelectInvertCommand.Execute (null);
+
+			Assert.AreEqual (250, viewModel.SelectionCount);
+			Assert.HasCount (1, viewModel.Photos.Realized.ToList ());
+		});
+	}
+
+	[UiTestMethod]
+	public void ApplyGridSelection_OnAPagedLibraryDoesNotRealizeEverySelectedIndex ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			var time = new DateTime (2020, 3, 1, 0, 0, 0, DateTimeKind.Utc);
+			for (int i = 0; i < 250; i++)
+				database.Photos.CreateFrom (new StubPhoto ($"/photos/p{i:000}.jpg", time), true, roll);
+			viewModel.LoadCatalog ();
+
+			viewModel.ApplyGridSelection (new HashSet<int> { 0, 200 }, 0);
+
+			Assert.AreEqual (2, viewModel.SelectionCount);
+			Assert.HasCount (1, viewModel.Photos.Realized.ToList ());
+			Assert.IsTrue (viewModel.Photos[0].Selected);
+		});
+	}
+
+	[UiTestMethod]
+	public void FullScreen_OnAPagedLibraryDoesNotRealizeEveryRow ()
+	{
+		var shell = new RecordingShell ();
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			database.Photos.CreateFrom (new StubPhoto ("/photos/a.jpg", new DateTime (2020, 1, 1, 0, 0, 0, DateTimeKind.Utc)), true, roll);
+			database.Photos.CreateFrom (new StubPhoto ("/photos/b.jpg", new DateTime (2020, 1, 2, 0, 0, 0, DateTimeKind.Utc)), true, roll);
+			viewModel.LoadCatalog ();
+
+			viewModel.ToggleFullscreenCommand.Execute (null);
+
+			Assert.IsNotNull (shell.FullScreenPaths);
+			Assert.HasCount (2, shell.FullScreenPaths);
+			Assert.HasCount (1, viewModel.Photos.Realized.ToList ());
+		}, shell);
+	}
+
+	[UiTestMethod]
+	public void SelectAll_DropsASelectedRowThatScrollsOutOfTheWindow ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			var time = new DateTime (2020, 3, 1, 0, 0, 0, DateTimeKind.Utc);
+			for (int i = 0; i < 250; i++)
+				database.Photos.CreateFrom (new StubPhoto ($"/photos/p{i:000}.jpg", time), true, roll);
+			viewModel.LoadCatalog ();
+			viewModel.SelectAllCommand.Execute (null);
+
+			_ = viewModel.Photos[249];
+			_ = viewModel.Photos[50];
+			viewModel.Photos.TrimAround (50);
+
+			Assert.DoesNotContain (249, viewModel.Photos.Indexed ().Select (pair => pair.Index));
+			Assert.AreEqual (250, viewModel.SelectionCount);
+			Assert.IsTrue (viewModel.Photos[249].Selected);
+		});
+	}
+
+	[UiTestMethod]
+	public void PickedRow_StaysRealizedWhenItIsOutsideTheWindow ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			var time = new DateTime (2020, 3, 1, 0, 0, 0, DateTimeKind.Utc);
+			for (int i = 0; i < 250; i++)
+				database.Photos.CreateFrom (new StubPhoto ($"/photos/p{i:000}.jpg", time), true, roll);
+			viewModel.LoadCatalog ();
+			viewModel.ApplyGridSelection (new HashSet<int> { 0, 249 }, 0);
+
+			_ = viewModel.Photos[249];
+			_ = viewModel.Photos[50];
+			viewModel.Photos.TrimAround (50);
+
+			Assert.Contains (249, viewModel.Photos.Indexed ().Select (pair => pair.Index));
+		});
+	}
+
+	[UiTestMethod]
+	public void WideSlice_KeepsTheFirstRowThatWasJustShown ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			var time = new DateTime (2020, 3, 1, 0, 0, 0, DateTimeKind.Utc);
+			for (int i = 0; i < 250; i++)
+				database.Photos.CreateFrom (new StubPhoto ($"/photos/p{i:000}.jpg", time), true, roll);
+			viewModel.LoadCatalog ();
+
+			_ = viewModel.Photos[50];
+			_ = viewModel.Photos[249];
+			viewModel.Photos.TrimOutside (50, 249);
+
+			Assert.Contains (50, viewModel.Photos.Indexed ().Select (pair => pair.Index));
+		});
+	}
+
+	[UiTestMethod]
+	public void FocusPhoto_FindsADirectoryStoredWithATrailingSlash ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			database.Photos.CreateFrom (new StubPhoto ("/photos/early.jpg", new DateTime (2020, 1, 1)), true, roll);
+			database.Photos.CreateFrom (new StubPhoto ("/photos/late.jpg", new DateTime (2020, 6, 1)), true, roll);
+			database.Database.Execute ("UPDATE photos SET base_uri = 'file:///tmp/database/'");
+			database.Database.Execute ("UPDATE photo_versions SET base_uri = 'file:///tmp/database/'");
+			viewModel.LoadCatalog ();
+			string path = new SafeUri ("file:///tmp/database/", true).Append ("early.jpg").LocalPath;
+
+			viewModel.FocusPhoto (path);
+
+			Assert.AreEqual ("early.jpg", viewModel.SelectedPhoto!.Caption);
+		});
+	}
+
+	[UiTestMethod]
+	public void FullScreen_StartSkipsAnEmptyDirectory ()
+	{
+		var shell = new RecordingShell ();
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			database.Photos.CreateFrom (new StubPhoto ("/photos/a.jpg", new DateTime (2020, 1, 3)), true, roll);
+			database.Photos.CreateFrom (new StubPhoto ("/photos/b.jpg", new DateTime (2020, 1, 2)), true, roll);
+			database.Photos.CreateFrom (new StubPhoto ("/photos/c.jpg", new DateTime (2020, 1, 1)), true, roll);
+			// Newest first, so the empty directory sits before the focused photo.
+			viewModel.ReverseOrder = false;
+			viewModel.LoadCatalog ();
+			database.Database.Execute ("UPDATE photos SET base_uri = '' WHERE filename = 'a.jpg'");
+			database.Database.Execute ("UPDATE photo_versions SET base_uri = '' WHERE filename = 'a.jpg'");
+			viewModel.SelectPhoto (viewModel.Photos.First (item => item.Caption == "b.jpg"));
+
+			viewModel.ToggleFullscreenCommand.Execute (null);
+
+			Assert.IsNotNull (shell.FullScreenPaths);
+			Assert.HasCount (2, shell.FullScreenPaths);
+			Assert.AreEqual (0, shell.FullScreenStart);
+			Assert.EndsWith ("b.jpg", shell.FullScreenPaths[0], StringComparison.Ordinal);
+			Assert.EndsWith ("c.jpg", shell.FullScreenPaths[1], StringComparison.Ordinal);
+		}, shell);
+	}
+
+	[UiTestMethod]
+	public void SelectTimeline_NarrowsAFindInsteadOfReplacingIt ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			database.Photos.CreateFrom (new StubPhoto ("/photos/jan.jpg", new DateTime (2020, 1, 15)), true, roll);
+			database.Photos.CreateFrom (new StubPhoto ("/photos/early.jpg", new DateTime (2020, 6, 10)), true, roll);
+			database.Photos.CreateFrom (new StubPhoto ("/photos/late.jpg", new DateTime (2020, 6, 20)), true, roll);
+			viewModel.LoadCatalog ();
+			viewModel.FindStart = new DateTime (2020, 6, 1);
+			viewModel.FindEnd = new DateTime (2020, 6, 15, 23, 59, 59);
+			TimelineBucket june = viewModel.TimelineBuckets.Single (bucket => bucket.Start.Month == 6 && bucket.Count > 0);
+
+			viewModel.SelectTimelineCommand.Execute (june);
+
+			Assert.IsNotNull (viewModel.Photos.FirstOrDefault (item => item.Caption == "early.jpg"));
+			Assert.IsNull (viewModel.Photos.FirstOrDefault (item => item.Caption == "late.jpg"));
+			Assert.IsNull (viewModel.Photos.FirstOrDefault (item => item.Caption == "jan.jpg"));
+		});
+	}
+
+	[UiTestMethod]
+	public void SelectTimeline_StillLimitsAWiderFind ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			database.Photos.CreateFrom (new StubPhoto ("/photos/jan.jpg", new DateTime (2020, 1, 15)), true, roll);
+			database.Photos.CreateFrom (new StubPhoto ("/photos/jun.jpg", new DateTime (2020, 6, 15)), true, roll);
+			viewModel.LoadCatalog ();
+			viewModel.FindStart = new DateTime (2020, 1, 1);
+			viewModel.FindEnd = new DateTime (2020, 12, 31, 23, 59, 59);
+			TimelineBucket january = viewModel.TimelineBuckets.Single (bucket => bucket.Start.Month == 1 && bucket.Count > 0);
+
+			viewModel.SelectTimelineCommand.Execute (january);
+
+			Assert.AreEqual ("jan.jpg", viewModel.Photos.Single ().Caption);
+		});
+	}
+
+	[UiTestMethod]
+	public void SelectAll_AttachTagDoesNotRealizeEveryRow ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			var time = new DateTime (2020, 3, 1);
+			for (int i = 0; i < 250; i++)
+				database.Photos.CreateFrom (new StubPhoto ($"/photos/p{i:000}.jpg", time), true, roll);
+			database.Tags.CreateTag (database.Tags.RootCategory, "Beach", false);
+			viewModel.LoadCatalog ();
+			viewModel.SelectAllCommand.Execute (null);
+			TagNode beach = viewModel.Tags.Single (node => node.Tag.Name == "Beach");
+
+			viewModel.BuildRemoveTagMenu ();
+			viewModel.AttachSelectionToTag (beach);
+
+			Assert.HasCount (1, viewModel.Photos.Realized.ToList ());
+			Assert.AreEqual (250, viewModel.SelectionCount);
+			Assert.AreEqual (250, CountTagLinks (database));
+			Assert.Contains (beach.Tag, viewModel.Photos[0].Photo.Tags);
+			Assert.Contains (beach.Tag, viewModel.Photos[200].Photo.Tags);
+		});
+	}
+
+	[UiTestMethod]
+	public void SelectAll_TagSkipsAnExcludedRow ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			var time = new DateTime (2020, 3, 1);
+			for (int i = 0; i < 250; i++)
+				database.Photos.CreateFrom (new StubPhoto ($"/photos/p{i:000}.jpg", time), true, roll);
+			database.Tags.CreateTag (database.Tags.RootCategory, "Beach", false);
+			viewModel.LoadCatalog ();
+			viewModel.SelectAllCommand.Execute (null);
+			var shifted = GridNavigation.Apply (Key.Right, KeyModifiers.Shift, 0, 4, 2, viewModel.Photos.Count, allSelected: true, picked: new HashSet<int> ());
+			viewModel.ApplyNavigation (shifted);
+			TagNode beach = viewModel.Tags.Single (node => node.Tag.Name == "Beach");
+
+			viewModel.AttachSelectionToTag (beach);
+
+			Assert.AreEqual (249, CountTagLinks (database));
+			Assert.DoesNotContain (beach.Tag, viewModel.Photos[0].Photo.Tags);
+			Assert.Contains (beach.Tag, viewModel.Photos[200].Photo.Tags);
+			Assert.IsLessThan (10, viewModel.Photos.Realized.Count ());
+		});
+	}
+
+	[UiTestMethod]
+	public async Task SelectAll_RemoveFromCatalogDoesNotRealizeEveryRow ()
+	{
+		var shell = new RecordingShell { ConfirmResult = true };
+		int realizedWhenAsked = -1;
+		await WithLibraryAsync (async (database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			var time = new DateTime (2020, 3, 1);
+			for (int i = 0; i < 250; i++)
+				database.Photos.CreateFrom (new StubPhoto ($"/photos/p{i:000}.jpg", time), true, roll);
+			viewModel.LoadCatalog ();
+			viewModel.SelectAllCommand.Execute (null);
+			shell.OnConfirm = () => realizedWhenAsked = viewModel.Photos.Realized.Count ();
+
+			await viewModel.RemoveFromCatalogCommand.ExecuteAsync (null);
+
+			Assert.AreEqual (1, realizedWhenAsked);
+			Assert.AreEqual (0, viewModel.Photos.Count);
+			Assert.AreEqual (0, database.Photos.TotalPhotos);
+		}, shell);
+	}
+
+	[UiTestMethod]
+	public async Task SelectAll_DeleteFromDriveDoesNotRealizeEveryRow ()
+	{
+		var shell = new RecordingShell { ConfirmResult = true };
+		int realizedWhenAsked = -1;
+		await WithLibraryAsync (async (database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			var time = new DateTime (2020, 3, 1);
+			for (int i = 0; i < 250; i++)
+				database.Photos.CreateFrom (new StubPhoto ($"/photos/p{i:000}.jpg", time), true, roll);
+			viewModel.LoadCatalog ();
+			viewModel.SelectAllCommand.Execute (null);
+			shell.OnConfirm = () => realizedWhenAsked = viewModel.Photos.Realized.Count ();
+
+			await viewModel.DeleteFromDriveCommand.ExecuteAsync (null);
+
+			Assert.AreEqual (1, realizedWhenAsked);
+			Assert.AreEqual (0, viewModel.Photos.Count);
+			Assert.AreEqual (0, database.Photos.TotalPhotos);
+		}, shell);
+	}
+
+	[UiTestMethod]
+	public void Rate_KeepsAnEmptyDirectoryAndAnEmptyPath ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			database.Photos.CreateFrom (new StubPhoto ("/photos/a.jpg", new DateTime (2020, 1, 3)), true, roll);
+			database.Database.Execute ("UPDATE photos SET base_uri = '' WHERE filename = 'a.jpg'");
+			database.Database.Execute ("UPDATE photo_versions SET base_uri = '' WHERE filename = 'a.jpg'");
+			viewModel.LoadCatalog ();
+
+			Assert.AreEqual ("", viewModel.Photos[0].Path);
+			viewModel.RateSelectionCommand.Execute (2u);
+
+			Assert.AreEqual ("", DirectoryOf (database, "photos"));
+			Assert.AreEqual ("", DirectoryOf (database, "photo_versions"));
+			Assert.AreEqual ("a.jpg", viewModel.Photos[0].Caption);
+		});
+	}
+
+	[UiTestMethod]
+	public void SelectAll_RateDoesNotRealizeEveryRow ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			var time = new DateTime (2020, 3, 1);
+			for (int i = 0; i < 250; i++)
+				database.Photos.CreateFrom (new StubPhoto ($"/photos/p{i:000}.jpg", time), true, roll);
+			viewModel.LoadCatalog ();
+			viewModel.SelectAllCommand.Execute (null);
+
+			viewModel.RateSelectionCommand.Execute (4u);
+
+			Assert.HasCount (1, viewModel.Photos.Realized.ToList ());
+			Assert.AreEqual (250, RatedCount (database, 4));
+			Assert.AreEqual (4u, viewModel.Photos[200].Photo.Rating);
+		});
+	}
+
+	[UiTestMethod]
+	public async Task SelectAll_CopyDoesNotRealizeEveryRow ()
+	{
+		var shell = new RecordingShell ();
+		await WithLibraryAsync (async (database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			var time = new DateTime (2020, 3, 1);
+			for (int i = 0; i < 250; i++)
+				database.Photos.CreateFrom (new StubPhoto ($"/photos/p{i:000}.jpg", time), true, roll);
+			viewModel.LoadCatalog ();
+			viewModel.SelectAllCommand.Execute (null);
+
+			await viewModel.CopyCommand.ExecuteAsync (null);
+
+			Assert.HasCount (1, viewModel.Photos.Realized.ToList ());
+			Assert.IsNotNull (shell.Copied);
+			Assert.HasCount (250, shell.Copied);
+		}, shell);
+	}
+
+	[UiTestMethod]
+	public void SelectAll_RotateDoesNotRealizeEveryRow ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			var time = new DateTime (2020, 3, 1);
+			for (int i = 0; i < 250; i++)
+				database.Photos.CreateFrom (new StubPhoto ($"/photos/p{i:000}.jpg", time), true, roll);
+			viewModel.LoadCatalog ();
+			viewModel.SelectAllCommand.Execute (null);
+
+			viewModel.RotateLeftCommand.Execute (null);
+
+			Assert.HasCount (1, viewModel.Photos.Realized.ToList ());
+		});
+	}
+
+	[UiTestMethod]
+	public void LoadCatalog_ShowsAPhotoWhoseDirectoryIsEmpty ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			database.Photos.CreateFrom (new StubPhoto ("/photos/a.jpg", new DateTime (2020, 1, 3)), true, roll);
+			database.Database.Execute ("UPDATE photos SET base_uri = '' WHERE filename = 'a.jpg'");
+			database.Database.Execute ("UPDATE photo_versions SET base_uri = '' WHERE filename = 'a.jpg'");
+
+			viewModel.LoadCatalog ();
+
+			Assert.AreEqual (1, viewModel.Photos.Count);
+			Assert.AreEqual ("a.jpg", viewModel.Photos[0].Caption);
+		});
+	}
+
+	[UiTestMethod]
+	public void FindText_KeepsAPhotoTakenAtTheFindEndSecond ()
+	{
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			var end = new DateTime (2020, 1, 10, 23, 59, 59);
+			database.Photos.CreateFrom (new StubPhoto ("/photos/end.jpg", end), true, roll);
+			database.Photos.CreateFrom (new StubPhoto ("/photos/next.jpg", end.AddSeconds (1)), true, roll);
+			viewModel.LoadCatalog ();
+			viewModel.FindStart = new DateTime (2020, 1, 10);
+			viewModel.FindEnd = end;
+			viewModel.FindText = "jpg";
+
+			Assert.IsNotNull (viewModel.Photos.FirstOrDefault (item => item.Caption == "end.jpg"));
+			Assert.IsNull (viewModel.Photos.FirstOrDefault (item => item.Caption == "next.jpg"));
+		});
+	}
+
+	[UiTestMethod]
+	public void SetTimelineLimits_KeepsTheHandlesWhenTheStripIsRebuilt ()
+	{
+		AvaloniaApp.Ensure ();
+		WithLibrary ((database, viewModel) => {
+			uint roll = database.Rolls.Create ().Id;
+			database.Photos.CreateFrom (new StubPhoto ("/photos/jan.jpg", new DateTime (2020, 1, 15)), true, roll);
+			database.Photos.CreateFrom (new StubPhoto ("/photos/jun.jpg", new DateTime (2020, 6, 15)), true, roll);
+			viewModel.LoadCatalog ();
+			var scale = new TimelineScale {
+				Items = viewModel.TimelineBuckets,
+				LimitsCommand = viewModel.SetTimelineLimitsCommand,
+				Width = 400,
+				Height = 48
+			};
+			var window = new Window { Width = 420, Height = 80, Content = scale };
+			window.Show ();
+			window.UpdateLayout ();
+
+			scale.ApplyRange (0, 0);
+
+			Assert.AreEqual ((0, 0), scale.Limits);
+			window.Close ();
+		});
+	}
+
+	static string DirectoryOf (Db database, string table)
+	{
+		using var reader = database.Database.Query ("SELECT base_uri FROM " + table + " LIMIT 1");
+		reader.Read ();
+		return reader["base_uri"]?.ToString () ?? "";
+	}
+
+	static int RatedCount (Db database, uint rating)
+	{
+		using var reader = database.Database.Query ("SELECT COUNT(*) AS count FROM photos WHERE rating = " + rating);
+		reader.Read ();
+		return Convert.ToInt32 (reader["count"]);
+	}
+
+	static int CountTagLinks (Db database)
+	{
+		using var reader = database.Database.Query ("SELECT COUNT(*) AS count FROM photo_tags");
+		reader.Read ();
+		return Convert.ToInt32 (reader["count"]);
+	}
+
+	static void WithLibrary (Action<Db, MainWindowViewModel> body, RecordingShell? shell = null)
+		=> WithLibraryAsync ((database, viewModel) => {
+			body (database, viewModel);
+			return Task.CompletedTask;
+		}, shell).GetAwaiter ().GetResult ();
+
+	static async Task WithLibraryAsync (Func<Db, MainWindowViewModel, Task> body, RecordingShell? shell = null)
+	{
+		string root = Path.Combine (Path.GetTempPath (), "fspot-vm-page-" + Guid.NewGuid ().ToString ("N"));
+		Directory.CreateDirectory (root);
+		string previousBase = FSpot.Settings.FSpotConfiguration.BaseDirectory;
+		Db? database = null;
+		try {
+			var services = CoreServices.CreateDefault ();
+			database = new Db (services.Images, services.Thumbnails, new MergeUpdater ());
+			database.Init (Path.Combine (root, FSpot.Settings.FSpotConfiguration.DatabaseName), true);
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = root;
+			var viewModel = new MainWindowViewModel (database, shell ?? new RecordingShell (), new NullThumbnails ());
+			await body (database, viewModel);
+		} finally {
+			database?.Dispose ();
+			FSpot.Settings.FSpotConfiguration.BaseDirectory = previousBase;
+			if (Directory.Exists (root))
+				Directory.Delete (root, true);
+		}
+	}
+
 	static Photo RollPhoto (Db database, string sample, string root, string name, DateTime time)
 	{
 		string path = Path.Combine (root, name);
@@ -2928,6 +3501,7 @@ public sealed partial class MainWindowViewModelTests
 		public IReadOnlyList<ImportRollOption> OfferedMergeRolls { get; private set; } = [];
 		public IReadOnlyList<string>? PickedFiles { get; set; }
 		public bool ConfirmResult { get; set; }
+		public Action? OnConfirm { get; set; }
 		public bool ConfirmCalled { get; private set; }
 		public string? ConfirmTitle { get; private set; }
 		public string? ConfirmMessage { get; private set; }
@@ -2982,6 +3556,7 @@ public sealed partial class MainWindowViewModelTests
 			ConfirmCalled = true;
 			ConfirmTitle = title;
 			ConfirmMessage = message;
+			OnConfirm?.Invoke ();
 			return Task.FromResult (ConfirmResult);
 		}
 
@@ -3036,6 +3611,16 @@ public sealed partial class MainWindowViewModelTests
 		{
 			Mailed = paths.ToList ();
 			return Task.CompletedTask;
+		}
+
+		public IReadOnlyList<string>? FullScreenPaths { get; private set; }
+
+		public int FullScreenStart { get; private set; }
+
+		public void ShowFullScreen (IReadOnlyList<string> paths, int startIndex)
+		{
+			FullScreenPaths = paths;
+			FullScreenStart = startIndex;
 		}
 
 		public override void ShowSlideshow (IReadOnlyList<string> paths, int startIndex)

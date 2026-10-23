@@ -40,7 +40,7 @@ public partial class PhotoItemViewModel : ObservableObject
 	public void RefreshFromPhoto ()
 	{
 		Caption = Photo.Name;
-		Path = Photo.DefaultVersion.Uri.AbsolutePath;
+		Path = Photo.DefaultVersion.Uri?.AbsolutePath ?? string.Empty;
 		AutomationId = PhotoAutomationId.For (Photo);
 		DateCaption = PhotoDateCaption.Format (Photo, wide: false);
 		TagsCaption = FormatTags (Photo);

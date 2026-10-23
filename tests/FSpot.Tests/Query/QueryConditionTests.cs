@@ -34,6 +34,18 @@ namespace FSpot.Query.Tests
 		}
 
 		[TestMethod]
+		public void DateRange_ExcludeEnd_UsesAHalfOpenUpperBound ()
+		{
+			var start = new DateTime (2020, 1, 1);
+			var end = new DateTime (2020, 2, 1);
+			var range = new DateRange (start, end, excludeEnd: true);
+
+			Assert.AreEqual (
+				$" photos.time >= {DateTimeUtil.FromDateTime (start)} AND photos.time < {DateTimeUtil.FromDateTime (end)} ",
+				range.SqlClause ());
+		}
+
+		[TestMethod]
 		public void RatingRange_MinOnly_ExtendsToUintMax ()
 		{
 			var range = new RatingRange (3);
@@ -140,8 +152,8 @@ namespace FSpot.Query.Tests
 		[TestMethod]
 		public void OrderByTime_WritesDirectionAndFilenameTiebreaker ()
 		{
-			Assert.AreEqual (" time ASC, filename ASC ", OrderByTime.OrderByTimeAsc.SqlClause ());
-			Assert.AreEqual (" time DESC, filename ASC ", OrderByTime.OrderByTimeDesc.SqlClause ());
+			Assert.AreEqual (" time ASC, filename ASC, id ASC ", OrderByTime.OrderByTimeAsc.SqlClause ());
+			Assert.AreEqual (" time DESC, filename ASC, id DESC ", OrderByTime.OrderByTimeDesc.SqlClause ());
 		}
 
 		[TestMethod]

@@ -56,7 +56,12 @@ namespace FSpot
 		}
 
 		public string Name {
-			get { return Path.GetFileName (VersionUri (OriginalVersionId).AbsolutePath); }
+			get {
+				SafeUri uri = VersionUri (OriginalVersionId);
+				if (!string.IsNullOrEmpty (uri?.AbsolutePath))
+					return Path.GetFileName (uri.AbsolutePath);
+				return GetVersion (OriginalVersionId)?.Filename ?? string.Empty;
+			}
 		}
 
 		readonly List<Tag> tags;

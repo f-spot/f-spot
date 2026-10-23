@@ -235,6 +235,8 @@ public class UniformVirtualizingWrapPanel : VirtualizingPanel, ILogicalScrollabl
 			Unrealize (index);
 		for (int index = first; index < end; index++)
 			RealizeOne (generator, items, index);
+		if (items is LibraryItems library && slice.Count > 0)
+			library.TrimOutside (first, end - 1);
 		extent = new Size (width, ExtentHeight (width));
 	}
 

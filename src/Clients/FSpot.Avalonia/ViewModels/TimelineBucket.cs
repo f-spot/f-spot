@@ -3,6 +3,9 @@
 //
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using FSpot.Query;
@@ -27,4 +30,18 @@ public partial class TimelineBucket : ObservableObject
 	public bool HasPhotos => Count > 0;
 	public string ToolTip => QueryChipFormat.TimelineMonth (Start, Count);
 	public string AutomationId => $"timeline.{Start:yyyy-MM}";
+}
+
+public sealed class TimelineBucketCollection : ObservableCollection<TimelineBucket>
+{
+	public void ReplaceAll (IReadOnlyList<TimelineBucket> next)
+	{
+		CheckReentrancy ();
+		Items.Clear ();
+		if (next != null) {
+			foreach (var bucket in next)
+				Items.Add (bucket);
+		}
+		OnCollectionChanged (new NotifyCollectionChangedEventArgs (NotifyCollectionChangedAction.Reset));
+	}
 }

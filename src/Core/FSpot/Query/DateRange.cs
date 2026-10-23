@@ -21,10 +21,18 @@ namespace FSpot.Query
 
 		public DateTime End { get; private set; }
 
+		public bool ExcludeEnd { get; private set; }
+
 		public DateRange (DateTime start, DateTime end)
+			: this (start, end, false)
+		{
+		}
+
+		public DateRange (DateTime start, DateTime end, bool excludeEnd)
 		{
 			Start = start;
 			End = end;
+			ExcludeEnd = excludeEnd;
 		}
 
 		public DateRange (int year, int month)
@@ -35,8 +43,10 @@ namespace FSpot.Query
 
 		public string SqlClause ()
 		{
-			return string.Format (" photos.time >= {0} AND photos.time <= {1} ",
+			string endCompare = ExcludeEnd ? "<" : "<=";
+			return string.Format (" photos.time >= {0} AND photos.time {1} {2} ",
 					DateTimeUtil.FromDateTime (Start),
+					endCompare,
 					DateTimeUtil.FromDateTime (End));
 		}
 	}

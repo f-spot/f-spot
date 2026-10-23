@@ -30,11 +30,12 @@ namespace FSpot
 {
 	public class PhotoQuery : IBrowsableCollection
 	{
+		internal const int PageSize = 100;
+
 		class PhotoCache
 		{
-			static int SIZE = 100;
 			public int Size {
-				get { return SIZE; }
+				get { return PageSize; }
 			}
 
 			readonly Dictionary<int, Photo[]> cache;
@@ -51,23 +52,35 @@ namespace FSpot
 			public bool TryGetPhoto (int index, out Photo photo)
 			{
 				photo = null;
-				int offset = index - index % SIZE;
+				int offset = index - index % PageSize;
 				if (!cache.TryGetValue (offset, out var val))
 					return false;
 				photo = val[index - offset];
 				return true;
 			}
 
+			public int PageCount => cache.Count;
+
 			public Photo Get (int index)
 			{
-				int offset = index - index % SIZE;
+				int offset = index - index % PageSize;
 				if (!cache.TryGetValue (offset, out var val)) {
-					val = store.QueryFromTemp (temp_table, offset, SIZE);
+					val = store.QueryFromTemp (temp_table, offset, PageSize);
 					cache[offset] = val;
+					int keepLow = offset - PageSize;
+					int keepHigh = offset + PageSize;
+					var drop = new List<int> ();
+					foreach (int key in cache.Keys)
+						if (key < keepLow || key > keepHigh)
+							drop.Add (key);
+					foreach (int key in drop)
+						cache.Remove (key);
 				}
 				return val[index - offset];
 			}
 		}
+
+		internal int CachedPageCount => cache.PageCount;
 
 		PhotoCache cache;
 		PhotoStore store;
@@ -96,6 +109,40 @@ namespace FSpot
 				SetCondition (condition);
 
 			RequestReload ();
+		}
+
+		public IReadOnlyList<DateTime> Times ()
+			=> store.TimesOf (temp_table);
+
+		public IReadOnlyList<string> DefaultVersionPaths ()
+			=> store.DefaultVersionPaths (temp_table);
+
+		internal void AddTagToResults (uint tagId, IReadOnlyCollection<int> excluded)
+			=> store.AddTagToQuery (temp_table, tagId, excluded);
+
+		internal void RemoveTagFromResults (uint tagId, IReadOnlyCollection<int> excluded)
+			=> store.RemoveTagFromQuery (temp_table, tagId, excluded);
+
+		internal IReadOnlyList<uint> TagIds (IReadOnlyCollection<int> excluded)
+			=> store.TagIdsInQuery (temp_table, excluded);
+
+		internal void RemoveResults (IReadOnlyCollection<int> excluded)
+			=> store.RemoveFromQuery (temp_table, excluded);
+
+		internal void DropCachedPages ()
+			=> cache = new PhotoCache (store, temp_table);
+
+		internal void SetRating (uint rating, IReadOnlyCollection<int> excluded)
+			=> store.SetRatingOnQuery (temp_table, rating, excluded);
+
+		internal uint? UniformRating (IReadOnlyCollection<int> excluded)
+			=> store.UniformRating (temp_table, excluded);
+
+		internal void VisitPages (Action<int, Photo[]> visit)
+		{
+			int total = Count;
+			for (int offset = 0; offset < total; offset += PageSize)
+				visit (offset, store.QueryFromTemp (temp_table, offset, PageSize));
 		}
 
 		public int Count {
@@ -262,6 +309,18 @@ namespace FSpot
 				if (value != OrderByTime.Asc)
 					OrderByTime = new OrderByTime (value);
 			}
+		}
+
+		internal void ReloadWith (bool untaggedPhotos, params IQueryCondition[] conditions)
+		{
+			Conditions.Clear ();
+			extraTerms = null;
+			untagged = untaggedPhotos;
+			foreach (IQueryCondition condition in conditions) {
+				if (condition != null)
+					SetCondition (condition);
+			}
+			RequestReload ();
 		}
 
 		public void RequestReload ()
