@@ -66,8 +66,8 @@ namespace FSpot.Core.Tests
 			var time = new DateTime (2026, 6, 15, 14, 30, 0, DateTimeKind.Local);
 			photo.Setup (p => p.Time).Returns (time);
 			string date = PhotoInfoFormatter.Date (photo.Object);
-			Assert.Contains (PhotoDateCaption.Format (photo.Object, wide: false), date);
-			Assert.Contains (time.ToShortTimeString (), date);
+			Assert.Contains ("2026-06-15", date);
+			Assert.Contains ("14:30:00", date);
 		}
 
 		[TestMethod]

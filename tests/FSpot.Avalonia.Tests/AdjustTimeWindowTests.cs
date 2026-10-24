@@ -70,6 +70,7 @@ public sealed class AdjustTimeWindowTests
 		window.Show ();
 		try {
 			Assert.AreEqual ("first.jpg", window.PhotoName.Text);
+			Assert.AreEqual ("2020-01-01 09:00:00", window.OldTime.Text);
 			Assert.AreEqual (string.Format (Strings.PhotoOutOfPhotos, 1, 3), window.CountLabel.Text);
 			Assert.IsTrue (window.CounterRow.IsVisible);
 			Assert.IsTrue (window.ActionSection.IsVisible);

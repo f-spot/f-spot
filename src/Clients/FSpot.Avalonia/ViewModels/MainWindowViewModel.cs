@@ -3228,7 +3228,7 @@ public partial class MainWindowViewModel : ObservableObject
 			if (photos[i].Time > newest)
 				newest = photos[i].Time;
 		}
-		string confirm = string.Format (Strings.MoveXPhotosOntoANewImportRollDatedY, photos.Length, newest.ToString ("g"))
+		string confirm = string.Format (Strings.MoveXPhotosOntoANewImportRollDatedY, photos.Length, PhotoDateCaption.Format (newest, wide: true))
 			+ "\n" + Strings.ThisCannotBeUndone;
 		if (!await shell.ConfirmAsync (Strings.ReassignToNewImportRoll, confirm, Strings.Ok))
 			return;

@@ -18,7 +18,7 @@ public sealed record PrintPhoto (string Path, string Name, string Date, string T
 			path,
 			photo.Name ?? string.Empty,
 			PhotoDateCaption.FormatLocal (photo, wide: false),
-			photo.Time.ToLocalTime ().ToShortTimeString (),
+			PhotoDateCaption.FormatTime (photo.Time.ToLocalTime ()),
 			string.Join (", ", tags.Select (tag => tag.Name)),
 			photo.Description ?? string.Empty);
 	}

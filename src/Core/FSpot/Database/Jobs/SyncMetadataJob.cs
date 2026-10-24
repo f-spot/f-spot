@@ -67,7 +67,8 @@ namespace FSpot.Database.Jobs
 			metadata.EnsureAvailableTags ();
 
 			var tag = metadata.ImageTag;
-			tag.DateTime = photo.Time;
+			// photo.Time is the catalog clock. Writing it here shifted EXIF by the
+			// machine's offset, and the next import shifted it again.
 			tag.Comment = photo.Description ?? string.Empty;
 			tag.Keywords = names.ToArray ();
 			tag.Rating = photo.Rating;
