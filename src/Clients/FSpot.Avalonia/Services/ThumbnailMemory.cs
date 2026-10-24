@@ -71,6 +71,12 @@ sealed class ThumbnailMemory
 		}
 	}
 
+	internal Bitmap? Held (string path, int size, bool color)
+	{
+		lock (gate)
+			return bitmaps.TryGetValue (new Key (path, size, color), out Bitmap? bitmap) ? bitmap : null;
+	}
+
 	public void Invalidate (string? path)
 	{
 		lock (gate) {
