@@ -2043,7 +2043,7 @@ public sealed partial class MainWindowViewModelTests
 			Assert.IsTrue (shell.ConfirmCalled);
 			Assert.AreEqual (Strings.ReassignToNewImportRoll, shell.ConfirmTitle);
 			Assert.AreEqual (
-				string.Format (Strings.MoveXPhotosOntoANewImportRollDatedY, 2, newer.Time.ToString ("g")) + "\n" + Strings.ThisCannotBeUndone,
+				string.Format (Strings.MoveXPhotosOntoANewImportRollDatedY, 2, "2020-06-01 12:00:00") + "\n" + Strings.ThisCannotBeUndone,
 				shell.ConfirmMessage);
 			Assert.IsNull (shell.WarningMessage);
 			Assert.AreEqual (olderRoll, older.RollId);
@@ -2092,7 +2092,7 @@ public sealed partial class MainWindowViewModelTests
 			await viewModel.ReassignToNewImportRollCommand.ExecuteAsync (null);
 
 			Assert.AreEqual (
-				string.Format (Strings.MoveXPhotosOntoANewImportRollDatedY, 2, newer.Time.ToString ("g")) + "\n" + Strings.ThisCannotBeUndone,
+				string.Format (Strings.MoveXPhotosOntoANewImportRollDatedY, 2, "2020-06-01 12:00:00") + "\n" + Strings.ThisCannotBeUndone,
 				shell.ConfirmMessage);
 			Assert.AreEqual (string.Format (Strings.MovedXPhotosToANewImportRoll, 2), shell.WarningMessage);
 			Assert.IsEmpty (viewModel.Photos);

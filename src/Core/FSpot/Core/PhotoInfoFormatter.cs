@@ -23,7 +23,7 @@ namespace FSpot.Core
 			string date = PhotoDateCaption.Format (photo, wide: false);
 			if (string.IsNullOrEmpty (date))
 				return string.Empty;
-			return $"{date}{Environment.NewLine}{photo.Time.ToShortTimeString ()}";
+			return $"{date}{Environment.NewLine}{PhotoDateCaption.FormatTime (photo.Time)}";
 		}
 
 		public static string DateRange (IPhoto[] photos)
@@ -35,8 +35,8 @@ namespace FSpot.Core
 			if (first.Time.Date == last.Time.Date)
 				return string.Format (Strings.OnXBetweenYAndZ,
 					PhotoDateCaption.Format (first, wide: false),
-					first.Time.ToShortTimeString (),
-					last.Time.ToShortTimeString ());
+					PhotoDateCaption.FormatTime (first.Time),
+					PhotoDateCaption.FormatTime (last.Time));
 			return string.Format (Strings.BetweenXAndY,
 				PhotoDateCaption.Format (first, wide: false),
 				PhotoDateCaption.Format (last, wide: false));

@@ -12,6 +12,7 @@ using FSpot.Avalonia.Imaging;
 using FSpot.Avalonia.Services;
 using FSpot.Avalonia.ViewModels;
 using FSpot.Resources.Lang;
+using FSpot.Utils;
 
 using Hyena;
 
@@ -130,7 +131,7 @@ public partial class AdjustTimeWindow : Window
 		var photo = photos[index];
 
 		PhotoName.Text = photo.Name;
-		OldTime.Text = photo.Time.ToString ("g", CultureInfo.CurrentCulture);
+		OldTime.Text = PhotoDateCaption.Format (photo.Time, wide: true);
 		CountLabel.Text = string.Format (CultureInfo.CurrentCulture, Strings.PhotoOutOfPhotos, index + 1, photos.Count);
 
 		updatingFromCode = true;
