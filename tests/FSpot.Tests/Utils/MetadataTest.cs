@@ -10,6 +10,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 
 using System.IO;
+using System.Reflection;
 
 using Hyena;
 
@@ -146,6 +147,40 @@ namespace FSpot.Utils.Tests
 
 			ImageTestHelper.DeleteTempFile (uri);
 			ImageTestHelper.DeleteTempFile (sidecar_uri);
+		}
+
+		[TestMethod]
+		public void SaveSafely_CorruptFile_LeavesTheJpegAndWritesTheChangeToASidecar ()
+		{
+			SafeUri uri = ImageTestHelper.CreateTempFile ("taglib-sample.jpg");
+			SafeUri sidecar = new SafeUri (uri.AbsoluteUri + ".xmp");
+			try {
+				var file = MetadataUtils.Parse (uri);
+				Assert.IsNotNull (file);
+				Assert.IsFalse (file.PossiblyCorrupt);
+				file.ImageTag.Keywords = new[] { "Birthday" };
+				// TagLib marks corruption only from its parser. The marker is private.
+				MethodInfo mark = typeof (TagLib.File).GetMethod ("MarkAsCorrupt", BindingFlags.Instance | BindingFlags.NonPublic);
+				Assert.IsNotNull (mark);
+				mark.Invoke (file, new object[] { "the container failed its consistency check" });
+				Assert.IsTrue (file.PossiblyCorrupt);
+				byte[] before = System.IO.File.ReadAllBytes (uri.AbsolutePath);
+
+				file.SaveSafely (uri, alwaysSidecar: false);
+				file.Dispose ();
+
+				byte[] after = System.IO.File.ReadAllBytes (uri.AbsolutePath);
+				Assert.AreSequenceEqual (before, after);
+				Assert.IsTrue (System.IO.File.Exists (sidecar.AbsolutePath));
+
+				var again = MetadataUtils.Parse (uri);
+				Assert.IsNotNull (again);
+				Assert.AreSequenceEqual (new[] { "Birthday" }, again.ImageTag.Keywords);
+				again.Dispose ();
+			} finally {
+				ImageTestHelper.DeleteTempFile (uri);
+				ImageTestHelper.DeleteTempFile (sidecar);
+			}
 		}
 
 		[TestMethod]
