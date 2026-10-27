@@ -637,7 +637,7 @@ public sealed partial class MainWindowViewModelTests
 	public void PhotoGrid_SizesCellsFromZoom ()
 	{
 		AvaloniaApp.Ensure ();
-		var window = new MainWindow (null) { Width = 900, Height = 600 };
+		var window = new MainWindow (null) { Width = 1000, Height = 1100 };
 		window.Show ();
 		try {
 			var viewModel = (MainWindowViewModel)window.DataContext!;
@@ -645,13 +645,17 @@ public sealed partial class MainWindowViewModelTests
 			for (int i = 0; i < photos.Length; i++)
 				photos[i] = new StubPhoto ($"/photos/{i}.jpg");
 			viewModel.SeedCatalog (photos);
-			viewModel.Zoom = 160;
+			viewModel.Zoom = 64;
 			Dispatcher.UIThread.RunJobs ();
 			var panel = window.GetVisualDescendants ().OfType<Controls.UniformVirtualizingWrapPanel> ().Single ();
 			Assert.AreEqual (viewModel.GridCellWidth, panel.ItemWidth, 0.5);
 			Assert.AreEqual (viewModel.GridCellHeight, panel.ItemHeight, 0.5);
 			Assert.IsGreaterThan (0, panel.RealizedCount);
-			Assert.IsLessThan (80, panel.RealizedCount);
+			Assert.IsLessThan (photos.Length, panel.RealizedCount);
+			// A tall window at the small zoom holds more than one row plus overscan.
+			Assert.IsGreaterThan (panel.ItemHeight * 3, panel.Viewport.Height);
+			int columns = Math.Max (1, (int)Math.Floor (panel.Viewport.Width / panel.ItemWidth));
+			Assert.IsGreaterThan (columns * 2, panel.RealizedCount);
 		} finally {
 			window.Close ();
 		}

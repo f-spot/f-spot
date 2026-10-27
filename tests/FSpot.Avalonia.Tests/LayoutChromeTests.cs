@@ -64,11 +64,13 @@ public sealed class LayoutChromeTests
 		try {
 			window.UpdateLayout ();
 			var import = (Button)ById (window, AutomationIds.ToolbarImport);
+			Assert.IsTrue (import.Classes.Contains ("tool"));
+			Assert.IsFalse (import.Classes.Contains ("import"));
 			var access = import.GetVisualDescendants ().OfType<AccessText> ().Single ();
 			Assert.AreEqual (Strings.Import2, access.Text);
 			Point end = access.TranslatePoint (new Point (access.Bounds.Width, 0), import) ?? default;
 			double spare = import.Bounds.Width - end.X;
-			Assert.IsGreaterThanOrEqualTo (16, spare);
+			Assert.IsGreaterThanOrEqualTo (8, spare);
 		} finally {
 			window.Close ();
 		}

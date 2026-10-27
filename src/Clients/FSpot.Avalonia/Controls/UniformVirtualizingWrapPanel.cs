@@ -109,8 +109,11 @@ public class UniformVirtualizingWrapPanel : VirtualizingPanel, ILogicalScrollabl
 
 	protected override Size MeasureOverride (Size availableSize)
 	{
-		double width = double.IsFinite (availableSize.Width) && availableSize.Width > 0 ? availableSize.Width : CellWidth;
-		double height = double.IsFinite (availableSize.Height) && availableSize.Height > 0 ? availableSize.Height : CellHeight;
+		// The first pass often has no height, and the scroll viewer repeats that
+		// pass after arrange. A missing constraint must not replace a window we
+		// already measured, or the grid stays on one row plus the overscan row.
+		double width = Finite (availableSize.Width, viewport.Width, CellWidth);
+		double height = Finite (availableSize.Height, viewport.Height, CellHeight);
 		viewport = new Size (width, height);
 		Realize ();
 		var next = Clamp (offset);
@@ -133,6 +136,23 @@ public class UniformVirtualizingWrapPanel : VirtualizingPanel, ILogicalScrollabl
 
 	protected override Size ArrangeOverride (Size finalSize)
 	{
+		// The first measure often arrives with infinite height, so the viewport
+		// collapses to one row and only that row plus overscan is built.
+		if (finalSize.Width > 0 && finalSize.Height > 0 &&
+		    (Math.Abs (finalSize.Width - viewport.Width) > 0.5 || Math.Abs (finalSize.Height - viewport.Height) > 0.5)) {
+			viewport = finalSize;
+			Realize ();
+			offset = Clamp (offset);
+			if (!scrolling) {
+				scrolling = true;
+				try {
+					RaiseScrollInvalidated (EventArgs.Empty);
+				} finally {
+					scrolling = false;
+				}
+			}
+		}
+
 		int columns = anchorColumnCount;
 		double cellW = CellWidth;
 		double cellH = CellHeight;
@@ -336,6 +356,15 @@ public class UniformVirtualizingWrapPanel : VirtualizingPanel, ILogicalScrollabl
 	{
 		foreach (int index in realized.Keys.ToArray ())
 			Unrealize (index);
+	}
+
+	static double Finite (double offered, double known, double fallback)
+	{
+		if (double.IsFinite (offered) && offered > 0)
+			return offered;
+		if (known > fallback)
+			return known;
+		return fallback;
 	}
 
 	public double CellWidth => ItemWidth > 1 ? ItemWidth : 1;
