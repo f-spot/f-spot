@@ -38,8 +38,8 @@
 				</ControlTemplate>
 			</Setter>
 		</Style>
-		<!-- Fluent's horizontal slider is 15 + 32 + 15. The footer zoom control
-		     should sit in one text line, about 16px, under the taller toolbar. -->
+		<!-- Fluent's horizontal slider is 15 + 32 + 15. The status bar is 24px,
+		     so the zoom control is a 16px line centered in that row. -->
 		<Style Selector="Slider.zoom">
 			<Style.Resources>
 				<GridLength x:Key="SliderPreContentMargin">0</GridLength>
@@ -50,7 +50,49 @@
 			</Style.Resources>
 		</Style>
 		<Style Selector="Button.tool, ToggleButton.tool, RadioButton.tool">
-			<Setter Property="Padding" Value="8,4" />
+			<Setter Property="MinWidth" Value="32" />
+			<Setter Property="MinHeight" Value="32" />
+			<Setter Property="Padding" Value="8,6" />
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="CornerRadius" Value="6" />
+		</Style>
+		<!-- Fluent paints the face on the presenter. Setting Background on the
+		     button leaves the dark chip in place. -->
+		<Style Selector="Button.tool /template/ ContentPresenter, ToggleButton.tool /template/ ContentPresenter, RadioButton.tool /template/ ContentPresenter">
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="BorderBrush" Value="Transparent" />
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="CornerRadius" Value="6" />
+		</Style>
+		<Style Selector="Button.tool:pointerover /template/ ContentPresenter, ToggleButton.tool:pointerover /template/ ContentPresenter, RadioButton.tool:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource SystemControlBackgroundBaseLowBrush}" />
+		</Style>
+		<Style Selector="Button.tool:pressed /template/ ContentPresenter, ToggleButton.tool:pressed /template/ ContentPresenter, RadioButton.tool:pressed /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource SystemControlBackgroundBaseMediumLowBrush}" />
+		</Style>
+		<Style Selector="Button.tool:disabled /template/ ContentPresenter, ToggleButton.tool:disabled /template/ ContentPresenter, RadioButton.tool:disabled /template/ ContentPresenter">
+			<Setter Property="Background" Value="Transparent" />
+		</Style>
+		<Style Selector="RadioButton.tool:checked, ToggleButton.tool:checked">
+			<Setter Property="Foreground" Value="White" />
+		</Style>
+		<Style Selector="RadioButton.tool:checked /template/ ContentPresenter, ToggleButton.tool:checked /template/ ContentPresenter, RadioButton.tool:checked:pointerover /template/ ContentPresenter, ToggleButton.tool:checked:pointerover /template/ ContentPresenter, RadioButton.tool:checked:pressed /template/ ContentPresenter, ToggleButton.tool:checked:pressed /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource SystemAccentColor}" />
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="CornerRadius" Value="6" />
+		</Style>
+		<Style Selector="Path.glyph">
+			<Setter Property="Width" Value="16" />
+			<Setter Property="Height" Value="16" />
+			<Setter Property="Margin" Value="0,-1,0,1" />
+			<Setter Property="Stretch" Value="None" />
+			<Setter Property="Fill" Value="Transparent" />
+			<Setter Property="StrokeThickness" Value="1.5" />
+			<Setter Property="StrokeLineCap" Value="Round" />
+			<Setter Property="StrokeJoin" Value="Round" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="HorizontalAlignment" Value="Center" />
 		</Style>
 		<Style Selector="Button.sidebar-chooser">
 			<Setter Property="HorizontalAlignment" Value="Stretch" />

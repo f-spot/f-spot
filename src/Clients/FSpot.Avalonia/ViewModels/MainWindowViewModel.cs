@@ -1118,7 +1118,10 @@ public partial class MainWindowViewModel : ObservableObject
 		if (selected > 0)
 			text += " " + string.Format (Strings.XSelected, selected);
 		StatusText = text;
-		WindowTitle = $"{Strings.FSpot} — {string.Format (shown <= 1 ? Strings.XPhoto : Strings.XPhotos, shown)}";
+		// macOS draws the title in a strip the toolbar already replaced. The count stays in the status bar.
+		WindowTitle = OperatingSystem.IsMacOS ()
+			? Strings.FSpot
+			: $"{Strings.FSpot} — {string.Format (shown <= 1 ? Strings.XPhoto : Strings.XPhotos, shown)}";
 	}
 
 	void RequestHistogram (PhotoItemViewModel? item)

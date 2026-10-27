@@ -247,32 +247,41 @@
 		               AutomationProperties.Name="{x:Static lang:Strings.MainMenu}" />
 
 		<Border DockPanel.Dock="Top"
-		        Padding="6,4"
+		        Padding="8,4"
 		        IsVisible="{Binding DisplayToolbar}"
 		        BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}"
 		        BorderThickness="0,0,0,1">
 			<Grid ColumnDefinitions="Auto,*,Auto">
-				<StackPanel Orientation="Horizontal" Spacing="4">
-					<Button x:Name="ToolbarImportButton" Classes="tool" MinWidth="240" Padding="16,4" ToolTip.Tip="{x:Static lang:Strings.ImportNewPhotos}" Command="{Binding ImportCommand}"
+				<StackPanel Orientation="Horizontal">
+					<Button x:Name="ToolbarImportButton" Classes="tool" ToolTip.Tip="{x:Static lang:Strings.ImportNewPhotos}" Command="{Binding ImportCommand}"
 					        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ToolbarImport}"
 					        AutomationProperties.Name="{x:Static lang:Strings.Import}">
-						<StackPanel Orientation="Horizontal" Spacing="6">
-							<svg:Svg Width="22" Height="22" Path="avares://FSpot.Avalonia/Icons/camera-photo.svg" />
+						<StackPanel Orientation="Horizontal" Spacing="8">
+							<Path Classes="glyph" Stroke="{Binding $parent[Button].Foreground}" Data="M1.5,5.2 H5.1 L6.3,3.2 H9.7 L11,5.2 H14.5 V12.8 H1.5 Z M10.2,9 A2.2,2.2 0 1 1 5.8,9 A2.2,2.2 0 1 1 10.2,9 Z" />
 							<primitives:AccessText Text="{x:Static lang:Strings.Import2}" VerticalAlignment="Center" />
 						</StackPanel>
 					</Button>
-					<Rectangle Width="1" Margin="4,2" Fill="{DynamicResource SystemControlForegroundBaseLowBrush}" />
+					<Border Width="8">
+						<Border Width="1" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"
+						        Background="{DynamicResource SystemControlForegroundBaseLowBrush}" />
+					</Border>
+					<StackPanel Orientation="Horizontal" Spacing="4">
 					<Button Classes="tool" ToolTip.Tip="{x:Static lang:Strings.RotateLeft}" Command="{Binding RotateLeftCommand}"
 					        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ToolbarRotateLeft}"
 					        AutomationProperties.Name="{x:Static lang:Strings.RotateLeft}">
-						<svg:Svg Width="22" Height="22" Path="avares://FSpot.Avalonia/Icons/object-rotate-left.svg" />
+						<Path Classes="glyph" Stroke="{Binding $parent[Button].Foreground}" Data="M5.2,6.4 A4.6,4.6 0 1 1 8.6,12.8 M5.2,6.4 V3.2 M5.2,6.4 H8.4" />
 					</Button>
 					<Button Classes="tool" ToolTip.Tip="{x:Static lang:Strings.RotateRight}" Command="{Binding RotateRightCommand}"
 					        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ToolbarRotateRight}"
 					        AutomationProperties.Name="{x:Static lang:Strings.RotateRight}">
-						<svg:Svg Width="22" Height="22" Path="avares://FSpot.Avalonia/Icons/object-rotate-right.svg" />
+						<Path Classes="glyph" Stroke="{Binding $parent[Button].Foreground}" Data="M10.8,6.4 A4.6,4.6 0 1 0 7.4,12.8 M10.8,6.4 V3.2 M10.8,6.4 H7.6" />
 					</Button>
-					<Rectangle Width="1" Margin="4,2" Fill="{DynamicResource SystemControlForegroundBaseLowBrush}" />
+					</StackPanel>
+					<Border Width="8">
+						<Border Width="1" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"
+						        Background="{DynamicResource SystemControlForegroundBaseLowBrush}" />
+					</Border>
+					<StackPanel Orientation="Horizontal" Spacing="4">
 					<RadioButton Classes="tool" GroupName="LibraryViewMode"
 					             Theme="{StaticResource {x:Type ToggleButton}}"
 					             IsChecked="{Binding IsBrowsing, Mode=OneWay}"
@@ -280,8 +289,8 @@
 					             Command="{Binding BrowseCommand}"
 					             AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ToolbarBrowse}"
 					             AutomationProperties.Name="{x:Static lang:Strings.Browsing}">
-						<StackPanel Orientation="Horizontal" Spacing="6">
-							<svg:Svg Width="22" Height="22" Path="avares://FSpot.Avalonia/Icons/mode-browse.svg" />
+						<StackPanel Orientation="Horizontal" Spacing="8">
+							<Path Classes="glyph" Stroke="{Binding $parent[Button].Foreground}" Data="M2.2,2.2 H6.6 V6.6 H2.2 Z M9.4,2.2 H13.8 V6.6 H9.4 Z M2.2,9.4 H6.6 V13.8 H2.2 Z M9.4,9.4 H13.8 V13.8 H9.4 Z" />
 							<TextBlock Text="{x:Static lang:Strings.Browsing}" VerticalAlignment="Center" />
 						</StackPanel>
 					</RadioButton>
@@ -292,24 +301,30 @@
 					             Command="{Binding EditCommand}"
 					             AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ToolbarEdit}"
 					             AutomationProperties.Name="{x:Static lang:Strings.Editing}">
-						<StackPanel Orientation="Horizontal" Spacing="6">
-							<svg:Svg Width="22" Height="22" Path="avares://FSpot.Avalonia/Icons/mode-image-edit-22.svg" />
+						<StackPanel Orientation="Horizontal" Spacing="8">
+							<Path Classes="glyph" Stroke="{Binding $parent[Button].Foreground}" Data="M2.2,3.2 H13.8 V12.8 H2.2 Z M4.2,10.8 L6.6,7.6 L8.4,9.4 L10.2,7.8 L12.2,10.8" />
 							<TextBlock Text="{x:Static lang:Strings.Editing}" VerticalAlignment="Center" />
 						</StackPanel>
 					</RadioButton>
-					<Rectangle Width="1" Margin="4,2" Fill="{DynamicResource SystemControlForegroundBaseLowBrush}" />
+					</StackPanel>
+					<Border Width="8">
+						<Border Width="1" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"
+						        Background="{DynamicResource SystemControlForegroundBaseLowBrush}" />
+					</Border>
+					<StackPanel Orientation="Horizontal" Spacing="4">
 					<Button Classes="tool" ToolTip.Tip="{x:Static lang:Strings.Fullscreen}" Command="{Binding ToggleFullscreenCommand}"
 					        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ToolbarFullscreen}"
 					        AutomationProperties.Name="{x:Static lang:Strings.Fullscreen}">
-						<svg:Svg Width="22" Height="22" Path="avares://FSpot.Avalonia/Icons/view-fullscreen.svg" />
+						<Path Classes="glyph" Stroke="{Binding $parent[Button].Foreground}" Data="M3.2,6.2 V3.2 H6.2 M9.8,3.2 H12.8 V6.2 M12.8,9.8 V12.8 H9.8 M6.2,12.8 H3.2 V9.8" />
 					</Button>
 					<Button Classes="tool" ToolTip.Tip="{x:Static lang:Strings.ViewPhotosInASlideshow}" Command="{Binding SlideshowCommand}"
 					        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ToolbarSlideshow}"
 					        AutomationProperties.Name="{x:Static lang:Strings.Slideshow}">
-						<svg:Svg Width="22" Height="22" Path="avares://FSpot.Avalonia/Icons/film-roll-22.svg" />
+						<Path Classes="glyph" Stroke="{Binding $parent[Button].Foreground}" Data="M3,3.2 H13 V12.8 H3 Z M3,6.2 H13 M3,9.8 H13 M5.4,3.2 V6.2 M8,3.2 V6.2 M10.6,3.2 V6.2 M5.4,9.8 V12.8 M8,9.8 V12.8 M10.6,9.8 V12.8" />
 					</Button>
+					</StackPanel>
 				</StackPanel>
-				<StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" IsVisible="{Binding IsEditing}">
+				<StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4" IsVisible="{Binding IsEditing}">
 					<TextBlock Text="{Binding CountText}" FlowDirection="LeftToRight" VerticalAlignment="Center"
 					           AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ToolbarPhotoIndex}"
 					           AutomationProperties.Name="{Binding CountText}" />
@@ -336,8 +351,8 @@
 		<Border DockPanel.Dock="Bottom"
 		        BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}"
 		        BorderThickness="0,1,0,0"
-		        Padding="8,2">
-		<Grid ColumnDefinitions="*,Auto" Height="20"
+		        Padding="8,0">
+		<Grid ColumnDefinitions="*,Auto" Height="24"
 		      AutomationProperties.AutomationId="{x:Static auto:AutomationIds.StatusBar}"
 		      AutomationProperties.Name="{x:Static lang:Strings.StatusBarLabel}">
 			<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Text="{Binding StatusText}"
@@ -345,7 +360,7 @@
 			           AutomationProperties.Name="{Binding StatusText}"
 			           AutomationProperties.LiveSetting="Polite" />
 			<StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
-				<svg:Svg Width="14" Height="14" Path="avares://FSpot.Avalonia/Icons/view-far-22.svg" />
+				<svg:Svg Width="16" Height="16" Path="avares://FSpot.Avalonia/Icons/view-far-22.svg" />
 				<Slider Classes="zoom" Width="120" Height="16"
 				        Minimum="0"
 				        Maximum="1"
@@ -353,7 +368,7 @@
 				        VerticalAlignment="Center"
 				        AutomationProperties.AutomationId="{x:Static auto:AutomationIds.ZoomSlider}"
 				        AutomationProperties.Name="{x:Static lang:Strings.ThumbnailSize}" />
-				<svg:Svg Width="14" Height="14" Path="avares://FSpot.Avalonia/Icons/view-near-22.svg" />
+				<svg:Svg Width="16" Height="16" Path="avares://FSpot.Avalonia/Icons/view-near-22.svg" />
 			</StackPanel>
 		</Grid>
 		</Border>
